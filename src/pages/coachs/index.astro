@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Les coachs — Boxing Center Ramonville · Sonia, Jérôme, Farouk & Valentin G</title>
+  <meta name="description" content="L'encadrement de Boxing Center Ramonville : Sonia (pieds-poings, Lady Punch, camp), Jérôme (grappling, asso MMA), Farouk (anglaise loisirs, camp) et Valentin G (anglaise, école enfants dès 3 ans). Des visages réels, les vrais créneaux de chacun." />
+  <meta name="keywords" content="coach boxe Ramonville, Sonia Boxing Center, coach grappling Toulouse, coach MMA Toulouse sud, encadrement boxe Ramonville-Saint-Agne, Valentin G école" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="author" content="Boxing Center Ramonville" />
+  <meta name="geo.region" content="FR-31" />
+  <meta name="geo.placename" content="Ramonville-Saint-Agne — Toulouse" />
+  <meta name="geo.position" content="43.546;1.474" />
+  <meta name="ICBM" content="43.546, 1.474" />
+  <link rel="canonical" href="https://ramonville.boxingcenter.fr/coachs/" />
+  <meta name="theme-color" content="#070a12" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=6" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:site_name" content="Boxing Center Ramonville" />
+  <meta property="og:title" content="Les coachs — Boxing Center Ramonville" />
+  <meta property="og:description" content="Sonia, Jérôme, Farouk et Valentin G. Ceux qui tiennent la cage, le ring et l'école — avec leurs vrais créneaux." />
+  <meta property="og:url" content="https://ramonville.boxingcenter.fr/coachs/" />
+  <meta property="og:image" content="https://ramonville.boxingcenter.fr/assets/img/ram/coach-sonia.webp" />
+  <meta property="og:image:alt" content="Sonia, coach à Boxing Center Ramonville." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Les coachs — Boxing Center Ramonville" />
+  <meta name="twitter:description" content="Sonia, Jérôme, Farouk et Valentin G — des visages réels, des créneaux réels." />
+  <meta name="twitter:image" content="https://ramonville.boxingcenter.fr/assets/img/ram/coach-sonia.webp" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://api.open-meteo.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <!-- base.css = le système (partagé) ; coachs.css = le CSS PROPRE de la page -->
+  <link rel="stylesheet" href="/assets/css/base.css?v=6" />
+  <link rel="stylesheet" href="/assets/css/coachs.css?v=6" />
+
+  <script is:inline type="application/ld+json">
+  { "@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Accueil","item":"https://ramonville.boxingcenter.fr/"},
+    {"@type":"ListItem","position":2,"name":"Coachs","item":"https://ramonville.boxingcenter.fr/coachs/"}
+  ]}
+  </script>
+
+  <script is:inline>
+    (function(){try{var p=localStorage.getItem('bc-ram-palette');if(p==='cuivre')document.documentElement.setAttribute('data-palette','cuivre');}catch(e){}})();
+    document.documentElement.classList.add('fx');
+  </script>
+</head>
+
+<body data-page="coachs">
+  <a class="sr-only" href="#main">Aller au contenu</a>
+  <div id="nav"></div>
+  <div id="drawer"></div>
+
+  <main id="main">
+    <header class="phero" aria-label="Les coachs">
+      <div class="sky" aria-hidden="true"><canvas class="sky__stars"></canvas><div class="sky__haze"></div><div class="sky__moon"></div></div>
+      <div class="wrap">
+        <nav class="breadcrumb" aria-label="Fil d'ariane"><a href="/">Accueil</a> / <span>Coachs</span></nav>
+        <h1 class="display phero__title"><span class="reveal-mask"><span>Ceux qui</span></span><span class="reveal-mask"><span class="tint">tiennent la cage.</span></span></h1>
+        <p class="lead phero__lead" data-reveal>Quatre encadrants, quatre territoires : le ring, la cage, les soirs loisirs, l'école. Chacun avec ses vrais créneaux de la semaine — et un vrai visage dès que la photo est prouvée, jamais un figurant à la place d'un nom.</p>
+        <!-- l'objet propre à ce hero (page.js → pheroMeta) -->
+        <div class="phero__meta" id="phero-meta" data-reveal-group aria-label="L'encadrement, en chiffres"></div>
+      </div>
+    </header>
+
+    <section class="section" aria-label="L'encadrement">
+      <div class="wrap">
+        <div class="shead" data-reveal>
+          <span class="eyebrow">Sur le plateau</span>
+          <h2 class="display"><span class="reveal-mask"><span>Quatre noms,</span></span><span class="reveal-mask"><span class="tint">une semaine entière.</span></span></h2>
+        </div>
+        <!-- roster rendu par le module en bas (créneaux dérivés du planning) ;
+             id distinct de #coachs → page.js ne touche pas cette page. -->
+        <div class="roster" id="coachroster" data-reveal-group></div>
+
+        <div class="integrity" data-reveal>
+          <span class="integrity__mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V5z"/><path d="m9 12 2 2 4-4"/></svg>
+          </span>
+          <p><b>Nom ≡ photo.</b> Sonia et Jérôme apparaissent en photo (fiches officielles du réseau). Farouk et Valentin G n'ont pas encore de portrait prouvé : ils gardent leur nom sur une tuile, pas le visage d'un autre. Les portraits arrivent avec le reportage de la salle.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="ctaband" aria-label="Rencontrer les coachs">
+      <div class="sky" aria-hidden="true"><canvas class="sky__stars"></canvas><div class="sky__haze"></div></div>
+      <div class="ctaband__inner">
+        <span class="eyebrow" style="justify-content:center" data-reveal>Ils sont là ce soir</span>
+        <h2 class="display"><span class="reveal-mask"><span>Prends un round</span></span><span class="reveal-mask"><span class="tint">avec eux.</span></span></h2>
+        <p class="lead" data-reveal>10 €, une séance, un coach en face. Tu verras vite qui tient quoi.</p>
+        <div class="ctaband__cta" data-reveal>
+          <a class="btn btn--primary" data-magnetic href="https://box-plus.vercel.app/seance-essai"><span>Réserver l'essai · 10€</span></a>
+          <a class="btn btn--ghost" data-magnetic href="/plannings/"><span>Voir le planning</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="footer"></div>
+
+  <a class="chatbot" href="tel:+33562244682" aria-label="Une question ? Appelle la salle Boxing Center Ramonville">
+    <span class="chatbot__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+    <span class="chatbot__label">Une question&nbsp;? Appelle la salle</span>
+  </a>
+
+  <script is:inline src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script is:inline src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script is:inline src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=6"></script>
+  <script is:inline type="module" src="/assets/js/sky.js?v=6"></script>
+  <script is:inline type="module" src="/assets/js/page.js?v=6"></script>
+
+  <!-- Rendu PROPRE à la page : le roster + les vrais créneaux de chacun,
+       dérivés du planning officiel (SCHEDULE). Loi coach respectée : photo
+       prouvée → media ; sinon tuile nom. #coachroster ≠ #coachs → page.js
+       n'intervient pas. -->
+  <script is:inline type="module">
+    import { COACHES, SCHEDULE, DAYS } from "/assets/js/data.js?v=6";
+    const box = document.getElementById("coachroster");
+    if (box && COACHES) {
+      const dayIx = (d) => DAYS.indexOf(d);
+      // regroupe les créneaux du planning par coach (nom ≡ SCHEDULE.coach)
+      const slotsFor = (name) => SCHEDULE
+        .filter((s) => s.coach === name)
+        .sort((a, b) => (dayIx(a.day) - dayIx(b.day)) || a.start.localeCompare(b.start));
+
+      box.innerHTML = COACHES.map((c) => {
+        const slots = slotsFor(c.name);
+        const initials = c.name.split(" ").map((w) => w[0]).join("");
+        const face = c.img
+          ? `<div class="coach__face media" data-img="${c.img}" data-label="" data-alt="${c.name}, coach à Boxing Center Ramonville"></div>`
+          : `<div class="coach__face coach__face--tile" role="img" aria-label="${c.name} — portrait à venir"><span class="ini">${initials}</span><span class="sub">Photo à venir</span></div>`;
+        const slotHtml = slots.length
+          ? `<div class="coach__slots">${slots.map((s) =>
+              `<div class="slotline"><span class="d">${s.day}</span><span class="t">${s.start}</span><span class="c">${s.cours}</span></div>`).join("")}</div>`
+          : "";
+        return `<article class="coach ${c.pillar ? "coach--pillar" : ""}">
+          ${face}
+          <div class="coach__body">
+            <span class="coach__tag">${c.tag}</span>
+            <h3>${c.name}</h3>
+            <span class="coach__role">${c.role}</span>
+            <p>${c.note}</p>
+            <span class="coach__count"><b>${slots.length}</b><span>créneaux / semaine</span></span>
+            ${slotHtml}
+          </div>
+        </article>`;
+      }).join("");
+
+      // hydrate les photos (.media), lie la vie aux fiches injectées
+      window.BC?.media(document);
+      window.BC?.reveal(document);
+      window.BC?.touchLife(".coach");
+      window.BC?.refresh();
+    }
+  </script>
+</body>
+</html>

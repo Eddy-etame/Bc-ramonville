@@ -1,0 +1,443 @@
+/* =====================================================================
+   BOXING CENTER — RAMONVILLE · « L'OCTOGONE À CIEL OUVERT »
+   base.css — design system. LA NUIT DEHORS : le ciel réel au-dessus de la
+   cage, le clair de lune sur l'acier du hangar. Registre DOCUMENTAIRE, pas
+   fitness. La démesure est dans la justesse.
+
+   COULEURS 100 % BOXING CENTER (rien d'inventé) : navy nuit (fond) + ARGENT
+   #aebccf (défaut, clair de lune) ; bascule vers le CUIVRE brûlé du logo
+   #7a3d16 (éclairé). Distincte des sœurs par le MONDE (le ciel, l'octogone)
+   et le squelette, pas par une couleur hors-marque. Type anguleux (Chakra
+   Petch). L'accent est une LUMIÈRE (argent/cuivre), jamais une encre.
+
+   LOI DE LISIBILITÉ : corps #e8ebf4 sur #070a12 ≈ 15:1. L'argent #9fb6d9
+   (≈8:1) est une LUMIÈRE — titres, filets, accents — JAMAIS du corps < 4.5:1.
+   Labels muets #8a93a8 ≈ 5.9:1 (AA). Bascule bi-palette : data-palette.
+   ===================================================================== */
+
+/* --- Repli métrique pour le display (anti-CLS / FOUT) ---
+   « Arial Narrow » n'existe pas sur Android : pendant le swap Google Fonts, les
+   gros titres rendaient d'abord en sans large, puis se resserraient sur Chakra
+   Petch — décalage visible sur connexion lente. Ce repli s'appuie sur une
+   police QUI EXISTE partout (Roboto/Arial), resserrée à ~93 % pour approcher la
+   largeur condensée de Chakra Petch et limiter le reflow au chargement. */
+@font-face {
+  font-family: "Chakra Fallback";
+  src: local("Arial Narrow"), local("Roboto Condensed"), local("Roboto"), local("Arial");
+  size-adjust: 93%;
+  font-weight: 500 700;
+  font-display: swap;
+}
+/* Repli métrique du corps (Manrope) et des labels (JetBrains Mono) — même
+   principe : tenir la mise en page pendant le swap Google Fonts sur connexion
+   lente (le corps et les captions mono reflowaient, seuls les titres étaient
+   protégés). Arial ≈ Manrope (size-adjust léger), Consolas ≈ JetBrains Mono. */
+@font-face {
+  font-family: "Manrope Fallback";
+  src: local("Arial"), local("Segoe UI"), local("Roboto");
+  size-adjust: 105%;
+  font-weight: 400 800;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Mono Fallback";
+  src: local("Consolas"), local("DejaVu Sans Mono"), local("Menlo");
+  size-adjust: 100%;
+  font-weight: 400 600;
+  font-display: swap;
+}
+
+/* ----------------------------- TOKENS ----------------------------- */
+/* PALETTE A (défaut) « Acier lune ». La nuit bleu-noir de la marque + l'ARGENT
+   Boxing Center (#aebccf) refroidi en clair de lune sur l'acier de la cage.
+   Couleurs 100 % marque : navy + argent. Les glows/filets dérivent de --accent
+   via color-mix : la bascule ne change que l'accent. */
+:root {
+  --void:     #04060c;   /* le noir du hangar, sous la charpente */
+  --paper:    #070a12;   /* fond — la nuit bleu-noir (navy Boxing Center) */
+  --paper-2:  #0e1320;   /* panneau surélevé */
+  --paper-3:  #161c2c;   /* pressé */
+  --ink:      #e8ebf4;   /* texte — ≈15:1 */
+  --ink-soft: #c0c7d8;
+  --muted:    #8a93a8;   /* labels — ≈5.9:1, AA */
+
+  --accent:   #9fb6d9;   /* ARGENT lunaire (famille silver marque #aebccf) — une lumière, ≈8:1 */
+  --accent-2: #d3e2f5;   /* argent clair, dégradés */
+
+  /* dérivés de l'accent — la bascule de palette suffit à tout re-teinter */
+  --line:      color-mix(in srgb, var(--ink) 13%, transparent);
+  --line-soft: color-mix(in srgb, var(--ink) 6%, transparent);
+  --accent-line: color-mix(in srgb, var(--accent) 34%, transparent);
+  --glow:      0 0 38px color-mix(in srgb, var(--accent) 30%, transparent);
+  --glow-soft: 0 0 22px color-mix(in srgb, var(--accent) 18%, transparent);
+  --uv:        linear-gradient(118deg, var(--accent) 6%, var(--accent-2) 44%, var(--ink) 60%, var(--accent) 100%);
+  --shadow:    0 24px 64px -22px rgba(0,0,0,.82);
+
+  --bg: var(--paper);
+  --fg: var(--ink);
+
+  /* Type — propre à la salle : Chakra Petch (cage/techno), Manrope, JetBrains Mono */
+  --f-display:"Chakra Petch", "Chakra Fallback", "Arial Narrow", sans-serif;
+  --f-body:   "Manrope", "Manrope Fallback", system-ui, sans-serif;
+  --f-mono:   "JetBrains Mono", "Mono Fallback", ui-monospace, monospace;
+
+  /* PLANCHER TYPO : --step--2 ne descend JAMAIS sous ~11px. Les micro-labels
+     mono (le tic documentaire de la maison) tombaient à 9,3–10,2px un peu
+     partout — le registre « carnet de terrain » se lisait comme du bruit.
+     Tout label mono passe par ce token, aucun `.5xrem` en dur. */
+  --step--2: clamp(.7rem, .66rem + .12vw, .76rem);
+  --step--1: clamp(.78rem, .72rem + .3vw, .9rem);
+  --step-0:  clamp(1rem, .95rem + .28vw, 1.12rem);
+  --step-1:  clamp(1.25rem, 1.05rem + 1vw, 1.85rem);
+  --step-2:  clamp(2rem, 1.4rem + 2.8vw, 3.9rem);
+  --step-3:  clamp(2.7rem, 1.5rem + 5.8vw, 6.8rem);
+
+  --wrap: min(92vw, 1280px);
+  --gut: clamp(1.2rem, 4vw, 3rem);
+  --sec: clamp(4.5rem, 9vw, 9.5rem);
+
+  /* CHROME DES PAGES — un seul jeu de mesures pour des composants identiques.
+     Ces trois valeurs dérivaient de page à page (3,4 / 3,8 / 4rem pour le même
+     .shead h2 ; 52 / 54 / 56ch pour le même .phero__lead) : du copier-coller
+     qui se présentait comme un système. Une page qui a besoin d'une autre
+     mesure prend un token nommé, pas un chiffre changé dans une copie. */
+  --shead-max:   3.8rem;                    /* taille max du h2 de section */
+  --lead-measure: 54ch;                     /* mesure du chapô de hero */
+  --phero-pad-b: clamp(3rem, 6vw, 5rem);    /* respiration sous le hero */
+
+  --ease: cubic-bezier(.22,.61,.36,1);
+  --ease-out: cubic-bezier(.16,1,.3,1);
+  --ease-spring: cubic-bezier(.34,1.4,.4,1);
+  --radius: 4px;   /* le plateau est anguleux — coins durs, comme la cage */
+
+  /* CIEL — variables pilotées par sky.js (data-sky / data-hour). Le défaut
+     est la « nuit claire » (fallback offline). Les états CSS plus bas les
+     surchargent : voile, pluie, orage, et les moments du jour. */
+  --sky-top:  #060912;
+  --sky-mid:  #0a1024;
+  --sky-low:  #141a38;
+  --sky-glow: color-mix(in srgb, var(--accent) 22%, transparent);
+  --sky-haze: transparent;
+}
+
+/* PALETTE B (bascule de secours, loi standard) « Cuivre » — même nuit, accent
+   CUIVRE brûlé de la marque (le métal du logo officiel #7a3d16, éclairé pour
+   la lisibilité sur fond noir). Couleurs 100 % marque : navy + cuivre.
+   Toggle nav data-palette, localStorage bc-ram-palette. */
+:root[data-palette="cuivre"] {
+  --accent:   #c07a3a;   /* cuivre brûlé éclairé (famille #7a3d16) — ≈5.7:1 sur --paper (4.9:1 sur --paper-3) : glows/filets/titres, à réserver aux fonds --paper/--void, pas aux micro-labels sur --paper-3 */
+  --accent-2: #e0a56a;
+  --sky-glow: color-mix(in srgb, var(--accent) 22%, transparent);
+}
+
+/* ----------------------------- RESET ------------------------------ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  font-family: var(--f-body);
+  font-size: var(--step-0); line-height: 1.62;
+  color: var(--fg); background: var(--bg);
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+img, video, svg, canvas { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
+ul { list-style: none; }
+::selection { background: var(--accent); color: var(--void); }
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+html.is-locked, html.is-locked body { overflow: hidden; height: 100%; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+
+/* --------------------------- LAYOUT ------------------------------- */
+.wrap { width: var(--wrap); margin-inline: auto; }
+.section { padding-block: var(--sec); position: relative; }
+.split { display: grid; gap: clamp(2rem,5vw,5rem); grid-template-columns: 1fr; }
+@media (min-width: 900px){ .split { grid-template-columns: 1.05fr 1fr; align-items: center; } }
+
+.eyebrow { display: inline-flex; align-items: center; gap: .8ch; font: 600 var(--step--1)/1 var(--f-mono); letter-spacing: .18em; text-transform: uppercase; color: var(--accent); }
+.eyebrow::before { content: ""; width: 7px; height: 7px; background: var(--accent); transform: rotate(45deg); box-shadow: 0 0 10px var(--accent); }
+
+.display { font-family: var(--f-display); font-weight: 700; line-height: 1.02; letter-spacing: -.02em; font-size: var(--step-3); color: var(--ink); text-transform: uppercase; }
+/* l'accent = la lumière argent, coulée dans le type */
+.tint { background: var(--uv); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.lead { font-size: var(--step-1); line-height: 1.42; color: var(--ink-soft); font-weight: 500; letter-spacing: -.01em; }
+.muted { color: var(--muted); }
+.mono { font: 600 var(--step--1)/1.4 var(--f-mono); letter-spacing: .04em; }
+
+.reveal-mask { display: block; overflow: hidden; }
+.reveal-mask > span { display: block; }
+html.fx .reveal-mask > span { opacity: 0; }
+html.fx [data-reveal] { opacity: 0; transform: translateY(28px); }
+
+/* ---------------------------- BUTTONS ----------------------------- */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: .8ch; padding: .95em 1.55em; font: 600 var(--step--1)/1 var(--f-mono); letter-spacing: .04em; text-transform: uppercase; border-radius: var(--radius); position: relative; color: var(--ink); border: 1.5px solid var(--line); background: color-mix(in srgb, var(--paper-2) 88%, transparent); transition: transform .35s var(--ease-spring), box-shadow .35s var(--ease), border-color .3s, background .3s, color .3s; }
+.btn:hover { transform: translateY(-2px); box-shadow: var(--glow-soft); border-color: var(--accent); color: #fff; }
+/* le CTA principal = la lumière argent elle-même */
+.btn--primary { background: var(--accent); border-color: var(--accent); color: var(--void); }
+.btn--primary:hover { background: var(--accent-2); box-shadow: var(--glow), var(--shadow); color: var(--void); }
+.btn sup { font-size: .62em; }
+.btn--ghost { background: transparent; }
+
+/* --------------------------- PALETTE TOGGLE ----------------------- */
+.pal { display: inline-flex; align-items: center; gap: .5ch; height: 44px; padding: 0 .9rem; border: 1.5px solid var(--line); border-radius: var(--radius); background: color-mix(in srgb, var(--paper-2) 82%, transparent); color: var(--muted); font: 600 var(--step--2)/1 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; transition: border-color .3s, color .3s; }
+.pal:hover { border-color: var(--accent); color: var(--ink); }
+.pal__dot { width: 12px; height: 12px; transform: rotate(45deg); background: var(--accent); box-shadow: 0 0 10px var(--accent); transition: background .3s; }
+
+/* ----------------------------- NAV -------------------------------- */
+.nav { position: fixed; inset: 0 0 auto 0; z-index: 8000; display: flex; align-items: center; justify-content: space-between; padding: clamp(.8rem,1.8vw,1.1rem) var(--gut); transition: transform .5s var(--ease), background .4s, box-shadow .4s; }
+.nav.is-scrolled { background: color-mix(in srgb, var(--paper) 82%, transparent); backdrop-filter: blur(14px); box-shadow: 0 1px 0 var(--line); }
+.nav.is-hidden { transform: translateY(-115%); }
+html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; transition: none; }
+.nav__brand { display: inline-flex; align-items: center; gap: .9ch; }
+.nav__logo { height: clamp(24px, 3vw, 32px); width: auto; transition: opacity .3s; }  /* logo blanc transparent, sans plaque */
+.nav__brand:hover .nav__logo { opacity: .72; }
+.nav__salle { font: 600 var(--step--1)/1 var(--f-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--accent); padding-left: .9ch; border-left: 1px solid var(--line); }
+.nav__links { display: none; gap: clamp(.1rem,.6vw,.4rem); }
+.nav__links a { font: 600 var(--step--1)/1 var(--f-mono); letter-spacing: .04em; padding: .55em .85em; border-radius: var(--radius); color: var(--ink-soft); text-transform: uppercase; transition: background .3s, color .3s; }
+.nav__links a:hover { background: var(--paper-2); color: var(--ink); }
+.nav__links a[aria-current="page"] { background: var(--accent); color: var(--void); }
+.nav__right { display: flex; align-items: center; gap: .6rem; }
+.nav__cta { display: none; }
+@media (min-width: 1160px){ .nav__links { display: flex; } .nav__cta { display: inline-flex; } }
+.burger { display: inline-flex; flex-direction: column; justify-content: center; gap: 5px; width: 44px; height: 44px; padding: 0 11px; border: 1.5px solid var(--line); border-radius: var(--radius); background: color-mix(in srgb, var(--paper-2) 82%, transparent); transition: border-color .3s; }
+.burger:hover { border-color: var(--accent); }
+.burger span { height: 2px; background: var(--ink); transform-origin: center; transition: transform .4s var(--ease-spring), opacity .25s; }
+.is-menu-open .burger span:nth-child(1){ transform: translateY(7px) rotate(45deg); }
+.is-menu-open .burger span:nth-child(2){ opacity: 0; }
+.is-menu-open .burger span:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
+
+/* ---------------------- FULL-SCREEN MENU -------------------------- */
+.menu { position: fixed; inset: 0; z-index: 7990; background: var(--paper); color: var(--ink); display: grid; grid-template-rows: auto 1fr auto; padding: clamp(1.2rem,3vw,2rem) var(--gut) clamp(1.5rem,3vw,2.4rem); clip-path: inset(0 0 100% 0); pointer-events: none; transition: clip-path .65s var(--ease-out); overflow: hidden; }
+.menu::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: radial-gradient(60% 55% at 82% 8%, var(--sky-glow), transparent 60%); }
+.menu.is-open { clip-path: inset(0 0 0 0); pointer-events: auto; }
+.menu__top { display: flex; justify-content: space-between; align-items: center; }
+.menu__close { font: 600 var(--step--1)/1 var(--f-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--ink); display: inline-flex; align-items: center; gap: .7ch; }
+.menu__nav { align-self: center; display: flex; flex-direction: column; gap: clamp(.1rem,.7vw,.3rem); }
+.menu__link { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: clamp(2.1rem,9vw,5.4rem); letter-spacing: -.02em; line-height: 1.04; color: var(--ink); display: inline-flex; align-items: baseline; gap: 1.1rem; width: max-content; max-width: 100%; transition: color .3s, transform .5s var(--ease-out); }
+.menu__link .n { font: 600 clamp(.65rem,1.3vw,.9rem)/1 var(--f-mono); color: var(--accent); }
+.menu__link:hover { color: var(--accent); transform: translateX(14px); }
+.menu__foot { display: flex; flex-wrap: wrap; gap: 1rem 2rem; justify-content: space-between; align-items: center; border-top: 1px solid var(--line); padding-top: 1.4rem; }
+/* `:not(.btn)` — SANS ce garde, ce sélecteur (0,1,1) battait `.btn--primary`
+   (0,1,0) et repeignait le CTA du menu plein écran en --muted sur --accent :
+   1,49:1 en acier, 1,12:1 en cuivre. Sur un 375px le menu EST la navigation,
+   et c'est l'action de conversion n°1 du site. Même garde qu'à .footer__col. */
+.menu__foot a:not(.btn) { font: 600 var(--step--1)/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); transition: color .3s; }
+.menu__foot a:not(.btn):hover { color: var(--accent); }
+
+/* --------------------------- TICKER ------------------------------- */
+.marquee { overflow: hidden; border-block: 1px solid var(--line); padding-block: .85rem; background: color-mix(in srgb, var(--paper-2) 60%, transparent); }
+.marquee__track { display: inline-flex; gap: 2.4rem; white-space: nowrap; will-change: transform; }
+.marquee__track span { font: 600 var(--step--1)/1 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-soft); display: inline-flex; align-items: center; gap: 2.4rem; }
+.marquee__track span::after { content: ""; width: 7px; height: 7px; background: var(--accent); transform: rotate(45deg); }
+
+/* ------------------------ CHATBOT → tél réel ---------------------- */
+.chatbot { position: fixed; right: clamp(1rem,2.5vw,2rem); bottom: clamp(1rem,2.5vw,2rem); z-index: 8500; height: 54px; width: 54px; display: inline-flex; align-items: center; overflow: hidden; background: var(--accent); color: var(--void); border-radius: 100px; box-shadow: var(--glow), var(--shadow); transition: width .45s var(--ease-spring), transform .35s var(--ease); }
+.chatbot__icon { flex: 0 0 54px; width: 54px; height: 54px; display: grid; place-items: center; }
+.chatbot__icon svg { width: 22px; height: 22px; }
+.chatbot__label { white-space: nowrap; font: 600 var(--step--1)/1 var(--f-mono); letter-spacing: .04em; padding-right: 1.4rem; opacity: 0; transform: translateX(-8px); transition: opacity .3s, transform .35s var(--ease); }
+.chatbot:hover { width: 16.5rem; transform: translateY(-3px); }
+.chatbot:hover .chatbot__label { opacity: 1; transform: none; }
+
+/* ------------------- FOOTER — la fiche de terrain ----------------- */
+.footer { background: color-mix(in srgb, var(--paper-2) 70%, transparent); border-top: 1px solid var(--line); padding-block: clamp(3rem,6vw,4.5rem) 2rem; position: relative; overflow: hidden; }
+.footer::before { content: ""; position: absolute; inset: auto 0 0 0; height: 60%; pointer-events: none; background: radial-gradient(70% 100% at 15% 100%, var(--sky-glow), transparent 62%); opacity: .6; }
+.footer .wrap { position: relative; }
+.footer__head { display: grid; gap: 1.6rem; grid-template-columns: 1fr; align-items: end; }
+@media (min-width: 820px){ .footer__head { grid-template-columns: 1fr auto; } }
+.footer__cut { font-size: clamp(2rem,5vw,3.8rem); margin-top: 1rem; }
+.fiche { display: grid; grid-template-columns: repeat(2,1fr); border: 1px solid var(--line); overflow: hidden; margin-top: clamp(2rem,4vw,3rem); background: var(--paper); }
+@media (min-width: 760px){ .fiche { grid-template-columns: repeat(4,1fr); } }
+.fiche__cell { padding: clamp(1rem,1.8vw,1.4rem); border-right: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft); display: flex; flex-direction: column; gap: .45rem; min-height: 5.4rem; justify-content: center; transition: background .3s; }
+.fiche__cell:hover { background: var(--paper-2); }
+.fiche__cell--wide { grid-column: span 2; }
+.fk { font: 600 var(--step--2)/1 var(--f-mono); letter-spacing: .18em; text-transform: uppercase; color: var(--accent); }
+.fv { font-size: var(--step-0); color: var(--ink); font-weight: 600; }
+.fv a { transition: color .3s; } .fv a:hover { color: var(--accent); }
+.footer__links { display: grid; gap: 1.6rem 2rem; grid-template-columns: repeat(2,1fr); margin-top: clamp(2rem,4vw,3rem); }
+@media (min-width: 720px){ .footer__links { grid-template-columns: repeat(3,1fr); } }
+.footer__col h4 { font: 600 var(--step--1)/1 var(--f-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--accent); margin-bottom: .9rem; }
+.footer__col a:not(.btn) { display: block; color: var(--muted); padding-block: .3em; transition: color .3s, padding-left .3s; }
+.footer__col a:not(.btn):hover { color: var(--ink); padding-left: .4ch; }
+.footer__bottom { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between; margin-top: clamp(2rem,4vw,3rem); padding-top: 1.5rem; border-top: 1px solid var(--line); font: 600 var(--step--1)/1 var(--f-mono); letter-spacing: .06em; color: var(--muted); }
+.footer__stamp { color: var(--accent); }
+
+/* --------------------------- HELPERS ------------------------------ */
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+/* « Aller au contenu » est le PREMIER arrêt de tabulation des 8 pages. Sans ce
+   contrepoint il restait clippé à 1×1px même focalisé : un lien invisible que
+   le clavier atteint mais que l'œil ne trouve jamais (WCAG 2.4.7). Le
+   :focus-visible de la ligne 139 ne peut pas sauver une boîte clippée. */
+.sr-only:focus-visible {
+  position: fixed; top: .6rem; left: .6rem; z-index: 9999;
+  width: auto; height: auto; margin: 0; clip: auto; overflow: visible;
+  padding: .75em 1.15em; border-radius: var(--radius);
+  font: 600 var(--step--1)/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase;
+  color: var(--void); background: var(--accent); border: 1.5px solid var(--accent);
+  box-shadow: var(--glow), var(--shadow);
+}
+
+/* --------------------------- MEDIA -------------------------------- *
+   Photos traitées NUIT (registre documentaire) : contraste haut, léger
+   désaturé. Caption mono façon carnet de terrain. */
+.media { position: relative; overflow: hidden; background: var(--paper-2); border-radius: var(--radius); }
+.media img, .media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: contrast(1.12) brightness(.82) saturate(.86); }
+.media::after { content: attr(data-label); position: absolute; left: .8rem; bottom: .75rem; z-index: 2; font: 600 var(--step--2)/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--ink); background: color-mix(in srgb, var(--void) 70%, transparent); padding: .5em .8em; border-radius: var(--radius); backdrop-filter: blur(4px); border: 1px solid var(--line); }
+.media[data-label=""]::after { display: none; }
+/* GRAIN DOCUMENTAIRE — c'est la texture qui porte tout le registre « filmé
+   comme du terrain ». Elle était écrite et appliquée à RIEN (`.grain` : zéro
+   occurrence dans les 8 pages) : la direction artistique déclarée du site
+   livrée en CSS mort. Elle s'applique maintenant d'office à tout bloc photo —
+   .media (stations, disciplines, visages) et .shot (le carnet) — sans toucher
+   au HTML — donc sans classe utilitaire morte à traîner non plus.
+   z-index 1 : au-dessus de l'image, SOUS le label .media::after (z-index 2). */
+.media::before, .shot::before {
+  content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  opacity: .05; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+/* la tuile « photo à venir » n'est pas un cliché : pas de grain dessus */
+.station__media--todo::before, .shot--todo::before { content: none; }
+
+/* ============================ LE CIEL ============================= *
+   sky.js pose data-sky (clair|voile|pluie|orage) + data-hour + data-daypart
+   sur <html>. Le hero et les heros de page portent une couche `.sky` dont
+   le dégradé lit ces variables. Fallback (aucune donnée) = nuit claire. */
+.sky { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+  background:
+    radial-gradient(120% 80% at 78% -8%, var(--sky-glow), transparent 55%),
+    linear-gradient(180deg, var(--sky-top) 0%, var(--sky-mid) 52%, var(--sky-low) 100%); }
+.sky__stars { position: absolute; inset: 0; width: 100%; height: 100%; opacity: .9; }  /* canvas 2D (sky.js) */
+.sky__haze { position: absolute; inset: 0; background: var(--sky-haze); opacity: .0; transition: opacity 1.2s var(--ease); }
+.sky__moon { position: absolute; top: clamp(2rem,9vh,6rem); right: clamp(2rem,10vw,8rem); width: clamp(38px,6vw,68px); aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle at 38% 34%, #fff, color-mix(in srgb,var(--accent) 40%, #eef) 70%, transparent 74%); box-shadow: var(--glow); opacity: .0; transition: opacity 1.5s var(--ease); }
+
+/* — moments du jour (data-daypart) — la nuit domine, l'horizon change — */
+:root[data-daypart="nuit"]      { --sky-top:#04060e; --sky-mid:#080e22; --sky-low:#111633; }
+:root[data-daypart="crepuscule"]{ --sky-top:#08091a; --sky-mid:#10152e; --sky-low:#1c2340; }
+:root[data-daypart="aube"]      { --sky-top:#0b1020; --sky-mid:#1a1c3a; --sky-low:#33324f; }
+:root[data-daypart="jour"]      { --sky-top:#0a1020; --sky-mid:#131d31; --sky-low:#1c2740; }
+/* la nuit domine — c'est le monde de la salle : la lune reste présente à TOUTE
+   heure (pleine la nuit/au crépuscule, atténuée à l'aube et le jour), jamais
+   absente, pour que « à ciel ouvert » se lise même aux heures de bureau. */
+:root[data-daypart="nuit"] .sky__moon,
+:root[data-daypart="crepuscule"] .sky__moon { opacity: .85; }
+:root[data-daypart="aube"] .sky__moon { opacity: .5; }
+:root[data-daypart="jour"] .sky__moon { opacity: .34; }
+
+/* — météo (data-sky) — voile atténue, pluie/orage referment le ciel — */
+:root[data-sky="voile"]  { --sky-glow: color-mix(in srgb, var(--accent) 12%, transparent); }
+:root[data-sky="voile"] .sky__haze  { background: linear-gradient(180deg, transparent, color-mix(in srgb,var(--ink) 6%, transparent)); opacity: .5; }
+:root[data-sky="pluie"]  { --sky-top:#06080f; --sky-mid:#0a0f1c; --sky-low:#10162a; --sky-glow: color-mix(in srgb, var(--accent) 8%, transparent); }
+:root[data-sky="pluie"] .sky__haze  { background: linear-gradient(180deg, color-mix(in srgb,var(--ink) 4%, transparent), color-mix(in srgb,var(--ink) 9%, transparent)); opacity: .7; }
+:root[data-sky="orage"]  { --sky-top:#050609; --sky-mid:#0a0c16; --sky-low:#12111f; --sky-glow: color-mix(in srgb, var(--accent) 6%, transparent); }
+:root[data-sky="orage"] .sky__haze  { background: color-mix(in srgb,var(--ink) 8%, transparent); opacity: .8; }
+@media (prefers-reduced-motion: reduce){ .sky__stars { opacity: .6; } }
+
+/* ==================== CHROME DES PAGES INTÉRIEURES =============== *
+   .phero / .breadcrumb / .shead / .ctaband / motifSpin vivaient en CINQ
+   copies (page.css, la-salle.css, activites.css, coachs.css, galerie.css).
+   Les pages chargent base.css + UN css de page : page.css ne pouvait donc
+   jamais servir de couche partagée, et les cinq copies avaient déjà divergé
+   (3,4/3,8/4rem sur le même titre, 52/54/56ch sur le même chapô, 90s/96s sur
+   le même motif). C'est du chrome : il vit ici, dans le seul fichier que les
+   8 pages chargent. Une définition, plus cinq copies qui dérivent.
+   Chaque page GARDE ce qui lui est propre (le rail /la-salle/, le carnet
+   /galerie/, la coupe…) — loi n°2 : semblables, jamais identiques. */
+.phero { position: relative; overflow: hidden; padding-top: clamp(7rem,14vh,10rem); padding-bottom: var(--phero-pad-b); background: var(--void); border-bottom: 1px solid var(--line); }
+.phero::after { content: ""; position: absolute; inset: auto 0 0 0; height: 40%; background: linear-gradient(180deg, transparent, var(--paper)); pointer-events: none; z-index: 1; }
+.phero .wrap { position: relative; z-index: 2; }
+.phero__title { font-size: clamp(2.6rem, 1.6rem + 5vw, 6rem); margin-top: .6rem; }
+/* un titre qui est une PHRASE (et non deux mots) prend une taille de phrase :
+   à 6rem il partait en pavé de trois lignes. Token nommé, pas un chiffre
+   changé dans une copie. */
+.phero__title--long { font-size: clamp(2.1rem, 1.3rem + 3.2vw, 4rem); max-width: 20ch; }
+.phero__lead { margin-top: 1.2rem; max-width: var(--lead-measure); }
+/* les chips de contexte du hero : chaque page y met SON fait, pas un motif */
+.phero__meta { display: flex; flex-wrap: wrap; gap: .55rem; margin-top: 1.4rem; }
+.phero__meta span { display: inline-flex; align-items: center; gap: .6ch; font: 600 var(--step--1)/1 var(--f-mono); letter-spacing: .04em; color: var(--ink); background: color-mix(in srgb, var(--paper-2) 70%, transparent); border: 1px solid var(--line); border-radius: var(--radius); padding: .55em .9em; backdrop-filter: blur(6px); }
+.phero__meta span::before { content: ""; flex: 0 0 7px; height: 7px; transform: rotate(45deg); background: var(--accent); box-shadow: 0 0 10px var(--accent); }
+.phero__meta b { color: var(--accent); font-weight: 600; }
+
+.breadcrumb { display: flex; flex-wrap: wrap; align-items: center; gap: .5ch; font: 600 var(--step--1)/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.2rem; }
+.breadcrumb a { color: var(--muted); transition: color .3s; }
+.breadcrumb a:hover { color: var(--accent); }
+.breadcrumb span { color: var(--accent); }
+
+.shead { margin-bottom: clamp(1.8rem,4vw,2.6rem); max-width: 60ch; }
+.shead h2 { margin-top: 1rem; font-size: clamp(2rem, 1.3rem + 3vw, var(--shead-max)); }
+.shead .muted { margin-top: .8rem; }
+
+.ctaband { position: relative; overflow: hidden; text-align: center; padding-block: clamp(4rem,9vw,7rem); background: var(--void); border-top: 1px solid var(--line); }
+.ctaband .sky { z-index: 0; }
+.ctaband__inner { position: relative; z-index: 2; width: min(92vw, 60ch); margin-inline: auto; }
+.ctaband h2 { font-size: clamp(2rem,1.3rem+3vw,3.6rem); margin-block: 1rem 1.1rem; }
+.ctaband__cta { margin-top: 1.6rem; display: inline-flex; gap: .8rem; flex-wrap: wrap; justify-content: center; }
+
+@keyframes motifSpin { to { transform: rotate(360deg); } }
+/* la pastille « en direct » (conditions réelles) — une seule définition, pour
+   la home et /galerie/ qui l'utilisent toutes les deux. */
+@keyframes pulse { 0%,100%{ opacity:1 } 50%{ opacity:.35 } }
+
+/* ========================== L'OCTOGONE =========================== *
+   Base commune. octogone.js gère le tracé au scroll (stroke-dashoffset),
+   la rotation à l'inertie et les 8 arêtes cliquables (nav). CSS = habillage. */
+/* touch-action piloté par la CAPACITÉ D'ENTRÉE, pas par le hover : les
+   hybrides (portables tactiles Windows, iPad + trackpad) rapportent
+   hover:hover ET ont un doigt — ils héritaient de `touch-action:none`, donc
+   d'une zone morte de défilement en plein milieu du hero. La rotation est une
+   intention HORIZONTALE : pan-y est le bon défaut partout. */
+.octa { position: relative; display: block; touch-action: pan-y; }
+.octa svg { width: 100%; height: auto; overflow: visible; }
+.octa__grid { fill: none; stroke: var(--accent-line); stroke-width: .7; }
+.octa__hub  { fill: none; stroke: var(--line); stroke-width: 1; }
+/* les 8 arêtes-liens */
+/* stroke-width ET font-size sont posés par octagon.js (sizeToScale) depuis
+   l'échelle MESURÉE du viewBox : en SVG, « 22 » ou « .62rem » ne sont pas des
+   px écran — le viewBox les remet à l'échelle. Les valeurs ci-dessous ne sont
+   qu'un repli avant la première mesure. */
+.octa__edge { fill: transparent; stroke: transparent; stroke-width: 22; cursor: pointer; }
+.octa__label { font: 600 11px/1 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; fill: var(--ink-soft); transition: fill .3s; }
+.octa__seg { fill: none; stroke: var(--line); stroke-width: 1.4; transition: stroke .3s, filter .3s; }
+.octa g.is-hot .octa__seg { stroke: var(--accent); filter: drop-shadow(0 0 8px color-mix(in srgb,var(--accent) 65%, transparent)); }
+.octa g.is-hot .octa__label { fill: var(--ink); }
+.octa__spin { transform-box: fill-box; transform-origin: center; }
+.octa.is-dragging { cursor: grabbing; }
+/* l'affordance de la signature n°2 : sans elle, personne ne sait que
+   l'octogone se saisit. Elle était le texte le MOINS lisible de la page —
+   --muted à opacity .8 = #70788a sur --paper = 4,47:1 (sous AA) à ~9,3px.
+   L'opacité n'achetait rien et coûtait la conformité : supprimée. 6,43:1. */
+.octa__hint { position: absolute; left: 50%; bottom: -1.8rem; transform: translateX(-50%); font: 600 var(--step--2)/1 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); pointer-events: none; white-space: nowrap; }
+
+/* ============ TOUCH — CIBLES ≥44px + RETOUR PRESSÉ (mobile) ========== *
+   Sur pointeur grossier on plancher les cibles tactiles à 44px (WCAG 2.5.5) et
+   on ajoute un état :active (accusé de réception immédiat au toucher, là où le
+   magnetic/hover desktop n'existe pas). Le desktop garde son traitement. */
+@media (hover: none) {
+  .btn { min-height: 44px; }
+  .menu__close { min-height: 44px; padding-block: .5rem; }
+  .menu__foot a:not(.btn) { display: inline-flex; align-items: center; min-height: 44px; }
+  .menu__link { min-height: 44px; }          /* cible tactile ≥44px sur les liens du menu plein écran */
+  .nav__brand { min-height: 44px; }          /* …et sur le lien marque/accueil de la nav */
+
+  .btn:active { transform: translateY(1px); filter: brightness(.94); }
+  .menu__link:active { color: var(--accent); transform: translateX(6px); }
+  .menu__close:active { color: var(--accent); }
+  .menu__foot a:not(.btn):active { color: var(--accent); }  /* le CTA garde son :active de .btn */
+  .pal:active, .burger:active { transform: translateY(1px); border-color: var(--accent); }
+  /* arête de l'octogone pressée (les 8 côtés = la nav) */
+  .octa a:active .octa__seg { stroke: var(--accent); filter: drop-shadow(0 0 8px color-mix(in srgb,var(--accent) 65%, transparent)); }
+  .octa a:active .octa__label { fill: var(--ink); }
+  /* la zone de clic des 8 arêtes est calculée en JS (octagon.js) depuis
+     l'échelle mesurée du viewBox : `stroke-width` en unités utilisateur ne
+     fait PAS 34 CSS px à l'écran. Voir octagon.js → sizeToScale(). */
+  /* liens de pied de page : cibles tactiles ≥44px (colonnes + tél de la fiche) */
+  .footer__col a:not(.btn) { display: flex; align-items: center; min-height: 44px; }
+  .fiche__cell .fv a { display: inline-flex; align-items: center; min-height: 44px; }
+  /* le fil d'ariane était le SEUL lien récurrent sans traitement tactile :
+     ~12,6px de haut sur les 7 sous-pages, quand tout le reste est planché à
+     44px. Dernier trou d'une règle par ailleurs tenue partout. */
+  .breadcrumb a { display: inline-flex; align-items: center; min-height: 44px; }
+  .breadcrumb a:active { color: var(--accent); }
+}

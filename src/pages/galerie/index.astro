@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Galerie — Boxing Center Ramonville · le carnet de terrain de la salle</title>
+  <meta name="description" content="Le carnet de terrain de Boxing Center Ramonville : de vraies photos du plateau — l'octogone de 7 m, le ring olympique, les sacs, l'étage muscu/cardio. Et les conditions réelles au-dessus de la salle, en direct." />
+  <meta name="keywords" content="photos salle de boxe Ramonville, octogone MMA photo, ring boxe Toulouse, boxing center Ramonville-Saint-Agne galerie, carnet de terrain" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="author" content="Boxing Center Ramonville" />
+  <meta name="geo.region" content="FR-31" />
+  <meta name="geo.placename" content="Ramonville-Saint-Agne — Toulouse" />
+  <meta name="geo.position" content="43.546;1.474" />
+  <meta name="ICBM" content="43.546, 1.474" />
+  <link rel="canonical" href="https://ramonville.boxingcenter.fr/galerie/" />
+  <meta name="theme-color" content="#070a12" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=6" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:site_name" content="Boxing Center Ramonville" />
+  <meta property="og:title" content="Galerie — Boxing Center Ramonville" />
+  <meta property="og:description" content="Le carnet de terrain : l'octogone, le ring, les sacs, l'étage muscu. De vraies photos du plateau, et le ciel réel au-dessus." />
+  <meta property="og:url" content="https://ramonville.boxingcenter.fr/galerie/" />
+  <meta property="og:image" content="https://ramonville.boxingcenter.fr/assets/img/ram/hero.webp" />
+  <meta property="og:image:alt" content="Le plateau Boxing Center Ramonville de nuit : l'octogone et le ring olympique." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Galerie — Boxing Center Ramonville" />
+  <meta name="twitter:description" content="Le carnet de terrain : le vrai plateau de Ramonville, et le ciel réel au-dessus." />
+  <meta name="twitter:image" content="https://ramonville.boxingcenter.fr/assets/img/ram/hero.webp" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://api.open-meteo.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <!-- base.css = le système (partagé) ; galerie.css = le CSS PROPRE de la page -->
+  <link rel="stylesheet" href="/assets/css/base.css?v=6" />
+  <link rel="stylesheet" href="/assets/css/galerie.css?v=6" />
+
+  <script is:inline type="application/ld+json">
+  { "@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Accueil","item":"https://ramonville.boxingcenter.fr/"},
+    {"@type":"ListItem","position":2,"name":"Galerie","item":"https://ramonville.boxingcenter.fr/galerie/"}
+  ]}
+  </script>
+
+  <script is:inline>
+    (function(){try{var p=localStorage.getItem('bc-ram-palette');if(p==='cuivre')document.documentElement.setAttribute('data-palette','cuivre');}catch(e){}})();
+    document.documentElement.classList.add('fx');
+  </script>
+</head>
+
+<body data-page="galerie">
+  <a class="sr-only" href="#main">Aller au contenu</a>
+  <div id="nav"></div>
+  <div id="drawer"></div>
+
+  <main id="main">
+    <header class="phero" aria-label="La galerie">
+      <div class="sky" aria-hidden="true"><canvas class="sky__stars"></canvas><div class="sky__haze"></div><div class="sky__moon"></div></div>
+      <div class="wrap">
+        <nav class="breadcrumb" aria-label="Fil d'ariane"><a href="/">Accueil</a> / <span>Galerie</span></nav>
+        <h1 class="display phero__title"><span class="reveal-mask"><span>Carnet</span></span><span class="reveal-mask"><span class="tint">de terrain.</span></span></h1>
+        <p class="lead phero__lead" data-reveal>De vraies photos du plateau : l'octogone, le ring, les sacs, l'étage. Pas une image d'agence — et pas encore les 300 m² extérieurs, parce qu'on ne les a pas encore filmés. Au-dessus, les conditions viennent du vrai ciel de Ramonville, pas d'un preset.</p>
+        <!-- conditions au tournage : branché sur window.__SKY (sky.js) -->
+        <div class="tournage" id="tournage" aria-label="Conditions au-dessus du plateau"></div>
+      </div>
+    </header>
+
+    <section class="section" aria-label="Les photos">
+      <div class="wrap">
+        <div class="gallery" id="gallery"></div>
+      </div>
+    </section>
+
+    <section class="ctaband" aria-label="Venir sur le plateau">
+      <div class="sky" aria-hidden="true"><canvas class="sky__stars"></canvas><div class="sky__haze"></div></div>
+      <div class="ctaband__inner">
+        <span class="eyebrow" style="justify-content:center" data-reveal>La photo ne rend pas tout</span>
+        <h2 class="display"><span class="reveal-mask"><span>Le mieux,</span></span><span class="reveal-mask"><span class="tint">c'est en vrai.</span></span></h2>
+        <p class="lead" data-reveal>La prochaine photo du carnet, c'est toi. Dix euros, gants prêtés.</p>
+        <div class="ctaband__cta" data-reveal>
+          <a class="btn btn--primary" data-magnetic href="https://box-plus.vercel.app/seance-essai"><span>Réserver l'essai · 10€</span></a>
+          <a class="btn btn--ghost" data-magnetic href="/la-salle/"><span>Voir le plateau</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- la visionneuse plein cadre -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo agrandie">
+    <div class="lightbox__frame">
+      <button class="lightbox__close" id="lb-close" type="button">Fermer <span aria-hidden="true">✕</span></button>
+      <img id="lb-img" alt="" />
+      <div class="lightbox__cap" id="lb-cap"></div>
+    </div>
+  </div>
+
+  <div id="footer"></div>
+
+  <a class="chatbot" href="tel:+33562244682" aria-label="Une question ? Appelle la salle Boxing Center Ramonville">
+    <span class="chatbot__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+    <span class="chatbot__label">Une question&nbsp;? Appelle la salle</span>
+  </a>
+
+  <script is:inline src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script is:inline src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script is:inline src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=6"></script>
+  <script is:inline type="module" src="/assets/js/sky.js?v=6"></script>
+  <script is:inline type="module" src="/assets/js/page.js?v=6"></script>
+
+  <!-- Enrichissement PROPRE à la page : conditions au tournage (ciel réel) +
+       tuile honnête « le dehors, à venir » + visionneuse. page.js a déjà
+       rendu #gallery (légendes horodatées + température + scramble). -->
+  <script is:inline type="module">
+    const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const root = document.documentElement;
+
+    /* --- conditions au tournage, lues du vrai ciel (window.__SKY) --- */
+    const strip = document.getElementById("tournage");
+    const SKYLABEL = { clair: "Ciel dégagé", voile: "Ciel voilé", pluie: "Pluie", orage: "Orage" };
+    const DAYLABEL = { nuit: "Nuit", crepuscule: "Crépuscule", aube: "Aube", jour: "Jour" };
+    function renderCond() {
+      if (!strip) return;
+      const s = window.__SKY || {};
+      const sky = SKYLABEL[s.sky] || "Nuit claire";
+      const daypart = DAYLABEL[root.getAttribute("data-daypart")] || "Nuit";
+      const hour = (typeof s.hour === "number" ? s.hour : new Date().getHours());
+      const temp = (s.tempC != null) ? `${s.tempC}°C` : "hors-ligne · nuit claire";
+      strip.innerHTML =
+        `<span class="tournage__lead">Au-dessus du plateau</span>
+         <span class="cond cond--live"><span class="cond__dot" aria-hidden="true"></span><b>${sky}</b></span>
+         <span class="cond">${daypart} · ${String(hour).padStart(2, "0")}h</span>
+         <span class="cond">${temp}</span>`;
+    }
+    renderCond();
+    window.addEventListener("sky:change", renderCond);
+
+    /* --- la tuile honnête : le 300 m² extérieur reste à filmer (brief §4.5) --- */
+    const gallery = document.getElementById("gallery");
+    if (gallery) {
+      const todo = document.createElement("figure");
+      todo.className = "shot shot--todo";
+      todo.innerHTML =
+        `<svg class="todo__glyph" viewBox="0 0 64 64" aria-hidden="true"><path d="M32 6 51 14 59 33 51 52 32 60 13 52 5 33 13 14Z"/></svg>
+         <span class="todo__k">Reportage à venir</span>
+         <span class="todo__t">Le dehors</span>
+         <span class="todo__d">Les 300 m² extérieurs — la prochaine page du carnet. On ne montre que ce qu'on a filmé.</span>`;
+      gallery.appendChild(todo);
+    }
+
+    /* --- visionneuse plein cadre (délégation : marche quel que soit l'ordre) --- */
+    const lb = document.getElementById("lightbox");
+    const lbImg = document.getElementById("lb-img");
+    const lbCap = document.getElementById("lb-cap");
+    const lbClose = document.getElementById("lb-close");
+    let lbReturn = null; // élément à re-focaliser à la fermeture (la vignette d'origine)
+    const closeLb = () => {
+      lb.classList.remove("is-open");
+      root.classList.remove("is-locked");
+      window.BC?.lenis?.start();
+      if (lbReturn) { lbReturn.focus?.(); lbReturn = null; }
+    };
+    const openLb = (img) => {
+      const shot = img.closest(".shot");
+      lbReturn = shot || img;
+      if (lbReturn) lbReturn.tabIndex = -1; // focalisable par programme pour le retour de focus
+      lbImg.src = img.currentSrc || img.src;
+      lbImg.alt = img.alt || "";
+      const cap = shot?.querySelector(".shot__cap b");
+      lbCap.innerHTML = cap ? `<b>${cap.textContent}</b>` : "";
+      lb.classList.add("is-open");
+      root.classList.add("is-locked");
+      window.BC?.lenis?.stop();
+      lbClose?.focus(); // le focus entre dans la visionneuse (role=dialog aria-modal)
+    };
+    if (gallery && lb) {
+      const openFrom = (shot) => {
+        if (!shot || shot.classList.contains("shot--todo")) return;
+        const img = shot.querySelector("img"); if (img) openLb(img);
+      };
+      gallery.addEventListener("click", (e) => openFrom(e.target.closest(".shot")));
+      // la porte d'entrée clavier (les vignettes sont role=button tabindex=0) :
+      // Entrée + Espace, comme un vrai bouton. Sans ça la visionneuse — pourtant
+      // complète côté sortie — était inatteignable autrement qu'à la souris.
+      gallery.addEventListener("keydown", (e) => {
+        if (e.key !== "Enter" && e.key !== " " && e.key !== "Spacebar") return;
+        const shot = e.target.closest(".shot"); if (!shot) return;
+        e.preventDefault();  // Espace ne doit pas faire défiler la page
+        openFrom(shot);
+      });
+      lbClose.addEventListener("click", closeLb);
+      lb.addEventListener("click", (e) => { if (e.target === lb) closeLb(); });
+      addEventListener("keydown", (e) => {
+        if (!lb.classList.contains("is-open")) return;
+        if (e.key === "Escape") closeLb();
+        // piège à focus : le seul élément focalisable de la modale est « Fermer »
+        else if (e.key === "Tab") { e.preventDefault(); lbClose?.focus(); }
+      });
+    }
+    window.BC?.refresh();
+  </script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+/* =====================================================================
+   RAMONVILLE · coachs.css — L'ENCADREMENT (page /coachs/)
+
+   CSS PROPRE à la page (loi n°2). Se pose SUR base.css. Squelette distinct :
+   un PILIER mis en avant (Sonia, en grand, à l'horizontale) + trois fiches,
+   chacune avec ses VRAIS créneaux de la semaine (dérivés du planning
+   officiel). Loi coach : nom ≡ photo. Pas de portrait prouvé → tuile nom
+   (initiales) façon silhouette nuit, JAMAIS le visage d'un autre, JAMAIS de
+   stock. Aucun token redéfini — la bascule bi-palette suffit à tout.
+   ===================================================================== */
+
+/* Le chrome (.phero*, .breadcrumb, .shead, .ctaband) vit dans base.css. Ce
+   fichier ne garde que ce qui est PROPRE à /coachs/ : le roster et le pilier. */
+
+/* =========================== LE ROSTER ========================== */
+.roster { display: grid; gap: .9rem; grid-template-columns: 1fr; }
+@media (min-width: 640px){ .roster { grid-template-columns: repeat(2,1fr); } }
+@media (min-width: 1040px){ .roster { grid-template-columns: repeat(3,1fr); } }
+
+.coach { position: relative; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--paper-2); display: flex; flex-direction: column; transition: transform .4s var(--ease-spring), border-color .3s, box-shadow .35s; }
+.coach:hover { transform: translateY(-5px); border-color: var(--accent); box-shadow: var(--glow-soft); }
+
+/* le pilier — grand, à l'horizontale, occupe toute la largeur en haut */
+.coach--pillar { grid-column: 1 / -1; border-color: var(--accent-line); background: color-mix(in srgb,var(--paper-2) 88%, var(--accent)); }
+@media (min-width: 760px){ .coach--pillar { flex-direction: row; align-items: stretch; } .coach--pillar .coach__face { flex: 0 0 42%; aspect-ratio: auto; min-height: 340px; } .coach--pillar .coach__body { padding: clamp(1.6rem,3vw,2.6rem); } }
+/* Le badge du pilier est STYLÉ ici, mais son texte vient de data.js (c.tag) et
+   est rendu dans .coach__tag. Il existait aussi en `content:"Le pilier"` sur ce
+   ::after : la carte de Sonia — la coach que les avis Google citent par son nom —
+   affichait donc le badge DEUX FOIS, dont une en copie codée en dur dans une
+   feuille de style, hors de la source de vérité. Le ::after est supprimé ;
+   c'est le vrai .coach__tag qui prend l'habillage badge. */
+.coach--pillar .coach__tag { align-self: flex-start; color: var(--void); background: var(--accent); padding: .5em .8em; border-radius: var(--radius); box-shadow: var(--glow-soft); }
+
+.coach__face { position: relative; aspect-ratio: 3/4; overflow: hidden; }
+/* photo réelle (registre documentaire, traitée nuit — via .media de site.js) ;
+   cadrage haut (object-position) car les portraits sont paysage forcés en
+   portrait : aucun visage rogné (loi « nom ≡ photo », finding 20). */
+.coach__face.media img { filter: contrast(1.12) brightness(.84) saturate(.85); object-position: 50% 28%; }
+/* tuile nom (pas de photo prouvée) — silhouette nuit, initiales UV */
+.coach__face--tile { display: grid; place-items: center; background: radial-gradient(circle at 50% 26%, color-mix(in srgb,var(--accent) 24%, var(--paper-3)), var(--void)); }
+.coach__face--tile::after { content: ""; position: absolute; inset: 0; background-image: linear-gradient(color-mix(in srgb,var(--ink) 5%, transparent) 1px, transparent 1px); background-size: 100% 9px; opacity: .5; }
+.coach__face--tile .ini { font-family: var(--f-display); font-weight: 700; font-size: clamp(2.4rem,7vw,4rem); color: var(--accent); letter-spacing: .04em; text-shadow: var(--glow-soft); z-index: 1; }
+.coach__face--tile .sub { position: absolute; bottom: .9rem; font: 600 var(--step--2)/1 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); z-index: 1; }
+
+.coach__body { padding: clamp(1.2rem,2.4vw,1.7rem); display: flex; flex-direction: column; gap: .55rem; flex: 1; }
+.coach__tag { font: 600 .6rem/1 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+.coach h3 { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: clamp(1.5rem,1rem+1.6vw,2.1rem); color: var(--ink); line-height: 1.05; }
+.coach__role { font: 600 .66rem/1.4 var(--f-mono); color: var(--muted); letter-spacing: .03em; }
+.coach p { color: var(--ink-soft); font-size: var(--step--1); }
+
+/* le compteur de créneaux */
+.coach__count { display: inline-flex; align-items: baseline; gap: .6ch; margin-top: .2rem; }
+.coach__count b { font-family: var(--f-display); font-weight: 700; font-size: 1.5rem; color: var(--accent); line-height: 1; }
+.coach__count span { font: 600 var(--step--2)/1 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+
+/* les vrais créneaux de la semaine (dérivés du planning) */
+.coach__slots { display: flex; flex-direction: column; gap: .3rem; margin-top: .4rem; border-top: 1px solid var(--line); padding-top: .8rem; }
+.slotline { display: grid; grid-template-columns: 2.6rem 3.6rem 1fr; gap: .4rem; align-items: baseline; font-size: var(--step--1); }
+.slotline .d { font: 600 .6rem/1.4 var(--f-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--accent); }
+.slotline .t { font: 600 var(--step--2)/1.4 var(--f-mono); color: var(--muted); }
+.slotline .c { color: var(--ink); font-weight: 600; }
+@media (min-width: 760px){ .coach--pillar .coach__slots { display: grid; grid-template-columns: repeat(2,1fr); gap: .3rem 1.4rem; } }
+
+/* la note d'intégrité photo (loi coach) */
+.integrity { margin-top: clamp(1.6rem,3.5vw,2.4rem); border: 1px dashed var(--accent-line); border-radius: var(--radius); padding: clamp(1rem,2.2vw,1.4rem) clamp(1.1rem,2.4vw,1.5rem); background: color-mix(in srgb,var(--paper-2) 55%, transparent); display: flex; gap: 1rem; align-items: flex-start; }
+.integrity__mark { flex: 0 0 auto; width: 34px; height: 34px; display: grid; place-items: center; border: 1px solid var(--accent-line); border-radius: var(--radius); color: var(--accent); }
+.integrity p { font-size: var(--step--1); color: var(--ink-soft); max-width: 70ch; }
+.integrity b { color: var(--accent); }
+
+/* .ctaband → base.css */
+
+/* =========================== TOUCH LIFE ======================== */
+@media (hover: none) { .coach.is-inview { transform: translateY(-4px); border-color: var(--accent-line); } }
+@media (max-width: 760px){ .coach--pillar .coach__face { aspect-ratio: 16/10; } }

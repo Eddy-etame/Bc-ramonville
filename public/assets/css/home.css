@@ -1,0 +1,159 @@
+/* =====================================================================
+   RAMONVILLE · home.css — l'arrivée sous le ciel
+
+   Architecture (brief §4.1) : hero ciel réel + octogone filaire · le claim
+   extérieur (300 m² dehors) · l'octogone-nav (8 arêtes) · la bande staff ·
+   la carte essai 10€ · le gong nuit. Le squelette n'imite aucune sœur.
+   ===================================================================== */
+
+/* ==================== HERO — sous le ciel réel =================== */
+.hero { position: relative; min-height: 100svh; display: flex; flex-direction: column; justify-content: center; padding-top: clamp(6rem,12vh,8rem); padding-bottom: clamp(2.5rem,5vh,4rem); overflow: hidden; background: var(--void); }
+/* le voile bas fond le ciel dans la page */
+.hero::after { content: ""; position: absolute; inset: auto 0 0 0; height: 34%; z-index: 1; background: linear-gradient(180deg, transparent, var(--paper)); pointer-events: none; }
+.hero__grid { position: relative; z-index: 2; display: grid; gap: clamp(2rem,4vw,4rem); grid-template-columns: 1fr; align-items: center; }
+@media (min-width: 980px){ .hero__grid { grid-template-columns: 1.02fr .98fr; } }
+.hero__title { font-size: clamp(3rem, 1.8rem + 7.4vw, 7.4rem); }
+.hero__title .l1 { display: block; }
+.hero__sub { margin-top: clamp(1.1rem,2.4vw,1.6rem); max-width: 46ch; }
+.hero__sub b { color: var(--accent); font-weight: 700; }
+.hero__badges { display: flex; flex-wrap: wrap; gap: .55rem; margin-top: clamp(1.2rem,2.6vw,1.7rem); }
+.hero__badges span { display: inline-flex; align-items: center; gap: .6ch; font: 600 var(--step--1)/1 var(--f-mono); letter-spacing: .04em; color: var(--ink); background: color-mix(in srgb, var(--paper-2) 70%, transparent); border: 1px solid var(--line); border-radius: var(--radius); padding: .55em .9em; backdrop-filter: blur(6px); }
+.hero__badges span::before { content: ""; width: 7px; height: 7px; transform: rotate(45deg); background: var(--accent); box-shadow: 0 0 10px var(--accent); }
+.hero__cta { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: clamp(1.5rem,3.4vw,2.2rem); }
+
+/* la colonne de droite : l'octogone filaire, grand, qui se trace */
+.hero__octa { position: relative; display: grid; place-items: center; }
+.hero__octa .octa { width: min(90%, 460px); }
+.hero__cap { position: absolute; left: 0; bottom: -.4rem; font: 600 var(--step--2)/1 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); background: color-mix(in srgb, var(--void) 60%, transparent); padding: .5em .8em; border: 1px solid var(--line); border-radius: var(--radius); }
+@media (max-width: 979px){ .hero__octa { margin-top: 1.5rem; } .hero__cap { position: static; display: inline-block; margin-top: 2.4rem; } }
+
+/* stats — bande fondue dans le bas du hero */
+.hero__stats { position: relative; z-index: 2; display: grid; grid-template-columns: repeat(2,1fr); gap: 1px; background: var(--line-soft); border: 1px solid var(--line); overflow: hidden; margin-top: clamp(2.2rem,5vh,3.4rem); }
+@media (min-width: 820px){ .hero__stats { grid-template-columns: repeat(4,1fr); } }
+.stat { background: color-mix(in srgb, var(--paper-2) 62%, transparent); backdrop-filter: blur(6px); padding: clamp(1rem,2vw,1.5rem); }
+.stat__v { font-family: var(--f-display); font-weight: 700; letter-spacing: -.02em; font-size: clamp(1.7rem,3.6vw,2.7rem); color: var(--ink); display: flex; align-items: baseline; }
+.stat__v sup { font-size: .42em; margin-left: .12em; color: var(--accent); }
+.stat__l { margin-top: .35rem; font-size: .76rem; color: var(--muted); line-height: 1.4; }
+
+/* ==================== MANIFESTO — une ligne dure ================= */
+.manifesto { padding-block: clamp(4rem,9vw,7.5rem); text-align: center; }
+.manifesto p { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; letter-spacing: -.01em; line-height: 1.1; font-size: clamp(1.6rem,1rem+2.6vw,3.2rem); color: var(--ink); max-width: 24ch; margin-inline: auto; }
+.manifesto .tint { white-space: nowrap; }
+
+/* ============= LE CLAIM EXTÉRIEUR — 300 m² dehors =============== *
+   Personne d'autre dans le réseau n'a ça — et personne ne peut copier le fond :
+   c'est le CIEL RÉEL de Ramonville (gradient piloté par data-sky/data-daypart,
+   Open-Meteo). Aucune photo : les 6 clichés prouvés sont tous sous charpente,
+   en illustrer les 300 m² extérieurs serait le seul mensonge du site. Pas de
+   canvas ici non plus — le dégradé suffit, et il ne coûte pas une frame. */
+.claim { position: relative; background: var(--void); border-block: 1px solid var(--line); overflow: hidden; }
+/* voile latéral : le texte garde son scrim (loi de lisibilité n°1) */
+.claim__sky::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, var(--paper) 4%, color-mix(in srgb,var(--paper) 62%, transparent) 54%, transparent 100%); }
+.claim .wrap { position: relative; z-index: 1; padding-block: var(--sec); }
+/* les conditions réelles au-dessus de la salle, maintenant — la preuve que
+   « à ciel ouvert » est une donnée, pas un slogan. */
+.claim__live { display: inline-flex; align-items: center; gap: .8ch; margin-top: 1.4rem; font: 600 var(--step--2)/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--ink); background: color-mix(in srgb, var(--void) 62%, transparent); border: 1px solid var(--accent-line); border-radius: var(--radius); padding: .7em 1em; backdrop-filter: blur(6px); }
+.claim__live:empty { display: none; }
+.claim__live b { color: var(--accent); font-weight: 600; }
+.claim__live::before { content: ""; flex: 0 0 8px; height: 8px; transform: rotate(45deg); background: var(--accent); box-shadow: 0 0 10px var(--accent); }
+@media (prefers-reduced-motion: no-preference){ .claim__live::before { animation: pulse 2.4s var(--ease) infinite; } }  /* @keyframes pulse → base.css */
+.claim__grid { display: grid; gap: clamp(1.6rem,4vw,3rem); grid-template-columns: 1fr; align-items: end; }
+@media (min-width: 900px){ .claim__grid { grid-template-columns: 1.2fr .8fr; } }
+.claim h2 { font-size: clamp(2.2rem,1.4rem+3.6vw,4.6rem); margin-top: 1rem; }
+.claim__lead { margin-top: 1.2rem; max-width: 42ch; }
+.claim__figs { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--line-soft); border: 1px solid var(--line); }
+.claim__fig { background: color-mix(in srgb, var(--paper-2) 70%, transparent); padding: clamp(.9rem,2vw,1.3rem); }
+.claim__fig b { display: block; font-family: var(--f-display); font-weight: 700; font-size: clamp(1.4rem,3vw,2rem); color: var(--accent); }
+.claim__fig span { font: 600 var(--step--2)/1.3 var(--f-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+
+/* ================= L'OCTOGONE-NAV (grand + légende) ============= */
+.onav { position: relative; overflow: hidden; }
+/* le titre de section de l'octogone-nav : une phrase entière, pas le tic
+   deux-temps « A. / B. » — et le style sort du HTML inline. */
+.onav__title { margin-top: 1rem; font-size: clamp(1.9rem, 1.2rem + 2.6vw, 3.1rem); max-width: 18ch; }
+.onav__grid { display: grid; gap: clamp(2rem,5vw,4rem); grid-template-columns: 1fr; align-items: center; }
+@media (min-width: 940px){ .onav__grid { grid-template-columns: .95fr 1.05fr; } }
+.onav__stage { position: relative; display: grid; place-items: center; padding: clamp(1rem,3vw,2rem); }
+/* octogone filaire RÉDUIT et statique (brief §2.2) — l'instrument interactif ne
+   vit qu'UNE fois, dans le hero ; ici c'est un motif décoratif à rotation lente
+   qui accompagne la légende cliquable des 8 côtés. */
+.onav__filaire { width: min(90%, 460px); }
+.onav__filaire svg { width: 100%; height: auto; overflow: visible; }
+.onav__filaire .m-out { fill: none; stroke: var(--accent-line); stroke-width: 1.4; }
+.onav__filaire .m-in { fill: none; stroke: var(--line); stroke-width: 1.1; }
+.onav__filaire .m-spoke { stroke: var(--line-soft); stroke-width: 1; }
+@media (prefers-reduced-motion: no-preference){ .onav__filaire { animation: onavSpin 120s linear infinite; transform-origin: center; } }
+@keyframes onavSpin { to { transform: rotate(360deg); } }
+.onav__stage::before { content: ""; position: absolute; inset: 10% 12%; z-index: -1; background: radial-gradient(circle, var(--sky-glow), transparent 68%); }
+.oleg { display: grid; grid-template-columns: auto 1fr auto; align-items: baseline; gap: 1rem; padding: clamp(.7rem,1.6vw,1rem) .2rem; border-bottom: 1px solid var(--line); transition: padding-left .35s var(--ease), background .3s; }
+.oleg:first-child { border-top: 1px solid var(--line); }
+.oleg__n { font: 600 .66rem/1 var(--f-mono); color: var(--muted); transition: color .3s; }
+.oleg__name { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; letter-spacing: -.01em; font-size: clamp(1.15rem,1rem+1.2vw,1.9rem); color: var(--ink-soft); transition: color .3s; }
+.oleg__tag { font: 600 .6rem/1 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.oleg:hover { padding-left: .7rem; background: color-mix(in srgb, var(--paper-2) 40%, transparent); }
+.oleg:hover .oleg__n { color: var(--accent); }
+.oleg:hover .oleg__name { color: var(--accent); }
+
+/* ==================== LA BANDE STAFF ============================ */
+.staff { display: grid; gap: .7rem; grid-template-columns: repeat(2,1fr); }
+@media (min-width: 760px){ .staff { grid-template-columns: repeat(4,1fr); } }
+.staff__card { display: flex; flex-direction: column; gap: .8rem; border: 1px solid var(--line); border-radius: var(--radius); padding: .7rem; background: var(--paper-2); transition: transform .35s var(--ease-spring), box-shadow .35s, border-color .3s; }
+.staff__card:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: var(--glow-soft); }
+.staff__card.is-pillar { border-color: var(--accent-line); }
+.staff__face { aspect-ratio: 3/4; border-radius: var(--radius); overflow: hidden; }
+/* visages coachs (photo paysage en portrait) : cadrage haut pour ne jamais rogner la face */
+.staff__face.media img { object-position: 50% 28%; }
+.staff__face--tile { display: grid; place-items: center; background: radial-gradient(circle at 50% 30%, color-mix(in srgb,var(--accent) 22%, var(--paper-3)), var(--void)); position: relative; }
+.staff__face--tile::after { content: ""; position: absolute; inset: 0; background-image: linear-gradient(color-mix(in srgb,var(--ink) 4%, transparent) 1px, transparent 1px); background-size: 100% 8px; opacity: .5; }
+.staff__face--tile span { font-family: var(--f-display); font-weight: 700; font-size: clamp(1.8rem,5vw,2.6rem); color: var(--accent); letter-spacing: .04em; }
+.staff__meta { display: flex; flex-direction: column; gap: .25rem; padding: 0 .3rem .3rem; }
+.staff__meta b { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: 1.05rem; color: var(--ink); }
+.staff__meta .mono { color: var(--muted); font-size: .64rem; letter-spacing: .04em; }
+.staff__meta i { font-style: normal; font: 600 .6rem/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--accent); }
+
+/* ==================== LA CARTE ESSAI 10€ ======================== */
+.essai { position: relative; overflow: hidden; background: var(--void); border-block: 1px solid var(--line); }
+.essai .wrap { position: relative; z-index: 1; padding-block: var(--sec); }
+.essai__card { position: relative; border: 1px solid var(--accent-line); border-radius: var(--radius); background: color-mix(in srgb, var(--paper-2) 80%, transparent); padding: clamp(1.8rem,4vw,3rem); overflow: hidden; box-shadow: var(--glow-soft); }
+.essai__card::before { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(80% 120% at 100% 0%, var(--sky-glow), transparent 60%); }
+.essai__grid { display: grid; gap: clamp(1.4rem,3vw,2.4rem); grid-template-columns: 1fr; align-items: center; }
+@media (min-width: 820px){ .essai__grid { grid-template-columns: 1.3fr .7fr; } }
+.essai__price { font-family: var(--f-display); font-weight: 700; font-size: clamp(3rem,8vw,5rem); color: var(--accent); line-height: 1; letter-spacing: -.02em; }
+.essai__price small { font: 600 .9rem/1 var(--f-mono); color: var(--muted); letter-spacing: .1em; text-transform: uppercase; display: block; margin-top: .5rem; }
+.essai h2 { font-size: clamp(1.9rem,1.2rem+2.8vw,3.4rem); }
+.essai p { color: var(--ink-soft); margin-top: .8rem; max-width: 40ch; }
+.essai ul { margin-top: 1rem; display: grid; gap: .5rem; }
+.essai li { display: flex; gap: .8ch; align-items: flex-start; font-size: var(--step--1); color: var(--muted); }
+.essai li::before { content: ""; flex: 0 0 7px; height: 7px; transform: rotate(45deg); margin-top: .45em; background: var(--accent); }
+.essai__cta { margin-top: 1.4rem; display: flex; gap: .7rem; flex-wrap: wrap; }
+
+/* ========================= FINAL — gong nuit ==================== */
+.gong { position: relative; text-align: center; padding-block: clamp(4.5rem,10vw,8rem); overflow: hidden; background: var(--void); }
+.gong .sky { z-index: 0; }
+.gong__inner { position: relative; z-index: 2; width: min(92vw, 64ch); margin-inline: auto; }
+.gong h2 { margin-block: 1rem 1.2rem; font-size: clamp(2.2rem,1.4rem+3vw,4rem); }
+.gong .lead { margin-inline: auto; max-width: 48ch; }
+.gong__cta { margin-top: 1.8rem; display: inline-flex; gap: .8rem; flex-wrap: wrap; justify-content: center; }
+
+/* .shead → base.css (token --shead-max). Cette copie surchargeait le même
+   titre à 4rem quand les autres pages étaient à 3,4 ou 3,8 : trois valeurs,
+   zéro raison — la dérive que les tokens suppriment. */
+
+/* ==================== TOUCH LIFE (hover: none) ================== */
+@media (hover: none) {
+  .staff__card.is-inview { transform: translateY(-4px); border-color: var(--accent); }
+  .oleg.is-inview .oleg__name { color: var(--accent); }
+  /* cible ≥44px + retour pressé sur la légende des 8 côtés */
+  .oleg { min-height: 44px; }
+  .oleg:active { background: color-mix(in srgb, var(--paper-2) 55%, transparent); padding-left: .7rem; }
+  .oleg:active .oleg__name { color: var(--accent); }
+  .staff__card:active { transform: translateY(1px); border-color: var(--accent); }
+}
+
+/* ================ MOBILE PASS (≤820px) ========================= */
+@media (max-width: 820px) {
+  .hero { min-height: auto; }
+  .manifesto p { font-size: clamp(1.35rem,6vw,1.9rem); }
+  .claim__figs { grid-template-columns: 1fr; }
+  .claim__fig { display: flex; align-items: baseline; gap: .8ch; }
+}

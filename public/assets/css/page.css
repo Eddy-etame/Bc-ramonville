@@ -1,0 +1,179 @@
+/* =====================================================================
+   RAMONVILLE · page.css — les 7 pages intérieures
+
+   Squelettes PROPRES par page (loi n°2), mais fondés sur le même monde :
+   la nuit, le ciel réel des heros, l'octogone, le registre documentaire.
+   Composants : hero de page · stations du plateau · disciplines · coachs ·
+   galerie carnet · grille planning filtrable · tarifs/promos/avis · contact.
+   ===================================================================== */
+
+/* Le chrome (.phero*, .breadcrumb, .shead, .ctaband) vit dans base.css — le
+   seul fichier chargé par les 8 pages. Ce fichier sert /plannings/, /tarifs/
+   et /contact/ : il ne garde que leurs composants. */
+
+/* Blocs SUPPRIMÉS (code mort) : .stations/.station*, .values/.value*,
+   .network/.net*, .practical*, .discs/.disc*, .coachs/.coach*, .gallery/.shot*.
+   page.css n'est chargé QUE par /plannings/, /tarifs/ et /contact/ — chacune
+   des pages qui rendent ces composants (la-salle, activites, coachs, galerie)
+   charge son PROPRE css, où ils sont redéfinis et font autorité. Ces ~100
+   lignes étaient donc téléchargées par 3 pages sans jamais matcher un nœud,
+   et .coach* y divergeait de coachs.css (span/em vs .ini/.sub) : deux sources
+   de vérité pour la même fiche, dont une morte. Standards §5.8 : pas d'asset mort.
+   .famfilter/.chip restent : /plannings/ s'en sert pour ses filtres. */
+
+/* =========================== FILTRES (chips) ==================== */
+.famfilter { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: clamp(1.6rem,3.5vw,2.4rem); }
+.chip { font: 600 var(--step--1)/1 var(--f-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); border: 1.5px solid var(--line); border-radius: var(--radius); padding: .6em 1em; background: transparent; transition: border-color .3s, color .3s, background .3s; }
+.chip:hover { border-color: var(--accent); color: var(--ink); }
+.chip[aria-pressed="true"], .chip.is-on { background: var(--accent); border-color: var(--accent); color: var(--void); }
+
+/* =========================== PLANNING GRID ===================== */
+.plan__tabs { display: flex; gap: .5rem; margin-bottom: 1.4rem; }
+.plan__tab { font: 600 var(--step--1)/1 var(--f-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); border: 1.5px solid var(--line); border-radius: var(--radius); padding: .7em 1.1em; transition: border-color .3s, color .3s, background .3s; }
+.plan__tab.is-on, .plan__tab[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--void); }
+.plan__note { font-size: var(--step--1); color: var(--muted); margin-bottom: 1.2rem; }
+.plan__note b { color: var(--accent); }
+/* `max-height` : SANS contrainte de hauteur, le sticky du thead ne colle à
+   RIEN. overflow-x:auto force overflow-y à calculer `auto`, ce qui fait de
+   .gridwrap le scrollport le plus proche ; sans hauteur il ne défile jamais
+   verticalement, donc l'en-tête s'en allait avec la page — sur une grille de
+   720×740 px, exactement quand on a besoin de savoir quel jour on lit. */
+.gridwrap { border: 1px solid var(--line); border-radius: var(--radius); overflow-x: auto; max-height: min(70vh, 640px); background: var(--paper-2); }
+.grid { width: 100%; min-width: 720px; border-collapse: separate; border-spacing: 0; }
+.grid th, .grid td { border-bottom: 1px solid var(--line-soft); border-right: 1px solid var(--line-soft); padding: .6rem .7rem; text-align: left; vertical-align: top; }
+/* fond OPAQUE obligatoire : le corps défile dessous */
+.grid thead th { position: sticky; top: 0; background: var(--paper-3); font: 600 var(--step--2)/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--accent); z-index: 2; }
+.grid td.time { font: 600 var(--step--2)/1 var(--f-mono); color: var(--muted); white-space: nowrap; }
+.slot { display: block; padding: .5rem .6rem; border-radius: var(--radius); background: color-mix(in srgb,var(--paper-3) 70%, transparent); border: 1px solid var(--line); transition: border-color .3s, background .3s, opacity .3s; margin-bottom: .3rem; }
+.slot:last-child { margin-bottom: 0; }
+.slot b { display: block; font-family: var(--f-display); font-weight: 600; text-transform: uppercase; font-size: .82rem; color: var(--ink); }
+.slot span { font: 600 var(--step--2)/1.3 var(--f-mono); letter-spacing: .04em; color: var(--muted); }
+/* FILTRER NE DOIT PAS RENDRE ILLISIBLE. `opacity:.32 + grayscale(1)` mettait
+   10 des 23 cours à 2,61:1 (nom du cours) et 1,68:1 (heure/coach) — sous le
+   plancher AA, sur la page UTILITAIRE du site, et le commentaire d'origine
+   affirmait « encore lisible » : un mensonge documenté plutôt qu'un oubli.
+   On dé-emphase le CONTENANT (bordure + fond), jamais le TEXTE : les noms de
+   cours restent à 16,6:1 / 6,4:1 quel que soit le filtre. Loi n°1. */
+.slot.is-dim { background: transparent; border-color: var(--line-soft); }
+.slot.is-dim b { color: var(--ink-soft); font-weight: 500; }
+.slot.is-dim[data-fam="feminin"] { border-color: var(--line-soft); }
+.slot[data-fam="feminin"] { border-color: color-mix(in srgb,var(--accent) 45%, transparent); }
+.slot[data-fam="mma"] b::after { content: " ·"; color: var(--accent); }
+.grid td.empty { color: var(--muted); opacity: .4; font: 600 1.1rem/1 var(--f-mono); text-align: center; }
+
+/* posters — EN COULEUR, cliquables plein format (loi n°5) */
+.posters { display: grid; gap: 1rem; grid-template-columns: 1fr; margin-top: clamp(2rem,4vw,3rem); }
+@media (min-width: 780px){ .posters { grid-template-columns: 1.6fr 1fr; align-items: start; } }
+.poster { display: block; position: relative; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); transition: transform .35s var(--ease-spring), box-shadow .35s, border-color .3s; }
+.poster:hover { transform: translateY(-3px); border-color: var(--accent); box-shadow: var(--glow-soft), var(--shadow); }
+.poster img { width: 100%; height: auto; display: block; filter: none; }  /* couleur, jamais grisé */
+.poster__cap { position: absolute; left: .8rem; top: .8rem; font: 600 .6rem/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--void); background: var(--accent); padding: .5em .8em; border-radius: var(--radius); }
+.poster::after { content: "Ouvrir ↗"; position: absolute; right: .8rem; bottom: .8rem; font: 600 .6rem/1 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink); background: color-mix(in srgb,var(--void) 70%, transparent); padding: .5em .8em; border: 1px solid var(--line); border-radius: var(--radius); }
+
+/* =========================== TARIFS / PROMOS / AVIS ============ */
+.tarifs { display: grid; gap: .8rem; grid-template-columns: 1fr; }
+@media (min-width: 720px){ .tarifs { grid-template-columns: repeat(2,1fr); } }
+@media (min-width: 1040px){ .tarifs { grid-template-columns: repeat(4,1fr); } }
+.tarif { border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(1.4rem,2.6vw,2rem); display: flex; flex-direction: column; gap: .9rem; position: relative; background: var(--paper-2); transition: transform .35s var(--ease-spring), box-shadow .35s, border-color .3s; }
+.tarif:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-color: var(--accent-line); }
+.tarif--hot { background: var(--accent); border-color: var(--accent); box-shadow: var(--glow); }
+.tarif--hot .tarif__name, .tarif--hot .tarif__price { color: var(--void); }
+.tarif--hot .tarif__feature { color: color-mix(in srgb,var(--void) 92%, #fff); }  /* ~7:1+ sur l'accent — la carte de conversion doit se lire */
+.tarif--hot .tarif__items li { color: color-mix(in srgb,var(--void) 88%, #fff); }
+.tarif--hot .tarif__items li::before { background: var(--void); }
+.tarif--hot .tarif__price small { color: color-mix(in srgb,var(--void) 55%, transparent); }
+.tarif--hot .btn { background: var(--void); border-color: var(--void); color: var(--accent); }
+.tarif__badge { position: absolute; top: -0.7em; right: 1.1rem; background: var(--void); color: var(--accent); font: 600 .6rem/1 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; padding: .55em .9em; border-radius: var(--radius); border: 1px solid var(--accent-line); }
+.tarif__name { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: var(--step-1); color: var(--ink); }
+.tarif__price { font-family: var(--f-display); font-weight: 700; letter-spacing: -.02em; font-size: clamp(1.9rem,4vw,2.7rem); color: var(--ink); }
+.tarif__price small { font-family: var(--f-mono); font-size: .32em; letter-spacing: .06em; opacity: .6; text-transform: uppercase; }
+.tarif__feature { color: var(--accent-2); font-size: var(--step--1); font-weight: 600; }
+.tarif__items { display: grid; gap: .5rem; margin-top: auto; }
+.tarif__items li { display: flex; gap: .8ch; align-items: flex-start; font-size: var(--step--1); color: var(--muted); }
+.tarif__items li::before { content: ""; flex: 0 0 6px; height: 6px; transform: rotate(45deg); margin-top: .5em; background: var(--accent); }
+
+/* le bloc promos — Duo prioritaire, Saison secondaire */
+.promos { display: grid; gap: 1rem; grid-template-columns: 1fr; }
+@media (min-width: 820px){ .promos { grid-template-columns: 1.15fr .85fr; align-items: stretch; } }
+.promo { position: relative; border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(1.6rem,3.4vw,2.6rem); background: var(--paper-2); overflow: hidden; display: flex; flex-direction: column; }
+.promo--duo { border-color: var(--accent); box-shadow: var(--glow-soft); }
+.promo--duo::before { content: ""; position: absolute; inset: 0; z-index: 0; background: radial-gradient(70% 100% at 100% 0%, var(--sky-glow), transparent 62%); }
+.promo > * { position: relative; z-index: 1; }
+.promo__badge { align-self: flex-start; font: 600 .6rem/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--void); background: var(--accent); padding: .5em .85em; border-radius: var(--radius); margin-bottom: 1rem; }
+.promo--saison .promo__badge { background: transparent; color: var(--accent); border: 1px solid var(--accent-line); }
+.promo h3 { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: clamp(1.5rem,1rem+2vw,2.4rem); color: var(--ink); }
+.promo__price { display: flex; align-items: baseline; gap: .6ch; margin: .8rem 0; }
+.promo__price b { font-family: var(--f-display); font-weight: 700; font-size: clamp(2.4rem,6vw,3.6rem); color: var(--accent); letter-spacing: -.02em; }
+.promo__price i { font-style: normal; font: 600 .72rem/1 var(--f-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--ink); }
+.promo__price s { color: var(--muted); font: 600 .72rem/1 var(--f-mono); }
+.promo__feat { color: var(--ink-soft); font-size: var(--step--1); }
+.promo__items { display: grid; gap: .5rem; margin: 1rem 0 1.4rem; }
+.promo__items li { display: flex; gap: .8ch; align-items: flex-start; font-size: var(--step--1); color: var(--muted); }
+.promo__items li::before { content: ""; flex: 0 0 6px; height: 6px; transform: rotate(45deg); margin-top: .5em; background: var(--accent); }
+.promo .btn { margin-top: auto; align-self: flex-start; }
+.promo__bonus { margin-top: clamp(1.4rem,3vw,2rem); border: 1px dashed var(--accent-line); border-radius: var(--radius); padding: 1rem 1.2rem; font: 600 var(--step--1)/1.4 var(--f-mono); letter-spacing: .02em; color: var(--ink); background: color-mix(in srgb,var(--paper-2) 60%, transparent); }
+.promo__bonus b { color: var(--accent); }
+
+/* les avis Google réels */
+.reviews { display: grid; gap: .9rem; grid-template-columns: 1fr; }
+@media (min-width: 760px){ .reviews { grid-template-columns: repeat(3,1fr); } }
+.review { border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(1.3rem,2.6vw,1.9rem); background: var(--paper-2); display: flex; flex-direction: column; gap: .9rem; }
+.review__stars { color: var(--accent); letter-spacing: .2em; font-size: .9rem; }
+.review p { color: var(--ink-soft); font-size: var(--step--1); line-height: 1.55; }
+.review__by { margin-top: auto; font: 600 var(--step--2)/1 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.reviews__head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 1ch; margin-bottom: clamp(1.4rem,3vw,2rem); }
+.reviews__rating { font-family: var(--f-display); font-weight: 700; font-size: 2rem; color: var(--accent); }
+.reviews__count { font: 600 var(--step--1)/1 var(--f-mono); color: var(--muted); letter-spacing: .06em; }
+
+/* =========================== CONTACT =========================== */
+.contact__grid { display: grid; gap: clamp(1.4rem,3vw,2.4rem); grid-template-columns: 1fr; }
+@media (min-width: 900px){ .contact__grid { grid-template-columns: 1fr 1fr; align-items: start; } }
+.map { position: relative; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; aspect-ratio: 4/3; background: var(--paper-2); }
+/* `hue-rotate(180deg)` retiré : les filtres s'appliquent de gauche à droite, et
+   après `grayscale(1)` chaque pixel a r=g=b — la matrice hue-rotate préserve le
+   gris, l'étape ne faisait donc STRICTEMENT rien. Recette carte sombre tenue :
+   désaturer (compatible argent/cuivre), puis inverser. */
+.map iframe { width: 100%; height: 100%; border: 0; filter: grayscale(1) contrast(1.1) invert(.92); }
+.info { display: grid; gap: .8rem; }
+.info__row { border: 1px solid var(--line); border-radius: var(--radius); padding: 1.1rem 1.3rem; background: var(--paper-2); display: flex; flex-direction: column; gap: .3rem; }
+.info__row .fk { font: 600 .6rem/1 var(--f-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--accent); }
+.info__row .fv { color: var(--ink); font-weight: 600; }
+.info__row .fv a:hover { color: var(--accent); }
+
+/* FAQ accordion */
+.faq { display: grid; gap: .6rem; max-width: 78ch; }
+.faq details { border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper-2); overflow: hidden; transition: border-color .3s; }
+.faq details[open] { border-color: var(--accent-line); }
+.faq summary { list-style: none; cursor: pointer; padding: 1.1rem 1.3rem; display: flex; justify-content: space-between; gap: 1rem; align-items: center; font-family: var(--f-display); font-weight: 600; text-transform: uppercase; font-size: 1.05rem; color: var(--ink); }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; font-family: var(--f-mono); color: var(--accent); font-size: 1.3rem; transition: transform .3s; }
+.faq details[open] summary::after { transform: rotate(45deg); }
+.faq p { padding: 0 1.3rem 1.2rem; color: var(--ink-soft); font-size: var(--step--1); line-height: 1.6; }
+
+/* =========================== CTA band ========================== */
+/* .ctaband → base.css (5e copie supprimée) */
+
+/* =========================== SEO prose ========================= */
+.localseo { background: color-mix(in srgb, var(--paper-2) 60%, transparent); border-block: 1px solid var(--line); }
+.localseo .lead strong { color: var(--accent); font-weight: 700; }
+
+/* =========================== TOUCH LIFE ======================== */
+@media (hover: none) {
+  .coach.is-inview, .tarif.is-inview, .net.is-inview, .promo.is-inview { transform: translateY(-4px); border-color: var(--accent-line); }
+}
+
+/* ============ TOUCH — CIBLES ≥44px + RETOUR PRESSÉ (mobile) ========== */
+@media (hover: none) {
+  .chip, .plan__tab, .slot { min-height: 44px; }
+  .chip:active, .plan__tab:active { transform: translateY(1px); background: var(--paper-3); border-color: var(--accent); color: var(--ink); }
+  .slot:active { transform: translateY(1px); border-color: var(--accent); }
+  .poster:active { transform: translateY(1px); border-color: var(--accent); }
+  .faq summary:active { color: var(--accent); }
+}
+
+/* =========================== MOBILE PASS ======================= */
+@media (max-width: 820px) {
+  .disc__media, .station__media { min-height: 200px; }
+  .coach--pillar { flex-direction: column; }
+  .practical { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,86 @@
+/* =====================================================================
+   RAMONVILLE · galerie.css — LE CARNET DE TERRAIN (page /galerie/)
+
+   CSS PROPRE à la page (loi n°2). Se pose SUR base.css. Squelette distinct :
+   une bande « conditions au tournage » branchée sur le VRAI ciel (sky.js) +
+   le carnet en mosaïque, légendes mono par ZONE, + une tuile HONNÊTE « le
+   dehors, reportage à venir » (les 6 photos prouvées montrent l'intérieur ;
+   le 300 m² extérieur reste à filmer) + une visionneuse plein cadre.
+   Aucun token redéfini — la bascule bi-palette suffit.
+
+   Les légendes ne sont PLUS horodatées : les 6 clichés sont pris de jour et
+   à couvert, les heures « 21h48 » étaient inventées. Seule la bande du hero
+   est datée — elle parle de maintenant, au-dessus de la salle, et c'est vrai.
+   ===================================================================== */
+
+/* Le chrome (.phero*, .breadcrumb, .shead, .ctaband) vit dans base.css. Ce
+   fichier ne garde que ce qui est PROPRE à /galerie/ : la bande de conditions
+   réelles, le carnet, la tuile honnête et la visionneuse. */
+
+/* =================== CONDITIONS AU TOURNAGE (ciel réel) ========= *
+   Branchée sur window.__SKY (sky.js). Le carnet est daté ET météo : l'état
+   du ciel, l'heure et la température viennent du même flux Open-Meteo. */
+.tournage { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem; margin-top: clamp(1.4rem,3vw,2rem); }
+.tournage__lead { font: 600 .6rem/1.4 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-right: .3rem; }
+.cond { display: inline-flex; align-items: center; gap: .6ch; font: 600 var(--step--1)/1 var(--f-mono); letter-spacing: .04em; color: var(--ink); background: color-mix(in srgb, var(--paper-2) 70%, transparent); border: 1px solid var(--line); border-radius: var(--radius); padding: .55em .9em; }
+.cond__dot { width: 9px; height: 9px; transform: rotate(45deg); background: var(--accent); box-shadow: 0 0 8px var(--accent); }
+.cond--live .cond__dot { animation: pulse 2.2s var(--ease) infinite; }  /* @keyframes pulse → base.css */
+@media (prefers-reduced-motion: reduce){ .cond--live .cond__dot { animation: none; } }
+.cond b { color: var(--accent); }
+
+/* =========================== LE CARNET ========================= *
+   Mosaïque colonne, légendes mono horodatées, traitement nuit. */
+.gallery { columns: 1; column-gap: .9rem; margin-top: clamp(.4rem,1vw,.8rem); }
+@media (min-width: 620px){ .gallery { columns: 2; } }
+@media (min-width: 1000px){ .gallery { columns: 3; } }
+.shot { break-inside: avoid; margin-bottom: .9rem; position: relative; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--paper-2); cursor: zoom-in; }
+.shot img { width: 100%; height: auto; display: block; filter: contrast(1.12) brightness(.84) saturate(.86); transition: filter .5s var(--ease), transform .6s var(--ease); }
+.shot:hover img { filter: contrast(1.05) brightness(1) saturate(.95); transform: scale(1.03); }
+.shot__cap { position: absolute; left: .7rem; bottom: .7rem; right: .7rem; font: 600 var(--step--2)/1.35 var(--f-mono); letter-spacing: .06em; color: var(--ink); background: color-mix(in srgb,var(--void) 68%, transparent); padding: .5em .7em; border: 1px solid var(--line); border-radius: var(--radius); backdrop-filter: blur(4px); pointer-events: none; }
+.shot__cap b { color: var(--accent); font-weight: 600; }
+/* le crédit photo : le filigrane est incrusté dans deux fichiers sources — on
+   cite le photographe plutôt que de rogner sa signature. Un carnet de terrain
+   crédite ses images ; c'est le registre, pas une concession. */
+.shot__credit { display: block; margin-top: .3em; font-style: normal; font-size: .88em; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; }
+.shot__zoom { position: absolute; top: .6rem; right: .6rem; width: 26px; height: 26px; display: grid; place-items: center; color: var(--ink); background: color-mix(in srgb,var(--void) 60%, transparent); border: 1px solid var(--line); border-radius: var(--radius); opacity: 0; transition: opacity .3s; pointer-events: none; z-index: 2; }
+.shot:hover .shot__zoom, .shot:focus-visible .shot__zoom { opacity: 1; }
+/* les vignettes sont de vrais contrôles (role=button tabindex=0) : elles
+   doivent MONTRER le focus clavier. */
+.shot:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+/* la tuile honnête : le 300 m² extérieur reste à filmer (état « à venir »
+   intentionnel, pas un trou — brief §4.5) */
+.shot--todo { cursor: default; border-style: dashed; border-color: var(--accent-line); background: radial-gradient(120% 90% at 80% 0%, color-mix(in srgb,var(--accent) 14%, var(--paper-2)), var(--void)); min-height: 240px; display: flex; flex-direction: column; justify-content: flex-end; padding: 1.2rem; }
+.shot--todo .todo__glyph { position: absolute; top: 1rem; right: 1rem; width: 46px; height: 46px; opacity: .55; }
+.shot--todo .todo__glyph path { fill: none; stroke: var(--accent); stroke-width: 3; stroke-linejoin: round; }
+.shot--todo .todo__k { font: 600 var(--step--2)/1 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
+.shot--todo .todo__t { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: 1.3rem; color: var(--ink); margin: .5rem 0 .3rem; line-height: 1.1; }
+.shot--todo .todo__d { font: 600 var(--step--2)/1.4 var(--f-mono); color: var(--muted); }
+
+/* =========================== VISIONNEUSE ======================= */
+.lightbox { position: fixed; inset: 0; z-index: 9000; display: none; place-items: center; padding: clamp(1rem,4vw,3rem); background: color-mix(in srgb,var(--void) 88%, transparent); backdrop-filter: blur(8px); }
+.lightbox.is-open { display: grid; }
+.lightbox__frame { position: relative; max-width: min(92vw, 1100px); max-height: 88vh; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); background: var(--paper); }
+.lightbox__frame img { max-width: 100%; max-height: 82vh; width: auto; height: auto; display: block; filter: contrast(1.08) brightness(.92) saturate(.9); }
+.lightbox__cap { position: absolute; left: 0; right: 0; bottom: 0; padding: .8rem 1rem; font: 600 var(--step--1)/1.3 var(--f-mono); letter-spacing: .04em; color: var(--ink); background: linear-gradient(0deg, color-mix(in srgb,var(--void) 82%, transparent), transparent); }
+.lightbox__cap b { color: var(--accent); }
+.lightbox__close { position: absolute; top: -.2rem; right: 0; transform: translateY(-115%); font: 600 var(--step--1)/1 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--ink); display: inline-flex; align-items: center; gap: .7ch; }
+.lightbox__close:hover { color: var(--accent); }
+@media (max-width: 640px){ .lightbox__close { transform: none; top: .4rem; right: .6rem; background: color-mix(in srgb,var(--void) 60%, transparent); padding: .4em .6em; border: 1px solid var(--line); border-radius: var(--radius); } }
+
+/* .ctaband → base.css */
+
+/* ============ TOUCH — LE CARNET AU DOIGT (mobile) ================ *
+   Ce fichier n'avait JAMAIS reçu la passe tactile que ses 6 sœurs ont eue
+   (hover:none : galerie.css = 0 bloc, :active = 0). Sur un vrai Android ça
+   voulait dire : la loupe jamais affichée (donc zéro signal que les 6 photos
+   s'ouvrent), aucun accusé de réception au toucher, et des photos bloquées à
+   brightness(.84) parce que le rehaut ne vivait qu'en :hover. */
+@media (hover: none) {
+  .shot__zoom { opacity: 1; }                 /* la loupe = le seul signal « ça s'ouvre » */
+  .shot img { filter: contrast(1.05) brightness(1) saturate(.95); }
+  .shot:active { border-color: var(--accent); transform: translateY(1px); }
+  .shot:active img { filter: contrast(1.08) brightness(1.06) saturate(1); }
+  .lightbox__close { min-height: 44px; }
+  .lightbox__close:active { color: var(--accent); }
+}

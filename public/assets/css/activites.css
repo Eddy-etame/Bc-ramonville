@@ -1,0 +1,92 @@
+/* =====================================================================
+   RAMONVILLE · activites.css — LES ACTIVITÉS (page /activites/)
+
+   CSS PROPRE à la page (loi n°2). Se pose SUR base.css. Squelette distinct
+   des autres pages : un RAIL d'index collant à gauche (les 8 disciplines
+   groupées par famille, scrollspy) + le FLUX des disciplines à droite, une
+   fiche par écran, chacune ancrée #<key> (cible des 8 arêtes de l'octogone).
+   Aucun token redéfini — la bascule bi-palette suffit à tout re-teinter.
+   ===================================================================== */
+
+/* Le chrome (.phero*, .breadcrumb, .shead, .ctaband) vit dans base.css — le
+   seul fichier que les 8 pages chargent. Il en vivait CINQ copies divergentes.
+   Ce fichier ne garde que ce qui est PROPRE à /activites/ : le rail d'index
+   collant et le flux des fiches. */
+
+/* ==================== L'ATELIER : RAIL + FLUX =================== *
+   Deux colonnes sur desktop : à gauche l'index collant (filtre + sommaire),
+   à droite le flux des disciplines. Sur mobile, l'index passe en tête, non
+   collant, en bande horizontale scrollable. */
+.actwrap { display: grid; grid-template-columns: 1fr; gap: clamp(1.6rem,4vw,3rem); }
+@media (min-width: 960px){ .actwrap { grid-template-columns: 250px 1fr; align-items: start; } }
+/* min-width:0 : laisse les colonnes se réduire pour que la bande d'index
+   (overflow-x:auto sur mobile) scrolle en interne au lieu d'élargir la page. */
+.actwrap > .rail, .actwrap > .discs { min-width: 0; }
+
+.rail { position: static; }
+@media (min-width: 960px){ .rail { position: sticky; top: 5.4rem; } }
+.rail__label { font: 600 .6rem/1 var(--f-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--muted); margin-bottom: .8rem; }
+
+/* filtre par famille (rendu par page.js dans #famfilter) */
+.famfilter { display: flex; flex-wrap: wrap; gap: .45rem; margin-bottom: 1.4rem; }
+.chip { font: 600 var(--step--1)/1 var(--f-mono); letter-spacing: .05em; text-transform: uppercase; color: var(--muted); border: 1.5px solid var(--line); border-radius: var(--radius); padding: .55em .9em; background: transparent; transition: border-color .3s, color .3s, background .3s; }
+.chip:hover { border-color: var(--accent); color: var(--ink); }
+.chip[aria-pressed="true"], .chip.is-on { background: var(--accent); border-color: var(--accent); color: var(--void); }
+
+/* le sommaire — 8 disciplines groupées par famille, scrollspy */
+.dindex { display: flex; flex-direction: column; gap: 1.2rem; }
+.dindex__group { display: flex; flex-direction: column; gap: .3rem; }
+.dindex__gk { font: 600 var(--step--2)/1 var(--f-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--accent); padding-left: .1rem; margin-bottom: .2rem; }
+.dindex a { display: flex; align-items: baseline; justify-content: space-between; gap: 1ch; padding: .5em .1em; border-bottom: 1px dashed var(--line-soft); color: var(--ink-soft); transition: color .3s, padding-left .3s, border-color .3s; }
+.dindex a:hover { color: var(--ink); padding-left: .4ch; border-color: var(--accent-line); }
+.dindex a .di-name { font: 600 var(--step--1)/1.2 var(--f-body); }
+.dindex a .di-edge { font: 600 var(--step--2)/1 var(--f-mono); color: var(--muted); }
+.dindex a.is-active { color: var(--accent); border-color: var(--accent-line); }
+.dindex a.is-active .di-edge { color: var(--accent); }
+.dindex a.is-dim { opacity: .34; }
+/* la bande mobile scrollable */
+@media (max-width: 959px){
+  .dindex { flex-direction: row; overflow-x: auto; gap: .5rem; padding-bottom: .4rem; scrollbar-width: none; }
+  .dindex::-webkit-scrollbar { display: none; }
+  .dindex__group { flex-direction: row; align-items: center; gap: .4rem; flex: 0 0 auto; }
+  .dindex__gk { margin: 0 .3rem 0 0; }
+  .dindex a { border: 1px solid var(--line); border-radius: var(--radius); padding: .5em .8em; white-space: nowrap; }
+  .dindex a .di-edge { display: none; }
+}
+
+/* =========================== LE FLUX ============================ */
+.discs { display: grid; gap: clamp(1rem,2.5vw,1.6rem); }
+.disc { scroll-margin-top: 6rem; display: grid; grid-template-columns: 1fr; gap: clamp(1rem,3vw,2.2rem); align-items: stretch; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--paper-2); transition: border-color .3s; }
+.disc.is-hidden { display: none; }
+.disc:hover { border-color: var(--accent-line); }
+@media (min-width: 720px){ .disc { grid-template-columns: 1.05fr 1fr; } .disc:nth-child(even) .disc__media { order: 2; } }
+.disc__media { position: relative; aspect-ratio: 16/10; min-height: 220px; }
+/* tuile filaire pour une discipline sans photo démographiquement juste
+   (Lady Punch, École, Pieds-Poings) : octogone-marque + tag, JAMAIS la face
+   d'un autre ni une photo au mauvais public (findings 1/16). */
+.disc__media--tile { display: grid; place-items: center; overflow: hidden; background: radial-gradient(circle at 50% 30%, color-mix(in srgb,var(--accent) 18%, var(--paper-3)), var(--void)); }
+.disc__media--tile::after { content: ""; position: absolute; inset: 0; background-image: linear-gradient(color-mix(in srgb,var(--ink) 4%, transparent) 1px, transparent 1px); background-size: 100% 9px; opacity: .5; pointer-events: none; }
+.disc__oct { width: clamp(84px,24%,140px); height: auto; z-index: 1; filter: drop-shadow(var(--glow-soft)); }
+.disc__oct path { fill: none; stroke: var(--accent); stroke-width: 2.4; stroke-linejoin: round; }
+.disc__tagbig { position: absolute; bottom: clamp(1rem,3vw,1.6rem); z-index: 1; font: 600 var(--step--2)/1 var(--f-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+.disc__body { padding: clamp(1.4rem,3vw,2.4rem); display: flex; flex-direction: column; }
+.disc__tag { font: 600 var(--step--2)/1 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+.disc h2 { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: clamp(1.7rem,1.1rem+2.4vw,3rem); letter-spacing: -.01em; margin: .5rem 0; color: var(--ink); }
+.disc p { color: var(--ink-soft); margin: .3rem 0 1rem; max-width: 48ch; }
+.disc__facts { display: flex; flex-direction: column; gap: .5rem; margin-bottom: 1.2rem; }
+.disc__fact { display: flex; gap: 1ch; align-items: baseline; font-size: var(--step--1); color: var(--ink); border-bottom: 1px dashed var(--line); padding-bottom: .5rem; }
+.disc__fact b { flex: 0 0 5.5rem; font: 600 .6rem/1.4 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--accent); }
+.disc__cta { margin-top: auto; display: flex; gap: .6rem; flex-wrap: wrap; }
+
+/* .ctaband → base.css */
+
+/* =========================== TOUCH LIFE ======================== */
+@media (hover: none) {
+  .disc.is-inview { border-color: var(--accent-line); }
+  /* cibles ≥44px + retour pressé */
+  .chip { min-height: 44px; display: inline-flex; align-items: center; }
+  .dindex a { min-height: 44px; }
+  .chip:active { transform: translateY(1px); background: var(--paper-3); border-color: var(--accent); color: var(--ink); }
+  .dindex a:active { color: var(--accent); border-color: var(--accent-line); }
+}
+@media (max-width: 720px){ .disc__media { min-height: 200px; } }

@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Planning — Boxing Center Ramonville · rentrée 2026-2027 & été, grille filtrable</title>
+  <meta name="description" content="Le planning des cours de Boxing Center Ramonville : grille filtrable par jour, discipline et coach (rentrée 2026-2027 et variante été), plus les posters officiels en couleur. Anglaise, pieds-poings, grappling, asso MMA, Lady Punch, école dès 3 ans." />
+  <meta name="keywords" content="planning boxe Ramonville, horaires cours boxe Toulouse sud, planning MMA octogone, grappling créneaux Ramonville-Saint-Agne, Lady Punch horaires" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="author" content="Boxing Center Ramonville" />
+  <meta name="geo.region" content="FR-31" />
+  <meta name="geo.placename" content="Ramonville-Saint-Agne — Toulouse" />
+  <meta name="geo.position" content="43.546;1.474" />
+  <meta name="ICBM" content="43.546, 1.474" />
+  <link rel="canonical" href="https://ramonville.boxingcenter.fr/plannings/" />
+  <meta name="theme-color" content="#070a12" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=6" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:site_name" content="Boxing Center Ramonville" />
+  <meta property="og:title" content="Planning — Boxing Center Ramonville" />
+  <meta property="og:description" content="Grille filtrable par jour, discipline et coach + posters officiels rentrée 2026-2027 et été, en couleur." />
+  <meta property="og:url" content="https://ramonville.boxingcenter.fr/plannings/" />
+  <meta property="og:image" content="https://ramonville.boxingcenter.fr/assets/img/ram/planning-rentree-2026.png" />
+  <meta property="og:image:alt" content="Planning officiel rentrée 2026-2027 de Boxing Center Ramonville." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Planning — Boxing Center Ramonville" />
+  <meta name="twitter:description" content="Grille filtrable + posters officiels en couleur, rentrée et été." />
+  <meta name="twitter:image" content="https://ramonville.boxingcenter.fr/assets/img/ram/planning-rentree-2026.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://api.open-meteo.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=6" />
+  <link rel="stylesheet" href="/assets/css/page.css?v=6" />
+
+  <script is:inline type="application/ld+json">
+  { "@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Accueil","item":"https://ramonville.boxingcenter.fr/"},
+    {"@type":"ListItem","position":2,"name":"Planning","item":"https://ramonville.boxingcenter.fr/plannings/"}
+  ]}
+  </script>
+
+  <script is:inline>
+    (function(){try{var p=localStorage.getItem('bc-ram-palette');if(p==='cuivre')document.documentElement.setAttribute('data-palette','cuivre');}catch(e){}})();
+    document.documentElement.classList.add('fx');
+  </script>
+</head>
+
+<body data-page="plannings">
+  <a class="sr-only" href="#main">Aller au contenu</a>
+  <div id="nav"></div>
+  <div id="drawer"></div>
+
+  <main id="main">
+    <header class="phero" aria-label="Le planning">
+      <div class="sky" aria-hidden="true"><canvas class="sky__stars"></canvas><div class="sky__haze"></div><div class="sky__moon"></div></div>
+      <div class="wrap">
+        <nav class="breadcrumb" aria-label="Fil d'ariane"><a href="/">Accueil</a> / <span>Planning</span></nav>
+        <h1 class="display phero__title"><span class="reveal-mask"><span>La semaine,</span></span><span class="reveal-mask"><span class="tint">côté par côté.</span></span></h1>
+        <p class="lead phero__lead" data-reveal>La grille officielle de la rentrée, filtrable par famille. Une variante d'été. Et les posters en couleur, cliquables plein format. Clique un cours pour ouvrir sa discipline.</p>
+        <!-- l'objet propre à ce hero (page.js → pheroMeta) -->
+        <div class="phero__meta" id="phero-meta" data-reveal-group aria-label="Ce qui se passe maintenant à la salle"></div>
+      </div>
+    </header>
+
+    <section class="section" aria-label="La grille des cours">
+      <div class="wrap">
+        <div class="plan__tabs" id="plan-tabs" role="group" aria-label="Choisir la période">
+          <button class="plan__tab is-on" data-mode="rentree" type="button" aria-pressed="true">Rentrée</button>
+          <button class="plan__tab" data-mode="ete" type="button" aria-pressed="false">Cours d'été</button>
+        </div>
+        <!-- Repli sans-JS SANS millésime : le libellé de saison passe par
+             SEASON_LABEL (data.js), injecté par page.js à l'hydratation.
+             Un millésime en dur ici = seconde source de vérité (standards §4). -->
+        <p class="plan__note" id="plan-note">Planning complet — émargement GPS obligatoire en salle avant chaque cours.</p>
+        <div class="famfilter" id="plan-filter" role="group" aria-label="Filtrer par famille"></div>
+        <div class="gridwrap">
+          <table class="grid" id="grid" aria-label="Grille des cours de la semaine"></table>
+        </div>
+
+        <div class="posters" id="posters" aria-label="Posters officiels"></div>
+      </div>
+    </section>
+
+    <section class="ctaband" aria-label="Réserver un créneau">
+      <div class="sky" aria-hidden="true"><canvas class="sky__stars"></canvas><div class="sky__haze"></div></div>
+      <div class="ctaband__inner">
+        <span class="eyebrow" style="justify-content:center" data-reveal>Il y a un cours ce soir</span>
+        <h2 class="display"><span class="reveal-mask"><span>Choisis ton soir.</span></span></h2>
+        <p class="lead" data-reveal>Le planning est réel. Le dehors aussi. Gants et bandes prêtés, tu montes sur le plateau.</p>
+        <div class="ctaband__cta" data-reveal>
+          <a class="btn btn--primary" data-magnetic href="https://box-plus.vercel.app/seance-essai"><span>Réserver l'essai · 10€</span></a>
+          <a class="btn btn--ghost" data-magnetic href="/tarifs/"><span>Voir les tarifs</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="footer"></div>
+
+  <a class="chatbot" href="tel:+33562244682" aria-label="Une question ? Appelle la salle Boxing Center Ramonville">
+    <span class="chatbot__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+    <span class="chatbot__label">Une question&nbsp;? Appelle la salle</span>
+  </a>
+
+  <script is:inline src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script is:inline src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script is:inline src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=6"></script>
+  <script is:inline type="module" src="/assets/js/sky.js?v=6"></script>
+  <script is:inline type="module" src="/assets/js/page.js?v=6"></script>
+</body>
+</html>

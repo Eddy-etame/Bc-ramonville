@@ -1,0 +1,511 @@
+/* =====================================================================
+   BOXING CENTER — RAMONVILLE · « L'OCTOGONE À CIEL OUVERT »
+   data.js — content source of truth (maquette). Plain ES module → Astro/Next.
+
+   Le monde : la seule salle du réseau qui s'entraîne DEHORS. 300 m²
+   extérieurs aménagés et protégés des intempéries, un octogone de 7 m, un
+   ring olympique, deux niveaux avec un étage muscu/cardio. Registre
+   documentaire — la nuit dehors, le ciel réel au-dessus de la cage.
+
+   RÈGLES : tout fait vient des posters officiels 2026-2027 + du site
+   boxingcenter.fr (brief §3). Noms de coachs ≡ photos (roster.json), jamais
+   croisés. Aucun claim périssable dans les pages : la saison passe par la
+   constante SEASON, les promos vivent dans PROMOS (jamais en dur ailleurs).
+   Version d'assets unique : ?v=6 partout (imports compris).
+   ===================================================================== */
+
+/* Anti-péremption — tout libellé de saison passe par ces constantes. */
+export const SEASON = "2026-2027";
+export const SEASON_LABEL = "Saison 2026 — 2027";
+
+export const SALLE = {
+  id: "ramonville",
+  name: "Boxing Center Ramonville",
+  short: "Ramonville",
+  baseline: "L'octogone à ciel ouvert.",
+  district: "Ramonville-Saint-Agne · sud toulousain",
+
+  address: {
+    street: "33 rue des Ormes",
+    zip: "31520",
+    city: "Ramonville-Saint-Agne",
+    full: "33 rue des Ormes, 31520 Ramonville-Saint-Agne",
+  },
+  // Ciel réel — coordonnées Ramonville pour Open-Meteo (sky.js)
+  geo: { lat: 43.546, lon: 1.474 },
+  access: [
+    "Métro ligne B — terminus Ramonville, à proximité",
+    "Bus — arrêt Ramonville Sud, au pied de la salle",
+    "Sud toulousain — sortie rocade Ramonville",
+  ],
+  phone: "05 62 24 46 82",
+  phoneHref: "+33562244682",
+  email: "boxingcenter31@gmail.com",
+  hours: "Lun – Sam · 10h00 – 21h30",
+  hoursData: [
+    { d: "Lundi – Vendredi", h: "10h00 – 21h30" },
+    { d: "Samedi", h: "10h00 – 21h30" },
+    { d: "Dimanche", h: "Fermé" },
+  ],
+  federations: ["FFBoxe", "FFKMDA", "FMMAF"],
+  // émargement GPS obligatoire en salle (posters officiels)
+  note: "Émargement GPS obligatoire en salle avant chaque cours.",
+  mapsUrl: "https://www.google.com/maps?q=33%20rue%20des%20Ormes%2031520%20Ramonville-Saint-Agne&output=embed",
+  mapsLink: "https://maps.google.com/?q=33+rue+des+Ormes+31520+Ramonville-Saint-Agne",
+  // fait LD-JSON possible (brief §3) — JAMAIS en headline
+  foundingDate: "2019-09",
+};
+
+/* Conversion — TOUT pointe vers box-plus (liens vérifiés 2026-07-12). */
+export const LINKS = {
+  essai: "https://box-plus.vercel.app/seance-essai",       // CTA principal — essai 10€
+  abos: "https://box-plus.vercel.app/abonnements",
+  promos: "https://box-plus.vercel.app/abonnements#promotions",
+  enfants: "https://box-plus.vercel.app/abonnements#enfants",
+  coachings: "https://box-plus.vercel.app/coachings",
+  boutique: "https://box-plus.vercel.app/materiel",
+  groupe: "https://boxingcenter.fr/",
+  facebook: "https://www.facebook.com/BoxingCenterToulouse/",
+  instagram: "https://www.instagram.com/boxingcentertoulouse/",
+  google: "https://maps.google.com/?q=Boxing+Center+Ramonville+Saint+Agne",
+};
+
+export const NAV = [
+  { href: "/", label: "Accueil" },
+  { href: "/la-salle/", label: "Le plateau" },
+  { href: "/activites/", label: "Activités" },
+  { href: "/coachs/", label: "Coachs" },
+  { href: "/galerie/", label: "Galerie" },
+  { href: "/plannings/", label: "Planning" },
+  { href: "/tarifs/", label: "Tarifs" },
+  { href: "/contact/", label: "Contact" },
+];
+
+/* Les chiffres du plateau — compteurs (brief §5). raw = pas d'animation. */
+export const STATS = [
+  { v: 7, suffix: " m", l: "l'octogone, sous le ciel" },
+  { v: 300, suffix: " m²", l: "d'extérieur couvert, aménagé" },
+  { v: 2, suffix: "", l: "niveaux, étage muscu/cardio" },
+  { v: 6, suffix: " j/7", l: "de 10h à 21h30, accès libre inclus", raw: true },
+];
+
+/* ------------------------------------------------------------------ *
+ *  LES 8 ARÊTES — l'octogone est la navigation (brief §2).
+ *  8 côtés = 8 entrées. `edge` = ordre sur l'octogone (0 en haut,
+ *  sens horaire). Chaque discipline pointe vers son ancre /activites/.
+ *  Créneaux & coachs = posters officiels rentrée 2026 (brief §3, roster).
+ * ------------------------------------------------------------------ */
+export const DISCIPLINES = [
+  {
+    key: "anglaise",
+    edge: 0,
+    name: "Boxe Anglaise",
+    tag: "Le noble art",
+    famille: "adulte",
+    coach: "Valentin G · Farouk",
+    jours: "Anglaise mar. & ven. 12h40 · Loisirs lun./mer./ven. 19h45",
+    niveau: "Débutant → confirmé",
+    desc: "Jab, esquive, jeu de jambes. Les midis pour le geste propre, les soirs en loisirs quand la salle se remplit et que les frappes couvrent le bruit du dehors. Le fondamental de la maison.",
+    img: "/assets/img/ram/anglaise.webp",
+  },
+  {
+    key: "pieds-poings",
+    edge: 1,
+    name: "Boxe Pieds-Poings",
+    tag: "Tibias & poings",
+    famille: "adulte",
+    coach: "Sonia",
+    jours: "Mer. 12h40 · lun. & ven. 18h40",
+    niveau: "Tous niveaux",
+    desc: "Poings, tibias, genoux : la boxe la plus complète, menée par Sonia. Trois créneaux par semaine, du midi qui réveille au soir qui vide les jambes.",
+    img: null,
+  },
+  {
+    key: "grappling",
+    edge: 2,
+    name: "Grappling",
+    tag: "Le sol",
+    famille: "mma",
+    coach: "Jérôme",
+    jours: "Mardi · 18h40",
+    niveau: "Tous niveaux",
+    desc: "Contrôle, projections, soumissions au sol, dans l'octogone de 7 m. Jérôme y fait travailler la partie que la boxe ignore — celle qui finit les combats.",
+    img: "/assets/img/ram/octogone.webp",
+  },
+  {
+    key: "asso-mma",
+    edge: 3,
+    name: "Asso MMA",
+    tag: "Dans la cage",
+    famille: "mma",
+    coach: "Jérôme",
+    jours: "Mardi & jeudi · 19h45 – 21h15",
+    niveau: "Confirmé · asso",
+    desc: "Le créneau association : MMA complet dans l'octogone, debout et au sol. Deux soirs par semaine avec Jérôme, quand la cage est à nous et que le plateau, à deux pas, reste ouvert sur le soir.",
+    img: null,
+  },
+  {
+    key: "boxing-camp",
+    edge: 4,
+    name: "Boxing Camp",
+    tag: "Le condensé",
+    famille: "adulte",
+    coach: "Sonia · Farouk · Jérôme · Valentin G",
+    jours: "Lun./jeu. 12h40 · mer./jeu. 18h40 · sam. 11h",
+    niveau: "Tous niveaux",
+    desc: "Le format signature Boxing Center : technique, cardio et sacs dans une seule séance dense. Cinq créneaux, quatre coachs — le meilleur point d'entrée si tu hésites encore.",
+    img: "/assets/img/ram/camp.webp",
+  },
+  {
+    key: "lady-punch",
+    edge: 5,
+    name: "Lady Punch",
+    tag: "100 % féminin",
+    famille: "feminin",
+    coach: "Sonia",
+    jours: "Lundi & vendredi · 18h00 – 18h40",
+    niveau: "Zéro prérequis",
+    desc: "Un créneau à elles avant le pieds-poings du soir : la vraie boxe, le cardio qui pique, la frappe qui défoule — entre meufs, personne pour te reluquer. Sonia tient la porte.",
+    img: null,
+  },
+  {
+    key: "ecole",
+    edge: 6,
+    name: "École enfants",
+    tag: "Dès 3 ans",
+    famille: "enfant",
+    coach: "Valentin G",
+    jours: "Baby 3/6 sam. 14h15 · 7/11 mer./sam. 15h · 12/16 mer./sam. 16h",
+    niveau: "Baby → ados",
+    desc: "Du Baby Boxe dès 3 ans à l'éducative ados : tenir sa garde, attendre son tour, taper juste. Valentin G tient toute l'école, le mercredi et le samedi après-midi.",
+    img: null,
+  },
+  {
+    key: "acces-libre",
+    edge: 7,
+    name: "Accès libre",
+    tag: "Muscu · cardio",
+    famille: "libre",
+    coach: "En autonomie",
+    jours: "Lun. – sam. · 10h00 – 21h30",
+    niveau: "À ton rythme",
+    desc: "L'étage muscu/cardio et les espaces d'entraînement libres, ouverts six jours sur sept. Charges, machines, sacs : personne ne te dira quand venir.",
+    img: "/assets/img/ram/muscu.webp",
+  },
+];
+
+/* ------------------------------------------------------------------ *
+ *  LE PLATEAU — la visite du terrain (page /la-salle/). L'extérieur
+ *  d'abord : c'est le différenciateur. Puis l'octogone, le ring, l'étage.
+ *  Specs = verbatims officiels (brief §3), rien d'inventé.
+ * ------------------------------------------------------------------ */
+export const PLATEAU = [
+  {
+    n: "01",
+    t: "L'extérieur couvert",
+    tag: "300 m² · protégés des intempéries",
+    d: "300 m² d'entraînement dehors, aménagés et protégés des intempéries. La seule salle du réseau où l'air, le ciel et le soir font partie de la séance. Tu t'échauffes sous les étoiles, tu récupères au grand air.",
+    // Pas de photo : les 6 clichés prouvés de la salle sont TOUS intérieurs.
+    // Illustrer les 300 m² extérieurs avec un cadre sous charpente serait le
+    // seul vrai mensonge du site (registre documentaire, /galerie/ : « on ne
+    // montre que ce qu'on a filmé »). Tuile honnête jusqu'au reportage.
+    img: null,
+    todo: "Reportage extérieur à venir",
+    specs: ["300 m² extérieurs", "Couverts · toute l'année"],
+  },
+  {
+    n: "02",
+    t: "L'octogone",
+    tag: "7 m · la cage",
+    d: "Un octogone de 7 mètres, grillagé, pour le grappling, l'asso MMA et le travail au sol. La signature du plateau : on tourne dedans, on tombe dedans, on apprend à finir dedans.",
+    img: "/assets/img/ram/octogone.webp",
+    specs: ["Octogone 7 m", "Grappling · Asso MMA"],
+  },
+  {
+    n: "03",
+    t: "Le ring olympique",
+    tag: "Anglaise · pieds-poings",
+    d: "Un ring de boxe olympique, cordes tendues, coin bleu, coin rouge. C'est là que le jab se règle et que le pieds-poings prend ses distances, midi et soir.",
+    img: "/assets/img/ram/anglaise.webp",
+    specs: ["Ring olympique", "Anglaise · Pieds-poings"],
+  },
+  {
+    n: "04",
+    t: "L'étage muscu/cardio",
+    tag: "Deux niveaux",
+    d: "Deux niveaux : en haut, l'étage muscu et cardio. Charges libres, machines, cardio — la caisse et la force qui portent tout le reste, en accès libre six jours sur sept.",
+    img: "/assets/img/ram/muscu.webp",
+    specs: ["Étage muscu/cardio", "Accès libre 6 j/7"],
+  },
+  {
+    n: "05",
+    t: "Les sacs",
+    tag: "Boxing Camp · loisirs",
+    d: "La ligne de sacs lourds pour le Boxing Camp et les créneaux loisirs : le volume, la répétition, le souffle qui brûle. On tape jusqu'à ne plus entendre que le cuir.",
+    img: "/assets/img/ram/camp.webp",
+    specs: ["Sacs lourds", "Camp · Loisirs"],
+  },
+  {
+    n: "06",
+    t: "Les espaces libres",
+    tag: "Libres & collectifs",
+    d: "Des espaces d'entraînement libres et collectifs, dedans et dehors, pour s'échauffer, gainer, étirer, ou juste souffler entre deux rounds, à l'air du soir.",
+    img: "/assets/img/ram/plateau.webp",
+    specs: ["Libres & collectifs", "Dedans · dehors"],
+  },
+];
+
+/* Le code du plateau — quatre principes (registre documentaire). */
+export const VALUES = [
+  { n: "01", t: "Dehors, vraiment", d: "300 m² extérieurs couverts. On s'entraîne à l'air, sous le ciel réel — pas dans une image de ciel." },
+  // 02 : la cage tourne 3 créneaux/semaine et l'asso MMA est marquée « Confirmé »
+  // → « tu tournes dedans dès la première séance » contredisait /plannings/.
+  { n: "02", t: "La cage est à toi le mardi", d: "Un octogone de 7 m. Grappling le mardi soir, tous niveaux : c'est le créneau où on ouvre la cage aux débutants. L'asso MMA, deux soirs, quand tu es prêt." },
+  { n: "03", t: "Le geste d'abord", d: "Ring olympique, des coachs qui corrigent le geste avant de te faire suer. La justesse avant le bruit." },
+  // 04 : la salle n'émet aucune clé — le fait verrouillé est l'émargement GPS.
+  { n: "04", t: "À ton heure", d: "Deux niveaux, étage muscu/cardio, accès libre six jours sur sept. Rien à réserver, personne à convaincre : la porte est ouverte de 10h à 21h30." },
+];
+
+/* L'encadrement — noms = posters officiels rentrée 2026. Photos : Sonia &
+   Jérôme prouvées (roster.json). Farouk & Valentin G sans photo prouvée →
+   tuiles nom/silhouette (JAMAIS de stock, JAMAIS la face d'un autre). */
+export const COACHES = [
+  {
+    name: "Sonia",
+    role: "Pieds-poings · Lady Punch · Camp",
+    tag: "Le pilier",
+    pillar: true,
+    note: "Le fil rouge de la semaine : boxe pieds-poings, Lady Punch et Boxing Camp. Celle que les avis citent par son nom — l'accueil du plateau, c'est elle.",
+    img: "/assets/img/ram/coach-sonia.webp",
+  },
+  {
+    name: "Jérôme",
+    role: "Grappling · Asso MMA",
+    tag: "L'homme de la cage",
+    // Pas de patronyme : le brief §3 ne liste que « Jérôme » et aucun poster
+    // officiel ne le confirme (même piège que « Valentin Tapia » / Valentin G).
+    note: "Le sol et l'octogone : grappling le mardi, asso MMA deux soirs. Jérôme t'emmène là où le combat se termine vraiment — au tapis, en soumission.",
+    img: "/assets/img/ram/coach-jerome.webp",
+  },
+  {
+    name: "Farouk",
+    role: "Anglaise Loisirs · Boxing Camp",
+    tag: "Les soirs loisirs",
+    note: "L'anglaise loisirs trois soirs par semaine et le Boxing Camp du mercredi : les créneaux où la salle se remplit et où le collectif prend le dessus.",
+    img: null,
+  },
+  {
+    name: "Valentin G",
+    role: "Anglaise · École enfants",
+    tag: "L'école",
+    note: "L'anglaise du midi et toute l'école : Baby Boxe dès 3 ans, éducative 7/11 et ados 12/16, mercredi et samedi. Il enseigne aussi aux États-Unis.",
+    img: null,
+  },
+];
+
+/* ------------------------------------------------------------------ *
+ *  LE PLANNING — grille filtrable (page /plannings/). Source : posters
+ *  officiels rentrée 2026 (brief §3 + roster.json). Une ligne = un cours.
+ *  `fam` relie au filtre discipline. Rien d'inventé, rien d'évasif.
+ * ------------------------------------------------------------------ */
+export const DAYS = ["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"];
+
+export const SCHEDULE = [
+  // Lundi
+  { day: "Lun", start: "12h40", cours: "Boxing Camp", coach: "Sonia", fam: "adulte", disc: "boxing-camp" },
+  { day: "Lun", start: "18h00", cours: "Lady Punch", coach: "Sonia", fam: "feminin", disc: "lady-punch" },
+  { day: "Lun", start: "18h40", cours: "Boxe Pieds-Poings", coach: "Sonia", fam: "adulte", disc: "pieds-poings" },
+  { day: "Lun", start: "19h45", cours: "Anglaise Loisirs", coach: "Farouk", fam: "adulte", disc: "anglaise" },
+  // Mardi
+  { day: "Mar", start: "12h40", cours: "Boxe Anglaise", coach: "Valentin G", fam: "adulte", disc: "anglaise" },
+  { day: "Mar", start: "18h40", cours: "Grappling", coach: "Jérôme", fam: "mma", disc: "grappling" },
+  { day: "Mar", start: "19h45", cours: "Asso MMA", coach: "Jérôme", fam: "mma", disc: "asso-mma" },
+  // Mercredi
+  { day: "Mer", start: "12h40", cours: "Boxe Pieds-Poings", coach: "Sonia", fam: "adulte", disc: "pieds-poings" },
+  { day: "Mer", start: "15h00", cours: "Éducative 7/11", coach: "Valentin G", fam: "enfant", disc: "ecole" },
+  { day: "Mer", start: "16h00", cours: "Éducative 12/16", coach: "Valentin G", fam: "enfant", disc: "ecole" },
+  { day: "Mer", start: "18h40", cours: "Boxing Camp", coach: "Farouk", fam: "adulte", disc: "boxing-camp" },
+  { day: "Mer", start: "19h45", cours: "Anglaise Loisirs", coach: "Farouk", fam: "adulte", disc: "anglaise" },
+  // Jeudi
+  { day: "Jeu", start: "12h40", cours: "Boxing Camp", coach: "Sonia", fam: "adulte", disc: "boxing-camp" },
+  { day: "Jeu", start: "18h40", cours: "Boxing Camp", coach: "Jérôme", fam: "adulte", disc: "boxing-camp" },
+  { day: "Jeu", start: "19h45", cours: "Asso MMA", coach: "Jérôme", fam: "mma", disc: "asso-mma" },
+  // Vendredi
+  { day: "Ven", start: "12h40", cours: "Boxe Anglaise", coach: "Valentin G", fam: "adulte", disc: "anglaise" },
+  { day: "Ven", start: "18h00", cours: "Lady Punch", coach: "Sonia", fam: "feminin", disc: "lady-punch" },
+  { day: "Ven", start: "18h40", cours: "Boxe Pieds-Poings", coach: "Sonia", fam: "adulte", disc: "pieds-poings" },
+  { day: "Ven", start: "19h45", cours: "Anglaise Loisirs", coach: "Farouk", fam: "adulte", disc: "anglaise" },
+  // Samedi
+  { day: "Sam", start: "11h00", cours: "Boxing Camp", coach: "Valentin G", fam: "adulte", disc: "boxing-camp" },
+  { day: "Sam", start: "14h15", cours: "Baby Boxe 3/6", coach: "Valentin G", fam: "enfant", disc: "ecole" },
+  { day: "Sam", start: "15h00", cours: "Éducative 7/11", coach: "Valentin G", fam: "enfant", disc: "ecole" },
+  { day: "Sam", start: "16h00", cours: "Éducative 12/16", coach: "Valentin G", fam: "enfant", disc: "ecole" },
+];
+
+/* Variante été 2026 — cours réduits, reste en accès libre (brief §3). */
+export const SCHEDULE_ETE = [
+  { day: "Lun", start: "12h30", cours: "Cours d'été", coach: "Renaud", fam: "adulte", disc: "anglaise" },
+  { day: "Lun", start: "20h00", cours: "Cours d'été", coach: "Fayez", fam: "adulte", disc: "anglaise" },
+];
+
+/* Filtres disciplines pour la grille planning. */
+export const FAMILLES = [
+  { key: "all", label: "Tout" },
+  { key: "adulte", label: "Adultes" },
+  { key: "feminin", label: "Féminin" },
+  { key: "mma", label: "Grappling · MMA" },
+  { key: "enfant", label: "Enfants" },
+];
+
+/* Posters officiels — EN COULEUR, cliquables plein format (loi n°5). */
+export const POSTERS = [
+  {
+    src: "/assets/img/ram/planning-rentree-2026.png",
+    w: 2400, h: 1740,
+    label: `Rentrée ${SEASON}`,
+    alt: `Planning officiel de la rentrée ${SEASON} de Boxing Center Ramonville : boxe anglaise, pieds-poings, grappling, asso MMA, boxing camp, Lady Punch et école enfants dès 3 ans, du lundi au samedi.`,
+  },
+  {
+    src: "/assets/img/ram/planning-ete-2026.png",
+    w: 2400, h: 1020,
+    label: "Cours d'été",
+    alt: "Planning officiel d'été de Boxing Center Ramonville : cours d'été le lundi midi et soir, reste de la semaine en accès libre muscu/cardio.",
+  },
+];
+
+/* ------------------------------------------------------------------ *
+ *  LES OFFRES — bloc daté, saison via SEASON (standards §2). JAMAIS de
+ *  prix en dur dans les pages. Duo prioritaire, Saison secondaire.
+ *  « 29 € par personne » obligatoire ; interdit « 29 € pour deux ».
+ * ------------------------------------------------------------------ */
+export const PROMOS = {
+  saison: SEASON,
+  duo: {
+    name: "Offre Duo",
+    price: "29 €",
+    unit: "par personne",
+    was: "au lieu de 44 €",
+    feature: "4 semaines · cours illimités · sans engagement",
+    items: ["4 semaines illimitées", "À deux, chacun 29 € / personne", "Sans engagement"],
+    cta: "Je viens avec mon binôme",
+    href: "https://box-plus.vercel.app/abonnements#promotions",
+    priority: true,
+  },
+  saisonOffre: {
+    name: "Offre Saison",
+    price: "259 €",
+    unit: "les 12 mois",
+    was: "au lieu de 400 €",
+    feature: "Payable en 4× sans frais · accès libre aux 5 clubs",
+    items: [
+      "12 mois, toutes disciplines",
+      "4× sans frais",
+      "Accès libre aux 5 clubs du réseau",
+    ],
+    cta: "Je prends ma saison",
+    href: "https://box-plus.vercel.app/abonnements#promotions",
+    priority: false,
+  },
+  bonus: "T-shirt Boxing Center offert aux 100 premiers inscrits.",
+};
+
+/* Les tarifs affichés (page /tarifs/). Essai 10€ en premier (standards §3). */
+export const TARIFS = [
+  {
+    name: "Séance d'essai",
+    price: "10 €",
+    period: "la séance",
+    feature: "Toutes disciplines, matériel prêté",
+    items: ["Toutes les disciplines", "Matériel prêté", "Sans engagement"],
+    cta: "Réserver l'essai",
+    href: "https://box-plus.vercel.app/seance-essai",
+    highlight: false,
+  },
+  {
+    name: "Offre Duo",
+    price: "29 €",
+    period: "/ personne",
+    feature: "4 semaines illimitées · sans engagement",
+    items: ["4 semaines illimitées", "29 € par personne", "Sans engagement"],
+    cta: "Je viens avec mon binôme",
+    href: "https://box-plus.vercel.app/abonnements#promotions",
+    highlight: true,
+  },
+  {
+    name: "Offre Saison",
+    price: "259 €",
+    period: "/ 12 mois",
+    feature: "4× sans frais · accès aux 5 clubs",
+    items: ["12 mois toutes disciplines", "4× sans frais", "Accès libre aux 5 clubs"],
+    cta: "Je prends ma saison",
+    href: "https://box-plus.vercel.app/abonnements#promotions",
+    highlight: false,
+  },
+  {
+    name: "École enfants",
+    price: "Dès 3 ans",
+    period: "Baby · 7/11 · 12/16",
+    feature: "L'école complète, mercredi & samedi",
+    items: ["Baby Boxe 3/6 ans", "Éducative 7/11 & ados 12/16", "Encadrée par Valentin G"],
+    cta: "Inscrire mon enfant",
+    href: "https://box-plus.vercel.app/abonnements#enfants",
+    highlight: false,
+  },
+];
+
+/* Le réseau — 5 salles (Balma-Gramont VENDUE : jamais citée). `self`
+   marque Ramonville, filtrée quand on montre « les 4 sœurs ». */
+export const NETWORK = [
+  { id: "portet", name: "Portet-sur-Garonne", tag: "Le vaisseau amiral", feat: "Ring olympique · cage MMA", url: "https://www.boxing-center-portet.fr/" },
+  { id: "minimes", name: "Minimes", tag: "Le berceau", feat: "Salle historique · 3 rings · l'école dès 3 ans", url: "https://boxingcenter.fr/" },
+  { id: "etats-unis", name: "États-Unis", tag: "Le colosse", feat: "La plus grande salle de France dédiée aux sports de combat", url: "https://boxingcenter.fr/" },
+  { id: "st-cyprien", name: "Saint-Cyprien", tag: "La rive gauche", feat: "1 200 m² · un seul niveau", url: "https://boxingcenter.fr/" },
+  { id: "ramonville", name: "Ramonville", tag: "L'octogone à ciel ouvert", feat: "Octogone 7 m · 300 m² extérieur couvert", url: "/", self: true },
+];
+
+/* Avis Google réels (source : _reviews-2026-07-12.json — Ramonville 4,1/5,
+   47 avis). Verbatim, jamais édités, jamais inventés. */
+export const REVIEWS = {
+  rating: "4,1/5",
+  count: 47,
+  sourceLabel: "Avis Google",
+  quotes: [
+    { text: "Un grand merci à Sonia qui nous accompagne avec bienveillance. Je recommande la salle de Ramonville les yeux fermés !", author: "LEPICIER I.", stars: 5 },
+    { text: "Super salle avec une très bonne ambiance. Les coachs sont très sympas et pédagogues. Je recommande !", author: "Camille L.", stars: 5 },
+    { text: "Les enfants aiment bien y aller ; malgré un déménagement à 35 km, ils veulent continuer à s'entraîner.", author: "Manjoo N.", stars: 4 },
+  ],
+};
+
+/* Carnet de terrain (page /galerie/). Uniquement des VRAIES photos Ramonville
+   (scrapées du site officiel). AUCUNE photo d'une autre salle.
+
+   HORODATAGE RETIRÉ — les 6 clichés prouvés sont pris DE JOUR et à COUVERT
+   (charpente métallique, néons, lumière franche aux fenêtres). Les légendes
+   « 21h48 / 20h12 / 19h05 » et l'alt « de nuit » étaient des repères de
+   reportage inventés : dans un registre documentaire qui écrit « on ne montre
+   que ce qu'on a filmé », c'est la seule chose que le client ne pardonnerait
+   pas. La légende dit maintenant la ZONE, qui est vérifiable sur l'image.
+   La météo LIVE reste dans la bande « Au-dessus du plateau » — elle parle de
+   MAINTENANT, pas de la photo : ça, c'est honnête.
+
+   `credit` : le photographe est incrusté dans le fichier (filigrane). On le
+   crédite plutôt que de le rogner — un carnet de terrain cite ses sources.
+   ⚠ À FAIRE VALIDER : droits d'exploitation des clichés Axel Derewiany. */
+export const PHOTO_CREDIT = "Axel Derewiany";
+export const GALLERY = [
+  { img: "/assets/img/ram/hero.webp", w: 1920, h: 1282, zone: "Le plateau", place: "octogone 7 m + ring olympique", alt: "Le plateau de Boxing Center Ramonville sous la charpente : l'octogone de 7 m grillagé et le ring de boxe olympique." },
+  { img: "/assets/img/ram/octogone.webp", w: 768, h: 512, zone: "L'octogone", place: "asso MMA · vue de dessus", alt: "Séance d'asso MMA dans l'octogone de 7 m à Boxing Center Ramonville, vue de dessus, le groupe au sol." },
+  { img: "/assets/img/ram/anglaise.webp", w: 768, h: 512, zone: "Le ring", place: "pattes d'ours", alt: "Travail aux pattes d'ours près du ring à Boxing Center Ramonville, un boxeur enchaîne face au coach.", credit: true },
+  { img: "/assets/img/ram/camp.webp", w: 768, h: 512, zone: "Les sacs", place: "Boxing Camp", alt: "La ligne de sacs lourds pendant le Boxing Camp à Boxing Center Ramonville, plusieurs pratiquants aux gants." },
+  { img: "/assets/img/ram/muscu.webp", w: 768, h: 512, zone: "L'étage", place: "muscu / cardio", alt: "L'étage muscu/cardio de Boxing Center Ramonville : charges libres, bancs et machines en accès libre.", credit: true },
+  { img: "/assets/img/ram/plateau.webp", w: 768, h: 512, zone: "Les tatamis", place: "espaces libres · drapeaux au mur", alt: "Le plateau de Boxing Center Ramonville en couleur : l'octogone, le ring et les tatamis, drapeaux au mur." },
+];
+
+export const FAQ = [
+  { q: "Où se trouve Boxing Center Ramonville ?", a: "Au 33 rue des Ormes, 31520 Ramonville-Saint-Agne, dans le sud toulousain — à proximité du terminus du métro (ligne B, Ramonville) et de l'arrêt bus Ramonville Sud." },
+  { q: "C'est vrai qu'on s'entraîne dehors ?", a: "Oui. Ramonville est la seule salle du réseau avec 300 m² extérieurs aménagés et protégés des intempéries : on s'entraîne à l'air, sous le ciel, toute l'année. Il y a aussi un octogone de 7 m et un ring de boxe olympique." },
+  { q: "Quelles disciplines peut-on pratiquer ?", a: "Boxe anglaise et anglaise loisirs, boxe pieds-poings, grappling, asso MMA dans l'octogone, Boxing Camp, Lady Punch (100 % féminin) et toute l'école enfants du Baby Boxe (3 ans) aux ados 12/16. Un étage muscu/cardio est en accès libre." },
+  { q: "Y a-t-il des cours pour les enfants ?", a: "Oui, dès 3 ans : Baby Boxe 3/6 le samedi, éducative 7/11 ans et ados 12/16 ans le mercredi et le samedi après-midi, encadrés par Valentin G." },
+  { q: "Faut-il un niveau pour commencer ?", a: "Aucun. La séance d'essai à 10 € donne accès à toutes les disciplines, matériel prêté. La plupart des créneaux — loisirs, camp, pieds-poings — sont ouverts à tous les niveaux." },
+  { q: "Quels sont les horaires ?", a: "Du lundi au samedi, de 10h00 à 21h30, accès libre muscu/cardio inclus. Fermé le dimanche. Un émargement GPS est demandé en salle avant chaque cours." },
+];
