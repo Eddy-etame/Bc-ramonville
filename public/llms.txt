@@ -1,61 +1,40 @@
 # Boxing Center Ramonville
 
-> La seule salle du réseau Boxing Center (Toulouse) qui s'entraîne dehors :
-> 300 m² extérieurs aménagés et protégés des intempéries, un octogone de 7 m,
-> un ring de boxe olympique, deux niveaux avec un étage muscu/cardio. Registre
-> documentaire, monde « L'octogone à ciel ouvert ». Salle située à
-> Ramonville-Saint-Agne, sud toulousain.
+> Salle de boxe et de MMA à Ramonville-Saint-Agne (sud toulousain), membre du
+> réseau Boxing Center (5 clubs à Toulouse). La seule salle du réseau qui
+> s'entraîne dehors : 300 m² extérieurs aménagés et protégés des intempéries,
+> un octogone de 7 m, un ring de boxe olympique, deux niveaux avec un étage
+> muscu/cardio en accès libre. Boxe anglaise, pieds-poings, grappling, asso
+> MMA, Boxing Camp, Lady Punch (100 % féminin) et école enfants dès 3 ans.
+> Séance d'essai à 10 €. Métro ligne B, terminus Ramonville.
 
-## Établissement
+Le détail complet page par page (planning, créneaux, tarifs) est dans
+/llms-full.txt.
+
+## Pages
+
+- [Accueil](https://ramonville.boxingcenter.fr/): présentation de la salle — 300 m² extérieurs couverts, octogone 7 m, ring olympique, disciplines, coachs, essai 10 €.
+- [Le plateau](https://ramonville.boxingcenter.fr/la-salle/): visite du terrain — extérieur couvert, octogone, ring olympique, étage muscu/cardio, infos pratiques, les 4 autres salles du réseau.
+- [Activités](https://ramonville.boxingcenter.fr/activites/): les 8 disciplines avec coach, créneaux et niveau — anglaise, pieds-poings, grappling, asso MMA, Boxing Camp, Lady Punch, école enfants dès 3 ans, accès libre.
+- [Coachs](https://ramonville.boxingcenter.fr/coachs/): l'encadrement — Sonia, Jérôme, Farouk et Valentin G, avec les créneaux hebdomadaires de chacun.
+- [Galerie](https://ramonville.boxingcenter.fr/galerie/): vraies photos du plateau — octogone, ring, sacs, étage muscu/cardio.
+- [Planning](https://ramonville.boxingcenter.fr/plannings/): grille des cours filtrable par jour, discipline et coach, variante d'été, posters officiels.
+- [Tarifs](https://ramonville.boxingcenter.fr/tarifs/): essai 10 €, offre Duo 29 €/personne, offre Saison 259 €, école enfants — avec les avis Google de la salle.
+- [Contact](https://ramonville.boxingcenter.fr/contact/): adresse, accès métro/bus, horaires, téléphone, questions fréquentes.
+
+## Faits
+
 - Nom : Boxing Center Ramonville
 - Adresse : 33 rue des Ormes, 31520 Ramonville-Saint-Agne, France
-- Coordonnées : 43.546, 1.474
+- Coordonnées GPS : 43.546, 1.474
 - Téléphone : 05 62 24 46 82 (+33 5 62 24 46 82)
+- E-mail : boxingcenter31@gmail.com
 - Horaires : lundi à samedi, 10h00–21h30 ; dimanche fermé
-- Accès : métro ligne B, terminus Ramonville ; bus arrêt Ramonville Sud
+- Accès : métro ligne B, terminus Ramonville ; bus arrêt Ramonville Sud ; sortie rocade Ramonville
 - En salle : émargement GPS obligatoire avant chaque cours
+- Équipement : octogone de 7 m ; ring de boxe olympique ; 300 m² d'entraînement extérieur aménagés et protégés des intempéries ; deux niveaux avec étage muscu/cardio ; espaces d'entraînement libres et collectifs
+- Disciplines : boxe anglaise et anglaise loisirs (Valentin G, Farouk) ; boxe pieds-poings (Sonia) ; grappling (Jérôme) ; asso MMA dans l'octogone (Jérôme) ; Boxing Camp (Sonia, Farouk, Jérôme, Valentin G) ; Lady Punch 100 % féminin (Sonia) ; école enfants dès 3 ans — Baby Boxe 3/6, éducative 7/11, ados 12/16 (Valentin G) ; accès libre muscu/cardio 6 j/7
+- Offres : séance d'essai 10 € toutes disciplines, matériel prêté, sans engagement — https://box-plus.vercel.app/seance-essai ; offre Duo 29 € par personne, 4 semaines de cours illimités, sans engagement ; offre Saison 259 € les 12 mois, payable en 4× sans frais, accès libre aux 5 clubs — https://box-plus.vercel.app/abonnements#promotions ; école enfants — https://box-plus.vercel.app/abonnements#enfants
+- Avis Google : 4,1/5 sur 47 avis (affichés sur la page Tarifs)
 - Fédérations : FFBoxe, FFKMDA, FMMAF
-- Réseau : 5 clubs à Toulouse (Portet-sur-Garonne, Minimes, États-Unis, Saint-Cyprien, Ramonville)
-
-## Équipement (verbatims officiels)
-- Octogone de 7 m
-- Ring de boxe olympique
-- 300 m² d'entraînement extérieur, aménagés et protégés des intempéries
-- Deux niveaux, étage muscu/cardio
-- Espaces d'entraînement libres et collectifs
-
-## Disciplines
-- Boxe anglaise et anglaise loisirs
-- Boxe pieds-poings
-- Grappling
-- Asso MMA (dans l'octogone)
-- Boxing Camp
-- Lady Punch (100 % féminin)
-- École enfants : Baby Boxe dès 3 ans, éducative 7/11, ados 12/16
-- Accès libre muscu / cardio (6 jours sur 7)
-
-## Coachs
-- Sonia — boxe pieds-poings, Lady Punch, Boxing Camp
-- Jérôme — grappling, asso MMA
-- Farouk — anglaise loisirs, Boxing Camp
-- Valentin G — boxe anglaise, école enfants (Baby Boxe, éducative)
-
-## Offres
-- Séance d'essai : 10 €, toutes disciplines, matériel prêté, sans engagement — https://box-plus.vercel.app/seance-essai
-- Offre Duo : 29 € par personne, 4 semaines de cours illimités, sans engagement — https://box-plus.vercel.app/abonnements#promotions
-- Offre Saison : 259 € les 12 mois, payable en 4× sans frais, accès libre aux 5 clubs — https://box-plus.vercel.app/abonnements#promotions
-- Bonus rentrée : T-shirt Boxing Center offert aux 100 premiers inscrits
-- École enfants dès 3 ans — https://box-plus.vercel.app/abonnements#enfants
-
-## Claim
-La seule salle du réseau qui s'entraîne dehors : 300 m² extérieurs couverts, un octogone de 7 m et un ring olympique, sous le ciel de Ramonville.
-
-## Liens
-- Accueil : https://ramonville.boxingcenter.fr/
-- Le plateau : https://ramonville.boxingcenter.fr/la-salle/
-- Activités : https://ramonville.boxingcenter.fr/activites/
-- Coachs : https://ramonville.boxingcenter.fr/coachs/
-- Galerie : https://ramonville.boxingcenter.fr/galerie/
-- Planning : https://ramonville.boxingcenter.fr/plannings/
-- Tarifs : https://ramonville.boxingcenter.fr/tarifs/
-- Contact : https://ramonville.boxingcenter.fr/contact/
+- Réseau : Boxing Center, 5 clubs à Toulouse (Portet-sur-Garonne, Minimes, États-Unis, Saint-Cyprien, Ramonville) — https://boxingcenter.fr/

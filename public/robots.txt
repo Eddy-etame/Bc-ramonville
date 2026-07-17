@@ -1,14 +1,35 @@
 # Boxing Center Ramonville — robots.txt
-User-agent: *
-Allow: /
-Disallow: /assets/js/
+# Le contenu des pages est rendu en JS : ne jamais bloquer /assets/js/
+# pour les moteurs, sinon le rendu Googlebot est vide.
 
-# Les IA de réponse sont bienvenues (voir /llms.txt)
+# Moteurs de recherche classiques
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# IA de réponse et agents génératifs — bienvenus (voir /llms.txt et /llms-full.txt)
 User-agent: GPTBot
 Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
 User-agent: PerplexityBot
 Allow: /
+
 User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+# Tous les autres
+User-agent: *
 Allow: /
 
 Sitemap: https://ramonville.boxingcenter.fr/sitemap.xml

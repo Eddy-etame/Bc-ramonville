@@ -1,0 +1,100 @@
+# Boxing Center Ramonville — contenu complet
+
+> Version factuelle intégrale du site https://ramonville.boxingcenter.fr/
+> destinée aux moteurs génératifs. Tous les faits ci-dessous sont ceux
+> affichés sur le site. Voir aussi /llms.txt pour le résumé.
+
+## Établissement
+
+- Nom : Boxing Center Ramonville
+- Réseau : Boxing Center — 5 clubs à Toulouse (Portet-sur-Garonne, Minimes, États-Unis, Saint-Cyprien, Ramonville) — https://boxingcenter.fr/
+- Adresse : 33 rue des Ormes, 31520 Ramonville-Saint-Agne, France
+- Coordonnées GPS : 43.546, 1.474
+- Téléphone : 05 62 24 46 82 (+33 5 62 24 46 82)
+- E-mail : boxingcenter31@gmail.com
+- Horaires : lundi à samedi, 10h00–21h30 ; dimanche fermé
+- Accès : métro ligne B, terminus Ramonville, à proximité ; bus, arrêt Ramonville Sud, au pied de la salle ; sortie rocade Ramonville
+- En salle : émargement GPS obligatoire avant chaque cours
+- Fédérations : FFBoxe, FFKMDA, FMMAF
+- Ouverture de la salle : septembre 2019
+- Réservation et abonnements en ligne : https://box-plus.vercel.app/
+
+## Le plateau (équipement)
+
+- 300 m² d'entraînement extérieur, aménagés et protégés des intempéries — la seule salle du réseau Boxing Center qui s'entraîne dehors, toute l'année
+- Octogone de 7 m (grappling, asso MMA, travail au sol)
+- Ring de boxe olympique (anglaise, pieds-poings)
+- Deux niveaux : au rez-de-chaussée le plateau (cage, ring, ligne de sacs lourds, espaces libres) ; à l'étage la muscu et le cardio (charges libres, machines), en accès libre 6 j/7
+- Espaces d'entraînement libres et collectifs, dedans et dehors
+
+## Disciplines (coach, créneaux, niveau)
+
+- Boxe Anglaise — coachs Valentin G (mardi et vendredi 12h40) et Farouk (anglaise loisirs lundi, mercredi, vendredi 19h45) — débutant à confirmé
+- Boxe Pieds-Poings — coach Sonia — mercredi 12h40, lundi et vendredi 18h40 — tous niveaux
+- Grappling — coach Jérôme — mardi 18h40, dans l'octogone de 7 m — tous niveaux
+- Asso MMA — coach Jérôme — mardi et jeudi 19h45–21h15, dans l'octogone — confirmé (association)
+- Boxing Camp — coachs Sonia, Farouk, Jérôme, Valentin G — lundi et jeudi 12h40, mercredi et jeudi 18h40, samedi 11h00 — tous niveaux
+- Lady Punch (100 % féminin) — coach Sonia — lundi et vendredi 18h00–18h40 — zéro prérequis
+- École enfants — coach Valentin G — Baby Boxe 3/6 ans samedi 14h15 ; éducative 7/11 ans mercredi et samedi 15h00 ; ados 12/16 ans mercredi et samedi 16h00
+- Accès libre muscu/cardio — en autonomie — lundi à samedi 10h00–21h30
+
+## Planning hebdomadaire des cours (grille complète)
+
+- Lundi : 12h40 Boxing Camp (Sonia) · 18h00 Lady Punch (Sonia) · 18h40 Boxe Pieds-Poings (Sonia) · 19h45 Anglaise Loisirs (Farouk)
+- Mardi : 12h40 Boxe Anglaise (Valentin G) · 18h40 Grappling (Jérôme) · 19h45 Asso MMA (Jérôme)
+- Mercredi : 12h40 Boxe Pieds-Poings (Sonia) · 15h00 Éducative 7/11 (Valentin G) · 16h00 Éducative 12/16 (Valentin G) · 18h40 Boxing Camp (Farouk) · 19h45 Anglaise Loisirs (Farouk)
+- Jeudi : 12h40 Boxing Camp (Sonia) · 18h40 Boxing Camp (Jérôme) · 19h45 Asso MMA (Jérôme)
+- Vendredi : 12h40 Boxe Anglaise (Valentin G) · 18h00 Lady Punch (Sonia) · 18h40 Boxe Pieds-Poings (Sonia) · 19h45 Anglaise Loisirs (Farouk)
+- Samedi : 11h00 Boxing Camp (Valentin G) · 14h15 Baby Boxe 3/6 (Valentin G) · 15h00 Éducative 7/11 (Valentin G) · 16h00 Éducative 12/16 (Valentin G)
+- Dimanche : fermé
+- Variante d'été : deux cours par semaine le lundi (12h30 et 20h00), tenus par des coachs du réseau en renfort (Renaud, Fayez) ; le reste de la semaine en accès libre muscu/cardio
+
+## Les coachs
+
+- Sonia — boxe pieds-poings, Lady Punch, Boxing Camp — 7 créneaux par semaine (photo réelle sur le site)
+- Jérôme — grappling, asso MMA — 4 créneaux par semaine (photo réelle sur le site)
+- Farouk — anglaise loisirs, Boxing Camp — 4 créneaux par semaine
+- Valentin G — boxe anglaise, école enfants (Baby Boxe, éducative, ados) — 8 créneaux par semaine ; il enseigne aussi à la salle des États-Unis
+
+## Tarifs et offres
+
+- Séance d'essai : 10 €, toutes disciplines, matériel prêté, sans engagement — https://box-plus.vercel.app/seance-essai
+- Offre Duo : 29 € par personne (au lieu de 44 €), 4 semaines de cours illimités, sans engagement — https://box-plus.vercel.app/abonnements#promotions
+- Offre Saison : 259 € les 12 mois (au lieu de 400 €), payable en 4× sans frais, toutes disciplines, accès libre aux 5 clubs du réseau — https://box-plus.vercel.app/abonnements#promotions
+- École enfants dès 3 ans : Baby Boxe 3/6, éducative 7/11, ados 12/16 — https://box-plus.vercel.app/abonnements#enfants
+- Bonus rentrée : T-shirt Boxing Center offert aux 100 premiers inscrits
+
+## Avis Google (affichés sur la page Tarifs)
+
+- Note : 4,1/5 — 47 avis Google, reproduits mot pour mot sur le site
+- « Un grand merci à Sonia qui nous accompagne avec bienveillance. Je recommande la salle de Ramonville les yeux fermés ! » — LEPICIER I. (5/5)
+- « Super salle avec une très bonne ambiance. Les coachs sont très sympas et pédagogues. Je recommande ! » — Camille L. (5/5)
+- « Les enfants aiment bien y aller ; malgré un déménagement à 35 km, ils veulent continuer à s'entraîner. » — Manjoo N. (4/5)
+
+## Questions fréquentes
+
+- Où se trouve Boxing Center Ramonville ? Au 33 rue des Ormes, 31520 Ramonville-Saint-Agne, dans le sud toulousain — à proximité du terminus du métro (ligne B, Ramonville) et de l'arrêt bus Ramonville Sud.
+- C'est vrai qu'on s'entraîne dehors ? Oui. Ramonville est la seule salle du réseau avec 300 m² extérieurs aménagés et protégés des intempéries : on s'entraîne à l'air, sous le ciel, toute l'année. Il y a aussi un octogone de 7 m et un ring de boxe olympique.
+- Quelles disciplines peut-on pratiquer ? Boxe anglaise et anglaise loisirs, boxe pieds-poings, grappling, asso MMA dans l'octogone, Boxing Camp, Lady Punch (100 % féminin) et toute l'école enfants du Baby Boxe (3 ans) aux ados 12/16. Un étage muscu/cardio est en accès libre.
+- Y a-t-il des cours pour les enfants ? Oui, dès 3 ans : Baby Boxe 3/6 le samedi, éducative 7/11 ans et ados 12/16 ans le mercredi et le samedi après-midi, encadrés par Valentin G.
+- Faut-il un niveau pour commencer ? Aucun. La séance d'essai à 10 € donne accès à toutes les disciplines, matériel prêté. La plupart des créneaux — loisirs, camp, pieds-poings — sont ouverts à tous les niveaux.
+- Quels sont les horaires ? Du lundi au samedi, de 10h00 à 21h30, accès libre muscu/cardio inclus. Fermé le dimanche. Un émargement GPS est demandé en salle avant chaque cours.
+
+## Le réseau Boxing Center (accès libre avec l'offre Saison)
+
+- Portet-sur-Garonne — ring olympique, cage MMA — https://www.boxing-center-portet.fr/
+- Minimes — salle historique, 3 rings, école dès 3 ans
+- États-Unis — la plus grande salle de France dédiée aux sports de combat
+- Saint-Cyprien — 1 200 m², un seul niveau
+- Ramonville — l'octogone à ciel ouvert, 300 m² extérieur couvert
+
+## Pages du site
+
+- Accueil : https://ramonville.boxingcenter.fr/
+- Le plateau : https://ramonville.boxingcenter.fr/la-salle/
+- Activités : https://ramonville.boxingcenter.fr/activites/
+- Coachs : https://ramonville.boxingcenter.fr/coachs/
+- Galerie : https://ramonville.boxingcenter.fr/galerie/
+- Planning : https://ramonville.boxingcenter.fr/plannings/
+- Tarifs : https://ramonville.boxingcenter.fr/tarifs/
+- Contact : https://ramonville.boxingcenter.fr/contact/

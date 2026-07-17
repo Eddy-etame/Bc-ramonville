@@ -5,13 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Page introuvable — Boxing Center Ramonville</title>
   <meta name="robots" content="noindex, follow" />
-  <meta name="theme-color" content="#070a12" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=6" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+
+  <!-- Préconnexions — avant toute feuille de style -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link rel="preconnect" href="https://api.open-meteo.com" crossorigin />
+
+  <!-- Polices AUTO-HÉBERGÉES — mêmes familles/graisses que l'original Google Fonts -->
+  <link rel="preload" href="/fonts/chakrapetch-700-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/manrope-var-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=6" />
   <link rel="stylesheet" href="/assets/css/base.css?v=6" />
   <link rel="stylesheet" href="/assets/css/page.css?v=6" />
+
+  <meta name="theme-color" content="#070a12" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=6" />
+  <meta name="twitter:card" content="summary" />
   <style is:inline>
     .e404 { position: relative; min-height: 100svh; display: grid; place-items: center; text-align: center; overflow: hidden; background: var(--void); padding: 6rem var(--gut) 4rem; }
     .e404__inner { position: relative; z-index: 2; width: min(92vw, 54ch); }
@@ -48,9 +56,9 @@
     <span class="chatbot__label">Une question&nbsp;? Appelle la salle</span>
   </a>
 
-  <script is:inline src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script is:inline src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-  <script is:inline src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script is:inline defer src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
   <script is:inline type="module" src="/assets/js/site.js?v=6"></script>
   <script is:inline type="module" src="/assets/js/sky.js?v=6"></script>
 </body>

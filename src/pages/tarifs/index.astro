@@ -5,6 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tarifs — Boxing Center Ramonville · essai 10€, Duo 29€/pers., Saison 259€</title>
   <meta name="description" content="Les tarifs de Boxing Center Ramonville : séance d'essai 10€ toutes disciplines, offre Duo 29€ par personne (4 semaines illimitées), offre Saison 259€ les 12 mois en 4× sans frais avec accès aux 5 clubs, et l'école enfants dès 3 ans. Avis Google réels." />
+
+  <!-- Préconnexions — avant toute feuille de style -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link rel="preconnect" href="https://api.open-meteo.com" crossorigin />
+
+  <!-- Polices AUTO-HÉBERGÉES — mêmes familles/graisses que l'original Google Fonts -->
+  <link rel="preload" href="/fonts/chakrapetch-700-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/manrope-var-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=6" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=6" />
+  <link rel="stylesheet" href="/assets/css/page.css?v=6" />
   <meta name="keywords" content="tarif boxe Ramonville, prix salle de boxe Toulouse sud, offre duo boxe, abonnement boxe MMA Ramonville-Saint-Agne, essai boxe 10 euros" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="author" content="Boxing Center Ramonville" />
@@ -23,24 +34,232 @@
   <meta property="og:description" content="Essai 10€, Duo 29€/personne, Saison 259€ en 4× sans frais avec accès aux 5 clubs. École dès 3 ans." />
   <meta property="og:url" content="https://ramonville.boxingcenter.fr/tarifs/" />
   <meta property="og:image" content="https://ramonville.boxingcenter.fr/assets/img/ram/camp.webp" />
+  <meta property="og:image:width" content="768" />
+  <meta property="og:image:height" content="512" />
+  <meta property="og:image:type" content="image/webp" />
   <meta property="og:image:alt" content="Boxing Camp à Boxing Center Ramonville, la ligne de sacs lourds." />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Tarifs — Boxing Center Ramonville" />
   <meta name="twitter:description" content="Essai 10€, Duo 29€/pers., Saison 259€. Avis Google réels." />
   <meta name="twitter:image" content="https://ramonville.boxingcenter.fr/assets/img/ram/camp.webp" />
+  <meta name="twitter:image:alt" content="Boxing Camp à Boxing Center Ramonville, la ligne de sacs lourds." />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preconnect" href="https://api.open-meteo.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/css/base.css?v=6" />
-  <link rel="stylesheet" href="/assets/css/page.css?v=6" />
 
+  <!-- Référencement local — graphe unifié (salle, réseau, site, page) -->
   <script is:inline type="application/ld+json">
-  { "@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
-    {"@type":"ListItem","position":1,"name":"Accueil","item":"https://ramonville.boxingcenter.fr/"},
-    {"@type":"ListItem","position":2,"name":"Tarifs","item":"https://ramonville.boxingcenter.fr/tarifs/"}
-  ]}
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://boxingcenter.fr/#organization",
+        "name": "Boxing Center",
+        "url": "https://boxingcenter.fr/",
+        "sameAs": [
+          "https://www.instagram.com/boxingcentertoulouse/",
+          "https://www.facebook.com/BoxingCenterToulouse/"
+        ]
+      },
+      {
+        "@type": [
+          "SportsActivityLocation",
+          "HealthClub",
+          "LocalBusiness"
+        ],
+        "@id": "https://ramonville.boxingcenter.fr/#salle",
+        "name": "Boxing Center Ramonville",
+        "url": "https://ramonville.boxingcenter.fr/",
+        "telephone": "+33562244682",
+        "email": "boxingcenter31@gmail.com",
+        "priceRange": "€€",
+        "image": "https://ramonville.boxingcenter.fr/assets/img/ram/hero.webp",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "33 rue des Ormes",
+          "postalCode": "31520",
+          "addressLocality": "Ramonville-Saint-Agne",
+          "addressRegion": "Occitanie",
+          "addressCountry": "FR"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 43.546,
+          "longitude": 1.474
+        },
+        "areaServed": [
+          {
+            "@type": "Place",
+            "name": "Ramonville-Saint-Agne"
+          },
+          {
+            "@type": "City",
+            "name": "Toulouse"
+          },
+          {
+            "@type": "Place",
+            "name": "Sud toulousain"
+          }
+        ],
+        "publicAccess": true,
+        "isAccessibleForFree": false,
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday"
+            ],
+            "opens": "10:00",
+            "closes": "21:30"
+          }
+        ],
+        "sport": [
+          "Boxing",
+          "Mixed Martial Arts",
+          "Kickboxing",
+          "Grappling",
+          "Muay Thai"
+        ],
+        "foundingDate": "2019-09",
+        "sameAs": [
+          "https://maps.google.com/?q=Boxing+Center+Ramonville+Saint+Agne",
+          "https://www.instagram.com/boxingcentertoulouse/",
+          "https://www.facebook.com/BoxingCenterToulouse/",
+          "https://boxingcenter.fr/"
+        ],
+        "amenityFeature": [
+          {
+            "@type": "LocationFeatureSpecification",
+            "name": "Octogone 7 m",
+            "value": true
+          },
+          {
+            "@type": "LocationFeatureSpecification",
+            "name": "Ring de boxe olympique",
+            "value": true
+          },
+          {
+            "@type": "LocationFeatureSpecification",
+            "name": "300 m² extérieurs couverts, protégés des intempéries",
+            "value": true
+          },
+          {
+            "@type": "LocationFeatureSpecification",
+            "name": "Étage muscu/cardio (2 niveaux)",
+            "value": true
+          },
+          {
+            "@type": "LocationFeatureSpecification",
+            "name": "Espaces d'entraînement libres et collectifs",
+            "value": true
+          }
+        ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Offres Boxing Center Ramonville",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "name": "Séance d'essai",
+              "price": "10",
+              "priceCurrency": "EUR",
+              "url": "https://box-plus.vercel.app/seance-essai",
+              "description": "Toutes disciplines, matériel prêté, sans engagement."
+            },
+            {
+              "@type": "Offer",
+              "name": "Offre Duo",
+              "price": "29",
+              "priceCurrency": "EUR",
+              "url": "https://box-plus.vercel.app/abonnements#promotions",
+              "description": "29 € par personne, 4 semaines de cours illimités, sans engagement."
+            },
+            {
+              "@type": "Offer",
+              "name": "Offre Saison",
+              "price": "259",
+              "priceCurrency": "EUR",
+              "url": "https://box-plus.vercel.app/abonnements#promotions",
+              "description": "259 € les 12 mois, payable en 4× sans frais, accès libre aux 5 clubs."
+            }
+          ]
+        },
+        "parentOrganization": {
+          "@id": "https://boxingcenter.fr/#organization"
+        },
+        "description": "La seule salle du réseau Boxing Center qui s'entraîne dehors : 300 m² extérieurs couverts, un octogone de 7 m, un ring de boxe olympique et deux niveaux avec un étage muscu/cardio, à Ramonville-Saint-Agne. Boxe anglaise, pieds-poings, grappling, asso MMA, Boxing Camp, Lady Punch et école enfants dès 3 ans. Séance d'essai 10€.",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.1",
+          "bestRating": "5",
+          "worstRating": "1",
+          "reviewCount": 47
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://ramonville.boxingcenter.fr/#website",
+        "url": "https://ramonville.boxingcenter.fr/",
+        "name": "Boxing Center Ramonville",
+        "inLanguage": "fr-FR",
+        "publisher": {
+          "@id": "https://ramonville.boxingcenter.fr/#salle"
+        }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://ramonville.boxingcenter.fr/tarifs/#webpage",
+        "url": "https://ramonville.boxingcenter.fr/tarifs/",
+        "name": "Tarifs — Boxing Center Ramonville · essai 10€, Duo 29€/pers., Saison 259€",
+        "description": "Les tarifs de Boxing Center Ramonville : séance d'essai 10€ toutes disciplines, offre Duo 29€ par personne (4 semaines illimitées), offre Saison 259€ les 12 mois en 4× sans frais avec accès aux 5 clubs, et l'école enfants dès 3 ans. Avis Google réels.",
+        "inLanguage": "fr-FR",
+        "isPartOf": {
+          "@id": "https://ramonville.boxingcenter.fr/#website"
+        },
+        "about": {
+          "@id": "https://ramonville.boxingcenter.fr/#salle"
+        },
+        "primaryImageOfPage": {
+          "@id": "https://ramonville.boxingcenter.fr/tarifs/#primaryimage"
+        },
+        "breadcrumb": {
+          "@id": "https://ramonville.boxingcenter.fr/tarifs/#breadcrumb"
+        },
+        "datePublished": "2026-07-17T00:08:52+01:00",
+        "dateModified": "2026-07-17"
+      },
+      {
+        "@type": "ImageObject",
+        "@id": "https://ramonville.boxingcenter.fr/tarifs/#primaryimage",
+        "url": "https://ramonville.boxingcenter.fr/assets/img/ram/camp.webp",
+        "width": 768,
+        "height": 512,
+        "caption": "Boxing Camp à Boxing Center Ramonville, la ligne de sacs lourds."
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://ramonville.boxingcenter.fr/tarifs/#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Accueil",
+            "item": "https://ramonville.boxingcenter.fr/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Tarifs",
+            "item": "https://ramonville.boxingcenter.fr/tarifs/"
+          }
+        ]
+      }
+    ]
+  }
   </script>
 
   <script is:inline>
@@ -128,9 +347,9 @@
     <span class="chatbot__label">Une question&nbsp;? Appelle la salle</span>
   </a>
 
-  <script is:inline src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script is:inline src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-  <script is:inline src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script is:inline defer src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
   <script is:inline type="module" src="/assets/js/site.js?v=6"></script>
   <script is:inline type="module" src="/assets/js/sky.js?v=6"></script>
   <script is:inline type="module" src="/assets/js/page.js?v=6"></script>

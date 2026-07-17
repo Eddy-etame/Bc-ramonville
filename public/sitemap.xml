@@ -1,43 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://ramonville.boxingcenter.fr/</loc>
+    <lastmod>2026-07-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://ramonville.boxingcenter.fr/assets/img/ram/hero.webp</image:loc>
+      <image:title>Boxing Center Ramonville — l'octogone de 7 m et le ring de boxe olympique</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://ramonville.boxingcenter.fr/la-salle/</loc>
+    <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://ramonville.boxingcenter.fr/assets/img/ram/plateau.webp</image:loc>
+      <image:title>Le plateau Boxing Center Ramonville — l'octogone, le ring olympique et les tatamis</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://ramonville.boxingcenter.fr/activites/</loc>
+    <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://ramonville.boxingcenter.fr/assets/img/ram/octogone.webp</image:loc>
+      <image:title>Asso MMA dans l'octogone de 7 m — Boxing Center Ramonville</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://ramonville.boxingcenter.fr/coachs/</loc>
+    <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://ramonville.boxingcenter.fr/assets/img/ram/coach-sonia.webp</image:loc>
+      <image:title>Sonia, coach à Boxing Center Ramonville</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://ramonville.boxingcenter.fr/galerie/</loc>
+    <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://ramonville.boxingcenter.fr/assets/img/ram/hero.webp</image:loc>
+      <image:title>Le plateau de Boxing Center Ramonville sous la charpente</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://ramonville.boxingcenter.fr/plannings/</loc>
+    <lastmod>2026-07-17</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://ramonville.boxingcenter.fr/assets/img/ram/planning-rentree-2026.png</image:loc>
+      <image:title>Planning officiel des cours — Boxing Center Ramonville</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://ramonville.boxingcenter.fr/tarifs/</loc>
+    <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://ramonville.boxingcenter.fr/assets/img/ram/camp.webp</image:loc>
+      <image:title>Boxing Camp — la ligne de sacs lourds à Boxing Center Ramonville</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://ramonville.boxingcenter.fr/contact/</loc>
+    <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://ramonville.boxingcenter.fr/assets/img/ram/plateau.webp</image:loc>
+      <image:title>Boxing Center Ramonville — 33 rue des Ormes, Ramonville-Saint-Agne</image:title>
+    </image:image>
   </url>
 </urlset>
