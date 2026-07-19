@@ -458,7 +458,15 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
 
 /* le champ — 300 carrés d'un mètre. Posés un par un : on compte le terrain. */
 .arpent__field rect { fill: color-mix(in srgb, var(--accent) 16%, transparent); stroke: color-mix(in srgb, var(--accent) 30%, transparent); stroke-width: .35; opacity: 0; transform-box: fill-box; transform-origin: 50% 50%; transform: scale(.34); }
-.arpent.is-on .arpent__field rect { animation: arpentPose .5s var(--ease-out) forwards; animation-delay: calc(var(--i) * 3.4ms); }
+.arpent.is-on .arpent__field rect { animation: arpentPose .42s var(--ease-out) forwards; animation-delay: calc(var(--i) * 2.6ms); }
+/* POSE RÉSERVÉE AU POINTEUR FIN. 300 carrés qui s'animent, c'est ~130 nœuds
+   SVG repeints en même temps sur le thread principal : tenable sur desktop,
+   pas sur un téléphone d'entrée de gamme (et la salle recrute au métro, pas
+   au bureau). Sur pointeur grossier la planche est POSÉE d'emblée, entière —
+   on perd le comptage, jamais le dessin. Même arbitrage que le dead-man. */
+@media (hover: none) {
+  .arpent__field rect { animation: none !important; opacity: 1; transform: none; }
+}
 /* dead-man : état final posé sans animation (rAF gelé, onglet en fond, IO absent) */
 .arpent.is-done .arpent__field rect { animation: none; opacity: 1; transform: none; }
 @keyframes arpentPose { to { opacity: 1; transform: none; } }
