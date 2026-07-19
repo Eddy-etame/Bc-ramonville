@@ -8,7 +8,7 @@
    bi-palette (Acier lune ⇄ Cuivre) montée dans la nav, no-flash.
    Aucun chrome copié de Saint-Cyprien.
    ===================================================================== */
-import { NAV, LINKS, SALLE, SEASON_LABEL } from "./data.js?v=8";
+import { NAV, LINKS, SALLE, SEASON_LABEL } from "./data.js?v=9";
 
 const gsap = window.gsap;
 const ScrollTrigger = window.ScrollTrigger;

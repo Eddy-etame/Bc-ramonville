@@ -132,6 +132,15 @@
 
 /* ----------------------------- RESET ------------------------------ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* [hidden] EST CACHÉ — sans discussion.
+   La règle navigateur « [hidden]{display:none} » ne pèse que 0,0,1,0 : n'importe
+   quelle classe posant un display (.slot, .pday, .btn, le reset img/video/svg…)
+   la bat dans la cascade. Le JS masquait alors correctement pendant que l'écran
+   continuait de tout afficher — le compteur annonçait un chiffre, l'utilisateur
+   en voyait un autre. Correction de FAMILLE, en tête du design system. */
+[hidden] { display: none !important; }
+
 html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 body {
