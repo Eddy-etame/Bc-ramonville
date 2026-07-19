@@ -14,9 +14,9 @@
   <link rel="preload" href="/fonts/chakrapetch-700-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="/fonts/manrope-var-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" as="image" href="/assets/img/ram/hero.webp" fetchpriority="high" />
-  <link rel="stylesheet" href="/assets/css/fonts.css?v=6" />
-  <link rel="stylesheet" href="/assets/css/base.css?v=6" />
-  <link rel="stylesheet" href="/assets/css/galerie.css?v=6" />
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=7" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=7" />
+  <link rel="stylesheet" href="/assets/css/galerie.css?v=7" />
   <meta name="keywords" content="photos salle de boxe Ramonville, octogone MMA photo, ring boxe Toulouse, boxing center Ramonville-Saint-Agne galerie, carnet de terrain" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="author" content="Boxing Center Ramonville" />
@@ -26,7 +26,7 @@
   <meta name="ICBM" content="43.546, 1.474" />
   <link rel="canonical" href="https://ramonville.boxingcenter.fr/galerie/" />
   <meta name="theme-color" content="#070a12" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=6" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=7" />
 
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="fr_FR" />
@@ -224,7 +224,7 @@
           "@id": "https://ramonville.boxingcenter.fr/galerie/#breadcrumb"
         },
         "datePublished": "2026-07-17T00:08:52+01:00",
-        "dateModified": "2026-07-17",
+        "dateModified": "2026-07-19",
         "image": [
           {
             "@id": "https://ramonville.boxingcenter.fr/galerie/#photo-plateau"
@@ -360,6 +360,24 @@
     <section class="section" aria-label="Les photos">
       <div class="wrap">
         <div class="gallery" id="gallery"></div>
+        <!-- le sommaire du carnet : la couverture réelle, zone par zone -->
+        <div class="carnet__index" id="carnet-index" data-reveal-group aria-label="Ce que couvre le carnet"></div>
+      </div>
+    </section>
+
+    <!-- ================= LE RELEVÉ DU DEHORS ======================= -->
+    <!-- La tuile « reportage à venir » vivait en 7e position de la mosaïque,
+         derrière six vraies photos : elle se lisait comme un chargement raté.
+         Le sujet a maintenant sa page dans le carnet — et son cadre porte le
+         ciel réel du plateau plutôt qu'un rectangle en attente. -->
+    <section class="section" style="background:var(--void);border-block:1px solid var(--line)" aria-label="Le relevé du plateau extérieur">
+      <div class="wrap">
+        <div class="shead" data-reveal>
+          <span class="eyebrow">La page qui manque</span>
+          <h2 class="display"><span class="reveal-mask"><span>Le dehors n'a pas</span></span><span class="reveal-mask"><span class="tint">encore été filmé.</span></span></h2>
+          <p class="muted">Un carnet honnête dit aussi ce qu'il n'a pas. En attendant l'objectif, voici ce qui est mesuré — et le ciel qui, lui, se relève en direct.</p>
+        </div>
+        <div class="releve" id="releve"></div>
       </div>
     </section>
 
@@ -396,14 +414,15 @@
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-  <script is:inline type="module" src="/assets/js/site.js?v=6"></script>
-  <script is:inline type="module" src="/assets/js/sky.js?v=6"></script>
-  <script is:inline type="module" src="/assets/js/page.js?v=6"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=7"></script>
+  <script is:inline type="module" src="/assets/js/sky.js?v=7"></script>
+  <script is:inline type="module" src="/assets/js/page.js?v=7"></script>
 
   <!-- Enrichissement PROPRE à la page : conditions au tournage (ciel réel) +
        tuile honnête « le dehors, à venir » + visionneuse. page.js a déjà
        rendu #gallery (légendes horodatées + température + scramble). -->
   <script is:inline type="module">
+    import { GALLERY, DEHORS } from "/assets/js/data.js?v=7";
     const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
     const root = document.documentElement;
 
@@ -427,17 +446,18 @@
     renderCond();
     window.addEventListener("sky:change", renderCond);
 
-    /* --- la tuile honnête : le 300 m² extérieur reste à filmer (brief §4.5) --- */
+    /* --- le sommaire du carnet : la couverture réelle, zone par zone ---
+       La mosaïque ne contient plus QUE des clichés : la tuile « reportage à
+       venir » qu'on ajoutait ici en septième position se lisait comme une
+       image qui n'avait pas chargé. Le dehors a désormais sa propre section
+       (#releve, plus bas), avec le ciel réel dans le cadre. Ici, on liste ce
+       que le carnet couvre — et, en dernière case, ce qu'il ne couvre pas. */
     const gallery = document.getElementById("gallery");
-    if (gallery) {
-      const todo = document.createElement("figure");
-      todo.className = "shot shot--todo";
-      todo.innerHTML =
-        `<svg class="todo__glyph" viewBox="0 0 64 64" aria-hidden="true"><path d="M32 6 51 14 59 33 51 52 32 60 13 52 5 33 13 14Z"/></svg>
-         <span class="todo__k">Reportage à venir</span>
-         <span class="todo__t">Le dehors</span>
-         <span class="todo__d">Les 300 m² extérieurs — la prochaine page du carnet. On ne montre que ce qu'on a filmé.</span>`;
-      gallery.appendChild(todo);
+    const cix = document.getElementById("carnet-index");
+    if (cix) {
+      cix.innerHTML = GALLERY.map((g) =>
+        `<div class="cix"><b>${g.zone}</b><span>${g.place}</span></div>`).join("")
+        + `<div class="cix cix--open"><b>${DEHORS.t}</b><span>${DEHORS.nonReleve.v.toLowerCase()} — voir le relevé</span></div>`;
     }
 
     /* --- visionneuse plein cadre (délégation : marche quel que soit l'ordre) --- */
@@ -466,8 +486,10 @@
       lbClose?.focus(); // le focus entre dans la visionneuse (role=dialog aria-modal)
     };
     if (gallery && lb) {
+      // la mosaïque ne contient plus que des clichés : plus de garde contre
+      // une tuile non cliquable, il n'y en a plus.
       const openFrom = (shot) => {
-        if (!shot || shot.classList.contains("shot--todo")) return;
+        if (!shot) return;
         const img = shot.querySelector("img"); if (img) openLb(img);
       };
       gallery.addEventListener("click", (e) => openFrom(e.target.closest(".shot")));

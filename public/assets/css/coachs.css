@@ -67,8 +67,43 @@
 .integrity p { font-size: var(--step--1); color: var(--ink-soft); max-width: 70ch; }
 .integrity b { color: var(--accent); }
 
+/* ============ LA GARDE DE LA SEMAINE — qui est sur le plateau ==== *
+   La page s'arrêtait au roster : on savait QUI ils sont, jamais QUAND les
+   trouver. Ce bloc est entièrement déduit du planning officiel — six jours,
+   les noms de garde, le nombre de cours de chacun. Si le planning bouge, il
+   bouge : aucune liste écrite à la main à re-synchroniser. */
+.garde { display: grid; gap: 1px; grid-template-columns: 1fr; background: var(--line-soft); border: 1px solid var(--line); overflow: hidden; }
+@media (min-width: 700px){ .garde { grid-template-columns: repeat(3,1fr); } }
+@media (min-width: 1040px){ .garde { grid-template-columns: repeat(6,1fr); } }
+.garde__day { background: color-mix(in srgb, var(--paper-2) 76%, transparent); padding: clamp(1rem,2vw,1.4rem); display: flex; flex-direction: column; gap: .6rem; transition: background .3s; }
+.garde__day:hover { background: var(--paper-2); }
+.garde__d { font: 600 var(--step--2)/1 var(--f-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--accent); }
+.garde__who { display: flex; flex-wrap: wrap; gap: .4rem; }
+.gwho { display: inline-flex; align-items: baseline; gap: .5ch; font: 600 var(--step--1)/1 var(--f-mono); color: var(--ink); border: 1px solid var(--line); border-radius: var(--radius); padding: .5em .7em; background: var(--paper); }
+.gwho i { font-style: normal; font-size: .82em; color: var(--muted); }
+.gwho.is-pillar { border-color: var(--accent-line); }
+.gwho.is-pillar i { color: var(--accent); }
+.garde__n { margin-top: auto; font: 600 var(--step--2)/1 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+
+/* ============ L'AIGUILLAGE — ce que tu cherches → qui le tient === */
+.routage { display: grid; gap: .7rem; grid-template-columns: 1fr; }
+@media (min-width: 640px){ .routage { grid-template-columns: repeat(2,1fr); } }
+@media (min-width: 1040px){ .routage { grid-template-columns: repeat(4,1fr); } }
+.route { position: relative; display: flex; flex-direction: column; gap: .35rem; border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(1rem,2.2vw,1.4rem); background: var(--paper-2); transition: border-color .3s, transform .4s var(--ease-spring); }
+.route:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: var(--glow-soft); }
+.route::after { content: "↗"; position: absolute; top: .9rem; right: 1rem; color: var(--muted); transition: color .3s, transform .3s; }
+.route:hover::after { color: var(--accent); transform: translate(2px,-2px); }
+.route__tag { font: 600 var(--step--2)/1 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.route__n { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: 1.2rem; color: var(--ink); line-height: 1.1; max-width: 14ch; }
+.route__who { font: 600 var(--step--1)/1.4 var(--f-mono); color: var(--accent); }
+.route__when { margin-top: auto; padding-top: .5rem; font: 600 var(--step--2)/1.4 var(--f-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); border-top: 1px solid var(--line-soft); }
+
 /* .ctaband → base.css */
 
 /* =========================== TOUCH LIFE ======================== */
-@media (hover: none) { .coach.is-inview { transform: translateY(-4px); border-color: var(--accent-line); } }
+@media (hover: none) {
+  .coach.is-inview, .route.is-inview { transform: translateY(-4px); border-color: var(--accent-line); }
+  .route { min-height: 44px; }
+  .route:active { transform: translateY(1px); border-color: var(--accent); }
+}
 @media (max-width: 760px){ .coach--pillar .coach__face { aspect-ratio: 16/10; } }

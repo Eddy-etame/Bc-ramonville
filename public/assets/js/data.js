@@ -11,7 +11,7 @@
    boxingcenter.fr (brief §3). Noms de coachs ≡ photos (roster.json), jamais
    croisés. Aucun claim périssable dans les pages : la saison passe par la
    constante SEASON, les promos vivent dans PROMOS (jamais en dur ailleurs).
-   Version d'assets unique : ?v=6 partout (imports compris).
+   Version d'assets unique : ?v=7 partout (imports compris).
    ===================================================================== */
 
 /* Anti-péremption — tout libellé de saison passe par ces constantes. */
@@ -195,6 +195,57 @@ export const DISCIPLINES = [
 ];
 
 /* ------------------------------------------------------------------ *
+ *  LE RELEVÉ DU DEHORS — le différenciateur, en fiche documentaire.
+ *
+ *  Les 300 m² extérieurs sont LE fait qui distingue Ramonville, et c'est
+ *  le seul lieu de la salle dont on n'a AUCUN cliché : les six photos
+ *  prouvées sont toutes prises à couvert. Pendant trois versions, ce trou
+ *  a été traité en « tuile photo à venir » — c'est-à-dire en excuse : un
+ *  cadre gris au milieu de cinq vraies photos, qui se lit « inachevé ».
+ *
+ *  Le parti pris tient en une phrase : un espace extérieur n'a pas de
+ *  photographie fidèle, il a un CIEL. Le cadre n'est donc pas vide — il
+ *  contient la seule image vraie qu'on puisse en donner : le ciel réel
+ *  au-dessus des 300 m², à la seconde, via Open-Meteo (sky.js). Autour,
+ *  un relevé de terrain : ce qui est mesuré, et ce qui ne l'est pas
+ *  encore, dit franchement, dans le même registre que la fiche du pied
+ *  de page. Rien à cacher, rien à inventer, rien qui ait l'air en attente.
+ * ------------------------------------------------------------------ */
+export const DEHORS = {
+  eyebrow: "Relevé de terrain",
+  t: "L'extérieur couvert",
+  surface: "300 m²",
+  claim: "Le seul plateau du réseau qui a un ciel pour plafond.",
+  // NE REPREND PAS la formule de la section « 300 m² plein ciel » plus haut
+  // (« couvert veut dire couvert… ») : une bonne phrase ne se dit qu'une fois
+  // par site. Celle-ci pose le registre du relevé, pas le claim.
+  lead: "Ce qu'on sait mesurer d'un lieu qu'on n'a pas encore photographié : sa surface, sa couverture, ses heures — et le ciel qu'il a au-dessus, qui lui se relève en direct.",
+  /* les quatre lignes mesurées — verbatims officiels, rien d'ajouté */
+  mesures: [
+    // « d'un seul tenant » a été retiré : aucune source ne dit que les 300 m²
+    // sont contigus. Le relevé ne note que ce qui est écrit noir sur blanc —
+    // c'est tout l'intérêt d'un relevé.
+    { k: "Surface", v: "300 m²", d: "d'entraînement extérieur, aménagés" },
+    { k: "Couverture", v: "Couvert", d: "protégé des intempéries" },
+    { k: "Ouverture", v: "Toute l'année", d: "six jours sur sept, 10h – 21h30" },
+    // « l'air du dehors, pas un mur » appartient déjà au bloc RDC de la coupe
+    // (/la-salle/) : une bonne phrase ne se dit qu'une fois par site.
+    { k: "Plafond", v: "Le ciel", d: "aucune autre salle du réseau n'a ça" },
+  ],
+  /* la ligne qu'on n'a pas — assumée, au même format que les autres */
+  nonReleve: {
+    k: "Cliché",
+    v: "Non relevé",
+    d: "Les six photos du carnet sont prises à couvert. Aucune ne montre le dehors — on ne montre que ce qu'on a filmé.",
+  },
+  /* la légende du cadre vivant (le ciel remplace la photo absente) */
+  cadre: {
+    k: "Au-dessus des 300 m²",
+    d: "Relevé en direct — Open-Meteo, station de Ramonville-Saint-Agne.",
+  },
+};
+
+/* ------------------------------------------------------------------ *
  *  LE PLATEAU — la visite du terrain (page /la-salle/). L'extérieur
  *  d'abord : c'est le différenciateur. Puis l'octogone, le ring, l'étage.
  *  Specs = verbatims officiels (brief §3), rien d'inventé.
@@ -208,9 +259,11 @@ export const PLATEAU = [
     // Pas de photo : les 6 clichés prouvés de la salle sont TOUS intérieurs.
     // Illustrer les 300 m² extérieurs avec un cadre sous charpente serait le
     // seul vrai mensonge du site (registre documentaire, /galerie/ : « on ne
-    // montre que ce qu'on a filmé »). Tuile honnête jusqu'au reportage.
+    // montre que ce qu'on a filmé »). Le cadre porte donc le CIEL RÉEL
+    // au-dessus du plateau (sky.js) — voir DEHORS : la seule image fidèle
+    // qu'on puisse donner d'un extérieur, et elle est vraie à la seconde.
     img: null,
-    todo: "Reportage extérieur à venir",
+    sky: true,
     specs: ["300 m² extérieurs", "Couverts · toute l'année"],
   },
   {
@@ -298,7 +351,11 @@ export const COACHES = [
     name: "Valentin G",
     role: "Anglaise · École enfants",
     tag: "L'école",
-    note: "L'anglaise du midi et toute l'école : Baby Boxe dès 3 ans, éducative 7/11 et ados 12/16, mercredi et samedi. Il enseigne aussi aux États-Unis.",
+    // « aux États-Unis » se lisait comme le PAYS. La source (et /llms-full.txt)
+    // parlent de la salle du réseau qui porte ce nom, à Toulouse. Un lecteur
+    // qui comprend « il enseigne en Amérique » a lu un fait qui n'existe pas :
+    // on lève l'ambiguïté au lieu de la laisser flatter la fiche.
+    note: "L'anglaise du midi et toute l'école : Baby Boxe dès 3 ans, éducative 7/11 et ados 12/16, mercredi et samedi. Il enseigne aussi à la salle des États-Unis, dans le réseau.",
     img: null,
   },
 ];
@@ -346,6 +403,37 @@ export const SCHEDULE = [
 export const SCHEDULE_ETE = [
   { day: "Lun", start: "12h30", cours: "Cours d'été", coach: "Renaud", fam: "adulte", disc: "anglaise" },
   { day: "Lun", start: "20h00", cours: "Cours d'été", coach: "Fayez", fam: "adulte", disc: "anglaise" },
+];
+
+/* L'ÉTÉ, DIT COMME IL EST — l'été ne tenait pas dans la grille de la rentrée.
+   Deux cours, tous les deux le lundi : rendus dans un tableau à six colonnes,
+   ça donnait DIX cases vides sur douze et une page qui avait l'air cassée
+   plutôt qu'une salle qui lève le pied. L'été a donc son propre objet et son
+   propre rendu : deux créneaux nommés, puis la vérité du reste de la semaine —
+   l'accès libre, qui lui ne s'arrête jamais. Faits : posters officiels. */
+export const ETE = {
+  label: "Cours d'été",
+  lead: "L'été, la salle ne ferme pas — elle change de rythme. Deux cours encadrés le lundi, et le plateau ouvert le reste de la semaine.",
+  // les renforts : ni Renaud ni Fayez ne sont sur une fiche de Ramonville
+  // (coachs du réseau) → on le DIT, on ne laisse pas deux noms sans visage.
+  renfort: "Renaud et Fayez sont des coachs du réseau Boxing Center, en renfort sur l'été. Tu ne les trouveras pas sur la page Coachs : l'encadrement de la rentrée, c'est Sonia, Jérôme, Farouk et Valentin G.",
+  libre: {
+    k: "Mardi → samedi",
+    v: "Accès libre",
+    d: "Muscu, cardio, sacs et le plateau extérieur — 10h00 à 21h30, comme toute l'année.",
+  },
+  ferme: { k: "Dimanche", v: "Fermé", d: "Le seul jour où la cage est vide." },
+  retour: "La rentrée reprend le planning complet — vingt-trois cours, six jours sur sept.",
+};
+
+/* LA LÉGENDE DE LA GRILLE — la grille code déjà deux familles à l'œil
+   (le liseré argent du Lady Punch, le point des créneaux cage). Ce code
+   n'était écrit NULLE PART : un signal visuel que personne ne pouvait lire.
+   Il se lit maintenant. */
+export const GRID_LEGEND = [
+  { cls: "feminin", label: "Lady Punch", d: "créneau 100 % féminin" },
+  { cls: "mma", label: "Cage", d: "grappling & asso MMA, dans l'octogone" },
+  { cls: "enfant", label: "École", d: "Baby Boxe, éducative, ados" },
 ];
 
 /* Filtres disciplines pour la grille planning. */

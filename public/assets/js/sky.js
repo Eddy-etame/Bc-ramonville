@@ -229,11 +229,28 @@ function mountStarfield(canvas) {
 }
 
 /* ------------------------------ BOOT ------------------------------ */
+/* Hydratation des ciels INJECTÉS après le boot. Les cadres vivants du
+   différenciateur (station « L'extérieur couvert », relevé du dehors,
+   carnet) sont rendus par page.js, donc APRÈS ce module : leurs canvas
+   n'existaient pas quand boot() a balayé le document, et ils restaient
+   noirs — un ciel réel qui ne se lève que sur les heros écrits en dur.
+   `mounted` garde l'idempotence : un même canvas n'est jamais monté deux
+   fois, quel que soit le nombre d'appels. */
+const mounted = new WeakSet();
+function mountSkies(scope = document) {
+  scope.querySelectorAll(".sky__stars").forEach((c) => {
+    if (mounted.has(c)) return;
+    mounted.add(c);
+    mountStarfield(c);
+  });
+}
+window.__SKY.mount = mountSkies;
+
 function boot() {
   applyHour();                     // amorce : horloge locale, remplacée dès la réponse
   setInterval(tickHour, 60 * 1000); // l'heure avance avec celle de Ramonville
   // le starfield démarre tout de suite (fallback), la météo l'ajuste après
-  document.querySelectorAll(".sky__stars").forEach(mountStarfield);
+  mountSkies(document);
   fetchWeather();
 }
 if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);

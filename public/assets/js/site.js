@@ -8,7 +8,7 @@
    bi-palette (Acier lune ⇄ Cuivre) montée dans la nav, no-flash.
    Aucun chrome copié de Saint-Cyprien.
    ===================================================================== */
-import { NAV, LINKS, SALLE, SEASON_LABEL } from "./data.js?v=6";
+import { NAV, LINKS, SALLE, SEASON_LABEL } from "./data.js?v=7";
 
 const gsap = window.gsap;
 const ScrollTrigger = window.ScrollTrigger;
@@ -35,6 +35,13 @@ function setPalette(p) {
     btn.querySelector(".pal__txt").textContent = p === "cuivre" ? "Cuivre" : "Acier";
     btn.setAttribute("aria-pressed", String(p === "cuivre")); // AT : état de la palette
   }
+  /* sky.js écoutait `bc:palette` pour re-teinter les étoiles… et PERSONNE ne
+     l'émettait : un abonné mort depuis l'origine. Sans motion réduite ça ne se
+     voyait pas (le canvas repeint à chaque frame et relit --accent au passage),
+     mais en `prefers-reduced-motion` le ciel n'est peint QU'UNE FOIS : basculer
+     Acier ⇄ Cuivre laissait alors les étoiles à l'ancien métal, définitivement.
+     La bascule est censée tout re-teinter — elle le fait maintenant partout. */
+  window.dispatchEvent(new CustomEvent("bc:palette", { detail: { palette: p } }));
 }
 
 /* ----------------------------- NAV / MENU ------------------------- */

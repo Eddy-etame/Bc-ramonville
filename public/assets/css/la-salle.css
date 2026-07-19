@@ -78,15 +78,13 @@
 .station:hover { border-color: var(--accent-line); transform: translateY(-3px); }
 @media (min-width: 820px){ .station { grid-template-columns: 1fr 1fr; } .station:nth-child(even) .station__media { order: 2; } }
 .station__media { position: relative; aspect-ratio: 16/10; min-height: 220px; }
-/* station sans photo prouvée (les 300 m² extérieurs restent à filmer) : une
-   tuile ASSUMÉE, pas un trou — et surtout pas le cadre d'une autre zone
-   légendé « L'extérieur couvert ». Même honnêteté que la tuile de /galerie/. */
-.station__media--todo { display: flex; flex-direction: column; justify-content: flex-end; gap: .3rem; padding: clamp(1.1rem,2.4vw,1.5rem); border-right: 1px dashed var(--accent-line); background: radial-gradient(120% 90% at 78% 8%, color-mix(in srgb,var(--accent) 16%, var(--paper-2)), var(--void)); }
-.station__media--todo .todo__glyph { position: absolute; top: 1rem; right: 1.1rem; width: 44px; height: 44px; opacity: .5; }
-.station__media--todo .todo__glyph path { fill: none; stroke: var(--accent); stroke-width: 3; stroke-linejoin: round; }
-.station__media--todo .todo__k { font: 600 var(--step--2)/1 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
-.station__media--todo .todo__d { font: 600 var(--step--2)/1.4 var(--f-mono); color: var(--muted); }
-@media (max-width: 819px){ .station__media--todo { border-right: 0; border-bottom: 1px dashed var(--accent-line); } }
+/* Station sans cliché prouvé (les 300 m² extérieurs) : le cadre porte le CIEL
+   RÉEL du lieu — .skyframe, base.css. Ce n'est ni un trou, ni le cadre d'une
+   autre zone légendé « L'extérieur couvert » : c'est la seule image fidèle
+   qu'on puisse donner d'un extérieur, et elle bouge avec la vraie météo. */
+.station__media--sky { padding: 0; border-right: 1px solid var(--accent-line); background: var(--void); }
+.station__media--sky .skyframe { position: absolute; inset: 0; height: auto; }
+@media (max-width: 819px){ .station__media--sky { border-right: 0; border-bottom: 1px solid var(--accent-line); } }
 .station__body { padding: clamp(1.4rem,3vw,2.4rem); }
 .station__n { font: 600 .72rem/1 var(--f-mono); color: var(--accent); letter-spacing: .1em; }
 .station__tag { display: inline-block; margin-top: .6rem; font: 600 var(--step--2)/1 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }

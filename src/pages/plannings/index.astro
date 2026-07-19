@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Planning — Boxing Center Ramonville · rentrée 2026-2027 & été, grille filtrable</title>
-  <meta name="description" content="Le planning des cours de Boxing Center Ramonville : grille filtrable par jour, discipline et coach (rentrée 2026-2027 et variante été), plus les posters officiels en couleur. Anglaise, pieds-poings, grappling, asso MMA, Lady Punch, école dès 3 ans." />
+  <title>Planning — Boxing Center Ramonville · grille des cours de la rentrée &amp; de l'été</title>
+  <meta name="description" content="Le planning des cours de Boxing Center Ramonville : la grille de la rentrée, filtrable par famille (adultes, féminin, grappling &amp; MMA, enfants), le rythme d'été, et les posters officiels en couleur. Anglaise, pieds-poings, grappling, asso MMA, Lady Punch, école dès 3 ans." />
 
   <!-- Préconnexions — avant toute feuille de style -->
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
@@ -13,9 +13,9 @@
   <!-- Polices AUTO-HÉBERGÉES — mêmes familles/graisses que l'original Google Fonts -->
   <link rel="preload" href="/fonts/chakrapetch-700-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="/fonts/manrope-var-latin.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="/assets/css/fonts.css?v=6" />
-  <link rel="stylesheet" href="/assets/css/base.css?v=6" />
-  <link rel="stylesheet" href="/assets/css/page.css?v=6" />
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=7" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=7" />
+  <link rel="stylesheet" href="/assets/css/page.css?v=7" />
   <meta name="keywords" content="planning boxe Ramonville, horaires cours boxe Toulouse sud, planning MMA octogone, grappling créneaux Ramonville-Saint-Agne, Lady Punch horaires" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="author" content="Boxing Center Ramonville" />
@@ -25,24 +25,24 @@
   <meta name="ICBM" content="43.546, 1.474" />
   <link rel="canonical" href="https://ramonville.boxingcenter.fr/plannings/" />
   <meta name="theme-color" content="#070a12" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=6" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=7" />
 
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:site_name" content="Boxing Center Ramonville" />
   <meta property="og:title" content="Planning — Boxing Center Ramonville" />
-  <meta property="og:description" content="Grille filtrable par jour, discipline et coach + posters officiels rentrée 2026-2027 et été, en couleur." />
+  <meta property="og:description" content="La grille de la rentrée filtrable par famille, le rythme d'été, et les posters officiels en couleur." />
   <meta property="og:url" content="https://ramonville.boxingcenter.fr/plannings/" />
   <meta property="og:image" content="https://ramonville.boxingcenter.fr/assets/img/ram/planning-rentree-2026.png" />
   <meta property="og:image:width" content="2400" />
   <meta property="og:image:height" content="1740" />
   <meta property="og:image:type" content="image/png" />
-  <meta property="og:image:alt" content="Planning officiel rentrée 2026-2027 de Boxing Center Ramonville." />
+  <meta property="og:image:alt" content="Le planning officiel de la rentrée à Boxing Center Ramonville." />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Planning — Boxing Center Ramonville" />
-  <meta name="twitter:description" content="Grille filtrable + posters officiels en couleur, rentrée et été." />
+  <meta name="twitter:description" content="La grille de la rentrée, le rythme d'été, les posters officiels en couleur." />
   <meta name="twitter:image" content="https://ramonville.boxingcenter.fr/assets/img/ram/planning-rentree-2026.png" />
-  <meta name="twitter:image:alt" content="Planning officiel rentrée 2026-2027 de Boxing Center Ramonville." />
+  <meta name="twitter:image:alt" content="Le planning officiel de la rentrée à Boxing Center Ramonville." />
 
 
   <!-- Référencement local — graphe unifié (salle, réseau, site, page) -->
@@ -207,8 +207,8 @@
         "@type": "WebPage",
         "@id": "https://ramonville.boxingcenter.fr/plannings/#webpage",
         "url": "https://ramonville.boxingcenter.fr/plannings/",
-        "name": "Planning — Boxing Center Ramonville · grille filtrable par jour, discipline et coach",
-        "description": "Le planning des cours de Boxing Center Ramonville : grille filtrable par jour, discipline et coach, avec la variante d'été et les posters officiels en couleur. Anglaise, pieds-poings, grappling, asso MMA, Lady Punch, école dès 3 ans.",
+        "name": "Planning — Boxing Center Ramonville · grille des cours de la rentrée et de l'été",
+        "description": "Le planning des cours de Boxing Center Ramonville : la grille de la rentrée filtrable par famille, le rythme d'été, le poids de chaque jour de la semaine, et les posters officiels en couleur. Anglaise, pieds-poings, grappling, asso MMA, Lady Punch, école dès 3 ans.",
         "inLanguage": "fr-FR",
         "isPartOf": {
           "@id": "https://ramonville.boxingcenter.fr/#website"
@@ -223,7 +223,7 @@
           "@id": "https://ramonville.boxingcenter.fr/plannings/#breadcrumb"
         },
         "datePublished": "2026-07-17T00:08:52+01:00",
-        "dateModified": "2026-07-17"
+        "dateModified": "2026-07-19"
       },
       {
         "@type": "ImageObject",
@@ -292,8 +292,31 @@
         <div class="gridwrap">
           <table class="grid" id="grid" aria-label="Grille des cours de la semaine"></table>
         </div>
+        <!-- la signalétique de la grille, enfin écrite (page.js → GRID_LEGEND) -->
+        <div class="grid__legend" id="grid-legend" aria-label="Légende de la grille"></div>
+
+        <!-- L'ÉTÉ a sa propre forme : deux cours, tous les deux le lundi.
+             Rendus dans la grille à six colonnes, ils laissaient dix cases
+             vides sur douze — une page qui semblait cassée alors que la salle
+             lève simplement le pied. Bloc masqué tant qu'on est en rentrée. -->
+        <div class="ete" id="ete" hidden></div>
 
         <div class="posters" id="posters" aria-label="Posters officiels"></div>
+      </div>
+    </section>
+
+    <!-- ================= LE RYTHME DE LA SEMAINE ==================== -->
+    <!-- Même source que la grille (SCHEDULE), lue autrement : le poids de
+         chaque jour, le partage midi/soir. Tout est compté, rien n'est écrit
+         à la main — si le planning bouge, ce bloc bouge avec lui. -->
+    <section class="section" style="background:var(--void);border-block:1px solid var(--line)" aria-label="Le rythme de la semaine">
+      <div class="wrap">
+        <div class="shead" data-reveal>
+          <span class="eyebrow">La semaine, en poids</span>
+          <h2 class="display"><span class="reveal-mask"><span>Quand la salle</span></span><span class="reveal-mask"><span class="tint">est pleine.</span></span></h2>
+          <p class="muted">La même grille, comptée. De quoi choisir ton créneau selon ce que tu cherches : du monde, ou de la place.</p>
+        </div>
+        <div class="rythme" id="rythme"></div>
       </div>
     </section>
 
@@ -321,8 +344,8 @@
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-  <script is:inline type="module" src="/assets/js/site.js?v=6"></script>
-  <script is:inline type="module" src="/assets/js/sky.js?v=6"></script>
-  <script is:inline type="module" src="/assets/js/page.js?v=6"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=7"></script>
+  <script is:inline type="module" src="/assets/js/sky.js?v=7"></script>
+  <script is:inline type="module" src="/assets/js/page.js?v=7"></script>
 </body>
 </html>

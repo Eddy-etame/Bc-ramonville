@@ -48,14 +48,24 @@
    doivent MONTRER le focus clavier. */
 .shot:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
-/* la tuile honnête : le 300 m² extérieur reste à filmer (état « à venir »
-   intentionnel, pas un trou — brief §4.5) */
-.shot--todo { cursor: default; border-style: dashed; border-color: var(--accent-line); background: radial-gradient(120% 90% at 80% 0%, color-mix(in srgb,var(--accent) 14%, var(--paper-2)), var(--void)); min-height: 240px; display: flex; flex-direction: column; justify-content: flex-end; padding: 1.2rem; }
-.shot--todo .todo__glyph { position: absolute; top: 1rem; right: 1rem; width: 46px; height: 46px; opacity: .55; }
-.shot--todo .todo__glyph path { fill: none; stroke: var(--accent); stroke-width: 3; stroke-linejoin: round; }
-.shot--todo .todo__k { font: 600 var(--step--2)/1 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
-.shot--todo .todo__t { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: 1.3rem; color: var(--ink); margin: .5rem 0 .3rem; line-height: 1.1; }
-.shot--todo .todo__d { font: 600 var(--step--2)/1.4 var(--f-mono); color: var(--muted); }
+/* La tuile « reportage à venir » a été RETIRÉE de la mosaïque. Glissée en
+   septième position derrière six vraies photos, elle se lisait comme un
+   oubli de chargement — le contraire de son intention. Le sujet a désormais
+   sa propre section : « Le relevé du dehors » (.releve, base.css), où le
+   cadre porte le ciel réel du plateau au lieu d'un carré en attente.
+   La mosaïque ne contient plus que des clichés. */
+
+/* ============ L'INVENTAIRE DU CARNET — ce qu'on a, et où ========= *
+   Un carnet de terrain se lit aussi par son sommaire : six zones couvertes,
+   une non relevée. La liste dit la couverture réelle, sans emphase. */
+.carnet__index { display: grid; gap: 1px; grid-template-columns: repeat(2,1fr); background: var(--line-soft); border: 1px solid var(--line); margin-top: clamp(1.6rem,3.5vw,2.4rem); }
+@media (min-width: 760px){ .carnet__index { grid-template-columns: repeat(4,1fr); } }
+.cix { background: color-mix(in srgb, var(--paper-2) 76%, transparent); padding: clamp(.9rem,2vw,1.3rem); display: flex; flex-direction: column; gap: .3rem; transition: background .3s; }
+.cix:hover { background: var(--paper-2); }
+.cix b { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: 1.05rem; color: var(--ink); }
+.cix span { font: 600 var(--step--2)/1.4 var(--f-mono); color: var(--muted); }
+.cix--open { background: color-mix(in srgb, var(--void) 70%, transparent); border-left: 2px dashed var(--accent-line); }
+.cix--open b { color: var(--accent); }
 
 /* =========================== VISIONNEUSE ======================= */
 .lightbox { position: fixed; inset: 0; z-index: 9000; display: none; place-items: center; padding: clamp(1rem,4vw,3rem); background: color-mix(in srgb,var(--void) 88%, transparent); backdrop-filter: blur(8px); }

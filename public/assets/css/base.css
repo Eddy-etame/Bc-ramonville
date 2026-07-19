@@ -298,8 +298,11 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
   content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
   opacity: .05; mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
-/* la tuile « photo à venir » n'est pas un cliché : pas de grain dessus */
-.station__media--todo::before, .shot--todo::before { content: none; }
+/* Le grain est la texture du CLICHÉ. Il ne s'applique donc ni au cadre vivant
+   (.skyframe : un ciel en direct n'est pas une photo argentique) ni à ce qui
+   n'est pas une image. Les anciennes tuiles « photo à venir » que cette règle
+   protégeait n'existent plus — voir « LE CADRE VIVANT » plus bas. */
+.station__media--sky::before, .skyframe::before { content: none; }
 
 /* ============================ LE CIEL ============================= *
    sky.js pose data-sky (clair|voile|pluie|orage) + data-hour + data-daypart
@@ -409,6 +412,64 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
    --muted à opacity .8 = #70788a sur --paper = 4,47:1 (sous AA) à ~9,3px.
    L'opacité n'achetait rien et coûtait la conformité : supprimée. 6,43:1. */
 .octa__hint { position: absolute; left: 50%; bottom: -1.8rem; transform: translateX(-50%); font: 600 var(--step--2)/1 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); pointer-events: none; white-space: nowrap; }
+
+/* ================= LE CADRE VIVANT & LE RELEVÉ DU DEHORS ========= *
+   Le différenciateur du site — 300 m² extérieurs — est le SEUL lieu de la
+   salle dont on n'ait aucun cliché. Traité en « tuile photo à venir », il se
+   lisait comme un trou au milieu de cinq vraies photos : la promesse
+   principale rendue en état d'attente.
+
+   Parti pris : un extérieur n'a pas de photographie fidèle, il a un CIEL.
+   Le cadre porte donc le ciel RÉEL au-dessus du plateau (même couche .sky,
+   même flux Open-Meteo, son propre starfield) — la seule image honnête d'un
+   lieu qu'on n'a pas filmé, et la seule que personne ne peut copier : elle
+   change avec la météo de Ramonville. Autour, un relevé de terrain au même
+   format que la fiche du pied de page.
+
+   Vit dans base.css : /la-salle/ et /galerie/ portent toutes deux le sujet
+   et chargent des feuilles différentes — une définition, pas deux copies.
+   ================================================================== */
+.skyframe { position: relative; overflow: hidden; height: 100%; min-height: 260px; border-radius: var(--radius); background: var(--void); display: flex; flex-direction: column; justify-content: flex-end; }
+.skyframe .sky { z-index: 0; }
+/* le scrim de la légende — le texte ne parie JAMAIS contre le fond (loi n°1) */
+.skyframe::after { content: ""; position: absolute; inset: auto 0 0 0; height: 62%; z-index: 1; pointer-events: none; background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--void) 88%, transparent) 74%, var(--void)); }
+/* la règle graduée : le tic « relevé ». De l'argent de marque, rien d'autre. */
+.skyframe__rule { position: relative; z-index: 2; display: flex; align-items: flex-end; gap: 0; height: 16px; margin: 0 clamp(1rem,2.4vw,1.4rem) .7rem; border-bottom: 1px solid var(--accent-line); }
+.skyframe__rule i { flex: 1; border-left: 1px solid var(--accent-line); height: 6px; }
+.skyframe__rule i:first-child, .skyframe__rule i:last-child { height: 12px; }
+.skyframe__cap { position: relative; z-index: 2; display: flex; flex-wrap: wrap; align-items: center; gap: .5rem .8rem; padding: 0 clamp(1rem,2.4vw,1.4rem) clamp(1rem,2.4vw,1.3rem); }
+.skyframe__k { font: 600 var(--step--2)/1 var(--f-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+.skyframe__live { display: inline-flex; align-items: center; gap: .7ch; font: 600 var(--step--2)/1 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink); background: color-mix(in srgb, var(--void) 62%, transparent); border: 1px solid var(--accent-line); border-radius: var(--radius); padding: .6em .85em; backdrop-filter: blur(6px); }
+.skyframe__live:empty { display: none; }
+.skyframe__live b { color: var(--accent); font-weight: 600; }
+.skyframe__live::before { content: ""; flex: 0 0 7px; height: 7px; transform: rotate(45deg); background: var(--accent); box-shadow: 0 0 10px var(--accent); }
+@media (prefers-reduced-motion: no-preference){ .skyframe__live::before { animation: pulse 2.4s var(--ease) infinite; } }
+/* dans une station du plateau, le cadre est plus serré : pas de double marge */
+.skyframe--tight { min-height: 220px; border-radius: 0; }
+
+/* --- la fiche : ce qui est mesuré, et ce qui ne l'est pas encore --- */
+.releve { display: grid; gap: clamp(1.2rem,3vw,2.2rem); grid-template-columns: 1fr; align-items: stretch; }
+@media (min-width: 940px){ .releve { grid-template-columns: 1fr 1fr; } }
+.releve__frame { min-height: 300px; border: 1px solid var(--accent-line); border-radius: var(--radius); overflow: hidden; box-shadow: var(--glow-soft); }
+.releve__frame .skyframe { min-height: 300px; }
+.releve__sheet { display: flex; flex-direction: column; }
+.releve__t { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; line-height: 1.06; letter-spacing: -.01em; font-size: clamp(1.7rem,1.1rem+2.4vw,2.9rem); color: var(--ink); margin: .9rem 0 .8rem; }
+.releve__lead { color: var(--ink-soft); max-width: 46ch; }
+.releve__rows { margin-top: clamp(1.2rem,2.6vw,1.8rem); border-top: 1px solid var(--line); }
+.rrow { display: grid; grid-template-columns: 7.5rem 1fr; gap: .6rem 1rem; align-items: baseline; padding: .85rem 0; border-bottom: 1px solid var(--line-soft); }
+.rrow dt { font: 600 var(--step--2)/1.3 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
+.rrow dd { display: flex; flex-direction: column; gap: .2rem; }
+.rrow dd b { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: 1.15rem; color: var(--ink); letter-spacing: -.01em; }
+.rrow dd span { font-size: var(--step--1); color: var(--muted); }
+/* la ligne ouverte — celle qu'on n'a pas. Assumée : même format que les
+   autres, marquée d'un pointillé argent. Ce n'est pas une excuse, c'est une
+   entrée du relevé. */
+.rrow--open { border-bottom: 0; border-left: 2px dashed var(--accent-line); padding-left: 1rem; margin-top: .4rem; background: color-mix(in srgb, var(--paper-2) 42%, transparent); }
+.rrow--open dt { color: var(--muted); }
+.rrow--open dd b { color: var(--accent); }
+.rrow--open dd span { max-width: 44ch; }
+.releve__src { margin-top: 1.1rem; font: 600 var(--step--2)/1.5 var(--f-mono); letter-spacing: .06em; color: var(--muted); }
+@media (max-width: 520px){ .rrow { grid-template-columns: 1fr; gap: .25rem; } }
 
 /* ============ TOUCH — CIBLES ≥44px + RETOUR PRESSÉ (mobile) ========== *
    Sur pointeur grossier on plancher les cibles tactiles à 44px (WCAG 2.5.5) et

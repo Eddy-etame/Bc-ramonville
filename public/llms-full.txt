@@ -27,6 +27,22 @@
 - Deux niveaux : au rez-de-chaussée le plateau (cage, ring, ligne de sacs lourds, espaces libres) ; à l'étage la muscu et le cardio (charges libres, machines), en accès libre 6 j/7
 - Espaces d'entraînement libres et collectifs, dedans et dehors
 
+## Le relevé du plateau extérieur (zone non photographiée)
+
+Le site publie six photos de la salle, toutes prises à couvert. Les 300 m²
+extérieurs — le fait qui distingue Ramonville des quatre autres salles du
+réseau — n'ont pas encore été photographiés, et le site ne les illustre par
+aucune image d'intérieur. À la place, il affiche le relevé écrit de la zone
+et le ciel réel au-dessus du plateau, mis à jour en direct.
+
+- Surface : 300 m² d’entraînement extérieur, aménagés
+- Couverture : couvert, protégé des intempéries
+- Ouverture : toute l'année, six jours sur sept, 10h00 – 21h30
+- Plafond : le ciel — c'est un extérieur, pas une salle de plus
+- Cliché : non relevé. Aucune des six photos publiées ne montre le dehors.
+- Source du ciel affiché : Open-Meteo, coordonnées 43.546 / 1.474 (état du
+  ciel, heure locale de la salle et température, relevés en direct)
+
 ## Disciplines (coach, créneaux, niveau)
 
 - Boxe Anglaise — coachs Valentin G (mardi et vendredi 12h40) et Farouk (anglaise loisirs lundi, mercredi, vendredi 19h45) — débutant à confirmé
@@ -47,14 +63,30 @@
 - Vendredi : 12h40 Boxe Anglaise (Valentin G) · 18h00 Lady Punch (Sonia) · 18h40 Boxe Pieds-Poings (Sonia) · 19h45 Anglaise Loisirs (Farouk)
 - Samedi : 11h00 Boxing Camp (Valentin G) · 14h15 Baby Boxe 3/6 (Valentin G) · 15h00 Éducative 7/11 (Valentin G) · 16h00 Éducative 12/16 (Valentin G)
 - Dimanche : fermé
-- Variante d'été : deux cours par semaine le lundi (12h30 et 20h00), tenus par des coachs du réseau en renfort (Renaud, Fayez) ; le reste de la semaine en accès libre muscu/cardio
+
+## Le rythme de la semaine (comptes tirés de la grille ci-dessus)
+
+- Total : 23 cours encadrés par semaine, sur six jours
+- Par jour : lundi 4 · mardi 3 · mercredi 5 · jeudi 3 · vendredi 4 · samedi 4
+- Jour le plus chargé : le mercredi, 5 cours, de 12h40 à 19h45
+- Répartition : 6 cours le midi (avant 14h), 5 l'après-midi (14h–17h), 12 le soir (après 17h)
+- Les 5 créneaux d'après-midi sont tous des cours de l'école enfants (mercredi et samedi)
+- Entre et autour des cours : accès libre muscu/cardio et plateau extérieur, 10h00–21h30, six jours sur sept
+
+## L'été
+
+- Deux cours encadrés par semaine, tous les deux le lundi : 12h30 (Renaud) et 20h00 (Fayez)
+- Renaud et Fayez sont des coachs du réseau Boxing Center en renfort sur l'été ; ils ne font pas partie de l'encadrement de la rentrée à Ramonville (Sonia, Jérôme, Farouk, Valentin G)
+- Du mardi au samedi : accès libre, 10h00–21h30 — muscu, cardio, sacs et plateau extérieur
+- Dimanche : fermé
+- La rentrée reprend le planning complet des 23 cours
 
 ## Les coachs
 
 - Sonia — boxe pieds-poings, Lady Punch, Boxing Camp — 7 créneaux par semaine (photo réelle sur le site)
 - Jérôme — grappling, asso MMA — 4 créneaux par semaine (photo réelle sur le site)
 - Farouk — anglaise loisirs, Boxing Camp — 4 créneaux par semaine
-- Valentin G — boxe anglaise, école enfants (Baby Boxe, éducative, ados) — 8 créneaux par semaine ; il enseigne aussi à la salle des États-Unis
+- Valentin G — boxe anglaise, école enfants (Baby Boxe, éducative, ados) — 8 créneaux par semaine ; il enseigne aussi à la salle des États-Unis, dans le réseau Boxing Center à Toulouse
 
 ## Tarifs et offres
 
