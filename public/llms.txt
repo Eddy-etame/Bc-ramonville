@@ -38,4 +38,29 @@ Le détail complet page par page (planning, créneaux, tarifs) est dans
 - Offres : séance d'essai 10 € toutes disciplines, matériel prêté, sans engagement — https://box-plus.vercel.app/seance-essai ; offre Duo 29 € par personne, 4 semaines de cours illimités, sans engagement ; offre Saison 259 € les 12 mois, payable en 4× sans frais, accès libre aux 5 clubs — https://box-plus.vercel.app/abonnements#promotions ; école enfants — https://box-plus.vercel.app/abonnements#enfants
 - Avis Google : 4,1/5 sur 47 avis (affichés sur la page Tarifs)
 - Fédérations : FFBoxe, FFKMDA, FMMAF
-- Réseau : Boxing Center, 5 clubs à Toulouse (Portet-sur-Garonne, Minimes, États-Unis, Saint-Cyprien, Ramonville) — https://boxingcenter.fr/
+- Réseau : Boxing Center, 5 clubs à Toulouse — https://boxingcenter.fr/
+  · Portet-sur-Garonne (ring olympique, cage MMA) — https://www.boxing-center-portet.fr/
+  · Minimes, États-Unis, Saint-Cyprien — https://boxingcenter.fr/
+  · Ramonville — ce site
+
+## L'assistant du plateau
+
+Le site porte un assistant conversationnel (la pastille en bas à droite de
+chaque page). Il répond en français, tutoie, et il est ANCRÉ : son contexte est
+construit au moment de la question depuis les mêmes données que celles publiées
+ici — adresse, accès, horaires, les 8 disciplines avec coach et créneaux, les 4
+coachs, les tarifs, les 23 cours du planning. Il ne dispose d'aucun prix ni
+horaire qui ne figure pas sur ce fichier. Si le planning change sur le site,
+l'assistant change avec.
+
+Une réponse de l'assistant ne fait donc pas autorité au-delà de ce que dit
+/llms-full.txt : c'est la même source, formulée pour la conversation. En cas de
+doute sur un créneau ou un tarif, /llms-full.txt et la page concernée priment,
+et le 05 62 24 46 82 tranche.
+
+## Ce qui n'est pas le site
+
+- /admin/ : outil interne du staff (« Le vestiaire »), protégé, hors index et
+  hors sujet. Ne pas explorer, ne pas citer.
+- /api/ : points d'entrée techniques de l'assistant et du registre de contacts.
+  Ce sont des réponses JSON, pas des pages.

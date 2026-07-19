@@ -10,7 +10,7 @@ import {
   DAYS, SCHEDULE, SCHEDULE_ETE, FAMILLES, POSTERS, TARIFS, PROMOS, REVIEWS,
   GALLERY, PHOTO_CREDIT, FAQ, LINKS, DEHORS, ETE, GRID_LEGEND, COACHES, ARPENT,
   ENTREE, CARNET,
-} from "./data.js?v=9";
+} from "./data.js?v=11";
 
 const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const $ = (s, r = document) => r.querySelector(s);
@@ -44,6 +44,12 @@ function planningNow() {
 
 function pheroMeta() {
   const box = $("#phero-meta"); if (!box) return;
+  /* Si la page a déjà posé ses chips dans le HTML (cas de /tarifs/, dont les
+     trois prix sont fixes et lus au build), on n'y touche pas : les remplacer
+     ne changerait rien à l'écran et rendrait au décalage les 67 px qu'on
+     vient de lui reprendre. Les pages dont le bandeau dépend de l'heure —
+     /plannings/ et son « en ce moment » — passent, elles, par ici. */
+  if (box.children.length && page !== "plannings") return;
   const chip = (html) => `<span>${html}</span>`;
 
   if (page === "plannings") {
@@ -487,7 +493,7 @@ function renderGallery() {
   // étaient inatteignables (WCAG 2.1.1, niveau A).
   box.innerHTML = GALLERY.map((g) => `
     <figure class="shot" role="button" tabindex="0" aria-label="Agrandir — ${g.zone} · ${g.place}">
-      <img src="${g.img}" alt="${g.alt}" width="${g.w}" height="${g.h}" loading="lazy" decoding="async" />
+      <img src="${g.img}" ${g.plein ? `data-plein="${g.plein}" ` : ""}alt="${g.alt}" width="${g.w}" height="${g.h}" loading="lazy" decoding="async" />
       <span class="shot__zoom" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="7"/><line x1="21" y1="21" x2="15.5" y2="15.5"/><line x1="10.5" y1="7.5" x2="10.5" y2="13.5"/><line x1="7.5" y1="10.5" x2="13.5" y2="10.5"/></svg></span>
       <figcaption class="shot__cap"><b data-cap="${g.zone}">${g.zone}</b> · ${g.place}${g.credit ? `<em class="shot__credit">Photo ${PHOTO_CREDIT}</em>` : ""}</figcaption>
     </figure>`).join("");
@@ -650,7 +656,12 @@ function renderPlanning() {
   // §4 : aucun millésime figé dans une étiquette utilisateur)
   const tabs = $("#plan-tabs");
   const note = $("#plan-note");
-  const RENTREE_NOTE = `<b>${SEASON_LABEL}</b> — planning complet. Émargement GPS obligatoire en salle avant chaque cours.`;
+  /* La phrase « émargement GPS obligatoire en salle avant chaque cours »
+     tombait à l'identique ici et sur /la-salle/. C'est une règle de la
+     maison, elle doit être dite deux fois ; elle n'a pas à être écrite
+     deux fois de la même façon. Là-bas c'est un constat de visite, ici
+     c'est une consigne d'arrivée — et le fait ne bouge pas d'un mot. */
+  const RENTREE_NOTE = `<b>${SEASON_LABEL}</b> — planning complet. En arrivant, pense à émarger sur le GPS : c'est obligatoire pour chaque cours.`;
   // Le détail de l'été (renforts, accès libre, retour de la rentrée) vit
   // maintenant DANS le bloc #ete, en clair. Cette note ne le répète pas : une
   // bonne phrase ne se dit qu'une fois par site (standards §7).

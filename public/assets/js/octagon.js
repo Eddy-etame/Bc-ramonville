@@ -10,7 +10,7 @@
        cible quand on la fait tourner.
    Généré depuis DISCIPLINES (data.js) : l'ordre `edge` fixe les 8 côtés.
    ===================================================================== */
-import { DISCIPLINES } from "./data.js?v=9";
+import { DISCIPLINES } from "./data.js?v=11";
 
 const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const NS = "http://www.w3.org/2000/svg";

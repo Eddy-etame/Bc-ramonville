@@ -8,7 +8,7 @@
    bi-palette (Acier lune ⇄ Cuivre) montée dans la nav, no-flash.
    Aucun chrome copié de Saint-Cyprien.
    ===================================================================== */
-import { NAV, LINKS, SALLE, SEASON_LABEL, NETWORK } from "./data.js?v=9";
+import { NAV, LINKS, SALLE, SEASON_LABEL, NETWORK } from "./data.js?v=11";
 
 /* --------------------------- LE MAILLAGE --------------------------- *
    Les liens sortants vers le réseau propriétaire : le site du groupe, la
@@ -32,6 +32,27 @@ const ScrollTrigger = window.ScrollTrigger;
 const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 if (gsap && ScrollTrigger) gsap.registerPlugin(ScrollTrigger);
 if (!gsap) document.documentElement.classList.remove("fx");
+
+/* GSAP ABSENT : LE TEXTE PASSE AVANT, ET RIEN NE DOIT LEVER.
+   Retirer `fx` (ligne au-dessus) rendait bien le texte visible — mais
+   reveal() continuait ensuite jusqu'à `gsap.set(...)` et jetait un
+   TypeError, mesuré en conditions réelles sur /contact/ (« Cannot read
+   properties of undefined (reading 'set') »). L'exception ne remontait pas
+   qu'une ligne : elle interrompait reveal(), donc l'appelant, donc TOUT ce
+   que page.js faisait après — la fin du montage de la page partait avec.
+   Le texte restait lisible, ce qui rendait le défaut invisible à l'œil, et
+   c'est précisément ce qui le rendait dangereux.
+
+   `motionOK` est la seule porte : rien n'appelle gsap sans être passé par
+   elle. On garde le filet dead-man en TÊTE et non en queue — c'est quand le
+   moteur d'animation manque qu'il faut découvrir le texte, pas l'inverse
+   (loi de lisibilité : l'animation révèle le texte, jamais le contraire). */
+const motionOK = !!(gsap && ScrollTrigger) && !reduce;
+function toutMontrer(scope = document) {
+  document.documentElement.classList.remove("fx");
+  scope.querySelectorAll(".reveal-mask > span, [data-reveal], [data-reveal-group] > *")
+    .forEach((el) => { el.style.opacity = "1"; el.style.transform = "none"; });
+}
 
 let lenis = null;
 let velocity = 0;
@@ -78,8 +99,11 @@ function mountNav() {
       <a class="nav__brand" href="/" aria-label="Boxing Center Ramonville — accueil">
         <!-- alt="" : le lien parent porte déjà aria-label="Boxing Center
              Ramonville — accueil", qui EST le nom accessible. Un alt en plus ne
-             se lit jamais et ne sort qu'en doublon dans les audits. -->
-        <img class="nav__logo" src="/assets/img/logo-white.png" alt="" width="3542" height="1655" />
+             se lit jamais et ne sort qu'en doublon dans les audits.
+             .webp 274×128 et non le PNG 3542×1655 : la barre l'affiche à 32 px
+             de haut (base.css), on servait donc 131 ko pour en peindre 9 —
+             sur les huit pages, avant la première photo de la salle. -->
+        <img class="nav__logo" src="/assets/img/logo-white.webp" alt="" width="274" height="128" fetchpriority="high" decoding="async" />
         <span class="nav__salle">Ramonville</span>
       </a>
       <div class="nav__links">${links}</div>
@@ -106,7 +130,7 @@ function mountNav() {
           <!-- alt="" : le lien parent porte déjà aria-label="Boxing Center
              Ramonville — accueil", qui EST le nom accessible. Un alt en plus ne
              se lit jamais et ne sort qu'en doublon dans les audits. -->
-        <img class="nav__logo" src="/assets/img/logo-white.png" alt="" width="3542" height="1655" />
+        <img class="nav__logo" src="/assets/img/logo-white.webp" alt="" width="274" height="128" fetchpriority="high" decoding="async" />
           <span class="nav__salle">Ramonville</span>
         </a>
         <button class="menu__close" id="menu-close">Fermer <span aria-hidden="true">✕</span></button>
@@ -220,7 +244,9 @@ function mountFooter() {
 
 /* ------------------------------ LENIS ----------------------------- */
 function initSmooth() {
-  if (reduce || !window.Lenis) return;
+  /* `gsap.ticker` pilote le rAF de Lenis : sans gsap, la ligne suivante levait.
+     Le défilement natif reprend la main, et personne ne voit la différence. */
+  if (!motionOK || !window.Lenis) return;
   lenis = new window.Lenis({ duration: 1.05, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smoothWheel: true });
   lenis.on("scroll", (e) => { velocity = e.velocity; ScrollTrigger?.update(); });
   gsap.ticker.add((t) => lenis.raf(t * 1000));
@@ -229,7 +255,8 @@ function initSmooth() {
 
 /* ----------------------------- MAGNETIC --------------------------- */
 function magnetic(scope = document) {
-  if (reduce || window.matchMedia("(hover: none)").matches) return;
+  /* L'aimantation est un agrément : sans moteur, le bouton reste un bouton. */
+  if (!motionOK || window.matchMedia("(hover: none)").matches) return;
   scope.querySelectorAll("[data-magnetic]").forEach((el) => {
     if (el.dataset.magBound) return; el.dataset.magBound = "1";
     el.addEventListener("mousemove", (e) => {
@@ -278,21 +305,37 @@ function scramble(el, opts = {}) {
 }
 
 /* ----------------------------- REVEAL ----------------------------- */
+/* LE PREMIER ÉCRAN N'APPARTIENT PLUS AU MOTEUR.
+   Tout ce qui vit dans .hero / .phero est monté par une animation CSS qui
+   part au premier rendu (base.css, § « le premier écran ne dépend plus du
+   réseau »). Le mouvement est identique — mais il ne réclame plus qu'une
+   librairie traverse l'Atlantique avant de rendre le texte visible.
+   Ici, on se contente donc de le déclarer déjà traité : sans ça, le
+   `gsap.set(..., { opacity: 0 })` ci-dessous le RE-CACHERAIT juste après
+   que le navigateur l'a montré — le pire des deux mondes. */
+const premierEcran = (el) => !!(el.closest && el.closest(".hero, .phero"));
+
 function reveal(scope = document) {
-  if (reduce) { document.documentElement.classList.remove("fx"); return; }
+  /* Un seul verrou pour les deux cas — mouvement refusé par l'utilisateur, ou
+     moteur d'animation absent. Avant, seul `reduce` était traité, et l'absence
+     de gsap tombait dans les `gsap.set` plus bas. */
+  if (!motionOK) { toutMontrer(scope); return; }
   scope.querySelectorAll(".reveal-mask").forEach((m) => {
     const kids = [...m.children];
     if (m.dataset.revBound || !kids.length) return; m.dataset.revBound = "1";
+    if (premierEcran(m)) return;
     gsap.set(kids, { yPercent: 112, opacity: 0 });
     gsap.to(kids, { yPercent: 0, opacity: 1, duration: 1, ease: "power4.out", stagger: 0.08, scrollTrigger: { trigger: m, start: "top 90%" } });
   });
   scope.querySelectorAll("[data-reveal]").forEach((el) => {
     if (el.dataset.revBound) return; el.dataset.revBound = "1";
+    if (premierEcran(el)) return;
     gsap.to(el, { opacity: 1, y: 0, duration: 0.9, ease: "power3.out", scrollTrigger: { trigger: el, start: "top 92%" } });
   });
   scope.querySelectorAll("[data-reveal-group]").forEach((g) => {
     const kids = [...g.children];
     if (g.dataset.revBound || !kids.length) return; g.dataset.revBound = "1";
+    if (premierEcran(g)) return;
     gsap.set(kids, { opacity: 0, y: 30 });
     gsap.to(kids, { opacity: 1, y: 0, duration: 0.85, ease: "power3.out", stagger: 0.07, scrollTrigger: { trigger: g, start: "top 88%" } });
   });
@@ -329,7 +372,9 @@ function hydrateMedia(scope = document) {
 /* --------------------- VELOCITY: ticker drift --------------------- */
 let kineticsOn = false;
 function initKinetics() {
-  if (reduce || kineticsOn) return; kineticsOn = true;
+  /* Le bandeau défilant est porté par gsap.ticker : sans lui, il reste posé,
+     lisible, à sa place de départ — plutôt qu'une exception à mi-parcours. */
+  if (!motionOK || kineticsOn) return; kineticsOn = true;
   const tracks = [...document.querySelectorAll(".marquee__track")].map((t) => {
     const half = t.scrollWidth / 2 || 1;
     return { el: t, half, x: 0, base: parseFloat(t.dataset.speed || "0.6") };

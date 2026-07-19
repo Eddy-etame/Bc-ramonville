@@ -182,6 +182,56 @@ html.is-locked, html.is-locked body { overflow: hidden; height: 100%; }
 html.fx .reveal-mask > span { opacity: 0; }
 html.fx [data-reveal] { opacity: 0; transform: translateY(28px); }
 
+/* ============ LE PREMIER ÉCRAN NE DÉPEND PLUS DU RÉSEAU ============
+   Ce qui suit ne retire AUCUN mouvement : il le rend au navigateur.
+
+   Mesuré avant : l'élément le plus grand du premier écran — la ligne
+   d'accroche du hero — restait à `opacity: 0` jusqu'à ce que gsap arrive
+   de jsdelivr, s'exécute, et que ScrollTrigger daigne le déclencher.
+   En 4G bridée, cela faisait 10,2 s d'écran noir sur un texte qui était
+   dans le HTML depuis 1,7 s. La loi dit « l'animation RÉVÈLE le texte,
+   jamais l'inverse » : ici l'animation le retenait en otage.
+
+   La montée du hero est donc jouée en CSS, déclenchée par le même
+   `html.fx` que pose le script sans-flash — c'est-à-dire au premier
+   rendu, sans une seule requête. En dessous de la ligne de flottaison,
+   rien ne change : gsap et ScrollTrigger gardent tout le reste du site.
+   (site.js n'a plus le droit de toucher au premier écran : il le marque
+   `revBound` d'emblée, sinon un gsap.set(opacity:0) le re-cacherait.)   */
+@media (prefers-reduced-motion: no-preference) {
+  html.fx .hero .reveal-mask > span,
+  html.fx .phero .reveal-mask > span { animation: bcr-lever 1s var(--ease) both; }
+  html.fx .hero [data-reveal],
+  html.fx .phero [data-reveal] { animation: bcr-monte .9s var(--ease) both; }
+  html.fx .hero [data-reveal-group] > *,
+  html.fx .phero [data-reveal-group] > * { animation: bcr-monte .85s var(--ease) both; }
+  /* le décalage de gsap (stagger .08 / .07), à l'identique */
+  html.fx .hero .reveal-mask > span:nth-child(2),
+  html.fx .phero .reveal-mask > span:nth-child(2) { animation-delay: .08s; }
+  html.fx .hero .reveal-mask > span:nth-child(3),
+  html.fx .phero .reveal-mask > span:nth-child(3) { animation-delay: .16s; }
+  html.fx .hero [data-reveal-group] > :nth-child(2),
+  html.fx .phero [data-reveal-group] > :nth-child(2) { animation-delay: .07s; }
+  html.fx .hero [data-reveal-group] > :nth-child(3),
+  html.fx .phero [data-reveal-group] > :nth-child(3) { animation-delay: .14s; }
+  html.fx .hero [data-reveal-group] > :nth-child(4),
+  html.fx .phero [data-reveal-group] > :nth-child(4) { animation-delay: .21s; }
+}
+@keyframes bcr-lever { from { opacity: 0; transform: translateY(112%); } to { opacity: 1; transform: none; } }
+@keyframes bcr-monte { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+
+/* Mouvement refusé : le premier écran est lisible AVANT même que le
+   moteur ait démarré. Auparavant, `html.fx` posait opacity:0 pour tout
+   le monde et il fallait attendre que site.js retire la classe — un
+   visiteur qui refuse les animations regardait quand même du vide. */
+@media (prefers-reduced-motion: reduce) {
+  html.fx .hero .reveal-mask > span,  html.fx .phero .reveal-mask > span,
+  html.fx .hero [data-reveal],        html.fx .phero [data-reveal],
+  html.fx .hero [data-reveal-group] > *, html.fx .phero [data-reveal-group] > * {
+    opacity: 1; transform: none;
+  }
+}
+
 /* ---------------------------- BUTTONS ----------------------------- */
 .btn { display: inline-flex; align-items: center; justify-content: center; gap: .8ch; padding: .95em 1.55em; font: 600 var(--step--1)/1 var(--f-mono); letter-spacing: .04em; text-transform: uppercase; border-radius: var(--radius); position: relative; color: var(--ink); border: 1.5px solid var(--line); background: color-mix(in srgb, var(--paper-2) 88%, transparent); transition: transform .35s var(--ease-spring), box-shadow .35s var(--ease), border-color .3s, background .3s, color .3s; }
 .btn:hover { transform: translateY(-2px); box-shadow: var(--glow-soft); border-color: var(--accent); color: #fff; }

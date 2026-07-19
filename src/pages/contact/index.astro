@@ -3,20 +3,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact — Boxing Center Ramonville · 33 rue des Ormes, métro B, 05 62 24 46 82</title>
-  <meta name="description" content="Contacter Boxing Center Ramonville : 33 rue des Ormes, 31520 Ramonville-Saint-Agne, à côté du terminus métro B. Horaires lun–sam 10h–21h30, téléphone 05 62 24 46 82, itinéraire, et les réponses aux questions fréquentes." />
+  <title>Contact — Boxing Center Ramonville · 33 rue des Ormes, métro B</title>
+  <meta name="description" content="33 rue des Ormes, 31520 Ramonville-Saint-Agne, au terminus du métro B. Ouvert du lundi au samedi, 10h – 21h30. 05 62 24 46 82. Itinéraire et FAQ." />
 
   <!-- Préconnexions — avant toute feuille de style -->
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link rel="preconnect" href="https://api.open-meteo.com" crossorigin />
 
   <!-- Polices AUTO-HÉBERGÉES — mêmes familles/graisses que l'original Google Fonts -->
-  <link rel="preload" href="/fonts/chakrapetch-700-latin.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="/fonts/manrope-var-latin.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="/assets/css/fonts.css?v=9" />
-  <link rel="stylesheet" href="/assets/css/base.css?v=9" />
-  <link rel="stylesheet" href="/assets/css/chatbot.css?v=9" />
-  <link rel="stylesheet" href="/assets/css/page.css?v=9" />
+  <link rel="preload" href="/fonts/chakrapetch-700-latin.woff2?v=11" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/manrope-var-latin.woff2?v=11" as="font" type="font/woff2" crossorigin />
+  <!-- JetBrains Mono manquait à l'appel, et c'est LUI qui décalait la page.
+       Les libellés mono sont partout au-dessus de la ligne de flottaison —
+       fil d'ariane, sur-titres, boutons, les chips du hero. La police
+       arrivait après le premier rendu : tout ce petit monde changeait de
+       largeur d'un coup et poussait la première section vers le bas
+       (0,621 de décalage mesuré sur /tarifs/). Elle était de toute façon
+       téléchargée sur les huit pages : la précharger ne coûte pas un octet
+       ni une requête de plus, elle arrive seulement à l'heure. -->
+  <link rel="preload" href="/fonts/jetbrainsmono-var-latin.woff2?v=11" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=11" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=11" />
+  <link rel="stylesheet" href="/assets/css/page.css?v=11" />
   <meta name="keywords" content="contact boxe Ramonville, adresse Boxing Center Ramonville-Saint-Agne, métro B Ramonville, téléphone salle boxe Toulouse sud, itinéraire" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="author" content="Boxing Center Ramonville" />
@@ -26,7 +33,7 @@
   <meta name="ICBM" content="43.546, 1.474" />
   <link rel="canonical" href="https://ramonville.boxingcenter.fr/contact/" />
   <meta name="theme-color" content="#070a12" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=9" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=11" />
 
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="fr_FR" />
@@ -61,11 +68,26 @@
           "https://www.facebook.com/BoxingCenterToulouse/"
         ],
         "subOrganization": [
-          { "@id": "https://ramonville.boxingcenter.fr/#salle" },
-          { "@type": "SportsActivityLocation", "name": "Boxing Center Portet-sur-Garonne", "url": "https://www.boxing-center-portet.fr/" },
-          { "@type": "SportsActivityLocation", "name": "Boxing Center Minimes" },
-          { "@type": "SportsActivityLocation", "name": "Boxing Center États-Unis" },
-          { "@type": "SportsActivityLocation", "name": "Boxing Center Saint-Cyprien" }
+          {
+            "@id": "https://ramonville.boxingcenter.fr/#salle"
+          },
+          {
+            "@type": "SportsActivityLocation",
+            "name": "Boxing Center Portet-sur-Garonne",
+            "url": "https://www.boxing-center-portet.fr/"
+          },
+          {
+            "@type": "SportsActivityLocation",
+            "name": "Boxing Center Minimes"
+          },
+          {
+            "@type": "SportsActivityLocation",
+            "name": "Boxing Center États-Unis"
+          },
+          {
+            "@type": "SportsActivityLocation",
+            "name": "Boxing Center Saint-Cyprien"
+          }
         ]
       },
       {
@@ -196,10 +218,103 @@
             }
           ]
         },
+        "potentialAction": [
+          {
+            "@type": "ReserveAction",
+            "name": "Réserver la séance d'essai",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://box-plus.vercel.app/seance-essai",
+              "inLanguage": "fr-FR",
+              "actionPlatform": [
+                "https://schema.org/DesktopWebPlatform",
+                "https://schema.org/MobileWebPlatform"
+              ]
+            },
+            "result": {
+              "@type": "Reservation",
+              "name": "Séance d'essai — Boxing Center Ramonville"
+            }
+          },
+          {
+            "@type": "CommunicateAction",
+            "name": "Appeler la salle",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "tel:+33562244682",
+              "inLanguage": "fr-FR"
+            }
+          }
+        ],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "Renseignements et inscriptions",
+          "telephone": "+33562244682",
+          "email": "boxingcenter31@gmail.com",
+          "areaServed": "FR",
+          "availableLanguage": "French"
+        },
+        "description": "La seule salle du réseau Boxing Center qui s'entraîne dehors : 300 m² extérieurs couverts, un octogone de 7 m, un ring de boxe olympique et deux niveaux avec un étage muscu/cardio, à Ramonville-Saint-Agne. Boxe anglaise, pieds-poings, grappling, asso MMA, Boxing Camp, Lady Punch et école enfants dès 3 ans. Séance d'essai 10€.",
         "parentOrganization": {
           "@id": "https://boxingcenter.fr/#organization"
-        },
-        "description": "La seule salle du réseau Boxing Center qui s'entraîne dehors : 300 m² extérieurs couverts, un octogone de 7 m, un ring de boxe olympique et deux niveaux avec un étage muscu/cardio, à Ramonville-Saint-Agne. Boxe anglaise, pieds-poings, grappling, asso MMA, Boxing Camp, Lady Punch et école enfants dès 3 ans. Séance d'essai 10€."
+        }
+      },
+      {
+        "@type": "ItemList",
+        "@id": "https://ramonville.boxingcenter.fr/#navigation",
+        "name": "Les pages de Boxing Center Ramonville",
+        "itemListOrder": "https://schema.org/ItemListOrderAscending",
+        "numberOfItems": 8,
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Accueil",
+            "url": "https://ramonville.boxingcenter.fr/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Le plateau",
+            "url": "https://ramonville.boxingcenter.fr/la-salle/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Activités",
+            "url": "https://ramonville.boxingcenter.fr/activites/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "Planning",
+            "url": "https://ramonville.boxingcenter.fr/plannings/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 5,
+            "name": "Tarifs",
+            "url": "https://ramonville.boxingcenter.fr/tarifs/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 6,
+            "name": "Coachs",
+            "url": "https://ramonville.boxingcenter.fr/coachs/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 7,
+            "name": "Galerie",
+            "url": "https://ramonville.boxingcenter.fr/galerie/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 8,
+            "name": "Contact",
+            "url": "https://ramonville.boxingcenter.fr/contact/"
+          }
+        ]
       },
       {
         "@type": "WebSite",
@@ -218,8 +333,8 @@
         ],
         "@id": "https://ramonville.boxingcenter.fr/contact/#webpage",
         "url": "https://ramonville.boxingcenter.fr/contact/",
-        "name": "Contact — Boxing Center Ramonville · 33 rue des Ormes, métro B, 05 62 24 46 82",
-        "description": "Contacter Boxing Center Ramonville : 33 rue des Ormes, 31520 Ramonville-Saint-Agne, à côté du terminus métro B. Horaires lun–sam 10h–21h30, téléphone 05 62 24 46 82, itinéraire, et les réponses aux questions fréquentes.",
+        "name": "Contact — Boxing Center Ramonville · 33 rue des Ormes, métro B",
+        "description": "33 rue des Ormes, 31520 Ramonville-Saint-Agne, au terminus du métro B. Ouvert du lundi au samedi, 10h – 21h30. 05 62 24 46 82. Itinéraire et FAQ.",
         "inLanguage": "fr-FR",
         "isPartOf": {
           "@id": "https://ramonville.boxingcenter.fr/#website"
@@ -249,7 +364,7 @@
             "name": "C'est vrai qu'on s'entraîne dehors ?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Oui. Ramonville est la seule salle du réseau avec 300 m² extérieurs aménagés et protégés des intempéries : on s'entraîne à l'air, sous le ciel, toute l'année. Il y a aussi un octogone de 7 m et un ring de boxe olympique."
+              "text": "Oui, et c'est la seule des cinq salles où c'est possible : 300 m² dehors, aménagés et couverts, praticables toute l'année — une averse ne renvoie personne à l'intérieur. Sous charpente, tu as l'octogone de 7 m et le ring de boxe olympique."
             }
           },
           {
@@ -284,7 +399,14 @@
               "text": "Du lundi au samedi, de 10h00 à 21h30, accès libre muscu/cardio inclus. Fermé le dimanche. Un émargement GPS est demandé en salle avant chaque cours."
             }
           }
-        ]
+        ],
+        "speakable": {
+          "@type": "SpeakableSpecification",
+          "cssSelector": [
+            "h1",
+            ".lead"
+          ]
+        }
       },
       {
         "@type": "ImageObject",
@@ -320,6 +442,17 @@
     (function(){try{var p=localStorage.getItem('bc-ram-palette');if(p==='cuivre')document.documentElement.setAttribute('data-palette','cuivre');}catch(e){}})();
     document.documentElement.classList.add('fx');
   </script>
+  <!-- LES TROIS LIBS SONT MAINTENANT CHEZ NOUS (/assets/vendor/).
+       Elles arrivaient de cdn.jsdelivr.net : un second domaine à résoudre, une
+       seconde poignée de main TLS, avant la moindre ligne d'animation — et ça
+       sur les huit pages. Mesure brotli en main, le CDN les servait gzippées
+       (51,2 ko) ; servies d'ici elles pèsent 43,3 ko, se mettent en cache un an
+       comme tout /assets/, et surtout script-src a pu se refermer sur 'self'
+       dans vercel.json. `defer` inchangé : elles ne retiennent pas le rendu et
+       s'exécutent dans l'ordre du document, donc avant les modules du pied. -->
+  <script is:inline defer src="/assets/vendor/gsap.min.js?v=11"></script>
+  <script is:inline defer src="/assets/vendor/ScrollTrigger.min.js?v=11"></script>
+  <script is:inline defer src="/assets/vendor/lenis.min.js?v=11"></script>
 </head>
 
 <body data-page="contact">
@@ -409,12 +542,45 @@
     <span class="chatbot__label">Une question&nbsp;? Appelle la salle</span>
   </a>
 
-  <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-  <script is:inline defer src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-  <script is:inline type="module" src="/assets/js/site.js?v=9"></script>
-  <script is:inline type="module" src="/assets/js/sky.js?v=9"></script>
-  <script is:inline type="module" src="/assets/js/page.js?v=9"></script>
-  <script is:inline type="module" src="/assets/js/chatbot.js?v=9"></script>
+  <!-- ===================== L'ASSISTANT, À LA DEMANDE =====================
+       L'assistant ne coûte plus rien tant qu'on ne lui parle pas. Il pesait
+       17,5 ko de module + 7,6 ko de feuille BLOQUANT LE RENDU, sur les huit
+       pages, pour un panneau que la plupart des visiteurs n'ouvriront jamais.
+       Rien n'est retiré à l'écran : la pastille est peinte par base.css comme
+       avant, et chatbot.css ne décrit que le panneau — qui n'existe pas encore.
+       On charge au premier signe d'intention (survol, doigt, tabulation), donc
+       avant le clic dans la quasi-totalité des cas ; le clic reste le filet.
+       Sans JavaScript, la pastille est toujours le lien tel: d'origine. -->
+  <script is:inline>
+    (function () {
+      var pastille = document.querySelector("a.chatbot");
+      if (!pastille) return;
+      var venue = null;
+      function venir() {
+        if (venue) return venue;
+        var f = document.createElement("link");
+        f.rel = "stylesheet"; f.href = "/assets/css/chatbot.css?v=11";
+        document.head.appendChild(f);
+        venue = import("/assets/js/chatbot.js?v=11").catch(function () { venue = null; });
+        return venue;
+      }
+      ["pointerenter", "touchstart", "focus"].forEach(function (e) {
+        pastille.addEventListener(e, venir, { once: true, passive: true });
+      });
+      pastille.addEventListener("click", function (e) {
+        /* aria-expanded n'est posé que par chatbot.js : sa présence signifie
+           que le vrai widget a pris la main et gère déjà ce clic. */
+        if (pastille.hasAttribute("aria-expanded")) return;
+        e.preventDefault();
+        var p = venir();
+        if (p) p.then(function () { pastille.click(); });
+        else window.location.href = pastille.href;   // le module n'est pas venu : on appelle la salle
+      });
+    })();
+  </script>
+
+  <script is:inline type="module" src="/assets/js/site.js?v=11"></script>
+  <script is:inline type="module" src="/assets/js/sky.js?v=11"></script>
+  <script is:inline type="module" src="/assets/js/page.js?v=11"></script>
 </body>
 </html>

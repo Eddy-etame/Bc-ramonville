@@ -4,12 +4,19 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "build": "node scripts/content.mjs && astro build",
+    "build": "node scripts/content.mjs && astro build && node scripts/minify.mjs && node scripts/sitemap.mjs",
     "content": "node scripts/content.mjs",
     "preview": "astro preview",
-    "images": "node scripts/images.mjs"
+    "images": "node scripts/images.mjs",
+    "minify": "node scripts/minify.mjs",
+    "sitemap": "node scripts/sitemap.mjs",
+    "fonts": "python scripts/fonts.py"
   },
   "dependencies": {
     "astro": "^5.0.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.27.0",
+    "sharp": "^0.34.0"
   }
 }

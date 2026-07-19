@@ -3,20 +3,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Activités — Boxing Center Ramonville · anglaise, pieds-poings, grappling, MMA, Lady Punch & école dès 3 ans</title>
-  <meta name="description" content="Toutes les disciplines de Boxing Center Ramonville : boxe anglaise & loisirs, pieds-poings, grappling, asso MMA dans l'octogone, Boxing Camp, Lady Punch 100 % féminin, école enfants dès 3 ans et accès libre muscu/cardio. Coach et créneaux réels pour chacune." />
+  <title>Activités — Boxing Center Ramonville · anglaise, pieds-poings, grappling, MMA</title>
+  <meta name="description" content="Huit disciplines, un coach et des créneaux réels pour chacune : anglaise, pieds-poings, grappling, asso MMA, Boxing Camp, Lady Punch, enfants dès 3 ans." />
 
   <!-- Préconnexions — avant toute feuille de style -->
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link rel="preconnect" href="https://api.open-meteo.com" crossorigin />
 
   <!-- Polices AUTO-HÉBERGÉES — mêmes familles/graisses que l'original Google Fonts -->
-  <link rel="preload" href="/fonts/chakrapetch-700-latin.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="/fonts/manrope-var-latin.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="/assets/css/fonts.css?v=9" />
-  <link rel="stylesheet" href="/assets/css/base.css?v=9" />
-  <link rel="stylesheet" href="/assets/css/chatbot.css?v=9" />
-  <link rel="stylesheet" href="/assets/css/activites.css?v=9" />
+  <link rel="preload" href="/fonts/chakrapetch-700-latin.woff2?v=11" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/manrope-var-latin.woff2?v=11" as="font" type="font/woff2" crossorigin />
+  <!-- JetBrains Mono manquait à l'appel, et c'est LUI qui décalait la page.
+       Les libellés mono sont partout au-dessus de la ligne de flottaison —
+       fil d'ariane, sur-titres, boutons, les chips du hero. La police
+       arrivait après le premier rendu : tout ce petit monde changeait de
+       largeur d'un coup et poussait la première section vers le bas
+       (0,621 de décalage mesuré sur /tarifs/). Elle était de toute façon
+       téléchargée sur les huit pages : la précharger ne coûte pas un octet
+       ni une requête de plus, elle arrive seulement à l'heure. -->
+  <link rel="preload" href="/fonts/jetbrainsmono-var-latin.woff2?v=11" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=11" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=11" />
+  <link rel="stylesheet" href="/assets/css/activites.css?v=11" />
   <meta name="keywords" content="cours de boxe Ramonville, grappling Toulouse, asso MMA octogone, Lady Punch Ramonville, boxe pieds-poings, baby boxe 3 ans, boxing camp, accès libre muscu Ramonville-Saint-Agne" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="author" content="Boxing Center Ramonville" />
@@ -26,7 +33,7 @@
   <meta name="ICBM" content="43.546, 1.474" />
   <link rel="canonical" href="https://ramonville.boxingcenter.fr/activites/" />
   <meta name="theme-color" content="#070a12" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=9" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=11" />
 
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="fr_FR" />
@@ -61,11 +68,26 @@
           "https://www.facebook.com/BoxingCenterToulouse/"
         ],
         "subOrganization": [
-          { "@id": "https://ramonville.boxingcenter.fr/#salle" },
-          { "@type": "SportsActivityLocation", "name": "Boxing Center Portet-sur-Garonne", "url": "https://www.boxing-center-portet.fr/" },
-          { "@type": "SportsActivityLocation", "name": "Boxing Center Minimes" },
-          { "@type": "SportsActivityLocation", "name": "Boxing Center États-Unis" },
-          { "@type": "SportsActivityLocation", "name": "Boxing Center Saint-Cyprien" }
+          {
+            "@id": "https://ramonville.boxingcenter.fr/#salle"
+          },
+          {
+            "@type": "SportsActivityLocation",
+            "name": "Boxing Center Portet-sur-Garonne",
+            "url": "https://www.boxing-center-portet.fr/"
+          },
+          {
+            "@type": "SportsActivityLocation",
+            "name": "Boxing Center Minimes"
+          },
+          {
+            "@type": "SportsActivityLocation",
+            "name": "Boxing Center États-Unis"
+          },
+          {
+            "@type": "SportsActivityLocation",
+            "name": "Boxing Center Saint-Cyprien"
+          }
         ]
       },
       {
@@ -196,10 +218,103 @@
             }
           ]
         },
+        "potentialAction": [
+          {
+            "@type": "ReserveAction",
+            "name": "Réserver la séance d'essai",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://box-plus.vercel.app/seance-essai",
+              "inLanguage": "fr-FR",
+              "actionPlatform": [
+                "https://schema.org/DesktopWebPlatform",
+                "https://schema.org/MobileWebPlatform"
+              ]
+            },
+            "result": {
+              "@type": "Reservation",
+              "name": "Séance d'essai — Boxing Center Ramonville"
+            }
+          },
+          {
+            "@type": "CommunicateAction",
+            "name": "Appeler la salle",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "tel:+33562244682",
+              "inLanguage": "fr-FR"
+            }
+          }
+        ],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "Renseignements et inscriptions",
+          "telephone": "+33562244682",
+          "email": "boxingcenter31@gmail.com",
+          "areaServed": "FR",
+          "availableLanguage": "French"
+        },
+        "description": "La seule salle du réseau Boxing Center qui s'entraîne dehors : 300 m² extérieurs couverts, un octogone de 7 m, un ring de boxe olympique et deux niveaux avec un étage muscu/cardio, à Ramonville-Saint-Agne. Boxe anglaise, pieds-poings, grappling, asso MMA, Boxing Camp, Lady Punch et école enfants dès 3 ans. Séance d'essai 10€.",
         "parentOrganization": {
           "@id": "https://boxingcenter.fr/#organization"
-        },
-        "description": "La seule salle du réseau Boxing Center qui s'entraîne dehors : 300 m² extérieurs couverts, un octogone de 7 m, un ring de boxe olympique et deux niveaux avec un étage muscu/cardio, à Ramonville-Saint-Agne. Boxe anglaise, pieds-poings, grappling, asso MMA, Boxing Camp, Lady Punch et école enfants dès 3 ans. Séance d'essai 10€."
+        }
+      },
+      {
+        "@type": "ItemList",
+        "@id": "https://ramonville.boxingcenter.fr/#navigation",
+        "name": "Les pages de Boxing Center Ramonville",
+        "itemListOrder": "https://schema.org/ItemListOrderAscending",
+        "numberOfItems": 8,
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Accueil",
+            "url": "https://ramonville.boxingcenter.fr/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Le plateau",
+            "url": "https://ramonville.boxingcenter.fr/la-salle/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Activités",
+            "url": "https://ramonville.boxingcenter.fr/activites/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "Planning",
+            "url": "https://ramonville.boxingcenter.fr/plannings/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 5,
+            "name": "Tarifs",
+            "url": "https://ramonville.boxingcenter.fr/tarifs/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 6,
+            "name": "Coachs",
+            "url": "https://ramonville.boxingcenter.fr/coachs/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 7,
+            "name": "Galerie",
+            "url": "https://ramonville.boxingcenter.fr/galerie/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 8,
+            "name": "Contact",
+            "url": "https://ramonville.boxingcenter.fr/contact/"
+          }
+        ]
       },
       {
         "@type": "WebSite",
@@ -215,8 +330,8 @@
         "@type": "WebPage",
         "@id": "https://ramonville.boxingcenter.fr/activites/#webpage",
         "url": "https://ramonville.boxingcenter.fr/activites/",
-        "name": "Activités — Boxing Center Ramonville · anglaise, pieds-poings, grappling, MMA, Lady Punch & école dès 3 ans",
-        "description": "Toutes les disciplines de Boxing Center Ramonville : boxe anglaise & loisirs, pieds-poings, grappling, asso MMA dans l'octogone, Boxing Camp, Lady Punch 100 % féminin, école enfants dès 3 ans et accès libre muscu/cardio. Coach et créneaux réels pour chacune.",
+        "name": "Activités — Boxing Center Ramonville · anglaise, pieds-poings, grappling, MMA",
+        "description": "Huit disciplines, un coach et des créneaux réels pour chacune : anglaise, pieds-poings, grappling, asso MMA, Boxing Camp, Lady Punch, enfants dès 3 ans.",
         "inLanguage": "fr-FR",
         "isPartOf": {
           "@id": "https://ramonville.boxingcenter.fr/#website"
@@ -234,6 +349,13 @@
         "dateModified": "2026-07-19",
         "mainEntity": {
           "@id": "https://ramonville.boxingcenter.fr/activites/#liste-disciplines"
+        },
+        "speakable": {
+          "@type": "SpeakableSpecification",
+          "cssSelector": [
+            "h1",
+            ".lead"
+          ]
         }
       },
       {
@@ -358,6 +480,17 @@
     (function(){try{var p=localStorage.getItem('bc-ram-palette');if(p==='cuivre')document.documentElement.setAttribute('data-palette','cuivre');}catch(e){}})();
     document.documentElement.classList.add('fx');
   </script>
+  <!-- LES TROIS LIBS SONT MAINTENANT CHEZ NOUS (/assets/vendor/).
+       Elles arrivaient de cdn.jsdelivr.net : un second domaine à résoudre, une
+       seconde poignée de main TLS, avant la moindre ligne d'animation — et ça
+       sur les huit pages. Mesure brotli en main, le CDN les servait gzippées
+       (51,2 ko) ; servies d'ici elles pèsent 43,3 ko, se mettent en cache un an
+       comme tout /assets/, et surtout script-src a pu se refermer sur 'self'
+       dans vercel.json. `defer` inchangé : elles ne retiennent pas le rendu et
+       s'exécutent dans l'ordre du document, donc avant les modules du pied. -->
+  <script is:inline defer src="/assets/vendor/gsap.min.js?v=11"></script>
+  <script is:inline defer src="/assets/vendor/ScrollTrigger.min.js?v=11"></script>
+  <script is:inline defer src="/assets/vendor/lenis.min.js?v=11"></script>
 </head>
 
 <body data-page="activites">
@@ -428,17 +561,51 @@
     <span class="chatbot__label">Une question&nbsp;? Appelle la salle</span>
   </a>
 
-  <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-  <script is:inline defer src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-  <script is:inline type="module" src="/assets/js/site.js?v=9"></script>
-  <script is:inline type="module" src="/assets/js/sky.js?v=9"></script>
-  <script is:inline type="module" src="/assets/js/page.js?v=9"></script>
+  <!-- ===================== L'ASSISTANT, À LA DEMANDE =====================
+       L'assistant ne coûte plus rien tant qu'on ne lui parle pas. Il pesait
+       17,5 ko de module + 7,6 ko de feuille BLOQUANT LE RENDU, sur les huit
+       pages, pour un panneau que la plupart des visiteurs n'ouvriront jamais.
+       Rien n'est retiré à l'écran : la pastille est peinte par base.css comme
+       avant, et chatbot.css ne décrit que le panneau — qui n'existe pas encore.
+       On charge au premier signe d'intention (survol, doigt, tabulation), donc
+       avant le clic dans la quasi-totalité des cas ; le clic reste le filet.
+       Sans JavaScript, la pastille est toujours le lien tel: d'origine. -->
+  <script is:inline>
+    (function () {
+      var pastille = document.querySelector("a.chatbot");
+      if (!pastille) return;
+      var venue = null;
+      function venir() {
+        if (venue) return venue;
+        var f = document.createElement("link");
+        f.rel = "stylesheet"; f.href = "/assets/css/chatbot.css?v=11";
+        document.head.appendChild(f);
+        venue = import("/assets/js/chatbot.js?v=11").catch(function () { venue = null; });
+        return venue;
+      }
+      ["pointerenter", "touchstart", "focus"].forEach(function (e) {
+        pastille.addEventListener(e, venir, { once: true, passive: true });
+      });
+      pastille.addEventListener("click", function (e) {
+        /* aria-expanded n'est posé que par chatbot.js : sa présence signifie
+           que le vrai widget a pris la main et gère déjà ce clic. */
+        if (pastille.hasAttribute("aria-expanded")) return;
+        e.preventDefault();
+        var p = venir();
+        if (p) p.then(function () { pastille.click(); });
+        else window.location.href = pastille.href;   // le module n'est pas venu : on appelle la salle
+      });
+    })();
+  </script>
+
+  <script is:inline type="module" src="/assets/js/site.js?v=11"></script>
+  <script is:inline type="module" src="/assets/js/sky.js?v=11"></script>
+  <script is:inline type="module" src="/assets/js/page.js?v=11"></script>
 
   <!-- Enrichissement PROPRE à la page : le sommaire des 8 côtés + scrollspy.
        page.js a déjà rendu #famfilter et #discs (les fiches ancrées #<key>). -->
   <script is:inline type="module">
-    import { DISCIPLINES } from "/assets/js/data.js?v=9";
+    import { DISCIPLINES } from "/assets/js/data.js?v=11";
     const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
     const idx = document.getElementById("dindex");
     if (idx && DISCIPLINES) {
@@ -494,6 +661,5 @@
       window.BC?.refresh();
     }
   </script>
-  <script is:inline type="module" src="/assets/js/chatbot.js?v=9"></script>
 </body>
 </html>

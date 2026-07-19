@@ -11,7 +11,7 @@
    boxingcenter.fr (brief §3). Noms de coachs ≡ photos (roster.json), jamais
    croisés. Aucun claim périssable dans les pages : la saison passe par la
    constante SEASON, les promos vivent dans PROMOS (jamais en dur ailleurs).
-   Version d'assets unique : ?v=9 partout (imports compris).
+   Version d'assets unique : ?v=11 partout (imports compris).
    ===================================================================== */
 
 /* Anti-péremption — tout libellé de saison passe par ces constantes. */
@@ -109,11 +109,18 @@ export const NAV = [
 ];
 
 /* Les chiffres du plateau — compteurs (brief §5). raw = pas d'animation. */
+/* MÊMES CHIFFRES, DEUX LÉGENDES. `l` est lue par le hero de l'accueil,
+   `rail` par le bandeau de /la-salle/. Les deux pages affichaient jusqu'ici
+   les quatre mêmes lignes mot pour mot — une trentaine de mots identiques
+   entre les deux URL qui comptent le plus, et la règle de la maison est
+   qu'une formule ne sert qu'une fois. Les nombres, eux, ne bougent pas :
+   ils sont le fait, et ils restent écrits à un seul endroit. L'accueil dit
+   CE QUE C'EST ; le plateau, page de visite, dit CE QUE ÇA FAIT sur place. */
 export const STATS = [
-  { v: 7, suffix: " m", l: "l'octogone, sous le ciel" },
-  { v: 300, suffix: " m²", l: "d'extérieur couvert, aménagé" },
-  { v: 2, suffix: "", l: "niveaux, étage muscu/cardio" },
-  { v: 6, suffix: " j/7", l: "de 10h à 21h30, accès libre inclus", raw: true },
+  { v: 7, suffix: " m", l: "l'octogone, sous le ciel", rail: "la cage, en plein air" },
+  { v: 300, suffix: " m²", l: "d'extérieur couvert, aménagé", rail: "dehors, et à l'abri de la pluie" },
+  { v: 2, suffix: "", l: "niveaux, étage muscu/cardio", rail: "niveaux : le plateau, puis la muscu" },
+  { v: 6, suffix: " j/7", l: "de 10h à 21h30, accès libre inclus", raw: true, rail: "jours ouverts, 10h–21h30" },
 ];
 
 /* ------------------------------------------------------------------ *
@@ -380,7 +387,11 @@ export const PLATEAU = [
 
 /* Le code du plateau — quatre principes (registre documentaire). */
 export const VALUES = [
-  { n: "01", t: "Dehors, vraiment", d: "300 m² extérieurs couverts. On s'entraîne à l'air, sous le ciel réel — pas dans une image de ciel." },
+  /* « on s'entraîne à l'air, sous le ciel » était écrit ici, sur l'accueil et
+     dans la FAQ : la meilleure ligne du site, usée sur trois URL. Elle reste
+     à l'accueil, où elle porte le claim. Ici, le registre est documentaire —
+     on décrit le plateau, on ne le proclame pas. */
+  { n: "01", t: "Dehors, vraiment", d: "300 m² extérieurs couverts. Tu sors du vestiaire et tu y es : la météo fait partie de la séance, pas d'un décor peint sur un mur." },
   // 02 : la cage tourne 3 créneaux/semaine et l'asso MMA est marquée « Confirmé »
   // → « tu tournes dedans dès la première séance » contredisait /plannings/.
   { n: "02", t: "La cage est à toi le mardi", d: "Un octogone de 7 m. Grappling le mardi soir, tous niveaux : c'est le créneau où on ouvre la cage aux débutants. L'asso MMA, deux soirs, quand tu es prêt." },
@@ -551,24 +562,31 @@ export const FAMILLES = [
 ];
 
 /* Posters officiels — EN COULEUR, cliquables plein format (loi n°5).
-   `src` reste le PNG ORIGINAL : c'est la source de vérité, et c'est lui qui
-   s'ouvre au clic, non recompressé. `view` est la version servie DANS la page
-   (WebP, encodée par scripts/images.mjs) : les deux PNG pesaient 2 008 057 et
-   1 452 252 octets — 3,4 Mo à eux deux, sur une page dont toutes les autres
-   images tiennent entre 20 et 244 ko. Un planning n'a pas besoin d'être lourd
-   pour être lisible ; il a besoin d'être ouvrable en grand, et il l'est. */
+   `view` est la version servie DANS la page ; `src` est ce qui s'ouvre au clic.
+
+   LES DEUX SONT MAINTENANT DU WebP, ET LE PLEIN FORMAT NE PERD RIEN.
+   `src` désignait le PNG d'origine (1 961 et 1 418 ko) au nom du « non
+   recompressé ». L'intention était juste, le moyen était cher : scripts/
+   images.mjs encode désormais ces PNG en WebP SANS PERTE et vérifie le
+   résultat pixel par pixel avant de l'écrire — écart maximal 0/255 sur les
+   quatre canaux. Le fichier ouvert au clic est donc l'image d'origine au bit
+   près, pour 798 et 673 ko au lieu de 1 961 et 1 418. Les PNG restent la
+   source du dépôt, dans scripts/img-src/, hors de ce qui est déployé.
+
+   `view` est calibré sur son affichage réel (1 600 px pour 1 552 px utiles au
+   pire cas, mesuré au rendu) et non plus sur les 2 400 px du scan. */
 export const POSTERS = [
   {
-    src: "/assets/img/ram/planning-rentree-2026.png",
+    src: "/assets/img/ram/planning-rentree-2026-full.webp",
     view: "/assets/img/ram/planning-rentree-2026.webp",
-    w: 2400, h: 1740,
+    w: 1600, h: 1160,
     label: `Rentrée ${SEASON}`,
     alt: `Planning officiel de la rentrée ${SEASON} de Boxing Center Ramonville : boxe anglaise, pieds-poings, grappling, asso MMA, boxing camp, Lady Punch et école enfants dès 3 ans, du lundi au samedi.`,
   },
   {
-    src: "/assets/img/ram/planning-ete-2026.png",
+    src: "/assets/img/ram/planning-ete-2026-full.webp",
     view: "/assets/img/ram/planning-ete-2026.webp",
-    w: 2400, h: 1020,
+    w: 1600, h: 680,
     label: "Cours d'été",
     alt: "Planning officiel d'été de Boxing Center Ramonville : cours d'été le lundi midi et soir, reste de la semaine en accès libre muscu/cardio.",
   },
@@ -704,7 +722,13 @@ export const PHOTO_CREDIT = "Axel Derewiany";
    sept »). Les deux plans larges n'ont pas de créneau à eux : ils portent
    `hors`, qui dit leur nature au lieu de leur inventer un horaire. */
 export const GALLERY = [
-  { img: "/assets/img/ram/hero.webp", w: 1920, h: 1282, zone: "Le plateau", place: "octogone 7 m + ring olympique", alt: "Le plateau de Boxing Center Ramonville sous la charpente : l'octogone de 7 m grillagé et le ring de boxe olympique.", discs: [], hors: "Le plan large — les deux instruments de la salle tiennent dans le même cadre, et rien ne les sépare." },
+  /* `plein` : la seule photo de la mosaïque dont la vignette et le grand
+     format diffèrent. hero.webp fait 1 920 px et 238 ko ; dans la grille il
+     n'occupe jamais plus de 415 px CSS (1 070 px à 3× sur mobile, mesuré au
+     rendu) — plus du double des pixels utiles, sur la page la plus lourde du
+     site. La grille charge donc la version 1 200 px, et la visionneuse va
+     chercher le 1 920 AU CLIC, quand quelqu'un le demande vraiment. */
+  { img: "/assets/img/ram/hero-1200.webp", plein: "/assets/img/ram/hero.webp", w: 1200, h: 801, zone: "Le plateau", place: "octogone 7 m + ring olympique", alt: "Le plateau de Boxing Center Ramonville sous la charpente : l'octogone de 7 m grillagé et le ring de boxe olympique.", discs: [], hors: "Le plan large — les deux instruments de la salle tiennent dans le même cadre, et rien ne les sépare." },
   { img: "/assets/img/ram/octogone.webp", w: 768, h: 512, zone: "L'octogone", place: "asso MMA · vue de dessus", alt: "Séance d'asso MMA dans l'octogone de 7 m à Boxing Center Ramonville, vue de dessus, le groupe au sol.", discs: ["grappling", "asso-mma"] },
   { img: "/assets/img/ram/anglaise.webp", w: 768, h: 512, zone: "Le ring", place: "pattes d'ours", alt: "Travail aux pattes d'ours près du ring à Boxing Center Ramonville, un boxeur enchaîne face au coach.", credit: true, discs: ["anglaise", "pieds-poings"] },
   { img: "/assets/img/ram/camp.webp", w: 768, h: 512, zone: "Les sacs", place: "Boxing Camp", alt: "La ligne de sacs lourds pendant le Boxing Camp à Boxing Center Ramonville, plusieurs pratiquants aux gants.", discs: ["boxing-camp"] },
@@ -757,7 +781,7 @@ export const CARNET = {
 
 export const FAQ = [
   { q: "Où se trouve Boxing Center Ramonville ?", a: "Au 33 rue des Ormes, 31520 Ramonville-Saint-Agne, dans le sud toulousain — à proximité du terminus du métro (ligne B, Ramonville) et de l'arrêt bus Ramonville Sud." },
-  { q: "C'est vrai qu'on s'entraîne dehors ?", a: "Oui. Ramonville est la seule salle du réseau avec 300 m² extérieurs aménagés et protégés des intempéries : on s'entraîne à l'air, sous le ciel, toute l'année. Il y a aussi un octogone de 7 m et un ring de boxe olympique." },
+  { q: "C'est vrai qu'on s'entraîne dehors ?", a: "Oui, et c'est la seule des cinq salles où c'est possible : 300 m² dehors, aménagés et couverts, praticables toute l'année — une averse ne renvoie personne à l'intérieur. Sous charpente, tu as l'octogone de 7 m et le ring de boxe olympique." },
   { q: "Quelles disciplines peut-on pratiquer ?", a: "Boxe anglaise et anglaise loisirs, boxe pieds-poings, grappling, asso MMA dans l'octogone, Boxing Camp, Lady Punch (100 % féminin) et toute l'école enfants du Baby Boxe (3 ans) aux ados 12/16. Un étage muscu/cardio est en accès libre." },
   { q: "Y a-t-il des cours pour les enfants ?", a: "Oui, dès 3 ans : Baby Boxe 3/6 le samedi, éducative 7/11 ans et ados 12/16 ans le mercredi et le samedi après-midi, encadrés par Valentin G." },
   { q: "Faut-il un niveau pour commencer ?", a: "Aucun. La séance d'essai à 10 € donne accès à toutes les disciplines, matériel prêté. La plupart des créneaux — loisirs, camp, pieds-poings — sont ouverts à tous les niveaux." },

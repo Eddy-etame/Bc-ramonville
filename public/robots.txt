@@ -1,35 +1,106 @@
 # Boxing Center Ramonville — robots.txt
+#
 # Le contenu des pages est rendu en JS : ne jamais bloquer /assets/js/
 # pour les moteurs, sinon le rendu Googlebot est vide.
+#
+# DEUX ENDROITS QUI NE SONT PAS DU SITE, et qui n'ont donc rien à faire
+# dans un index :
+#   /admin/  — le vestiaire, l'outil du staff. Il porte déjà un
+#              <meta robots="noindex, nofollow"> et un en-tête
+#              X-Robots-Tag (vercel.json) : la triple ceinture est
+#              volontaire, un `Disallow` seul n'empêche pas une URL
+#              d'être indexée sans être lue.
+#   /api/    — les points d'entrée de l'assistant et du registre de
+#              contacts. Ce sont des réponses JSON, pas des pages ; les
+#              explorer ne fait que brûler du budget de crawl.
 
-# Moteurs de recherche classiques
+# ---------------------------- Moteurs -------------------------------
 User-agent: Googlebot
+Disallow: /admin/
+Disallow: /api/
 Allow: /
 
 User-agent: Bingbot
+Disallow: /admin/
+Disallow: /api/
 Allow: /
 
-# IA de réponse et agents génératifs — bienvenus (voir /llms.txt et /llms-full.txt)
+# ------- IA de réponse et agents génératifs — bienvenus sur le site --
+# Le résumé structuré est dans /llms.txt, le détail dans /llms-full.txt.
 User-agent: GPTBot
+Disallow: /admin/
+Disallow: /api/
+Allow: /
+
+User-agent: OAI-SearchBot
+Disallow: /admin/
+Disallow: /api/
+Allow: /
+
+User-agent: ChatGPT-User
+Disallow: /admin/
+Disallow: /api/
 Allow: /
 
 User-agent: ClaudeBot
+Disallow: /admin/
+Disallow: /api/
 Allow: /
 
 User-agent: Claude-Web
+Disallow: /admin/
+Disallow: /api/
+Allow: /
+
+User-agent: Claude-SearchBot
+Disallow: /admin/
+Disallow: /api/
 Allow: /
 
 User-agent: PerplexityBot
+Disallow: /admin/
+Disallow: /api/
+Allow: /
+
+User-agent: Perplexity-User
+Disallow: /admin/
+Disallow: /api/
 Allow: /
 
 User-agent: Google-Extended
+Disallow: /admin/
+Disallow: /api/
+Allow: /
+
+User-agent: Applebot
+Disallow: /admin/
+Disallow: /api/
+Allow: /
+
+User-agent: Applebot-Extended
+Disallow: /admin/
+Disallow: /api/
 Allow: /
 
 User-agent: CCBot
+Disallow: /admin/
+Disallow: /api/
 Allow: /
 
-# Tous les autres
+User-agent: meta-externalagent
+Disallow: /admin/
+Disallow: /api/
+Allow: /
+
+User-agent: Bytespider
+Disallow: /admin/
+Disallow: /api/
+Allow: /
+
+# ---------------------------- Le reste ------------------------------
 User-agent: *
+Disallow: /admin/
+Disallow: /api/
 Allow: /
 
 Sitemap: https://ramonville.boxingcenter.fr/sitemap.xml

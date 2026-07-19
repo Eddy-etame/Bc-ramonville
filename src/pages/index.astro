@@ -1,22 +1,38 @@
+---
+/* UNE SEULE SOURCE POUR LES CHIFFRES DU HERO.
+   data.js est le registre des faits de la salle : le navigateur le lit à
+   l'exécution, le build le lit ici. Le fichier est pur (aucun `window`,
+   aucun `document` au chargement) — il s'importe donc des deux côtés sans
+   rien casser. Si les 300 m² changent un jour, ils changent à un endroit. */
+import { STATS } from "../../public/assets/js/data.js";
+const nf = new Intl.NumberFormat("fr-FR");
+---
 <!doctype html>
 <html lang="fr" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Boxing Center Ramonville — L'octogone à ciel ouvert · salle de boxe & MMA, Ramonville-Saint-Agne (31520)</title>
-  <meta name="description" content="La seule salle du réseau qui s'entraîne dehors : 300 m² extérieurs couverts, un octogone de 7 m, un ring olympique, deux niveaux. Boxe anglaise, pieds-poings, grappling, asso MMA, Lady Punch et école dès 3 ans à Ramonville-Saint-Agne. Métro B. Séance d'essai 10€." />
+  <title>Boxing Center Ramonville — salle de boxe &amp; MMA, l'octogone à ciel ouvert</title>
+  <meta name="description" content="300 m² d'entraînement dehors et à l'abri : un octogone de 7 m, un ring olympique, deux niveaux. Métro B, terminus. Ta première séance est à 10 €." />
 
   <!-- Préconnexions — avant toute feuille de style -->
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link rel="preconnect" href="https://api.open-meteo.com" crossorigin />
 
   <!-- Polices AUTO-HÉBERGÉES — mêmes familles/graisses que l'original Google Fonts -->
-  <link rel="preload" href="/fonts/chakrapetch-700-latin.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="/fonts/manrope-var-latin.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="/assets/css/fonts.css?v=9" />
-  <link rel="stylesheet" href="/assets/css/base.css?v=9" />
-  <link rel="stylesheet" href="/assets/css/chatbot.css?v=9" />
-  <link rel="stylesheet" href="/assets/css/home.css?v=9" />
+  <link rel="preload" href="/fonts/chakrapetch-700-latin.woff2?v=11" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/manrope-var-latin.woff2?v=11" as="font" type="font/woff2" crossorigin />
+  <!-- JetBrains Mono manquait à l'appel, et c'est LUI qui décalait la page.
+       Les libellés mono sont partout au-dessus de la ligne de flottaison —
+       fil d'ariane, sur-titres, boutons, les chips du hero. La police
+       arrivait après le premier rendu : tout ce petit monde changeait de
+       largeur d'un coup et poussait la première section vers le bas
+       (0,621 de décalage mesuré sur /tarifs/). Elle était de toute façon
+       téléchargée sur les huit pages : la précharger ne coûte pas un octet
+       ni une requête de plus, elle arrive seulement à l'heure. -->
+  <link rel="preload" href="/fonts/jetbrainsmono-var-latin.woff2?v=11" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=11" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=11" />
+  <link rel="stylesheet" href="/assets/css/home.css?v=11" />
 
   <meta name="keywords" content="salle de boxe Ramonville, MMA Ramonville-Saint-Agne, octogone Toulouse, grappling Toulouse sud, boxe anglaise Ramonville, Lady Punch, baby boxe 3 ans, Boxing Center Ramonville, 31520" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -27,7 +43,7 @@
   <meta name="ICBM" content="43.546, 1.474" />
   <link rel="canonical" href="https://ramonville.boxingcenter.fr/" />
   <meta name="theme-color" content="#070a12" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=9" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=11" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
@@ -62,15 +78,34 @@
           "https://www.facebook.com/BoxingCenterToulouse/"
         ],
         "subOrganization": [
-          { "@id": "https://ramonville.boxingcenter.fr/#salle" },
-          { "@type": "SportsActivityLocation", "name": "Boxing Center Portet-sur-Garonne", "url": "https://www.boxing-center-portet.fr/" },
-          { "@type": "SportsActivityLocation", "name": "Boxing Center Minimes" },
-          { "@type": "SportsActivityLocation", "name": "Boxing Center États-Unis" },
-          { "@type": "SportsActivityLocation", "name": "Boxing Center Saint-Cyprien" }
+          {
+            "@id": "https://ramonville.boxingcenter.fr/#salle"
+          },
+          {
+            "@type": "SportsActivityLocation",
+            "name": "Boxing Center Portet-sur-Garonne",
+            "url": "https://www.boxing-center-portet.fr/"
+          },
+          {
+            "@type": "SportsActivityLocation",
+            "name": "Boxing Center Minimes"
+          },
+          {
+            "@type": "SportsActivityLocation",
+            "name": "Boxing Center États-Unis"
+          },
+          {
+            "@type": "SportsActivityLocation",
+            "name": "Boxing Center Saint-Cyprien"
+          }
         ]
       },
       {
-        "@type": ["SportsActivityLocation","HealthClub","LocalBusiness"],
+        "@type": [
+          "SportsActivityLocation",
+          "HealthClub",
+          "LocalBusiness"
+        ],
         "@id": "https://ramonville.boxingcenter.fr/#salle",
         "name": "Boxing Center Ramonville",
         "url": "https://ramonville.boxingcenter.fr/",
@@ -78,13 +113,57 @@
         "email": "boxingcenter31@gmail.com",
         "priceRange": "€€",
         "image": "https://ramonville.boxingcenter.fr/assets/img/ram/hero.webp",
-        "address": { "@type": "PostalAddress", "streetAddress": "33 rue des Ormes", "postalCode": "31520", "addressLocality": "Ramonville-Saint-Agne", "addressRegion": "Occitanie", "addressCountry": "FR" },
-        "geo": { "@type": "GeoCoordinates", "latitude": 43.546, "longitude": 1.474 },
-        "areaServed": [ {"@type":"Place","name":"Ramonville-Saint-Agne"}, {"@type":"City","name":"Toulouse"}, {"@type":"Place","name":"Sud toulousain"} ],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "33 rue des Ormes",
+          "postalCode": "31520",
+          "addressLocality": "Ramonville-Saint-Agne",
+          "addressRegion": "Occitanie",
+          "addressCountry": "FR"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 43.546,
+          "longitude": 1.474
+        },
+        "areaServed": [
+          {
+            "@type": "Place",
+            "name": "Ramonville-Saint-Agne"
+          },
+          {
+            "@type": "City",
+            "name": "Toulouse"
+          },
+          {
+            "@type": "Place",
+            "name": "Sud toulousain"
+          }
+        ],
         "publicAccess": true,
         "isAccessibleForFree": false,
-        "openingHoursSpecification": [{ "@type":"OpeningHoursSpecification", "dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"], "opens":"10:00", "closes":"21:30" }],
-        "sport": ["Boxing","Mixed Martial Arts","Kickboxing","Grappling","Muay Thai"],
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday"
+            ],
+            "opens": "10:00",
+            "closes": "21:30"
+          }
+        ],
+        "sport": [
+          "Boxing",
+          "Mixed Martial Arts",
+          "Kickboxing",
+          "Grappling",
+          "Muay Thai"
+        ],
         "foundingDate": "2019-09",
         "sameAs": [
           "https://maps.google.com/?q=Boxing+Center+Ramonville+Saint+Agne",
@@ -93,23 +172,159 @@
           "https://boxingcenter.fr/"
         ],
         "amenityFeature": [
-          { "@type":"LocationFeatureSpecification", "name":"Octogone 7 m", "value": true },
-          { "@type":"LocationFeatureSpecification", "name":"Ring de boxe olympique", "value": true },
-          { "@type":"LocationFeatureSpecification", "name":"300 m² extérieurs couverts, protégés des intempéries", "value": true },
-          { "@type":"LocationFeatureSpecification", "name":"Étage muscu/cardio (2 niveaux)", "value": true },
-          { "@type":"LocationFeatureSpecification", "name":"Espaces d'entraînement libres et collectifs", "value": true }
+          {
+            "@type": "LocationFeatureSpecification",
+            "name": "Octogone 7 m",
+            "value": true
+          },
+          {
+            "@type": "LocationFeatureSpecification",
+            "name": "Ring de boxe olympique",
+            "value": true
+          },
+          {
+            "@type": "LocationFeatureSpecification",
+            "name": "300 m² extérieurs couverts, protégés des intempéries",
+            "value": true
+          },
+          {
+            "@type": "LocationFeatureSpecification",
+            "name": "Étage muscu/cardio (2 niveaux)",
+            "value": true
+          },
+          {
+            "@type": "LocationFeatureSpecification",
+            "name": "Espaces d'entraînement libres et collectifs",
+            "value": true
+          }
         ],
         "hasOfferCatalog": {
           "@type": "OfferCatalog",
           "name": "Offres Boxing Center Ramonville",
           "itemListElement": [
-            { "@type":"Offer", "name":"Séance d'essai", "price":"10", "priceCurrency":"EUR", "url":"https://box-plus.vercel.app/seance-essai", "description":"Toutes disciplines, matériel prêté, sans engagement." },
-            { "@type":"Offer", "name":"Offre Duo", "price":"29", "priceCurrency":"EUR", "url":"https://box-plus.vercel.app/abonnements#promotions", "description":"29 € par personne, 4 semaines de cours illimités, sans engagement." },
-            { "@type":"Offer", "name":"Offre Saison", "price":"259", "priceCurrency":"EUR", "url":"https://box-plus.vercel.app/abonnements#promotions", "description":"259 € les 12 mois, payable en 4× sans frais, accès libre aux 5 clubs." }
+            {
+              "@type": "Offer",
+              "name": "Séance d'essai",
+              "price": "10",
+              "priceCurrency": "EUR",
+              "url": "https://box-plus.vercel.app/seance-essai",
+              "description": "Toutes disciplines, matériel prêté, sans engagement."
+            },
+            {
+              "@type": "Offer",
+              "name": "Offre Duo",
+              "price": "29",
+              "priceCurrency": "EUR",
+              "url": "https://box-plus.vercel.app/abonnements#promotions",
+              "description": "29 € par personne, 4 semaines de cours illimités, sans engagement."
+            },
+            {
+              "@type": "Offer",
+              "name": "Offre Saison",
+              "price": "259",
+              "priceCurrency": "EUR",
+              "url": "https://box-plus.vercel.app/abonnements#promotions",
+              "description": "259 € les 12 mois, payable en 4× sans frais, accès libre aux 5 clubs."
+            }
           ]
         },
-        "parentOrganization": { "@id": "https://boxingcenter.fr/#organization" },
+        "potentialAction": [
+          {
+            "@type": "ReserveAction",
+            "name": "Réserver la séance d'essai",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://box-plus.vercel.app/seance-essai",
+              "inLanguage": "fr-FR",
+              "actionPlatform": [
+                "http://schema.org/DesktopWebPlatform",
+                "http://schema.org/MobileWebPlatform"
+              ]
+            },
+            "result": {
+              "@type": "Reservation",
+              "name": "Séance d'essai — Boxing Center Ramonville"
+            }
+          },
+          {
+            "@type": "CommunicateAction",
+            "name": "Appeler la salle",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "tel:+33562244682",
+              "inLanguage": "fr-FR"
+            }
+          }
+        ],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "Renseignements et inscriptions",
+          "telephone": "+33562244682",
+          "email": "boxingcenter31@gmail.com",
+          "areaServed": "FR",
+          "availableLanguage": "French"
+        },
+        "parentOrganization": {
+          "@id": "https://boxingcenter.fr/#organization"
+        },
         "description": "La seule salle du réseau Boxing Center qui s'entraîne dehors : 300 m² extérieurs couverts, un octogone de 7 m, un ring de boxe olympique et deux niveaux avec un étage muscu/cardio, à Ramonville-Saint-Agne. Boxe anglaise, pieds-poings, grappling, asso MMA, Boxing Camp, Lady Punch et école enfants dès 3 ans. Séance d'essai 10€."
+      },
+      {
+        "@type": "ItemList",
+        "@id": "https://ramonville.boxingcenter.fr/#navigation",
+        "name": "Les pages de Boxing Center Ramonville",
+        "itemListOrder": "https://schema.org/ItemListOrderAscending",
+        "numberOfItems": 8,
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Accueil",
+            "url": "https://ramonville.boxingcenter.fr/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Le plateau",
+            "url": "https://ramonville.boxingcenter.fr/la-salle/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Activités",
+            "url": "https://ramonville.boxingcenter.fr/activites/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "Planning",
+            "url": "https://ramonville.boxingcenter.fr/plannings/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 5,
+            "name": "Tarifs",
+            "url": "https://ramonville.boxingcenter.fr/tarifs/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 6,
+            "name": "Coachs",
+            "url": "https://ramonville.boxingcenter.fr/coachs/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 7,
+            "name": "Galerie",
+            "url": "https://ramonville.boxingcenter.fr/galerie/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 8,
+            "name": "Contact",
+            "url": "https://ramonville.boxingcenter.fr/contact/"
+          }
+        ]
       },
       {
         "@type": "WebSite",
@@ -117,20 +332,45 @@
         "url": "https://ramonville.boxingcenter.fr/",
         "name": "Boxing Center Ramonville",
         "inLanguage": "fr-FR",
-        "publisher": { "@id": "https://ramonville.boxingcenter.fr/#salle" }
+        "publisher": {
+          "@id": "https://ramonville.boxingcenter.fr/#salle"
+        },
+        "hasPart": [
+          { "@id": "https://ramonville.boxingcenter.fr/#webpage" },
+          { "@id": "https://ramonville.boxingcenter.fr/la-salle/#webpage" },
+          { "@id": "https://ramonville.boxingcenter.fr/activites/#webpage" },
+          { "@id": "https://ramonville.boxingcenter.fr/plannings/#webpage" },
+          { "@id": "https://ramonville.boxingcenter.fr/tarifs/#webpage" },
+          { "@id": "https://ramonville.boxingcenter.fr/coachs/#webpage" },
+          { "@id": "https://ramonville.boxingcenter.fr/galerie/#webpage" },
+          { "@id": "https://ramonville.boxingcenter.fr/contact/#webpage" }
+        ]
       },
       {
         "@type": "WebPage",
         "@id": "https://ramonville.boxingcenter.fr/#webpage",
         "url": "https://ramonville.boxingcenter.fr/",
-        "name": "Boxing Center Ramonville — L'octogone à ciel ouvert · salle de boxe & MMA, Ramonville-Saint-Agne (31520)",
-        "description": "La seule salle du réseau qui s'entraîne dehors : 300 m² extérieurs couverts, un octogone de 7 m, un ring olympique, deux niveaux. Boxe anglaise, pieds-poings, grappling, asso MMA, Lady Punch et école dès 3 ans à Ramonville-Saint-Agne. Métro B. Séance d'essai 10€.",
+        "name": "Boxing Center Ramonville — salle de boxe & MMA, l'octogone à ciel ouvert",
+        "description": "300 m² d'entraînement dehors et à l'abri : un octogone de 7 m, un ring olympique, deux niveaux. Métro B, terminus. Ta première séance est à 10 €.",
         "inLanguage": "fr-FR",
-        "isPartOf": { "@id": "https://ramonville.boxingcenter.fr/#website" },
-        "about": { "@id": "https://ramonville.boxingcenter.fr/#salle" },
-        "primaryImageOfPage": { "@id": "https://ramonville.boxingcenter.fr/#primaryimage" },
+        "isPartOf": {
+          "@id": "https://ramonville.boxingcenter.fr/#website"
+        },
+        "about": {
+          "@id": "https://ramonville.boxingcenter.fr/#salle"
+        },
+        "primaryImageOfPage": {
+          "@id": "https://ramonville.boxingcenter.fr/#primaryimage"
+        },
         "datePublished": "2026-07-17T00:08:52+01:00",
-        "dateModified": "2026-07-19"
+        "dateModified": "2026-07-19",
+        "speakable": {
+          "@type": "SpeakableSpecification",
+          "cssSelector": [
+            "h1",
+            ".lead"
+          ]
+        }
       },
       {
         "@type": "ImageObject",
@@ -149,6 +389,17 @@
     (function(){try{var p=localStorage.getItem('bc-ram-palette');if(p==='cuivre')document.documentElement.setAttribute('data-palette','cuivre');}catch(e){}})();
     document.documentElement.classList.add('fx');
   </script>
+  <!-- LES TROIS LIBS SONT MAINTENANT CHEZ NOUS (/assets/vendor/).
+       Elles arrivaient de cdn.jsdelivr.net : un second domaine à résoudre, une
+       seconde poignée de main TLS, avant la moindre ligne d'animation — et ça
+       sur les huit pages. Mesure brotli en main, le CDN les servait gzippées
+       (51,2 ko) ; servies d'ici elles pèsent 43,3 ko, se mettent en cache un an
+       comme tout /assets/, et surtout script-src a pu se refermer sur 'self'
+       dans vercel.json. `defer` inchangé : elles ne retiennent pas le rendu et
+       s'exécutent dans l'ordre du document, donc avant les modules du pied. -->
+  <script is:inline defer src="/assets/vendor/gsap.min.js?v=11"></script>
+  <script is:inline defer src="/assets/vendor/ScrollTrigger.min.js?v=11"></script>
+  <script is:inline defer src="/assets/vendor/lenis.min.js?v=11"></script>
 </head>
 
 <body data-page="home">
@@ -190,7 +441,29 @@
         </div>
       </div>
       <div class="wrap">
-        <div class="hero__stats" id="stats" data-reveal-group aria-label="Le plateau en chiffres"></div>
+        <!-- LES QUATRE CHIFFRES SONT DANS LE HTML, PAS SEULEMENT DANS LE JS.
+             Deux raisons, mesurées toutes les deux :
+             · le décalage. Ce bloc arrivait vide puis se remplissait, et le
+               hero grandissait de 143 px sous les pieds du visiteur — 0,132
+               de CLS, le seul saut de mise en page du site, et il tombait
+               pile sur le premier écran.
+             · le référencement. Sept mètres d'octogone, 300 m² dehors, deux
+               niveaux, six jours sur sept : les quatre faits qui vendent la
+               salle n'existaient que pour un robot qui exécute le JavaScript.
+             La source reste STATS dans data.js — c'est le même tableau, lu
+             au build. renderStats() voit le bloc déjà rempli et ne le
+             reconstruit pas ; le compteur, lui, anime les nœuds en place. -->
+        <div class="hero__stats" id="stats" data-reveal-group aria-label="Le plateau en chiffres">
+          {STATS.map((s) => (
+            <div class="stat">
+              <div class="stat__v">
+                <span data-count={String(s.v)} data-raw={s.raw ? "" : undefined} set:html={nf.format(s.v)} />
+                {s.suffix ? <sup>{s.suffix.trim()}</sup> : null}
+              </div>
+              <div class="stat__l">{s.l}</div>
+            </div>
+          ))}
+        </div>
       </div>
     </header>
 
@@ -322,13 +595,45 @@
     <span class="chatbot__label">Une question&nbsp;? Appelle la salle</span>
   </a>
 
-  <!-- Libs (CDN — defer : ordre document conservé, exécution avant les modules) -->
-  <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-  <script is:inline defer src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-  <script is:inline type="module" src="/assets/js/site.js?v=9"></script>
-  <script is:inline type="module" src="/assets/js/sky.js?v=9"></script>
-  <script is:inline type="module" src="/assets/js/home.js?v=9"></script>
-  <script is:inline type="module" src="/assets/js/chatbot.js?v=9"></script>
+  <!-- ===================== L'ASSISTANT, À LA DEMANDE =====================
+       L'assistant ne coûte plus rien tant qu'on ne lui parle pas. Il pesait
+       17,5 ko de module + 7,6 ko de feuille BLOQUANT LE RENDU, sur les huit
+       pages, pour un panneau que la plupart des visiteurs n'ouvriront jamais.
+       Rien n'est retiré à l'écran : la pastille est peinte par base.css comme
+       avant, et chatbot.css ne décrit que le panneau — qui n'existe pas encore.
+       On charge au premier signe d'intention (survol, doigt, tabulation), donc
+       avant le clic dans la quasi-totalité des cas ; le clic reste le filet.
+       Sans JavaScript, la pastille est toujours le lien tel: d'origine. -->
+  <script is:inline>
+    (function () {
+      var pastille = document.querySelector("a.chatbot");
+      if (!pastille) return;
+      var venue = null;
+      function venir() {
+        if (venue) return venue;
+        var f = document.createElement("link");
+        f.rel = "stylesheet"; f.href = "/assets/css/chatbot.css?v=11";
+        document.head.appendChild(f);
+        venue = import("/assets/js/chatbot.js?v=11").catch(function () { venue = null; });
+        return venue;
+      }
+      ["pointerenter", "touchstart", "focus"].forEach(function (e) {
+        pastille.addEventListener(e, venir, { once: true, passive: true });
+      });
+      pastille.addEventListener("click", function (e) {
+        /* aria-expanded n'est posé que par chatbot.js : sa présence signifie
+           que le vrai widget a pris la main et gère déjà ce clic. */
+        if (pastille.hasAttribute("aria-expanded")) return;
+        e.preventDefault();
+        var p = venir();
+        if (p) p.then(function () { pastille.click(); });
+        else window.location.href = pastille.href;   // le module n'est pas venu : on appelle la salle
+      });
+    })();
+  </script>
+
+  <script is:inline type="module" src="/assets/js/site.js?v=11"></script>
+  <script is:inline type="module" src="/assets/js/sky.js?v=11"></script>
+  <script is:inline type="module" src="/assets/js/home.js?v=11"></script>
 </body>
 </html>

@@ -7,19 +7,26 @@
   <meta name="robots" content="noindex, follow" />
 
   <!-- Préconnexions — avant toute feuille de style -->
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link rel="preconnect" href="https://api.open-meteo.com" crossorigin />
 
   <!-- Polices AUTO-HÉBERGÉES — mêmes familles/graisses que l'original Google Fonts -->
-  <link rel="preload" href="/fonts/chakrapetch-700-latin.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="/fonts/manrope-var-latin.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="/assets/css/fonts.css?v=9" />
-  <link rel="stylesheet" href="/assets/css/base.css?v=9" />
-  <link rel="stylesheet" href="/assets/css/chatbot.css?v=9" />
-  <link rel="stylesheet" href="/assets/css/page.css?v=9" />
+  <link rel="preload" href="/fonts/chakrapetch-700-latin.woff2?v=11" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/manrope-var-latin.woff2?v=11" as="font" type="font/woff2" crossorigin />
+  <!-- JetBrains Mono manquait à l'appel, et c'est LUI qui décalait la page.
+       Les libellés mono sont partout au-dessus de la ligne de flottaison —
+       fil d'ariane, sur-titres, boutons, les chips du hero. La police
+       arrivait après le premier rendu : tout ce petit monde changeait de
+       largeur d'un coup et poussait la première section vers le bas
+       (0,621 de décalage mesuré sur /tarifs/). Elle était de toute façon
+       téléchargée sur les huit pages : la précharger ne coûte pas un octet
+       ni une requête de plus, elle arrive seulement à l'heure. -->
+  <link rel="preload" href="/fonts/jetbrainsmono-var-latin.woff2?v=11" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=11" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=11" />
+  <link rel="stylesheet" href="/assets/css/page.css?v=11" />
 
   <meta name="theme-color" content="#070a12" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=9" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=11" />
   <meta name="twitter:card" content="summary" />
   <style is:inline>
     /* Le 404 n'est plus un cul-de-sac : sous le message, les huit côtés de
@@ -45,6 +52,17 @@
   <script is:inline>
     (function(){try{var p=localStorage.getItem('bc-ram-palette');if(p==='cuivre')document.documentElement.setAttribute('data-palette','cuivre');}catch(e){}})();
   </script>
+  <!-- LES TROIS LIBS SONT MAINTENANT CHEZ NOUS (/assets/vendor/).
+       Elles arrivaient de cdn.jsdelivr.net : un second domaine à résoudre, une
+       seconde poignée de main TLS, avant la moindre ligne d'animation — et ça
+       sur les huit pages. Mesure brotli en main, le CDN les servait gzippées
+       (51,2 ko) ; servies d'ici elles pèsent 43,3 ko, se mettent en cache un an
+       comme tout /assets/, et surtout script-src a pu se refermer sur 'self'
+       dans vercel.json. `defer` inchangé : elles ne retiennent pas le rendu et
+       s'exécutent dans l'ordre du document, donc avant les modules du pied. -->
+  <script is:inline defer src="/assets/vendor/gsap.min.js?v=11"></script>
+  <script is:inline defer src="/assets/vendor/ScrollTrigger.min.js?v=11"></script>
+  <script is:inline defer src="/assets/vendor/lenis.min.js?v=11"></script>
 </head>
 <body data-page="404">
   <!-- le saut au contenu manquait ICI seulement, sur les 9 pages : le clavier
@@ -77,16 +95,50 @@
     <span class="chatbot__label">Une question&nbsp;? Appelle la salle</span>
   </a>
 
-  <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-  <script is:inline defer src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-  <script is:inline type="module" src="/assets/js/site.js?v=9"></script>
-  <script is:inline type="module" src="/assets/js/sky.js?v=9"></script>
+  <!-- ===================== L'ASSISTANT, À LA DEMANDE =====================
+       L'assistant ne coûte plus rien tant qu'on ne lui parle pas. Il pesait
+       17,5 ko de module + 7,6 ko de feuille BLOQUANT LE RENDU, sur les huit
+       pages, pour un panneau que la plupart des visiteurs n'ouvriront jamais.
+       Rien n'est retiré à l'écran : la pastille est peinte par base.css comme
+       avant, et chatbot.css ne décrit que le panneau — qui n'existe pas encore.
+       On charge au premier signe d'intention (survol, doigt, tabulation), donc
+       avant le clic dans la quasi-totalité des cas ; le clic reste le filet.
+       Sans JavaScript, la pastille est toujours le lien tel: d'origine. -->
+  <script is:inline>
+    (function () {
+      var pastille = document.querySelector("a.chatbot");
+      if (!pastille) return;
+      var venue = null;
+      function venir() {
+        if (venue) return venue;
+        var f = document.createElement("link");
+        f.rel = "stylesheet"; f.href = "/assets/css/chatbot.css?v=11";
+        document.head.appendChild(f);
+        venue = import("/assets/js/chatbot.js?v=11").catch(function () { venue = null; });
+        return venue;
+      }
+      ["pointerenter", "touchstart", "focus"].forEach(function (e) {
+        pastille.addEventListener(e, venir, { once: true, passive: true });
+      });
+      pastille.addEventListener("click", function (e) {
+        /* aria-expanded n'est posé que par chatbot.js : sa présence signifie
+           que le vrai widget a pris la main et gère déjà ce clic. */
+        if (pastille.hasAttribute("aria-expanded")) return;
+        e.preventDefault();
+        var p = venir();
+        if (p) p.then(function () { pastille.click(); });
+        else window.location.href = pastille.href;   // le module n'est pas venu : on appelle la salle
+      });
+    })();
+  </script>
+
+  <script is:inline type="module" src="/assets/js/site.js?v=11"></script>
+  <script is:inline type="module" src="/assets/js/sky.js?v=11"></script>
 
   <!-- Les huit côtés, depuis la source de vérité — un 404 qui renvoie
        quelque part vaut mieux qu'un 404 qui s'excuse. -->
   <script is:inline type="module">
-    import { DISCIPLINES } from "/assets/js/data.js?v=9";
+    import { DISCIPLINES } from "/assets/js/data.js?v=11";
     const box = document.getElementById("e404-edges");
     if (box && DISCIPLINES) {
       box.innerHTML = [...DISCIPLINES].sort((a, b) => a.edge - b.edge).map((d) =>
@@ -94,6 +146,5 @@
       window.BC?.magnetic(document);
     }
   </script>
-  <script is:inline type="module" src="/assets/js/chatbot.js?v=9"></script>
 </body>
 </html>

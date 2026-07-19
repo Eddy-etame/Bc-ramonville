@@ -6,8 +6,8 @@
    arêtes. La caption du hero lit le VRAI ciel (window.__SKY : heure +
    température) — carnet de terrain. L'octogone est monté par octagon.js.
    ===================================================================== */
-import { STATS, DISCIPLINES, COACHES, SALLE } from "./data.js?v=9";
-import "./octagon.js?v=9"; // effet de bord : auto-monte l'octogone interactif du hero (#octa)
+import { STATS, DISCIPLINES, COACHES, SALLE } from "./data.js?v=11";
+import "./octagon.js?v=11"; // effet de bord : auto-monte l'octogone interactif du hero (#octa)
 
 const gsap = window.gsap;
 const ScrollTrigger = window.ScrollTrigger;
@@ -24,6 +24,13 @@ const nf = new Intl.NumberFormat("fr-FR");
    plus tard, dans countUp(), et seulement une fois la boucle prouvée vivante. */
 function renderStats() {
   const box = $("#stats"); if (!box) return;
+  /* Le bloc est désormais POSÉ DANS LE HTML (index.astro, même tableau
+     STATS lu au build) : il est là dès le premier pixel, le hero ne
+     grandit plus sous les pieds du visiteur, et un robot qui n'exécute
+     pas de JS lit quand même les quatre chiffres. On ne le reconstruit
+     donc que s'il est vide — cas d'un montage à la main ailleurs. Le
+     compteur, lui, anime les nœuds tels qu'il les trouve. */
+  if (box.children.length) return;
   box.innerHTML = STATS.map(
     (s) => `<div class="stat">
       <div class="stat__v"><span data-count="${s.v}" ${s.raw ? "data-raw" : ""}>${nf.format(s.v)}</span>${s.suffix ? `<sup>${s.suffix.trim()}</sup>` : ""}</div>
