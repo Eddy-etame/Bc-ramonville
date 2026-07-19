@@ -351,7 +351,7 @@
       <div class="wrap">
         <nav class="breadcrumb" aria-label="Fil d'ariane"><a href="/">Accueil</a> / <span>Galerie</span></nav>
         <h1 class="display phero__title"><span class="reveal-mask"><span>Carnet</span></span><span class="reveal-mask"><span class="tint">de terrain.</span></span></h1>
-        <p class="lead phero__lead" data-reveal>De vraies photos du plateau : l'octogone, le ring, les sacs, l'étage. Pas une image d'agence — et pas encore les 300 m² extérieurs, parce qu'on ne les a pas encore filmés. Au-dessus, les conditions viennent du vrai ciel de Ramonville, pas d'un preset.</p>
+        <p class="lead phero__lead" data-reveal>Six cadres, une seule salle, aucune image d'agence. Le carnet ne se contente pas de montrer : il dit de quelle zone il parle, et ce qui s'y tient dans la semaine. Au-dessus, les conditions viennent du vrai ciel de Ramonville, pas d'un preset.</p>
         <!-- conditions au tournage : branché sur window.__SKY (sky.js) -->
         <div class="tournage" id="tournage" aria-label="Conditions au-dessus du plateau"></div>
       </div>
@@ -365,19 +365,48 @@
       </div>
     </section>
 
-    <!-- ================= LE RELEVÉ DU DEHORS ======================= -->
-    <!-- La tuile « reportage à venir » vivait en 7e position de la mosaïque,
-         derrière six vraies photos : elle se lisait comme un chargement raté.
-         Le sujet a maintenant sa page dans le carnet — et son cadre porte le
-         ciel réel du plateau plutôt qu'un rectangle en attente. -->
-    <section class="section" style="background:var(--void);border-block:1px solid var(--line)" aria-label="Le relevé du plateau extérieur">
+    <!-- ============== LE CARNET À L'USAGE — six zones, six heures ======
+         Cette page portait ici une COPIE intégrale du relevé de /la-salle/ :
+         même sur-titre, même titre, même phrase-thèse, mêmes cinq cartes de
+         mesure, même signature — 149 mots sur 358 empruntés à une autre page.
+         Le relevé est rendu à son propriétaire. Le carnet dit désormais ce que
+         lui seul peut dire : à quoi sert chacun des six lieux photographiés,
+         et quand — recompté sur le planning officiel à chaque ouverture. -->
+    <section class="section" aria-label="Ce qui se tient dans chaque zone photographiée">
       <div class="wrap">
         <div class="shead" data-reveal>
-          <span class="eyebrow">La page qui manque</span>
-          <h2 class="display"><span class="reveal-mask"><span>Le dehors n'a pas</span></span><span class="reveal-mask"><span class="tint">encore été filmé.</span></span></h2>
-          <p class="muted">Un carnet honnête dit aussi ce qu'il n'a pas. En attendant l'objectif, voici ce qui est mesuré — et le ciel qui, lui, se relève en direct.</p>
+          <span class="eyebrow">Le carnet à l'usage</span>
+          <h2 class="display"><span class="reveal-mask"><span>Six lieux,</span></span><span class="reveal-mask"><span class="tint">et l'heure qui va avec.</span></span></h2>
+          <p class="muted">Un carnet de terrain ne collectionne pas des vues : il note où il était et ce qui s'y tenait. Chaque cadre est donc rendu au planning de la rentrée.</p>
         </div>
-        <div class="releve" id="releve"></div>
+        <div class="zones" id="carnet-usage" data-reveal-group></div>
+      </div>
+    </section>
+
+    <!-- ==================== LA MÉTHODE DU CARNET ==================== -->
+    <section class="section" style="background:var(--void);border-block:1px solid var(--line)" aria-label="La méthode du carnet">
+      <div class="wrap">
+        <div class="shead" data-reveal>
+          <span class="eyebrow">La méthode</span>
+          <h2 class="display"><span class="reveal-mask"><span>Trois règles,</span></span><span class="reveal-mask"><span class="tint">tenues sur les six.</span></span></h2>
+        </div>
+        <div class="regles" id="carnet-methode" data-reveal-group></div>
+      </div>
+    </section>
+
+    <!-- ===================== LA PAGE BLANCHE ========================
+         Ce qui manque au carnet tient en trois lignes et un renvoi. Le relevé
+         complet — surface, couverture, ouverture, plafond, cliché — appartient
+         à /la-salle/ et n'est pas recopié ici. -->
+    <section class="section blanche" aria-label="Ce que le carnet ne montre pas">
+      <div class="wrap">
+        <div class="blanche__inner" data-reveal>
+          <span class="eyebrow">La page blanche</span>
+          <h2 class="display"><span class="reveal-mask"><span>Le dehors n'est pas</span></span><span class="reveal-mask"><span class="tint">dans ce carnet.</span></span></h2>
+          <p class="lead">Les 300 m² extérieurs sont ce que Ramonville a de plus rare, et c'est la seule zone qu'aucun objectif n'a encore prise. On ne bouche pas ce trou avec un cadre d'intérieur qui y ressemblerait vaguement.</p>
+          <p class="muted">Ce qui existe du dehors, ce sont ses mesures et son ciel — arpentés sur la page du plateau, pas rejoués ici.</p>
+          <div class="blanche__cta" id="carnet-renvoi"></div>
+        </div>
       </div>
     </section>
 
@@ -418,11 +447,12 @@
   <script is:inline type="module" src="/assets/js/sky.js?v=8"></script>
   <script is:inline type="module" src="/assets/js/page.js?v=8"></script>
 
-  <!-- Enrichissement PROPRE à la page : conditions au tournage (ciel réel) +
-       tuile honnête « le dehors, à venir » + visionneuse. page.js a déjà
-       rendu #gallery (légendes horodatées + température + scramble). -->
+  <!-- Enrichissement PROPRE à la page : la bande de conditions au-dessus du
+       plateau (ciel réel), le sommaire du carnet et la visionneuse plein
+       cadre. page.js a déjà rendu #gallery (légendes par zone + scramble),
+       #carnet-usage, #carnet-methode et #carnet-renvoi. -->
   <script is:inline type="module">
-    import { GALLERY, DEHORS } from "/assets/js/data.js?v=8";
+    import { GALLERY } from "/assets/js/data.js?v=8";
     const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
     const root = document.documentElement;
 
@@ -447,17 +477,15 @@
     window.addEventListener("sky:change", renderCond);
 
     /* --- le sommaire du carnet : la couverture réelle, zone par zone ---
-       La mosaïque ne contient plus QUE des clichés : la tuile « reportage à
-       venir » qu'on ajoutait ici en septième position se lisait comme une
-       image qui n'avait pas chargé. Le dehors a désormais sa propre section
-       (#releve, plus bas), avec le ciel réel dans le cadre. Ici, on liste ce
-       que le carnet couvre — et, en dernière case, ce qu'il ne couvre pas. */
+       La mosaïque ne contient QUE des clichés : la tuile « reportage à venir »
+       qui vivait en septième position se lisait comme une image qui n'avait
+       pas chargé. Le sommaire liste donc les six zones couvertes, et rien
+       d'autre — ce qui manque a sa propre section, plus bas, en clair. */
     const gallery = document.getElementById("gallery");
     const cix = document.getElementById("carnet-index");
     if (cix) {
       cix.innerHTML = GALLERY.map((g) =>
-        `<div class="cix"><b>${g.zone}</b><span>${g.place}</span></div>`).join("")
-        + `<div class="cix cix--open"><b>${DEHORS.t}</b><span>${DEHORS.nonReleve.v.toLowerCase()} — voir le relevé</span></div>`;
+        `<div class="cix"><b>${g.zone}</b><span>${g.place}</span></div>`).join("");
     }
 
     /* --- visionneuse plein cadre (délégation : marche quel que soit l'ordre) --- */

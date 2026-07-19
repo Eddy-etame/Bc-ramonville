@@ -4,9 +4,10 @@
    CSS PROPRE à la page (loi n°2). Se pose SUR base.css. Squelette distinct :
    un PILIER mis en avant (Sonia, en grand, à l'horizontale) + trois fiches,
    chacune avec ses VRAIS créneaux de la semaine (dérivés du planning
-   officiel). Loi coach : nom ≡ photo. Pas de portrait prouvé → tuile nom
-   (initiales) façon silhouette nuit, JAMAIS le visage d'un autre, JAMAIS de
-   stock. Aucun token redéfini — la bascule bi-palette suffit à tout.
+   officiel). Loi coach : nom ≡ photo. Pas de portrait prouvé → PLAQUE gravée
+   au nom du coach (état définitif, aucun manque annoncé), JAMAIS le visage
+   d'un autre, JAMAIS de stock, et surtout jamais un « photo à venir ».
+   Aucun token redéfini — la bascule bi-palette suffit à tout.
    ===================================================================== */
 
 /* Le chrome (.phero*, .breadcrumb, .shead, .ctaband) vit dans base.css. Ce
@@ -36,15 +37,37 @@
    cadrage haut (object-position) car les portraits sont paysage forcés en
    portrait : aucun visage rogné (loi « nom ≡ photo », finding 20). */
 .coach__face.media img { filter: contrast(1.12) brightness(.84) saturate(.85); object-position: 50% 28%; }
-/* tuile nom (pas de photo prouvée) — silhouette nuit, initiales UV */
-.coach__face--tile { display: grid; place-items: center; background: radial-gradient(circle at 50% 26%, color-mix(in srgb,var(--accent) 24%, var(--paper-3)), var(--void)); }
-.coach__face--tile::after { content: ""; position: absolute; inset: 0; background-image: linear-gradient(color-mix(in srgb,var(--ink) 5%, transparent) 1px, transparent 1px); background-size: 100% 9px; opacity: .5; }
-.coach__face--tile .ini { font-family: var(--f-display); font-weight: 700; font-size: clamp(2.4rem,7vw,4rem); color: var(--accent); letter-spacing: .04em; text-shadow: var(--glow-soft); z-index: 1; }
-.coach__face--tile .sub { position: absolute; bottom: .9rem; font: 600 var(--step--2)/1 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); z-index: 1; }
+/* ------------------------- LA PLAQUE ----------------------------- *
+   Pas de cliché prouvé → PAS de placeholder. L'ancienne tuile affichait des
+   initiales et, dessous, « PHOTO À VENIR » : un manque annoncé, en toutes
+   lettres, sur la fiche d'un coach qui, lui, tient ses créneaux toutes les
+   semaines. C'est le motif que le reste du site refuse partout ailleurs.
+   Ce qu'on possède de ce coach, c'est son nom et ce qu'il tient — alors le
+   nom est GRAVÉ, en display, comme une plaque à l'entrée du vestiaire :
+   un filet d'argent, le nom pleine largeur, le rang dessous. Un état
+   définitif et voulu, qui ne promet rien et ne périme pas.
+   Fond nuit + lumière argent/cuivre : aucune teinte hors marque. */
+.coach__face--plaque {
+  display: flex; flex-direction: column; justify-content: center; gap: .9rem;
+  padding: clamp(1.2rem,3vw,2rem);
+  background:
+    radial-gradient(120% 90% at 50% -10%, color-mix(in srgb,var(--accent) 15%, transparent), transparent 62%),
+    linear-gradient(168deg, var(--paper-3), var(--void) 78%);
+  border-right: 1px solid var(--accent-line);
+}
+/* le grain d'acier de la plaque — un métal brossé, pas une photo absente */
+.coach__face--plaque::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .45;
+  background-image: repeating-linear-gradient(96deg, transparent 0 6px, color-mix(in srgb,var(--ink) 4%, transparent) 6px 7px);
+}
+.plaque__rule { width: clamp(2.4rem,7vw,3.6rem); height: 2px; background: var(--accent); box-shadow: var(--glow-soft); z-index: 1; }
+.plaque__name { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; line-height: .95; letter-spacing: -.01em; font-size: clamp(2rem,1.2rem + 3.4vw,3.1rem); color: var(--ink); z-index: 1; }
+.plaque__role { font: 600 var(--step--2)/1.4 var(--f-mono); letter-spacing: .18em; text-transform: uppercase; color: var(--accent); z-index: 1; }
+@media (max-width: 819px){ .coach__face--plaque { border-right: 0; border-bottom: 1px solid var(--accent-line); } }
 
 .coach__body { padding: clamp(1.2rem,2.4vw,1.7rem); display: flex; flex-direction: column; gap: .55rem; flex: 1; }
 .coach__tag { font: 600 .6rem/1 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
-.coach h3 { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: clamp(1.5rem,1rem+1.6vw,2.1rem); color: var(--ink); line-height: 1.05; }
+.coach h3 { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: clamp(1.5rem,1rem + 1.6vw,2.1rem); color: var(--ink); line-height: 1.05; }
 .coach__role { font: 600 .66rem/1.4 var(--f-mono); color: var(--muted); letter-spacing: .03em; }
 .coach p { color: var(--ink-soft); font-size: var(--step--1); }
 

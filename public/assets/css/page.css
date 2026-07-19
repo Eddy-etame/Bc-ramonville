@@ -90,12 +90,12 @@
 .eslot:hover { transform: translateY(-3px); border-color: var(--accent); box-shadow: var(--glow-soft); }
 .eslot__d { grid-area: d; font: 600 var(--step--2)/1 var(--f-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--accent); }
 .eslot__t { grid-area: t; font-family: var(--f-display); font-weight: 700; font-size: 1.6rem; color: var(--ink); letter-spacing: -.02em; line-height: 1; }
-.eslot__c { grid-area: c; font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: clamp(1.3rem,1rem+1.4vw,1.9rem); color: var(--ink); margin-top: .5rem; }
+.eslot__c { grid-area: c; font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: clamp(1.3rem,1rem + 1.4vw,1.9rem); color: var(--ink); margin-top: .5rem; }
 .eslot__k { grid-area: k; font: 600 var(--step--1)/1.4 var(--f-mono); color: var(--muted); }
 .ete__rest { display: grid; gap: 1px; grid-template-columns: 1fr; background: var(--line-soft); border: 1px solid var(--line); margin-top: 1rem; }
 @media (min-width: 680px){ .ete__rest { grid-template-columns: 1.4fr 1fr; } }
 .ete__cell { background: color-mix(in srgb, var(--paper-2) 76%, transparent); padding: clamp(1.2rem,2.4vw,1.7rem); display: flex; flex-direction: column; gap: .35rem; }
-.ete__cell b { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: clamp(1.3rem,1rem+1.2vw,1.8rem); color: var(--accent); letter-spacing: -.01em; }
+.ete__cell b { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: clamp(1.3rem,1rem + 1.2vw,1.8rem); color: var(--accent); letter-spacing: -.01em; }
 .ete__cell--off { background: color-mix(in srgb, var(--void) 72%, transparent); }
 .ete__cell--off b { color: var(--muted); }
 .ete__d { font-size: var(--step--1); color: var(--muted); max-width: 44ch; }
@@ -168,7 +168,7 @@
 .promo > * { position: relative; z-index: 1; }
 .promo__badge { align-self: flex-start; font: 600 .6rem/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--void); background: var(--accent); padding: .5em .85em; border-radius: var(--radius); margin-bottom: 1rem; }
 .promo--saison .promo__badge { background: transparent; color: var(--accent); border: 1px solid var(--accent-line); }
-.promo h3 { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: clamp(1.5rem,1rem+2vw,2.4rem); color: var(--ink); }
+.promo h3 { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: clamp(1.5rem,1rem + 2vw,2.4rem); color: var(--ink); }
 .promo__price { display: flex; align-items: baseline; gap: .6ch; margin: .8rem 0; }
 .promo__price b { font-family: var(--f-display); font-weight: 700; font-size: clamp(2.4rem,6vw,3.6rem); color: var(--accent); letter-spacing: -.02em; }
 .promo__price i { font-style: normal; font: 600 .72rem/1 var(--f-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--ink); }
@@ -215,7 +215,7 @@
 .venir__card { position: relative; border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(1.2rem,2.4vw,1.7rem); background: var(--paper-2); display: flex; flex-direction: column; gap: .4rem; transition: border-color .3s, transform .4s var(--ease-spring); }
 .venir__card:hover { border-color: var(--accent-line); transform: translateY(-3px); }
 .venir__ico { position: absolute; top: clamp(1rem,2.2vw,1.4rem); right: clamp(1rem,2.2vw,1.4rem); width: 34px; height: 34px; display: grid; place-items: center; font-family: var(--f-display); font-weight: 700; font-size: 1rem; color: var(--accent); border: 1px solid var(--accent-line); border-radius: var(--radius); }
-.venir__card b { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: clamp(1.05rem,1rem+.5vw,1.3rem); color: var(--ink); line-height: 1.15; max-width: 22ch; }
+.venir__card b { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: clamp(1.05rem,1rem + .5vw,1.3rem); color: var(--ink); line-height: 1.15; max-width: 22ch; }
 .venir__d { font-size: var(--step--1); color: var(--muted); }
 .venir__d:empty { display: none; }
 

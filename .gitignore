@@ -3,3 +3,7 @@ dist/
 .astro/
 .vercel/
 *.log
+# artefacts de mesure locale (comparaisons de build, rapports Lighthouse) :
+# ils ne décrivent pas le site, ils décrivent une passe de travail.
+_dist_before/
+_tmp_lh/

@@ -312,7 +312,11 @@
         <div class="shead" data-reveal>
           <span class="eyebrow">Sans photo, mais pas sans preuve</span>
           <h2 class="display"><span class="reveal-mask"><span>Ce qu'on peut</span></span><span class="reveal-mask"><span class="tint">relever du dehors.</span></span></h2>
-          <p class="muted">On ne montre que ce qu'on a filmé — alors on montre le ciel, qui lui est là, et on écrit le reste noir sur blanc.</p>
+          <!-- « on ne montre que ce qu'on a filmé » se disait ICI **et** dans
+               la ligne « Cliché · Non relevé » du relevé juste en dessous : la
+               même formule deux fois sur le même écran. Elle appartient au
+               relevé, qui est l'endroit où elle a une conséquence. -->
+          <p class="muted">Tout ce qui suit vient des documents officiels de la salle. Le reste — le ciel — se relève tout seul, à la seconde.</p>
         </div>
         <div class="releve" id="releve"></div>
       </div>
@@ -434,9 +438,15 @@
     const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
     const rail = document.getElementById("prail");
     if (rail && STATS) {
+      /* Le rail naît avec les VRAIES valeurs (loi n°1). Il rendait « 0 m² »,
+         « 0 m », « 0 niveaux » tant que l'animation n'avait pas tourné : sur
+         une frame jamais peinte, le visiteur lisait donc trois chiffres FAUX
+         sur les trois faits qui portent la salle. Un chiffre faux est pire
+         qu'une absence. Le zéro de départ n'est écrit qu'après preuve que la
+         boucle d'animation tourne (rAF ci-dessous). */
       rail.innerHTML = STATS.map((s, i) =>
         `<div class="prail__cell">
-           <span class="prail__v" data-v="${s.v}" data-suffix="${s.suffix || ""}" data-raw="${s.raw ? 1 : 0}">0<small>${s.suffix || ""}</small></span>
+           <span class="prail__v" data-v="${s.v}" data-suffix="${s.suffix || ""}" data-raw="${s.raw ? 1 : 0}">${s.v}<small>${s.suffix || ""}</small></span>
            <span class="prail__l">${s.l}</span>
          </div>`).join("");
 
@@ -457,6 +467,10 @@
         requestAnimationFrame(step);
       };
       if ("IntersectionObserver" in window && !reduce) {
+        // preuve de vie de la boucle : sans elle, aucun zéro n'est écrit
+        requestAnimationFrame(() => rail.querySelectorAll(".prail__v").forEach((elv) => {
+          if (elv.dataset.raw !== "1") elv.innerHTML = `0<small>${elv.dataset.suffix || ""}</small>`;
+        }));
         const io = new IntersectionObserver((es) => es.forEach((e) => {
           if (e.isIntersecting) { rail.querySelectorAll(".prail__v").forEach(count); io.disconnect(); }
         }), { threshold: 0.4 });

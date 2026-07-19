@@ -16,11 +16,17 @@ const $ = (s, r = document) => r.querySelector(s);
 const nf = new Intl.NumberFormat("fr-FR");
 
 /* --------------------------- RENDER ------------------------------- */
+/* Les chiffres naissent VRAIS dans le DOM, jamais à 0 (loi n°1) : sur une
+   frame qui n'est jamais peinte — rAF gelé, onglet ouvert en fond, rendu
+   ralenti — ce que le visiteur voit doit être « 300 m² », pas « 0 m² ». Un
+   chiffre faux est pire qu'une absence, et il tombe précisément sur les trois
+   faits qui portent la salle. Le zéro de départ du compteur n'est écrit que
+   plus tard, dans countUp(), et seulement une fois la boucle prouvée vivante. */
 function renderStats() {
   const box = $("#stats"); if (!box) return;
   box.innerHTML = STATS.map(
     (s) => `<div class="stat">
-      <div class="stat__v"><span data-count="${s.v}" ${s.raw ? "data-raw" : ""}>${s.raw ? s.v : 0}</span>${s.suffix ? `<sup>${s.suffix.trim()}</sup>` : ""}</div>
+      <div class="stat__v"><span data-count="${s.v}" ${s.raw ? "data-raw" : ""}>${nf.format(s.v)}</span>${s.suffix ? `<sup>${s.suffix.trim()}</sup>` : ""}</div>
       <div class="stat__l">${s.l}</div>
     </div>`
   ).join("");
@@ -87,6 +93,10 @@ function countUp() {
     requestAnimationFrame(step);
   };
   if ("IntersectionObserver" in window && !reduce) {
+    /* le zéro n'est écrit qu'ICI, dans un rAF : c'est la seule preuve que la
+       boucle d'animation tourne vraiment. Si elle ne tourne pas, la vraie
+       valeur posée au rendu reste à l'écran — jamais « 0 m² dehors ». */
+    requestAnimationFrame(() => els.forEach((el) => { if (!el.dataset.counting) el.textContent = "0"; }));
     const io = new IntersectionObserver((es) => es.forEach((e) => {
       if (e.isIntersecting) { run(e.target); io.unobserve(e.target); }
     }), { threshold: 0.4 });

@@ -9,7 +9,7 @@ import {
   DISCIPLINES, PLATEAU, VALUES, NETWORK, SALLE, SEASON, SEASON_LABEL,
   DAYS, SCHEDULE, SCHEDULE_ETE, FAMILLES, POSTERS, TARIFS, PROMOS, REVIEWS,
   GALLERY, PHOTO_CREDIT, FAQ, LINKS, DEHORS, ETE, GRID_LEGEND, COACHES, ARPENT,
-  ENTREE,
+  ENTREE, CARNET,
 } from "./data.js?v=8";
 
 const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -127,13 +127,15 @@ function octPath(x, y, a) {
        + `L${X(a - t)} ${Y(a)} L${X(t)} ${Y(a)} L${X(0)} ${Y(a - t)} L${X(0)} ${Y(t)} Z`;
 }
 
-/* la planche : 300 carrés + la cage étalon. `compact` = le champ seul (tuile
-   de station : l'étalon y serait illisible, et se répéterait à 30 cm du grand). */
-function arpentPlot(compact = false) {
+/* la planche : 300 carrés + la cage étalon. UNE SEULE par page — la planche
+   compacte qui doublait celle-ci dans la tuile de station a été supprimée :
+   elle redessinait les 300 mêmes carrés à trente centimètres du grand relevé,
+   et surtout elle affichait une DEUXIÈME fois le compteur « 300 m² dehors » et
+   la barre météo en direct sur le même écran. Un relevé qui se répète cesse
+   d'être un relevé. */
+function arpentPlot() {
   const A = ARPENT, U = 10, PAD = .8;          // 1 m = 10 unités SVG
-  // le rangement suit le CADRE : debout dans le relevé, couché dans la tuile
-  const cols = compact ? A.colsWide : A.cols;
-  const rows = compact ? A.rowsWide : A.rows;
+  const cols = A.cols, rows = A.rows;
   const fw = cols * U, fh = rows * U;          // le champ
   const cage = A.cage * U, gap = 26;
   const cx = fw + gap, cy = (fh - cage) / 2;   // l'étalon, à droite, centré
@@ -145,11 +147,6 @@ function arpentPlot(compact = false) {
       // l'ordre de remplissage suit la lecture (ligne par ligne) : on COMPTE
       sq += `<rect x="${c * U + PAD}" y="${r * U + PAD}" width="${U - PAD * 2}" height="${U - PAD * 2}" style="--i:${i}"/>`;
     }
-  }
-  if (compact) {
-    return `<svg class="arpent__plot" viewBox="0 0 ${fw} ${fh}" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
-      <g class="arpent__field">${sq}</g>
-    </svg>`;
   }
   const W = cx + cage, H = fh + 34;
   return `<svg class="arpent__plot" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
@@ -166,20 +163,19 @@ function arpentPlot(compact = false) {
 }
 
 /* le cadre complet : ciel réel en fond, planche par-dessus, relevé en pied */
-function arpentFrame(compact = false) {
+function arpentFrame() {
   const A = ARPENT;
-  /* la phrase d'honnêteté n'est visible qu'en grand (la tuile n'a pas la place),
-     mais elle est TOUJOURS dans l'étiquette : un lecteur d'écran ne doit pas
-     recevoir une version du relevé plus affirmative que celle qui est à l'écran. */
-  const label = compact
-    ? `Arpentage du plateau extérieur : ${A.count} carrés d'un mètre, soit ${A.count} m². ${A.honest}`
-    : `Arpentage du plateau extérieur : ${A.count} carrés d'un mètre, soit ${A.count} m², et l'octogone de ${A.cage} m dessiné au même étalon. ${A.honest}`;
-  return `<div class="arpent${compact ? " arpent--compact" : ""}" role="img" aria-label="${label}">
+  const label = `Arpentage du plateau extérieur : ${A.count} carrés d'un mètre, soit ${A.count} m², et l'octogone de ${A.cage} m dessiné au même étalon. ${A.honest}`;
+  return `<div class="arpent" role="img" aria-label="${label}">
     <div class="sky" aria-hidden="true"><canvas class="sky__stars"></canvas><div class="sky__haze"></div><div class="sky__moon"></div></div>
-    <div class="arpent__stage">${arpentPlot(compact)}</div>
-    ${compact ? "" : `<p class="arpent__honest">${A.honest}</p>`}
+    <div class="arpent__stage">${arpentPlot()}</div>
+    <p class="arpent__honest">${A.honest}</p>
     <div class="arpent__cap">
-      <span class="arpent__count"><b data-arpent="${A.count}">0</b><small>m² dehors</small></span>
+      <!-- la VRAIE valeur est peinte d'emblée (loi n°1) : sur une frame jamais
+           peinte — rAF gelé, onglet en fond, JS lent — le lecteur voit 300, pas
+           un « 0 m² dehors » qui serait un chiffre FAUX. Le zéro n'est écrit
+           qu'une fois la boucle d'animation prouvée vivante (voir animateArpent). -->
+      <span class="arpent__count"><b data-arpent="${A.count}">${A.count}</b><small>m² dehors</small></span>
       <span class="arpent__live">
         <span class="skyframe__k">${DEHORS.cadre.k}</span>
         <span class="skyframe__live" data-skylive></span>
@@ -189,9 +185,15 @@ function arpentFrame(compact = false) {
 }
 
 /* La vie de la planche : les carrés se posent un par un (on COMPTE le terrain),
-   le compteur suit. Dead-man obligatoire — si le rAF est gelé (onglet en fond)
-   ou l'IO indisponible, on POSE l'état final : jamais un champ à moitié dessiné
-   ni un compteur bloqué à 0, qui redonneraient l'air « inachevé » qu'on chasse. */
+   le compteur suit.
+
+   LE REPLI DIT LA VÉRITÉ. Le compteur naît à 300 dans le HTML, pas à 0 : si le
+   rAF ne tourne jamais (onglet en fond, frame jamais peinte, JS coupé), ce qui
+   reste à l'écran est la VRAIE surface. Un « 0 m² dehors » serait pire qu'une
+   absence — c'est un chiffre faux sur le seul fait qui distingue la salle. Le
+   zéro de départ n'est donc écrit qu'à l'intérieur d'un rAF, c'est-à-dire une
+   fois la boucle prouvée vivante, et avant que la planche n'entre à l'écran.
+   Dead-man conservé par-dessus : la planche finit toujours posée. */
 function animateArpent(scope = document) {
   scope.querySelectorAll(".arpent").forEach((box) => {
     if (box.dataset.live) return;
@@ -200,6 +202,11 @@ function animateArpent(scope = document) {
     const target = num ? +num.dataset.arpent : 0;
     const settle = () => { box.classList.add("is-on", "is-done"); if (num) num.textContent = String(target); };
     if (reduce) { settle(); return; }
+
+    // la boucle est-elle vivante ? seule preuve acceptable pour effacer la vérité
+    if (num) requestAnimationFrame(() => {
+      if (!box.classList.contains("is-on")) num.textContent = "0";
+    });
 
     const run = () => {
       box.classList.add("is-on");
@@ -255,24 +262,34 @@ function renderReleve() {
     </div>`;
 }
 
-/* ------------------------- LE PLATEAU (la-salle) ------------------ */
+/* ------------------------- LE PLATEAU (la-salle) ------------------ *
+   La station sans cliché prouvé (l'extérieur couvert) portait une SECONDE
+   planche d'arpentage, compacte — les 300 mêmes carrés, le même compteur, la
+   même barre météo en direct, à un écran d'écart du grand relevé qui les
+   porte déjà. Le lecteur lisait « 300 M² DEHORS » deux fois dans la même
+   page, et 600 rectangles étaient dessinés pour 300 mètres carrés.
+   La planche vit dans le relevé, une fois. La station, elle, dit ce qu'elle
+   est — une zone décrite mais non filmée — et RENVOIE au relevé au lieu de
+   le rejouer. Jamais le cadre d'une AUTRE zone (même loi que « nom ≡ photo »
+   côté coachs), jamais un carré « à venir ». */
 function renderPlateau() {
   const box = $("#stations"); if (!box) return;
   box.innerHTML = PLATEAU.map((s) => `
-    <article class="station" data-reveal>
+    <article class="station${s.img ? "" : " station--releve"}" data-reveal>
       ${s.img
         ? `<div class="station__media media" data-img="${s.img}" data-label="" data-alt="${s.t} — Boxing Center Ramonville"></div>`
-        /* pas de cliché prouvé → la station est ARPENTÉE, jamais illustrée
-           par le cadre d'une AUTRE zone (même loi que « nom ≡ photo » côté
-           coachs), jamais par un carré « à venir ». Version compacte : le
-           champ seul, l'étalon vit en grand dans le relevé plus bas. */
-        : `<div class="station__media station__media--sky">${arpentFrame(true)}</div>`}
+        : ""}
       <div class="station__body">
         <span class="station__n">${s.n}</span>
         <span class="station__tag">${s.tag}</span>
         <h3>${s.t}</h3>
         <p>${s.d}</p>
         <div class="station__specs">${s.specs.map((x) => `<span>${x}</span>`).join("")}</div>
+        ${s.img ? "" : `<a class="station__renvoi" href="#releve">
+          <span>${DEHORS.eyebrow}</span>
+          <b>Cette zone n'a pas de cliché — elle a un arpentage.</b>
+          <i aria-hidden="true">↑</i>
+        </a>`}
       </div>
     </article>`).join("");
 }
@@ -488,6 +505,71 @@ function renderGallery() {
   }
 }
 
+/* ------------- LE CARNET À L'USAGE (galerie, et elle seule) -------- *
+   /galerie/ rejouait le RELEVÉ DU DEHORS de /la-salle/ à l'identique : même
+   sur-titre, même titre, même phrase-thèse, mêmes cinq cartes de mesure,
+   même signature. 149 mots sur 358 appartenaient à une autre page — et sans
+   ce doublon il ne restait que trois sections. Le relevé est rendu à sa page.
+   Le carnet gagne la sienne avec ce que lui seul peut dire : ce que chacun
+   des six cadres contient, et à quelle heure ça se produit dans la semaine.
+   Tout est RECOMPTÉ depuis SCHEDULE — si le planning bouge, le carnet bouge. */
+function renderCarnet() {
+  const dayIx = (d) => DAYS.indexOf(d);
+
+  /* les six zones rendues au planning officiel */
+  const usage = $("#carnet-usage");
+  if (usage) {
+    usage.innerHTML = GALLERY.map((g) => {
+      const discs = (g.discs || []).map((k) => DISCIPLINES.find((d) => d.key === k)).filter(Boolean);
+      if (!discs.length) {
+        // plan large : aucune discipline ne lui appartient. On le dit.
+        return `<article class="zrow zrow--wide">
+          <span class="zrow__z">${g.zone}</span>
+          <span class="zrow__k">${CARNET.kLarge}</span>
+          <p class="zrow__d">${g.hors}</p>
+        </article>`;
+      }
+      const lines = discs.map((d) => {
+        const slots = SCHEDULE.filter((s) => s.disc === d.key)
+          .sort((a, b) => (dayIx(a.day) - dayIx(b.day)) || toMin(a.start) - toMin(b.start));
+        /* l'accès libre n'a aucun créneau : ce n'est pas un zéro, c'est une
+           autre nature — même règle que /activites/. On lit ses horaires
+           d'ouverture au lieu d'inventer une case vide. */
+        const when = slots.length
+          ? [...new Set(slots.map((s) => `${s.day} ${s.start}`))].join(" · ")
+          : d.jours;
+        return `<a class="zline" href="/activites/#${d.key}">
+          <b>${d.name}</b>
+          <span class="zline__when">${when}</span>
+          <i class="zline__who">${slots.length ? [...new Set(slots.map((s) => s.coach))].join(" · ") : d.coach}</i>
+        </a>`;
+      }).join("");
+      return `<article class="zrow">
+        <span class="zrow__z">${g.zone}</span>
+        <span class="zrow__k">${CARNET.kQuoi} · ${CARNET.kQuand}</span>
+        <div class="zrow__lines">${lines}</div>
+      </article>`;
+    }).join("") + `<p class="zrow__foot">${CARNET.usageFoot}</p>`;
+  }
+
+  /* la méthode — trois règles, tenues sur les six cadres */
+  const meth = $("#carnet-methode");
+  if (meth) {
+    meth.innerHTML = CARNET.regles.map((r, i) => `
+      <article class="regle">
+        <span class="regle__n">${String(i + 1).padStart(2, "0")}</span>
+        <h3>${r.k}</h3>
+        <p>${r.d}</p>
+      </article>`).join("");
+  }
+
+  /* le renvoi de la page blanche : le relevé complet vit sur /la-salle/ */
+  const renvoi = $("#carnet-renvoi");
+  if (renvoi) {
+    renvoi.innerHTML = `<a class="btn btn--ghost" data-magnetic href="${CARNET.renvoi.href}"><span>${CARNET.renvoi.label}</span></a>`;
+  }
+}
+
 /* ----------------------------- PLANNING -------------------------- */
 function renderPlanning() {
   const grid = $("#grid"); if (!grid) return;
@@ -599,11 +681,15 @@ function renderPlanning() {
   }
 
   // posters couleur cliquables
+  /* Le poster SERVI est le WebP (132 et 64 ko) ; le lien ouvre le PNG
+     d'origine (1,9 Mo et 1,4 Mo), non recompressé — la source de vérité reste
+     consultable en grand. Avant, la page téléchargeait les deux PNG pleins,
+     3,4 Mo, pour deux vignettes : dix fois le poids de tout le reste du site. */
   const pbox = $("#posters");
   if (pbox) pbox.innerHTML = POSTERS.map((p) => `
-    <a class="poster" href="${p.src}" target="_blank" rel="noopener" aria-label="Ouvrir le planning ${p.label} en grand format">
+    <a class="poster" href="${p.src}" target="_blank" rel="noopener" aria-label="Ouvrir le planning ${p.label} en grand format, image d'origine">
       <span class="poster__cap">${p.label}</span>
-      <img src="${p.src}" alt="${p.alt}" width="${p.w}" height="${p.h}" loading="lazy" decoding="async" />
+      <img src="${p.view || p.src}" alt="${p.alt}" width="${p.w}" height="${p.h}" loading="lazy" decoding="async" />
     </a>`).join("");
 
   /* LA LÉGENDE — la grille codait déjà deux familles à l'œil (liseré argent
@@ -783,7 +869,9 @@ function boot() {
   /* page === "coachs" : le roster est rendu par le module inline de la page
      (#coachroster) ; la garde de la semaine et l'aiguillage le sont ici. */
   if (page === "coachs") renderCoachDepth();
-  if (page === "galerie") { renderGallery(); renderReleve(); }
+  /* /galerie/ ne rend PLUS le relevé : il appartient à /la-salle/, une fois.
+     Le carnet a sa propre matière — les six zones rendues au planning. */
+  if (page === "galerie") { renderGallery(); renderCarnet(); }
   if (page === "plannings") renderPlanning();
   if (page === "tarifs") renderTarifs();
   if (page === "contact") renderContact();

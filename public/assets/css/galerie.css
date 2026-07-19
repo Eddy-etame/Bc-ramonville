@@ -2,11 +2,15 @@
    RAMONVILLE · galerie.css — LE CARNET DE TERRAIN (page /galerie/)
 
    CSS PROPRE à la page (loi n°2). Se pose SUR base.css. Squelette distinct :
-   une bande « conditions au tournage » branchée sur le VRAI ciel (sky.js) +
-   le carnet en mosaïque, légendes mono par ZONE, + une tuile HONNÊTE « le
-   dehors, reportage à venir » (les 6 photos prouvées montrent l'intérieur ;
-   le 300 m² extérieur reste à filmer) + une visionneuse plein cadre.
+   une bande « conditions au tournage » branchée sur le VRAI ciel (sky.js), le
+   carnet en mosaïque avec légendes mono par ZONE, les six zones rendues au
+   planning officiel (.zones — l'angle propre au carnet), les trois règles de
+   méthode (.regles), la page blanche (.blanche) et la visionneuse plein cadre.
    Aucun token redéfini — la bascule bi-palette suffit.
+
+   Cette page a longtemps recopié le RELEVÉ DU DEHORS de /la-salle/ mot pour
+   mot — sur-titre, titre, phrase-thèse, cinq cartes de mesure, signature. Le
+   relevé est rendu à sa page ; ce qui est ici n'existe qu'ici.
 
    Les légendes ne sont PLUS horodatées : les 6 clichés sont pris de jour et
    à couvert, les heures « 21h48 » étaient inventées. Seule la bande du hero
@@ -50,14 +54,14 @@
 
 /* La tuile « reportage à venir » a été RETIRÉE de la mosaïque. Glissée en
    septième position derrière six vraies photos, elle se lisait comme un
-   oubli de chargement — le contraire de son intention. Le sujet a désormais
-   sa propre section : « Le relevé du dehors » (.releve, base.css), où le
-   cadre porte le ciel réel du plateau au lieu d'un carré en attente.
-   La mosaïque ne contient plus que des clichés. */
+   oubli de chargement — le contraire de son intention. Ce qui manque a sa
+   propre section, en clair (.blanche, plus bas), et le relevé complet vit
+   sur /la-salle/. La mosaïque ne contient que des clichés. */
 
 /* ============ L'INVENTAIRE DU CARNET — ce qu'on a, et où ========= *
-   Un carnet de terrain se lit aussi par son sommaire : six zones couvertes,
-   une non relevée. La liste dit la couverture réelle, sans emphase. */
+   Le sommaire du carnet : les six zones effectivement couvertes, et rien
+   d'autre. Ce qu'il ne couvre pas est dit en toutes lettres plus bas, pas
+   glissé en septième case comme une donnée manquante. */
 .carnet__index { display: grid; gap: 1px; grid-template-columns: repeat(2,1fr); background: var(--line-soft); border: 1px solid var(--line); margin-top: clamp(1.6rem,3.5vw,2.4rem); }
 @media (min-width: 760px){ .carnet__index { grid-template-columns: repeat(4,1fr); } }
 .cix { background: color-mix(in srgb, var(--paper-2) 76%, transparent); padding: clamp(.9rem,2vw,1.3rem); display: flex; flex-direction: column; gap: .3rem; transition: background .3s; }
@@ -66,6 +70,53 @@
 .cix span { font: 600 var(--step--2)/1.4 var(--f-mono); color: var(--muted); }
 .cix--open { background: color-mix(in srgb, var(--void) 70%, transparent); border-left: 2px dashed var(--accent-line); }
 .cix--open b { color: var(--accent); }
+
+/* ============ LE CARNET À L'USAGE — six zones, six heures ======= *
+   La page portait ici une COPIE du relevé de /la-salle/ (même sur-titre,
+   même titre, mêmes cartes de mesure) : 42 % de /galerie/ appartenait à sa
+   sœur. Le relevé est rendu à sa page ; le carnet porte ce que lui seul peut
+   dire — à quoi sert chaque lieu photographié, et quand. Le squelette reste
+   PROPRE à la page (loi n°2) : des rangées de zone, pas des cartes de mesure.
+   Aucun token nouveau — argent/cuivre, navy, os, comme partout. */
+.zones { display: grid; gap: 1px; background: var(--line-soft); border: 1px solid var(--line); }
+.zrow { background: color-mix(in srgb, var(--paper-2) 76%, transparent); padding: clamp(1.1rem,2.6vw,1.7rem) clamp(1rem,2.4vw,1.6rem); display: grid; gap: .5rem .8rem; grid-template-columns: 1fr; align-items: start; transition: background .3s; }
+.zrow:hover { background: var(--paper-2); }
+@media (min-width: 860px){ .zrow { grid-template-columns: 14rem 1fr; gap: .4rem 1.6rem; } .zrow__k { grid-column: 1; } .zrow__lines, .zrow__d { grid-column: 2; grid-row: 1 / span 2; } }
+.zrow__z { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: clamp(1.25rem,1rem + 1vw,1.7rem); line-height: 1.05; letter-spacing: -.01em; color: var(--ink); }
+.zrow__k { font: 600 var(--step--2)/1.3 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.zrow__lines { display: grid; gap: .5rem; }
+/* une ligne = une discipline qui se tient VRAIMENT dans ce cadre, avec ses
+   créneaux recomptés depuis le planning. Cliquable : elle mène à la fiche. */
+.zline { display: grid; grid-template-columns: 1fr; gap: .15rem .9rem; padding: .7rem .9rem; border: 1px solid var(--line); border-radius: var(--radius); background: color-mix(in srgb, var(--void) 42%, transparent); transition: border-color .3s, transform .35s var(--ease), background .3s; }
+@media (min-width: 620px){ .zline { grid-template-columns: 12rem 1fr auto; align-items: baseline; } }
+.zline:hover { border-color: var(--accent-line); background: color-mix(in srgb, var(--void) 62%, transparent); transform: translateX(3px); }
+.zline b { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: 1.02rem; letter-spacing: .01em; color: var(--accent); }
+.zline__when { font: 600 var(--step--1)/1.45 var(--f-mono); letter-spacing: .04em; color: var(--ink); }
+.zline__who { font: 600 var(--step--2)/1.4 var(--f-mono); font-style: normal; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+/* les deux plans larges n'ont aucun créneau : la rangée le DIT au lieu de
+   présenter une case vide qui ressemblerait à une donnée manquante. */
+.zrow--wide { background: color-mix(in srgb, var(--void) 66%, transparent); }
+.zrow--wide .zrow__k { color: var(--accent); }
+.zrow__d { color: var(--ink-soft); max-width: 56ch; margin: 0; }
+.zrow__foot { margin-top: 1.1rem; font: 600 var(--step--2)/1.55 var(--f-mono); letter-spacing: .05em; color: var(--muted); }
+
+/* ==================== LA MÉTHODE — trois règles ================= */
+.regles { display: grid; gap: clamp(1rem,2.4vw,1.5rem); grid-template-columns: 1fr; }
+@media (min-width: 820px){ .regles { grid-template-columns: repeat(3,1fr); } }
+.regle { border: 1px solid var(--line); border-top: 2px solid var(--accent-line); border-radius: var(--radius); background: color-mix(in srgb, var(--paper-2) 70%, transparent); padding: clamp(1.2rem,2.6vw,1.8rem); transition: border-color .3s, transform .4s var(--ease-spring); }
+.regle:hover { border-color: var(--accent-line); transform: translateY(-3px); }
+.regle__n { font: 600 .72rem/1 var(--f-mono); letter-spacing: .18em; color: var(--accent); }
+.regle h3 { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: clamp(1.15rem,1rem + .6vw,1.45rem); letter-spacing: -.01em; color: var(--ink); margin-top: .7rem; }
+.regle p { color: var(--ink-soft); margin-top: .6rem; }
+
+/* ======================== LA PAGE BLANCHE ======================= *
+   Ce qui manque au carnet : trois lignes et un renvoi. Le relevé complet
+   appartient à /la-salle/ — on y envoie, on ne le recopie pas. */
+.blanche__inner { max-width: 62ch; border-left: 2px dashed var(--accent-line); padding-left: clamp(1.1rem,3vw,2rem); }
+.blanche__inner h2 { font-size: clamp(2rem,1.3rem + 3vw,3.4rem); margin-block: 1rem .9rem; }
+.blanche__inner .lead { color: var(--ink-soft); }
+.blanche__inner .muted { margin-top: .8rem; }
+.blanche__cta { margin-top: 1.6rem; }
 
 /* =========================== VISIONNEUSE ======================= */
 .lightbox { position: fixed; inset: 0; z-index: 9000; display: none; place-items: center; padding: clamp(1rem,4vw,3rem); background: color-mix(in srgb,var(--void) 88%, transparent); backdrop-filter: blur(8px); }
@@ -93,4 +144,8 @@
   .shot:active img { filter: contrast(1.08) brightness(1.06) saturate(1); }
   .lightbox__close { min-height: 44px; }
   .lightbox__close:active { color: var(--accent); }
+  /* les nouvelles surfaces du carnet reçoivent la même passe tactile que le
+     reste du site : un accusé de réception au doigt, jamais un hover orphelin. */
+  .zline:active { border-color: var(--accent); background: color-mix(in srgb,var(--void) 70%, transparent); transform: translateX(2px); }
+  .regle:active { border-color: var(--accent); transform: translateY(1px); }
 }

@@ -37,7 +37,7 @@
 .dehors__sky::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, var(--paper) 6%, color-mix(in srgb,var(--paper) 70%, transparent) 46%, transparent 82%), linear-gradient(0deg, var(--paper), transparent 60%); }
 .dehors .wrap { position: relative; z-index: 1; padding-block: clamp(4rem,9vw,8rem); }
 .dehors__inner { max-width: 44ch; }
-.dehors__huge { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; line-height: .96; letter-spacing: -.02em; font-size: clamp(3.4rem,3rem+6vw,8rem); color: var(--ink); }
+.dehors__huge { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; line-height: .96; letter-spacing: -.02em; font-size: clamp(3.4rem,3rem + 6vw,8rem); color: var(--ink); }
 .dehors__huge .tint { display: block; }
 .dehors p { color: var(--ink-soft); margin-top: 1.2rem; }
 .dehors__tags { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.4rem; }
@@ -55,7 +55,7 @@
 .floor:hover { border-color: var(--accent-line); transform: translateY(-3px); }
 .floor__tag { display: inline-flex; align-items: center; gap: .7ch; font: 600 var(--step--2)/1 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
 .floor__tag::before { content: ""; width: 8px; height: 8px; transform: rotate(45deg); background: var(--accent); box-shadow: 0 0 8px var(--accent); }
-.floor h3 { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: clamp(1.4rem,1rem+1.8vw,2.1rem); color: var(--ink); margin: .6rem 0 .4rem; }
+.floor h3 { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: clamp(1.4rem,1rem + 1.8vw,2.1rem); color: var(--ink); margin: .6rem 0 .4rem; }
 .floor p { color: var(--muted); font-size: var(--step--1); max-width: 52ch; }
 .floor__zones { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.1rem; }
 .floor__zones span { font: 600 .6rem/1 var(--f-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--ink); border: 1px solid var(--line); border-radius: var(--radius); padding: .55em .85em; background: var(--paper-2); }
@@ -82,12 +82,26 @@
    — .arpent, base.css. Ni un trou, ni le cadre d'une autre zone légendé
    « L'extérieur couvert » : trois cents carrés d'un mètre sur le ciel réel,
    qui disent la surface sans prétendre à la forme. */
-.station__media--sky { padding: 0; border-right: 1px solid var(--accent-line); background: var(--void); }
-@media (max-width: 819px){ .station__media--sky { border-right: 0; border-bottom: 1px solid var(--accent-line); } }
+/* ------- LA STATION SANS CLICHÉ — une rangée, pas un cadre vide ----
+   L'extérieur couvert n'a aucune photo prouvée. Il portait ici une SECONDE
+   planche d'arpentage, compacte : les 300 mêmes carrés redessinés, et surtout
+   le compteur « 300 M² DEHORS » et la barre météo en direct affichés une
+   deuxième fois sur le même écran que le grand relevé. La planche vit dans le
+   relevé, une fois. Cette station occupe donc toute la largeur et renvoie au
+   relevé — dire où est la preuve vaut mieux que la rejouer. */
+.station--releve { grid-template-columns: 1fr; border-left: 2px solid var(--accent-line); }
+@media (min-width: 820px){ .station--releve { grid-template-columns: 1fr; } }
+.station--releve .station__body { max-width: 78ch; }
+.station__renvoi { display: inline-grid; grid-template-columns: auto 1fr auto; align-items: center; gap: .2rem 1rem; margin-top: 1.3rem; padding: .85rem 1.1rem; border: 1px solid var(--line); border-radius: var(--radius); background: color-mix(in srgb, var(--void) 52%, transparent); transition: border-color .3s, background .3s, transform .35s var(--ease); }
+.station__renvoi:hover { border-color: var(--accent-line); background: color-mix(in srgb, var(--void) 72%, transparent); transform: translateY(-2px); }
+.station__renvoi span { grid-row: 1; font: 600 var(--step--2)/1 var(--f-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--accent); }
+.station__renvoi b { grid-row: 2; grid-column: 1 / span 2; font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: clamp(1rem,.9rem + .5vw,1.25rem); color: var(--ink); letter-spacing: -.01em; margin-top: .35rem; }
+.station__renvoi i { grid-row: 1 / span 2; grid-column: 3; font-style: normal; font-size: 1.5rem; color: var(--accent); }
+@media (hover: none){ .station__renvoi:active { border-color: var(--accent); transform: translateY(1px); } }
 .station__body { padding: clamp(1.4rem,3vw,2.4rem); }
 .station__n { font: 600 .72rem/1 var(--f-mono); color: var(--accent); letter-spacing: .1em; }
 .station__tag { display: inline-block; margin-top: .6rem; font: 600 var(--step--2)/1 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
-.station h3 { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: clamp(1.5rem,1rem+2vw,2.4rem); letter-spacing: -.01em; margin-top: .5rem; color: var(--ink); }
+.station h3 { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: clamp(1.5rem,1rem + 2vw,2.4rem); letter-spacing: -.01em; margin-top: .5rem; color: var(--ink); }
 .station p { color: var(--ink-soft); margin-top: .8rem; max-width: 46ch; }
 .station__specs { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.1rem; }
 .station__specs span { font: 600 .6rem/1 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--accent); border: 1px solid var(--accent-line); border-radius: var(--radius); padding: .5em .8em; }

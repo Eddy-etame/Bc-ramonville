@@ -271,11 +271,13 @@ export const ARPENT = {
   count: 300,         // 300 m² (poster officiel) → 300 carrés
   /* RANGEMENT, PAS EMPRISE. Les carrés sont posés pour être COMPTÉS : le
      nombre de colonnes n'affirme donc aucune dimension du plateau, et on le
-     choisit pour la composition. Debout (15 × 20) dans le grand relevé, à
-     côté de l'étalon ; couché (20 × 15) dans la tuile de station, qui est
-     un cadre paysage. Deux rangements du même compte — jamais deux plans. */
-  cols: 15, rows: 20,             // le relevé, en pied
-  colsWide: 20, rowsWide: 15,     // la tuile de station, couchée
+     choisit pour la composition — 15 × 20, debout, à côté de l'étalon.
+     UN SEUL rangement, parce qu'il n'y a plus qu'UNE planche par page : la
+     variante couchée servait une tuile de station qui redessinait les mêmes
+     300 carrés à trente centimètres du grand relevé, avec son compteur et
+     sa barre météo en double sur le même écran. Un relevé qui se répète
+     n'est plus un relevé, c'est un motif. */
+  cols: 15, rows: 20,             // le relevé, seule planche du site
   cage: 7,            // l'octogone — 7 m, même échelle
   kUnit: "1 m²",
   kField: "300 × 1 m²",
@@ -521,16 +523,24 @@ export const FAMILLES = [
   { key: "enfant", label: "Enfants" },
 ];
 
-/* Posters officiels — EN COULEUR, cliquables plein format (loi n°5). */
+/* Posters officiels — EN COULEUR, cliquables plein format (loi n°5).
+   `src` reste le PNG ORIGINAL : c'est la source de vérité, et c'est lui qui
+   s'ouvre au clic, non recompressé. `view` est la version servie DANS la page
+   (WebP, encodée par scripts/images.mjs) : les deux PNG pesaient 2 008 057 et
+   1 452 252 octets — 3,4 Mo à eux deux, sur une page dont toutes les autres
+   images tiennent entre 20 et 244 ko. Un planning n'a pas besoin d'être lourd
+   pour être lisible ; il a besoin d'être ouvrable en grand, et il l'est. */
 export const POSTERS = [
   {
     src: "/assets/img/ram/planning-rentree-2026.png",
+    view: "/assets/img/ram/planning-rentree-2026.webp",
     w: 2400, h: 1740,
     label: `Rentrée ${SEASON}`,
     alt: `Planning officiel de la rentrée ${SEASON} de Boxing Center Ramonville : boxe anglaise, pieds-poings, grappling, asso MMA, boxing camp, Lady Punch et école enfants dès 3 ans, du lundi au samedi.`,
   },
   {
     src: "/assets/img/ram/planning-ete-2026.png",
+    view: "/assets/img/ram/planning-ete-2026.webp",
     w: 2400, h: 1020,
     label: "Cours d'été",
     alt: "Planning officiel d'été de Boxing Center Ramonville : cours d'été le lundi midi et soir, reste de la semaine en accès libre muscu/cardio.",
@@ -656,14 +666,67 @@ export const REVIEWS = {
    crédite plutôt que de le rogner — un carnet de terrain cite ses sources.
    ⚠ À FAIRE VALIDER : droits d'exploitation des clichés Axel Derewiany. */
 export const PHOTO_CREDIT = "Axel Derewiany";
+
+/* `discs` — À QUOI SERT LE CADRE, dans la semaine. C'est l'angle propre au
+   carnet, et il n'invente rien : chaque clé renvoie à une discipline de
+   DISCIPLINES, et les jours/heures affichés sont RECOMPTÉS depuis SCHEDULE au
+   rendu. La correspondance zone → discipline est celle qu'écrivent déjà les
+   fiches de PLATEAU (l'octogone « pour le grappling, l'asso MMA » ; le ring
+   « là que le jab se règle et que le pieds-poings prend ses distances » ; les
+   sacs « pour le Boxing Camp » ; l'étage « en accès libre six jours sur
+   sept »). Les deux plans larges n'ont pas de créneau à eux : ils portent
+   `hors`, qui dit leur nature au lieu de leur inventer un horaire. */
 export const GALLERY = [
-  { img: "/assets/img/ram/hero.webp", w: 1920, h: 1282, zone: "Le plateau", place: "octogone 7 m + ring olympique", alt: "Le plateau de Boxing Center Ramonville sous la charpente : l'octogone de 7 m grillagé et le ring de boxe olympique." },
-  { img: "/assets/img/ram/octogone.webp", w: 768, h: 512, zone: "L'octogone", place: "asso MMA · vue de dessus", alt: "Séance d'asso MMA dans l'octogone de 7 m à Boxing Center Ramonville, vue de dessus, le groupe au sol." },
-  { img: "/assets/img/ram/anglaise.webp", w: 768, h: 512, zone: "Le ring", place: "pattes d'ours", alt: "Travail aux pattes d'ours près du ring à Boxing Center Ramonville, un boxeur enchaîne face au coach.", credit: true },
-  { img: "/assets/img/ram/camp.webp", w: 768, h: 512, zone: "Les sacs", place: "Boxing Camp", alt: "La ligne de sacs lourds pendant le Boxing Camp à Boxing Center Ramonville, plusieurs pratiquants aux gants." },
-  { img: "/assets/img/ram/muscu.webp", w: 768, h: 512, zone: "L'étage", place: "muscu / cardio", alt: "L'étage muscu/cardio de Boxing Center Ramonville : charges libres, bancs et machines en accès libre.", credit: true },
-  { img: "/assets/img/ram/plateau.webp", w: 768, h: 512, zone: "Les tatamis", place: "espaces libres · drapeaux au mur", alt: "Le plateau de Boxing Center Ramonville en couleur : l'octogone, le ring et les tatamis, drapeaux au mur." },
+  { img: "/assets/img/ram/hero.webp", w: 1920, h: 1282, zone: "Le plateau", place: "octogone 7 m + ring olympique", alt: "Le plateau de Boxing Center Ramonville sous la charpente : l'octogone de 7 m grillagé et le ring de boxe olympique.", discs: [], hors: "Le plan large — les deux instruments de la salle tiennent dans le même cadre, et rien ne les sépare." },
+  { img: "/assets/img/ram/octogone.webp", w: 768, h: 512, zone: "L'octogone", place: "asso MMA · vue de dessus", alt: "Séance d'asso MMA dans l'octogone de 7 m à Boxing Center Ramonville, vue de dessus, le groupe au sol.", discs: ["grappling", "asso-mma"] },
+  { img: "/assets/img/ram/anglaise.webp", w: 768, h: 512, zone: "Le ring", place: "pattes d'ours", alt: "Travail aux pattes d'ours près du ring à Boxing Center Ramonville, un boxeur enchaîne face au coach.", credit: true, discs: ["anglaise", "pieds-poings"] },
+  { img: "/assets/img/ram/camp.webp", w: 768, h: 512, zone: "Les sacs", place: "Boxing Camp", alt: "La ligne de sacs lourds pendant le Boxing Camp à Boxing Center Ramonville, plusieurs pratiquants aux gants.", discs: ["boxing-camp"] },
+  { img: "/assets/img/ram/muscu.webp", w: 768, h: 512, zone: "L'étage", place: "muscu / cardio", alt: "L'étage muscu/cardio de Boxing Center Ramonville : charges libres, bancs et machines en accès libre.", credit: true, discs: ["acces-libre"] },
+  { img: "/assets/img/ram/plateau.webp", w: 768, h: 512, zone: "Les tatamis", place: "espaces libres · drapeaux au mur", alt: "Le plateau de Boxing Center Ramonville en couleur : l'octogone, le ring et les tatamis, drapeaux au mur.", discs: [], hors: "Les espaces libres et collectifs — aucun créneau ne les réserve, c'est ce qui les rend utilisables toute la journée." },
 ];
+
+/* ------------------------------------------------------------------ *
+ *  LE CARNET — la matière PROPRE à /galerie/.
+ *
+ *  La page récitait le RELEVÉ DU DEHORS mot pour mot : le même sur-titre,
+ *  le même h2, la même phrase-thèse, les cinq mêmes cartes de mesure, la
+ *  même note et la même signature que /la-salle/. Quarante-deux pour cent
+ *  de la page appartenaient à sa sœur — et sans ce doublon il restait 209
+ *  mots : la page la plus maigre du site. Un relevé se fait UNE FOIS, sur
+ *  la page du plateau. Le carnet, lui, doit gagner sa place autrement.
+ *
+ *  Son angle : une photo de salle n'est pas un décor, c'est un LIEU où il
+ *  se passe quelque chose à une heure connue. Le carnet croise donc les six
+ *  cadres avec le planning officiel — la seule chose qu'aucune autre page
+ *  ne fait — puis dit sa méthode, puis avoue sa page blanche en trois
+ *  lignes qui renvoient au relevé au lieu de le recopier.
+ * ------------------------------------------------------------------ */
+export const CARNET = {
+  // les en-têtes de section vivent en clair dans /galerie/ (comme partout sur
+  // le site) ; ici, seulement ce qui est DONNÉE ou étiquette réutilisée.
+  kQuoi: "Ce qui s'y tient",
+  kQuand: "Quand",
+  kLarge: "Plan large",
+  usageFoot: "Quatre zones sur six ont un horaire. Les deux autres sont des plans d'ensemble : on ne leur en fabrique pas un.",
+  /* les trois règles du carnet — la méthode, dite une fois, ici et nulle part
+     ailleurs sur le site. */
+  regles: [
+    {
+      k: "Une seule salle",
+      d: "Aucun cadre ne vient d'une autre salle du réseau ni d'une banque d'images. Si ce n'est pas Ramonville, ce n'est pas dans ces pages — même quand ça laisse un trou.",
+    },
+    {
+      k: "Le photographe est nommé",
+      d: `Deux fichiers portent une signature incrustée : ${PHOTO_CREDIT}. On la cite sous le cadre au lieu de la rogner — c'est la seule façon honnête de garder l'image.`,
+    },
+    {
+      k: "Aucune heure sur les légendes",
+      d: "Les six cadres sont pris de jour et à couvert. La seule heure du carnet est celle de la bande du haut : elle vient du ciel de Ramonville, à la seconde où tu lis.",
+    },
+  ],
+  // le renvoi de la page blanche : le relevé complet appartient à /la-salle/
+  renvoi: { label: "Voir le relevé du dehors", href: "/la-salle/#releve" },
+};
 
 export const FAQ = [
   { q: "Où se trouve Boxing Center Ramonville ?", a: "Au 33 rue des Ormes, 31520 Ramonville-Saint-Agne, dans le sud toulousain — à proximité du terminus du métro (ligne B, Ramonville) et de l'arrêt bus Ramonville Sud." },

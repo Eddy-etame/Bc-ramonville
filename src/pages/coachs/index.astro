@@ -407,10 +407,25 @@
 
       box.innerHTML = COACHES.map((c) => {
         const slots = slotsFor(c.name);
-        const initials = c.name.split(" ").map((w) => w[0]).join("");
+        /* LA PLAQUE — un état DÉFINITIF, pas une attente.
+           Ce cadre affichait « Photo à venir » sous des initiales, et
+           annonçait « portrait à venir » aux lecteurs d'écran : exactement le
+           placeholder que ce site condamne par écrit ailleurs, posé au milieu
+           de deux vrais visages. Un « à venir » n'est pas une information,
+           c'est une excuse datée — et il vieillit mal à chaque jour qui passe.
+           Sans cliché prouvé, ce qu'on a de ce coach est son NOM et ce qu'il
+           tient : on le porte donc comme une plaque gravée à l'entrée du
+           vestiaire, dans l'identité nuit/argent de la salle. Rien n'y manque,
+           parce que rien n'y est promis. aria-hidden : le nom, le rôle et le
+           rang sont déjà annoncés juste en dessous — la plaque est la mise en
+           forme de ces mêmes faits, pas une seconde information. */
         const face = c.img
           ? `<div class="coach__face media" data-img="${c.img}" data-label="" data-alt="${c.name}, coach à Boxing Center Ramonville"></div>`
-          : `<div class="coach__face coach__face--tile" role="img" aria-label="${c.name} — portrait à venir"><span class="ini">${initials}</span><span class="sub">Photo à venir</span></div>`;
+          : `<div class="coach__face coach__face--plaque" aria-hidden="true">
+               <span class="plaque__rule"></span>
+               <span class="plaque__name">${c.name}</span>
+               <span class="plaque__role">${c.tag}</span>
+             </div>`;
         const slotHtml = slots.length
           ? `<div class="coach__slots">${slots.map((s) =>
               `<div class="slotline"><span class="d">${s.day}</span><span class="t">${s.start}</span><span class="c">${s.cours}</span></div>`).join("")}</div>`
