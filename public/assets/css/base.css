@@ -298,11 +298,11 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
   content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
   opacity: .05; mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
-/* Le grain est la texture du CLICHÉ. Il ne s'applique donc ni au cadre vivant
-   (.skyframe : un ciel en direct n'est pas une photo argentique) ni à ce qui
-   n'est pas une image. Les anciennes tuiles « photo à venir » que cette règle
-   protégeait n'existent plus — voir « LE CADRE VIVANT » plus bas. */
-.station__media--sky::before, .skyframe::before { content: none; }
+/* Le grain est la texture du CLICHÉ. Il ne s'applique donc ni à la planche
+   d'arpentage (.arpent : un tracé au trait n'est pas une photo argentique) ni
+   à ce qui n'est pas une image. Les anciennes tuiles « photo à venir » que
+   cette règle protégeait n'existent plus — voir « L'ARPENTAGE » plus bas. */
+.station__media--sky::before, .arpent::before { content: none; }
 
 /* ============================ LE CIEL ============================= *
    sky.js pose data-sky (clair|voile|pluie|orage) + data-hour + data-daypart
@@ -429,29 +429,72 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
    Vit dans base.css : /la-salle/ et /galerie/ portent toutes deux le sujet
    et chargent des feuilles différentes — une définition, pas deux copies.
    ================================================================== */
-.skyframe { position: relative; overflow: hidden; height: 100%; min-height: 260px; border-radius: var(--radius); background: var(--void); display: flex; flex-direction: column; justify-content: flex-end; }
-.skyframe .sky { z-index: 0; }
-/* le scrim de la légende — le texte ne parie JAMAIS contre le fond (loi n°1) */
-.skyframe::after { content: ""; position: absolute; inset: auto 0 0 0; height: 62%; z-index: 1; pointer-events: none; background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--void) 88%, transparent) 74%, var(--void)); }
-/* la règle graduée : le tic « relevé ». De l'argent de marque, rien d'autre. */
-.skyframe__rule { position: relative; z-index: 2; display: flex; align-items: flex-end; gap: 0; height: 16px; margin: 0 clamp(1rem,2.4vw,1.4rem) .7rem; border-bottom: 1px solid var(--accent-line); }
-.skyframe__rule i { flex: 1; border-left: 1px solid var(--accent-line); height: 6px; }
-.skyframe__rule i:first-child, .skyframe__rule i:last-child { height: 12px; }
-.skyframe__cap { position: relative; z-index: 2; display: flex; flex-wrap: wrap; align-items: center; gap: .5rem .8rem; padding: 0 clamp(1rem,2.4vw,1.4rem) clamp(1rem,2.4vw,1.3rem); }
+/* Les deux tics du relevé en direct — l'étiquette et la pastille météo. Ils
+   survivent au cadre qui les portait : c'est l'ARPENTAGE (plus bas) qui les
+   affiche désormais, au pied de la planche. Une définition, pas deux copies. */
 .skyframe__k { font: 600 var(--step--2)/1 var(--f-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
 .skyframe__live { display: inline-flex; align-items: center; gap: .7ch; font: 600 var(--step--2)/1 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink); background: color-mix(in srgb, var(--void) 62%, transparent); border: 1px solid var(--accent-line); border-radius: var(--radius); padding: .6em .85em; backdrop-filter: blur(6px); }
 .skyframe__live:empty { display: none; }
 .skyframe__live b { color: var(--accent); font-weight: 600; }
 .skyframe__live::before { content: ""; flex: 0 0 7px; height: 7px; transform: rotate(45deg); background: var(--accent); box-shadow: 0 0 10px var(--accent); }
 @media (prefers-reduced-motion: no-preference){ .skyframe__live::before { animation: pulse 2.4s var(--ease) infinite; } }
-/* dans une station du plateau, le cadre est plus serré : pas de double marge */
-.skyframe--tight { min-height: 220px; border-radius: 0; }
+/* ================== L'ARPENTAGE — LE DEHORS, DESSINÉ ================ *
+   Le cadre au ciel seul disait vrai mais ne montrait RIEN : à midi il n'y a
+   pas d'étoiles, et le différenciateur du site — 571 × 689 px — s'affichait
+   en nuit quasi vide. Une intention juste rendue comme une image qui n'a pas
+   chargé. On arpente donc : 300 carrés d'un mètre (un COMPTE, pas une
+   emprise) et l'octogone de 7 m au même étalon, sur le ciel réel qui reste
+   le fond. La forme des 300 m² n'est dessinée nulle part — c'est un relevé.
+   Argent/cuivre de marque uniquement : tout dérive de --accent.
+   ================================================================== */
+.arpent { position: relative; overflow: hidden; height: 100%; min-height: 300px; border-radius: var(--radius); background: var(--void); display: flex; flex-direction: column; }
+.arpent .sky { z-index: 0; }
+/* le scrim : le tracé et la légende ne parient jamais contre le fond (loi n°1) */
+.arpent::after { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: radial-gradient(120% 90% at 50% 22%, transparent, color-mix(in srgb, var(--void) 72%, transparent) 78%),
+              linear-gradient(180deg, color-mix(in srgb, var(--void) 40%, transparent), transparent 26%, color-mix(in srgb, var(--void) 86%, transparent)); }
+.arpent__stage { position: relative; z-index: 2; flex: 1; display: flex; align-items: center; justify-content: center; padding: clamp(1.2rem,3vw,2rem) clamp(1rem,2.4vw,1.6rem) .4rem; min-height: 0; }
+.arpent__plot { width: 100%; height: auto; max-height: 100%; overflow: visible; }
+
+/* le champ — 300 carrés d'un mètre. Posés un par un : on compte le terrain. */
+.arpent__field rect { fill: color-mix(in srgb, var(--accent) 16%, transparent); stroke: color-mix(in srgb, var(--accent) 30%, transparent); stroke-width: .35; opacity: 0; transform-box: fill-box; transform-origin: 50% 50%; transform: scale(.34); }
+.arpent.is-on .arpent__field rect { animation: arpentPose .5s var(--ease-out) forwards; animation-delay: calc(var(--i) * 3.4ms); }
+/* dead-man : état final posé sans animation (rAF gelé, onglet en fond, IO absent) */
+.arpent.is-done .arpent__field rect { animation: none; opacity: 1; transform: none; }
+@keyframes arpentPose { to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .arpent__field rect { animation: none !important; opacity: 1; transform: none; } }
+
+/* l'étalon — la cage de 7 m, au même mètre que le champ */
+.arpent__cage { fill: color-mix(in srgb, var(--accent) 7%, transparent); stroke: var(--accent); stroke-width: 1.1; filter: drop-shadow(0 0 6px color-mix(in srgb, var(--accent) 45%, transparent)); }
+.arpent__dim line { stroke: var(--accent-line); stroke-width: .7; }
+.arpent__lbl { fill: var(--muted); font-family: var(--f-mono); font-weight: 600; font-size: 9px; letter-spacing: .1em; text-transform: uppercase; }
+.arpent__lbl--cage { fill: var(--accent); }
+
+/* la ligne qui tient tout le parti pris — elle ne se dit qu'ici */
+.arpent__honest { position: relative; z-index: 2; margin: 0 clamp(1rem,2.4vw,1.4rem) .5rem; font: 600 var(--step--2)/1.5 var(--f-mono); letter-spacing: .04em; color: var(--muted); max-width: 46ch; }
+.arpent__cap { position: relative; z-index: 2; display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: .6rem 1rem; padding: 0 clamp(1rem,2.4vw,1.4rem) clamp(1rem,2.4vw,1.3rem); }
+.arpent__count { display: inline-flex; align-items: baseline; gap: .45ch; }
+.arpent__count b { font-family: var(--f-display); font-weight: 700; letter-spacing: -.02em; line-height: 1; font-size: clamp(2.1rem,5vw,3.2rem); color: var(--accent); font-variant-numeric: tabular-nums; }
+.arpent__count small { font: 600 var(--step--2)/1 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.arpent__live { display: flex; flex-direction: column; align-items: flex-end; gap: .45rem; }
+
+/* compacte (tuile de station) : le champ seul — l'étalon vit en grand dans le
+   relevé, à quelques centimètres de là ; le répéter ici serait du bruit. */
+.arpent--compact { position: absolute; inset: 0; min-height: 0; border-radius: 0; }
+.arpent--compact .arpent__stage { padding: clamp(1rem,2.6vw,1.5rem); }
+.arpent--compact .arpent__count b { font-size: clamp(1.6rem,4vw,2.1rem); }
+.arpent--compact .arpent__live .skyframe__live { display: none; }
+
+@media (max-width: 560px) {
+  .arpent__cap { align-items: flex-start; flex-direction: column; }
+  .arpent__live { align-items: flex-start; }
+}
 
 /* --- la fiche : ce qui est mesuré, et ce qui ne l'est pas encore --- */
 .releve { display: grid; gap: clamp(1.2rem,3vw,2.2rem); grid-template-columns: 1fr; align-items: stretch; }
 @media (min-width: 940px){ .releve { grid-template-columns: 1fr 1fr; } }
 .releve__frame { min-height: 300px; border: 1px solid var(--accent-line); border-radius: var(--radius); overflow: hidden; box-shadow: var(--glow-soft); }
-.releve__frame .skyframe { min-height: 300px; }
+.releve__frame .arpent { min-height: 300px; }
 .releve__sheet { display: flex; flex-direction: column; }
 .releve__t { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; line-height: 1.06; letter-spacing: -.01em; font-size: clamp(1.7rem,1.1rem+2.4vw,2.9rem); color: var(--ink); margin: .9rem 0 .8rem; }
 .releve__lead { color: var(--ink-soft); max-width: 46ch; }

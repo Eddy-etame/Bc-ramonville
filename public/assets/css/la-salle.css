@@ -78,12 +78,11 @@
 .station:hover { border-color: var(--accent-line); transform: translateY(-3px); }
 @media (min-width: 820px){ .station { grid-template-columns: 1fr 1fr; } .station:nth-child(even) .station__media { order: 2; } }
 .station__media { position: relative; aspect-ratio: 16/10; min-height: 220px; }
-/* Station sans cliché prouvé (les 300 m² extérieurs) : le cadre porte le CIEL
-   RÉEL du lieu — .skyframe, base.css. Ce n'est ni un trou, ni le cadre d'une
-   autre zone légendé « L'extérieur couvert » : c'est la seule image fidèle
-   qu'on puisse donner d'un extérieur, et elle bouge avec la vraie météo. */
+/* Station sans cliché prouvé (les 300 m² extérieurs) : la zone est ARPENTÉE
+   — .arpent, base.css. Ni un trou, ni le cadre d'une autre zone légendé
+   « L'extérieur couvert » : trois cents carrés d'un mètre sur le ciel réel,
+   qui disent la surface sans prétendre à la forme. */
 .station__media--sky { padding: 0; border-right: 1px solid var(--accent-line); background: var(--void); }
-.station__media--sky .skyframe { position: absolute; inset: 0; height: auto; }
 @media (max-width: 819px){ .station__media--sky { border-right: 0; border-bottom: 1px solid var(--accent-line); } }
 .station__body { padding: clamp(1.4rem,3vw,2.4rem); }
 .station__n { font: 600 .72rem/1 var(--f-mono); color: var(--accent); letter-spacing: .1em; }

@@ -11,7 +11,7 @@
    boxingcenter.fr (brief §3). Noms de coachs ≡ photos (roster.json), jamais
    croisés. Aucun claim périssable dans les pages : la saison passe par la
    constante SEASON, les promos vivent dans PROMOS (jamais en dur ailleurs).
-   Version d'assets unique : ?v=7 partout (imports compris).
+   Version d'assets unique : ?v=8 partout (imports compris).
    ===================================================================== */
 
 /* Anti-péremption — tout libellé de saison passe par ces constantes. */
@@ -246,6 +246,47 @@ export const DEHORS = {
 };
 
 /* ------------------------------------------------------------------ *
+ *  L'ARPENTAGE — le différenciateur DESSINÉ, sans rien inventer.
+ *
+ *  Le cadre au ciel réel disait la vérité mais ne montrait rien : 571 × 689
+ *  px de nuit presque vide (≈ 280 pixels allumés en plein midi, l'heure où
+ *  il n'y a pas d'étoiles). Une intention juste rendue en rectangle noir se
+ *  lit comme une image qui n'a pas chargé — exactement ce qu'on voulait
+ *  éviter. Le concept n'était pas faux, il était NU.
+ *
+ *  On l'arpente donc au lieu de le photographier. Deux faits, deux seuls,
+ *  tous deux officiels : la SURFACE (300 m²) et la CAGE (7 m). On dessine
+ *  trois cents carrés d'un mètre — un COMPTE, pas un plan — et l'octogone
+ *  de 7 m à la même échelle, à côté, comme étalon. Le lecteur voit enfin
+ *  la démesure du plateau, mesurée contre un objet qu'il connaît.
+ *
+ *  CE QU'ON NE DESSINE PAS : la forme. Aucune source ne dit si les 300 m²
+ *  sont un carré, un L ou une bande. Les carrés sont donc rangés pour être
+ *  COMPTÉS, jamais pour figurer un terrain — et la légende le dit en toutes
+ *  lettres. Un relevé qui avoue sa lacune reste un relevé ; un plan inventé
+ *  serait le seul vrai mensonge du site.
+ * ------------------------------------------------------------------ */
+export const ARPENT = {
+  unit: 1,            // le carré étalon — 1 m²
+  count: 300,         // 300 m² (poster officiel) → 300 carrés
+  /* RANGEMENT, PAS EMPRISE. Les carrés sont posés pour être COMPTÉS : le
+     nombre de colonnes n'affirme donc aucune dimension du plateau, et on le
+     choisit pour la composition. Debout (15 × 20) dans le grand relevé, à
+     côté de l'étalon ; couché (20 × 15) dans la tuile de station, qui est
+     un cadre paysage. Deux rangements du même compte — jamais deux plans. */
+  cols: 15, rows: 20,             // le relevé, en pied
+  colsWide: 20, rowsWide: 15,     // la tuile de station, couchée
+  cage: 7,            // l'octogone — 7 m, même échelle
+  kUnit: "1 m²",
+  kField: "300 × 1 m²",
+  kCage: "L'octogone · 7 m",
+  scale: "Même échelle",
+  // la phrase qui tient tout le parti pris — elle ne se dit qu'ICI
+  honest: "La surface est relevée. La forme ne l'est pas — on ne la dessine donc pas.",
+  legend: "Trois cents carrés d'un mètre, rangés pour être comptés. À droite, la cage de 7 m au même étalon : c'est l'écart entre ce que tu connais déjà et ce qui t'attend dehors.",
+};
+
+/* ------------------------------------------------------------------ *
  *  LE PLATEAU — la visite du terrain (page /la-salle/). L'extérieur
  *  d'abord : c'est le différenciateur. Puis l'octogone, le ring, l'étage.
  *  Specs = verbatims officiels (brief §3), rien d'inventé.
@@ -435,6 +476,41 @@ export const GRID_LEGEND = [
   { cls: "mma", label: "Cage", d: "grappling & asso MMA, dans l'octogone" },
   { cls: "enfant", label: "École", d: "Baby Boxe, éducative, ados" },
 ];
+
+/* ------------------------------------------------------------------ *
+ *  L'ENTRÉE EN MATIÈRE — /activites/ (les cinq familles, pesées).
+ *
+ *  La page listait huit fiches, puis un CTA : trois blocs en tout. Elle
+ *  disait CE QU'ON FAIT, jamais par où on entre — et le seul fait qui
+ *  intéresse quelqu'un qui n'a jamais boxé (le niveau demandé) était la
+ *  troisième ligne d'un tableau de faits, sous le coach et les créneaux.
+ *
+ *  Ce bloc pèse les cinq familles contre le planning officiel : combien de
+ *  créneaux, quels jours, quel niveau à l'entrée. Tout est COMPTÉ depuis
+ *  SCHEDULE — si le planning bouge, le bloc bouge. Rien d'ajouté.
+ *
+ *  `ouvertes` : la seule décision éditoriale du bloc, déclarée ICI plutôt
+ *  que devinée dans le rendu — la liste des libellés de `niveau` qu'on
+ *  considère comme une porte ouverte sans expérience. Le reste (Confirmé ·
+ *  asso) est dit tel quel : on n'ouvre pas une porte qui ne l'est pas.
+ * ------------------------------------------------------------------ */
+export const ENTREE = {
+  eyebrow: "Par où on entre",
+  lead: "Chaque famille pesée contre le planning de la rentrée : ce qu'elle occupe dans la semaine, quels jours, et ce qu'on te demande de savoir en poussant la porte.",
+  // verbatims du champ `niveau` (DISCIPLINES) — aucune reformulation
+  ouvertes: ["Zéro prérequis", "Tous niveaux", "Débutant → confirmé", "Baby → ados", "À ton rythme"],
+  kOuvert: "Sans prérequis",
+  kReserve: "Quand tu es prêt",
+  kSlots: "créneaux / semaine",
+  /* FAMILLES est la liste du FILTRE de planning : elle ne contient que les
+     familles qui ont des créneaux, donc pas l'accès libre. Ce bloc parle des
+     familles de DISCIPLINES, qui en compte une de plus. Le seul libellé qui
+     manque vit ici — on ne duplique pas les quatre autres. */
+  libreLabel: "Accès libre",
+  // l'accès libre n'a AUCUN créneau au planning : ce n'est pas un zéro, c'est
+  // une autre nature. On le dit, on ne le compte pas comme une famille vide.
+  horsGrille: { v: "Hors grille", d: "Ni créneau ni inscription — 10h00 à 21h30, six jours sur sept." },
+};
 
 /* Filtres disciplines pour la grille planning. */
 export const FAMILLES = [

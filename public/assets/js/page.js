@@ -8,8 +8,9 @@
 import {
   DISCIPLINES, PLATEAU, VALUES, NETWORK, SALLE, SEASON, SEASON_LABEL,
   DAYS, SCHEDULE, SCHEDULE_ETE, FAMILLES, POSTERS, TARIFS, PROMOS, REVIEWS,
-  GALLERY, PHOTO_CREDIT, FAQ, LINKS, DEHORS, ETE, GRID_LEGEND, COACHES,
-} from "./data.js?v=7";
+  GALLERY, PHOTO_CREDIT, FAQ, LINKS, DEHORS, ETE, GRID_LEGEND, COACHES, ARPENT,
+  ENTREE,
+} from "./data.js?v=8";
 
 const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const $ = (s, r = document) => r.querySelector(s);
@@ -92,24 +93,6 @@ function pheroMeta() {
   }
 }
 
-/* ============== LE CADRE VIVANT — le ciel à la place de la photo ==== *
-   Un extérieur n'a pas de photographie fidèle : il a un ciel, et il change.
-   Là où le reportage manque (les 300 m²), le cadre porte donc le VRAI ciel
-   de Ramonville — même couche .sky que les heros, même flux Open-Meteo,
-   avec son propre starfield. Ce n'est pas un bouche-trou : c'est la seule
-   image honnête d'un lieu dont on n'a pas de cliché, et elle est vraie à la
-   seconde. La légende dit d'où elle vient (loi documentaire). */
-function skyFrame(label, extraClass = "") {
-  return `<div class="skyframe ${extraClass}" role="img" aria-label="${label} — le ciel réel au-dessus du plateau extérieur, relevé en direct">
-    <div class="sky" aria-hidden="true"><canvas class="sky__stars"></canvas><div class="sky__haze"></div><div class="sky__moon"></div></div>
-    <div class="skyframe__rule" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
-    <div class="skyframe__cap">
-      <span class="skyframe__k">${DEHORS.cadre.k}</span>
-      <span class="skyframe__live" data-skylive></span>
-    </div>
-  </div>`;
-}
-
 /* Les chips « en direct » du cadre : un seul point de vérité pour toutes les
    instances (station, relevé, galerie), re-peintes quand Open-Meteo répond. */
 const SKY_FR = { clair: "Ciel dégagé", voile: "Ciel voilé", pluie: "Pluie", orage: "Orage" };
@@ -123,6 +106,126 @@ function paintSkyLive(scope = document) {
   });
 }
 
+/* ================== L'ARPENTAGE — LE DEHORS, DESSINÉ ================ *
+   Le cadre au ciel réel était juste mais NU : en plein midi il n'y a pas
+   d'étoiles, et le différenciateur du site s'affichait en rectangle de nuit
+   quasi vide — une intention honnête rendue comme une image qui n'a pas
+   chargé. On arpente donc le dehors au lieu de l'attendre en photo.
+
+   Deux faits, deux seuls, tous deux officiels : 300 m² et une cage de 7 m.
+   On dessine trois cents carrés d'un mètre — un COMPTE, rangé pour être lu,
+   jamais une emprise — et l'octogone au même étalon, à côté, coté 7 m. Le
+   ciel réel reste le fond : il n'a pas disparu, il a enfin quelque chose
+   au-dessus de quoi être. La forme des 300 m² n'est dessinée nulle part, et
+   la légende dit pourquoi : c'est un relevé, pas un plan inventé. */
+const OCT_T = 1 / (2 + Math.SQRT2); // découpe d'un octogone régulier inscrit
+
+/* le tracé de l'octogone, inscrit dans un carré de côté `a` en (x,y) */
+function octPath(x, y, a) {
+  const t = a * OCT_T, X = (v) => +(x + v).toFixed(2), Y = (v) => +(y + v).toFixed(2);
+  return `M${X(t)} ${Y(0)} L${X(a - t)} ${Y(0)} L${X(a)} ${Y(t)} L${X(a)} ${Y(a - t)} `
+       + `L${X(a - t)} ${Y(a)} L${X(t)} ${Y(a)} L${X(0)} ${Y(a - t)} L${X(0)} ${Y(t)} Z`;
+}
+
+/* la planche : 300 carrés + la cage étalon. `compact` = le champ seul (tuile
+   de station : l'étalon y serait illisible, et se répéterait à 30 cm du grand). */
+function arpentPlot(compact = false) {
+  const A = ARPENT, U = 10, PAD = .8;          // 1 m = 10 unités SVG
+  // le rangement suit le CADRE : debout dans le relevé, couché dans la tuile
+  const cols = compact ? A.colsWide : A.cols;
+  const rows = compact ? A.rowsWide : A.rows;
+  const fw = cols * U, fh = rows * U;          // le champ
+  const cage = A.cage * U, gap = 26;
+  const cx = fw + gap, cy = (fh - cage) / 2;   // l'étalon, à droite, centré
+
+  let sq = "";
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      const i = r * cols + c;
+      // l'ordre de remplissage suit la lecture (ligne par ligne) : on COMPTE
+      sq += `<rect x="${c * U + PAD}" y="${r * U + PAD}" width="${U - PAD * 2}" height="${U - PAD * 2}" style="--i:${i}"/>`;
+    }
+  }
+  if (compact) {
+    return `<svg class="arpent__plot" viewBox="0 0 ${fw} ${fh}" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+      <g class="arpent__field">${sq}</g>
+    </svg>`;
+  }
+  const W = cx + cage, H = fh + 34;
+  return `<svg class="arpent__plot" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+    <g class="arpent__field">${sq}</g>
+    <path class="arpent__cage" d="${octPath(cx, cy, cage)}"/>
+    <g class="arpent__dim">
+      <line x1="${cx}" y1="${fh + 12}" x2="${cx + cage}" y2="${fh + 12}"/>
+      <line x1="${cx}" y1="${fh + 8}" x2="${cx}" y2="${fh + 16}"/>
+      <line x1="${cx + cage}" y1="${fh + 8}" x2="${cx + cage}" y2="${fh + 16}"/>
+    </g>
+    <text class="arpent__lbl" x="${fw / 2}" y="${fh + 28}" text-anchor="middle">${A.kField}</text>
+    <text class="arpent__lbl arpent__lbl--cage" x="${cx + cage / 2}" y="${fh + 28}" text-anchor="middle">${A.cage} m</text>
+  </svg>`;
+}
+
+/* le cadre complet : ciel réel en fond, planche par-dessus, relevé en pied */
+function arpentFrame(compact = false) {
+  const A = ARPENT;
+  /* la phrase d'honnêteté n'est visible qu'en grand (la tuile n'a pas la place),
+     mais elle est TOUJOURS dans l'étiquette : un lecteur d'écran ne doit pas
+     recevoir une version du relevé plus affirmative que celle qui est à l'écran. */
+  const label = compact
+    ? `Arpentage du plateau extérieur : ${A.count} carrés d'un mètre, soit ${A.count} m². ${A.honest}`
+    : `Arpentage du plateau extérieur : ${A.count} carrés d'un mètre, soit ${A.count} m², et l'octogone de ${A.cage} m dessiné au même étalon. ${A.honest}`;
+  return `<div class="arpent${compact ? " arpent--compact" : ""}" role="img" aria-label="${label}">
+    <div class="sky" aria-hidden="true"><canvas class="sky__stars"></canvas><div class="sky__haze"></div><div class="sky__moon"></div></div>
+    <div class="arpent__stage">${arpentPlot(compact)}</div>
+    ${compact ? "" : `<p class="arpent__honest">${A.honest}</p>`}
+    <div class="arpent__cap">
+      <span class="arpent__count"><b data-arpent="${A.count}">0</b><small>m² dehors</small></span>
+      <span class="arpent__live">
+        <span class="skyframe__k">${DEHORS.cadre.k}</span>
+        <span class="skyframe__live" data-skylive></span>
+      </span>
+    </div>
+  </div>`;
+}
+
+/* La vie de la planche : les carrés se posent un par un (on COMPTE le terrain),
+   le compteur suit. Dead-man obligatoire — si le rAF est gelé (onglet en fond)
+   ou l'IO indisponible, on POSE l'état final : jamais un champ à moitié dessiné
+   ni un compteur bloqué à 0, qui redonneraient l'air « inachevé » qu'on chasse. */
+function animateArpent(scope = document) {
+  scope.querySelectorAll(".arpent").forEach((box) => {
+    if (box.dataset.live) return;
+    box.dataset.live = "1";
+    const num = box.querySelector("[data-arpent]");
+    const target = num ? +num.dataset.arpent : 0;
+    const settle = () => { box.classList.add("is-on", "is-done"); if (num) num.textContent = String(target); };
+    if (reduce) { settle(); return; }
+
+    const run = () => {
+      box.classList.add("is-on");
+      if (num) {
+        const dur = 1400; let t0 = null;
+        const step = (ts) => {
+          if (!t0) t0 = ts;
+          const p = Math.min(1, (ts - t0) / dur);
+          num.textContent = String(Math.round(target * (1 - Math.pow(1 - p, 3))));
+          if (p < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      }
+      // dead-man : la planche est entièrement posée, quoi qu'il arrive
+      setTimeout(settle, 2600);
+    };
+    if ("IntersectionObserver" in window) {
+      const io = new IntersectionObserver((es) => es.forEach((e) => {
+        if (e.isIntersecting) { io.disconnect(); run(); }
+      }), { threshold: .2 });
+      io.observe(box);
+      setTimeout(() => { if (!box.classList.contains("is-on")) settle(); }, 6000);
+    } else run();
+  });
+}
+
 /* ---------------- LE RELEVÉ DU DEHORS (la-salle + galerie) --------- *
    Le différenciateur en fiche de terrain : ce qui est mesuré, ce qui ne
    l'est pas encore, et le ciel qui tient lieu d'image. Même composant sur
@@ -132,7 +235,7 @@ function renderReleve() {
   const box = $("#releve"); if (!box) return;
   const D = DEHORS;
   box.innerHTML = `
-    <div class="releve__frame" data-reveal>${skyFrame(D.t)}</div>
+    <div class="releve__frame" data-reveal>${arpentFrame()}</div>
     <div class="releve__sheet" data-reveal>
       <span class="eyebrow">${D.eyebrow}</span>
       <h3 class="releve__t">${D.claim}</h3>
@@ -159,10 +262,11 @@ function renderPlateau() {
     <article class="station" data-reveal>
       ${s.img
         ? `<div class="station__media media" data-img="${s.img}" data-label="" data-alt="${s.t} — Boxing Center Ramonville"></div>`
-        /* pas de cliché prouvé → le cadre porte le ciel réel du lieu, jamais
-           le cadre d'une AUTRE zone légendé à la place (même loi que
-           « nom ≡ photo » côté coachs), et jamais un carré « à venir ». */
-        : `<div class="station__media station__media--sky">${skyFrame(s.t, "skyframe--tight")}</div>`}
+        /* pas de cliché prouvé → la station est ARPENTÉE, jamais illustrée
+           par le cadre d'une AUTRE zone (même loi que « nom ≡ photo » côté
+           coachs), jamais par un carré « à venir ». Version compacte : le
+           champ seul, l'étalon vit en grand dans le relevé plus bas. */
+        : `<div class="station__media station__media--sky">${arpentFrame(true)}</div>`}
       <div class="station__body">
         <span class="station__n">${s.n}</span>
         <span class="station__tag">${s.tag}</span>
@@ -226,6 +330,77 @@ function renderDiscs() {
     const fam = b.dataset.fam;
     filt.querySelectorAll(".chip").forEach((c) => { const on = c === b; c.classList.toggle("is-on", on); c.setAttribute("aria-pressed", String(on)); });
     box.querySelectorAll(".disc").forEach((d) => d.classList.toggle("is-hidden", fam !== "all" && d.dataset.fam !== fam));
+  });
+}
+
+/* ---------------- L'ENTRÉE EN MATIÈRE (activites) ----------------- *
+   /activites/ tenait en trois blocs : hero, huit fiches, CTA. Elle disait ce
+   qu'on fait, jamais par où on entre — et le seul fait qui compte pour qui
+   n'a jamais boxé (le niveau demandé) était la 3e ligne d'un tableau de
+   faits. Ici, les cinq familles sont PESÉES contre le planning officiel :
+   créneaux, jours, niveau à l'entrée. Tout compté depuis SCHEDULE. */
+function renderEntree() {
+  const box = $("#entree"); if (!box) return;
+  const dayIx = (d) => DAYS.indexOf(d);
+  const isOpen = (d) => ENTREE.ouvertes.includes(d.niveau);
+  /* l'ordre et la LISTE viennent des disciplines, pas du filtre de planning :
+     FAMILLES ne connaît que les familles qui ont des créneaux — l'accès libre
+     n'en a aucun et disparaissait purement et simplement du bloc. */
+  const famKeys = [...new Set([...DISCIPLINES].sort((a, b) => a.edge - b.edge).map((d) => d.famille))];
+  const labelOf = (k) => FAMILLES.find((f) => f.key === k)?.label || ENTREE.libreLabel;
+
+  const cards = famKeys.map((key) => {
+    const discs = DISCIPLINES.filter((d) => d.famille === key).sort((a, b) => a.edge - b.edge);
+    const slots = SCHEDULE.filter((s) => s.fam === key);
+    const jours = [...new Set(slots.map((s) => s.day))].sort((a, b) => dayIx(a) - dayIx(b));
+    const nOpen = discs.filter(isOpen).length;
+    /* MIXTE, et il faut le dire : le grappling est « Tous niveaux » quand
+       l'asso MMA est « Confirmé ». Marquer toute la famille « quand tu es
+       prêt » fermait une porte que la salle ouvre — et contredisait le code
+       du plateau, qui écrit noir sur blanc que la cage du mardi est celle
+       des débutants. On compte les portes au lieu de les rabattre. */
+    const lvl = nOpen === discs.length ? ENTREE.kOuvert
+      : nOpen === 0 ? ENTREE.kReserve
+      : `${nOpen} sur ${discs.length} sans prérequis`;
+    /* l'accès libre n'a aucun créneau : ce n'est pas un zéro, c'est une autre
+       nature. On l'écrit, on ne le rend pas comme une famille vide. */
+    const horsGrille = slots.length === 0;
+    return `<article class="fam${nOpen ? " fam--open" : ""}${horsGrille ? " fam--free" : ""}">
+      <span class="fam__k">${labelOf(key)}</span>
+      ${horsGrille
+        ? `<b class="fam__free">${ENTREE.horsGrille.v}</b><span class="fam__freed">${ENTREE.horsGrille.d}</span>`
+        : `<span class="fam__n"><b>${slots.length}</b><small>${ENTREE.kSlots}</small></span>
+           <span class="fam__days">${jours.map((d) => `<i>${d}</i>`).join("")}</span>`}
+      <span class="fam__lvl">${lvl}</span>
+      <span class="fam__discs">${discs.map((d) =>
+        `<a href="#${d.key}" data-key="${d.key}"${isOpen(d) ? "" : ' class="is-hold"'}>
+           <b>${d.name}</b><i>${d.niveau}</i></a>`).join("")}</span>
+    </article>`;
+  }).join("");
+
+  // le compte qui ouvre le bloc — vérifié, pas affirmé
+  const nOpen = DISCIPLINES.filter((d) => ENTREE.ouvertes.includes(d.niveau)).length;
+  const reserve = DISCIPLINES.filter((d) => !ENTREE.ouvertes.includes(d.niveau));
+
+  box.innerHTML = `
+    <p class="entree__lead" data-reveal>${ENTREE.lead}</p>
+    <div class="fams" data-reveal-group>${cards}</div>
+    <p class="entree__read" data-reveal>
+      <b>${nOpen} côtés sur ${DISCIPLINES.length}</b> s'ouvrent sans rien savoir faire — tu prends des gants, tu montes.
+      ${reserve.length
+        ? `${reserve.length === 1 ? "Le dernier" : `Les ${reserve.length} derniers`} — ${reserve.map((d) => d.name).join(", ")} — ${reserve.length === 1 ? "attend" : "attendent"} que tu saches déjà tenir un round : c'est écrit, on ne t'y pousse pas le premier soir.`
+        : ""}
+    </p>`;
+
+  // le sommaire et le filtre de la page pilotent les mêmes ancres
+  box.addEventListener("click", (e) => {
+    const a = e.target.closest("a[data-key]"); if (!a) return;
+    e.preventDefault();
+    const all = document.querySelector('.chip[data-fam="all"]');
+    if (all && !all.classList.contains("is-on")) all.click();
+    const el = document.getElementById(a.dataset.key);
+    if (el) el.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+    history.replaceState(null, "", "#" + a.dataset.key);
   });
 }
 
@@ -604,7 +779,7 @@ function renderContact() {
 function boot() {
   pheroMeta();   // l'objet propre au hero de la page (remplace le filigrane partagé)
   if (page === "la-salle") { renderReleve(); renderPlateau(); renderValues(); renderNetwork(); }
-  if (page === "activites") renderDiscs();
+  if (page === "activites") { renderDiscs(); renderEntree(); }
   /* page === "coachs" : le roster est rendu par le module inline de la page
      (#coachroster) ; la garde de la semaine et l'aiguillage le sont ici. */
   if (page === "coachs") renderCoachDepth();
@@ -620,6 +795,7 @@ function boot() {
   window.__SKY?.mount?.(document);
   paintSkyLive(document);
   window.addEventListener("sky:change", () => paintSkyLive(document));
+  animateArpent(document);   // la planche se pose, le compteur monte (dead-man inclus)
 
   window.BC.media(document);
   window.BC.reveal(document);

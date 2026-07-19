@@ -13,9 +13,9 @@
   <!-- Polices AUTO-HÉBERGÉES — mêmes familles/graisses que l'original Google Fonts -->
   <link rel="preload" href="/fonts/chakrapetch-700-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="/fonts/manrope-var-latin.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="/assets/css/fonts.css?v=7" />
-  <link rel="stylesheet" href="/assets/css/base.css?v=7" />
-  <link rel="stylesheet" href="/assets/css/activites.css?v=7" />
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=8" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=8" />
+  <link rel="stylesheet" href="/assets/css/activites.css?v=8" />
   <meta name="keywords" content="cours de boxe Ramonville, grappling Toulouse, asso MMA octogone, Lady Punch Ramonville, boxe pieds-poings, baby boxe 3 ans, boxing camp, accès libre muscu Ramonville-Saint-Agne" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="author" content="Boxing Center Ramonville" />
@@ -25,7 +25,7 @@
   <meta name="ICBM" content="43.546, 1.474" />
   <link rel="canonical" href="https://ramonville.boxingcenter.fr/activites/" />
   <meta name="theme-color" content="#070a12" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=7" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=8" />
 
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="fr_FR" />
@@ -384,6 +384,21 @@
       </div>
     </section>
 
+    <!-- ================= L'ENTRÉE EN MATIÈRE ======================= -->
+    <!-- La page s'arrêtait aux huit fiches : elle disait ce qu'on fait, jamais
+         par où on entre. Les cinq familles sont ici PESÉES contre le planning
+         officiel — créneaux, jours, niveau demandé. Tout est compté depuis
+         SCHEDULE : si le planning bouge, ce bloc bouge avec lui. -->
+    <section class="section" style="background:var(--void);border-block:1px solid var(--line)" aria-label="Par où entrer">
+      <div class="wrap">
+        <div class="shead" data-reveal>
+          <span class="eyebrow">Par où on entre</span>
+          <h2 class="display"><span class="reveal-mask"><span>Cinq familles,</span></span><span class="reveal-mask"><span class="tint">une seule porte à pousser.</span></span></h2>
+        </div>
+        <div class="entree" id="entree"></div>
+      </div>
+    </section>
+
     <section class="ctaband" aria-label="Essayer une discipline">
       <div class="sky" aria-hidden="true"><canvas class="sky__stars"></canvas><div class="sky__haze"></div></div>
       <div class="ctaband__inner">
@@ -408,14 +423,14 @@
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-  <script is:inline type="module" src="/assets/js/site.js?v=7"></script>
-  <script is:inline type="module" src="/assets/js/sky.js?v=7"></script>
-  <script is:inline type="module" src="/assets/js/page.js?v=7"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=8"></script>
+  <script is:inline type="module" src="/assets/js/sky.js?v=8"></script>
+  <script is:inline type="module" src="/assets/js/page.js?v=8"></script>
 
   <!-- Enrichissement PROPRE à la page : le sommaire des 8 côtés + scrollspy.
        page.js a déjà rendu #famfilter et #discs (les fiches ancrées #<key>). -->
   <script is:inline type="module">
-    import { DISCIPLINES } from "/assets/js/data.js?v=7";
+    import { DISCIPLINES } from "/assets/js/data.js?v=8";
     const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
     const idx = document.getElementById("dindex");
     if (idx && DISCIPLINES) {

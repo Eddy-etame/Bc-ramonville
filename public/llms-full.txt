@@ -32,8 +32,9 @@
 Le site publie six photos de la salle, toutes prises à couvert. Les 300 m²
 extérieurs — le fait qui distingue Ramonville des quatre autres salles du
 réseau — n'ont pas encore été photographiés, et le site ne les illustre par
-aucune image d'intérieur. À la place, il affiche le relevé écrit de la zone
-et le ciel réel au-dessus du plateau, mis à jour en direct.
+aucune image d'intérieur. À la place, il ARPENTE la zone : le relevé écrit,
+une planche dessinée à l'échelle, et le ciel réel au-dessus du plateau, mis
+à jour en direct.
 
 - Surface : 300 m² d’entraînement extérieur, aménagés
 - Couverture : couvert, protégé des intempéries
@@ -42,6 +43,21 @@ et le ciel réel au-dessus du plateau, mis à jour en direct.
 - Cliché : non relevé. Aucune des six photos publiées ne montre le dehors.
 - Source du ciel affiché : Open-Meteo, coordonnées 43.546 / 1.474 (état du
   ciel, heure locale de la salle et température, relevés en direct)
+
+### La planche d'arpentage (pages Le plateau et Galerie)
+
+Faute de photographie, la surface est DESSINÉE, à partir des deux seules
+mesures officielles disponibles : les 300 m² et l'octogone de 7 m.
+
+- 300 carrés d'un mètre sont tracés, un par mètre carré déclaré
+- L'octogone de 7 m est dessiné à la même échelle, à côté, comme étalon de
+  comparaison — la seule dimension connue de la salle
+- La FORME du plateau extérieur n'est PAS dessinée : aucune source publique
+  n'indique si les 300 m² sont carrés, en L ou en bande. Les carrés sont
+  rangés pour être comptés, jamais pour figurer une emprise, et la légende
+  de la planche le dit explicitement : « La surface est relevée. La forme ne
+  l'est pas — on ne la dessine donc pas. »
+- Le fond de la planche reste le ciel réel de Ramonville (Open-Meteo)
 
 ## Disciplines (coach, créneaux, niveau)
 
@@ -53,6 +69,18 @@ et le ciel réel au-dessus du plateau, mis à jour en direct.
 - Lady Punch (100 % féminin) — coach Sonia — lundi et vendredi 18h00–18h40 — zéro prérequis
 - École enfants — coach Valentin G — Baby Boxe 3/6 ans samedi 14h15 ; éducative 7/11 ans mercredi et samedi 15h00 ; ados 12/16 ans mercredi et samedi 16h00
 - Accès libre muscu/cardio — en autonomie — lundi à samedi 10h00–21h30
+
+### Poids de chaque famille dans la semaine (page Activités)
+
+Compté sur les 23 cours de la grille de la rentrée.
+
+- Adultes — 13 créneaux, du lundi au samedi — anglaise, pieds-poings, Boxing Camp — sans prérequis
+- Enfants — 5 créneaux, mercredi et samedi — école Baby/7-11/12-16 — sans prérequis
+- Grappling & MMA — 3 créneaux, mardi et jeudi — grappling (tous niveaux) et asso MMA (confirmé) : 1 des 2 portes est sans prérequis
+- Féminin — 2 créneaux, lundi et vendredi — Lady Punch — zéro prérequis
+- Accès libre — hors grille, aucun créneau ni inscription — 10h00 à 21h30, six jours sur sept
+- Au total, 7 des 8 disciplines sont accessibles sans expérience préalable ;
+  seule l'asso MMA demande de savoir déjà tenir un round.
 
 ## Planning hebdomadaire des cours (grille complète)
 
