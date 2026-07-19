@@ -4,7 +4,8 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "node scripts/content.mjs && astro build",
+    "content": "node scripts/content.mjs",
     "preview": "astro preview",
     "images": "node scripts/images.mjs"
   },

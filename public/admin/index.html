@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="fr" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Le vestiaire — Boxing Center Ramonville</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="preload" href="/fonts/chakrapetch-600-latin.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="stylesheet" href="/assets/css/fonts.css?v=9" />
+<link rel="stylesheet" href="/admin/admin.css?v=9" />
+</head>
+<body>
+
+<!-- ================= LA PORTE ================= -->
+<div class="porte" id="porte">
+  <form id="porteForm" autocomplete="on">
+    <span class="porte__sigil" aria-hidden="true">
+      <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="7">
+        <path d="M65.6 16.8 L134.4 16.8 L183.2 65.6 L183.2 134.4 L134.4 183.2 L65.6 183.2 L16.8 134.4 L16.8 65.6 Z"/>
+      </svg>
+    </span>
+    <span class="kicker">Boxing Center · Ramonville-Saint-Agne</span>
+    <h1>Le vestiaire</h1>
+    <p>Le contenu de la salle et les contacts laissés par les visiteurs se gèrent d'ici. Entre le mot de passe du staff.</p>
+    <div class="champ">
+      <label for="token">Mot de passe</label>
+      <input type="password" id="token" autocomplete="current-password" autofocus required />
+    </div>
+    <p class="etat etat--mauvais" id="porteErr" hidden></p>
+    <button class="btn" type="submit" id="porteBtn">Entrer</button>
+    <span class="porte__pied">Accès staff uniquement · <a href="/">← Retour au site</a></span>
+  </form>
+</div>
+
+<!-- ================= LE VESTIAIRE ================= -->
+<div class="shell" id="app" hidden>
+  <aside class="cote">
+    <div class="marque">
+      <span class="marque__sigil" aria-hidden="true">
+        <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="9">
+          <path d="M65.6 16.8 L134.4 16.8 L183.2 65.6 L183.2 134.4 L134.4 183.2 L65.6 183.2 L16.8 134.4 L16.8 65.6 Z"/>
+        </svg>
+      </span>
+      <span><b>Boxing Center</b><small>Ramonville · Le vestiaire</small></span>
+    </div>
+    <nav id="nav" aria-label="Sections du vestiaire"></nav>
+    <div class="cote__pied">
+      <a href="/" target="_blank" rel="noopener">Voir le site ↗</a>
+      <button class="navbtn" id="guideBtn" type="button">Revoir le guide</button>
+      <button class="navbtn" id="sortir" type="button">Se déconnecter</button>
+    </div>
+  </aside>
+
+  <div class="principal">
+    <div class="barre">
+      <div class="titre"><span class="kicker">Section</span><h2 id="paneTitre">Accueil</h2></div>
+      <div class="barre__droite">
+        <span class="etat" id="etat"></span>
+        <button class="btn btn--fantome" id="annuler" type="button" title="Revenir à la dernière version publiée">Annuler tout</button>
+        <button class="btn" id="publier" type="button">Publier</button>
+      </div>
+    </div>
+    <div class="contenu" id="pane"></div>
+  </div>
+</div>
+
+<script src="/admin/tour.js?v=9"></script>
+<script src="/admin/app.js?v=9"></script>
+</body>
+</html>

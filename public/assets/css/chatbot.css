@@ -1,0 +1,172 @@
+/* =====================================================================
+   RAMONVILLE · chatbot.css — l'assistant, dans la nuit du plateau.
+
+   AUCUNE COULEUR NOUVELLE : tout est pris aux tokens de base.css (navy
+   --paper / --paper-2, --ink, l'accent argent ou cuivre selon la bascule
+   de palette, --line). Le panneau suit donc la palette du site, y compris
+   quand le visiteur bascule Acier ⇄ Cuivre pendant la conversation.
+
+   Le squelette est celui du plateau : coins durs (--radius 4px), labels
+   mono en capitales espacées, un liseré d'accent au bord haut comme les
+   filets du site. Pas de bulle ronde façon SaaS.
+
+   LISIBILITÉ (loi n°1) : le corps des messages est --ink sur --paper /
+   --paper-2 (≈15:1). L'accent ne porte JAMAIS de texte courant — il
+   éclaire les filets, les labels mono et le fond de la bulle visiteur,
+   où le texte repasse en --void sur argent. L'animation ne fait
+   qu'ACCOMPAGNER l'apparition : le texte est lisible même si rien ne
+   s'anime (prefers-reduced-motion, ticker gelé, JS d'anim absent).
+   ===================================================================== */
+
+.bcr-chat {
+  position: fixed;
+  right: clamp(1rem, 2.5vw, 2rem);
+  bottom: clamp(1rem, 2.5vw, 2rem);
+  z-index: 8600;
+  font-family: var(--f-body);
+}
+
+/* ------------------------------ PANNEAU --------------------------- */
+.bcr-chat__panel {
+  position: fixed;
+  right: clamp(1rem, 2.5vw, 2rem);
+  bottom: calc(clamp(1rem, 2.5vw, 2rem) + 54px + .8rem);
+  width: min(24.5rem, calc(100vw - 2rem));
+  max-height: min(34rem, calc(100dvh - 8rem));
+  display: flex;
+  flex-direction: column;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-top: 2px solid var(--accent);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow), var(--glow-soft);
+  overflow: hidden;
+  transform-origin: 100% 100%;
+}
+.bcr-chat__panel[hidden] { display: none; }
+
+/* l'ouverture RÉVÈLE, elle ne retient rien : opacité + 6px, c'est tout */
+@media (prefers-reduced-motion: no-preference) {
+  .bcr-chat__panel { animation: bcr-in .28s var(--ease-out, ease-out) both; }
+  @keyframes bcr-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+}
+
+/* ------------------------------ EN-TÊTE --------------------------- */
+.bcr-chat__head {
+  display: flex; align-items: center; gap: .8rem;
+  padding: .85rem 1rem;
+  background: var(--paper-2);
+  border-bottom: 1px solid var(--line);
+}
+.bcr-chat__sigil { flex: 0 0 auto; width: 30px; height: 30px; display: block; color: var(--accent); }
+.bcr-chat__sigil svg { width: 100%; height: 100%; display: block; }
+.bcr-chat__head-text { display: flex; flex-direction: column; gap: .2rem; min-width: 0; }
+.bcr-chat__head-text b {
+  font: 600 var(--step--1)/1.1 var(--f-display);
+  letter-spacing: .02em; color: var(--ink);
+}
+.bcr-chat__status {
+  font: 600 var(--step--2)/1 var(--f-mono);
+  letter-spacing: .14em; text-transform: uppercase; color: var(--accent);
+}
+.bcr-chat__close {
+  margin-left: auto; flex: 0 0 auto;
+  width: 30px; height: 30px; display: grid; place-items: center;
+  background: transparent; border: 1px solid var(--line); border-radius: var(--radius);
+  color: var(--muted); cursor: pointer; transition: color .25s, border-color .25s;
+}
+.bcr-chat__close:hover { color: var(--ink); border-color: var(--accent-line); }
+
+/* ------------------------------ MESSAGES -------------------------- */
+.bcr-chat__log {
+  flex: 1 1 auto; overflow-y: auto; overscroll-behavior: contain;
+  padding: 1rem; display: flex; flex-direction: column; gap: .7rem;
+  scrollbar-width: thin;
+}
+.bcr-chat__msg { display: flex; max-width: 88%; }
+.bcr-chat__msg--bot { align-self: flex-start; }
+.bcr-chat__msg--user { align-self: flex-end; }
+.bcr-chat__bubble {
+  padding: .62rem .85rem;
+  border-radius: var(--radius);
+  font-size: var(--step--1); line-height: 1.55;
+  color: var(--ink); background: var(--paper-2);
+  border: 1px solid var(--line);
+  /* la césure : un email ou un numéro collé ne doit jamais élargir le panneau */
+  overflow-wrap: anywhere;
+}
+.bcr-chat__msg--bot .bcr-chat__bubble { border-left: 2px solid var(--accent-line); }
+.bcr-chat__msg--user .bcr-chat__bubble {
+  background: var(--accent); color: var(--void); border-color: var(--accent);
+  font-weight: 600;
+}
+/* le point de frappe — trois points, jamais un spinner */
+.bcr-chat__dots { display: inline-flex; gap: .28rem; padding: .15rem 0; }
+.bcr-chat__dots i { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); opacity: .45; }
+@media (prefers-reduced-motion: no-preference) {
+  .bcr-chat__dots i { animation: bcr-dot 1.05s infinite ease-in-out; }
+  .bcr-chat__dots i:nth-child(2) { animation-delay: .16s; }
+  .bcr-chat__dots i:nth-child(3) { animation-delay: .32s; }
+  @keyframes bcr-dot { 0%,60%,100% { opacity: .32; } 30% { opacity: 1; } }
+}
+
+/* ------------------------------ PIED ------------------------------ */
+.bcr-chat__foot { border-top: 1px solid var(--line); background: var(--paper-2); }
+.bcr-chat__chips { display: flex; flex-wrap: wrap; gap: .4rem; padding: .7rem .7rem 0; }
+.bcr-chat__chips[hidden] { display: none; }
+.bcr-chat__chips button {
+  font: 600 var(--step--2)/1 var(--f-mono);
+  letter-spacing: .08em; text-transform: uppercase;
+  padding: .42rem .6rem; cursor: pointer;
+  color: var(--ink-soft); background: var(--paper);
+  border: 1px solid var(--line); border-radius: var(--radius);
+  transition: color .25s, border-color .25s, background .25s;
+}
+.bcr-chat__chips button:hover { color: var(--ink); border-color: var(--accent-line); background: var(--paper-3); }
+.bcr-chat__chips button[data-rappel] { color: var(--accent); border-color: var(--accent-line); }
+
+.bcr-chat__form { display: flex; gap: .5rem; padding: .7rem; }
+.bcr-chat__input {
+  flex: 1 1 auto; min-width: 0;
+  padding: .6rem .7rem;
+  font: 400 var(--step--1)/1.3 var(--f-body);
+  color: var(--ink); background: var(--paper);
+  border: 1px solid var(--line); border-radius: var(--radius);
+}
+.bcr-chat__input::placeholder { color: var(--muted); }
+.bcr-chat__input:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.bcr-chat__send {
+  flex: 0 0 auto; width: 2.55rem; display: grid; place-items: center;
+  background: var(--accent); color: var(--void);
+  border: 1px solid var(--accent); border-radius: var(--radius);
+  cursor: pointer; transition: filter .25s;
+}
+.bcr-chat__send:hover { filter: brightness(1.12); }
+.bcr-chat__send:disabled { opacity: .45; cursor: default; }
+
+/* le pied de page du panneau — la salle reste joignable pour de vrai */
+.bcr-chat__legal {
+  padding: 0 .8rem .7rem;
+  font: 600 var(--step--2)/1.4 var(--f-mono);
+  letter-spacing: .06em; color: var(--muted);
+}
+.bcr-chat__legal a { color: var(--accent); }
+
+/* --------------------- LE LANCEUR, quand JS a pris la main -------- */
+/* La pastille EXISTE déjà en HTML (un vrai lien tel:) : sans JS elle
+   appelle la salle, comme avant. Ici on ne fait que marquer son état
+   ouvert — on ne lui retire rien. */
+.chatbot.is-open { width: 54px; }
+.chatbot.is-open .chatbot__label { opacity: 0; }
+.chatbot.is-open .chatbot__icon svg { transform: rotate(45deg); }
+.chatbot__icon svg { transition: transform .3s var(--ease, ease); }
+@media (prefers-reduced-motion: reduce) { .chatbot__icon svg { transition: none; } }
+
+/* ---------------------------- PETIT ÉCRAN ------------------------- */
+@media (max-width: 480px) {
+  .bcr-chat__panel {
+    right: .5rem; left: .5rem; width: auto;
+    bottom: calc(clamp(1rem, 2.5vw, 2rem) + 54px + .6rem);
+    max-height: min(30rem, calc(100dvh - 7rem));
+  }
+}

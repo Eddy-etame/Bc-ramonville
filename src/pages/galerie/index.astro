@@ -16,6 +16,7 @@
   <link rel="preload" as="image" href="/assets/img/ram/hero.webp" fetchpriority="high" />
   <link rel="stylesheet" href="/assets/css/fonts.css?v=9" />
   <link rel="stylesheet" href="/assets/css/base.css?v=9" />
+  <link rel="stylesheet" href="/assets/css/chatbot.css?v=9" />
   <link rel="stylesheet" href="/assets/css/galerie.css?v=9" />
   <meta name="keywords" content="photos salle de boxe Ramonville, octogone MMA photo, ring boxe Toulouse, boxing center Ramonville-Saint-Agne galerie, carnet de terrain" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -59,6 +60,13 @@
         "sameAs": [
           "https://www.instagram.com/boxingcentertoulouse/",
           "https://www.facebook.com/BoxingCenterToulouse/"
+        ],
+        "subOrganization": [
+          { "@id": "https://ramonville.boxingcenter.fr/#salle" },
+          { "@type": "SportsActivityLocation", "name": "Boxing Center Portet-sur-Garonne", "url": "https://www.boxing-center-portet.fr/" },
+          { "@type": "SportsActivityLocation", "name": "Boxing Center Minimes" },
+          { "@type": "SportsActivityLocation", "name": "Boxing Center États-Unis" },
+          { "@type": "SportsActivityLocation", "name": "Boxing Center Saint-Cyprien" }
         ]
       },
       {
@@ -541,5 +549,6 @@
     }
     window.BC?.refresh();
   </script>
+  <script is:inline type="module" src="/assets/js/chatbot.js?v=9"></script>
 </body>
 </html>

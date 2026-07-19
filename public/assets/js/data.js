@@ -18,7 +18,34 @@
 export const SEASON = "2026-2027";
 export const SEASON_LABEL = "Saison 2026 — 2027";
 
-export const SALLE = {
+/* ------------------------------------------------------------------ *
+ *  LE CALQUE DU VESTIAIRE — bloc GÉNÉRÉ, ne pas écrire dedans à la main.
+ *
+ *  `npm run build` le remplit depuis src/content.json, c'est-à-dire
+ *  depuis ce que le staff a publié dans /admin/. Vide (le cas normal),
+ *  c'est data.js qui parle, mot pour mot : le vestiaire ne peut pas
+ *  vider le site par mégarde, il ne peut que SURCHARGER un champ.
+ *
+ *  Le calque est écrit ICI, dans le fichier, plutôt qu'importé d'un
+ *  module voisin : un import de plus, c'est un aller-retour réseau de
+ *  plus, sur les huit pages, pour un objet qui pèse deux octets la
+ *  plupart du temps. (loi n°3 — la perf ne doit que monter)
+ * ------------------------------------------------------------------ */
+/* @vestiaire:début */
+const VESTIAIRE = {};
+/* @vestiaire:fin */
+
+/* Surcharge champ par champ. Un objet est fusionné (on ne perd pas les
+   clés que le staff n'a pas touchées) ; une liste est remplacée en bloc
+   (retirer un tarif doit pouvoir retirer un tarif). */
+const calque = (base, cle) =>
+  VESTIAIRE[cle] === undefined
+    ? base
+    : Array.isArray(base)
+      ? VESTIAIRE[cle]
+      : { ...base, ...VESTIAIRE[cle] };
+
+const _SALLE = {
   id: "ramonville",
   name: "Boxing Center Ramonville",
   short: "Ramonville",
@@ -95,7 +122,7 @@ export const STATS = [
  *  sens horaire). Chaque discipline pointe vers son ancre /activites/.
  *  Créneaux & coachs = posters officiels rentrée 2026 (brief §3, roster).
  * ------------------------------------------------------------------ */
-export const DISCIPLINES = [
+const _DISCIPLINES = [
   {
     key: "anglaise",
     edge: 0,
@@ -365,7 +392,7 @@ export const VALUES = [
 /* L'encadrement — noms = posters officiels rentrée 2026. Photos : Sonia &
    Jérôme prouvées (roster.json). Farouk & Valentin G sans photo prouvée →
    tuiles nom/silhouette (JAMAIS de stock, JAMAIS la face d'un autre). */
-export const COACHES = [
+const _COACHES = [
   {
     name: "Sonia",
     role: "Pieds-poings · Lady Punch · Camp",
@@ -410,7 +437,7 @@ export const COACHES = [
  * ------------------------------------------------------------------ */
 export const DAYS = ["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"];
 
-export const SCHEDULE = [
+const _SCHEDULE = [
   // Lundi
   { day: "Lun", start: "12h40", cours: "Boxing Camp", coach: "Sonia", fam: "adulte", disc: "boxing-camp" },
   { day: "Lun", start: "18h00", cours: "Lady Punch", coach: "Sonia", fam: "feminin", disc: "lady-punch" },
@@ -552,7 +579,7 @@ export const POSTERS = [
  *  prix en dur dans les pages. Duo prioritaire, Saison secondaire.
  *  « 29 € par personne » obligatoire ; interdit « 29 € pour deux ».
  * ------------------------------------------------------------------ */
-export const PROMOS = {
+const _PROMOS = {
   saison: SEASON,
   duo: {
     name: "Offre Duo",
@@ -584,7 +611,7 @@ export const PROMOS = {
 };
 
 /* Les tarifs affichés (page /tarifs/). Essai 10€ en premier (standards §3). */
-export const TARIFS = [
+const _TARIFS = [
   {
     name: "Séance d'essai",
     price: "10 €",
@@ -736,3 +763,18 @@ export const FAQ = [
   { q: "Faut-il un niveau pour commencer ?", a: "Aucun. La séance d'essai à 10 € donne accès à toutes les disciplines, matériel prêté. La plupart des créneaux — loisirs, camp, pieds-poings — sont ouverts à tous les niveaux." },
   { q: "Quels sont les horaires ?", a: "Du lundi au samedi, de 10h00 à 21h30, accès libre muscu/cardio inclus. Fermé le dimanche. Un émargement GPS est demandé en salle avant chaque cours." },
 ];
+
+/* ------------------------------------------------------------------ *
+ *  LES SIX EXPORTS SURCHARGEABLES.
+ *  Tout le reste du fichier s'exporte tel quel : ce sont les faits que
+ *  le staff n'a aucune raison de retoucher depuis le vestiaire (le
+ *  relevé, l'arpentage, le carnet, la méthode). Ceux-ci bougent avec la
+ *  vie de la salle — coordonnées, planning, tarifs, encadrement — et
+ *  c'est exactement ceux-là que /admin/ peut publier.
+ * ------------------------------------------------------------------ */
+export const SALLE       = calque(_SALLE, "salle");
+export const DISCIPLINES = calque(_DISCIPLINES, "disciplines");
+export const COACHES     = calque(_COACHES, "coaches");
+export const SCHEDULE    = calque(_SCHEDULE, "schedule");
+export const TARIFS      = calque(_TARIFS, "tarifs");
+export const PROMOS      = calque(_PROMOS, "promos");

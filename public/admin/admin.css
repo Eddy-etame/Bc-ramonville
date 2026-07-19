@@ -1,0 +1,208 @@
+/* =====================================================================
+   LE VESTIAIRE — Ramonville · admin.css
+
+   MÊME CHARTE QUE LE SITE, aucune teinte de plus : navy nuit, argent
+   Boxing Center, cuivre brûlé du logo pour le seul geste irréversible
+   (publier). Chakra Petch pour les titres, mono pour les étiquettes,
+   coins durs à 4 px — c'est le vestiaire de CETTE salle, pas un thème
+   d'administration générique.
+
+   LISIBILITÉ (loi n°1) : corps #e8ebf4 sur #070a12 ≈ 15:1. L'argent et
+   le cuivre ne portent jamais de texte courant : ils éclairent les
+   filets, les étiquettes mono et les fonds de bouton (où le texte
+   repasse en noir). Aucune information n'est portée par la couleur
+   seule — chaque état a aussi un mot.
+   ===================================================================== */
+
+:root {
+  --void:     #04060c;
+  --paper:    #070a12;
+  --paper-2:  #0e1320;
+  --paper-3:  #161c2c;
+  --ink:      #e8ebf4;
+  --ink-soft: #c0c7d8;
+  --muted:    #8a93a8;
+  --accent:   #9fb6d9;   /* argent — la lumière du site */
+  --cuivre:   #c07a3a;   /* cuivre brûlé — le geste qui engage */
+  --line:      color-mix(in srgb, var(--ink) 13%, transparent);
+  --line-soft: color-mix(in srgb, var(--ink) 6%, transparent);
+  --accent-line: color-mix(in srgb, var(--accent) 34%, transparent);
+  --shadow: 0 24px 64px -22px rgba(0,0,0,.82);
+  --radius: 4px;
+  --f-display:"Chakra Petch", "Arial Narrow", sans-serif;
+  --f-body:   "Manrope", system-ui, sans-serif;
+  --f-mono:   "JetBrains Mono", ui-monospace, monospace;
+  --step--2: clamp(.7rem, .66rem + .12vw, .76rem);
+  --step--1: clamp(.82rem, .78rem + .2vw, .92rem);
+  --step-0:  clamp(1rem, .96rem + .2vw, 1.08rem);
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--paper); color: var(--ink);
+  font: 400 var(--step-0)/1.6 var(--f-body);
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, h4 { font-family: var(--f-display); font-weight: 600; letter-spacing: .01em; margin: 0; }
+a { color: var(--accent); }
+[hidden] { display: none !important; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.kicker {
+  display: block; font: 600 var(--step--2)/1 var(--f-mono);
+  letter-spacing: .18em; text-transform: uppercase; color: var(--accent);
+}
+
+/* ------------------------------ BOUTONS --------------------------- */
+.btn {
+  font: 600 var(--step--1)/1 var(--f-mono); letter-spacing: .08em; text-transform: uppercase;
+  padding: .68rem 1.05rem; cursor: pointer;
+  background: var(--cuivre); color: var(--void);
+  border: 1px solid var(--cuivre); border-radius: var(--radius);
+  transition: filter .25s, opacity .25s;
+}
+.btn:hover { filter: brightness(1.1); }
+.btn:disabled { opacity: .45; cursor: default; filter: none; }
+.btn--fantome { background: transparent; color: var(--ink-soft); border-color: var(--line); }
+.btn--fantome:hover { color: var(--ink); border-color: var(--accent-line); filter: none; }
+.btn--petit { padding: .45rem .7rem; }
+
+/* ------------------------------- CHAMPS --------------------------- */
+.champ { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .9rem; }
+.champ label { font: 600 var(--step--2)/1 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
+.champ input, .champ textarea, .champ select {
+  font: 400 var(--step--1)/1.5 var(--f-body);
+  padding: .6rem .7rem; color: var(--ink); background: var(--paper);
+  border: 1px solid var(--line); border-radius: var(--radius); width: 100%;
+}
+.champ textarea { min-height: 5.5rem; resize: vertical; }
+.champ input:focus-visible, .champ textarea:focus-visible { border-color: var(--accent); }
+.champ .aide { font: 400 var(--step--2)/1.5 var(--f-body); color: var(--muted); }
+
+/* ------------------------------ LA PORTE -------------------------- */
+.porte { min-height: 100dvh; display: grid; place-items: center; padding: 1.5rem; }
+.porte form {
+  width: min(24rem, 100%); background: var(--paper-2);
+  border: 1px solid var(--line); border-top: 2px solid var(--accent);
+  border-radius: var(--radius); padding: 2rem 1.6rem; box-shadow: var(--shadow);
+  display: flex; flex-direction: column; gap: .1rem;
+}
+.porte__sigil { width: 44px; height: 44px; color: var(--accent); margin-bottom: 1rem; }
+.porte__sigil svg { width: 100%; height: 100%; }
+.porte h1 { font-size: 1.9rem; margin: .5rem 0 .4rem; }
+.porte p { color: var(--muted); font-size: var(--step--1); margin: 0 0 1.3rem; }
+.porte .btn { width: 100%; margin-top: .3rem; }
+.porte__pied { display: block; margin-top: 1.2rem; font: 600 var(--step--2)/1.6 var(--f-mono); letter-spacing: .08em; color: var(--muted); }
+
+/* ------------------------------- SHELL ---------------------------- */
+.shell { display: grid; grid-template-columns: 15.5rem 1fr; min-height: 100dvh; }
+@media (max-width: 860px) { .shell { grid-template-columns: 1fr; } }
+
+.cote { background: var(--paper-2); border-right: 1px solid var(--line); padding: 1.4rem 1rem; display: flex; flex-direction: column; gap: 1.2rem; }
+.marque { display: flex; align-items: center; gap: .7rem; }
+.marque__sigil { width: 30px; height: 30px; color: var(--accent); flex: 0 0 auto; }
+.marque__sigil svg { width: 100%; height: 100%; }
+.marque b { display: block; font-family: var(--f-display); font-size: var(--step--1); }
+.marque small { display: block; font: 600 var(--step--2)/1.4 var(--f-mono); letter-spacing: .1em; color: var(--muted); }
+
+#nav { display: flex; flex-direction: column; gap: .2rem; }
+.navbtn {
+  display: block; width: 100%; text-align: left;
+  font: 600 var(--step--1)/1 var(--f-mono); letter-spacing: .06em;
+  padding: .6rem .7rem; cursor: pointer; color: var(--ink-soft);
+  background: transparent; border: 1px solid transparent; border-radius: var(--radius);
+  transition: color .2s, background .2s, border-color .2s;
+}
+.navbtn:hover { color: var(--ink); background: var(--paper-3); }
+.navbtn[aria-current="true"] { color: var(--ink); background: var(--paper-3); border-color: var(--accent-line); }
+.cote__pied { margin-top: auto; display: flex; flex-direction: column; gap: .2rem; padding-top: 1rem; border-top: 1px solid var(--line-soft); }
+.cote__pied a { font: 600 var(--step--1)/1 var(--f-mono); padding: .6rem .7rem; text-decoration: none; }
+
+.principal { display: flex; flex-direction: column; min-width: 0; }
+.barre {
+  display: flex; flex-wrap: wrap; gap: .8rem; align-items: center; justify-content: space-between;
+  padding: 1.1rem clamp(1rem, 3vw, 2rem); border-bottom: 1px solid var(--line);
+  position: sticky; top: 0; background: var(--paper); z-index: 20;
+}
+.barre h2 { font-size: 1.5rem; }
+.barre__droite { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
+.contenu { padding: clamp(1rem, 3vw, 2rem); max-width: 62rem; }
+
+/* ------------------------------- ÉTATS ---------------------------- */
+.etat { font: 600 var(--step--2)/1.4 var(--f-mono); letter-spacing: .08em; color: var(--muted); }
+.etat--sale { color: var(--cuivre); }
+.etat--bon { color: var(--accent); }
+.etat--mauvais { color: var(--ink); background: color-mix(in srgb, var(--cuivre) 22%, transparent); border-left: 2px solid var(--cuivre); padding: .5rem .7rem; border-radius: var(--radius); font-family: var(--f-body); letter-spacing: 0; text-transform: none; }
+
+/* ------------------------------- CARTES --------------------------- */
+.carte {
+  background: var(--paper-2); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 1.1rem; margin-bottom: 1rem;
+}
+.carte__tete { display: flex; align-items: center; justify-content: space-between; gap: .8rem; margin-bottom: .9rem; }
+.carte__tete h3 { font-size: 1.1rem; }
+.grille2 { display: grid; gap: 0 1rem; grid-template-columns: 1fr; }
+@media (min-width: 640px) { .grille2 { grid-template-columns: 1fr 1fr; } }
+
+.intro { color: var(--muted); font-size: var(--step--1); max-width: 62ch; margin: 0 0 1.4rem; }
+.intro b { color: var(--ink-soft); }
+
+/* ------------------------- LES ASSISTANTS ------------------------- */
+.assists { display: grid; gap: .8rem; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); }
+.assist {
+  text-align: left; cursor: pointer; padding: 1rem;
+  background: var(--paper-2); color: var(--ink);
+  border: 1px solid var(--line); border-left: 2px solid var(--accent-line); border-radius: var(--radius);
+  transition: border-color .25s, background .25s;
+}
+.assist:hover { background: var(--paper-3); border-left-color: var(--accent); }
+.assist b { display: block; font-family: var(--f-display); font-size: 1.05rem; margin-bottom: .3rem; }
+.assist span { display: block; font-size: var(--step--2); color: var(--muted); line-height: 1.5; }
+
+/* ------------------------- LES CONTACTS --------------------------- */
+.leads { display: flex; flex-direction: column; gap: .6rem; }
+.lead {
+  display: grid; gap: .3rem .9rem; grid-template-columns: 1fr;
+  background: var(--paper-2); border: 1px solid var(--line);
+  border-left: 2px solid var(--accent); border-radius: var(--radius); padding: .8rem 1rem;
+}
+@media (min-width: 720px) { .lead { grid-template-columns: 12rem 1fr auto; align-items: center; } }
+.lead__nom { font-family: var(--f-display); font-size: 1.05rem; }
+.lead__coord { display: flex; flex-wrap: wrap; gap: .3rem 1rem; font-size: var(--step--1); color: var(--ink-soft); }
+.lead__coord a { text-decoration: none; }
+.lead__quand { font: 600 var(--step--2)/1.4 var(--f-mono); letter-spacing: .06em; color: var(--muted); }
+
+/* état honnête : un vide VOULU, jamais un écran inachevé */
+.vide {
+  border: 1px dashed var(--line); border-radius: var(--radius);
+  padding: 1.6rem; text-align: center; color: var(--muted); font-size: var(--step--1);
+}
+.vide b { display: block; font-family: var(--f-display); font-size: 1.15rem; color: var(--ink); margin-bottom: .5rem; }
+
+/* --------------------------- LE PLANNING -------------------------- */
+.creneau { display: grid; gap: .4rem; grid-template-columns: 5rem 1fr 8rem 2rem; align-items: center; margin-bottom: .4rem; }
+.creneau input { font: 400 var(--step--1)/1.4 var(--f-body); padding: .45rem .55rem; color: var(--ink); background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); width: 100%; }
+.creneau .sup { background: transparent; border: 1px solid var(--line); color: var(--muted); border-radius: var(--radius); cursor: pointer; height: 2rem; }
+.creneau .sup:hover { color: var(--ink); border-color: var(--cuivre); }
+@media (max-width: 640px) { .creneau { grid-template-columns: 4.5rem 1fr 2rem; } .creneau .coach { grid-column: 1 / -2; } }
+
+/* ============================ LE GUIDE ============================= */
+/* Quatre panneaux sombres autour d'un trou : la cible reste cliquable,
+   tout le reste est neutralisé. Le même moteur sert la grande visite et
+   les assistants de l'accueil. */
+.guide-bloc { position: fixed; background: rgba(4,6,12,.82); z-index: 9000; }
+.guide-spot { position: fixed; z-index: 9001; pointer-events: none; border: 2px solid var(--accent); border-radius: var(--radius); box-shadow: 0 0 0 1px rgba(0,0,0,.5), 0 0 26px color-mix(in srgb, var(--accent) 40%, transparent); transition: all .28s cubic-bezier(.16,1,.3,1); }
+@media (prefers-reduced-motion: reduce) { .guide-spot { transition: none; } }
+.guide-carte {
+  position: fixed; z-index: 9002; width: min(22rem, calc(100vw - 2rem));
+  background: var(--paper-2); border: 1px solid var(--line); border-top: 2px solid var(--accent);
+  border-radius: var(--radius); box-shadow: var(--shadow); padding: 1.1rem;
+}
+.guide-carte h3 { font-size: 1.15rem; margin-bottom: .5rem; }
+.guide-carte p { margin: 0 0 .9rem; font-size: var(--step--1); color: var(--ink-soft); line-height: 1.6; }
+.guide-carte .indice { display: block; font: 600 var(--step--2)/1 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: .8rem; }
+.guide-pied { display: flex; align-items: center; justify-content: space-between; gap: .6rem; }
+.guide-pied .pas { font: 600 var(--step--2)/1 var(--f-mono); letter-spacing: .1em; color: var(--muted); }
+.guide-actes { display: flex; gap: .4rem; }

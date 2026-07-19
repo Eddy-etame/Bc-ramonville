@@ -210,6 +210,25 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
 .nav__links a:hover { background: var(--paper-2); color: var(--ink); }
 .nav__links a[aria-current="page"] { background: var(--accent); color: var(--void); }
 .nav__right { display: flex; align-items: center; gap: .6rem; }
+
+/* ---------------- LE MAILLAGE DE MARQUE (liens sortants) ----------
+   Le groupe et la boutique, sur chaque page. Ils se rangent APRÈS la
+   navigation de la salle et avant le CTA : le visiteur trouve d'abord
+   ce qu'il est venu chercher. Le picto de lien externe prévient qu'on
+   change de site — c'est une politesse, pas une décoration.
+   Ils n'apparaissent qu'à partir de 1300 px : en-dessous, la nav est
+   déjà pleine et le tiroir les porte, à leur place et en entier. */
+.nav__ext { display: none; align-items: center; gap: .2rem; margin-left: .3rem; padding-left: .6rem; border-left: 1px solid var(--line); }
+.nav__ext a { display: inline-flex; align-items: center; gap: .3ch; font: 600 var(--step--2)/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); padding: .55em .6em; border-radius: var(--radius); transition: color .3s, background .3s; }
+.nav__ext a:hover { color: var(--accent); background: var(--paper-2); }
+.ext { flex: 0 0 auto; opacity: .75; }
+@media (min-width: 1300px){ .nav__ext { display: flex; } }
+
+.menu__ext { display: flex; gap: 1.4rem; flex-wrap: wrap; }
+.menu__ext a { display: inline-flex; align-items: center; gap: .35ch; }
+
+.footer__col a .ext { opacity: .6; }
+.footer__reseau { margin-top: clamp(1.4rem,3vw,2rem); font: 600 var(--step--2)/1.6 var(--f-mono); letter-spacing: .06em; color: var(--muted); max-width: 62ch; }
 .nav__cta { display: none; }
 @media (min-width: 1160px){ .nav__links { display: flex; } .nav__cta { display: inline-flex; } }
 .burger { display: inline-flex; flex-direction: column; justify-content: center; gap: 5px; width: 44px; height: 44px; padding: 0 11px; border: 1.5px solid var(--line); border-radius: var(--radius); background: color-mix(in srgb, var(--paper-2) 82%, transparent); transition: border-color .3s; }

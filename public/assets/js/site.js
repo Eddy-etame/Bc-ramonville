@@ -8,7 +8,24 @@
    bi-palette (Acier lune ⇄ Cuivre) montée dans la nav, no-flash.
    Aucun chrome copié de Saint-Cyprien.
    ===================================================================== */
-import { NAV, LINKS, SALLE, SEASON_LABEL } from "./data.js?v=9";
+import { NAV, LINKS, SALLE, SEASON_LABEL, NETWORK } from "./data.js?v=9";
+
+/* --------------------------- LE MAILLAGE --------------------------- *
+   Les liens sortants vers le réseau propriétaire : le site du groupe, la
+   boutique, et les quatre salles sœurs. Ils sont présents sur CHAQUE
+   page (nav large + tiroir + pied de page), portent l'icône de lien
+   externe, et s'ouvrent dans un onglet neuf.
+
+   PAS DE `nofollow` : ce n'est pas du lien payé ni du contenu d'un
+   tiers, c'est le maillage de marque du même propriétaire — le retirer
+   reviendrait à demander à Google d'ignorer sa propre enseigne. On garde
+   `noopener` (sécurité de l'onglet), rien de plus.
+   ------------------------------------------------------------------- */
+const svgExt = `<svg class="ext" width="11" height="11" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M5 11L11 5M11 5H6M11 5V10" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+const lienExt = (href, label, titre) =>
+  `<a href="${href}" target="_blank" rel="noopener"${titre ? ` title="${titre}"` : ""}>${label} ${svgExt}</a>`;
+/* les sœurs : la liste des vraies salles, Ramonville retirée (c'est ici) */
+const SOEURS = (NETWORK || []).filter((s) => !s.self);
 
 const gsap = window.gsap;
 const ScrollTrigger = window.ScrollTrigger;
@@ -66,6 +83,10 @@ function mountNav() {
         <span class="nav__salle">Ramonville</span>
       </a>
       <div class="nav__links">${links}</div>
+      <div class="nav__ext">
+        ${lienExt(LINKS.groupe, "Le groupe", "Boxing Center — le site du réseau")}
+        ${lienExt(LINKS.boutique, "Boutique", "La boutique Boxing Center")}
+      </div>
       <div class="nav__right">
         <button class="pal" id="pal" type="button" aria-label="Basculer la palette de couleurs (Acier lune / Cuivre)" aria-pressed="${pal === "cuivre"}">
           <span class="pal__dot" aria-hidden="true"></span><span class="pal__txt">${pal === "cuivre" ? "Cuivre" : "Acier"}</span>
@@ -93,9 +114,10 @@ function mountNav() {
       <nav class="menu__nav">${menuLinks}</nav>
       <div class="menu__foot">
         <a class="btn btn--primary" data-magnetic href="${LINKS.essai}"><span>Réserver l'essai · 10€</span></a>
-        <div style="display:flex;gap:1.4rem;flex-wrap:wrap">
-          <a href="${LINKS.boutique}" target="_blank" rel="noopener">Boutique ↗</a>
-          <a href="${LINKS.instagram}" target="_blank" rel="noopener">Instagram ↗</a>
+        <div class="menu__ext">
+          ${lienExt(LINKS.groupe, "Le groupe Boxing Center")}
+          ${lienExt(LINKS.boutique, "Boutique")}
+          ${lienExt(LINKS.instagram, "Instagram")}
           <a href="tel:${SALLE.phoneHref}">${SALLE.phone}</a>
         </div>
       </div>
@@ -145,15 +167,7 @@ function mountNav() {
 
 /* --------------------- FOOTER — la fiche de terrain ---------------- */
 function mountFooter() {
-  const cols = [
-    { h: "Le plateau", links: NAV.slice(1, 6) },
-    { h: "Le réseau", links: [
-      { href: LINKS.groupe, label: "Boxing Center ↗" },
-      { href: "https://www.boxing-center-portet.fr/", label: "Portet ↗" },
-      { href: LINKS.instagram, label: "Instagram ↗" },
-      { href: LINKS.facebook, label: "Facebook ↗" },
-    ] },
-  ];
+  const cols = [{ h: "Le plateau", links: NAV.slice(1, 6) }];
   const fields = [
     { k: "Établissement", v: "Boxing Center — Ramonville", wide: true },
     { k: "Le signe", v: "Octogone 7 m · 300 m² extérieur couvert" },
@@ -180,12 +194,22 @@ function mountFooter() {
         <div class="footer__links">
           ${cols.map((c) => `<div class="footer__col"><h4>${c.h}</h4>${c.links.map((l) => `<a href="${l.href}">${l.label}</a>`).join("")}</div>`).join("")}
           <div class="footer__col">
-            <h4>Suivre</h4>
-            <a href="${LINKS.instagram}" target="_blank" rel="noopener">Instagram ↗</a>
-            <a href="${LINKS.facebook}" target="_blank" rel="noopener">Facebook ↗</a>
-            <a href="${LINKS.boutique}" target="_blank" rel="noopener">Boutique ↗</a>
+            <h4>Le réseau</h4>
+            ${lienExt(LINKS.groupe, "Boxing Center", "Le site du réseau Boxing Center")}
+            ${lienExt(LINKS.boutique, "Boutique")}
+            ${lienExt(LINKS.instagram, "Instagram")}
+            ${lienExt(LINKS.facebook, "Facebook")}
+          </div>
+          <div class="footer__col">
+            <h4>Les salles sœurs</h4>
+            ${SOEURS.map((s) => lienExt(s.url, s.name, `${s.name} — ${s.feat}`)).join("")}
           </div>
         </div>
+        <!-- Le maillage inter-salles, en clair : le réseau existait en
+             données depuis le début et n'était rendu nulle part. Un
+             abonnement Saison ouvre les cinq clubs — autant que le
+             visiteur (et le moteur) puissent y aller. -->
+        <p class="footer__reseau">Cinq salles à Toulouse et alentour, un seul abonnement : l'Offre Saison donne l'accès libre aux ${(NETWORK || []).length} clubs du réseau.</p>
         <div class="footer__bottom">
           <span>© ${new Date().getFullYear()} Boxing Center Ramonville.</span>
           <span class="footer__stamp">${SEASON_LABEL} · sous le ciel de Ramonville</span>
