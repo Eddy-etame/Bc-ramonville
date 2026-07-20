@@ -1,4 +1,9 @@
 {
+  "functions": {
+    "api/chat.js": {
+      "includeFiles": "src/content.json"
+    }
+  },
   "headers": [
     {
       "source": "/(.*)",
