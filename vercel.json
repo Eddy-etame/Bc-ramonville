@@ -3,40 +3,70 @@
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "Strict-Transport-Security", "value": "max-age=63072000; includeSubDomains; preload" },
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=(), payment=()" },
-        { "//": "script-src s'est refermé sur 'self' : les trois libs d'animation étaient la seule raison d'autoriser cdn.jsdelivr.net, elles sont maintenant servies depuis /assets/vendor/. Un domaine tiers de moins autorisé à exécuter du script sur ce site.", "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https:; connect-src 'self' https://api.open-meteo.com; frame-src https://www.google.com https://maps.google.com; base-uri 'self'; form-action 'self' https://box-plus.vercel.app; object-src 'none'; frame-ancestors 'self'; upgrade-insecure-requests" }
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000; includeSubDomains; preload"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=(), payment=()"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https:; connect-src 'self' https://api.open-meteo.com; frame-src https://www.google.com https://maps.google.com; base-uri 'self'; form-action 'self' https://box-plus.vercel.app; object-src 'none'; frame-ancestors 'self'; upgrade-insecure-requests"
+        }
       ]
     },
     {
-      "//": "LE VESTIAIRE N'EST PAS UNE PAGE DU SITE. Le <meta robots> ne protège que si le robot RENTRE lire la page ; robots.txt l'empêche de rentrer mais pas d'indexer l'URL nue. L'en-tête, lui, voyage avec la réponse et vaut pour tout ce qui est servi sous /admin/ — y compris app.js et admin.css, qui n'ont pas de <head> où mettre une balise.",
       "source": "/admin/(.*)",
       "headers": [
-        { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive, nosnippet" },
-        { "key": "Cache-Control", "value": "no-store" }
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow, noarchive, nosnippet"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "no-store"
+        }
       ]
     },
     {
-      "//": "Même raison pour les points d'entrée : ce sont des réponses, pas des documents.",
       "source": "/api/(.*)",
       "headers": [
-        { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
       ]
     },
     {
-      "//": "Les fichiers versionnés (?v=N dans le balisage) peuvent être gardés un an : quand ils changent, l'URL change. Sans ça, chaque page vue re-négociait dix fichiers avec le serveur pour s'entendre dire qu'ils n'avaient pas bougé.",
       "source": "/assets/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
       ]
     },
     {
       "source": "/fonts/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
       ]
     }
   ]

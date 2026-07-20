@@ -154,3 +154,22 @@ dans `public/assets/js/data.js` — tout le site, le maillage et le JSON-LD suiv
 `.env` est ignoré par git ; aucun secret n'est présent dans le dépôt (vérifié). Les clés vivent
 uniquement dans les variables d'environnement Vercel, jamais dans le front : l'admin s'authentifie
 côté serverless, en comparaison à temps constant.
+
+---
+
+## Les en-têtes (`vercel.json`) — pourquoi ils sont écrits ainsi
+
+> ⚠️ `vercel.json` est du JSON STRICT : **aucun commentaire**, aucune clé en trop.
+> Vercel refuse le déploiement avec `should NOT have additional property`.
+> Les explications vivent donc ici, pas dans le fichier.
+
+- **CSP — `script-src 'self'`** : les trois libs d'animation étaient la seule raison d'autoriser
+  `cdn.jsdelivr.net` ; elles sont désormais servies depuis `/assets/vendor/`. Un domaine tiers de
+  moins autorisé à exécuter du script sur le site.
+- **`/admin/` → `X-Robots-Tag: noindex`** : le vestiaire n'est pas une page du site. Une balise
+  `<meta robots>` ne protège que si le robot ENTRE lire la page ; `robots.txt` l'empêche d'entrer
+  mais pas d'indexer l'URL nue. L'en-tête, lui, voyage avec la réponse et couvre tout ce qui est
+  servi sous `/admin/` — y compris `app.js` et `admin.css`, qui n'ont pas de `<head>`.
+- **`/api/` → `X-Robots-Tag`** : même raison — ce sont des réponses, pas des documents.
+- **`/assets/` et `/fonts/` → cache 1 an `immutable`** : ces fichiers sont versionnés (`?v=N` dans
+  le balisage) ; quand ils changent, l'URL change, donc on peut les garder très longtemps.
