@@ -7,3 +7,8 @@ dist/
 # ils ne décrivent pas le site, ils décrivent une passe de travail.
 _dist_before/
 _tmp_lh/
+
+# secrets — JAMAIS versionnés
+.env
+.env.*
+!.env.example
