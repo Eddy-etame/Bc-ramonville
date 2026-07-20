@@ -158,7 +158,7 @@ const _DISCIPLINES = [
        pattes d'ours près du ring servent aux deux boxes, c'est la salle qui
        le dit, pas nous. On ne va pas chercher une photo d'une autre
        discipline, on branche celle qui était déjà déclarée pour celle-ci. */
-    img: "/assets/img/ram/anglaise.webp",
+    img: "/assets/img/ram/pieds-poings.webp",
     imgAlt: "Travail aux pattes d'ours près du ring à Boxing Center Ramonville : le geste commun à la boxe anglaise et au pieds-poings.",
   },
   {
@@ -171,7 +171,7 @@ const _DISCIPLINES = [
     jours: "Mardi · 18h40",
     niveau: "Tous niveaux",
     desc: "Contrôle, projections, soumissions au sol, dans l'octogone de 7 m. Jérôme y fait travailler la partie que la boxe ignore — celle qui finit les combats.",
-    img: "/assets/img/ram/octogone.webp",
+    img: "/assets/img/ram/grappling.webp",
   },
   {
     key: "asso-mma",
