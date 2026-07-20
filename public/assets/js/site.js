@@ -4,8 +4,9 @@
 
    Même moteur éprouvé que les salles sœurs (lenis · reveal + dead-man ·
    magnetic · media hydrate · marquee · scramble), RE-SKINNÉ pour le
-   plateau : chrome anguleux, footer « fiche de terrain », et la bascule
-   bi-palette (Acier lune ⇄ Cuivre) montée dans la nav, no-flash.
+   plateau : chrome anguleux, footer « fiche de terrain », et une barre
+   qui tient sur une ligne de 320 à 2560 px — l'argent de la marque est
+   figé, il n'y a plus rien à basculer.
    Aucun chrome copié de Saint-Cyprien.
    ===================================================================== */
 import { NAV, LINKS, SALLE, SEASON_LABEL, NETWORK } from "./data.js?v=11";
@@ -57,30 +58,23 @@ function toutMontrer(scope = document) {
 let lenis = null;
 let velocity = 0;
 
-/* --------------------------- PALETTE ------------------------------ *
-   Bascule Acier lune ⇄ Cuivre — deux métaux 100 % Boxing Center (argent
-   marque / cuivre brûlé du logo). localStorage bc-ram-palette. Le no-flash
-   (lecture avant paint) est fait par un petit script inline dans chaque
-   <head> ; ici on ne gère que le toggle runtime. */
-const PAL_KEY = "bc-ram-palette";
-function currentPalette() { return document.documentElement.getAttribute("data-palette") === "cuivre" ? "cuivre" : "acier"; }
-function setPalette(p) {
-  if (p === "cuivre") document.documentElement.setAttribute("data-palette", "cuivre");
-  else document.documentElement.removeAttribute("data-palette");   // "acier" = défaut :root
-  try { localStorage.setItem(PAL_KEY, p); } catch (_) {}
-  const btn = document.getElementById("pal");
-  if (btn) {
-    btn.querySelector(".pal__txt").textContent = p === "cuivre" ? "Cuivre" : "Acier";
-    btn.setAttribute("aria-pressed", String(p === "cuivre")); // AT : état de la palette
-  }
-  /* sky.js écoutait `bc:palette` pour re-teinter les étoiles… et PERSONNE ne
-     l'émettait : un abonné mort depuis l'origine. Sans motion réduite ça ne se
-     voyait pas (le canvas repeint à chaque frame et relit --accent au passage),
-     mais en `prefers-reduced-motion` le ciel n'est peint QU'UNE FOIS : basculer
-     Acier ⇄ Cuivre laissait alors les étoiles à l'ancien métal, définitivement.
-     La bascule est censée tout re-teinter — elle le fait maintenant partout. */
-  window.dispatchEvent(new CustomEvent("bc:palette", { detail: { palette: p } }));
-}
+/* --------------------------- LA COULEUR EST FIXE ------------------ *
+   LA BASCULE DE PALETTE EST PARTIE, ET C'EST UNE DÉCISION, PAS UN OUBLI.
+   La barre empilait logo + RAMONVILLE + 8 liens + Le groupe ↗ + Boutique ↗
+   + la pastille « ACIER » + Essai 10€ + le burger : huit familles d'objets
+   pour une seule ligne, et plus rien ne se lisait. Le premier à sauter est
+   celui qui ne sert le visiteur en rien — personne n'est venu ici choisir
+   un métal. Ramonville reste sur l'ARGENT lunaire de la marque, figé.
+
+   Ce qui part avec : le bouton, `data-palette`, le petit script no-flash
+   des neuf <head>, le bloc `:root[data-palette="cuivre"]` de base.css, et
+   la clé localStorage — effacée UNE fois ci-dessous pour qu'un visiteur
+   qui avait choisi le cuivre ne traîne pas une préférence sans objet.
+
+   `bc:palette` reste ÉCOUTÉ par sky.js : l'événement n'est plus émis, le
+   contrat ne bouge pas. Le jour où la marque tranche une autre couleur,
+   il suffit de le réémettre — rien n'a été démonté du côté du ciel. */
+try { localStorage.removeItem("bc-ram-palette"); } catch (_) {}
 
 /* ----------------------------- NAV / MENU ------------------------- */
 function currentPath() {
@@ -90,13 +84,20 @@ function currentPath() {
 }
 function mountNav() {
   const path = currentPath();
-  const links = NAV.map(
+  /* LA BARRE NE PORTE PLUS « ACCUEIL ».
+     Le logo EST le lien d'accueil depuis toujours — la barre affichait donc
+     deux fois la même destination, dans une ligne où plus rien ne tenait.
+     Sur l'accueil, c'est le logo qui porte `aria-current="page"` : la page
+     courante reste annoncée, elle l'est simplement au bon endroit. Le menu,
+     lui, garde les huit entrées : rien n'est retiré au visiteur, on arrête
+     seulement de le lui dire deux fois sur la même ligne. */
+  const home = path === "/";
+  const links = NAV.filter((n) => n.href !== "/").map(
     (n) => `<a href="${n.href}"${n.href === path ? ' aria-current="page"' : ""}>${n.label}</a>`
   ).join("");
-  const pal = currentPalette();
   document.getElementById("nav").innerHTML = `
     <nav class="nav" id="site-nav">
-      <a class="nav__brand" href="/" aria-label="Boxing Center Ramonville — accueil">
+      <a class="nav__brand" href="/" aria-label="Boxing Center Ramonville — accueil"${home ? ' aria-current="page"' : ""}>
         <!-- alt="" : le lien parent porte déjà aria-label="Boxing Center
              Ramonville — accueil", qui EST le nom accessible. Un alt en plus ne
              se lit jamais et ne sort qu'en doublon dans les audits.
@@ -107,14 +108,14 @@ function mountNav() {
         <span class="nav__salle">Ramonville</span>
       </a>
       <div class="nav__links">${links}</div>
-      <div class="nav__ext">
-        ${lienExt(LINKS.groupe, "Le groupe", "Boxing Center — le site du réseau")}
-        ${lienExt(LINKS.boutique, "Boutique", "La boutique Boxing Center")}
-      </div>
+      <!-- LE GROUPE ↗ ET BOUTIQUE ↗ NE SONT PLUS DANS LA BARRE — ils n'ont
+           PAS quitté le site. Ils vivent dans le menu (.menu__ext, juste en
+           dessous) ET dans le pied de page, qui est écrit EN DUR dans le HTML
+           livré par scripts/maillage.mjs : le maillage de marque reste donc
+           lisible par un robot qui n'exécute pas une ligne de JavaScript,
+           exactement comme avant. Ce qui change, c'est qu'ils ne se battent
+           plus avec huit entrées de menu pour trois centimètres de barre. -->
       <div class="nav__right">
-        <button class="pal" id="pal" type="button" aria-label="Basculer la palette de couleurs (Acier lune / Cuivre)" aria-pressed="${pal === "cuivre"}">
-          <span class="pal__dot" aria-hidden="true"></span><span class="pal__txt">${pal === "cuivre" ? "Cuivre" : "Acier"}</span>
-        </button>
         <a class="btn btn--primary nav__cta" data-magnetic href="${LINKS.essai}"><span>Essai · 10€</span></a>
         <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
@@ -173,8 +174,6 @@ function mountNav() {
   document.getElementById("menu-close").addEventListener("click", () => setOpen(false));
   menu.querySelectorAll(".menu__link, .menu__foot a").forEach((a) => a.addEventListener("click", () => setOpen(false)));
   addEventListener("keydown", (e) => { if (e.key === "Escape") setOpen(false); });
-
-  document.getElementById("pal").addEventListener("click", () => setPalette(currentPalette() === "cuivre" ? "acier" : "cuivre"));
 
   let last = 0;
   ScrollTrigger?.create({
@@ -421,7 +420,7 @@ const refresh = () => ScrollTrigger?.refresh();
 /* ------------------------------ BOOT ------------------------------ */
 window.BC = {
   reveal, magnetic, refresh, media: hydrateMedia, split, scramble, initKinetics, touchLife,
-  setPalette, get lenis() { return lenis; }, get velocity() { return velocity; },
+  get lenis() { return lenis; }, get velocity() { return velocity; },
 };
 mountNav();
 mountFooter();

@@ -136,6 +136,7 @@ function majEtat() {
 const SECTIONS = [
   { k: "accueil", t: "Accueil" },
   { k: "contacts", t: "Contacts" },
+  { k: "galerie", t: "La galerie du club" },
   { k: "salle", t: "Coordonnées & club" },
   { k: "tarifs", t: "Tarifs" },
   { k: "coachs", t: "Coachs" },
@@ -168,7 +169,110 @@ function rendreSection(k) {
   const s = SECTIONS.find((x) => x.k === k) || SECTIONS[0];
   $("#paneTitre").textContent = s.t;
   $("#nav").querySelectorAll(".navbtn").forEach((b) => b.setAttribute("aria-current", String(b.dataset.k === k)));
-  ({ accueil: vueAccueil, contacts: vueContacts, salle: vueSalle, tarifs: vueTarifs, coachs: vueCoachs, planning: vuePlanning }[k] || vueAccueil)();
+  ({ accueil: vueAccueil, contacts: vueContacts, galerie: vueGalerie, salle: vueSalle, tarifs: vueTarifs, coachs: vueCoachs, planning: vuePlanning }[k] || vueAccueil)();
+}
+
+/* ====================== LA GALERIE DU CLUB ========================= *
+   La file d'attente du mur : ce que les visiteurs ont déposé sur
+   /galerie/ et que PERSONNE n'a encore vu sur le site. Rien n'est publié
+   tout seul — c'est toute la raison d'être de cet écran.
+
+   Deux boutons, deux gestes irréversibles dans le bon sens :
+     · « Publier sur le mur » pose le tag approved → la photo apparaît.
+     · « Supprimer » DÉTRUIT le fichier. Pas de corbeille : on ne garde pas
+       la photo de quelqu'un sur nos serveurs après l'avoir refusée. C'est
+       pour ça que ce bouton demande confirmation, et pas l'autre.
+
+   On affiche le moyen de recontact laissé par le contributeur : le coach
+   qui publie peut dire merci. Ces coordonnées ne sortent QUE par cette
+   route, derrière le mot de passe staff — jamais par le mur public.
+
+   Cette section ne s'écrit PAS dans le calque de contenu : elle agit tout
+   de suite sur le stockage. Elle n'a donc rien à voir avec « Publier » en
+   haut à droite, et c'est dit en toutes lettres au staff. */
+async function vueGalerie() {
+  const intro = `<p class="intro">Ce que les visiteurs ont déposé sur la page Galerie. <b>Rien n'est en ligne tant que tu n'as pas cliqué « Publier sur le mur »</b> — et ici, contrairement au reste du vestiaire, l'effet est immédiat : pas besoin de repasser par le bouton « Publier » en haut.</p>`;
+
+  if (!app.capacites.galerie) {
+    $("#pane").innerHTML = `${intro}
+      <div class="vide"><b>La galerie du club n'est pas encore branchée</b>
+      Il manque la clé de stockage (CLOUDINARY_URL) dans les réglages du site. Tant qu'elle n'y est pas, la section reste visible sur le site avec un message d'attente honnête — personne ne voit d'erreur. La marche à suivre est dans le README, section « La galerie du club ».</div>`;
+    return;
+  }
+
+  $("#pane").innerHTML = `${intro}<p class="etat">Chargement…</p>`;
+  let d;
+  try {
+    d = await api("/api/community/pending");
+  } catch (e) {
+    $("#pane").innerHTML = `${intro}
+      <div class="vide"><b>La file n'a pas répondu</b>${echappe(e.message)}. Réessaie dans un instant — ou recharge la page.</div>`;
+    return;
+  }
+
+  const items = d.items || [];
+  if (!items.length) {
+    $("#pane").innerHTML = `${intro}
+      <div class="vide"><b>Rien à relire pour l'instant</b>
+      La file est vide : tout ce qui a été déposé est déjà traité. Dès qu'un visiteur postera une photo ou une vidéo depuis la page Galerie, elle apparaîtra ici, la plus ancienne en tête.</div>`;
+    return;
+  }
+
+  const quand = (iso) => {
+    const dt = new Date(iso);
+    return isNaN(dt) ? "" : dt.toLocaleString("fr-FR", { day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" });
+  };
+  $("#pane").innerHTML = `${intro}
+    <p class="intro"><b>${items.length} fichier${items.length > 1 ? "s" : ""}</b> en attente, le plus ancien en premier.</p>
+    <div class="file">
+      ${items.map((it) => `
+        <div class="file__item" data-id="${echappe(it.id)}" data-type="${echappe(it.type)}">
+          <div class="file__vue">
+            ${it.type === "video"
+              ? `<video src="${echappe(it.src)}" poster="${echappe(it.poster)}" controls preload="none" playsinline></video>`
+              : `<img src="${echappe(it.poster)}" alt="Proposition de ${echappe(it.auteur || "un visiteur")}" loading="lazy" decoding="async" />`}
+          </div>
+          <div class="file__meta">
+            <b>${echappe(it.titre || "Sans titre")}</b>
+            <span>Par ${echappe(it.auteur || "anonyme")} · ${echappe(quand(it.createdAt))}${it.duree ? ` · ${it.duree}s` : ""}</span>
+            <span class="file__coord">
+              ${it.tel ? `<a href="tel:${echappe(it.tel.replace(/\s/g, ""))}">${echappe(it.tel)}</a>` : ""}
+              ${it.email ? `<a href="mailto:${echappe(it.email)}">${echappe(it.email)}</a>` : ""}
+            </span>
+            <div class="file__actes">
+              <button class="btn" type="button" data-acte="publier">Publier sur le mur</button>
+              <button class="btn btn--fantome" type="button" data-acte="supprimer">Supprimer</button>
+            </div>
+          </div>
+        </div>`).join("")}
+    </div>`;
+
+  /* La vue est asynchrone : entre le `await` et ici, le staff a pu changer
+     de section. Sans ce garde, on brancherait le clic de la galerie sur un
+     écran qui affiche les tarifs — et rendreSection() a déjà remis le
+     récolteur à zéro pour la bonne raison. */
+  if (app.section !== "galerie") return;
+  cliqueur = async (e) => {
+    const b = e.target.closest("[data-acte]");
+    if (!b) return;
+    const carte = b.closest(".file__item");
+    const acte = b.dataset.acte;
+    if (acte === "supprimer" && !confirm("Supprimer définitivement ce fichier ? Il ne sera pas récupérable.")) return;
+    carte.querySelectorAll("button").forEach((x) => (x.disabled = true));
+    b.textContent = "…";
+    try {
+      await api("/api/community/moderate", {
+        method: "POST",
+        body: JSON.stringify({ id: carte.dataset.id, type: carte.dataset.type, action: acte }),
+      });
+      carte.remove();
+      if (!$("#pane").querySelector(".file__item")) rendreSection("galerie");
+    } catch (err) {
+      carte.querySelectorAll("button").forEach((x) => (x.disabled = false));
+      b.textContent = acte === "publier" ? "Publier sur le mur" : "Supprimer";
+      alert("Ça n'a pas marché : " + err.message);
+    }
+  };
 }
 
 /* ------------------------------- ACCUEIL -------------------------- */

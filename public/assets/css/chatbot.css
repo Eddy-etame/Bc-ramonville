@@ -2,8 +2,8 @@
    RAMONVILLE · chatbot.css — l'assistant, dans la nuit du plateau.
 
    AUCUNE COULEUR NOUVELLE : tout est pris aux tokens de base.css (navy
-   --paper / --paper-2, --ink, l'accent argent ou cuivre selon la bascule
-   de palette, --line). Le panneau suit donc la palette du site, y compris
+   --paper / --paper-2, --ink, l'accent argent de la marque, --line). Le
+   panneau suit donc la charte du site, y compris
    quand le visiteur bascule Acier ⇄ Cuivre pendant la conversation.
 
    Le squelette est celui du plateau : coins durs (--radius 4px), labels

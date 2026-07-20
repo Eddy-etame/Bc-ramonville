@@ -6,7 +6,7 @@
    carnet en mosaïque avec légendes mono par ZONE, les six zones rendues au
    planning officiel (.zones — l'angle propre au carnet), les trois règles de
    méthode (.regles), la page blanche (.blanche) et la visionneuse plein cadre.
-   Aucun token redéfini — la bascule bi-palette suffit.
+   Aucun token redéfini — tout dérive de --accent, l'argent de la marque.
 
    Cette page a longtemps recopié le RELEVÉ DU DEHORS de /la-salle/ mot pour
    mot — sur-titre, titre, phrase-thèse, cinq cartes de mesure, signature. Le
@@ -77,7 +77,7 @@
    sœur. Le relevé est rendu à sa page ; le carnet porte ce que lui seul peut
    dire — à quoi sert chaque lieu photographié, et quand. Le squelette reste
    PROPRE à la page (loi n°2) : des rangées de zone, pas des cartes de mesure.
-   Aucun token nouveau — argent/cuivre, navy, os, comme partout. */
+   Aucun token nouveau — argent, navy, os, comme partout. */
 .zones { display: grid; gap: 1px; background: var(--line-soft); border: 1px solid var(--line); }
 .zrow { background: color-mix(in srgb, var(--paper-2) 76%, transparent); padding: clamp(1.1rem,2.6vw,1.7rem) clamp(1rem,2.4vw,1.6rem); display: grid; gap: .5rem .8rem; grid-template-columns: 1fr; align-items: start; transition: background .3s; }
 .zrow:hover { background: var(--paper-2); }

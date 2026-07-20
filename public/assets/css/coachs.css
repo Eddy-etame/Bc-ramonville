@@ -7,7 +7,7 @@
    officiel). Loi coach : nom ≡ photo. Pas de portrait prouvé → PLAQUE gravée
    au nom du coach (état définitif, aucun manque annoncé), JAMAIS le visage
    d'un autre, JAMAIS de stock, et surtout jamais un « photo à venir ».
-   Aucun token redéfini — la bascule bi-palette suffit à tout.
+   Aucun token redéfini — tout dérive de --accent, l'argent de la marque.
    ===================================================================== */
 
 /* Le chrome (.phero*, .breadcrumb, .shead, .ctaband) vit dans base.css. Ce
@@ -46,7 +46,7 @@
    nom est GRAVÉ, en display, comme une plaque à l'entrée du vestiaire :
    un filet d'argent, le nom pleine largeur, le rang dessous. Un état
    définitif et voulu, qui ne promet rien et ne périme pas.
-   Fond nuit + lumière argent/cuivre : aucune teinte hors marque. */
+   Fond nuit + lumière argent : aucune teinte hors marque. */
 .coach__face--plaque {
   display: flex; flex-direction: column; justify-content: center; gap: .9rem;
   padding: clamp(1.2rem,3vw,2rem);

@@ -325,10 +325,15 @@ function renderDiscs() {
   box.innerHTML = DISCIPLINES.map((d) => `
     <section class="disc" id="${d.key}" data-fam="${d.famille}" data-reveal>
       ${d.img
-        ? `<div class="disc__media media" data-img="${d.img}" data-label="" data-alt="${d.name} — Boxing Center Ramonville"></div>`
-        : `<div class="disc__media disc__media--tile" role="img" aria-label="${d.name}, Boxing Center Ramonville">
+        ? `<div class="disc__media media" data-img="${d.img}" data-label="" data-alt="${d.imgAlt || `${d.name} — Boxing Center Ramonville`}"></div>`
+        : /* LA PLAQUE, pas un trou. Elle porte le sigle, le tag, ET la raison
+             écrite de l'absence : `role="img"` mentirait sur un bloc qui
+             contient du vrai texte à lire, on le laisse donc en contenu
+             normal, annoncé par sa propre phrase (voir activites.css). */
+          `<div class="disc__media disc__media--tile">
              <svg class="disc__oct" viewBox="0 0 100 100" aria-hidden="true"><path d="M32.8 8.4 L67.2 8.4 L91.6 32.8 L91.6 67.2 L67.2 91.6 L32.8 91.6 L8.4 67.2 L8.4 32.8 Z"/></svg>
              <span class="disc__tagbig">${d.tag}</span>
+             ${d.nophoto ? `<p class="disc__nophoto">${d.nophoto}</p>` : ""}
            </div>`}
       <div class="disc__body">
         <span class="disc__tag">${d.tag}</span>

@@ -152,7 +152,14 @@ const _DISCIPLINES = [
     jours: "Mer. 12h40 · lun. & ven. 18h40",
     niveau: "Tous niveaux",
     desc: "Poings, tibias, genoux : la boxe la plus complète, menée par Sonia. Trois créneaux par semaine, du midi qui réveille au soir qui vide les jambes.",
-    img: null,
+    /* CETTE FICHE N'AVAIT PAS D'IMAGE — et le carnet en avait une pour elle
+       depuis le début. anglaise.webp est indexée `discs: ["anglaise",
+       "pieds-poings"]` dans CARNET, plus bas dans ce même fichier : les
+       pattes d'ours près du ring servent aux deux boxes, c'est la salle qui
+       le dit, pas nous. On ne va pas chercher une photo d'une autre
+       discipline, on branche celle qui était déjà déclarée pour celle-ci. */
+    img: "/assets/img/ram/anglaise.webp",
+    imgAlt: "Travail aux pattes d'ours près du ring à Boxing Center Ramonville : le geste commun à la boxe anglaise et au pieds-poings.",
   },
   {
     key: "grappling",
@@ -176,7 +183,13 @@ const _DISCIPLINES = [
     jours: "Mardi & jeudi · 19h45 – 21h15",
     niveau: "Confirmé · asso",
     desc: "Le créneau association : MMA complet dans l'octogone, debout et au sol. Deux soirs par semaine avec Jérôme, quand la cage est à nous et que le plateau, à deux pas, reste ouvert sur le soir.",
-    img: null,
+    /* octogone.webp EST une photo d'asso MMA — son `alt` du carnet le dit mot
+       pour mot (« Séance d'asso MMA dans l'octogone de 7 m »), et elle est
+       indexée `discs: ["grappling", "asso-mma"]`. La fiche du créneau qui se
+       passe DANS la cage s'affichait sans la seule photo de la cage : ce
+       n'était pas un manque de matière, c'était un fil non branché. */
+    img: "/assets/img/ram/octogone.webp",
+    imgAlt: "Séance d'asso MMA dans l'octogone de 7 m à Boxing Center Ramonville, le groupe au sol.",
   },
   {
     key: "boxing-camp",
@@ -200,7 +213,12 @@ const _DISCIPLINES = [
     jours: "Lundi & vendredi · 18h00 – 18h40",
     niveau: "Zéro prérequis",
     desc: "Un créneau à elles avant le pieds-poings du soir : la vraie boxe, le cardio qui pique, la frappe qui défoule — entre meufs, personne pour te reluquer. Sonia tient la porte.",
+    /* LES SIX PHOTOS PROUVÉES DE LA SALLE NE MONTRENT AUCUN CRÉNEAU FÉMININ.
+       Illustrer un cours 100 % féminin avec un adulte masculin, ce serait
+       mentir sur la seule chose qui définit ce créneau. `nophoto` remplace la
+       photo par une PLAQUE assumée, avec cette phrase-là dessus. */
     img: null,
+    nophoto: "Aucune photo du créneau féminin n'a encore été prise. On préfère te le dire que te montrer quelqu'un d'autre — viens voir Sonia le lundi.",
   },
   {
     key: "ecole",
@@ -212,7 +230,11 @@ const _DISCIPLINES = [
     jours: "Baby 3/6 sam. 14h15 · 7/11 mer./sam. 15h · 12/16 mer./sam. 16h",
     niveau: "Baby → ados",
     desc: "Du Baby Boxe dès 3 ans à l'éducative ados : tenir sa garde, attendre son tour, taper juste. Valentin G tient toute l'école, le mercredi et le samedi après-midi.",
+    /* Même règle, et elle est plus stricte encore ici : on ne publie pas le
+       visage d'un enfant sans l'accord écrit des parents, et aucune des six
+       photos prouvées n'en montre. La plaque le dit franchement. */
     img: null,
+    nophoto: "Pas de photo des cours enfants : on ne publie pas le visage d'un enfant sans l'accord de ses parents. Le mercredi et le samedi, la salle est à eux.",
   },
   {
     key: "acces-libre",

@@ -9,7 +9,7 @@
 
    Le monde reste le même — la nuit, le ciel réel du hero, l'argent-lumière,
    le registre documentaire. Ce fichier ne (re)définit AUCUN token : il
-   consomme ceux de base.css pour que la bascule bi-palette suffise à tout.
+   consomme ceux de base.css : tout dérive de --accent, l'argent de la marque.
    ===================================================================== */
 
 /* Le chrome (.phero*, .breadcrumb, .shead, .ctaband) vit dans base.css. Ce

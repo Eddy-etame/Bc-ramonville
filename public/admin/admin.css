@@ -206,3 +206,21 @@ a { color: var(--accent); }
 .guide-pied { display: flex; align-items: center; justify-content: space-between; gap: .6rem; }
 .guide-pied .pas { font: 600 var(--step--2)/1 var(--f-mono); letter-spacing: .1em; color: var(--muted); }
 .guide-actes { display: flex; gap: .4rem; }
+
+/* ====================== LA GALERIE DU CLUB ======================== *
+   La file de modération : une vignette, ce qu'on sait du contributeur,
+   deux boutons. Rien de plus — c'est un écran de décision, pas un
+   catalogue. La vignette est en `preload="none"` / `loading="lazy"` :
+   ouvrir la section ne télécharge pas soixante vidéos d'un coup. */
+.file { display: grid; gap: .8rem; }
+.file__item { display: grid; grid-template-columns: 160px 1fr; gap: 1rem; align-items: start; background: var(--paper-2); border: 1px solid var(--line); border-radius: var(--radius); padding: .8rem; }
+.file__vue { position: relative; aspect-ratio: 4/5; overflow: hidden; border-radius: var(--radius); background: var(--paper); }
+.file__vue img, .file__vue video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.file__meta { display: flex; flex-direction: column; gap: .35rem; min-width: 0; }
+.file__meta b { font-family: var(--f-display); font-size: 1.1rem; color: var(--ink); }
+.file__meta span { font-size: var(--step--1); color: var(--muted); }
+.file__coord { display: flex; flex-wrap: wrap; gap: .8rem; }
+.file__coord a { color: var(--accent); }
+.file__actes { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .6rem; }
+.file__actes .btn { min-height: 44px; }
+@media (max-width: 640px) { .file__item { grid-template-columns: 1fr; } .file__vue { aspect-ratio: 16/10; } }

@@ -128,6 +128,65 @@ attendent sur l'écran d'accueil. `Échap` quitte le guide à tout moment.
 
 ---
 
+## La galerie du club
+
+Sur `/galerie/`, sous le carnet de la maison, les visiteurs déposent **leurs** photos et
+vidéos du plateau. Rien n'est publié automatiquement : tout passe par la file de
+modération du vestiaire, section **« La galerie du club »**.
+
+### Le stockage : Cloudinary, le même que Portet
+
+Une seule variable à coller. Cloudinary → *Dashboard* → **API Environment variable** :
+
+```
+CLOUDINARY_URL=cloudinary://<api_key>:<api_secret>@<cloud_name>
+```
+
+| Variable | Défaut | Effet |
+| --- | --- | --- |
+| `CLOUDINARY_URL` | — | **la seule obligatoire.** Sans elle, la section reste sur le site avec un message d'attente honnête, et le vestiaire dit qu'elle n'est pas branchée. |
+| `COMMUNITY_FOLDER` | `bc-ramonville-community` | le dossier **de cette salle**. Deux salles peuvent partager un compte sans mélanger leurs murs. |
+| `COMMUNITY_MAX_PHOTO_MO` | `12` | poids maximum d'une photo |
+| `COMMUNITY_MAX_VIDEO_MO` | `80` | poids maximum d'une vidéo |
+| `COMMUNITY_MAX_SEC` | `15` | **durée maximum d'une vidéo** |
+| `COMMUNITY_MAX_PAR_FENETRE` | `3` | fichiers autorisés par visiteur et par fenêtre |
+| `COMMUNITY_FENETRE_MIN` | `10` | durée de la fenêtre, en minutes |
+| `GEMINI_API_KEY` | — | *facultatif.* S'il est là, un coup d'œil automatique écarte les images manifestement hors sujet. Sans lui, **tout part en modération humaine** — le système marche pareil, il est juste moins filtré. |
+
+### Le chemin d'un fichier, du dépôt au mur
+
+1. Le visiteur remplit **prénom + (email ou téléphone)** — c'est obligatoire, et c'est
+   annoncé sur le formulaire. Le navigateur vérifie le type réel (décodage de l'image,
+   lecture de la durée de la vidéo), le poids et la durée **avant** d'envoyer quoi que ce soit.
+2. `POST /api/community/sign` valide l'identité, passe prénom et titre au filtre à
+   injures, limite le débit par IP, et **signe** des paramètres. Les octets ne passent
+   jamais par Vercel (limite de 4,5 Mo par requête).
+3. Le navigateur téléverse **en direct** chez Cloudinary avec cette signature. Le fichier
+   atterrit tagué `pending`.
+4. `POST /api/community/check` **revérifie côté serveur, sur le fichier réel** : format
+   réellement décodé, dimensions non nulles pour une image, durée ≤ 15 s pour une vidéo,
+   poids. Tout manquement détruit le fichier immédiatement. C'est ce contrôle-là qui fait
+   loi — celui du navigateur n'est qu'une politesse, il se contourne.
+5. Le contributeur est écrit dans **le carnet de contacts existant** (`POST /api/lead`,
+   `event="upload_contributor"`) : même registre que l'assistant, relu au même endroit.
+   Il n'y a pas de second système.
+6. Un coach ouvre le vestiaire → **La galerie du club** → *Publier sur le mur* (tag
+   `approved`) ou *Supprimer* (destruction définitive, pas de corbeille).
+7. `GET /api/community/items` ne sert **que** les `approved`.
+
+### Ce que ça coûte à la page
+
+Rien tant que personne ne descend. La feuille (`community.css`) et le module
+(`community.js`) n'entrent dans `/galerie/` qu'à 400 px de la section, et les médias du
+mur attendent encore (`loading="lazy"`, `preload="none"`, `IntersectionObserver`). Le
+premier rendu de la page ne télécharge pas une photo de la communauté.
+
+> `vercel.json` autorise `https://api.cloudinary.com` en `connect-src` (le téléversement)
+> et `https://res.cloudinary.com` en `media-src` (les vidéos du mur). Sans ces deux
+> lignes, la politique de sécurité bloque la fonctionnalité entière.
+
+---
+
 ## Déploiement
 
 Importer le repo dans Vercel — Astro est détecté (build `npm run build`, sortie `dist/`),

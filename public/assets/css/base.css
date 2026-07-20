@@ -5,14 +5,14 @@
    fitness. La démesure est dans la justesse.
 
    COULEURS 100 % BOXING CENTER (rien d'inventé) : navy nuit (fond) + ARGENT
-   #aebccf (défaut, clair de lune) ; bascule vers le CUIVRE brûlé du logo
-   #7a3d16 (éclairé). Distincte des sœurs par le MONDE (le ciel, l'octogone)
+   #aebccf, refroidi en clair de lune. UNE SEULE palette, et elle est figée :
+   le client a tranché. Distincte des sœurs par le MONDE (le ciel, l'octogone)
    et le squelette, pas par une couleur hors-marque. Type anguleux (Chakra
-   Petch). L'accent est une LUMIÈRE (argent/cuivre), jamais une encre.
+   Petch). L'accent est une LUMIÈRE (l'argent de la marque), jamais une encre.
 
    LOI DE LISIBILITÉ : corps #e8ebf4 sur #070a12 ≈ 15:1. L'argent #9fb6d9
    (≈8:1) est une LUMIÈRE — titres, filets, accents — JAMAIS du corps < 4.5:1.
-   Labels muets #8a93a8 ≈ 5.9:1 (AA). Bascule bi-palette : data-palette.
+   Labels muets #8a93a8 ≈ 5.9:1 (AA). Une seule palette : l'argent de la marque.
    ===================================================================== */
 
 /* --- Repli métrique pour le display (anti-CLS / FOUT) ---
@@ -48,10 +48,10 @@
 }
 
 /* ----------------------------- TOKENS ----------------------------- */
-/* PALETTE A (défaut) « Acier lune ». La nuit bleu-noir de la marque + l'ARGENT
+/* LA PALETTE, « Acier lune ». La nuit bleu-noir de la marque + l'ARGENT
    Boxing Center (#aebccf) refroidi en clair de lune sur l'acier de la cage.
    Couleurs 100 % marque : navy + argent. Les glows/filets dérivent de --accent
-   via color-mix : la bascule ne change que l'accent. */
+   via color-mix : une seule ligne re-teinte le site entier. */
 :root {
   --void:     #04060c;   /* le noir du hangar, sous la charpente */
   --paper:    #070a12;   /* fond — la nuit bleu-noir (navy Boxing Center) */
@@ -64,7 +64,7 @@
   --accent:   #9fb6d9;   /* ARGENT lunaire (famille silver marque #aebccf) — une lumière, ≈8:1 */
   --accent-2: #d3e2f5;   /* argent clair, dégradés */
 
-  /* dérivés de l'accent — la bascule de palette suffit à tout re-teinter */
+  /* dérivés de l'accent — une seule ligne à changer pour tout re-teinter */
   --line:      color-mix(in srgb, var(--ink) 13%, transparent);
   --line-soft: color-mix(in srgb, var(--ink) 6%, transparent);
   --accent-line: color-mix(in srgb, var(--accent) 34%, transparent);
@@ -120,15 +120,13 @@
   --sky-haze: transparent;
 }
 
-/* PALETTE B (bascule de secours, loi standard) « Cuivre » — même nuit, accent
-   CUIVRE brûlé de la marque (le métal du logo officiel #7a3d16, éclairé pour
-   la lisibilité sur fond noir). Couleurs 100 % marque : navy + cuivre.
-   Toggle nav data-palette, localStorage bc-ram-palette. */
-:root[data-palette="cuivre"] {
-  --accent:   #c07a3a;   /* cuivre brûlé éclairé (famille #7a3d16) — ≈5.7:1 sur --paper (4.9:1 sur --paper-3) : glows/filets/titres, à réserver aux fonds --paper/--void, pas aux micro-labels sur --paper-3 */
-  --accent-2: #e0a56a;
-  --sky-glow: color-mix(in srgb, var(--accent) 22%, transparent);
-}
+/* IL N'Y A PLUS DE PALETTE B. Le bloc `:root[data-palette="cuivre"]` vivait
+   ici pour une bascule de barre que le client a tranchée : ON RESTE SUR LE
+   BLEU/ARGENT. Garder trois tokens qu'aucun sélecteur ne peut plus atteindre,
+   c'est laisser croire qu'une seconde identité existe — et c'est le genre de
+   code mort qu'on redécouvre un an plus tard en se demandant s'il est vivant.
+   Tout le site dérive de --accent : le jour où la marque tranche autre chose,
+   c'est UNE ligne, en haut, et le ciel suit (sky.js écoute toujours). */
 
 /* ----------------------------- RESET ------------------------------ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -241,38 +239,45 @@ html.fx [data-reveal] { opacity: 0; transform: translateY(28px); }
 .btn sup { font-size: .62em; }
 .btn--ghost { background: transparent; }
 
-/* --------------------------- PALETTE TOGGLE ----------------------- */
-.pal { display: inline-flex; align-items: center; gap: .5ch; height: 44px; padding: 0 .9rem; border: 1.5px solid var(--line); border-radius: var(--radius); background: color-mix(in srgb, var(--paper-2) 82%, transparent); color: var(--muted); font: 600 var(--step--2)/1 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; transition: border-color .3s, color .3s; }
-.pal:hover { border-color: var(--accent); color: var(--ink); }
-.pal__dot { width: 12px; height: 12px; transform: rotate(45deg); background: var(--accent); box-shadow: 0 0 10px var(--accent); transition: background .3s; }
-
-/* ----------------------------- NAV -------------------------------- */
-.nav { position: fixed; inset: 0 0 auto 0; z-index: 8000; display: flex; align-items: center; justify-content: space-between; padding: clamp(.8rem,1.8vw,1.1rem) var(--gut); transition: transform .5s var(--ease), background .4s, box-shadow .4s; }
+/* ----------------------------- NAV -------------------------------- *
+   UNE BARRE, UNE LIGNE, DE 320 À 2560 px.
+   Elle empilait huit familles d'objets : logo + RAMONVILLE + 8 liens +
+   Le groupe ↗ + Boutique ↗ + la pastille de palette + Essai 10€ + le
+   burger. Trois sont partis pour de bon (la palette : plus personne ne
+   choisit un métal ici) ou ont retrouvé leur vraie place (le maillage
+   dans le menu et le pied ; « Accueil » sur le logo, qui y menait déjà).
+   Ce qui reste ne se chevauche à aucune largeur et ne coupe aucun mot :
+   `nowrap` sur les liens, `min-width:0` sur le bloc central qui peut se
+   rétrécir, et les deux blocs de bord qui ne se compriment jamais. */
+.nav { position: fixed; inset: 0 0 auto 0; z-index: 8000; display: flex; align-items: center; justify-content: space-between; gap: clamp(.6rem,1.6vw,1.6rem); padding: clamp(.8rem,1.8vw,1.1rem) var(--gut); transition: transform .5s var(--ease), background .4s, box-shadow .4s; }
 .nav.is-scrolled { background: color-mix(in srgb, var(--paper) 82%, transparent); backdrop-filter: blur(14px); box-shadow: 0 1px 0 var(--line); }
 .nav.is-hidden { transform: translateY(-115%); }
 html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; transition: none; }
-.nav__brand { display: inline-flex; align-items: center; gap: .9ch; }
+.nav__brand { display: inline-flex; align-items: center; gap: .9ch; flex: 0 0 auto; white-space: nowrap; }
 .nav__logo { height: clamp(24px, 3vw, 32px); width: auto; transition: opacity .3s; }  /* logo blanc transparent, sans plaque */
 .nav__brand:hover .nav__logo { opacity: .72; }
-.nav__salle { font: 600 var(--step--1)/1 var(--f-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--accent); padding-left: .9ch; border-left: 1px solid var(--line); }
-.nav__links { display: none; gap: clamp(.1rem,.6vw,.4rem); }
-.nav__links a { font: 600 var(--step--1)/1 var(--f-mono); letter-spacing: .04em; padding: .55em .85em; border-radius: var(--radius); color: var(--ink-soft); text-transform: uppercase; transition: background .3s, color .3s; }
+/* RAMONVILLE ne s'affiche qu'à partir de 480 px : sur un 320, le nom de la
+   salle + le logo + le burger tenaient à 4 px les uns des autres. Le nom
+   reste dans le tiroir (en tête du menu) et dans le titre de la page — il
+   n'est perdu pour personne, il cesse juste d'écraser une barre de 320. */
+.nav__salle { display: none; font: 600 var(--step--1)/1 var(--f-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--accent); padding-left: .9ch; border-left: 1px solid var(--line); }
+@media (min-width: 480px){ .nav__salle { display: inline; } }
+.nav__links { display: none; min-width: 0; gap: clamp(.1rem,.6vw,.4rem); }
+.nav__links a { font: 600 var(--step--1)/1 var(--f-mono); letter-spacing: .04em; padding: .55em .85em; border-radius: var(--radius); color: var(--ink-soft); text-transform: uppercase; white-space: nowrap; transition: background .3s, color .3s; }
 .nav__links a:hover { background: var(--paper-2); color: var(--ink); }
 .nav__links a[aria-current="page"] { background: var(--accent); color: var(--void); }
-.nav__right { display: flex; align-items: center; gap: .6rem; }
+.nav__right { display: flex; align-items: center; gap: .6rem; flex: 0 0 auto; }
 
 /* ---------------- LE MAILLAGE DE MARQUE (liens sortants) ----------
-   Le groupe et la boutique, sur chaque page. Ils se rangent APRÈS la
-   navigation de la salle et avant le CTA : le visiteur trouve d'abord
-   ce qu'il est venu chercher. Le picto de lien externe prévient qu'on
-   change de site — c'est une politesse, pas une décoration.
-   Ils n'apparaissent qu'à partir de 1300 px : en-dessous, la nav est
-   déjà pleine et le tiroir les porte, à leur place et en entier. */
-.nav__ext { display: none; align-items: center; gap: .2rem; margin-left: .3rem; padding-left: .6rem; border-left: 1px solid var(--line); }
-.nav__ext a { display: inline-flex; align-items: center; gap: .3ch; font: 600 var(--step--2)/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); padding: .55em .6em; border-radius: var(--radius); transition: color .3s, background .3s; }
-.nav__ext a:hover { color: var(--accent); background: var(--paper-2); }
+   Le groupe et la boutique ne sont plus DANS LA BARRE — ils sont dans
+   le menu plein écran (.menu__ext) et dans le pied de page, lequel est
+   écrit en dur dans le HTML livré par scripts/maillage.mjs. Le référencement
+   ne perd donc pas une ligne : les liens restent dans la page statique,
+   suivis (pas de nofollow : même propriétaire), sur les neuf pages. Ce
+   qu'ils perdent, c'est le droit de disputer trois centimètres de barre
+   à la navigation de la salle. Le picto de lien externe reste ici : il
+   prévient qu'on change de site, c'est une politesse pas une décoration. */
 .ext { flex: 0 0 auto; opacity: .75; }
-@media (min-width: 1300px){ .nav__ext { display: flex; } }
 
 .menu__ext { display: flex; gap: 1.4rem; flex-wrap: wrap; }
 .menu__ext a { display: inline-flex; align-items: center; gap: .35ch; }
@@ -301,7 +306,7 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
 .menu__foot { display: flex; flex-wrap: wrap; gap: 1rem 2rem; justify-content: space-between; align-items: center; border-top: 1px solid var(--line); padding-top: 1.4rem; }
 /* `:not(.btn)` — SANS ce garde, ce sélecteur (0,1,1) battait `.btn--primary`
    (0,1,0) et repeignait le CTA du menu plein écran en --muted sur --accent :
-   1,49:1 en acier, 1,12:1 en cuivre. Sur un 375px le menu EST la navigation,
+   1,49:1 sur l'argent de la marque. Sur un 375px le menu EST la navigation,
    et c'est l'action de conversion n°1 du site. Même garde qu'à .footer__col. */
 .menu__foot a:not(.btn) { font: 600 var(--step--1)/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); transition: color .3s; }
 .menu__foot a:not(.btn):hover { color: var(--accent); }
@@ -477,26 +482,63 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
    d'une zone morte de défilement en plein milieu du hero. La rotation est une
    intention HORIZONTALE : pan-y est le bon défaut partout. */
 .octa { position: relative; display: block; touch-action: pan-y; }
-.octa svg { width: 100%; height: auto; overflow: visible; }
+/* `overflow: hidden` ET PAS `visible` — c'est ici que se joue « il sort
+   littéralement de la page ». Le cadre est maintenant MESURÉ par octagon.js
+   (viewBox recalculé sur la boîte peinte, centré sur le centre géométrique) :
+   en théorie plus rien ne dépasse. Ceci est le verrou matériel qui rend la
+   théorie inutile — quoi qu'il arrive, le dessin s'arrête au cadre. */
+.octa svg { width: 100%; height: auto; aspect-ratio: 1; overflow: hidden; }
 .octa__grid { fill: none; stroke: var(--accent-line); stroke-width: .7; }
 .octa__hub  { fill: none; stroke: var(--line); stroke-width: 1; }
-/* les 8 arêtes-liens */
-/* stroke-width ET font-size sont posés par octagon.js (sizeToScale) depuis
-   l'échelle MESURÉE du viewBox : en SVG, « 22 » ou « .62rem » ne sont pas des
-   px écran — le viewBox les remet à l'échelle. Les valeurs ci-dessous ne sont
-   qu'un repli avant la première mesure. */
+/* stroke-width ET font-size sont posés par octagon.js depuis l'échelle
+   MESURÉE du viewBox : en SVG, « 22 » ou « 11px » ne sont pas des px écran —
+   le viewBox les remet à l'échelle. Les valeurs ci-dessous ne sont qu'un
+   repli avant la première mesure. */
 .octa__edge { fill: transparent; stroke: transparent; stroke-width: 22; cursor: pointer; }
 .octa__label { font: 600 11px/1 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; fill: var(--ink-soft); transition: fill .3s; }
 .octa__seg { fill: none; stroke: var(--line); stroke-width: 1.4; transition: stroke .3s, filter .3s; }
-.octa g.is-hot .octa__seg { stroke: var(--accent); filter: drop-shadow(0 0 8px color-mix(in srgb,var(--accent) 65%, transparent)); }
-.octa g.is-hot .octa__label { fill: var(--ink); }
-.octa__spin { transform-box: fill-box; transform-origin: center; }
+/* LA DISCIPLINE DÉSIGNÉE. L'aiguille tourne avec la cage ; tous les 45°
+   elle arrive sur un libellé, et c'est CE libellé qui s'allume — plus
+   l'arête, qui tourne maintenant et ne reste plus en face de son nom. */
+.octa .octa__link.is-hot .octa__label { fill: var(--accent); }
+.octa .octa__link.is-hot .octa__grid { stroke: var(--accent); }
 .octa.is-dragging { cursor: grabbing; }
+
+/* ------------- LE TOUR DE FOND : « il tourne sur soi-même » -------------
+   Un tour en 72 s, donc 9 s par discipline (huit paliers de 45°). C'est une
+   ANIMATION CSS et pas une boucle rAF : elle vit dans le compositeur, le
+   navigateur la met en pause tout seul quand l'onglet dort, et elle ne
+   demande pas une frame de JavaScript pour exister. L'ancienne « dérive »
+   écrivait un attribut transform 60 fois par seconde pour 0,03° — un tour
+   en 200 s : invisible à l'œil, bien visible au profileur.
+
+   `transform-box: fill-box` + `transform-origin: center` : le centre de
+   rotation est le centre de la boîte du groupe lui-même. L'octogone étant
+   régulier, cette boîte est centrée sur (230, 230) — il tourne donc bien
+   sur SON centre géométrique, ce que le client demandait explicitement. */
+:root { --octa-tour: 72s; }
+.octa__spin, .octa__turn { transform-box: fill-box; transform-origin: center; }
+@keyframes octaTurn { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: no-preference) {
+  .octa__turn { animation: octaTurn var(--octa-tour) linear infinite; }
+}
 /* l'affordance de la signature n°2 : sans elle, personne ne sait que
    l'octogone se saisit. Elle était le texte le MOINS lisible de la page —
    --muted à opacity .8 = #70788a sur --paper = 4,47:1 (sous AA) à ~9,3px.
    L'opacité n'achetait rien et coûtait la conformité : supprimée. 6,43:1. */
 .octa__hint { position: absolute; left: 50%; bottom: -1.8rem; transform: translateX(-50%); font: 600 var(--step--2)/1 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); pointer-events: none; white-space: nowrap; }
+
+/* LE CARTOUCHE — « pendant qu'il tourne, les disciplines changent ».
+   Il est POSÉ AU CENTRE de l'octogone, là où le regard va déjà, et il ne
+   tourne pas : un nom qui tourne ne se lit pas. Il a sa propre plaque
+   (--void à 74 % + flou) pour ne jamais dépendre de ce qui passe derrière
+   lui — le nom est du corps, il se lit comme du corps : #e8ebf4 sur la
+   plaque ≈ 14:1. C'est un vrai lien vers la fiche de la discipline. */
+.octa__now { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); z-index: 2; display: flex; flex-direction: column; align-items: center; gap: .35rem; max-width: 62%; padding: .7rem 1rem; text-align: center; background: color-mix(in srgb, var(--void) 74%, transparent); border: 1px solid var(--accent-line); border-radius: var(--radius); backdrop-filter: blur(6px); transition: border-color .3s; }
+.octa__now:hover { border-color: var(--accent); }
+.octa__now-tag { font: 600 var(--step--2)/1 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
+.octa__now-name { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; letter-spacing: -.01em; line-height: 1.05; font-size: clamp(.95rem, .8rem + .9vw, 1.35rem); color: var(--ink); }
+@media (hover: none){ .octa__now { min-height: 44px; justify-content: center; } }
 
 /* ================= LE CADRE VIVANT & LE RELEVÉ DU DEHORS ========= *
    Le différenciateur du site — 300 m² extérieurs — est le SEUL lieu de la
@@ -530,7 +572,7 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
    chargé. On arpente donc : 300 carrés d'un mètre (un COMPTE, pas une
    emprise) et l'octogone de 7 m au même étalon, sur le ciel réel qui reste
    le fond. La forme des 300 m² n'est dessinée nulle part — c'est un relevé.
-   Argent/cuivre de marque uniquement : tout dérive de --accent.
+   Argent de marque uniquement : tout dérive de --accent.
    ================================================================== */
 .arpent { position: relative; overflow: hidden; height: 100%; min-height: 300px; border-radius: var(--radius); background: var(--void); display: flex; flex-direction: column; }
 .arpent .sky { z-index: 0; }
@@ -621,13 +663,15 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
   .menu__link:active { color: var(--accent); transform: translateX(6px); }
   .menu__close:active { color: var(--accent); }
   .menu__foot a:not(.btn):active { color: var(--accent); }  /* le CTA garde son :active de .btn */
-  .pal:active, .burger:active { transform: translateY(1px); border-color: var(--accent); }
-  /* arête de l'octogone pressée (les 8 côtés = la nav) */
-  .octa a:active .octa__seg { stroke: var(--accent); filter: drop-shadow(0 0 8px color-mix(in srgb,var(--accent) 65%, transparent)); }
-  .octa a:active .octa__label { fill: var(--ink); }
-  /* la zone de clic des 8 arêtes est calculée en JS (octagon.js) depuis
+  .burger:active { transform: translateY(1px); border-color: var(--accent); }
+  /* libellé de l'octogone pressé (les 8 côtés = la nav) — le retour est sur
+     le LIBELLÉ et son fil, pas sur l'arête : l'arête tourne maintenant, elle
+     n'est plus en face du nom qu'on vient de toucher. */
+  .octa a:active .octa__label { fill: var(--accent); }
+  .octa a:active .octa__grid { stroke: var(--accent); }
+  /* la zone de clic des 8 côtés est calculée en JS (octagon.js) depuis
      l'échelle mesurée du viewBox : `stroke-width` en unités utilisateur ne
-     fait PAS 34 CSS px à l'écran. Voir octagon.js → sizeToScale(). */
+     fait PAS 44 CSS px à l'écran. Voir octagon.js → cadrer(). */
   /* liens de pied de page : cibles tactiles ≥44px (colonnes + tél de la fiche) */
   .footer__col a:not(.btn) { display: flex; align-items: center; min-height: 44px; }
   .fiche__cell .fv a { display: inline-flex; align-items: center; min-height: 44px; }

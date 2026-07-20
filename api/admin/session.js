@@ -7,6 +7,7 @@
    ===================================================================== */
 import { allowCors, isAdmin } from "../_lib/util.js";
 import { storeConfigured } from "../_lib/leads-store.js";
+import { configuree as galerieConfiguree } from "../_lib/community.js";
 
 export default async function handler(req, res) {
   allowCors(res);
@@ -24,6 +25,7 @@ export default async function handler(req, res) {
       registre: storeConfigured(),                   // liste des contacts
       email: Boolean(process.env.RESEND_API_KEY),
       webhook: Boolean(process.env.LEAD_WEBHOOK_URL),
+      galerie: galerieConfiguree(),                  // le mur du club (CLOUDINARY_URL)
     },
   });
 }

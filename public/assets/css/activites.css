@@ -5,7 +5,7 @@
    des autres pages : un RAIL d'index collant à gauche (les 8 disciplines
    groupées par famille, scrollspy) + le FLUX des disciplines à droite, une
    fiche par écran, chacune ancrée #<key> (cible des 8 arêtes de l'octogone).
-   Aucun token redéfini — la bascule bi-palette suffit à tout re-teinter.
+   Aucun token redéfini — tout dérive de --accent, l'argent de la marque.
    ===================================================================== */
 
 /* Le chrome (.phero*, .breadcrumb, .shead, .ctaband) vit dans base.css — le
@@ -59,16 +59,47 @@
 .disc { scroll-margin-top: 6rem; display: grid; grid-template-columns: 1fr; gap: clamp(1rem,3vw,2.2rem); align-items: stretch; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--paper-2); transition: border-color .3s; }
 .disc.is-hidden { display: none; }
 .disc:hover { border-color: var(--accent-line); }
+
+/* ============ LA PHOTO NE PASSE PLUS SOUS LE TEXTE ============= *
+   LE DÉFAUT, mesuré sur le rendu : dans une carte de 651 px de large, la
+   boîte média rendait 1161 px. Elle partait à x=325 et finissait à
+   x=1487, pendant que le corps de texte commençait à x=673 : la photo
+   courait donc SOUS les 302 px de texte, sur les 726 px de hauteur de la
+   carte. `overflow:hidden` rognait le débord à droite, ce qui a rendu le
+   défaut discret — mais il était bien là, et le client l'a vu le premier :
+   « elles chevauchent le texte ».
+
+   LA CAUSE : `aspect-ratio: 16/10` sur un enfant de grille en
+   `align-items: stretch`. La hauteur vient de la LIGNE (celle du texte, la
+   plus haute) ; le ratio en déduit alors une largeur = hauteur × 1,6. Comme
+   le `min-width` d'un enfant de grille vaut `auto`, cette largeur devient
+   un PLANCHER que la piste `1.05fr` ne peut plus descendre : la grille
+   déborde de sa propre carte. Plus le texte était long, plus la photo
+   poussait — la fiche la plus bavarde était la plus cassée.
+
+   LA CORRECTION, à la racine : `min-width: 0` sur les deux colonnes (une
+   piste a le DROIT de se rétrécir), et le ratio ne s'applique QU'EN UNE
+   COLONNE, là où il fait ce qu'on lui demande — déduire une hauteur d'une
+   largeur connue. À deux colonnes, la largeur vient de la piste et la
+   hauteur de la ligne : plus personne ne déduit l'autre. */
+.disc > * { min-width: 0; }
 @media (min-width: 720px){ .disc { grid-template-columns: 1.05fr 1fr; } .disc:nth-child(even) .disc__media { order: 2; } }
-.disc__media { position: relative; aspect-ratio: 16/10; min-height: 220px; }
-/* tuile filaire pour une discipline sans photo démographiquement juste
-   (Lady Punch, École, Pieds-Poings) : octogone-marque + tag, JAMAIS la face
-   d'un autre ni une photo au mauvais public (findings 1/16). */
-.disc__media--tile { display: grid; place-items: center; overflow: hidden; background: radial-gradient(circle at 50% 30%, color-mix(in srgb,var(--accent) 18%, var(--paper-3)), var(--void)); }
+.disc__media { position: relative; aspect-ratio: 16/10; min-height: 220px; overflow: hidden; }
+@media (min-width: 720px){ .disc__media { aspect-ratio: auto; min-height: 100%; } }
+
+/* LA PLAQUE — pour une discipline dont aucune photo prouvée ne montre le
+   BON PUBLIC : Lady Punch est 100 % féminin, l'École, ce sont des enfants.
+   Y coller un adulte masculin serait le seul mensonge de la page. Ce n'est
+   donc pas un trou en attendant mieux, c'est un objet FINI de l'identité
+   nuit — le ciel de Ramonville en dégradé, le sigle octogone gravé dedans,
+   le tag, et UNE LIGNE QUI DIT POURQUOI. On ne cache pas qu'il n'y a pas de
+   photo : on l'assume à voix haute, à la charte. */
+.disc__media--tile { display: grid; place-items: center; align-content: center; gap: .85rem; padding: clamp(1.4rem,3vw,2.2rem); text-align: center; background: radial-gradient(circle at 50% 26%, color-mix(in srgb,var(--accent) 20%, var(--paper-3)), var(--void) 78%); }
 .disc__media--tile::after { content: ""; position: absolute; inset: 0; background-image: linear-gradient(color-mix(in srgb,var(--ink) 4%, transparent) 1px, transparent 1px); background-size: 100% 9px; opacity: .5; pointer-events: none; }
-.disc__oct { width: clamp(84px,24%,140px); height: auto; z-index: 1; filter: drop-shadow(var(--glow-soft)); }
+.disc__oct { width: clamp(70px,18%,112px); height: auto; z-index: 1; filter: drop-shadow(var(--glow-soft)); }
 .disc__oct path { fill: none; stroke: var(--accent); stroke-width: 2.4; stroke-linejoin: round; }
-.disc__tagbig { position: absolute; bottom: clamp(1rem,3vw,1.6rem); z-index: 1; font: 600 var(--step--2)/1 var(--f-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+.disc__tagbig { z-index: 1; font: 600 var(--step--2)/1 var(--f-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--accent); }
+.disc__nophoto { z-index: 1; max-width: 34ch; font-size: var(--step--1); line-height: 1.55; color: var(--ink-soft); }
 .disc__body { padding: clamp(1.4rem,3vw,2.4rem); display: flex; flex-direction: column; }
 .disc__tag { font: 600 var(--step--2)/1 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
 .disc h2 { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: clamp(1.7rem,1.1rem + 2.4vw,3rem); letter-spacing: -.01em; margin: .5rem 0; color: var(--ink); }
@@ -81,7 +112,7 @@
 /* ==================== L'ENTRÉE EN MATIÈRE ====================== *
    Les cinq familles pesées contre le planning : créneaux, jours, niveau
    demandé. Même grammaire que le reste (mono pour les labels, display pour
-   les chiffres, argent/cuivre pour l'accent) — un bloc de plus dans le
+   les chiffres, l'argent de la marque pour l'accent) — un bloc de plus dans le
    système, pas un composant de plus dans le catalogue. */
 .entree__lead { color: var(--ink-soft); max-width: 62ch; margin-bottom: clamp(1.6rem,3.4vw,2.4rem); }
 .fams { display: grid; gap: 1px; background: var(--line-soft); border: 1px solid var(--line); grid-template-columns: 1fr; overflow: hidden; }
