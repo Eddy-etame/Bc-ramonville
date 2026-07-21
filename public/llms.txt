@@ -13,14 +13,14 @@ Le détail complet page par page (planning, créneaux, tarifs) est dans
 
 ## Pages
 
-- [Accueil](https://ramonville.boxingcenter.fr/): présentation de la salle — 300 m² extérieurs couverts, octogone 7 m, ring olympique, disciplines, coachs, essai 10 €.
-- [Le plateau](https://ramonville.boxingcenter.fr/la-salle/): visite du terrain — extérieur couvert, relevé du plateau extérieur, octogone, ring olympique, étage muscu/cardio, infos pratiques, les 4 autres salles du réseau.
-- [Activités](https://ramonville.boxingcenter.fr/activites/): les 8 disciplines avec coach, créneaux et niveau — anglaise, pieds-poings, grappling, asso MMA, Boxing Camp, Lady Punch, école enfants dès 3 ans, accès libre — plus le poids de chaque famille dans la semaine et le niveau demandé à l'entrée (7 des 8 disciplines sont sans prérequis).
-- [Coachs](https://ramonville.boxingcenter.fr/coachs/): l'encadrement — Sonia, Jérôme, Farouk et Valentin G, avec les créneaux hebdomadaires de chacun, la garde jour par jour et l'aiguillage discipline → coach.
-- [Galerie](https://ramonville.boxingcenter.fr/galerie/): vraies photos du plateau — octogone, ring, sacs, étage muscu/cardio — plus le relevé du plateau extérieur, seule zone non photographiée.
-- [Planning](https://ramonville.boxingcenter.fr/plannings/): la grille de la rentrée filtrable par famille (adultes, féminin, grappling & MMA, enfants), le rythme d'été, le poids de chaque jour de la semaine, posters officiels.
-- [Tarifs](https://ramonville.boxingcenter.fr/tarifs/): essai 10 €, offre Duo 29 €/personne, offre Saison 259 €, école enfants — avec les avis Google de la salle.
-- [Contact](https://ramonville.boxingcenter.fr/contact/): adresse, les trois accès (métro, bus, rocade), horaires détaillés jour par jour, téléphone, e-mail, questions fréquentes.
+- [Accueil](https://bc-ramonville.vercel.app/): présentation de la salle — 300 m² extérieurs couverts, octogone 7 m, ring olympique, disciplines, coachs, essai 10 €.
+- [Le plateau](https://bc-ramonville.vercel.app/la-salle/): visite du terrain — extérieur couvert, relevé du plateau extérieur, octogone, ring olympique, étage muscu/cardio, infos pratiques, les 4 autres salles du réseau.
+- [Activités](https://bc-ramonville.vercel.app/activites/): les 8 disciplines avec coach, créneaux et niveau — anglaise, pieds-poings, grappling, asso MMA, Boxing Camp, Lady Punch, école enfants dès 3 ans, accès libre — plus le poids de chaque famille dans la semaine et le niveau demandé à l'entrée (7 des 8 disciplines sont sans prérequis).
+- [Coachs](https://bc-ramonville.vercel.app/coachs/): l'encadrement — Sonia, Jérôme, Farouk et Valentin G, avec les créneaux hebdomadaires de chacun, la garde jour par jour et l'aiguillage discipline → coach.
+- [Galerie](https://bc-ramonville.vercel.app/galerie/): vraies photos du plateau — octogone, ring, sacs, étage muscu/cardio — plus le relevé du plateau extérieur, seule zone non photographiée.
+- [Planning](https://bc-ramonville.vercel.app/plannings/): la grille de la rentrée filtrable par famille (adultes, féminin, grappling & MMA, enfants), le rythme d'été, le poids de chaque jour de la semaine, posters officiels.
+- [Tarifs](https://bc-ramonville.vercel.app/tarifs/): essai 10 €, offre Duo 29 €/personne, offre Saison 259 €, école enfants — avec les avis Google de la salle.
+- [Contact](https://bc-ramonville.vercel.app/contact/): adresse, les trois accès (métro, bus, rocade), horaires détaillés jour par jour, téléphone, e-mail, questions fréquentes.
 
 ## Faits
 

@@ -103,4 +103,4 @@ Disallow: /admin/
 Disallow: /api/
 Allow: /
 
-Sitemap: https://ramonville.boxingcenter.fr/sitemap.xml
+Sitemap: https://bc-ramonville.vercel.app/sitemap.xml

@@ -1,7 +1,7 @@
 ---
 /* Les prix viennent de data.js, comme partout ailleurs sur le site : le
-   navigateur les lit à l'exécution, le build les lit ici. Aucun prix n'est
-   écrit en dur dans cette page — c'est la règle de la maison, et elle tient
+   navigateur les lit à l’exécution, le build les lit ici. Aucun prix n’est
+   écrit en dur dans cette page — c’est la règle de la maison, et elle tient
    aussi quand on rend le bandeau au build. */
 import { TARIFS, PROMOS } from "../../../public/assets/js/data.js";
 ---
@@ -10,27 +10,27 @@ import { TARIFS, PROMOS } from "../../../public/assets/js/data.js";
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tarifs — Boxing Center Ramonville · essai 10€, Duo 29€/pers., Saison 259€</title>
+  <title>Tarifs — essai 10€, saison 259€ | Boxing Center Ramonville</title>
   <meta name="description" content="Essai 10 € toutes disciplines. Duo 29 € par personne, 4 semaines illimitées. Saison 259 € les 12 mois en 4× sans frais, accès libre aux 5 clubs." />
 
   <!-- Préconnexions — avant toute feuille de style -->
   <link rel="preconnect" href="https://api.open-meteo.com" crossorigin />
 
-  <!-- Polices AUTO-HÉBERGÉES — mêmes familles/graisses que l'original Google Fonts -->
-  <link rel="preload" href="/fonts/chakrapetch-700-latin.woff2?v=16" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="/fonts/manrope-var-latin.woff2?v=16" as="font" type="font/woff2" crossorigin />
-  <!-- JetBrains Mono manquait à l'appel, et c'est LUI qui décalait la page.
+  <!-- Polices AUTO-HÉBERGÉES — mêmes familles/graisses que l’original Google Fonts -->
+  <link rel="preload" href="/fonts/chakrapetch-700-latin.woff2?v=17" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/manrope-var-latin.woff2?v=17" as="font" type="font/woff2" crossorigin />
+  <!-- JetBrains Mono manquait à l’appel, et c’est LUI qui décalait la page.
        Les libellés mono sont partout au-dessus de la ligne de flottaison —
-       fil d'ariane, sur-titres, boutons, les chips du hero. La police
+       fil d’ariane, sur-titres, boutons, les chips du hero. La police
        arrivait après le premier rendu : tout ce petit monde changeait de
-       largeur d'un coup et poussait la première section vers le bas
+       largeur d’un coup et poussait la première section vers le bas
        (0,621 de décalage mesuré sur /tarifs/). Elle était de toute façon
        téléchargée sur les huit pages : la précharger ne coûte pas un octet
-       ni une requête de plus, elle arrive seulement à l'heure. -->
-  <link rel="preload" href="/fonts/jetbrainsmono-var-latin.woff2?v=16" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="/assets/css/fonts.css?v=16" />
-  <link rel="stylesheet" href="/assets/css/base.css?v=16" />
-  <link rel="stylesheet" href="/assets/css/page.css?v=16" />
+       ni une requête de plus, elle arrive seulement à l’heure. -->
+  <link rel="preload" href="/fonts/jetbrainsmono-var-latin.woff2?v=17" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=17" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=17" />
+  <link rel="stylesheet" href="/assets/css/page.css?v=17" />
   <meta name="keywords" content="tarif boxe Ramonville, prix salle de boxe Toulouse sud, offre duo boxe, abonnement boxe MMA Ramonville-Saint-Agne, essai boxe 10 euros, boxing gym Toulouse, MMA gym Toulouse, octagon MMA Toulouse, kickboxing Toulouse, muay thai Toulouse, grappling Toulouse, kids boxing Toulouse, outdoor boxing Toulouse, boxing club Ramonville, martial arts gym near Toulouse" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="author" content="Boxing Center Ramonville" />
@@ -38,20 +38,20 @@ import { TARIFS, PROMOS } from "../../../public/assets/js/data.js";
   <meta name="geo.placename" content="Ramonville-Saint-Agne — Toulouse" />
   <meta name="geo.position" content="43.546;1.474" />
   <meta name="ICBM" content="43.546, 1.474" />
-  <link rel="canonical" href="https://ramonville.boxingcenter.fr/tarifs/" />
+  <link rel="canonical" href="https://bc-ramonville.vercel.app/tarifs/" />
   <meta name="theme-color" content="#070a12" />
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-  <link rel="icon" href="/favicon.png" type="image/png" sizes="32x32" />
-  <link rel="shortcut icon" href="/favicon.png" />
-  <link rel="icon" href="/favicon-192.png" type="image/png" sizes="192x192" />
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+  <link rel="icon" href="/favicon.svg?i=2" type="image/svg+xml" />
+  <link rel="icon" href="/favicon.png?i=2" type="image/png" sizes="32x32" />
+  <link rel="shortcut icon" href="/favicon.png?i=2" />
+  <link rel="icon" href="/favicon-192.png?i=2" type="image/png" sizes="192x192" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png?i=2" sizes="180x180" />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:site_name" content="Boxing Center Ramonville" />
   <meta property="og:title" content="Tarifs — Boxing Center Ramonville" />
   <meta property="og:description" content="Essai 10€, Duo 29€/personne, Saison 259€ en 4× sans frais avec accès aux 5 clubs. École dès 3 ans." />
-  <meta property="og:url" content="https://ramonville.boxingcenter.fr/tarifs/" />
-  <meta property="og:image" content="https://ramonville.boxingcenter.fr/assets/img/ram/camp.webp" />
+  <meta property="og:url" content="https://bc-ramonville.vercel.app/tarifs/" />
+  <meta property="og:image" content="https://bc-ramonville.vercel.app/assets/img/ram/camp.webp" />
   <meta property="og:image:width" content="768" />
   <meta property="og:image:height" content="512" />
   <meta property="og:image:type" content="image/webp" />
@@ -59,7 +59,7 @@ import { TARIFS, PROMOS } from "../../../public/assets/js/data.js";
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Tarifs — Boxing Center Ramonville" />
   <meta name="twitter:description" content="Essai 10€, Duo 29€/pers., Saison 259€. Avis Google réels." />
-  <meta name="twitter:image" content="https://ramonville.boxingcenter.fr/assets/img/ram/camp.webp" />
+  <meta name="twitter:image" content="https://bc-ramonville.vercel.app/assets/img/ram/camp.webp" />
   <meta name="twitter:image:alt" content="Boxing Camp à Boxing Center Ramonville, la ligne de sacs lourds." />
 
 
@@ -79,7 +79,7 @@ import { TARIFS, PROMOS } from "../../../public/assets/js/data.js";
         ],
         "subOrganization": [
           {
-            "@id": "https://ramonville.boxingcenter.fr/#salle"
+            "@id": "https://bc-ramonville.vercel.app/#salle"
           },
           {
             "@type": "SportsActivityLocation",
@@ -106,14 +106,14 @@ import { TARIFS, PROMOS } from "../../../public/assets/js/data.js";
           "HealthClub",
           "LocalBusiness"
         ],
-        "@id": "https://ramonville.boxingcenter.fr/#salle",
+        "@id": "https://bc-ramonville.vercel.app/#salle",
         "knowsLanguage": ["fr-FR", "en"],
         "name": "Boxing Center Ramonville",
-        "url": "https://ramonville.boxingcenter.fr/",
+        "url": "https://bc-ramonville.vercel.app/",
         "telephone": "+33562244682",
         "email": "boxingcenter31@gmail.com",
         "priceRange": "€€",
-        "image": "https://ramonville.boxingcenter.fr/assets/img/ram/hero.webp",
+        "image": "https://bc-ramonville.vercel.app/assets/img/ram/hero.webp",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "33 rue des Ormes",
@@ -195,7 +195,7 @@ import { TARIFS, PROMOS } from "../../../public/assets/js/data.js";
           },
           {
             "@type": "LocationFeatureSpecification",
-            "name": "Espaces d'entraînement libres et collectifs",
+            "name": "Espaces d’entraînement libres et collectifs",
             "value": true
           }
         ],
@@ -205,7 +205,7 @@ import { TARIFS, PROMOS } from "../../../public/assets/js/data.js";
           "itemListElement": [
             {
               "@type": "Offer",
-              "name": "Séance d'essai",
+              "name": "Séance d’essai",
               "price": "10",
               "priceCurrency": "EUR",
               "url": "https://box-plus.vercel.app/seance-essai",
@@ -239,7 +239,7 @@ import { TARIFS, PROMOS } from "../../../public/assets/js/data.js";
         "potentialAction": [
           {
             "@type": "ReserveAction",
-            "name": "Réserver la séance d'essai",
+            "name": "Réserver la séance d’essai",
             "target": {
               "@type": "EntryPoint",
               "urlTemplate": "https://box-plus.vercel.app/seance-essai",
@@ -251,7 +251,7 @@ import { TARIFS, PROMOS } from "../../../public/assets/js/data.js";
             },
             "result": {
               "@type": "Reservation",
-              "name": "Séance d'essai — Boxing Center Ramonville"
+              "name": "Séance d’essai — Boxing Center Ramonville"
             }
           },
           {
@@ -272,14 +272,14 @@ import { TARIFS, PROMOS } from "../../../public/assets/js/data.js";
           "areaServed": "FR",
           "availableLanguage": "French"
         },
-        "description": "La seule salle du réseau Boxing Center qui s'entraîne dehors : 300 m² extérieurs couverts, un octogone de 7 m, un ring de boxe olympique et deux niveaux avec un étage muscu/cardio, à Ramonville-Saint-Agne. Boxe anglaise, pieds-poings, grappling, asso MMA, Boxing Camp, Lady Punch et école enfants dès 3 ans. Séance d'essai 10€.",
+        "description": "La seule salle du réseau Boxing Center qui s’entraîne dehors : 300 m² extérieurs couverts, un octogone de 7 m, un ring de boxe olympique et deux niveaux avec un étage muscu/cardio, à Ramonville-Saint-Agne. Boxe anglaise, pieds-poings, grappling, asso MMA, Boxing Camp, Lady Punch et école enfants dès 3 ans. Séance d’essai 10€.",
         "parentOrganization": {
           "@id": "https://boxingcenter.fr/#organization"
         }
       },
       {
         "@type": "ItemList",
-        "@id": "https://ramonville.boxingcenter.fr/#navigation",
+        "@id": "https://bc-ramonville.vercel.app/#navigation",
         "name": "Les pages de Boxing Center Ramonville",
         "itemListOrder": "https://schema.org/ItemListOrderAscending",
         "numberOfItems": 8,
@@ -288,80 +288,80 @@ import { TARIFS, PROMOS } from "../../../public/assets/js/data.js";
             "@type": "ListItem",
             "position": 1,
             "name": "Accueil",
-            "url": "https://ramonville.boxingcenter.fr/"
+            "url": "https://bc-ramonville.vercel.app/"
           },
           {
             "@type": "ListItem",
             "position": 2,
             "name": "Le plateau",
-            "url": "https://ramonville.boxingcenter.fr/la-salle/"
+            "url": "https://bc-ramonville.vercel.app/la-salle/"
           },
           {
             "@type": "ListItem",
             "position": 3,
             "name": "Activités",
-            "url": "https://ramonville.boxingcenter.fr/activites/"
+            "url": "https://bc-ramonville.vercel.app/activites/"
           },
           {
             "@type": "ListItem",
             "position": 4,
             "name": "Planning",
-            "url": "https://ramonville.boxingcenter.fr/plannings/"
+            "url": "https://bc-ramonville.vercel.app/plannings/"
           },
           {
             "@type": "ListItem",
             "position": 5,
             "name": "Tarifs",
-            "url": "https://ramonville.boxingcenter.fr/tarifs/"
+            "url": "https://bc-ramonville.vercel.app/tarifs/"
           },
           {
             "@type": "ListItem",
             "position": 6,
             "name": "Coachs",
-            "url": "https://ramonville.boxingcenter.fr/coachs/"
+            "url": "https://bc-ramonville.vercel.app/coachs/"
           },
           {
             "@type": "ListItem",
             "position": 7,
             "name": "Galerie",
-            "url": "https://ramonville.boxingcenter.fr/galerie/"
+            "url": "https://bc-ramonville.vercel.app/galerie/"
           },
           {
             "@type": "ListItem",
             "position": 8,
             "name": "Contact",
-            "url": "https://ramonville.boxingcenter.fr/contact/"
+            "url": "https://bc-ramonville.vercel.app/contact/"
           }
         ]
       },
       {
         "@type": "WebSite",
-        "@id": "https://ramonville.boxingcenter.fr/#website",
-        "url": "https://ramonville.boxingcenter.fr/",
+        "@id": "https://bc-ramonville.vercel.app/#website",
+        "url": "https://bc-ramonville.vercel.app/",
         "name": "Boxing Center Ramonville",
         "inLanguage": "fr-FR",
         "publisher": {
-          "@id": "https://ramonville.boxingcenter.fr/#salle"
+          "@id": "https://bc-ramonville.vercel.app/#salle"
         }
       },
       {
         "@type": "WebPage",
-        "@id": "https://ramonville.boxingcenter.fr/tarifs/#webpage",
-        "url": "https://ramonville.boxingcenter.fr/tarifs/",
+        "@id": "https://bc-ramonville.vercel.app/tarifs/#webpage",
+        "url": "https://bc-ramonville.vercel.app/tarifs/",
         "name": "Tarifs — Boxing Center Ramonville · essai 10€, Duo 29€/pers., Saison 259€",
         "description": "Essai 10 € toutes disciplines. Duo 29 € par personne, 4 semaines illimitées. Saison 259 € les 12 mois en 4× sans frais, accès libre aux 5 clubs.",
         "inLanguage": "fr-FR",
         "isPartOf": {
-          "@id": "https://ramonville.boxingcenter.fr/#website"
+          "@id": "https://bc-ramonville.vercel.app/#website"
         },
         "about": {
-          "@id": "https://ramonville.boxingcenter.fr/#salle"
+          "@id": "https://bc-ramonville.vercel.app/#salle"
         },
         "primaryImageOfPage": {
-          "@id": "https://ramonville.boxingcenter.fr/tarifs/#primaryimage"
+          "@id": "https://bc-ramonville.vercel.app/tarifs/#primaryimage"
         },
         "breadcrumb": {
-          "@id": "https://ramonville.boxingcenter.fr/tarifs/#breadcrumb"
+          "@id": "https://bc-ramonville.vercel.app/tarifs/#breadcrumb"
         },
         "datePublished": "2026-07-17T00:08:52+01:00",
         "dateModified": "2026-07-19",
@@ -375,27 +375,27 @@ import { TARIFS, PROMOS } from "../../../public/assets/js/data.js";
       },
       {
         "@type": "ImageObject",
-        "@id": "https://ramonville.boxingcenter.fr/tarifs/#primaryimage",
-        "url": "https://ramonville.boxingcenter.fr/assets/img/ram/camp.webp",
+        "@id": "https://bc-ramonville.vercel.app/tarifs/#primaryimage",
+        "url": "https://bc-ramonville.vercel.app/assets/img/ram/camp.webp",
         "width": 768,
         "height": 512,
         "caption": "Boxing Camp à Boxing Center Ramonville, la ligne de sacs lourds."
       },
       {
         "@type": "BreadcrumbList",
-        "@id": "https://ramonville.boxingcenter.fr/tarifs/#breadcrumb",
+        "@id": "https://bc-ramonville.vercel.app/tarifs/#breadcrumb",
         "itemListElement": [
           {
             "@type": "ListItem",
             "position": 1,
             "name": "Accueil",
-            "item": "https://ramonville.boxingcenter.fr/"
+            "item": "https://bc-ramonville.vercel.app/"
           },
           {
             "@type": "ListItem",
             "position": 2,
             "name": "Tarifs",
-            "item": "https://ramonville.boxingcenter.fr/tarifs/"
+            "item": "https://bc-ramonville.vercel.app/tarifs/"
           }
         ]
       }
@@ -408,15 +408,15 @@ import { TARIFS, PROMOS } from "../../../public/assets/js/data.js";
   </script>
   <!-- LES TROIS LIBS SONT MAINTENANT CHEZ NOUS (/assets/vendor/).
        Elles arrivaient de cdn.jsdelivr.net : un second domaine à résoudre, une
-       seconde poignée de main TLS, avant la moindre ligne d'animation — et ça
+       seconde poignée de main TLS, avant la moindre ligne d’animation — et ça
        sur les huit pages. Mesure brotli en main, le CDN les servait gzippées
-       (51,2 ko) ; servies d'ici elles pèsent 43,3 ko, se mettent en cache un an
+       (51,2 ko) ; servies d’ici elles pèsent 43,3 ko, se mettent en cache un an
        comme tout /assets/, et surtout script-src a pu se refermer sur 'self'
        dans vercel.json. `defer` inchangé : elles ne retiennent pas le rendu et
-       s'exécutent dans l'ordre du document, donc avant les modules du pied. -->
-  <script is:inline defer src="/assets/vendor/gsap.min.js?v=16"></script>
-  <script is:inline defer src="/assets/vendor/ScrollTrigger.min.js?v=16"></script>
-  <script is:inline defer src="/assets/vendor/lenis.min.js?v=16"></script>
+       s’exécutent dans l’ordre du document, donc avant les modules du pied. -->
+  <script is:inline defer src="/assets/vendor/gsap.min.js?v=17"></script>
+  <script is:inline defer src="/assets/vendor/ScrollTrigger.min.js?v=17"></script>
+  <script is:inline defer src="/assets/vendor/lenis.min.js?v=17"></script>
 </head>
 
 <body data-page="tarifs">
@@ -428,21 +428,21 @@ import { TARIFS, PROMOS } from "../../../public/assets/js/data.js";
     <header class="phero" aria-label="Les tarifs">
       <div class="sky" aria-hidden="true"><canvas class="sky__stars"></canvas><div class="sky__haze"></div><div class="sky__moon"></div></div>
       <div class="wrap">
-        <nav class="breadcrumb" aria-label="Fil d'ariane"><a href="/">Accueil</a> / <span>Tarifs</span></nav>
+        <nav class="breadcrumb" aria-label="Fil d’ariane"><a href="/">Accueil</a> / <span>Tarifs</span></nav>
         <h1 class="display phero__title phero__title--long"><span class="reveal-mask"><span>Dix euros pour voir si le dehors est pour toi.</span></span></h1>
-        <p class="lead phero__lead" data-reveal>On commence à 10 €. Ensuite, deux façons d'entrer : à deux, ou pour la saison. Tout se règle en ligne, tout est clair : pas de frais planqués, pas de reconduction en douce.</p>
-        <!-- l'objet propre à ce hero (page.js → pheroMeta) -->
+        <p class="lead phero__lead" data-reveal>On commence à 10 €. Ensuite, deux façons d’entrer : à deux, ou pour la saison. Tout se règle en ligne, tout est clair : pas de frais planqués, pas de reconduction en douce.</p>
+        <!-- l’objet propre à ce hero (page.js → pheroMeta) -->
         <!-- LES TROIS PRIX SONT DANS LE HTML.
              Ce bandeau arrivait vide et se remplissait en JavaScript : 67 px
-             qui apparaissaient d'un coup sous le chapeau et poussaient toute
-             la page des formules vers le bas. C'était, de loin, le plus gros
+             qui apparaissaient d’un coup sous le chapeau et poussaient toute
+             la page des formules vers le bas. C’était, de loin, le plus gros
              décalage du site (0,621 mesuré en 4G bridée) — et il tombait sur
              la page qui doit inspirer le plus confiance. Trois prix fixes,
              lus de TARIFS et PROMOS au build : la même source que le reste
              de la page, écrite une seule fois dans data.js. pheroMeta() voit
              le bandeau déjà rempli et le laisse tranquille. -->
         <div class="phero__meta" id="phero-meta" data-reveal-group aria-label="Les trois prix">
-          <span><b>{TARIFS[0].price}</b> l'essai</span>
+          <span><b>{TARIFS[0].price}</b> l’essai</span>
           <span><b>{PROMOS.duo.price}</b> {PROMOS.duo.unit}</span>
           <span><b>{PROMOS.saisonOffre.price}</b> {PROMOS.saisonOffre.unit}</span>
         </div>
@@ -465,7 +465,7 @@ import { TARIFS, PROMOS } from "../../../public/assets/js/data.js";
       <div class="wrap">
         <div class="shead" data-reveal>
           <span class="eyebrow">Les offres</span>
-          <h2 class="display"><span class="reveal-mask"><span>À deux, c'est</span></span><span class="reveal-mask"><span class="tint">29 € chacun.</span></span></h2>
+          <h2 class="display"><span class="reveal-mask"><span>À deux, c’est</span></span><span class="reveal-mask"><span class="tint">29 € chacun.</span></span></h2>
         </div>
         <div class="promos" id="promos" data-reveal></div>
         <div class="promo__bonus" id="promo-bonus" data-reveal></div>
@@ -485,8 +485,8 @@ import { TARIFS, PROMOS } from "../../../public/assets/js/data.js";
     <section class="section localseo" aria-labelledby="seo-title">
       <div class="wrap" style="max-width:76ch">
         <h2 id="seo-title" class="display" style="font-size:clamp(1.6rem,3.4vw,2.5rem);margin-bottom:1rem;text-transform:none">Combien coûte la boxe à Ramonville-Saint-Agne ?</h2>
-        <p class="lead" style="font-size:var(--step-0)">La <strong>séance d'essai est à 10 €</strong>, toutes disciplines, matériel prêté. Pour continuer, l'<strong>offre Duo</strong> revient à <strong>29 € par personne</strong> (4 semaines de cours illimités, sans engagement), et l'<strong>offre Saison</strong> à <strong>259 € les 12 mois</strong>, payable en <strong>4× sans frais</strong>, avec l'accès libre aux <strong>5 clubs</strong> du réseau Boxing Center à Toulouse. L'<strong>école enfants</strong> accueille dès <strong>3 ans</strong> (Baby Boxe), puis 7/11 et ados 12/16.</p>
-        <p class="lead" style="font-size:var(--step-0);margin-top:1rem">La réservation et le détail des abonnements se font en ligne. Ouvert du lundi au samedi, 10h–21h30, avec l'accès libre muscu/cardio inclus.</p>
+        <p class="lead" style="font-size:var(--step-0)">La <strong>séance d’essai est à 10 €</strong>, toutes disciplines, matériel prêté. Pour continuer, l'<strong>offre Duo</strong> revient à <strong>29 € par personne</strong> (4 semaines de cours illimités, sans engagement), et l'<strong>offre Saison</strong> à <strong>259 € les 12 mois</strong>, payable en <strong>4× sans frais</strong>, avec l’accès libre aux <strong>5 clubs</strong> du réseau Boxing Center à Toulouse. L'<strong>école enfants</strong> accueille dès <strong>3 ans</strong> (Baby Boxe), puis 7/11 et ados 12/16.</p>
+        <p class="lead" style="font-size:var(--step-0);margin-top:1rem">La réservation et le détail des abonnements se font en ligne. Ouvert du lundi au samedi, 10h–21h30, avec l’accès libre muscu/cardio inclus.</p>
       </div>
     </section>
 
@@ -494,10 +494,10 @@ import { TARIFS, PROMOS } from "../../../public/assets/js/data.js";
       <div class="sky" aria-hidden="true"><canvas class="sky__stars"></canvas><div class="sky__haze"></div></div>
       <div class="ctaband__inner">
         <span class="eyebrow" style="justify-content:center" data-reveal>Le premier pas est à 10€</span>
-        <h2 class="display"><span class="reveal-mask"><span>Commence</span></span><span class="reveal-mask"><span class="tint">par l'essai.</span></span></h2>
+        <h2 class="display"><span class="reveal-mask"><span>Commence</span></span><span class="reveal-mask"><span class="tint">par l’essai.</span></span></h2>
         <p class="lead" data-reveal>Tu décideras du reste après avoir mis les pieds sur le plateau.</p>
         <div class="ctaband__cta" data-reveal>
-          <a class="btn btn--primary" data-magnetic href="https://box-plus.vercel.app/seance-essai"><span>Réserver l'essai · 10€</span></a>
+          <a class="btn btn--primary" data-magnetic href="https://box-plus.vercel.app/seance-essai"><span>Réserver l’essai · 10€</span></a>
           <a class="btn btn--ghost" data-magnetic href="https://box-plus.vercel.app/abonnements#promotions"><span>Voir les abonnements</span></a>
         </div>
       </div>
@@ -511,15 +511,15 @@ import { TARIFS, PROMOS } from "../../../public/assets/js/data.js";
     <span class="chatbot__label">Une question&nbsp;? Appelle la salle</span>
   </a>
 
-  <!-- ===================== L'ASSISTANT, À LA DEMANDE =====================
-       L'assistant ne coûte plus rien tant qu'on ne lui parle pas. Il pesait
+  <!-- ===================== L’ASSISTANT, À LA DEMANDE =====================
+       L’assistant ne coûte plus rien tant qu’on ne lui parle pas. Il pesait
        17,5 ko de module + 7,6 ko de feuille BLOQUANT LE RENDU, sur les huit
-       pages, pour un panneau que la plupart des visiteurs n'ouvriront jamais.
-       Rien n'est retiré à l'écran : la pastille est peinte par base.css comme
-       avant, et chatbot.css ne décrit que le panneau — qui n'existe pas encore.
-       On charge au premier signe d'intention (survol, doigt, tabulation), donc
+       pages, pour un panneau que la plupart des visiteurs n’ouvriront jamais.
+       Rien n’est retiré à l’écran : la pastille est peinte par base.css comme
+       avant, et chatbot.css ne décrit que le panneau — qui n’existe pas encore.
+       On charge au premier signe d’intention (survol, doigt, tabulation), donc
        avant le clic dans la quasi-totalité des cas ; le clic reste le filet.
-       Sans JavaScript, la pastille est toujours le lien tel: d'origine. -->
+       Sans JavaScript, la pastille est toujours le lien tel: d’origine. -->
   <script is:inline>
     (function () {
       var pastille = document.querySelector("a.chatbot");
@@ -528,28 +528,28 @@ import { TARIFS, PROMOS } from "../../../public/assets/js/data.js";
       function venir() {
         if (venue) return venue;
         var f = document.createElement("link");
-        f.rel = "stylesheet"; f.href = "/assets/css/chatbot.css?v=16";
+        f.rel = "stylesheet"; f.href = "/assets/css/chatbot.css?v=17";
         document.head.appendChild(f);
-        venue = import("/assets/js/chatbot.js?v=16").catch(function () { venue = null; });
+        venue = import("/assets/js/chatbot.js?v=17").catch(function () { venue = null; });
         return venue;
       }
       ["pointerenter", "touchstart", "focus"].forEach(function (e) {
         pastille.addEventListener(e, venir, { once: true, passive: true });
       });
       pastille.addEventListener("click", function (e) {
-        /* aria-expanded n'est posé que par chatbot.js : sa présence signifie
+        /* aria-expanded n’est posé que par chatbot.js : sa présence signifie
            que le vrai widget a pris la main et gère déjà ce clic. */
         if (pastille.hasAttribute("aria-expanded")) return;
         e.preventDefault();
         var p = venir();
         if (p) p.then(function () { pastille.click(); });
-        else window.location.href = pastille.href;   // le module n'est pas venu : on appelle la salle
+        else window.location.href = pastille.href;   // le module n’est pas venu : on appelle la salle
       });
     })();
   </script>
 
-  <script is:inline type="module" src="/assets/js/site.js?v=16"></script>
-  <script is:inline type="module" src="/assets/js/sky.js?v=16"></script>
-  <script is:inline type="module" src="/assets/js/page.js?v=16"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=17"></script>
+  <script is:inline type="module" src="/assets/js/sky.js?v=17"></script>
+  <script is:inline type="module" src="/assets/js/page.js?v=17"></script>
 </body>
 </html>

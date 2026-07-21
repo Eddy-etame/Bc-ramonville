@@ -1,6 +1,6 @@
 # Boxing Center Ramonville — contenu complet
 
-> Version factuelle intégrale du site https://ramonville.boxingcenter.fr/
+> Version factuelle intégrale du site https://bc-ramonville.vercel.app/
 > destinée aux moteurs génératifs. Tous les faits ci-dessous sont ceux
 > affichés sur le site. Voir aussi /llms.txt pour le résumé.
 
@@ -150,11 +150,11 @@ Compté sur les 23 cours de la grille de la rentrée.
 
 ## Pages du site
 
-- Accueil : https://ramonville.boxingcenter.fr/
-- Le plateau : https://ramonville.boxingcenter.fr/la-salle/
-- Activités : https://ramonville.boxingcenter.fr/activites/
-- Coachs : https://ramonville.boxingcenter.fr/coachs/
-- Galerie : https://ramonville.boxingcenter.fr/galerie/
-- Planning : https://ramonville.boxingcenter.fr/plannings/
-- Tarifs : https://ramonville.boxingcenter.fr/tarifs/
-- Contact : https://ramonville.boxingcenter.fr/contact/
+- Accueil : https://bc-ramonville.vercel.app/
+- Le plateau : https://bc-ramonville.vercel.app/la-salle/
+- Activités : https://bc-ramonville.vercel.app/activites/
+- Coachs : https://bc-ramonville.vercel.app/coachs/
+- Galerie : https://bc-ramonville.vercel.app/galerie/
+- Planning : https://bc-ramonville.vercel.app/plannings/
+- Tarifs : https://bc-ramonville.vercel.app/tarifs/
+- Contact : https://bc-ramonville.vercel.app/contact/

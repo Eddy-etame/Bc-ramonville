@@ -1,13 +1,13 @@
 /* =====================================================================
-   RAMONVILLE · home.js — l'arrivée sous le ciel
+   RAMONVILLE · home.js — l’arrivée sous le ciel
 
    Rend depuis data.js : les chiffres du plateau (compteurs), le ticker,
    la bande staff (visages prouvés, tuiles nom sinon), la légende des 8
    arêtes. La caption du hero lit le VRAI ciel (window.__SKY : heure +
-   température) — carnet de terrain. L'octogone est monté par octagon.js.
+   température) — carnet de terrain. L’octogone est monté par octagon.js.
    ===================================================================== */
-import { STATS, DISCIPLINES, COACHES, SALLE } from "./data.js?v=16";
-import "./octagon.js?v=16"; // effet de bord : auto-monte l'octogone interactif du hero (#octa)
+import { STATS, DISCIPLINES, COACHES, SALLE } from "./data.js?v=17";
+import "./octagon.js?v=17"; // effet de bord : auto-monte l’octogone interactif du hero (#octa)
 
 const gsap = window.gsap;
 const ScrollTrigger = window.ScrollTrigger;
@@ -17,19 +17,19 @@ const nf = new Intl.NumberFormat("fr-FR");
 
 /* --------------------------- RENDER ------------------------------- */
 /* Les chiffres naissent VRAIS dans le DOM, jamais à 0 (loi n°1) : sur une
-   frame qui n'est jamais peinte — rAF gelé, onglet ouvert en fond, rendu
+   frame qui n’est jamais peinte — rAF gelé, onglet ouvert en fond, rendu
    ralenti — ce que le visiteur voit doit être « 300 m² », pas « 0 m² ». Un
-   chiffre faux est pire qu'une absence, et il tombe précisément sur les trois
-   faits qui portent la salle. Le zéro de départ du compteur n'est écrit que
+   chiffre faux est pire qu’une absence, et il tombe précisément sur les trois
+   faits qui portent la salle. Le zéro de départ du compteur n’est écrit que
    plus tard, dans countUp(), et seulement une fois la boucle prouvée vivante. */
 function renderStats() {
   const box = $("#stats"); if (!box) return;
   /* Le bloc est désormais POSÉ DANS LE HTML (index.astro, même tableau
      STATS lu au build) : il est là dès le premier pixel, le hero ne
-     grandit plus sous les pieds du visiteur, et un robot qui n'exécute
+     grandit plus sous les pieds du visiteur, et un robot qui n’exécute
      pas de JS lit quand même les quatre chiffres. On ne le reconstruit
-     donc que s'il est vide — cas d'un montage à la main ailleurs. Le
-     compteur, lui, anime les nœuds tels qu'il les trouve. */
+     donc que s’il est vide — cas d’un montage à la main ailleurs. Le
+     compteur, lui, anime les nœuds tels qu’il les trouve. */
   if (box.children.length) return;
   box.innerHTML = STATS.map(
     (s) => `<div class="stat">
@@ -64,7 +64,7 @@ function renderStaff() {
   }).join("");
 }
 
-/* la légende des 8 arêtes — accessible, cliquable, à côté de l'instrument */
+/* la légende des 8 arêtes — accessible, cliquable, à côté de l’instrument */
 function renderOctaLegend() {
   const box = $("#octa-legend"); if (!box) return;
   box.innerHTML = [...DISCIPLINES].sort((a, b) => a.edge - b.edge).map(
@@ -79,7 +79,7 @@ function renderOctaLegend() {
 /* ------------------------- CHOREOGRAPHY --------------------------- */
 /* compteurs — AUTO-PORTANTS (sans dépendre de gsap/ScrollTrigger) :
    IntersectionObserver + rAF, plus un dead-man (loi n°1) qui POSE la vraie
-   valeur même si l'IO ne déclenche jamais (strip à cheval sur le fold au boot,
+   valeur même si l’IO ne déclenche jamais (strip à cheval sur le fold au boot,
    onglet en fond) ou si le rAF gèle. Le différenciateur ne rend JAMAIS « 0 m² ».
    Même patron que le rail de /la-salle/ — appliqué ici, la page la plus vue. */
 function countUp() {
@@ -100,9 +100,9 @@ function countUp() {
     requestAnimationFrame(step);
   };
   if ("IntersectionObserver" in window && !reduce) {
-    /* le zéro n'est écrit qu'ICI, dans un rAF : c'est la seule preuve que la
-       boucle d'animation tourne vraiment. Si elle ne tourne pas, la vraie
-       valeur posée au rendu reste à l'écran — jamais « 0 m² dehors ». */
+    /* le zéro n’est écrit qu’ICI, dans un rAF : c’est la seule preuve que la
+       boucle d’animation tourne vraiment. Si elle ne tourne pas, la vraie
+       valeur posée au rendu reste à l’écran — jamais « 0 m² dehors ». */
     requestAnimationFrame(() => els.forEach((el) => { if (!el.dataset.counting) el.textContent = "0"; }));
     const io = new IntersectionObserver((es) => es.forEach((e) => {
       if (e.isIntersecting) { run(e.target); io.unobserve(e.target); }
@@ -118,14 +118,14 @@ function countUp() {
 }
 
 /* caption documentaire du hero : heure + température RÉELLES (carnet de terrain).
-   « 21h42 · plateau extérieur · 14°C » — l'heure/température viennent du ciel. */
+   « 21h42 · plateau extérieur · 14°C » — l’heure/température viennent du ciel. */
 function heroCaption() {
   const cap = $("#hero-cap"); if (!cap) return;
   const paint = () => {
     const now = new Date();
-    // l'heure vient du ciel (sky.js → Open-Meteo, fuseau de la salle) : cette
-    // caption est un relevé de terrain AU-DESSUS DE RAMONVILLE, pas l'horloge
-    // du visiteur. Repli sur l'horloge locale tant que le réseau n'a pas répondu.
+    // l’heure vient du ciel (sky.js → Open-Meteo, fuseau de la salle) : cette
+    // caption est un relevé de terrain AU-DESSUS DE RAMONVILLE, pas l’horloge
+    // du visiteur. Repli sur l’horloge locale tant que le réseau n’a pas répondu.
     const hh = String(window.__SKY?.hour ?? now.getHours()).padStart(2, "0");
     const mm = String(now.getMinutes()).padStart(2, "0");
     const temp = window.__SKY && window.__SKY.tempC != null ? ` · ${window.__SKY.tempC}°C` : "";
@@ -160,8 +160,8 @@ function claimLive() {
 /* ------------------------------ BOOT ------------------------------ */
 function boot() {
   renderStats(); renderTicker(); renderStaff(); renderOctaLegend(); claimLive();
-  // l'octogone interactif du hero s'auto-monte (#octa via octagon.js). La
-  // section octogone-nav ne répète PAS l'instrument : elle porte un octogone
+  // l’octogone interactif du hero s’auto-monte (#octa via octagon.js). La
+  // section octogone-nav ne répète PAS l’instrument : elle porte un octogone
   // filaire réduit (statique, brief §2.2) + la légende cliquable des 8 côtés.
 
   window.BC.media(document);

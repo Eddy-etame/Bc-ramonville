@@ -1,8 +1,8 @@
 ---
 /* UNE SEULE SOURCE POUR LES CHIFFRES DU HERO.
    data.js est le registre des faits de la salle : le navigateur le lit à
-   l'exécution, le build le lit ici. Le fichier est pur (aucun `window`,
-   aucun `document` au chargement) — il s'importe donc des deux côtés sans
+   l’exécution, le build le lit ici. Le fichier est pur (aucun `window`,
+   aucun `document` au chargement) — il s’importe donc des deux côtés sans
    rien casser. Si les 300 m² changent un jour, ils changent à un endroit. */
 import { STATS } from "../../public/assets/js/data.js";
 const nf = new Intl.NumberFormat("fr-FR");
@@ -12,27 +12,27 @@ const nf = new Intl.NumberFormat("fr-FR");
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Boxing Center Ramonville — salle de boxe &amp; MMA, l'octogone à ciel ouvert</title>
-  <meta name="description" content="300 m² d'entraînement dehors et à l'abri : un octogone de 7 m, un ring olympique, deux niveaux. Métro B, terminus. Ta première séance est à 10 €." />
+  <title>Salle de boxe &amp; MMA à Ramonville — Boxing Center</title>
+  <meta name="description" content="300 m² d’entraînement dehors et à l’abri : un octogone de 7 m, un ring olympique, deux niveaux. Métro B, terminus. Ta première séance est à 10 €." />
 
   <!-- Préconnexions — avant toute feuille de style -->
   <link rel="preconnect" href="https://api.open-meteo.com" crossorigin />
 
-  <!-- Polices AUTO-HÉBERGÉES — mêmes familles/graisses que l'original Google Fonts -->
-  <link rel="preload" href="/fonts/chakrapetch-700-latin.woff2?v=16" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="/fonts/manrope-var-latin.woff2?v=16" as="font" type="font/woff2" crossorigin />
-  <!-- JetBrains Mono manquait à l'appel, et c'est LUI qui décalait la page.
+  <!-- Polices AUTO-HÉBERGÉES — mêmes familles/graisses que l’original Google Fonts -->
+  <link rel="preload" href="/fonts/chakrapetch-700-latin.woff2?v=17" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/manrope-var-latin.woff2?v=17" as="font" type="font/woff2" crossorigin />
+  <!-- JetBrains Mono manquait à l’appel, et c’est LUI qui décalait la page.
        Les libellés mono sont partout au-dessus de la ligne de flottaison —
-       fil d'ariane, sur-titres, boutons, les chips du hero. La police
+       fil d’ariane, sur-titres, boutons, les chips du hero. La police
        arrivait après le premier rendu : tout ce petit monde changeait de
-       largeur d'un coup et poussait la première section vers le bas
+       largeur d’un coup et poussait la première section vers le bas
        (0,621 de décalage mesuré sur /tarifs/). Elle était de toute façon
        téléchargée sur les huit pages : la précharger ne coûte pas un octet
-       ni une requête de plus, elle arrive seulement à l'heure. -->
-  <link rel="preload" href="/fonts/jetbrainsmono-var-latin.woff2?v=16" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="/assets/css/fonts.css?v=16" />
-  <link rel="stylesheet" href="/assets/css/base.css?v=16" />
-  <link rel="stylesheet" href="/assets/css/home.css?v=16" />
+       ni une requête de plus, elle arrive seulement à l’heure. -->
+  <link rel="preload" href="/fonts/jetbrainsmono-var-latin.woff2?v=17" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=17" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=17" />
+  <link rel="stylesheet" href="/assets/css/home.css?v=17" />
 
   <meta name="keywords" content="salle de boxe Ramonville, MMA Ramonville-Saint-Agne, octogone Toulouse, grappling Toulouse sud, boxe anglaise Ramonville, Lady Punch, baby boxe 3 ans, Boxing Center Ramonville, 31520, boxing gym Toulouse, MMA gym Toulouse, octagon MMA Toulouse, kickboxing Toulouse, muay thai Toulouse, grappling Toulouse, kids boxing Toulouse, outdoor boxing Toulouse, boxing club Ramonville, martial arts gym near Toulouse" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -41,30 +41,30 @@ const nf = new Intl.NumberFormat("fr-FR");
   <meta name="geo.placename" content="Ramonville-Saint-Agne — Toulouse" />
   <meta name="geo.position" content="43.546;1.474" />
   <meta name="ICBM" content="43.546, 1.474" />
-  <link rel="canonical" href="https://ramonville.boxingcenter.fr/" />
+  <link rel="canonical" href="https://bc-ramonville.vercel.app/" />
   <meta name="theme-color" content="#070a12" />
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-  <link rel="icon" href="/favicon.png" type="image/png" sizes="32x32" />
-  <link rel="shortcut icon" href="/favicon.png" />
-  <link rel="icon" href="/favicon-192.png" type="image/png" sizes="192x192" />
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+  <link rel="icon" href="/favicon.svg?i=2" type="image/svg+xml" />
+  <link rel="icon" href="/favicon.png?i=2" type="image/png" sizes="32x32" />
+  <link rel="shortcut icon" href="/favicon.png?i=2" />
+  <link rel="icon" href="/favicon-192.png?i=2" type="image/png" sizes="192x192" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png?i=2" sizes="180x180" />
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:site_name" content="Boxing Center Ramonville" />
-  <meta property="og:title" content="Boxing Center Ramonville — l'octogone à ciel ouvert" />
-  <meta property="og:description" content="300 m² d'entraînement dehors, protégés des intempéries. Un octogone de 7 m, un ring olympique, la nuit sous le ciel réel. Métro B, à Ramonville-Saint-Agne. Essai 10€." />
-  <meta property="og:url" content="https://ramonville.boxingcenter.fr/" />
-  <meta property="og:image" content="https://ramonville.boxingcenter.fr/assets/img/ram/hero.webp" />
+  <meta property="og:title" content="Boxing Center Ramonville — l’octogone à ciel ouvert" />
+  <meta property="og:description" content="300 m² d’entraînement dehors, protégés des intempéries. Un octogone de 7 m, un ring olympique, la nuit sous le ciel réel. Métro B, à Ramonville-Saint-Agne. Essai 10€." />
+  <meta property="og:url" content="https://bc-ramonville.vercel.app/" />
+  <meta property="og:image" content="https://bc-ramonville.vercel.app/assets/img/ram/hero.webp" />
   <meta property="og:image:width" content="1920" />
   <meta property="og:image:height" content="1282" />
   <meta property="og:image:type" content="image/webp" />
-  <meta property="og:image:alt" content="Boxing Center Ramonville : l'octogone de 7 m et le ring de boxe olympique, le soir." />
+  <meta property="og:image:alt" content="Boxing Center Ramonville : l’octogone de 7 m et le ring de boxe olympique, le soir." />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Boxing Center Ramonville — l'octogone à ciel ouvert" />
-  <meta name="twitter:description" content="300 m² dehors, un octogone de 7 m, un ring olympique. La seule salle du réseau qui s'entraîne sous le ciel. Essai 10€." />
-  <meta name="twitter:image" content="https://ramonville.boxingcenter.fr/assets/img/ram/hero.webp" />
-  <meta name="twitter:image:alt" content="Boxing Center Ramonville : l'octogone de 7 m et le ring de boxe olympique, le soir." />
+  <meta name="twitter:title" content="Boxing Center Ramonville — l’octogone à ciel ouvert" />
+  <meta name="twitter:description" content="300 m² dehors, un octogone de 7 m, un ring olympique. La seule salle du réseau qui s’entraîne sous le ciel. Essai 10€." />
+  <meta name="twitter:image" content="https://bc-ramonville.vercel.app/assets/img/ram/hero.webp" />
+  <meta name="twitter:image:alt" content="Boxing Center Ramonville : l’octogone de 7 m et le ring de boxe olympique, le soir." />
 
   <!-- Référencement local — graphe unifié (salle, réseau, site, page) -->
   <script is:inline type="application/ld+json">
@@ -82,7 +82,7 @@ const nf = new Intl.NumberFormat("fr-FR");
         ],
         "subOrganization": [
           {
-            "@id": "https://ramonville.boxingcenter.fr/#salle"
+            "@id": "https://bc-ramonville.vercel.app/#salle"
           },
           {
             "@type": "SportsActivityLocation",
@@ -109,14 +109,14 @@ const nf = new Intl.NumberFormat("fr-FR");
           "HealthClub",
           "LocalBusiness"
         ],
-        "@id": "https://ramonville.boxingcenter.fr/#salle",
+        "@id": "https://bc-ramonville.vercel.app/#salle",
         "knowsLanguage": ["fr-FR", "en"],
         "name": "Boxing Center Ramonville",
-        "url": "https://ramonville.boxingcenter.fr/",
+        "url": "https://bc-ramonville.vercel.app/",
         "telephone": "+33562244682",
         "email": "boxingcenter31@gmail.com",
         "priceRange": "€€",
-        "image": "https://ramonville.boxingcenter.fr/assets/img/ram/hero.webp",
+        "image": "https://bc-ramonville.vercel.app/assets/img/ram/hero.webp",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "33 rue des Ormes",
@@ -198,7 +198,7 @@ const nf = new Intl.NumberFormat("fr-FR");
           },
           {
             "@type": "LocationFeatureSpecification",
-            "name": "Espaces d'entraînement libres et collectifs",
+            "name": "Espaces d’entraînement libres et collectifs",
             "value": true
           }
         ],
@@ -208,7 +208,7 @@ const nf = new Intl.NumberFormat("fr-FR");
           "itemListElement": [
             {
               "@type": "Offer",
-              "name": "Séance d'essai",
+              "name": "Séance d’essai",
               "price": "10",
               "priceCurrency": "EUR",
               "url": "https://box-plus.vercel.app/seance-essai",
@@ -235,7 +235,7 @@ const nf = new Intl.NumberFormat("fr-FR");
         "potentialAction": [
           {
             "@type": "ReserveAction",
-            "name": "Réserver la séance d'essai",
+            "name": "Réserver la séance d’essai",
             "target": {
               "@type": "EntryPoint",
               "urlTemplate": "https://box-plus.vercel.app/seance-essai",
@@ -247,7 +247,7 @@ const nf = new Intl.NumberFormat("fr-FR");
             },
             "result": {
               "@type": "Reservation",
-              "name": "Séance d'essai — Boxing Center Ramonville"
+              "name": "Séance d’essai — Boxing Center Ramonville"
             }
           },
           {
@@ -271,11 +271,11 @@ const nf = new Intl.NumberFormat("fr-FR");
         "parentOrganization": {
           "@id": "https://boxingcenter.fr/#organization"
         },
-        "description": "La seule salle du réseau Boxing Center qui s'entraîne dehors : 300 m² extérieurs couverts, un octogone de 7 m, un ring de boxe olympique et deux niveaux avec un étage muscu/cardio, à Ramonville-Saint-Agne. Boxe anglaise, pieds-poings, grappling, asso MMA, Boxing Camp, Lady Punch et école enfants dès 3 ans. Séance d'essai 10€."
+        "description": "La seule salle du réseau Boxing Center qui s’entraîne dehors : 300 m² extérieurs couverts, un octogone de 7 m, un ring de boxe olympique et deux niveaux avec un étage muscu/cardio, à Ramonville-Saint-Agne. Boxe anglaise, pieds-poings, grappling, asso MMA, Boxing Camp, Lady Punch et école enfants dès 3 ans. Séance d’essai 10€."
       },
       {
         "@type": "ItemList",
-        "@id": "https://ramonville.boxingcenter.fr/#navigation",
+        "@id": "https://bc-ramonville.vercel.app/#navigation",
         "name": "Les pages de Boxing Center Ramonville",
         "itemListOrder": "https://schema.org/ItemListOrderAscending",
         "numberOfItems": 8,
@@ -284,87 +284,87 @@ const nf = new Intl.NumberFormat("fr-FR");
             "@type": "ListItem",
             "position": 1,
             "name": "Accueil",
-            "url": "https://ramonville.boxingcenter.fr/"
+            "url": "https://bc-ramonville.vercel.app/"
           },
           {
             "@type": "ListItem",
             "position": 2,
             "name": "Le plateau",
-            "url": "https://ramonville.boxingcenter.fr/la-salle/"
+            "url": "https://bc-ramonville.vercel.app/la-salle/"
           },
           {
             "@type": "ListItem",
             "position": 3,
             "name": "Activités",
-            "url": "https://ramonville.boxingcenter.fr/activites/"
+            "url": "https://bc-ramonville.vercel.app/activites/"
           },
           {
             "@type": "ListItem",
             "position": 4,
             "name": "Planning",
-            "url": "https://ramonville.boxingcenter.fr/plannings/"
+            "url": "https://bc-ramonville.vercel.app/plannings/"
           },
           {
             "@type": "ListItem",
             "position": 5,
             "name": "Tarifs",
-            "url": "https://ramonville.boxingcenter.fr/tarifs/"
+            "url": "https://bc-ramonville.vercel.app/tarifs/"
           },
           {
             "@type": "ListItem",
             "position": 6,
             "name": "Coachs",
-            "url": "https://ramonville.boxingcenter.fr/coachs/"
+            "url": "https://bc-ramonville.vercel.app/coachs/"
           },
           {
             "@type": "ListItem",
             "position": 7,
             "name": "Galerie",
-            "url": "https://ramonville.boxingcenter.fr/galerie/"
+            "url": "https://bc-ramonville.vercel.app/galerie/"
           },
           {
             "@type": "ListItem",
             "position": 8,
             "name": "Contact",
-            "url": "https://ramonville.boxingcenter.fr/contact/"
+            "url": "https://bc-ramonville.vercel.app/contact/"
           }
         ]
       },
       {
         "@type": "WebSite",
-        "@id": "https://ramonville.boxingcenter.fr/#website",
-        "url": "https://ramonville.boxingcenter.fr/",
+        "@id": "https://bc-ramonville.vercel.app/#website",
+        "url": "https://bc-ramonville.vercel.app/",
         "name": "Boxing Center Ramonville",
         "inLanguage": "fr-FR",
         "publisher": {
-          "@id": "https://ramonville.boxingcenter.fr/#salle"
+          "@id": "https://bc-ramonville.vercel.app/#salle"
         },
         "hasPart": [
-          { "@id": "https://ramonville.boxingcenter.fr/#webpage" },
-          { "@id": "https://ramonville.boxingcenter.fr/la-salle/#webpage" },
-          { "@id": "https://ramonville.boxingcenter.fr/activites/#webpage" },
-          { "@id": "https://ramonville.boxingcenter.fr/plannings/#webpage" },
-          { "@id": "https://ramonville.boxingcenter.fr/tarifs/#webpage" },
-          { "@id": "https://ramonville.boxingcenter.fr/coachs/#webpage" },
-          { "@id": "https://ramonville.boxingcenter.fr/galerie/#webpage" },
-          { "@id": "https://ramonville.boxingcenter.fr/contact/#webpage" }
+          { "@id": "https://bc-ramonville.vercel.app/#webpage" },
+          { "@id": "https://bc-ramonville.vercel.app/la-salle/#webpage" },
+          { "@id": "https://bc-ramonville.vercel.app/activites/#webpage" },
+          { "@id": "https://bc-ramonville.vercel.app/plannings/#webpage" },
+          { "@id": "https://bc-ramonville.vercel.app/tarifs/#webpage" },
+          { "@id": "https://bc-ramonville.vercel.app/coachs/#webpage" },
+          { "@id": "https://bc-ramonville.vercel.app/galerie/#webpage" },
+          { "@id": "https://bc-ramonville.vercel.app/contact/#webpage" }
         ]
       },
       {
         "@type": "WebPage",
-        "@id": "https://ramonville.boxingcenter.fr/#webpage",
-        "url": "https://ramonville.boxingcenter.fr/",
-        "name": "Boxing Center Ramonville — salle de boxe & MMA, l'octogone à ciel ouvert",
-        "description": "300 m² d'entraînement dehors et à l'abri : un octogone de 7 m, un ring olympique, deux niveaux. Métro B, terminus. Ta première séance est à 10 €.",
+        "@id": "https://bc-ramonville.vercel.app/#webpage",
+        "url": "https://bc-ramonville.vercel.app/",
+        "name": "Boxing Center Ramonville — salle de boxe & MMA, l’octogone à ciel ouvert",
+        "description": "300 m² d’entraînement dehors et à l’abri : un octogone de 7 m, un ring olympique, deux niveaux. Métro B, terminus. Ta première séance est à 10 €.",
         "inLanguage": "fr-FR",
         "isPartOf": {
-          "@id": "https://ramonville.boxingcenter.fr/#website"
+          "@id": "https://bc-ramonville.vercel.app/#website"
         },
         "about": {
-          "@id": "https://ramonville.boxingcenter.fr/#salle"
+          "@id": "https://bc-ramonville.vercel.app/#salle"
         },
         "primaryImageOfPage": {
-          "@id": "https://ramonville.boxingcenter.fr/#primaryimage"
+          "@id": "https://bc-ramonville.vercel.app/#primaryimage"
         },
         "datePublished": "2026-07-17T00:08:52+01:00",
         "dateModified": "2026-07-19",
@@ -378,34 +378,34 @@ const nf = new Intl.NumberFormat("fr-FR");
       },
       {
         "@type": "ImageObject",
-        "@id": "https://ramonville.boxingcenter.fr/#primaryimage",
-        "url": "https://ramonville.boxingcenter.fr/assets/img/ram/hero.webp",
+        "@id": "https://bc-ramonville.vercel.app/#primaryimage",
+        "url": "https://bc-ramonville.vercel.app/assets/img/ram/hero.webp",
         "width": 1920,
         "height": 1282,
-        "caption": "Boxing Center Ramonville : l'octogone de 7 m et le ring de boxe olympique, le soir."
+        "caption": "Boxing Center Ramonville : l’octogone de 7 m et le ring de boxe olympique, le soir."
       }
     ]
   }
   </script>
 
-  <!-- LA COULEUR NE SE NÉGOCIE PLUS : l'argent de la marque est le seul état.
+  <!-- LA COULEUR NE SE NÉGOCIE PLUS : l’argent de la marque est le seul état.
        Le no-flash lisait localStorage avant le premier paint pour restituer une
-       bascule Acier/Cuivre qui vient d'être retirée de la barre — il ne restait
-       qu'un accès disque bloquant devant le rendu, pour rien. `fx` reste : c'est
-       lui qui autorise le moteur d'animation à cacher le texte avant de le
+       bascule Acier/Cuivre qui vient d’être retirée de la barre — il ne restait
+       qu’un accès disque bloquant devant le rendu, pour rien. `fx` reste : c’est
+       lui qui autorise le moteur d’animation à cacher le texte avant de le
        révéler, et lui seul doit passer avant la première peinture. -->
   <script is:inline>document.documentElement.classList.add('fx');</script>
   <!-- LES TROIS LIBS SONT MAINTENANT CHEZ NOUS (/assets/vendor/).
        Elles arrivaient de cdn.jsdelivr.net : un second domaine à résoudre, une
-       seconde poignée de main TLS, avant la moindre ligne d'animation — et ça
+       seconde poignée de main TLS, avant la moindre ligne d’animation — et ça
        sur les huit pages. Mesure brotli en main, le CDN les servait gzippées
-       (51,2 ko) ; servies d'ici elles pèsent 43,3 ko, se mettent en cache un an
+       (51,2 ko) ; servies d’ici elles pèsent 43,3 ko, se mettent en cache un an
        comme tout /assets/, et surtout script-src a pu se refermer sur 'self'
        dans vercel.json. `defer` inchangé : elles ne retiennent pas le rendu et
-       s'exécutent dans l'ordre du document, donc avant les modules du pied. -->
-  <script is:inline defer src="/assets/vendor/gsap.min.js?v=16"></script>
-  <script is:inline defer src="/assets/vendor/ScrollTrigger.min.js?v=16"></script>
-  <script is:inline defer src="/assets/vendor/lenis.min.js?v=16"></script>
+       s’exécutent dans l’ordre du document, donc avant les modules du pied. -->
+  <script is:inline defer src="/assets/vendor/gsap.min.js?v=17"></script>
+  <script is:inline defer src="/assets/vendor/ScrollTrigger.min.js?v=17"></script>
+  <script is:inline defer src="/assets/vendor/lenis.min.js?v=17"></script>
 </head>
 
 <body data-page="home">
@@ -416,7 +416,7 @@ const nf = new Intl.NumberFormat("fr-FR");
   <main id="main">
 
     <!-- ============================ HERO ============================ -->
-    <header class="hero" aria-label="Boxing Center Ramonville — l'octogone à ciel ouvert">
+    <header class="hero" aria-label="Boxing Center Ramonville — l’octogone à ciel ouvert">
       <div class="sky" aria-hidden="true">
         <canvas class="sky__stars"></canvas>
         <div class="sky__haze"></div>
@@ -426,10 +426,10 @@ const nf = new Intl.NumberFormat("fr-FR");
         <div>
           <p class="eyebrow" data-reveal>Ramonville-Saint-Agne · sud toulousain</p>
           <h1 class="display hero__title">
-            <span class="reveal-mask"><span class="l1">L'octogone</span></span>
+            <span class="reveal-mask"><span class="l1">L’octogone</span></span>
             <span class="reveal-mask"><span class="tint">à ciel ouvert.</span></span>
           </h1>
-          <p class="lead hero__sub" data-reveal><b>La seule salle du réseau qui s'entraîne dehors.</b> 300 m² extérieurs couverts, un octogone de 7 m, un ring olympique — la nuit, l'air, le ciel réel au-dessus de la cage.</p>
+          <p class="lead hero__sub" data-reveal><b>La seule salle du réseau qui s’entraîne dehors.</b> 300 m² extérieurs couverts, un octogone de 7 m, un ring olympique — la nuit, l’air, le ciel réel au-dessus de la cage.</p>
           <div class="hero__badges" data-reveal>
             <span>300 m² dehors</span>
             <span>Octogone 7 m</span>
@@ -453,10 +453,10 @@ const nf = new Intl.NumberFormat("fr-FR");
                hero grandissait de 143 px sous les pieds du visiteur — 0,132
                de CLS, le seul saut de mise en page du site, et il tombait
                pile sur le premier écran.
-             · le référencement. Sept mètres d'octogone, 300 m² dehors, deux
+             · le référencement. Sept mètres d’octogone, 300 m² dehors, deux
                niveaux, six jours sur sept : les quatre faits qui vendent la
-               salle n'existaient que pour un robot qui exécute le JavaScript.
-             La source reste STATS dans data.js — c'est le même tableau, lu
+               salle n’existaient que pour un robot qui exécute le JavaScript.
+             La source reste STATS dans data.js — c’est le même tableau, lu
              au build. renderStats() voit le bloc déjà rempli et ne le
              reconstruit pas ; le compteur, lui, anime les nœuds en place. -->
         <div class="hero__stats" id="stats" data-reveal-group aria-label="Le plateau en chiffres">
@@ -482,25 +482,25 @@ const nf = new Intl.NumberFormat("fr-FR");
          Cette ligne disait « 21h. Quatorze degrés. » — une heure et une
          température ÉCRITES EN DUR, dans un registre documentaire, sur une
          page qui affiche deux sections plus bas le vrai relevé Open-Meteo
-         au-dessus de la salle. Les deux se contredisaient à l'écran (« CIEL
+         au-dessus de la salle. Les deux se contredisaient à l’écran (« CIEL
          VOILÉ · 31°C · 12H » face à « 21h. Quatorze degrés. ») et le manifeste
          avait tort environ vingt-trois heures sur vingt-quatre.
-         Un relevé fabriqué n'a pas sa place sur ce site : la ligne ne porte
+         Un relevé fabriqué n’a pas sa place sur ce site : la ligne ne porte
          donc plus aucun chiffre. Le seul endroit de la page qui date et qui
          mesure est celui qui lit le ciel réel — #claim-live, plus bas. -->
     <section class="manifesto" aria-label="Le manifeste">
       <div class="wrap">
-        <p><span class="reveal-mask"><span>Dehors, il fait ce qu'il fait.</span></span><span class="reveal-mask"><span class="tint">Personne n'est rentré.</span></span></p>
+        <p><span class="reveal-mask"><span>Dehors, il fait ce qu’il fait.</span></span><span class="reveal-mask"><span class="tint">Personne n’est rentré.</span></span></p>
       </div>
     </section>
 
     <!-- ============= LE CLAIM EXTÉRIEUR — 300 m² dehors ============ -->
-    <!-- Le claim du dehors n'est PAS illustré par une photo : les 6 clichés
+    <!-- Le claim du dehors n’est PAS illustré par une photo : les 6 clichés
          prouvés de la salle sont tous pris sous charpente. Il est illustré par
          le VRAI ciel de Ramonville (gradient piloté par Open-Meteo via sky.js,
          sans canvas ici → zéro rAF de plus) + les conditions réelles, à la
-         seconde. C'est le seul fond que personne d'autre ne peut copier. -->
-    <section class="claim" aria-label="300 m² d'entraînement en extérieur">
+         seconde. C’est le seul fond que personne d’autre ne peut copier. -->
+    <section class="claim" aria-label="300 m² d’entraînement en extérieur">
       <div class="sky claim__sky" aria-hidden="true">
         <div class="sky__haze"></div>
         <div class="sky__moon"></div>
@@ -508,22 +508,22 @@ const nf = new Intl.NumberFormat("fr-FR");
       <div class="wrap">
         <div class="claim__grid">
           <div>
-            <span class="eyebrow" data-reveal>Rien qu'ici</span>
+            <span class="eyebrow" data-reveal>Rien qu’ici</span>
             <h2 class="display"><span class="reveal-mask"><span>300 m²</span></span><span class="reveal-mask"><span class="tint">dehors.</span></span></h2>
-            <p class="lead claim__lead" data-reveal>Aménagés, protégés des intempéries, ouverts toute l'année. Personne d'autre dans le réseau n'a ça : on s'entraîne à l'air, sous le ciel de Ramonville, le soir venu, quand le bruit des pattes d'ours porte dans le noir.</p>
+            <p class="lead claim__lead" data-reveal>Aménagés, protégés des intempéries, ouverts toute l’année. Personne d’autre dans le réseau n’a ça : on s’entraîne à l’air, sous le ciel de Ramonville, le soir venu, quand le bruit des pattes d’ours porte dans le noir.</p>
             <p class="claim__live" id="claim-live" data-reveal></p>
           </div>
           <div class="claim__figs" data-reveal-group>
             <div class="claim__fig"><b>300 m²</b><span>extérieur couvert</span></div>
-            <div class="claim__fig"><b>7 m</b><span>l'octogone</span></div>
+            <div class="claim__fig"><b>7 m</b><span>l’octogone</span></div>
             <div class="claim__fig"><b>2</b><span>niveaux · muscu/cardio</span></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- =============== L'OCTOGONE-NAV — 8 arêtes → disciplines ====== -->
-    <section class="section onav" id="onav" aria-label="Les disciplines par l'octogone">
+    <!-- =============== L’OCTOGONE-NAV — 8 arêtes → disciplines ====== -->
+    <section class="section onav" id="onav" aria-label="Les disciplines par l’octogone">
       <div class="wrap">
         <div class="onav__grid">
           <div class="onav__stage" data-reveal>
@@ -532,9 +532,9 @@ const nf = new Intl.NumberFormat("fr-FR");
             </div>
           </div>
           <div>
-            <span class="eyebrow" data-reveal>L'instrument</span>
+            <span class="eyebrow" data-reveal>L’instrument</span>
             <h2 class="display onav__title"><span class="reveal-mask"><span>Chaque côté de la cage ouvre un cours.</span></span></h2>
-            <p class="muted" data-reveal style="max-width:42ch;margin-top:.9rem">Chaque côté de l'octogone ouvre sa discipline, ses créneaux, son coach. Fais tourner l'instrument en haut de page, ou choisis dans la liste — tout vient du planning officiel de la rentrée.</p>
+            <p class="muted" data-reveal style="max-width:42ch;margin-top:.9rem">Chaque côté de l’octogone ouvre sa discipline, ses créneaux, son coach. Fais tourner l’instrument en haut de page, ou choisis dans la liste — tout vient du planning officiel de la rentrée.</p>
             <div class="octa-legend" id="octa-legend" data-reveal-group style="margin-top:clamp(1.4rem,3vw,2rem)"></div>
           </div>
         </div>
@@ -542,7 +542,7 @@ const nf = new Intl.NumberFormat("fr-FR");
     </section>
 
     <!-- ==================== LA BANDE STAFF ========================= -->
-    <section class="section" aria-label="L'encadrement">
+    <section class="section" aria-label="L’encadrement">
       <div class="wrap">
         <div class="shead" data-reveal>
           <span class="eyebrow">Quatre, pas quarante</span>
@@ -553,7 +553,7 @@ const nf = new Intl.NumberFormat("fr-FR");
     </section>
 
     <!-- ==================== LA CARTE ESSAI 10€ ===================== -->
-    <section class="essai" aria-label="La séance d'essai">
+    <section class="essai" aria-label="La séance d’essai">
       <div class="wrap">
         <div class="essai__card" data-reveal>
           <div class="essai__grid">
@@ -567,7 +567,7 @@ const nf = new Intl.NumberFormat("fr-FR");
                 <li>Sans engagement, sans discours</li>
               </ul>
               <div class="essai__cta">
-                <a class="btn btn--primary" data-magnetic href="https://box-plus.vercel.app/seance-essai"><span>Réserver l'essai · 10€</span></a>
+                <a class="btn btn--primary" data-magnetic href="https://box-plus.vercel.app/seance-essai"><span>Réserver l’essai · 10€</span></a>
                 <a class="btn btn--ghost" data-magnetic href="/plannings/"><span>Voir le planning</span></a>
               </div>
             </div>
@@ -601,15 +601,15 @@ const nf = new Intl.NumberFormat("fr-FR");
     <span class="chatbot__label">Une question&nbsp;? Appelle la salle</span>
   </a>
 
-  <!-- ===================== L'ASSISTANT, À LA DEMANDE =====================
-       L'assistant ne coûte plus rien tant qu'on ne lui parle pas. Il pesait
+  <!-- ===================== L’ASSISTANT, À LA DEMANDE =====================
+       L’assistant ne coûte plus rien tant qu’on ne lui parle pas. Il pesait
        17,5 ko de module + 7,6 ko de feuille BLOQUANT LE RENDU, sur les huit
-       pages, pour un panneau que la plupart des visiteurs n'ouvriront jamais.
-       Rien n'est retiré à l'écran : la pastille est peinte par base.css comme
-       avant, et chatbot.css ne décrit que le panneau — qui n'existe pas encore.
-       On charge au premier signe d'intention (survol, doigt, tabulation), donc
+       pages, pour un panneau que la plupart des visiteurs n’ouvriront jamais.
+       Rien n’est retiré à l’écran : la pastille est peinte par base.css comme
+       avant, et chatbot.css ne décrit que le panneau — qui n’existe pas encore.
+       On charge au premier signe d’intention (survol, doigt, tabulation), donc
        avant le clic dans la quasi-totalité des cas ; le clic reste le filet.
-       Sans JavaScript, la pastille est toujours le lien tel: d'origine. -->
+       Sans JavaScript, la pastille est toujours le lien tel: d’origine. -->
   <script is:inline>
     (function () {
       var pastille = document.querySelector("a.chatbot");
@@ -618,28 +618,28 @@ const nf = new Intl.NumberFormat("fr-FR");
       function venir() {
         if (venue) return venue;
         var f = document.createElement("link");
-        f.rel = "stylesheet"; f.href = "/assets/css/chatbot.css?v=16";
+        f.rel = "stylesheet"; f.href = "/assets/css/chatbot.css?v=17";
         document.head.appendChild(f);
-        venue = import("/assets/js/chatbot.js?v=16").catch(function () { venue = null; });
+        venue = import("/assets/js/chatbot.js?v=17").catch(function () { venue = null; });
         return venue;
       }
       ["pointerenter", "touchstart", "focus"].forEach(function (e) {
         pastille.addEventListener(e, venir, { once: true, passive: true });
       });
       pastille.addEventListener("click", function (e) {
-        /* aria-expanded n'est posé que par chatbot.js : sa présence signifie
+        /* aria-expanded n’est posé que par chatbot.js : sa présence signifie
            que le vrai widget a pris la main et gère déjà ce clic. */
         if (pastille.hasAttribute("aria-expanded")) return;
         e.preventDefault();
         var p = venir();
         if (p) p.then(function () { pastille.click(); });
-        else window.location.href = pastille.href;   // le module n'est pas venu : on appelle la salle
+        else window.location.href = pastille.href;   // le module n’est pas venu : on appelle la salle
       });
     })();
   </script>
 
-  <script is:inline type="module" src="/assets/js/site.js?v=16"></script>
-  <script is:inline type="module" src="/assets/js/sky.js?v=16"></script>
-  <script is:inline type="module" src="/assets/js/home.js?v=16"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=17"></script>
+  <script is:inline type="module" src="/assets/js/sky.js?v=17"></script>
+  <script is:inline type="module" src="/assets/js/home.js?v=17"></script>
 </body>
 </html>

@@ -10,25 +10,25 @@ import {
   DAYS, SCHEDULE, SCHEDULE_ETE, FAMILLES, POSTERS, TARIFS, PROMOS, REVIEWS,
   GALLERY, PHOTO_CREDIT, FAQ, LINKS, DEHORS, ETE, GRID_LEGEND, COACHES, ARPENT,
   ENTREE, CARNET,
-} from "./data.js?v=16";
+} from "./data.js?v=17";
 
 const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const $ = (s, r = document) => r.querySelector(s);
 const page = document.body.dataset.page;
 
-/* =================== L'OBJET DU HERO, PROPRE À CHAQUE PAGE =========
+/* =================== L’OBJET DU HERO, PROPRE À CHAQUE PAGE =========
    Les 7 sous-pages ouvraient sur le MÊME tampon : même .sky, même octogone
    filigrane aux mêmes coordonnées haut-droite, même rotation 90s, puis fil
-   d'ariane → titre → chapô. Cinq d'entre elles ne contenaient rien d'autre :
-   l'octogone y devenait un watermark payé sept fois au lieu d'un instrument.
+   d’ariane → titre → chapô. Cinq d’entre elles ne contenaient rien d’autre :
+   l’octogone y devenait un watermark payé sept fois au lieu d’un instrument.
    Le filigrane est supprimé des 7 ; chaque hero porte maintenant SON fait —
-   et c'est .phero__meta, le composant construit pour exactement ça et utilisé
+   et c’est .phero__meta, le composant construit pour exactement ça et utilisé
    par zéro page, qui le porte. /la-salle/ (#prail) et /galerie/ (#tournage)
-   avaient déjà le leur : on n'y touche pas. */
+   avaient déjà le leur : on n’y touche pas. */
 const two = (n) => String(n).padStart(2, "0");
 const toMin = (t) => { const m = /^(\d{1,2})h(\d{2})$/.exec(t); return m ? +m[1] * 60 + +m[2] : 0; };
 
-/* /plannings/ — ce qui se passe MAINTENANT, lu de SCHEDULE + l'heure réelle
+/* /plannings/ — ce qui se passe MAINTENANT, lu de SCHEDULE + l’heure réelle
    de la salle (window.__SKY.now, fuseau Ramonville, pas celui du visiteur). */
 function planningNow() {
   const now = (window.__SKY?.now?.() || new Date());
@@ -36,7 +36,7 @@ function planningNow() {
   if (!day) return { closed: true };            // dimanche : fermé, et on le dit
   const mins = now.getHours() * 60 + now.getMinutes();
   const today = SCHEDULE.filter((s) => s.day === day).sort((a, b) => toMin(a.start) - toMin(b.start));
-  // « en ce moment » = commencé depuis moins de 60 min (durée type d'un cours)
+  // « en ce moment » = commencé depuis moins de 60 min (durée type d’un cours)
   const live = today.find((s) => mins >= toMin(s.start) && mins < toMin(s.start) + 60);
   const next = today.find((s) => toMin(s.start) > mins);
   return { day, live, next, count: today.length };
@@ -45,9 +45,9 @@ function planningNow() {
 function pheroMeta() {
   const box = $("#phero-meta"); if (!box) return;
   /* Si la page a déjà posé ses chips dans le HTML (cas de /tarifs/, dont les
-     trois prix sont fixes et lus au build), on n'y touche pas : les remplacer
-     ne changerait rien à l'écran et rendrait au décalage les 67 px qu'on
-     vient de lui reprendre. Les pages dont le bandeau dépend de l'heure —
+     trois prix sont fixes et lus au build), on n’y touche pas : les remplacer
+     ne changerait rien à l’écran et rendrait au décalage les 67 px qu’on
+     vient de lui reprendre. Les pages dont le bandeau dépend de l’heure —
      /plannings/ et son « en ce moment » — passent, elles, par ici. */
   if (box.children.length && page !== "plannings") return;
   const chip = (html) => `<span>${html}</span>`;
@@ -60,17 +60,17 @@ function pheroMeta() {
         ? chip(`En ce moment — <b>${p.live.cours}</b> · ${p.live.coach}`)
         : p.next
           ? chip(`Prochain cours — <b>${p.next.cours}</b> à ${p.next.start}`)
-          : chip("Plus de cours aujourd'hui — <b>accès libre</b> jusqu'à 21h30");
-      box.innerHTML = head + chip(`${p.count} cours aujourd'hui`) + chip(`${SCHEDULE.length} sur la semaine`);
+          : chip("Plus de cours aujourd’hui — <b>accès libre</b> jusqu’à 21h30");
+      box.innerHTML = head + chip(`${p.count} cours aujourd’hui`) + chip(`${SCHEDULE.length} sur la semaine`);
     };
     paint();
-    window.addEventListener("sky:change", paint);   // l'heure de la salle vient d'arriver
+    window.addEventListener("sky:change", paint);   // l’heure de la salle vient d’arriver
     setInterval(paint, 60 * 1000);
     return;
   }
 
   if (page === "tarifs") {
-    box.innerHTML = chip(`<b>${TARIFS[0].price}</b> l'essai`)
+    box.innerHTML = chip(`<b>${TARIFS[0].price}</b> l’essai`)
       + chip(`<b>${PROMOS.duo.price}</b> ${PROMOS.duo.unit}`)
       + chip(`<b>${PROMOS.saisonOffre.price}</b> ${PROMOS.saisonOffre.unit}`);
     return;
@@ -87,7 +87,7 @@ function pheroMeta() {
     const fams = new Set(DISCIPLINES.map((d) => d.famille));
     box.innerHTML = chip(`<b>${DISCIPLINES.length}</b> disciplines`)
       + chip(`<b>${fams.size}</b> familles`)
-      + chip("De <b>3 ans</b> à l'accès libre");
+      + chip("De <b>3 ans</b> à l’accès libre");
     return;
   }
 
@@ -112,21 +112,21 @@ function paintSkyLive(scope = document) {
   });
 }
 
-/* ================== L'ARPENTAGE — LE DEHORS, DESSINÉ ================ *
-   Le cadre au ciel réel était juste mais NU : en plein midi il n'y a pas
-   d'étoiles, et le différenciateur du site s'affichait en rectangle de nuit
-   quasi vide — une intention honnête rendue comme une image qui n'a pas
-   chargé. On arpente donc le dehors au lieu de l'attendre en photo.
+/* ================== L’ARPENTAGE — LE DEHORS, DESSINÉ ================ *
+   Le cadre au ciel réel était juste mais NU : en plein midi il n’y a pas
+   d’étoiles, et le différenciateur du site s’affichait en rectangle de nuit
+   quasi vide — une intention honnête rendue comme une image qui n’a pas
+   chargé. On arpente donc le dehors au lieu de l’attendre en photo.
 
    Deux faits, deux seuls, tous deux officiels : 300 m² et une cage de 7 m.
-   On dessine trois cents carrés d'un mètre — un COMPTE, rangé pour être lu,
-   jamais une emprise — et l'octogone au même étalon, à côté, coté 7 m. Le
-   ciel réel reste le fond : il n'a pas disparu, il a enfin quelque chose
-   au-dessus de quoi être. La forme des 300 m² n'est dessinée nulle part, et
-   la légende dit pourquoi : c'est un relevé, pas un plan inventé. */
-const OCT_T = 1 / (2 + Math.SQRT2); // découpe d'un octogone régulier inscrit
+   On dessine trois cents carrés d’un mètre — un COMPTE, rangé pour être lu,
+   jamais une emprise — et l’octogone au même étalon, à côté, coté 7 m. Le
+   ciel réel reste le fond : il n’a pas disparu, il a enfin quelque chose
+   au-dessus de quoi être. La forme des 300 m² n’est dessinée nulle part, et
+   la légende dit pourquoi : c’est un relevé, pas un plan inventé. */
+const OCT_T = 1 / (2 + Math.SQRT2); // découpe d’un octogone régulier inscrit
 
-/* le tracé de l'octogone, inscrit dans un carré de côté `a` en (x,y) */
+/* le tracé de l’octogone, inscrit dans un carré de côté `a` en (x,y) */
 function octPath(x, y, a) {
   const t = a * OCT_T, X = (v) => +(x + v).toFixed(2), Y = (v) => +(y + v).toFixed(2);
   return `M${X(t)} ${Y(0)} L${X(a - t)} ${Y(0)} L${X(a)} ${Y(t)} L${X(a)} ${Y(a - t)} `
@@ -138,19 +138,19 @@ function octPath(x, y, a) {
    elle redessinait les 300 mêmes carrés à trente centimètres du grand relevé,
    et surtout elle affichait une DEUXIÈME fois le compteur « 300 m² dehors » et
    la barre météo en direct sur le même écran. Un relevé qui se répète cesse
-   d'être un relevé. */
+   d’être un relevé. */
 function arpentPlot() {
   const A = ARPENT, U = 10, PAD = .8;          // 1 m = 10 unités SVG
   const cols = A.cols, rows = A.rows;
   const fw = cols * U, fh = rows * U;          // le champ
   const cage = A.cage * U, gap = 26;
-  const cx = fw + gap, cy = (fh - cage) / 2;   // l'étalon, à droite, centré
+  const cx = fw + gap, cy = (fh - cage) / 2;   // l’étalon, à droite, centré
 
   let sq = "";
   for (let r = 0; r < rows; r++) {
     for (let c = 0; c < cols; c++) {
       const i = r * cols + c;
-      // l'ordre de remplissage suit la lecture (ligne par ligne) : on COMPTE
+      // l’ordre de remplissage suit la lecture (ligne par ligne) : on COMPTE
       sq += `<rect x="${c * U + PAD}" y="${r * U + PAD}" width="${U - PAD * 2}" height="${U - PAD * 2}" style="--i:${i}"/>`;
     }
   }
@@ -171,16 +171,16 @@ function arpentPlot() {
 /* le cadre complet : ciel réel en fond, planche par-dessus, relevé en pied */
 function arpentFrame() {
   const A = ARPENT;
-  const label = `Arpentage du plateau extérieur : ${A.count} carrés d'un mètre, soit ${A.count} m², et l'octogone de ${A.cage} m dessiné au même étalon. ${A.honest}`;
+  const label = `Arpentage du plateau extérieur : ${A.count} carrés d’un mètre, soit ${A.count} m², et l’octogone de ${A.cage} m dessiné au même étalon. ${A.honest}`;
   return `<div class="arpent" role="img" aria-label="${label}">
     <div class="sky" aria-hidden="true"><canvas class="sky__stars"></canvas><div class="sky__haze"></div><div class="sky__moon"></div></div>
     <div class="arpent__stage">${arpentPlot()}</div>
     <p class="arpent__honest">${A.honest}</p>
     <div class="arpent__cap">
-      <!-- la VRAIE valeur est peinte d'emblée (loi n°1) : sur une frame jamais
+      <!-- la VRAIE valeur est peinte d’emblée (loi n°1) : sur une frame jamais
            peinte — rAF gelé, onglet en fond, JS lent — le lecteur voit 300, pas
-           un « 0 m² dehors » qui serait un chiffre FAUX. Le zéro n'est écrit
-           qu'une fois la boucle d'animation prouvée vivante (voir animateArpent). -->
+           un « 0 m² dehors » qui serait un chiffre FAUX. Le zéro n’est écrit
+           qu’une fois la boucle d’animation prouvée vivante (voir animateArpent). -->
       <span class="arpent__count"><b data-arpent="${A.count}">${A.count}</b><small>m² dehors</small></span>
       <span class="arpent__live">
         <span class="skyframe__k">${DEHORS.cadre.k}</span>
@@ -195,10 +195,10 @@ function arpentFrame() {
 
    LE REPLI DIT LA VÉRITÉ. Le compteur naît à 300 dans le HTML, pas à 0 : si le
    rAF ne tourne jamais (onglet en fond, frame jamais peinte, JS coupé), ce qui
-   reste à l'écran est la VRAIE surface. Un « 0 m² dehors » serait pire qu'une
-   absence — c'est un chiffre faux sur le seul fait qui distingue la salle. Le
-   zéro de départ n'est donc écrit qu'à l'intérieur d'un rAF, c'est-à-dire une
-   fois la boucle prouvée vivante, et avant que la planche n'entre à l'écran.
+   reste à l’écran est la VRAIE surface. Un « 0 m² dehors » serait pire qu’une
+   absence — c’est un chiffre faux sur le seul fait qui distingue la salle. Le
+   zéro de départ n’est donc écrit qu’à l’intérieur d’un rAF, c’est-à-dire une
+   fois la boucle prouvée vivante, et avant que la planche n’entre à l’écran.
    Dead-man conservé par-dessus : la planche finit toujours posée. */
 function animateArpent(scope = document) {
   scope.querySelectorAll(".arpent").forEach((box) => {
@@ -226,7 +226,7 @@ function animateArpent(scope = document) {
         };
         requestAnimationFrame(step);
       }
-      // dead-man : la planche est entièrement posée, quoi qu'il arrive
+      // dead-man : la planche est entièrement posée, quoi qu’il arrive
       setTimeout(settle, 2600);
     };
     if ("IntersectionObserver" in window) {
@@ -241,7 +241,7 @@ function animateArpent(scope = document) {
 
 /* ---------------- LE RELEVÉ DU DEHORS (la-salle + galerie) --------- *
    Le différenciateur en fiche de terrain : ce qui est mesuré, ce qui ne
-   l'est pas encore, et le ciel qui tient lieu d'image. Même composant sur
+   l’est pas encore, et le ciel qui tient lieu d’image. Même composant sur
    les deux pages qui portent le sujet — une seule source, pas deux copies
    qui divergeront. */
 function renderReleve() {
@@ -269,14 +269,14 @@ function renderReleve() {
 }
 
 /* ------------------------- LE PLATEAU (la-salle) ------------------ *
-   La station sans cliché prouvé (l'extérieur couvert) portait une SECONDE
-   planche d'arpentage, compacte — les 300 mêmes carrés, le même compteur, la
-   même barre météo en direct, à un écran d'écart du grand relevé qui les
+   La station sans cliché prouvé (l’extérieur couvert) portait une SECONDE
+   planche d’arpentage, compacte — les 300 mêmes carrés, le même compteur, la
+   même barre météo en direct, à un écran d’écart du grand relevé qui les
    porte déjà. Le lecteur lisait « 300 M² DEHORS » deux fois dans la même
    page, et 600 rectangles étaient dessinés pour 300 mètres carrés.
-   La planche vit dans le relevé, une fois. La station, elle, dit ce qu'elle
+   La planche vit dans le relevé, une fois. La station, elle, dit ce qu’elle
    est — une zone décrite mais non filmée — et RENVOIE au relevé au lieu de
-   le rejouer. Jamais le cadre d'une AUTRE zone (même loi que « nom ≡ photo »
+   le rejouer. Jamais le cadre d’une AUTRE zone (même loi que « nom ≡ photo »
    côté coachs), jamais un carré « à venir ». */
 function renderPlateau() {
   const box = $("#stations"); if (!box) return;
@@ -293,7 +293,7 @@ function renderPlateau() {
         <div class="station__specs">${s.specs.map((x) => `<span>${x}</span>`).join("")}</div>
         ${s.img ? "" : `<a class="station__renvoi" href="#releve">
           <span>${DEHORS.eyebrow}</span>
-          <b>Cette zone n'a pas de cliché — elle a un arpentage.</b>
+          <b>Cette zone n’a pas de cliché — elle a un arpentage.</b>
           <i aria-hidden="true">↑</i>
         </a>`}
       </div>
@@ -327,7 +327,7 @@ function renderDiscs() {
       ${d.img
         ? `<div class="disc__media media" data-img="${d.img}" data-label="" data-alt="${d.imgAlt || `${d.name} — Boxing Center Ramonville`}"></div>`
         : /* LA PLAQUE, pas un trou. Elle porte le sigle, le tag, ET la raison
-             écrite de l'absence : `role="img"` mentirait sur un bloc qui
+             écrite de l’absence : `role="img"` mentirait sur un bloc qui
              contient du vrai texte à lire, on le laisse donc en contenu
              normal, annoncé par sa propre phrase (voir activites.css). */
           `<div class="disc__media disc__media--tile">
@@ -361,19 +361,19 @@ function renderDiscs() {
   });
 }
 
-/* ---------------- L'ENTRÉE EN MATIÈRE (activites) ----------------- *
+/* ---------------- L’ENTRÉE EN MATIÈRE (activites) ----------------- *
    /activites/ tenait en trois blocs : hero, huit fiches, CTA. Elle disait ce
-   qu'on fait, jamais par où on entre — et le seul fait qui compte pour qui
-   n'a jamais boxé (le niveau demandé) était la 3e ligne d'un tableau de
+   qu’on fait, jamais par où on entre — et le seul fait qui compte pour qui
+   n’a jamais boxé (le niveau demandé) était la 3e ligne d’un tableau de
    faits. Ici, les cinq familles sont PESÉES contre le planning officiel :
-   créneaux, jours, niveau à l'entrée. Tout compté depuis SCHEDULE. */
+   créneaux, jours, niveau à l’entrée. Tout compté depuis SCHEDULE. */
 function renderEntree() {
   const box = $("#entree"); if (!box) return;
   const dayIx = (d) => DAYS.indexOf(d);
   const isOpen = (d) => ENTREE.ouvertes.includes(d.niveau);
-  /* l'ordre et la LISTE viennent des disciplines, pas du filtre de planning :
-     FAMILLES ne connaît que les familles qui ont des créneaux — l'accès libre
-     n'en a aucun et disparaissait purement et simplement du bloc. */
+  /* l’ordre et la LISTE viennent des disciplines, pas du filtre de planning :
+     FAMILLES ne connaît que les familles qui ont des créneaux — l’accès libre
+     n’en a aucun et disparaissait purement et simplement du bloc. */
   const famKeys = [...new Set([...DISCIPLINES].sort((a, b) => a.edge - b.edge).map((d) => d.famille))];
   const labelOf = (k) => FAMILLES.find((f) => f.key === k)?.label || ENTREE.libreLabel;
 
@@ -383,15 +383,15 @@ function renderEntree() {
     const jours = [...new Set(slots.map((s) => s.day))].sort((a, b) => dayIx(a) - dayIx(b));
     const nOpen = discs.filter(isOpen).length;
     /* MIXTE, et il faut le dire : le grappling est « Tous niveaux » quand
-       l'asso MMA est « Confirmé ». Marquer toute la famille « quand tu es
+       l’asso MMA est « Confirmé ». Marquer toute la famille « quand tu es
        prêt » fermait une porte que la salle ouvre — et contredisait le code
        du plateau, qui écrit noir sur blanc que la cage du mardi est celle
        des débutants. On compte les portes au lieu de les rabattre. */
     const lvl = nOpen === discs.length ? ENTREE.kOuvert
       : nOpen === 0 ? ENTREE.kReserve
       : `${nOpen} sur ${discs.length} sans prérequis`;
-    /* l'accès libre n'a aucun créneau : ce n'est pas un zéro, c'est une autre
-       nature. On l'écrit, on ne le rend pas comme une famille vide. */
+    /* l’accès libre n’a aucun créneau : ce n’est pas un zéro, c’est une autre
+       nature. On l’écrit, on ne le rend pas comme une famille vide. */
     const horsGrille = slots.length === 0;
     return `<article class="fam${nOpen ? " fam--open" : ""}${horsGrille ? " fam--free" : ""}">
       <span class="fam__k">${labelOf(key)}</span>
@@ -414,9 +414,9 @@ function renderEntree() {
     <p class="entree__lead" data-reveal>${ENTREE.lead}</p>
     <div class="fams" data-reveal-group>${cards}</div>
     <p class="entree__read" data-reveal>
-      <b>${nOpen} côtés sur ${DISCIPLINES.length}</b> s'ouvrent sans rien savoir faire — tu prends des gants, tu montes.
+      <b>${nOpen} côtés sur ${DISCIPLINES.length}</b> s’ouvrent sans rien savoir faire — tu prends des gants, tu montes.
       ${reserve.length
-        ? `${reserve.length === 1 ? "Le dernier" : `Les ${reserve.length} derniers`} — ${reserve.map((d) => d.name).join(", ")} — ${reserve.length === 1 ? "attend" : "attendent"} que tu saches déjà tenir un round : c'est écrit, on ne t'y pousse pas le premier soir.`
+        ? `${reserve.length === 1 ? "Le dernier" : `Les ${reserve.length} derniers`} — ${reserve.map((d) => d.name).join(", ")} — ${reserve.length === 1 ? "attend" : "attendent"} que tu saches déjà tenir un round : c’est écrit, on ne t’y pousse pas le premier soir.`
         : ""}
     </p>`;
 
@@ -435,16 +435,16 @@ function renderEntree() {
 /* ----------------------------- COACHS ---------------------------- *
    Pas de renderCoachs() ici. /coachs/ rend son roster dans un module inline
    (il dérive les vrais créneaux de SCHEDULE — implémentation plus riche) sur
-   #coachroster. La version qui vivait ici visait #coachs, un id qui n'existe
+   #coachroster. La version qui vivait ici visait #coachs, un id qui n’existe
    sur aucune des 8 pages : code mort, et SECONDE source de vérité divergente
    pour la même fiche coach. Supprimée — une seule implémentation. */
 
 /* ------------------- QUI TIENT QUOI, ET QUAND (coachs) ------------ *
-   /coachs/ s'arrêtait au roster : quatre fiches, une note d'intégrité, un
+   /coachs/ s’arrêtait au roster : quatre fiches, une note d’intégrité, un
    CTA. On savait QUI ils sont, jamais QUAND les trouver ni vers qui aller.
    Ces deux blocs se déduisent entièrement du planning officiel — la garde
-   de la semaine (qui est sur le plateau, jour par jour) et l'aiguillage
-   (ce que tu cherches → qui le tient, quel soir). Rien d'écrit à la main :
+   de la semaine (qui est sur le plateau, jour par jour) et l’aiguillage
+   (ce que tu cherches → qui le tient, quel soir). Rien d’écrit à la main :
    si le planning bouge, ces blocs bougent avec lui. */
 function renderCoachDepth() {
   const dayIx = (d) => DAYS.indexOf(d);
@@ -469,14 +469,14 @@ function renderCoachDepth() {
     }).join("");
   }
 
-  /* l'aiguillage : ce que tu viens chercher → qui le tient */
+  /* l’aiguillage : ce que tu viens chercher → qui le tient */
   const route = $("#routage");
   if (route) {
     route.innerHTML = [...DISCIPLINES].sort((a, b) => a.edge - b.edge).map((d) => {
       const slots = SCHEDULE.filter((s) => s.disc === d.key);
       const names = [...new Set(slots.map((s) => s.coach))];
       const soirs = [...new Set(slots.sort((a, b) => dayIx(a.day) - dayIx(b.day)).map((s) => s.day))];
-      // « Accès libre » n'a ni coach ni créneau : on le dit, on ne l'invente pas
+      // « Accès libre » n’a ni coach ni créneau : on le dit, on ne l’invente pas
       const who = names.length ? names.join(" · ") : d.coach;
       const when = soirs.length ? soirs.join(" · ") : d.jours;
       return `<a class="route" href="/activites/#${d.key}">
@@ -494,7 +494,7 @@ function renderGallery() {
   const box = $("#gallery"); if (!box) return;
   // role=button + tabindex=0 : les vignettes sont de VRAIS contrôles. La
   // visionneuse avait déjà Escape, piège à focus, retour de focus, role=dialog
-  // et aria-modal — tout sauf la porte d'entrée : au clavier, les 6 photos
+  // et aria-modal — tout sauf la porte d’entrée : au clavier, les 6 photos
   // étaient inatteignables (WCAG 2.1.1, niveau A).
   box.innerHTML = GALLERY.map((g) => `
     <figure class="shot" role="button" tabindex="0" aria-label="Agrandir — ${g.zone} · ${g.place}">
@@ -502,12 +502,12 @@ function renderGallery() {
       <span class="shot__zoom" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="7"/><line x1="21" y1="21" x2="15.5" y2="15.5"/><line x1="10.5" y1="7.5" x2="10.5" y2="13.5"/><line x1="7.5" y1="10.5" x2="13.5" y2="10.5"/></svg></span>
       <figcaption class="shot__cap"><b data-cap="${g.zone}">${g.zone}</b> · ${g.place}${g.credit ? `<em class="shot__credit">Photo ${PHOTO_CREDIT}</em>` : ""}</figcaption>
     </figure>`).join("");
-  // Les légendes disent la ZONE — vérifiable sur l'image. Elles disaient avant
+  // Les légendes disent la ZONE — vérifiable sur l’image. Elles disaient avant
   // une heure (« 21h48 »), inventée : les 6 clichés prouvés sont pris de JOUR,
-  // sous charpente. Un carnet de terrain qui écrit « on ne montre que ce qu'on
-  // a filmé » ne peut pas horodater ce qu'il n'a pas filmé. La météo LIVE reste
+  // sous charpente. Un carnet de terrain qui écrit « on ne montre que ce qu’on
+  // a filmé » ne peut pas horodater ce qu’il n’a pas filmé. La météo LIVE reste
   // dans la bande du hero : elle parle de MAINTENANT, au-dessus de la salle —
-  // ça, c'est une donnée réelle, et c'est la signature.
+  // ça, c’est une donnée réelle, et c’est la signature.
   if ("IntersectionObserver" in window && !reduce && window.BC?.scramble) {
     const io = new IntersectionObserver((es) => es.forEach((e) => {
       if (e.isIntersecting) { const b = e.target.querySelector(".shot__cap b"); if (b && !b.dataset.done) { b.dataset.done = "1"; window.BC.scramble(b, { dur: 650 }); } io.unobserve(e.target); }
@@ -516,8 +516,8 @@ function renderGallery() {
   }
 }
 
-/* ------------- LE CARNET À L'USAGE (galerie, et elle seule) -------- *
-   /galerie/ rejouait le RELEVÉ DU DEHORS de /la-salle/ à l'identique : même
+/* ------------- LE CARNET À L’USAGE (galerie, et elle seule) -------- *
+   /galerie/ rejouait le RELEVÉ DU DEHORS de /la-salle/ à l’identique : même
    sur-titre, même titre, même phrase-thèse, mêmes cinq cartes de mesure,
    même signature. 149 mots sur 358 appartenaient à une autre page — et sans
    ce doublon il ne restait que trois sections. Le relevé est rendu à sa page.
@@ -543,9 +543,9 @@ function renderCarnet() {
       const lines = discs.map((d) => {
         const slots = SCHEDULE.filter((s) => s.disc === d.key)
           .sort((a, b) => (dayIx(a.day) - dayIx(b.day)) || toMin(a.start) - toMin(b.start));
-        /* l'accès libre n'a aucun créneau : ce n'est pas un zéro, c'est une
+        /* l’accès libre n’a aucun créneau : ce n’est pas un zéro, c’est une
            autre nature — même règle que /activites/. On lit ses horaires
-           d'ouverture au lieu d'inventer une case vide. */
+           d’ouverture au lieu d’inventer une case vide. */
         const when = slots.length
           ? [...new Set(slots.map((s) => `${s.day} ${s.start}`))].join(" · ")
           : d.jours;
@@ -608,11 +608,11 @@ function renderPlanning() {
     grid.innerHTML = head + `<tbody>${body}</tbody>`;
   };
 
-  /* L'ÉTÉ N'EST PAS UNE GRILLE. Deux cours, tous les deux le lundi : dans un
+  /* L’ÉTÉ N’EST PAS UNE GRILLE. Deux cours, tous les deux le lundi : dans un
      tableau à six colonnes ça donnait 10 cases vides sur 12 — une page qui
-     avait l'air CASSÉE là où la salle lève simplement le pied. L'été a donc
+     avait l’air CASSÉE là où la salle lève simplement le pied. L’été a donc
      sa propre forme : les deux créneaux nommés, en grand, puis ce qui occupe
-     réellement le reste de la semaine — l'accès libre, qui ne s'arrête pas.
+     réellement le reste de la semaine — l’accès libre, qui ne s’arrête pas.
      Même données, rendu honnête. */
   const buildEte = () => {
     if (!eteBox) return;
@@ -643,8 +643,8 @@ function renderPlanning() {
       <p class="ete__back">${ETE.retour}</p>`;
   };
 
-  /* bascule d'AFFICHAGE : la grille et l'été ne coexistent jamais à l'écran,
-     et le filtre par famille n'a aucun sens sur deux cours — il disparaît
+  /* bascule d’AFFICHAGE : la grille et l’été ne coexistent jamais à l’écran,
+     et le filtre par famille n’a aucun sens sur deux cours — il disparaît
      avec la grille au lieu de rester là, inerte. */
   const swap = () => {
     const isEte = mode === "ete";
@@ -662,15 +662,15 @@ function renderPlanning() {
   const tabs = $("#plan-tabs");
   const note = $("#plan-note");
   /* La phrase « émargement GPS obligatoire en salle avant chaque cours »
-     tombait à l'identique ici et sur /la-salle/. C'est une règle de la
-     maison, elle doit être dite deux fois ; elle n'a pas à être écrite
-     deux fois de la même façon. Là-bas c'est un constat de visite, ici
-     c'est une consigne d'arrivée — et le fait ne bouge pas d'un mot. */
-  const RENTREE_NOTE = `<b>${SEASON_LABEL}</b> — planning complet. En arrivant, pense à émarger sur le GPS : c'est obligatoire pour chaque cours.`;
-  // Le détail de l'été (renforts, accès libre, retour de la rentrée) vit
+     tombait à l’identique ici et sur /la-salle/. C’est une règle de la
+     maison, elle doit être dite deux fois ; elle n’a pas à être écrite
+     deux fois de la même façon. Là-bas c’est un constat de visite, ici
+     c’est une consigne d’arrivée — et le fait ne bouge pas d’un mot. */
+  const RENTREE_NOTE = `<b>${SEASON_LABEL}</b> — planning complet. En arrivant, pense à émarger sur le GPS : c’est obligatoire pour chaque cours.`;
+  // Le détail de l’été (renforts, accès libre, retour de la rentrée) vit
   // maintenant DANS le bloc #ete, en clair. Cette note ne le répète pas : une
-  // bonne phrase ne se dit qu'une fois par site (standards §7).
-  const ETE_NOTE = `<b>Hors saison</b> — le rythme d'été. Émargement GPS toujours obligatoire en salle.`;
+  // bonne phrase ne se dit qu’une fois par site (standards §7).
+  const ETE_NOTE = `<b>Hors saison</b> — le rythme d’été. Émargement GPS toujours obligatoire en salle.`;
   if (tabs) {
     const tR = tabs.querySelector('[data-mode="rentree"]');
     if (tR) tR.textContent = `Rentrée ${SEASON}`;
@@ -698,12 +698,12 @@ function renderPlanning() {
 
   // posters couleur cliquables
   /* Le poster SERVI est le WebP (132 et 64 ko) ; le lien ouvre le PNG
-     d'origine (1,9 Mo et 1,4 Mo), non recompressé — la source de vérité reste
+     d’origine (1,9 Mo et 1,4 Mo), non recompressé — la source de vérité reste
      consultable en grand. Avant, la page téléchargeait les deux PNG pleins,
      3,4 Mo, pour deux vignettes : dix fois le poids de tout le reste du site. */
   const pbox = $("#posters");
   if (pbox) pbox.innerHTML = POSTERS.map((p) => `
-    <a class="poster" href="${p.src}" target="_blank" rel="noopener" aria-label="Ouvrir le planning ${p.label} en grand format, image d'origine">
+    <a class="poster" href="${p.src}" target="_blank" rel="noopener" aria-label="Ouvrir le planning ${p.label} en grand format, image d’origine">
       <span class="poster__cap">${p.label}</span>
       <img src="${p.view || p.src}" alt="${p.alt}" width="${p.w}" height="${p.h}" loading="lazy" decoding="async" />
     </a>`).join("");
@@ -722,16 +722,16 @@ function renderPlanning() {
 }
 
 /* ------------------- LE RYTHME DE LA SEMAINE (plannings) ---------- *
-   /plannings/ n'avait qu'UNE section : la grille, puis les posters, puis le
+   /plannings/ n’avait qu’UNE section : la grille, puis les posters, puis le
    CTA. Une page utilitaire, pas une page. Ce bloc lit la MÊME source
    (SCHEDULE) et la raconte autrement : ce que pèse chaque jour, où tombent
    les midis et les soirs, quel soir la salle est pleine. Zéro fait ajouté —
-   tout est compté, rien n'est écrit à la main. */
+   tout est compté, rien n’est écrit à la main. */
 function renderRythme() {
   const box = $("#rythme"); if (!box) return;
   /* trois tranches, pas deux : un « midi / soir » binaire rangeait le Baby
-     Boxe du samedi 14h15 dans « midi » et l'éducative de 15h dans « soir » —
-     deux étiquettes fausses sur la même après-midi d'enfants. */
+     Boxe du samedi 14h15 dans « midi » et l’éducative de 15h dans « soir » —
+     deux étiquettes fausses sur la même après-midi d’enfants. */
   const tranche = (t) => (toMin(t) < 14 * 60 ? "midi" : toMin(t) < 17 * 60 ? "aprem" : "soir");
   const perDay = DAYS.map((d) => {
     const all = SCHEDULE.filter((s) => s.day === d).sort((a, b) => toMin(a.start) - toMin(b.start));
@@ -743,7 +743,7 @@ function renderRythme() {
   const sum = (k) => perDay.reduce((a, p) => a + p[k], 0);
   const busiest = perDay.reduce((a, p) => (p.n > a.n ? p : a), perDay[0]);
   const apremSlots = SCHEDULE.filter((s) => tranche(s.start) === "aprem");
-  // vérifié, pas affirmé : les après-midis appartiennent-ils vraiment à l'école ?
+  // vérifié, pas affirmé : les après-midis appartiennent-ils vraiment à l’école ?
   const apremEcole = apremSlots.every((s) => s.fam === "enfant");
   const parts = (p) => [p.midi && `${p.midi} midi`, p.aprem && `${p.aprem} aprèm`, p.soir && `${p.soir} soir`].filter(Boolean).join(" · ");
 
@@ -762,8 +762,8 @@ function renderRythme() {
       <p><b>${sum("midi")}</b> cours le midi, <b>${sum("soir")}</b> le soir. La salle se remplit deux fois par jour : la pause déjeuner pour le geste propre, le soir pour le volume et le bruit.</p>
       <p><b>${busiest.d}</b> est le jour le plus chargé — ${busiest.n} cours, de ${busiest.first} à ${busiest.last}. Tu veux du monde sur le plateau ? Viens ce jour-là. Tu veux de la place ? Prends un midi.</p>
       <p>${apremEcole
-        ? `Les <b>${sum("aprem")}</b> créneaux d'après-midi sont <b>tous</b> à l'école enfants — mercredi et samedi, entre 14h et 17h, le plateau est à eux.`
-        : `<b>${sum("aprem")}</b> créneaux d'après-midi, entre 14h et 17h.`}
+        ? `Les <b>${sum("aprem")}</b> créneaux d’après-midi sont <b>tous</b> à l’école enfants — mercredi et samedi, entre 14h et 17h, le plateau est à eux.`
+        : `<b>${sum("aprem")}</b> créneaux d’après-midi, entre 14h et 17h.`}
         Le reste du temps, rien ne ferme : accès libre de 10h à 21h30, six jours sur sept.</p>
     </div>`;
 }
@@ -820,9 +820,9 @@ function renderTarifs() {
 
 /* ------------------------------ CONTACT -------------------------- */
 function renderContact() {
-  /* L'accès ne tient plus en une ligne à trois <br> : trois façons de venir,
+  /* L’accès ne tient plus en une ligne à trois <br> : trois façons de venir,
      trois entrées lisibles. Et les horaires viennent de SALLE.hoursData —
-     une donnée qui existait depuis l'origine et que PERSONNE n'affichait :
+     une donnée qui existait depuis l’origine et que PERSONNE n’affichait :
      tout le site répétait la version résumée « Lun – Sam · 10h – 21h30 ». */
   const info = $("#info"); if (info) info.innerHTML = [
     { k: "Adresse", v: SALLE.address.full },
@@ -841,8 +841,8 @@ function renderContact() {
       const [h0, ...rest] = a.split(" — ");
       let head = h0, detail = rest.join(" — ");
       /* « Bus — arrêt Ramonville Sud… » donnait une carte titrée « Bus » sous
-         une étiquette « Bus » : le mot deux fois, et l'info utile reléguée en
-         petit. Quand l'intitulé ne fait que répéter le mode, on promeut le
+         une étiquette « Bus » : le mot deux fois, et l’info utile reléguée en
+         petit. Quand l’intitulé ne fait que répéter le mode, on promeut le
          premier fait concret au titre. */
       if (head.toLowerCase() === k.toLowerCase() && detail) {
         const seg = detail.split(", ");
@@ -864,7 +864,7 @@ function renderContact() {
       <span class="hrow__d">${h.d}</span>
       <span class="hrow__h">${h.h}</span>
     </div>`).join("")
-    + `<p class="hrow__note">L'accès libre muscu/cardio suit les mêmes horaires : tant que la salle est ouverte, le plateau et l'étage le sont.</p>`;
+    + `<p class="hrow__note">L’accès libre muscu/cardio suit les mêmes horaires : tant que la salle est ouverte, le plateau et l’étage le sont.</p>`;
 
   const map = $("#map");
   if (map) map.innerHTML = `<iframe title="Carte — Boxing Center Ramonville, ${SALLE.address.full}" src="${SALLE.mapsUrl}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`;
@@ -879,11 +879,11 @@ function renderContact() {
 
 /* ------------------------------ BOOT ----------------------------- */
 function boot() {
-  pheroMeta();   // l'objet propre au hero de la page (remplace le filigrane partagé)
+  pheroMeta();   // l’objet propre au hero de la page (remplace le filigrane partagé)
   if (page === "la-salle") { renderReleve(); renderPlateau(); renderValues(); renderNetwork(); }
   if (page === "activites") { renderDiscs(); renderEntree(); }
   /* page === "coachs" : le roster est rendu par le module inline de la page
-     (#coachroster) ; la garde de la semaine et l'aiguillage le sont ici. */
+     (#coachroster) ; la garde de la semaine et l’aiguillage le sont ici. */
   if (page === "coachs") renderCoachDepth();
   /* /galerie/ ne rend PLUS le relevé : il appartient à /la-salle/, une fois.
      Le carnet a sa propre matière — les six zones rendues au planning. */
@@ -892,8 +892,8 @@ function boot() {
   if (page === "tarifs") renderTarifs();
   if (page === "contact") renderContact();
 
-  /* Les cadres vivants viennent d'être injectés : on monte leurs starfields
-     (sky.js a balayé le document AVANT que ce module n'écrive quoi que ce
+  /* Les cadres vivants viennent d’être injectés : on monte leurs starfields
+     (sky.js a balayé le document AVANT que ce module n’écrive quoi que ce
      soit) et on peint les relevés en direct. Sans ça, le ciel qui remplace la
      photo manquante reste un rectangle noir — le contraire du but. */
   window.__SKY?.mount?.(document);

@@ -36,7 +36,7 @@ import { fileURLToPath } from "node:url";
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const DIST = join(ROOT, "dist");
 const ETAT = join(ROOT, "scripts", "sitemap-etat.json");
-const BASE = "https://ramonville.boxingcenter.fr";
+const BASE = "https://bc-ramonville.vercel.app";
 
 /* L'image déclarée par page est celle que la page MONTRE — pas la plus
    flatteuse. `changefreq` suit le rythme réel : le planning et l'accueil
