@@ -35,6 +35,24 @@ import {
 } from "../_lib/community.js";
 import { allowCors, bodyOf, ipOf, rateLimit } from "../_lib/util.js";
 
+/* LES CLÉS DE VISION, EN POOL — exactement comme l'assistant (api/chat.js).
+   Le .env n'a pas de « GEMINI_API_KEY » tout court : il a GEMINI_API_KEY_1
+   … _11. Lire la clé au singulier revenait à n'en lire aucune, et le coup
+   d'œil ne partait jamais. On ramasse donc TOUT ce qui commence par
+   GEMINI_API_KEY, et on mélange : sur onze clés, la charge se répartit au
+   lieu de brûler la première jusqu'au quota. */
+function clesVision() {
+  const k = Object.keys(process.env)
+    .filter((n) => /^GEMINI_API_KEY/.test(n))
+    .map((n) => process.env[n])
+    .filter(Boolean);
+  for (let i = k.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [k[i], k[j]] = [k[j], k[i]];
+  }
+  return k;
+}
+
 const detruire = async (id, type) => {
   try { await cloudinary.uploader.destroy(id, { resource_type: type, invalidate: true }); } catch {}
 };
@@ -57,7 +75,13 @@ export default async function handler(req, res) {
 
   let r;
   try {
-    r = await cloudinary.api.resource(id, { resource_type: type });
+    /* `media_metadata: true` N'EST PAS UN LUXE. Sans lui, l'API renvoie la
+       fiche courte : format, poids, largeur… mais PAS `duration`. Le
+       contrôle lisait donc une durée vide sur des vidéos parfaitement
+       lisibles et les détruisait toutes avec « Cette vidéo ne se lit
+       pas ». La durée est le cœur de la règle des 15 s : il faut la
+       demander explicitement. */
+    r = await cloudinary.api.resource(id, { resource_type: type, media_metadata: true });
   } catch {
     return res.status(404).json({ error: "Fichier introuvable — recommence l'envoi." });
   }
@@ -103,7 +127,7 @@ export default async function handler(req, res) {
 
   /* ---- LE COUP D'ŒIL, quand une clé de vision est là (facultatif) ---- */
   let vu = "sans-cle";
-  if (type === "image" && process.env.GEMINI_API_KEY) {
+  if (type === "image" && clesVision().length) {
     try {
       const verdict = await regarder(id);
       if (verdict === "hors-sujet") {
@@ -133,34 +157,49 @@ async function regarder(id) {
   const b64 = Buffer.from(await img.arrayBuffer()).toString("base64");
 
   const modele = process.env.GEMINI_MODEL || "gemini-2.5-flash";
-  const r = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/${modele}:generateContent?key=${process.env.GEMINI_API_KEY}`,
-    {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        contents: [{
-          parts: [
-            {
-              text:
-                "Cette photo est proposée pour le mur d'une salle de boxe et de MMA. " +
-                "Réponds par UN SEUL mot. « OK » si elle peut avoir un rapport avec le sport, " +
-                "la salle, l'entraînement, un groupe, du matériel ou des gens qui s'entraînent. " +
-                "« HORS » seulement si elle est manifestement sans aucun rapport " +
-                "(capture d'écran, document, publicité, contenu choquant ou pornographique). " +
-                "Dans le doute, réponds OK.",
-            },
-            { inline_data: { mime_type: "image/jpeg", data: b64 } },
-          ],
-        }],
-        generationConfig: { maxOutputTokens: 8, temperature: 0 },
-      }),
-    }
-  );
-  if (!r.ok) throw new Error("vision " + r.status);
-  const j = await r.json();
-  const mot = (j?.candidates?.[0]?.content?.parts?.[0]?.text || "").trim().toUpperCase();
-  if (mot.startsWith("HORS")) return "hors-sujet";
-  if (mot.startsWith("OK")) return "ok";
-  return "doute";                          // réponse inattendue = on ne tranche pas
+  const corps = JSON.stringify({
+    contents: [{
+      parts: [
+        {
+          text:
+            "Cette photo est proposée pour le mur d'une salle de boxe et de MMA. " +
+            "Réponds par UN SEUL mot. « OK » si elle peut avoir un rapport avec le sport, " +
+            "la salle, l'entraînement, un groupe, du matériel ou des gens qui s'entraînent. " +
+            "« HORS » seulement si elle est manifestement sans aucun rapport " +
+            "(capture d'écran, document, publicité, contenu choquant ou pornographique). " +
+            "Dans le doute, réponds OK.",
+        },
+        { inline_data: { mime_type: "image/jpeg", data: b64 } },
+      ],
+    }],
+    /* PAS DE RÉFLEXION, ET DE LA PLACE POUR RÉPONDRE. gemini-2.5-flash
+       réfléchit avant de parler, et sa réflexion se paie sur le MÊME
+       quota de sortie : plafonné à 8 jetons, il consommait tout à penser
+       et rendait un texte VIDE — le verdict retombait éternellement sur
+       « doute », donc le filtre ne filtrait rien. Réflexion coupée, la
+       réponse est nette et le contrôle passe de ~10 s à ~3 s. */
+    generationConfig: {
+      maxOutputTokens: 200, temperature: 0, thinkingConfig: { thinkingBudget: 0 },
+    },
+  });
+
+  /* On essaie les clés une par une : une clé à quota épuisé rend 429, la
+     suivante prend le relais. Si TOUTES tombent, on lève — l'appelant
+     attrape et laisse partir en modération humaine. */
+  let derniere = null;
+  for (const key of clesVision()) {
+    try {
+      const r = await fetch(
+        `https://generativelanguage.googleapis.com/v1beta/models/${modele}:generateContent?key=${key}`,
+        { method: "POST", headers: { "Content-Type": "application/json" }, body: corps }
+      );
+      if (!r.ok) { derniere = new Error("vision " + r.status); continue; }
+      const j = await r.json();
+      const mot = (j?.candidates?.[0]?.content?.parts?.[0]?.text || "").trim().toUpperCase();
+      if (mot.startsWith("HORS")) return "hors-sujet";
+      if (mot.startsWith("OK")) return "ok";
+      return "doute";                      // réponse inattendue = on ne tranche pas
+    } catch (e) { derniere = e; }
+  }
+  throw derniere || new Error("aucune clé de vision");
 }

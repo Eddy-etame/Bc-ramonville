@@ -54,14 +54,30 @@
 .depot__form .btn { grid-column: 1 / -1; justify-content: center; }
 .mur__jauge { grid-column: 1 / -1; height: 3px; background: var(--line); border-radius: 2px; overflow: hidden; }
 .mur__jauge > i { display: block; height: 100%; width: 0; background: var(--accent); transition: width .2s; }
-/* L'ÉTAT PARLE, ET IL SE LIT. Les quatre teintes sont prises dans la charte
-   ou dans les tons système déjà utilisés par le vestiaire — jamais une
-   couleur inventée pour l'occasion, jamais sous 4,5:1 sur --paper-2. */
+/* L'ÉTAT PARLE, ET IL SE LIT — SANS UNE SEULE TEINTE EN PLUS.
+   Il y avait ici un vert, un rouge et un jaune. Ils ne venaient d'aucune
+   charte : ils n'existaient nulle part ailleurs sur le site, ils avaient
+   été inventés pour cet écran. La palette de la salle est l'argent, l'os
+   et la nuit — trois feux de circulation n'y ont pas leur place.
+
+   CE QUI DISTINGUE LES ÉTATS MAINTENANT, C'EST LA FORME, pas la couleur :
+   le refus et l'avertissement prennent un bandeau et un filet à gauche,
+   la réussite reste en argent, l'attente en os adouci. C'est la solution
+   que le vestiaire emploie déjà (.etat--mauvais) — on ne réinvente rien.
+   Et de toute façon aucune information ne tient à la couleur seule : le
+   message est écrit en toutes lettres, et il est annoncé (role="status").
+   Le refus monte à l'os plein (~15:1) : c'est la ligne qu'il faut lire. */
 .depot__etat { grid-column: 1 / -1; min-height: 1.4em; font-size: var(--step--1); line-height: 1.5; color: var(--ink-soft); }
-.depot__etat[data-genre="ok"]   { color: #7ee2a8; }
-.depot__etat[data-genre="err"]  { color: #ff9d8a; }
-.depot__etat[data-genre="warn"] { color: #f5c66b; }
-.depot__etat[data-genre="info"] { color: var(--accent); }
+.depot__etat[data-genre="info"] { color: var(--ink-soft); }
+.depot__etat[data-genre="ok"]   { color: var(--accent); font-weight: 600; }
+.depot__etat[data-genre="err"],
+.depot__etat[data-genre="warn"] {
+  color: var(--ink);
+  background: color-mix(in srgb, var(--accent) 13%, transparent);
+  border-left: 2px solid var(--accent);
+  padding: .5rem .7rem; border-radius: var(--radius);
+}
+.depot__etat[data-genre="err"] { font-weight: 600; }
 .depot__regle { grid-column: 1 / -1; font: 600 var(--step--2)/1.6 var(--f-mono); letter-spacing: .05em; color: var(--muted); }
 
 @media (hover: none){

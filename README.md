@@ -151,7 +151,7 @@ CLOUDINARY_URL=cloudinary://<api_key>:<api_secret>@<cloud_name>
 | `COMMUNITY_MAX_SEC` | `15` | **durée maximum d'une vidéo** |
 | `COMMUNITY_MAX_PAR_FENETRE` | `3` | fichiers autorisés par visiteur et par fenêtre |
 | `COMMUNITY_FENETRE_MIN` | `10` | durée de la fenêtre, en minutes |
-| `GEMINI_API_KEY` | — | *facultatif.* S'il est là, un coup d'œil automatique écarte les images manifestement hors sujet. Sans lui, **tout part en modération humaine** — le système marche pareil, il est juste moins filtré. |
+| `GEMINI_API_KEY*` | — | *facultatif.* Les mêmes clés que l'assistant, **lues en pool** (`GEMINI_API_KEY`, `GEMINI_API_KEY_2`, … : tout ce qui commence par `GEMINI_API_KEY` est ramassé, mélangé, et une clé à quota épuisé laisse la main à la suivante). S'il y en a au moins une, un coup d'œil automatique écarte les images manifestement hors sujet. Sans aucune, **tout part en modération humaine** — le système marche pareil, il est juste moins filtré. |
 
 ### Le chemin d'un fichier, du dépôt au mur
 

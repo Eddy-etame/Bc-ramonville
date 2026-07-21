@@ -84,6 +84,8 @@ async function entrer() {
   monterNav();
   rendreSection(app.section);
   majEtat();
+  // le compteur ne bloque pas l'entrée dans le vestiaire : il arrive après
+  if (app.section !== "galerie") majCompteurGalerie();
   if (!visiteDejaVue()) setTimeout(lancerVisite, 400);
 }
 
@@ -145,12 +147,32 @@ const SECTIONS = [
 
 function monterNav() {
   $("#nav").innerHTML = SECTIONS.map(
-    (s) => `<button class="navbtn" type="button" data-k="${s.k}" aria-current="${s.k === app.section}">${s.t}</button>`
+    (s) => `<button class="navbtn" type="button" data-k="${s.k}" aria-current="${s.k === app.section}"><span>${s.t}</span>${
+      s.k === "galerie" ? `<span class="navbtn__n" id="navGalerieN" hidden></span>` : ""
+    }</button>`
   ).join("");
   $("#nav").addEventListener("click", (e) => {
     const b = e.target.closest(".navbtn");
     if (b) rendreSection(b.dataset.k);
   });
+}
+
+/* COMBIEN ATTENDENT — le staff doit savoir qu'il y a du monde dans la file
+   SANS avoir à ouvrir la section. Le compteur se rafraîchit au démarrage
+   et après chaque décision (publier / supprimer), donc il ne ment jamais
+   d'un tour. En panne, il se tait plutôt que d'afficher un faux zéro. */
+async function majCompteurGalerie(n) {
+  const el = $("#navGalerieN");
+  if (!el) return;
+  if (n == null) {
+    if (!app.capacites.galerie) { el.hidden = true; return; }
+    try { n = ((await api("/api/community/pending")).items || []).length; }
+    catch { el.hidden = true; return; }
+  }
+  el.hidden = !n;
+  el.textContent = String(n);
+  // le nombre seul ne dit pas ce qu'il compte : on l'écrit pour l'oreille
+  el.setAttribute("aria-label", `${n} fichier${n > 1 ? "s" : ""} en attente de relecture`);
 }
 
 /* UN SEUL jeu d'écouteurs sur #pane, posé une fois pour toutes.
@@ -211,6 +233,7 @@ async function vueGalerie() {
   }
 
   const items = d.items || [];
+  majCompteurGalerie(items.length);
   if (!items.length) {
     $("#pane").innerHTML = `${intro}
       <div class="vide"><b>Rien à relire pour l'instant</b>
@@ -266,7 +289,9 @@ async function vueGalerie() {
         body: JSON.stringify({ id: carte.dataset.id, type: carte.dataset.type, action: acte }),
       });
       carte.remove();
-      if (!$("#pane").querySelector(".file__item")) rendreSection("galerie");
+      const reste = $("#pane").querySelectorAll(".file__item").length;
+      majCompteurGalerie(reste);
+      if (!reste) rendreSection("galerie");
     } catch (err) {
       carte.querySelectorAll("button").forEach((x) => (x.disabled = false));
       b.textContent = acte === "publier" ? "Publier sur le mur" : "Supprimer";

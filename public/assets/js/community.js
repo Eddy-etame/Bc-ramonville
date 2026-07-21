@@ -191,7 +191,13 @@ function brancherForm(form, etat) {
       const id = await televerser(f, sign, type, (p) => { if (jauge) jauge.style.width = p + "%"; });
       if (jauge) jauge.style.width = "0%";
 
-      // 3) le serveur revérifie le fichier RÉEL (format, durée, poids, coup d'œil)
+      /* 3) le serveur revérifie le fichier RÉEL (format, durée, poids, coup
+         d'œil). CE TEMPS-LÀ SE DIT : le contrôle relit le fichier chez
+         Cloudinary et, pour une photo, y ajoute le coup d'œil automatique —
+         quelques secondes, parfois plus sur un réseau lent. Laisser
+         « Envoi en cours… » à l'écran pendant ce temps donnait l'impression
+         d'un envoi bloqué alors qu'il était fini. */
+      dire(etat, `On vérifie ${image ? "ta photo" : "ta vidéo"}… ça prend quelques secondes.`, "info");
       const rc = await fetch(`${API}/api/community/check`, {
         method: "POST", headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ id, type }),
@@ -200,11 +206,18 @@ function brancherForm(form, etat) {
       envoyer.disabled = false;
       if (!rc.ok) return dire(etat, check.error || "Fichier refusé.", "err");
 
-      // 4) le contributeur entre dans le carnet — le MÊME que l'assistant
+      /* 4) le contributeur entre dans le carnet — le MÊME que l'assistant.
+         LE CHAMP S'APPELLE `phone`, PAS `tel`. C'est le nom qu'emploient
+         déjà l'assistant, le registre et l'e-mail au staff : en envoyant
+         `tel`, on parlait une langue que le carnet ne comprend pas — il
+         voyait un contact sans email NI téléphone et le refusait. Un
+         déposant qui laissait son numéro (et pas son email) disparaissait
+         donc entièrement, alors que c'est exactement le contact qu'on
+         cherche à récupérer. On se plie au contrat existant. */
       fetch(`${API}/api/lead`, {
         method: "POST", headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          event: "upload_contributor", prenom, email, tel,
+          event: "upload_contributor", prenom, email, phone: tel,
           salle: "Ramonville", page: location.pathname,
         }),
       }).catch(() => {});   // le contact est un bonus : il ne bloque JAMAIS l'envoi
