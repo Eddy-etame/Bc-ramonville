@@ -157,3 +157,47 @@
   .claim__figs { grid-template-columns: 1fr; }
   .claim__fig { display: flex; align-items: baseline; gap: .8ch; }
 }
+
+/* LISIBILITÉ MOBILE — plancher 12px sur les micro-labels mono (retour
+   client). @media ≤600px, desktop intact. */
+@media (max-width: 600px) {
+  .coach__role { font-size: .75rem !important; }
+  .coach__tag { font-size: .75rem !important; }
+  .dehors__tags span { font-size: .75rem !important; }
+  .disc__fact b { font-size: .75rem !important; }
+  .floor__zones span { font-size: .75rem !important; }
+  .info__row .fk { font-size: .75rem !important; }
+  .menu__link .n { font-size: .75rem !important; }
+  .mur__play { font-size: .75rem !important; }
+  .oleg__n { font-size: .75rem !important; }
+  .oleg__tag { font-size: .75rem !important; }
+  .poster::after { font-size: .75rem !important; }
+  .practical .fk { font-size: .75rem !important; }
+  .promo__badge { font-size: .75rem !important; }
+  .promo__price i { font-size: .75rem !important; }
+  .promo__price s { font-size: .75rem !important; }
+  .rail__label { font-size: .75rem !important; }
+  .regle__n { font-size: .75rem !important; }
+  .slotline .d { font-size: .75rem !important; }
+  .staff__meta .mono { font-size: .75rem !important; }
+  .staff__meta i { font-size: .75rem !important; }
+  .station__n { font-size: .75rem !important; }
+  .station__specs span { font-size: .75rem !important; }
+  .tarif__badge { font-size: .75rem !important; }
+  .tournage__lead { font-size: .75rem !important; }
+  .value__n { font-size: .75rem !important; }
+  /* couleur, jamais grisé */
+.poster__cap { font-size: .75rem !important; }
+
+  .nav__links a, .menu__link, .menu__foot a, .footer__col a, .crumbs a, .chip, .faq summary, a[class*='link'] { min-height: 44px; display: inline-flex; align-items: center; }
+}
+
+/* Supplément lisibilité mobile — labels en unités em (ratés par le scan rem) :
+   les périodes de prix (« / an », « les 12 mois »), les numéros de rail, le
+   libellé « Round ». Plancher 12px, jamais un exposant (sup). */
+@media (max-width: 600px) {
+  .tarif__price small, .price small, small:not(sup),
+  .who__tick span, [class*="__tick"] span, [class*="__rail"] span,
+  .hero__round-k, .oleg__n, .octa__now-tag, .cursor__label,
+  .stat__l, .value__n { font-size: .78rem !important; }
+}

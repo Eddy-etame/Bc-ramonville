@@ -235,3 +235,8 @@ a { color: var(--accent); }
 .file__actes { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .6rem; }
 .file__actes .btn { min-height: 44px; }
 @media (max-width: 640px) { .file__item { grid-template-columns: 1fr; } .file__vue { aspect-ratio: 16/10; } }
+
+/* Lisibilité mobile — plancher 12px sur les micro-labels du vestiaire (≤600px). */
+@media (max-width:600px){
+  .kicker,.champ label,.porte__pied a,.cote__pied a,label,.modcard__v,.modcard__d{font-size:12px !important}
+}

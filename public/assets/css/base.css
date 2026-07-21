@@ -85,7 +85,7 @@
      mono (le tic documentaire de la maison) tombaient à 9,3–10,2px un peu
      partout — le registre « carnet de terrain » se lisait comme du bruit.
      Tout label mono passe par ce token, aucun `.5xrem` en dur. */
-  --step--2: clamp(.7rem, .66rem + .12vw, .76rem);
+  --step--2: clamp(.75rem, .72rem + .12vw, .8rem);
   --step--1: clamp(.78rem, .72rem + .3vw, .9rem);
   --step-0:  clamp(1rem, .95rem + .28vw, 1.12rem);
   --step-1:  clamp(1.25rem, 1.05rem + 1vw, 1.85rem);
@@ -680,4 +680,46 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
      44px. Dernier trou d'une règle par ailleurs tenue partout. */
   .breadcrumb a { display: inline-flex; align-items: center; min-height: 44px; }
   .breadcrumb a:active { color: var(--accent); }
+}
+
+/* LISIBILITÉ MOBILE (dans base.css = chargé sur TOUTES les pages, y compris
+   celles en page.css) — plancher 12px sur les micro-labels. @media ≤600px. */
+@media (max-width: 600px) {
+  .coach__role { font-size: .75rem !important; }
+  .coach__tag { font-size: .75rem !important; }
+  .dehors__tags span { font-size: .75rem !important; }
+  .disc__fact b { font-size: .75rem !important; }
+  .floor__zones span { font-size: .75rem !important; }
+  .info__row .fk { font-size: .75rem !important; }
+  .menu__link .n { font-size: .75rem !important; }
+  .mur__play { font-size: .75rem !important; }
+  .oleg__n { font-size: .75rem !important; }
+  .oleg__tag { font-size: .75rem !important; }
+  .poster::after { font-size: .75rem !important; }
+  .practical .fk { font-size: .75rem !important; }
+  .promo__badge { font-size: .75rem !important; }
+  .promo__price i { font-size: .75rem !important; }
+  .promo__price s { font-size: .75rem !important; }
+  .rail__label { font-size: .75rem !important; }
+  .regle__n { font-size: .75rem !important; }
+  .slotline .d { font-size: .75rem !important; }
+  .staff__meta .mono { font-size: .75rem !important; }
+  .staff__meta i { font-size: .75rem !important; }
+  .station__n { font-size: .75rem !important; }
+  .station__specs span { font-size: .75rem !important; }
+  .tarif__badge { font-size: .75rem !important; }
+  .tournage__lead { font-size: .75rem !important; }
+  .value__n { font-size: .75rem !important; }
+  /* couleur, jamais grisé */
+.poster__cap { font-size: .75rem !important; }
+
+  .tarif__price small, .price small, small:not(sup), .who__tick span,
+  [class*="__tick"] span, [class*="__rail"] span, .hero__round-k, .oleg__n,
+  .oleg__tag, .octa__now-tag, .octa__hint, .tarif__badge, .promo__badge,
+  .review__by, .cursor__label, .stat__l { font-size: .78rem !important; }
+
+  .nav__links a, .menu__link, .menu__foot a, .footer__col a, .crumbs a,
+  .chip, .faq summary, a[class*="link"], .nav__brand, .menu__close { min-height: 44px; display: inline-flex; align-items: center; }
+  /* .btn est déjà inline-flex centré dans base — seul le plancher tactile manque */
+  .btn { min-height: 44px; }
 }

@@ -9,7 +9,7 @@
    figé, il n'y a plus rien à basculer.
    Aucun chrome copié de Saint-Cyprien.
    ===================================================================== */
-import { NAV, LINKS, SALLE, SEASON_LABEL, NETWORK } from "./data.js?v=11";
+import { NAV, LINKS, SALLE, SEASON_LABEL, NETWORK } from "./data.js?v=16";
 
 /* --------------------------- LE MAILLAGE --------------------------- *
    Les liens sortants vers le réseau propriétaire : le site du groupe, la

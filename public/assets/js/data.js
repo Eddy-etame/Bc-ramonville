@@ -11,7 +11,7 @@
    boxingcenter.fr (brief §3). Noms de coachs ≡ photos (roster.json), jamais
    croisés. Aucun claim périssable dans les pages : la saison passe par la
    constante SEASON, les promos vivent dans PROMOS (jamais en dur ailleurs).
-   Version d'assets unique : ?v=11 partout (imports compris).
+   Version d'assets unique : ?v=16 partout (imports compris).
    ===================================================================== */
 
 /* Anti-péremption — tout libellé de saison passe par ces constantes. */

@@ -10,8 +10,8 @@
   <link rel="preconnect" href="https://api.open-meteo.com" crossorigin />
 
   <!-- Polices AUTO-HÉBERGÉES — mêmes familles/graisses que l'original Google Fonts -->
-  <link rel="preload" href="/fonts/chakrapetch-700-latin.woff2?v=11" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="/fonts/manrope-var-latin.woff2?v=11" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/chakrapetch-700-latin.woff2?v=16" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/manrope-var-latin.woff2?v=16" as="font" type="font/woff2" crossorigin />
   <!-- JetBrains Mono manquait à l'appel, et c'est LUI qui décalait la page.
        Les libellés mono sont partout au-dessus de la ligne de flottaison —
        fil d'ariane, sur-titres, boutons, les chips du hero. La police
@@ -20,11 +20,11 @@
        (0,621 de décalage mesuré sur /tarifs/). Elle était de toute façon
        téléchargée sur les huit pages : la précharger ne coûte pas un octet
        ni une requête de plus, elle arrive seulement à l'heure. -->
-  <link rel="preload" href="/fonts/jetbrainsmono-var-latin.woff2?v=11" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="/assets/css/fonts.css?v=11" />
-  <link rel="stylesheet" href="/assets/css/base.css?v=11" />
-  <link rel="stylesheet" href="/assets/css/la-salle.css?v=11" />
-  <meta name="keywords" content="salle de boxe Ramonville, octogone Toulouse, ring olympique, entraînement extérieur boxe, muscu cardio Ramonville-Saint-Agne, MMA sud toulousain, deux niveaux" />
+  <link rel="preload" href="/fonts/jetbrainsmono-var-latin.woff2?v=16" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=16" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=16" />
+  <link rel="stylesheet" href="/assets/css/la-salle.css?v=16" />
+  <meta name="keywords" content="salle de boxe Ramonville, octogone Toulouse, ring olympique, entraînement extérieur boxe, muscu cardio Ramonville-Saint-Agne, MMA sud toulousain, deux niveaux, boxing gym Toulouse, MMA gym Toulouse, octagon MMA Toulouse, kickboxing Toulouse, muay thai Toulouse, grappling Toulouse, kids boxing Toulouse, outdoor boxing Toulouse, boxing club Ramonville, martial arts gym near Toulouse" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="author" content="Boxing Center Ramonville" />
   <meta name="geo.region" content="FR-31" />
@@ -100,6 +100,7 @@
           "LocalBusiness"
         ],
         "@id": "https://ramonville.boxingcenter.fr/#salle",
+        "knowsLanguage": ["fr-FR", "en"],
         "name": "Boxing Center Ramonville",
         "url": "https://ramonville.boxingcenter.fr/",
         "telephone": "+33562244682",
@@ -399,9 +400,9 @@
        comme tout /assets/, et surtout script-src a pu se refermer sur 'self'
        dans vercel.json. `defer` inchangé : elles ne retiennent pas le rendu et
        s'exécutent dans l'ordre du document, donc avant les modules du pied. -->
-  <script is:inline defer src="/assets/vendor/gsap.min.js?v=11"></script>
-  <script is:inline defer src="/assets/vendor/ScrollTrigger.min.js?v=11"></script>
-  <script is:inline defer src="/assets/vendor/lenis.min.js?v=11"></script>
+  <script is:inline defer src="/assets/vendor/gsap.min.js?v=16"></script>
+  <script is:inline defer src="/assets/vendor/ScrollTrigger.min.js?v=16"></script>
+  <script is:inline defer src="/assets/vendor/lenis.min.js?v=16"></script>
 </head>
 
 <body data-page="la-salle">
@@ -584,9 +585,9 @@
       function venir() {
         if (venue) return venue;
         var f = document.createElement("link");
-        f.rel = "stylesheet"; f.href = "/assets/css/chatbot.css?v=11";
+        f.rel = "stylesheet"; f.href = "/assets/css/chatbot.css?v=16";
         document.head.appendChild(f);
-        venue = import("/assets/js/chatbot.js?v=11").catch(function () { venue = null; });
+        venue = import("/assets/js/chatbot.js?v=16").catch(function () { venue = null; });
         return venue;
       }
       ["pointerenter", "touchstart", "focus"].forEach(function (e) {
@@ -604,14 +605,14 @@
     })();
   </script>
 
-  <script is:inline type="module" src="/assets/js/site.js?v=11"></script>
-  <script is:inline type="module" src="/assets/js/sky.js?v=11"></script>
-  <script is:inline type="module" src="/assets/js/page.js?v=11"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=16"></script>
+  <script is:inline type="module" src="/assets/js/sky.js?v=16"></script>
+  <script is:inline type="module" src="/assets/js/page.js?v=16"></script>
 
   <!-- Enrichissement PROPRE à la page : le rail de chiffres (STATS) qui
        s'incrémente. page.js rend déjà #stations / #values / #network. -->
   <script is:inline type="module">
-    import { STATS } from "/assets/js/data.js?v=11";
+    import { STATS } from "/assets/js/data.js?v=16";
     const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
     const rail = document.getElementById("prail");
     if (rail && STATS) {

@@ -10,7 +10,7 @@ import {
   DAYS, SCHEDULE, SCHEDULE_ETE, FAMILLES, POSTERS, TARIFS, PROMOS, REVIEWS,
   GALLERY, PHOTO_CREDIT, FAQ, LINKS, DEHORS, ETE, GRID_LEGEND, COACHES, ARPENT,
   ENTREE, CARNET,
-} from "./data.js?v=11";
+} from "./data.js?v=16";
 
 const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const $ = (s, r = document) => r.querySelector(s);
