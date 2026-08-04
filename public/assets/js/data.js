@@ -11,7 +11,7 @@
    boxingcenter.fr (brief §3). Noms de coachs ≡ photos (roster.json), jamais
    croisés. Aucun claim périssable dans les pages : la saison passe par la
    constante SEASON, les promos vivent dans PROMOS (jamais en dur ailleurs).
-   Version d’assets unique : ?v=17 partout (imports compris).
+   Version d’assets unique : ?v=18 partout (imports compris).
    ===================================================================== */
 
 /* Anti-péremption — tout libellé de saison passe par ces constantes. */
@@ -90,7 +90,7 @@ export const LINKS = {
   promos: "https://box-plus.vercel.app/abonnements#promotions",
   enfants: "https://box-plus.vercel.app/abonnements#enfants",
   coachings: "https://box-plus.vercel.app/coachings",
-  boutique: "https://box-plus.vercel.app/materiel",
+  boutique: "https://box-plus.vercel.app/",   // la BOUTIQUE, pas un rayon (parité Minimes/St-Cyprien)
   groupe: "https://boxingcenter.fr/",
   facebook: "https://www.facebook.com/BoxingCenterToulouse/",
   instagram: "https://www.instagram.com/boxingcentertoulouse/",
@@ -698,9 +698,9 @@ const _TARIFS = [
    marque Ramonville, filtrée quand on montre « les 4 sœurs ». */
 export const NETWORK = [
   { id: "portet", name: "Portet-sur-Garonne", tag: "Le vaisseau amiral", feat: "Ring olympique · cage MMA", url: "https://www.boxing-center-portet.fr/" },
-  { id: "minimes", name: "Minimes", tag: "Le berceau", feat: "Salle historique · 3 rings · l’école dès 3 ans", url: "https://boxingcenter.fr/" },
+  { id: "minimes", name: "Minimes", tag: "Le berceau", feat: "Salle historique · 3 rings · l’école dès 3 ans", url: "https://bc-minimes.vercel.app/" },
   { id: "etats-unis", name: "États-Unis", tag: "Le colosse", feat: "La plus grande salle de France dédiée aux sports de combat", url: "https://boxingcenter.fr/" },
-  { id: "st-cyprien", name: "Saint-Cyprien", tag: "La rive gauche", feat: "1 200 m² · un seul niveau", url: "https://boxingcenter.fr/" },
+  { id: "st-cyprien", name: "Saint-Cyprien", tag: "La rive gauche", feat: "1 200 m² · un seul niveau", url: "https://bc-st-cyprien.vercel.app/" },
   { id: "ramonville", name: "Ramonville", tag: "L’octogone à ciel ouvert", feat: "Octogone 7 m · 300 m² extérieur couvert", url: "/", self: true },
 ];
 

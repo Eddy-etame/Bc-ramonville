@@ -9,7 +9,7 @@
    figé, il n’y a plus rien à basculer.
    Aucun chrome copié de Saint-Cyprien.
    ===================================================================== */
-import { NAV, LINKS, SALLE, SEASON_LABEL, NETWORK } from "./data.js?v=17";
+import { NAV, LINKS, SALLE, SEASON_LABEL, NETWORK } from "./data.js?v=18";
 
 /* --------------------------- LE MAILLAGE --------------------------- *
    Les liens sortants vers le réseau propriétaire : le site du groupe, la
@@ -140,8 +140,8 @@ function mountNav() {
       <div class="menu__foot">
         <a class="btn btn--primary" data-magnetic href="${LINKS.essai}"><span>Réserver l’essai · 10€</span></a>
         <div class="menu__ext">
-          ${lienExt(LINKS.groupe, "Le groupe Boxing Center")}
-          ${lienExt(LINKS.boutique, "Boutique")}
+          ${lienExt(LINKS.groupe, "Le site officiel — boxingcenter.fr")}
+          ${lienExt(LINKS.boutique, "La boutique — box-plus")}
           ${lienExt(LINKS.instagram, "Instagram")}
           <a href="tel:${SALLE.phoneHref}">${SALLE.phone}</a>
         </div>
@@ -218,8 +218,8 @@ function mountFooter() {
           ${cols.map((c) => `<div class="footer__col"><h4>${c.h}</h4>${c.links.map((l) => `<a href="${l.href}">${l.label}</a>`).join("")}</div>`).join("")}
           <div class="footer__col">
             <h4>Le réseau</h4>
-            ${lienExt(LINKS.groupe, "Boxing Center", "Le site du réseau Boxing Center")}
-            ${lienExt(LINKS.boutique, "Boutique")}
+            ${lienExt(LINKS.groupe, "Le site officiel — boxingcenter.fr", "Le site du réseau Boxing Center")}
+            ${lienExt(LINKS.boutique, "La boutique — box-plus", "box-plus — la boutique Boxing Center")}
             ${lienExt(LINKS.instagram, "Instagram")}
             ${lienExt(LINKS.facebook, "Facebook")}
           </div>

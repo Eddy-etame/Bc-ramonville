@@ -18,8 +18,8 @@
    d’ouverture est purement décorative (prefers-reduced-motion respecté
    côté CSS — rien ici ne dépend d’une transition pour être lisible).
    ===================================================================== */
-import { QUICKS, fallbackAnswer } from "./chatbot-kb.js?v=17";
-import { SALLE, NETWORK } from "./data.js?v=17";
+import { QUICKS, fallbackAnswer } from "./chatbot-kb.js?v=18";
+import { SALLE, NETWORK } from "./data.js?v=18";
 
 /* --------------------------- LES MOTIFS ---------------------------- */
 const EMAIL_RE = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/i;

@@ -6,8 +6,8 @@
    arêtes. La caption du hero lit le VRAI ciel (window.__SKY : heure +
    température) — carnet de terrain. L’octogone est monté par octagon.js.
    ===================================================================== */
-import { STATS, DISCIPLINES, COACHES, SALLE } from "./data.js?v=17";
-import "./octagon.js?v=17"; // effet de bord : auto-monte l’octogone interactif du hero (#octa)
+import { STATS, DISCIPLINES, COACHES, SALLE } from "./data.js?v=18";
+import "./octagon.js?v=18"; // effet de bord : auto-monte l’octogone interactif du hero (#octa)
 
 const gsap = window.gsap;
 const ScrollTrigger = window.ScrollTrigger;

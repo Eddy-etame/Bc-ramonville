@@ -68,8 +68,8 @@ const soeurs = (NETWORK || []).filter((s) => !s.self);
 const MAILLAGE =
   `<footer class="footer"><div class="wrap"><div class="footer__links">` +
   `<div class="footer__col"><h4>Le réseau</h4>` +
-  lien(LINKS.groupe, "Boxing Center", "Le site du réseau Boxing Center") +
-  lien(LINKS.boutique, "Boutique", "La boutique Boxing Center") +
+  lien(LINKS.groupe, "Le site officiel — boxingcenter.fr", "Le site du réseau Boxing Center") +
+  lien(LINKS.boutique, "La boutique — box-plus", "box-plus — la boutique Boxing Center") +
   `</div>` +
   `<div class="footer__col"><h4>Les salles sœurs</h4>` +
   soeurs.map((s) => lien(s.url, s.name, `${s.name} — ${s.feat}`)).join("") +
