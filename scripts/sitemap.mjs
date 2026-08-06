@@ -42,8 +42,8 @@ const BASE = "https://bc-ramonville.vercel.app";
    flatteuse. `changefreq` suit le rythme réel : le planning et l'accueil
    bougent à la saison, le reste beaucoup moins. */
 const PAGES = [
-  { chemin: "", priorite: "1.0", freq: "weekly", img: "/assets/img/ram/hero.webp", titre: "Boxing Center Ramonville — l'octogone de 7 m et le ring de boxe olympique" },
-  { chemin: "la-salle/", priorite: "0.8", freq: "monthly", img: "/assets/img/ram/plateau.webp", titre: "Le plateau Boxing Center Ramonville — l'octogone, le ring olympique et les tatamis" },
+  { chemin: "", priorite: "1.0", freq: "weekly", img: "/assets/img/ram/hero.webp", titre: "Boxing Center Ramonville — l'octogone de 7 m et le grand ring de boxe" },
+  { chemin: "la-salle/", priorite: "0.8", freq: "monthly", img: "/assets/img/ram/plateau.webp", titre: "Le plateau Boxing Center Ramonville — l'octogone, le grand ring et les tatamis" },
   { chemin: "activites/", priorite: "0.8", freq: "monthly", img: "/assets/img/ram/octogone.webp", titre: "Asso MMA dans l'octogone de 7 m — Boxing Center Ramonville" },
   { chemin: "coachs/", priorite: "0.8", freq: "monthly", img: "/assets/img/ram/coach-sonia.webp", titre: "Sonia, coach à Boxing Center Ramonville" },
   { chemin: "galerie/", priorite: "0.8", freq: "monthly", img: "/assets/img/ram/hero-1200.webp", titre: "Le plateau de Boxing Center Ramonville sous la charpente" },
