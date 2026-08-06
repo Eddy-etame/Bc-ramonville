@@ -31,7 +31,7 @@ export const QUICKS = [
   {
     label: "Tarifs",
     q: "Quels sont les tarifs ?",
-    a: "Essai 10 € la séance. Offre Duo : 29 € par personne pour 4 semaines illimitées, sans engagement. Offre Saison : 259 € les 12 mois, payable en 4× sans frais, avec l’accès libre aux 5 clubs du réseau. L’école enfants démarre dès 3 ans.",
+    a: "L’offre Rentrée : 29 € par personne pour 4 semaines illimitées, sans engagement (au lieu de 44,99 €). L’offre Saison : 259 € les 12 mois en 4× sans frais, accès libre aux 5 clubs. L’école enfants : 295 €/an t-shirt inclus, baby 250 €. Et l’essai à 10 € pour tester. [boutons: offre, tarifs]",
   },
   {
     label: "Horaires",

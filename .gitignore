@@ -8,6 +8,9 @@ dist/
 _dist_before/
 _tmp_lh/
 
+# notes de recherche copywriting (travail interne, non versionné)
+.research/
+
 # secrets — JAMAIS versionnés
 .env
 .env.*

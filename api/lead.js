@@ -41,11 +41,20 @@ export default async function handler(req, res) {
   if (!lead.email && !lead.phone)
     return res.status(400).json({ error: "Aucun moyen de recontact." });
 
-  const sorties = { registre: false, email: false, webhook: false };
+  const sorties = { registre: false, email: false, webhook: false, reseau: false };
+  /* Copie vers la base COMMUNE du réseau (gestion-manager) — la règle du
+     boss : tout formulaire, tout chatbot, UNE seule base. Côté serveur :
+     pas de CORS, jamais bloquant. */
+  const versReseau = fetch("https://gestion-manager.vercel.app/api/chatbot/lead", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ ...lead, salle: lead.salle || "Ramonville", source: "bc-ramonville" }),
+  }).then((r) => (sorties.reseau = r.ok)).catch(() => {});
   await Promise.all([
     saveLead(lead).then((v) => (sorties.registre = v)).catch(() => {}),
     mailLead(lead).then((v) => (sorties.email = v)).catch(() => {}),
     hookLead(lead).then((v) => (sorties.webhook = v)).catch(() => {}),
+    versReseau,
   ]);
 
   // le journal est la sortie de dernier recours — toujours écrite

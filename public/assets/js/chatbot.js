@@ -80,6 +80,54 @@ function submitLead(payload) {
 }
 
 /* ============================ LE WIDGET ============================ */
+
+/* La pensée Portet émulée : clés fermées → vrais boutons sous les messages. */
+const ACTIONS = {
+  offre:       { label: "Je prends ma place — 29€", href: "https://box-plus.vercel.app/abonnements#promo" },
+  saison:      { label: "Je réserve ma saison · 259€", href: "https://box-plus.vercel.app/abonnements#promo" },
+  essai:       { label: "Je viens essayer · 10€", href: "https://box-plus.vercel.app/seance-essai" },
+  enfants:     { label: "J’inscris mon enfant", href: "https://box-plus.vercel.app/abonnements#enfants" },
+  abonnements: { label: "Voir les abonnements", href: "https://box-plus.vercel.app/abonnements" },
+  boutique:    { label: "La boutique du club", href: "https://box-plus.vercel.app/" },
+  tarifs:      { label: "Les tarifs en détail", href: "/tarifs/" },
+  planning:    { label: "Voir le planning", href: "/plannings/" },
+  disciplines: { label: "Découvrir les cours", href: "/activites/" },
+  plateau:     { label: "Voir le plateau", href: "/la-salle/" },
+  coachs:      { label: "Rencontrer les coachs", href: "/coachs/" },
+  galerie:     { label: "Voir la galerie", href: "/galerie/" },
+  contact:     { label: "Adresse & contact", href: "/contact/" },
+  appeler:     { label: "Appeler la salle", href: "tel:+33562244682" },
+  rappel:      { label: "Être rappelé par un coach", act: "rappel" },
+};
+function resolveActions(keys) {
+  const out = [];
+  for (const k of keys) {
+    const [key, ...rest] = String(k).split(":");
+    const def = ACTIONS[key.trim()];
+    if (!def) continue;
+    const label = rest.join(":").trim();
+    if (!out.some((a) => (a.href || a.act) === (def.href || def.act))) out.push(label ? { ...def, label } : def);
+    if (out.length >= 3) break;
+  }
+  return out;
+}
+function parseReply(brut) {
+  let text = String(brut);
+  const keys = [];
+  text = text.replace(/\[\s*(?:boutons|buttons)\s*:\s*([^\]]+)\]/gi, (_, list) => {
+    keys.push(...list.split(",").map((s) => s.trim()).filter(Boolean));
+    return "";
+  });
+  text = text.replace(/(?:https?:\/\/)?box-plus\.vercel\.app[\w\/#-]*/gi, (u) => {
+    const href = (u.startsWith("http") ? u : "https://" + u).replace(/\/$/, "");
+    const hit = Object.entries(ACTIONS).find(([, d]) => (d.href || "").replace(/\/$/, "") === href);
+    if (hit && !keys.some((k) => k.split(":")[0] === hit[0])) keys.push(hit[0]);
+    return hit ? "la boutique en ligne" : u;
+  });
+  text = text.replace(/\s{2,}/g, " ").replace(/\s+([.,!?])/g, "$1").trim();
+  return { text, actions: resolveActions(keys) };
+}
+
 export function initChatbot() {
   const launcher = document.querySelector("a.chatbot, button.chatbot");
   if (!launcher || document.getElementById("bcr-chat")) return;
@@ -164,24 +212,32 @@ export function initChatbot() {
   function rendre() {
     logEl.innerHTML =
       messages
-        .map(
-          (m) =>
-            `<div class="bcr-chat__msg bcr-chat__msg--${m.role}"><div class="bcr-chat__bubble">${echappe(m.text)}</div></div>`
-        )
+        .map((m) => {
+          const actions = m.actions && m.actions.length ? `<div class="bcr-chat__actions">${m.actions.map((a) => {
+            if (a.act) return `<button type="button" class="bcr-chat__action bcr-chat__action--ext" data-act="${a.act}">${echappe(a.label)}</button>`;
+            const ext = /^https?:/i.test(a.href);
+            return `<a class="bcr-chat__action${ext ? " bcr-chat__action--ext" : ""}" href="${a.href.replace(/"/g, "&quot;")}"${ext ? ` target="_blank" rel="noopener"` : ""}>${echappe(a.label)}</a>`;
+          }).join("")}</div>` : "";
+          return `<div class="bcr-chat__msg bcr-chat__msg--${m.role}"><div class="bcr-chat__stack"><div class="bcr-chat__bubble">${echappe(m.text)}</div>${actions}</div></div>`;
+        })
         .join("") +
       (enTrainDeTaper
         ? `<div class="bcr-chat__msg bcr-chat__msg--bot"><div class="bcr-chat__bubble"><span class="bcr-chat__dots" aria-label="L’assistant écrit"><i></i><i></i><i></i></span></div></div>`
         : "");
     logEl.scrollTop = logEl.scrollHeight;
   }
-  async function botDit(text, pause = 520) {
+  async function botDit(text, pause = 520, actions) {
     enTrainDeTaper = true; rendre();
     await delay(pause);
     enTrainDeTaper = false;
-    messages.push({ role: "bot", text });
+    messages.push({ role: "bot", text, actions });
     rendre();
   }
   const visiteurDit = (text) => { messages.push({ role: "user", text }); rendre(); };
+  logEl.addEventListener("click", (e) => {
+    const act = e.target.closest("button[data-act]");
+    if (act && act.dataset.act === "rappel") demanderRappel();
+  });
 
   /* -------------------------- SUGGESTIONS -------------------------- */
   function montrerChips() {
@@ -258,14 +314,16 @@ export function initChatbot() {
     const envoye = neuf ? peutEtreEnvoyer(rappelDemande ? "callback_request" : "lead_collected") : false;
 
     cacherChips();
-    let reponse;
+    let reponse, boutons = [];
     try {
-      reponse = await askAi(texte, historique.slice(-6), contexte());
+      const lu = parseReply(await askAi(texte, historique.slice(-6), contexte()));
+      reponse = lu.text; boutons = lu.actions;
     } catch {
-      reponse = fallbackAnswer(texte); // hors-ligne / dev : la base locale
+      const lu = parseReply(fallbackAnswer(texte)); // hors-ligne / dev : la base locale
+      reponse = lu.text; boutons = lu.actions;
     }
     historique.push({ role: "user", content: texte }, { role: "assistant", content: reponse });
-    await botDit(reponse);
+    await botDit(reponse, 520, boutons);
     echanges++;
 
     if (envoye && rappelDemande) {
@@ -324,8 +382,9 @@ export function initChatbot() {
       await botDit(
         profil.prenom
           ? `Re-salut ${profil.prenom} ! Je suis toujours là — créneaux, octogone, tarifs, école enfants : demande.`
-          : "Salut ! Je suis l’assistant de Boxing Center Ramonville — la salle qui s’entraîne dehors, 33 rue des Ormes. Je réponds sur les créneaux, l’octogone, les tarifs, l’école enfants.",
-        700
+          : "Salut ! Je suis l’assistant de Boxing Center Ramonville — la salle qui s’entraîne dehors, 33 rue des Ormes. L’offre de la rentrée est à 29 € par personne — et je réponds sur les créneaux, l’octogone, l’école enfants.",
+        700,
+        resolveActions(["offre", "essai"])
       );
       /* on ne redemande JAMAIS un prénom déjà donné — c’est la première
          chose qui trahit un robot */

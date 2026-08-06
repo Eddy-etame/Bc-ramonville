@@ -87,7 +87,7 @@ const _SALLE = {
 export const LINKS = {
   essai: "https://box-plus.vercel.app/seance-essai",       // CTA principal — essai 10€
   abos: "https://box-plus.vercel.app/abonnements",
-  promos: "https://box-plus.vercel.app/abonnements#promotions",
+  promos: "https://box-plus.vercel.app/abonnements#promo",
   enfants: "https://box-plus.vercel.app/abonnements#enfants",
   coachings: "https://box-plus.vercel.app/coachings",
   boutique: "https://box-plus.vercel.app/",   // la BOUTIQUE, pas un rayon (parité Minimes/St-Cyprien)
@@ -379,7 +379,7 @@ export const PLATEAU = [
     tag: "Anglaise · pieds-poings",
     d: "Un ring de boxe olympique, cordes tendues, coin bleu, coin rouge. C’est là que le jab se règle et que le pieds-poings prend ses distances, midi et soir.",
     img: "/assets/img/ram/anglaise.webp",
-    specs: ["Ring olympique", "Anglaise · Pieds-poings"],
+    specs: ["Grand ring de boxe", "Anglaise · Pieds-poings"],
   },
   {
     n: "04",
@@ -417,7 +417,7 @@ export const VALUES = [
   // 02 : la cage tourne 3 créneaux/semaine et l’asso MMA est marquée « Confirmé »
   // → « tu tournes dedans dès la première séance » contredisait /plannings/.
   { n: "02", t: "La cage est à toi le mardi", d: "Un octogone de 7 m. Grappling le mardi soir, tous niveaux : c’est le créneau où on ouvre la cage aux débutants. L’asso MMA, deux soirs, quand tu es prêt." },
-  { n: "03", t: "Le geste d’abord", d: "Ring olympique, des coachs qui corrigent le geste avant de te faire suer. La justesse avant le bruit." },
+  { n: "03", t: "Le geste d’abord", d: "Un grand ring, des coachs qui corrigent le geste avant de te faire suer. La justesse avant le bruit." },
   // 04 : la salle n’émet aucune clé — le fait verrouillé est l’émargement GPS.
   { n: "04", t: "À ton heure", d: "Deux niveaux, étage muscu/cardio, accès libre six jours sur sept. Rien à réserver, personne à convaincre : la porte est ouverte de 10h à 21h30." },
 ];
@@ -622,14 +622,14 @@ export const POSTERS = [
 const _PROMOS = {
   saison: SEASON,
   duo: {
-    name: "Offre Duo",
+    name: "Offre Rentrée",
     price: "29 €",
     unit: "par personne",
-    was: "au lieu de 44 €",
+    was: "au lieu de 44,99 €",
     feature: "4 semaines · cours illimités · sans engagement",
-    items: ["4 semaines illimitées", "À deux, chacun 29 € / personne", "Sans engagement"],
-    cta: "Je viens avec mon binôme",
-    href: "https://box-plus.vercel.app/abonnements#promotions",
+    items: ["4 semaines illimitées", "Encore mieux à deux — 29 € chacun", "Sans engagement"],
+    cta: "Je prends ma place — 29 €",
+    href: "https://box-plus.vercel.app/abonnements#promo",
     priority: true,
   },
   saisonOffre: {
@@ -644,52 +644,52 @@ const _PROMOS = {
       "Accès libre aux 5 clubs du réseau",
     ],
     cta: "Je prends ma saison",
-    href: "https://box-plus.vercel.app/abonnements#promotions",
+    href: "https://box-plus.vercel.app/abonnements#promo",
     priority: false,
   },
-  bonus: "T-shirt Boxing Center offert aux 100 premiers inscrits.",
+  bonus: "Inscription enfant : le t-shirt Boxing Center est inclus — pour tous.",
 };
 
 /* Les tarifs affichés (page /tarifs/). Essai 10€ en premier (standards §3). */
 const _TARIFS = [
   {
-    name: "Séance d’essai",
-    price: "10 €",
-    period: "la séance",
-    feature: "Toutes disciplines, matériel prêté",
-    items: ["Toutes les disciplines", "Matériel prêté", "Sans engagement"],
-    cta: "Réserver l’essai",
-    href: "https://box-plus.vercel.app/seance-essai",
-    highlight: false,
-  },
-  {
-    name: "Offre Duo",
+    name: "Offre Rentrée",
     price: "29 €",
-    period: "/ personne",
-    feature: "4 semaines illimitées · sans engagement",
-    items: ["4 semaines illimitées", "29 € par personne", "Sans engagement"],
-    cta: "Je viens avec mon binôme",
-    href: "https://box-plus.vercel.app/abonnements#promotions",
+    period: "/ personne · 4 semaines",
+    feature: "Cours illimités · sans engagement — encore mieux à deux",
+    items: ["4 semaines illimitées", "29 € par personne (au lieu de 44,99 €)", "Sans engagement"],
+    cta: "Je prends ma place — 29 €",
+    href: "https://box-plus.vercel.app/abonnements#promo",
     highlight: true,
   },
   {
     name: "Offre Saison",
     price: "259 €",
     period: "/ 12 mois",
-    feature: "4× sans frais · accès aux 5 clubs",
-    items: ["12 mois toutes disciplines", "4× sans frais", "Accès libre aux 5 clubs"],
+    feature: "4× sans frais · accès aux 5 clubs — moins de 5 € par semaine",
+    items: ["12 mois toutes disciplines", "4× 64,75 € sans frais", "Accès libre aux 5 clubs"],
     cta: "Je prends ma saison",
-    href: "https://box-plus.vercel.app/abonnements#promotions",
+    href: "https://box-plus.vercel.app/abonnements#promo",
     highlight: false,
   },
   {
     name: "École enfants",
-    price: "Dès 3 ans",
-    period: "Baby · 7/11 · 12/16",
-    feature: "L’école complète, mercredi & samedi",
-    items: ["Baby Boxe 3/6 ans", "Éducative 7/11 & ados 12/16", "Encadrée par Valentin G"],
+    price: "295 €",
+    period: "/ an · t-shirt inclus",
+    feature: "Baby Boxe 250 € · dès 3 ans, mercredi & samedi",
+    items: ["Baby Boxe 3/6 ans : 250 €/an", "Éducative 7/11 & ados 12/16 : 295 €/an t-shirt inclus", "Encadrée par Valentin G"],
     cta: "Inscrire mon enfant",
     href: "https://box-plus.vercel.app/abonnements#enfants",
+    highlight: false,
+  },
+  {
+    name: "Séance d’essai",
+    price: "10 €",
+    period: "la séance",
+    feature: "Toujours là ? Alors viens essayer — matériel prêté",
+    items: ["Toutes les disciplines", "Matériel prêté", "Sans engagement — tu viens, tu testes, tu décides"],
+    cta: "Je viens essayer · 10 €",
+    href: "https://box-plus.vercel.app/seance-essai",
     highlight: false,
   },
 ];
@@ -697,7 +697,7 @@ const _TARIFS = [
 /* Le réseau — 5 salles (Balma-Gramont VENDUE : jamais citée). `self`
    marque Ramonville, filtrée quand on montre « les 4 sœurs ». */
 export const NETWORK = [
-  { id: "portet", name: "Portet-sur-Garonne", tag: "Le vaisseau amiral", feat: "Ring olympique · cage MMA", url: "https://www.boxing-center-portet.fr/" },
+  { id: "portet", name: "Portet-sur-Garonne", tag: "Le vaisseau amiral", feat: "600 m² · ring de boxe anglaise · cage MMA", url: "https://www.boxing-center-portet.fr/" },
   { id: "minimes", name: "Minimes", tag: "Le berceau", feat: "Salle historique · 3 rings · l’école dès 3 ans", url: "https://bc-minimes.vercel.app/" },
   { id: "etats-unis", name: "États-Unis", tag: "Le colosse", feat: "La plus grande salle de France dédiée aux sports de combat", url: "https://boxingcenter.fr/" },
   { id: "st-cyprien", name: "Saint-Cyprien", tag: "La rive gauche", feat: "1 200 m² · un seul niveau", url: "https://bc-st-cyprien.vercel.app/" },
