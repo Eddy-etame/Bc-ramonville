@@ -97,6 +97,7 @@ const ACTIONS = {
   galerie:     { label: "Voir la galerie", href: "/galerie/" },
   contact:     { label: "Adresse & contact", href: "/contact/" },
   appeler:     { label: "Appeler la salle", href: "tel:+33562244682" },
+  offert:      { label: "Je réserve ma séance offerte", href: "/seance-offerte/" },
   rappel:      { label: "Être rappelé par un coach", act: "rappel" },
 };
 function resolveActions(keys) {
