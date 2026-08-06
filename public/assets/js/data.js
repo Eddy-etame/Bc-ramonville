@@ -481,13 +481,12 @@ const _SCHEDULE = [
   { day: "Mar", start: "18h40", cours: "Grappling", coach: "Jérôme", fam: "mma", disc: "grappling" },
   { day: "Mar", start: "19h45", cours: "Asso MMA", coach: "Jérôme", fam: "mma", disc: "asso-mma" },
   // Mercredi
-  { day: "Mer", start: "12h40", cours: "Boxe Pieds-Poings", coach: "Sonia", fam: "adulte", disc: "pieds-poings" },
+  { day: "Mer", start: "12h40", cours: "Boxing Camp", coach: "Coach à confirmer", fam: "adulte", disc: "boxing-camp" },
   { day: "Mer", start: "15h00", cours: "Éducative 7/11", coach: "Valentin G", fam: "enfant", disc: "ecole" },
   { day: "Mer", start: "16h00", cours: "Éducative 12/16", coach: "Valentin G", fam: "enfant", disc: "ecole" },
-  { day: "Mer", start: "18h40", cours: "Boxing Camp", coach: "Farouk", fam: "adulte", disc: "boxing-camp" },
-  { day: "Mer", start: "19h45", cours: "Anglaise Loisirs", coach: "Farouk", fam: "adulte", disc: "anglaise" },
+  { day: "Mer", start: "18h45", cours: "Boxe Anglaise (jusqu’à 20h15)", coach: "Farouk", fam: "adulte", disc: "anglaise" },
   // Jeudi
-  { day: "Jeu", start: "12h40", cours: "Boxing Camp", coach: "Sonia", fam: "adulte", disc: "boxing-camp" },
+  { day: "Jeu", start: "12h40", cours: "Boxe Pieds-Poings", coach: "Coach à confirmer", fam: "adulte", disc: "pieds-poings" },
   { day: "Jeu", start: "18h40", cours: "Boxing Camp", coach: "Jérôme", fam: "adulte", disc: "boxing-camp" },
   { day: "Jeu", start: "19h45", cours: "Asso MMA", coach: "Jérôme", fam: "mma", disc: "asso-mma" },
   // Vendredi
