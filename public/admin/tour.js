@@ -198,7 +198,7 @@ const ASSISTANTS = {
         b: "Chaque bloc est une offre de la page Tarifs. Change le prix, le nom ou la ligne de description directement dans les cases.",
         indice: "Modifie une case", avanceSur: { ev: "input", sel: "#pane input, #pane textarea" },
       },
-      { sel: "#pane .carte", t: "Attention à la formule du Duo", b: "L'Offre Duo se dit « 29 € par personne », jamais « 29 € pour deux » — c'est la formule officielle du réseau, et elle évite un malentendu à l'accueil." },
+      { sel: "#pane .carte", t: "Attention à la formule de la Rentrée", b: "L'Offre Rentrée se dit « 29 € par personne », jamais « 29 € pour deux » — c'est la formule officielle du réseau, et elle évite un malentendu à l'accueil." },
       { sel: "#publier", t: "Publie", b: "« Publier », et le nouveau prix est en ligne en une minute environ." },
     ],
   },
