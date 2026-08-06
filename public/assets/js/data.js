@@ -705,10 +705,10 @@ export const NETWORK = [
 ];
 
 /* Avis Google réels (source : _reviews-2026-07-12.json — Ramonville 4,1/5,
-   47 avis). Verbatim, jamais édités, jamais inventés. */
+   55 avis). Verbatim, jamais édités, jamais inventés. */
 export const REVIEWS = {
   rating: "4,1/5",
-  count: 47,
+  count: 55, // relevé Google Maps 2026-08-06
   sourceLabel: "Avis Google",
   quotes: [
     { text: "Un grand merci à Sonia qui nous accompagne avec bienveillance. Je recommande la salle de Ramonville les yeux fermés !", author: "LEPICIER I.", stars: 5 },
