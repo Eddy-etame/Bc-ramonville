@@ -377,7 +377,7 @@ export const PLATEAU = [
     n: "03",
     t: "Le grand ring",
     tag: "Anglaise · pieds-poings",
-    d: "Un ring de boxe olympique, cordes tendues, coin bleu, coin rouge. C’est là que le jab se règle et que le pieds-poings prend ses distances, midi et soir.",
+    d: "Un grand ring de boxe, cordes tendues, coin bleu, coin rouge. C’est là que le jab se règle et que le pieds-poings prend ses distances, midi et soir.",
     img: "/assets/img/ram/anglaise.webp",
     specs: ["Grand ring de boxe", "Anglaise · Pieds-poings"],
   },
