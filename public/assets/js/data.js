@@ -803,7 +803,7 @@ export const CARNET = {
 
 export const FAQ = [
   { q: "Où se trouve Boxing Center Ramonville ?", a: "Au 33 rue des Ormes, 31520 Ramonville-Saint-Agne, dans le sud toulousain — à proximité du terminus du métro (ligne B, Ramonville) et de l’arrêt bus Ramonville Sud." },
-  { q: "C’est vrai qu’on s’entraîne dehors ?", a: "Oui, et c’est la seule des cinq salles où c’est possible : 300 m² dehors, aménagés et couverts, praticables toute l’année — une averse ne renvoie personne à l’intérieur. Sous charpente, tu as l’octogone de 7 m et le ring de boxe olympique." },
+  { q: "C’est vrai qu’on s’entraîne dehors ?", a: "Oui, et c’est la seule des cinq salles où c’est possible : 300 m² dehors, aménagés et couverts, praticables toute l’année — une averse ne renvoie personne à l’intérieur. Sous charpente, tu as l’octogone de 7 m et le grand ring de boxe." },
   { q: "Quelles disciplines peut-on pratiquer ?", a: "Boxe anglaise et anglaise loisirs, boxe pieds-poings, grappling, asso MMA dans l’octogone, Boxing Camp, Lady Punch (100 % féminin) et toute l’école enfants du Baby Boxe (3 ans) aux ados 12/16. Un étage muscu/cardio est en accès libre." },
   { q: "Y a-t-il des cours pour les enfants ?", a: "Oui, dès 3 ans : Baby Boxe 3/6 le samedi, éducative 7/11 ans et ados 12/16 ans le mercredi et le samedi après-midi, encadrés par Valentin G." },
   { q: "Faut-il un niveau pour commencer ?", a: "Aucun. La séance d’essai à 10 € donne accès à toutes les disciplines, matériel prêté. La plupart des créneaux — loisirs, camp, pieds-poings — sont ouverts à tous les niveaux." },
