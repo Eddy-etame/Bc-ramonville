@@ -435,7 +435,7 @@ function vueSalle() {
 function vueTarifs() {
   const t = valeur("tarifs") || [];
   $("#pane").innerHTML = `
-    <p class="intro">Une carte par offre de la page Tarifs. <b>L'Offre Duo se dit « 29 € par personne »</b>, jamais « pour deux » : c'est la formule officielle, et elle évite un malentendu à l'accueil.</p>
+    <p class="intro">Une carte par offre de la page Tarifs. <b>L'Offre Rentrée se dit « 29 € par personne »</b>, jamais « pour deux » : c'est la formule officielle, et elle évite un malentendu à l'accueil.</p>
     ${t.map((o, i) => `
       <div class="carte" data-i="${i}">
         <div class="carte__tete"><h3>${echappe(o.name)}</h3></div>

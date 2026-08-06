@@ -41,7 +41,7 @@ function renderStats() {
 
 function renderTicker() {
   const t = $("#marquee"); if (!t) return;
-  const items = ["300 m² dehors", "Octogone 7 m", "Ring olympique", "Anglaise", "Pieds-poings", "Grappling", "Asso MMA", "Boxing Camp", "Lady Punch", "Dès 3 ans", "Accès libre 6 j/7", "Métro B · Ramonville"];
+  const items = ["300 m² dehors", "Octogone 7 m", "Grand ring de boxe", "Anglaise", "Pieds-poings", "Grappling", "Asso MMA", "Boxing Camp", "Lady Punch", "Dès 3 ans", "Accès libre 6 j/7", "Métro B · Ramonville"];
   const row = items.map((i) => `<span>${i}</span>`).join("");
   t.innerHTML = row + row; t.dataset.speed = "0.55";
 }
