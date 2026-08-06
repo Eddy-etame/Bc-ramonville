@@ -4,7 +4,7 @@
 
    Le monde : la seule salle du réseau qui s’entraîne DEHORS. 300 m²
    extérieurs aménagés et protégés des intempéries, un octogone de 7 m, un
-   ring olympique, deux niveaux avec un étage muscu/cardio. Registre
+   grand ring, deux niveaux avec un étage muscu/cardio. Registre
    documentaire — la nuit dehors, le ciel réel au-dessus de la cage.
 
    RÈGLES : tout fait vient des posters officiels 2026-2027 + du site
@@ -375,7 +375,7 @@ export const PLATEAU = [
   },
   {
     n: "03",
-    t: "Le ring olympique",
+    t: "Le grand ring",
     tag: "Anglaise · pieds-poings",
     d: "Un ring de boxe olympique, cordes tendues, coin bleu, coin rouge. C’est là que le jab se règle et que le pieds-poings prend ses distances, midi et soir.",
     img: "/assets/img/ram/anglaise.webp",
@@ -750,7 +750,7 @@ export const GALLERY = [
      rendu) — plus du double des pixels utiles, sur la page la plus lourde du
      site. La grille charge donc la version 1 200 px, et la visionneuse va
      chercher le 1 920 AU CLIC, quand quelqu’un le demande vraiment. */
-  { img: "/assets/img/ram/hero-1200.webp", plein: "/assets/img/ram/hero.webp", w: 1200, h: 801, zone: "Le plateau", place: "octogone 7 m + ring olympique", alt: "Le plateau de Boxing Center Ramonville sous la charpente : l’octogone de 7 m grillagé et le ring de boxe olympique.", discs: [], hors: "Le plan large — les deux instruments de la salle tiennent dans le même cadre, et rien ne les sépare." },
+  { img: "/assets/img/ram/hero-1200.webp", plein: "/assets/img/ram/hero.webp", w: 1200, h: 801, zone: "Le plateau", place: "octogone 7 m + grand ring", alt: "Le plateau de Boxing Center Ramonville sous la charpente : l’octogone de 7 m grillagé et le grand ring de boxe.", discs: [], hors: "Le plan large — les deux instruments de la salle tiennent dans le même cadre, et rien ne les sépare." },
   { img: "/assets/img/ram/octogone.webp", w: 768, h: 512, zone: "L’octogone", place: "asso MMA · vue de dessus", alt: "Séance d’asso MMA dans l’octogone de 7 m à Boxing Center Ramonville, vue de dessus, le groupe au sol.", discs: ["grappling", "asso-mma"] },
   { img: "/assets/img/ram/anglaise.webp", w: 768, h: 512, zone: "Le ring", place: "pattes d’ours", alt: "Travail aux pattes d’ours près du ring à Boxing Center Ramonville, un boxeur enchaîne face au coach.", credit: true, discs: ["anglaise", "pieds-poings"] },
   { img: "/assets/img/ram/camp.webp", w: 768, h: 512, zone: "Les sacs", place: "Boxing Camp", alt: "La ligne de sacs lourds pendant le Boxing Camp à Boxing Center Ramonville, plusieurs pratiquants aux gants.", discs: ["boxing-camp"] },
