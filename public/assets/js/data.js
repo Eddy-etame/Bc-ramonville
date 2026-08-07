@@ -11,7 +11,7 @@
    boxingcenter.fr (brief §3). Noms de coachs ≡ photos (roster.json), jamais
    croisés. Aucun claim périssable dans les pages : la saison passe par la
    constante SEASON, les promos vivent dans PROMOS (jamais en dur ailleurs).
-   Version d’assets unique : ?v=18 partout (imports compris).
+   Version d’assets unique : ?v=19 partout (imports compris).
    ===================================================================== */
 
 /* Anti-péremption — tout libellé de saison passe par ces constantes. */
@@ -653,7 +653,7 @@ const _PROMOS = {
     name: "Offre Rentrée",
     price: "29 €",
     unit: "par personne",
-    was: "au lieu de 44,99 €",
+    was: "au lieu de 44 €",
     feature: "4 semaines · cours illimités · sans engagement",
     items: ["4 semaines illimitées", "Encore mieux à deux — 29 € chacun", "Sans engagement"],
     cta: "Je prends ma place — 29 €",
@@ -683,10 +683,10 @@ const _TARIFS = [
   {
     name: "Offre Rentrée",
     price: "29 €",
-    was: "44,99 €",
+    was: "44 €",
     period: "/ personne · 4 semaines",
     feature: "Cours illimités · sans engagement — encore mieux à deux",
-    items: ["4 semaines illimitées", "29 € par personne (au lieu de 44,99 €)", "Sans engagement"],
+    items: ["4 semaines illimitées", "29 € par personne (au lieu de 44 €)", "Sans engagement"],
     cta: "Je prends ma place — 29 €",
     href: "https://box-plus.vercel.app/abonnements#promo",
     highlight: true,
@@ -700,6 +700,20 @@ const _TARIFS = [
     items: ["12 mois toutes disciplines", "4× 64,75 € sans frais", "Accès libre aux 5 clubs"],
     cta: "Je prends ma saison",
     href: "https://box-plus.vercel.app/abonnements#promo",
+    highlight: false,
+  },
+  /* L'abonnement de tous les jours. Il manquait : la page passait de
+     l'offre de rentree a l'ecole des enfants, et quelqu'un qui voulait
+     juste s'abonner au mois ne trouvait aucun prix. Ecrit SANS prix barre —
+     ce n'est pas une promotion, c'est le tarif. */
+  {
+    name: "L’abonnement au mois",
+    price: "44 €",
+    period: "/ 4 semaines · adulte",
+    feature: "Étudiant 36 € sur justificatif — le tarif de tous les jours",
+    items: ["Adulte 44 € / 4 semaines", "Étudiant 36 € / 4 semaines", "L’octogone, le ring, l’étage muscu", "Sans engagement"],
+    cta: "Voir les formules au mois",
+    href: "https://box-plus.vercel.app/abonnements",
     highlight: false,
   },
   {

@@ -30,14 +30,14 @@ const totalDisc = DISCIPLINES.length;
   <link rel="preconnect" href="https://api.open-meteo.com" crossorigin />
 
   <!-- Polices AUTO-HÉBERGÉES — mêmes familles/graisses que partout ailleurs -->
-  <link rel="preload" href="/fonts/chakrapetch-700-latin.woff2?v=18" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="/fonts/manrope-var-latin.woff2?v=18" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="/fonts/jetbrainsmono-var-latin.woff2?v=18" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="/assets/css/fonts.css?v=18" />
-  <link rel="stylesheet" href="/assets/css/base.css?v=18" />
-  <link rel="stylesheet" href="/assets/css/page.css?v=18" />
+  <link rel="preload" href="/fonts/chakrapetch-700-latin.woff2?v=19" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/manrope-var-latin.woff2?v=19" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/jetbrainsmono-var-latin.woff2?v=19" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=19" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=19" />
+  <link rel="stylesheet" href="/assets/css/page.css?v=19" />
   <!-- la feuille propre à cette page : le déroulé, les trois refus, la tenue -->
-  <link rel="stylesheet" href="/assets/css/premiere.css?v=18" />
+  <link rel="stylesheet" href="/assets/css/premiere.css?v=19" />
   <meta name="keywords" content="première séance boxe Ramonville, débuter la boxe Toulouse, cours de boxe débutant Ramonville-Saint-Agne, essai boxe 10 euros, jamais fait de boxe, sparring pas obligatoire, tenue cours de boxe, boxing gym Toulouse, MMA gym Toulouse, octagon MMA Toulouse, grappling Toulouse, kids boxing Toulouse, outdoor boxing Toulouse, boxing club Ramonville, martial arts gym near Toulouse" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="author" content="Boxing Center Ramonville" />
@@ -465,9 +465,9 @@ const totalDisc = DISCIPLINES.length;
   </script>
   <!-- Les trois libs sont chez nous (/assets/vendor/) : un seul domaine, une
        seule poignée de main TLS, et script-src refermé sur 'self'. -->
-  <script is:inline defer src="/assets/vendor/gsap.min.js?v=18"></script>
-  <script is:inline defer src="/assets/vendor/ScrollTrigger.min.js?v=18"></script>
-  <script is:inline defer src="/assets/vendor/lenis.min.js?v=18"></script>
+  <script is:inline defer src="/assets/vendor/gsap.min.js?v=19"></script>
+  <script is:inline defer src="/assets/vendor/ScrollTrigger.min.js?v=19"></script>
+  <script is:inline defer src="/assets/vendor/lenis.min.js?v=19"></script>
 </head>
 
 <body data-page="premiere-seance">
@@ -719,9 +719,9 @@ const totalDisc = DISCIPLINES.length;
       function venir() {
         if (venue) return venue;
         var f = document.createElement("link");
-        f.rel = "stylesheet"; f.href = "/assets/css/chatbot.css?v=18";
+        f.rel = "stylesheet"; f.href = "/assets/css/chatbot.css?v=19";
         document.head.appendChild(f);
-        venue = import("/assets/js/chatbot.js?v=18").catch(function () { venue = null; });
+        venue = import("/assets/js/chatbot.js?v=19").catch(function () { venue = null; });
         return venue;
       }
       ["pointerenter", "touchstart", "focus"].forEach(function (e) {
@@ -737,8 +737,8 @@ const totalDisc = DISCIPLINES.length;
     })();
   </script>
 
-  <script is:inline type="module" src="/assets/js/site.js?v=18"></script>
-  <script is:inline type="module" src="/assets/js/sky.js?v=18"></script>
-  <script is:inline type="module" src="/assets/js/page.js?v=18"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=19"></script>
+  <script is:inline type="module" src="/assets/js/sky.js?v=19"></script>
+  <script is:inline type="module" src="/assets/js/page.js?v=19"></script>
 </body>
 </html>

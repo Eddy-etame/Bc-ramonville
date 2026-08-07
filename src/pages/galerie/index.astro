@@ -10,8 +10,8 @@
   <link rel="preconnect" href="https://api.open-meteo.com" crossorigin />
 
   <!-- Polices AUTO-HÉBERGÉES — mêmes familles/graisses que l’original Google Fonts -->
-  <link rel="preload" href="/fonts/chakrapetch-700-latin.woff2?v=18" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="/fonts/manrope-var-latin.woff2?v=18" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/chakrapetch-700-latin.woff2?v=19" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/manrope-var-latin.woff2?v=19" as="font" type="font/woff2" crossorigin />
   <!-- JetBrains Mono manquait à l’appel, et c’est LUI qui décalait la page.
        Les libellés mono sont partout au-dessus de la ligne de flottaison —
        fil d’ariane, sur-titres, boutons, les chips du hero. La police
@@ -20,7 +20,7 @@
        (0,621 de décalage mesuré sur /tarifs/). Elle était de toute façon
        téléchargée sur les huit pages : la précharger ne coûte pas un octet
        ni une requête de plus, elle arrive seulement à l’heure. -->
-  <link rel="preload" href="/fonts/jetbrainsmono-var-latin.woff2?v=18" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/jetbrainsmono-var-latin.woff2?v=19" as="font" type="font/woff2" crossorigin />
   <!-- ON PRÉCHARGE CE QUI EST RÉELLEMENT AFFICHÉ, ET RIEN D’AUTRE.
        Cette ligne désignait hero.webp (1 920 px, 238 ko) alors que la mosaïque
        sert désormais la version 1 200 px. Résultat mesuré : la page tirait LES
@@ -28,9 +28,9 @@
        exactement sur la ressource utilisée ne fait pas gagner du temps, il
        double le poids. Le 1 920 reste chargé — au clic, par la visionneuse. -->
   <link rel="preload" as="image" href="/assets/img/ram/hero-1200.webp" fetchpriority="high" />
-  <link rel="stylesheet" href="/assets/css/fonts.css?v=18" />
-  <link rel="stylesheet" href="/assets/css/base.css?v=18" />
-  <link rel="stylesheet" href="/assets/css/galerie.css?v=18" />
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=19" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=19" />
+  <link rel="stylesheet" href="/assets/css/galerie.css?v=19" />
   <meta name="keywords" content="photos salle de boxe Ramonville, octogone MMA photo, ring boxe Toulouse, boxing center Ramonville-Saint-Agne galerie, carnet de terrain, boxing gym Toulouse, MMA gym Toulouse, octagon MMA Toulouse, kickboxing Toulouse, grappling Toulouse, kids boxing Toulouse, outdoor boxing Toulouse, boxing club Ramonville, martial arts gym near Toulouse" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="author" content="Boxing Center Ramonville" />
@@ -490,9 +490,9 @@
        comme tout /assets/, et surtout script-src a pu se refermer sur 'self'
        dans vercel.json. `defer` inchangé : elles ne retiennent pas le rendu et
        s’exécutent dans l’ordre du document, donc avant les modules du pied. -->
-  <script is:inline defer src="/assets/vendor/gsap.min.js?v=18"></script>
-  <script is:inline defer src="/assets/vendor/ScrollTrigger.min.js?v=18"></script>
-  <script is:inline defer src="/assets/vendor/lenis.min.js?v=18"></script>
+  <script is:inline defer src="/assets/vendor/gsap.min.js?v=19"></script>
+  <script is:inline defer src="/assets/vendor/ScrollTrigger.min.js?v=19"></script>
+  <script is:inline defer src="/assets/vendor/lenis.min.js?v=19"></script>
 </head>
 
 <body data-page="galerie">
@@ -674,9 +674,9 @@
       function venir() {
         if (venue) return venue;
         var f = document.createElement("link");
-        f.rel = "stylesheet"; f.href = "/assets/css/chatbot.css?v=18";
+        f.rel = "stylesheet"; f.href = "/assets/css/chatbot.css?v=19";
         document.head.appendChild(f);
-        venue = import("/assets/js/chatbot.js?v=18").catch(function () { venue = null; });
+        venue = import("/assets/js/chatbot.js?v=19").catch(function () { venue = null; });
         return venue;
       }
       ["pointerenter", "touchstart", "focus"].forEach(function (e) {
@@ -694,16 +694,16 @@
     })();
   </script>
 
-  <script is:inline type="module" src="/assets/js/site.js?v=18"></script>
-  <script is:inline type="module" src="/assets/js/sky.js?v=18"></script>
-  <script is:inline type="module" src="/assets/js/page.js?v=18"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=19"></script>
+  <script is:inline type="module" src="/assets/js/sky.js?v=19"></script>
+  <script is:inline type="module" src="/assets/js/page.js?v=19"></script>
 
   <!-- Enrichissement PROPRE à la page : la bande de conditions au-dessus du
        plateau (ciel réel), le sommaire du carnet et la visionneuse plein
        cadre. page.js a déjà rendu #gallery (légendes par zone + scramble),
        #carnet-usage, #carnet-methode et #carnet-renvoi. -->
   <script is:inline type="module">
-    import { GALLERY } from "/assets/js/data.js?v=18";
+    import { GALLERY } from "/assets/js/data.js?v=19";
     const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
     const root = document.documentElement;
 
@@ -821,9 +821,9 @@
         if (venu) return;
         venu = true;
         var f = document.createElement("link");
-        f.rel = "stylesheet"; f.href = "/assets/css/community.css?v=18";
+        f.rel = "stylesheet"; f.href = "/assets/css/community.css?v=19";
         document.head.appendChild(f);
-        import("/assets/js/community.js?v=18").catch(function () {
+        import("/assets/js/community.js?v=19").catch(function () {
           var m = document.getElementById("communaute-mur");
           if (m) m.innerHTML = '<p class="mur__vide">Le mur du club n\'a pas pu se charger. Recharge la page — il est là.</p>';
         });

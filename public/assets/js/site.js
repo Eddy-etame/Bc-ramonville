@@ -9,9 +9,9 @@
    figé, il n’y a plus rien à basculer.
    Aucun chrome copié de Saint-Cyprien.
    ===================================================================== */
-import { NAV, LINKS, SALLE, SEASON_LABEL, NETWORK } from "./data.js?v=18";
+import { NAV, LINKS, SALLE, SEASON_LABEL, NETWORK } from "./data.js?v=19";
 
-import { initPlaces } from "./places.js?v=18";
+import { initPlaces } from "./places.js?v=19";
 /* --------------------------- LE MAILLAGE --------------------------- *
    Les liens sortants vers le réseau propriétaire : le site du groupe, la
    boutique, et les quatre salles sœurs. Ils sont présents sur CHAQUE
