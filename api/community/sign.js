@@ -25,11 +25,12 @@
 import {
   cloudinary, FOLDER, LIMITES, configuree, cleanName, estEmail, estTel,
 } from "../_lib/community.js";
-import { allowCors, bodyOf, ipOf, rateLimit } from "../_lib/util.js";
+import { allowCors, bodyOf, ipOf, rateLimit, issuePow, verifyPow } from "../_lib/util.js";
 
 export default async function handler(req, res) {
   allowCors(res);
   if (req.method === "OPTIONS") return res.status(204).end();
+  if (req.method === "GET") return res.status(200).json(issuePow()); // le defi anti-bot
   if (req.method !== "POST") return res.status(405).json({ error: "Méthode non autorisée" });
 
   if (!configuree())
@@ -41,6 +42,16 @@ export default async function handler(req, res) {
     return res.status(429).json({ error: "Tu y vas fort. Laisse passer dix minutes et reviens." });
 
   const b = bodyOf(req);
+
+  /* Pot de miel : un humain ne voit pas ce champ. Un bot qui le remplit recoit
+     une signature FACTICE — son upload echouera chez Cloudinary, en silence. */
+  if (String(b.website || "").length > 0) {
+    return res.status(200).json({ cloudName: "denied", apiKey: "0", timestamp: 0, folder: "x", tags: "pending", context: "", signature: "0" });
+  }
+  /* Preuve de travail obligatoire */
+  if (!verifyPow(b.pow || {})) {
+    return res.status(400).json({ error: "Vérification expirée — réessaie, ça prend une seconde." });
+  }
   const prenom = cleanName(b.prenom, 40);
   const titre = cleanName(b.titre, 70);
   const email = String(b.email || "").trim();
