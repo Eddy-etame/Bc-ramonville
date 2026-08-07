@@ -424,7 +424,7 @@ export function initChatbot() {
       await botDit(
         profil.prenom
           ? `Re-salut ${profil.prenom} ! Je suis toujours là — créneaux, octogone, tarifs, école enfants : demande.`
-          : "Salut ! Je suis l’assistant de Boxing Center Ramonville — la salle qui s’entraîne dehors, 33 rue des Ormes. L’offre de la rentrée est à 29 € par personne — et je réponds sur les créneaux, l’octogone, l’école enfants.",
+          : "Bonjour 👋 Je suis l’assistant de Boxing Center Ramonville. Les créneaux, l’octogone, l’école enfants, les tarifs — posez votre question, je vous réponds. On est 33 rue des Ormes, au terminus du métro B.",
         700,
         resolveActions(["offre", "essai"])
       );

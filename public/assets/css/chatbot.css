@@ -112,7 +112,20 @@
 
 /* ------------------------------ PIED ------------------------------ */
 .bcr-chat__foot { border-top: 1px solid var(--line); background: var(--paper-2); }
-.bcr-chat__chips { display: flex; flex-wrap: wrap; gap: .4rem; padding: .7rem .7rem 0; }
+
+/* Le ruban de suggestions tient sur UNE ligne qui glisse. Il etait en
+   `flex-wrap: wrap` : les pastilles s'empilaient sur deux ou trois rangees
+   juste au-dessus du champ de saisie et mangeaient le tiers du panneau —
+   l'assistant paraissait plein avant d'avoir dit un mot. Barre de defilement
+   masquee (sur un ruban horizontal, elle se lit comme un defaut) et bords en
+   degrade : l'oeil comprend « ca continue » sans qu'on l'ecrive. */
+.bcr-chat__chips { display: flex; flex-wrap: nowrap; overflow-x: auto; overflow-y: hidden;
+  scroll-snap-type: none; -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; -ms-overflow-style: none;
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 12px, #000 calc(100% - 20px), transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, #000 12px, #000 calc(100% - 20px), transparent 100%); gap: .4rem; padding: .7rem .7rem 0; }
+.bcr-chat__chips::-webkit-scrollbar { display: none; }
+.bcr-chat__chips button { flex: 0 0 auto; white-space: nowrap; }
 .bcr-chat__chips[hidden] { display: none; }
 .bcr-chat__chips button {
   font: 600 var(--step--2)/1 var(--f-mono);
