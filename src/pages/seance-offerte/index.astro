@@ -4,6 +4,18 @@
 <html lang="fr" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
+  <script>
+    /* VERROU — cette page est un GESTE de l'assistant, pas une adresse publique.
+       Sans le laissez-passer depose par le chatbot au moment ou il l'offre
+       (meme session, 30 minutes), on sert la 404 : personne ne « tombe »
+       sur la seance offerte en tapant l'URL. */
+    (function () {
+      try {
+        var t = +(sessionStorage.getItem("bcr-offert-pass") || 0);
+        if (!t || Date.now() - t > 30 * 60 * 1000) location.replace("/404.html");
+      } catch (e) { location.replace("/404.html"); }
+    })();
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ta séance offerte — Boxing Center Ramonville</title>
   <meta name="description" content="Sur invitation de l’assistant du club : ta première séance au Boxing Center Ramonville est offerte." />
