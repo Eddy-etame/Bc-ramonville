@@ -151,7 +151,7 @@ const _DISCIPLINES = [
     coach: "Sonia",
     jours: "Mer. 12h40 · lun. & ven. 18h40",
     niveau: "Tous niveaux",
-    desc: "Poings, tibias, genoux : la boxe la plus complète, menée par Sonia. Trois créneaux par semaine, du midi qui réveille au soir qui vide les jambes.",
+    desc: "Poings, tibias, genoux : la boxe la plus complète, menée par Sonia. Trois créneaux par semaine, du midi qui réveille au soir qui défoule — et le sac encaisse tout, toi tu apprends.",
     /* CETTE FICHE N’AVAIT PAS D’IMAGE — et le carnet en avait une pour elle
        depuis le début. anglaise.webp est indexée `discs: ["anglaise",
        "pieds-poings"]` dans CARNET, plus bas dans ce même fichier : les
@@ -170,7 +170,7 @@ const _DISCIPLINES = [
     coach: "Jérôme",
     jours: "Mardi · 18h40",
     niveau: "Tous niveaux",
-    desc: "Contrôle, projections, soumissions au sol, dans l’octogone de 7 m. Jérôme y fait travailler la partie que la boxe ignore — celle qui finit les combats.",
+    desc: "Contrôle, projections, travail au sol dans l’octogone de 7 m. Jérôme y enseigne la partie que la boxe ignore : le sol. Mardi soir, tous niveaux — c’est le créneau où la cage s’ouvre aux débutants.",
     img: "/assets/img/ram/grappling.webp",
   },
   {
@@ -212,7 +212,7 @@ const _DISCIPLINES = [
     coach: "Sonia",
     jours: "Lundi & vendredi · 18h00 – 18h40",
     niveau: "Zéro prérequis",
-    desc: "Un créneau à elles avant le pieds-poings du soir : la vraie boxe, le cardio qui pique, la frappe qui défoule — entre meufs, personne pour te reluquer. Sonia tient la porte.",
+    desc: "Un créneau à vous, lundi et vendredi 18h : la vraie boxe, le cardio, la frappe qui défoule — entre femmes, avec Sonia qui tient la porte. Zéro prérequis : beaucoup y mettent les gants pour la première fois. Et à 18h40, celles qui veulent enchaînent sur le pieds-poings.",
     /* LES SIX PHOTOS PROUVÉES DE LA SALLE NE MONTRENT AUCUN CRÉNEAU FÉMININ.
        Illustrer un cours 100 % féminin avec un adulte masculin, ce serait
        mentir sur la seule chose qui définit ce créneau. `nophoto` remplace la
@@ -229,7 +229,7 @@ const _DISCIPLINES = [
     coach: "Valentin G",
     jours: "Baby 3/6 sam. 14h15 · 7/11 mer./sam. 15h · 12/16 mer./sam. 16h",
     niveau: "Baby → ados",
-    desc: "Du Baby Boxe dès 3 ans à l’éducative ados : tenir sa garde, attendre son tour, taper juste. Valentin G tient toute l’école, le mercredi et le samedi après-midi.",
+    desc: "Du Baby Boxe (dès 3 ans) à l’éducative ados, la règle est fédérale et non négociable : on touche, on ne frappe pas. Pas de coups portés — de la motricité, de la concentration, du respect, à hauteur d’enfant. Valentin G tient toute l’école, mercredi et samedi après-midi. Parents : restez, la salle est ouverte pendant le cours.",
     /* Même règle, et elle est plus stricte encore ici : on ne publie pas le
        visage d’un enfant sans l’accord écrit des parents, et aucune des six
        photos prouvées n’en montre. La plaque le dit franchement. */
@@ -369,7 +369,7 @@ export const PLATEAU = [
     n: "02",
     t: "L’octogone",
     tag: "7 m · la cage",
-    d: "Un octogone de 7 mètres, grillagé, pour le grappling, l’asso MMA et le travail au sol. La signature du plateau : on tourne dedans, on tombe dedans, on apprend à finir dedans.",
+    d: "Un octogone de 7 mètres, grillagé, pour le grappling, l’asso MMA et le travail au sol. La signature du plateau : pour le grappling et l’asso MMA. La signature du plateau : le mardi soir, c’est le créneau tous niveaux — la cage s’ouvre aux débutants, Jérôme tient la porte.",
     img: "/assets/img/ram/octogone.webp",
     specs: ["Octogone 7 m", "Grappling · Asso MMA"],
   },
@@ -377,7 +377,7 @@ export const PLATEAU = [
     n: "03",
     t: "Le grand ring",
     tag: "Anglaise · pieds-poings",
-    d: "Un grand ring de boxe, cordes tendues, coin bleu, coin rouge. C’est là que le jab se règle et que le pieds-poings prend ses distances, midi et soir.",
+    d: "Un grand ring de boxe, cordes tendues, coin bleu, coin rouge. C’est là que le jab se règle et que le pieds-poings prend ses distances, midi et soir — et que le débutant apprend d’abord à toucher, pas à frapper.",
     img: "/assets/img/ram/anglaise.webp",
     specs: ["Grand ring de boxe", "Anglaise · Pieds-poings"],
   },
@@ -431,7 +431,7 @@ const _COACHES = [
     role: "Pieds-poings · Lady Punch · Camp",
     tag: "Le pilier",
     pillar: true,
-    note: "Le fil rouge de la semaine : boxe pieds-poings, Lady Punch et Boxing Camp. Celle que les avis citent par son nom — l’accueil du plateau, c’est elle.",
+    note: "Le fil rouge de la semaine : boxe pieds-poings, Lady Punch et Boxing Camp. Celle que les avis citent par son nom — l’accueil du plateau, c’est elle. Première fois au club ? C’est vers elle qu’on t’envoie.",
     img: "/assets/img/ram/coach-sonia.webp",
   },
   {
@@ -440,7 +440,7 @@ const _COACHES = [
     tag: "L’homme de la cage",
     // Pas de patronyme : le brief §3 ne liste que « Jérôme » et aucun poster
     // officiel ne le confirme (même piège que « Valentin Tapia » / Valentin G).
-    note: "Le sol et l’octogone : grappling le mardi, asso MMA deux soirs. Jérôme t’emmène là où le combat se termine vraiment — au tapis, en soumission.",
+    note: "Le sol et l’octogone : grappling le mardi, asso MMA deux soirs. Jérôme tient le sol et l’octogone : grappling le mardi — le créneau tous niveaux, celui où la cage s’ouvre aux débutants — et l’asso MMA deux soirs, quand tu es prêt et si tu en as envie.",
     img: "/assets/img/ram/coach-jerome.webp",
   },
   {
