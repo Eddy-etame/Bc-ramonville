@@ -38,22 +38,56 @@ const DIST = join(ROOT, "dist");
 const ETAT = join(ROOT, "scripts", "sitemap-etat.json");
 const BASE = "https://bc-ramonville.vercel.app";
 
-/* L'image déclarée par page est celle que la page MONTRE — pas la plus
-   flatteuse. `changefreq` suit le rythme réel : le planning et l'accueil
-   bougent à la saison, le reste beaucoup moins. */
+/* ---------------------------------------------------------------------
+   L'INVENTAIRE DES PHOTOS — et pourquoi il est ici plutôt que dans le HTML.
+
+   Les photos du site vivent en fonds CSS et en grilles peintes par le
+   JavaScript. Google Images n'indexe QUE ce qu'il voit dans la page : une
+   photo en `background-image` ne rapporte rien, aussi belle soit-elle.
+   Le sitemap d'images est la seule déclaration officielle qui les rattrape.
+
+   On n'en déclarait qu'UNE par page. On les déclare toutes, chacune avec
+   son titre et sa légende — les mots de Ramonville, pas ceux d'une autre
+   salle du réseau : le plateau couvert et chauffé, l'octogone de 7 m, le
+   terminus du métro B. Une légende recopiée d'un site frère serait du
+   doublon aux yeux du moteur, et un mensonge aux yeux du lecteur.
+
+   Une seule taille par visuel : déclarer `planning-2026` ET
+   `planning-2026-full` ferait deux images concurrentes pour la même chose.
+   On déclare la version que la page sert en grand.
+   --------------------------------------------------------------------- */
+const CLUB = "Boxing Center Ramonville";
+const I = {
+  hero:      ["/assets/img/ram/hero.webp", `L'octogone de 7 m et le grand ring — ${CLUB}`, "Le plateau de Ramonville-Saint-Agne : un octogone de 7 mètres et un grand ring, en plein air, couverts et chauffés."],
+  heroLarge: ["/assets/img/ram/hero-1200.webp", `Le plateau sous la charpente — ${CLUB}`, "Les 300 m² d'entraînement en plein air du club de Ramonville, sous charpente."],
+  plateau:   ["/assets/img/ram/plateau.webp", `Le plateau : octogone, ring et tatamis — ${CLUB}`, "L'aire d'entraînement du Boxing Center Ramonville, 33 rue des Ormes, au terminus du métro B."],
+  octogone:  ["/assets/img/ram/octogone.webp", `MMA dans l'octogone de 7 m — ${CLUB}`, "Cours de MMA dans l'octogone de 7 mètres du club de Ramonville-Saint-Agne."],
+  anglaise:  ["/assets/img/ram/anglaise.webp", `Boxe anglaise sur le grand ring — ${CLUB}`, "Cours de boxe anglaise sur le grand ring de Ramonville, débutants acceptés."],
+  pieds:     ["/assets/img/ram/pieds-poings.webp", `Boxe pieds-poings — ${CLUB}`, "Cours de boxe pieds-poings au Boxing Center Ramonville : thaï, kick, savate."],
+  grappling: ["/assets/img/ram/grappling.webp", `Grappling au sol — ${CLUB}`, "Séance de grappling sur les tatamis du club de Ramonville-Saint-Agne."],
+  camp:      ["/assets/img/ram/camp.webp", `Boxing Camp, la ligne de sacs lourds — ${CLUB}`, "Le Boxing Camp de Ramonville : circuit sur la ligne de sacs lourds, cardio et technique."],
+  muscu:     ["/assets/img/ram/muscu.webp", `L'étage musculation et cardio — ${CLUB}`, "L'espace musculation-cardio à l'étage du Boxing Center Ramonville, compris dans l'abonnement."],
+  sonia:     ["/assets/img/ram/coach-sonia.webp", `Sonia, coach au ${CLUB}`, "Sonia encadre les cours du Boxing Center Ramonville, enfants dès 3 ans comme adultes débutants."],
+  jerome:    ["/assets/img/ram/coach-jerome.webp", `Jérôme, coach au ${CLUB}`, "Jérôme, coach au Boxing Center Ramonville-Saint-Agne."],
+  planRent:  ["/assets/img/ram/planning-rentree-2026-full.webp", `Planning de la rentrée 2026 — ${CLUB}`, "Le planning officiel des cours de la rentrée 2026 au Boxing Center Ramonville."],
+  planEte:   ["/assets/img/ram/planning-ete-2026-full.webp", `Planning d'été 2026 — ${CLUB}`, "Le planning des cours d'été 2026 au Boxing Center Ramonville."],
+};
+
+/* `changefreq` suit le rythme réel : le planning et l'accueil bougent à la
+   saison, le reste beaucoup moins. */
 const PAGES = [
-  { chemin: "", priorite: "1.0", freq: "weekly", img: "/assets/img/ram/hero.webp", titre: "Boxing Center Ramonville — l'octogone de 7 m et le grand ring de boxe" },
-  { chemin: "la-salle/", priorite: "0.8", freq: "monthly", img: "/assets/img/ram/plateau.webp", titre: "Le plateau Boxing Center Ramonville — l'octogone, le grand ring et les tatamis" },
-  { chemin: "activites/", priorite: "0.8", freq: "monthly", img: "/assets/img/ram/octogone.webp", titre: "Asso MMA dans l'octogone de 7 m — Boxing Center Ramonville" },
-  { chemin: "coachs/", priorite: "0.8", freq: "monthly", img: "/assets/img/ram/coach-sonia.webp", titre: "Sonia, coach à Boxing Center Ramonville" },
-  { chemin: "galerie/", priorite: "0.8", freq: "monthly", img: "/assets/img/ram/hero-1200.webp", titre: "Le plateau de Boxing Center Ramonville sous la charpente" },
-  { chemin: "plannings/", priorite: "0.8", freq: "weekly", img: "/assets/img/ram/planning-rentree-2026.webp", titre: "Planning officiel des cours — Boxing Center Ramonville" },
-  { chemin: "tarifs/", priorite: "0.8", freq: "monthly", img: "/assets/img/ram/camp.webp", titre: "Boxing Camp — la ligne de sacs lourds à Boxing Center Ramonville" },
-  { chemin: "contact/", priorite: "0.8", freq: "monthly", img: "/assets/img/ram/plateau.webp", titre: "Boxing Center Ramonville — 33 rue des Ormes, Ramonville-Saint-Agne" },
+  { chemin: "", priorite: "1.0", freq: "weekly", imgs: [I.hero, I.octogone, I.plateau, I.anglaise] },
+  { chemin: "la-salle/", priorite: "0.8", freq: "monthly", imgs: [I.plateau, I.octogone, I.muscu, I.camp, I.heroLarge] },
+  { chemin: "activites/", priorite: "0.8", freq: "monthly", imgs: [I.octogone, I.anglaise, I.pieds, I.grappling, I.camp, I.muscu] },
+  { chemin: "coachs/", priorite: "0.8", freq: "monthly", imgs: [I.sonia, I.jerome] },
+  { chemin: "galerie/", priorite: "0.8", freq: "monthly", imgs: [I.heroLarge, I.plateau, I.octogone, I.anglaise, I.pieds, I.grappling, I.camp, I.muscu] },
+  { chemin: "plannings/", priorite: "0.8", freq: "weekly", imgs: [I.planRent, I.planEte] },
+  { chemin: "tarifs/", priorite: "0.8", freq: "monthly", imgs: [I.camp, I.plateau] },
+  { chemin: "contact/", priorite: "0.8", freq: "monthly", imgs: [I.plateau] },
   /* La page de la première séance vaut le même poids que les tarifs : c'est
      l'autre porte d'entrée de quelqu'un qui n'est jamais venu. `monthly` :
      son contenu ne bouge qu'avec le planning et le prix de l'essai. */
-  { chemin: "premiere-seance/", priorite: "0.8", freq: "monthly", img: "/assets/img/ram/camp.webp", titre: "Ta première séance à Boxing Center Ramonville — la ligne de sacs du Boxing Camp" },
+  { chemin: "premiere-seance/", priorite: "0.8", freq: "monthly", imgs: [I.camp, I.anglaise, I.sonia] },
 ];
 
 const aujourdhui = new Date().toISOString().slice(0, 10);
@@ -72,16 +106,22 @@ for (const p of PAGES) {
   if (change) bouges++;
   neuf[p.chemin || "/"] = { empreinte, lastmod };
 
+  const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  const photos = p.imgs.map(([src, titre, legende]) =>
+    `    <image:image>\n` +
+    `      <image:loc>${BASE}${src}</image:loc>\n` +
+    `      <image:title>${esc(titre)}</image:title>\n` +
+    `      <image:caption>${esc(legende)}</image:caption>\n` +
+    `    </image:image>`
+  ).join("\n");
+
   lignes.push(
     `  <url>\n` +
     `    <loc>${BASE}/${p.chemin}</loc>\n` +
     `    <lastmod>${lastmod}</lastmod>\n` +
     `    <changefreq>${p.freq}</changefreq>\n` +
     `    <priority>${p.priorite}</priority>\n` +
-    `    <image:image>\n` +
-    `      <image:loc>${BASE}${p.img}</image:loc>\n` +
-    `      <image:title>${p.titre.replace(/&/g, "&amp;").replace(/</g, "&lt;")}</image:title>\n` +
-    `    </image:image>\n` +
+    photos + `\n` +
     `  </url>`
   );
 }
@@ -94,7 +134,8 @@ const xml =
 await writeFile(join(DIST, "sitemap.xml"), xml);
 await writeFile(ETAT, JSON.stringify(neuf, null, 2) + "\n");
 
+const photos = PAGES.reduce((n, p) => n + p.imgs.length, 0);
 console.log(
-  `[sitemap] ${PAGES.length} URL · ${bouges} page(s) modifiée(s) depuis le dernier relevé` +
+  `[sitemap] ${PAGES.length} URL · ${photos} images déclarées · ${bouges} page(s) modifiée(s) depuis le dernier relevé` +
   `${bouges ? ` → lastmod ${aujourdhui}` : " → toutes les dates conservées"}`
 );

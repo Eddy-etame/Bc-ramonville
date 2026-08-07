@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "build": "node scripts/content.mjs && astro build && node scripts/maillage.mjs && node scripts/minify.mjs && node scripts/sitemap.mjs",
+    "build": "node scripts/content.mjs && astro build && node scripts/maillage.mjs && node scripts/cuire-galerie.mjs && node scripts/minify.mjs && node scripts/sitemap.mjs",
     "content": "node scripts/content.mjs",
     "preview": "astro preview",
     "images": "node scripts/images.mjs",
