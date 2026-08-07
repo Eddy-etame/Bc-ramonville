@@ -26,7 +26,7 @@ export const QUICKS = [
   {
     label: "Essai · 10€",
     q: "Comment se passe la séance d’essai ?",
-    a: "10 € la séance, toutes disciplines, matériel prêté, sans engagement. Tu émarges, tu montes sur le plateau, tu tapes — on parle du reste après. Réservation sur box-plus.vercel.app/seance-essai ou passe au 33 rue des Ormes.",
+    a: "Tu dis à l’accueil que c’est ta première fois, un coach te prête les gants et te montre le plateau. Échauffement, technique, sac — à ton rythme, et personne ne monte sur le ring sans en avoir envie. 10 € la séance, toutes disciplines, sans engagement. Le déroulé complet est sur la page « Ta première séance ». [boutons: premiere, essai]",
   },
   {
     label: "Tarifs",
@@ -61,7 +61,7 @@ export const QUICKS = [
   {
     label: "Lady Punch",
     q: "C’est quoi le Lady Punch ?",
-    a: "Un créneau 100 % féminin, lundi et vendredi 18h00 – 18h40, avec Sonia. Zéro prérequis : la vraie boxe, le cardio qui pique, entre meufs. Il tombe juste avant le pieds-poings du soir si tu veux enchaîner.",
+    a: "Un créneau 100 % féminin, lundi et vendredi 18h00 – 18h40, avec Sonia. Zéro prérequis : la vraie boxe, le cardio, la frappe qui défoule, entre femmes. Il tombe juste avant le pieds-poings du soir si tu veux enchaîner.",
   },
 ];
 

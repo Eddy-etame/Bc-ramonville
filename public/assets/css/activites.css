@@ -144,6 +144,15 @@
 .fam__discs a i { font: 600 var(--step--2)/1.3 var(--f-mono); font-style: normal; letter-spacing: .06em; color: var(--muted); }
 .fam__discs a:hover, .fam__discs a:focus-visible { border-left-color: var(--accent); }
 .fam__discs a:hover b, .fam__discs a:focus-visible b { color: var(--accent); }
+/* LES HUIT AIGUILLAGES DE FAMILLE MESURAIENT 37 px SOUS LE POUCE (mesuré à
+   320 px) : sept de moins que les 44 exigés, sur les seuls liens qui mènent
+   d'une famille à sa fiche. Le bloc n'a pas besoin d'un pixel de plus à
+   l'écran — la colonne est déjà aérée de .5rem — il lui manquait le
+   plancher. `justify-content: center` garde le texte optiquement au même
+   endroit : la cible grandit, le dessin ne bouge pas. */
+@media (hover: none) {
+  .fam__discs a { min-height: 44px; justify-content: center; }
+}
 .entree__read { margin-top: clamp(1.4rem,3vw,2rem); color: var(--ink-soft); max-width: 72ch; }
 .entree__read b { color: var(--ink); }
 

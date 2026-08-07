@@ -50,6 +50,10 @@ const PAGES = [
   { chemin: "plannings/", priorite: "0.8", freq: "weekly", img: "/assets/img/ram/planning-rentree-2026.webp", titre: "Planning officiel des cours — Boxing Center Ramonville" },
   { chemin: "tarifs/", priorite: "0.8", freq: "monthly", img: "/assets/img/ram/camp.webp", titre: "Boxing Camp — la ligne de sacs lourds à Boxing Center Ramonville" },
   { chemin: "contact/", priorite: "0.8", freq: "monthly", img: "/assets/img/ram/plateau.webp", titre: "Boxing Center Ramonville — 33 rue des Ormes, Ramonville-Saint-Agne" },
+  /* La page de la première séance vaut le même poids que les tarifs : c'est
+     l'autre porte d'entrée de quelqu'un qui n'est jamais venu. `monthly` :
+     son contenu ne bouge qu'avec le planning et le prix de l'essai. */
+  { chemin: "premiere-seance/", priorite: "0.8", freq: "monthly", img: "/assets/img/ram/camp.webp", titre: "Ta première séance à Boxing Center Ramonville — la ligne de sacs du Boxing Camp" },
 ];
 
 const aujourdhui = new Date().toISOString().slice(0, 10);

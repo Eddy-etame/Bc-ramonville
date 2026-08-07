@@ -92,8 +92,11 @@ function mountNav() {
      lui, garde les huit entrées : rien n’est retiré au visiteur, on arrête
      seulement de le lui dire deux fois sur la même ligne. */
   const home = path === "/";
+  /* `n.short` quand il existe : la barre est la seule ligne du site où la
+     place manque vraiment (huit destinations, un logo, un bouton, un burger,
+     à partir de 1160 px). Le tiroir, lui, garde le libellé entier. */
   const links = NAV.filter((n) => n.href !== "/").map(
-    (n) => `<a href="${n.href}"${n.href === path ? ' aria-current="page"' : ""}>${n.label}</a>`
+    (n) => `<a href="${n.href}"${n.href === path ? ' aria-current="page"' : ""}>${n.short || n.label}</a>`
   ).join("");
   document.getElementById("nav").innerHTML = `
     <nav class="nav" id="site-nav">

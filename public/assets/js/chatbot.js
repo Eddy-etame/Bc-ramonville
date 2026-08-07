@@ -81,14 +81,39 @@ function submitLead(payload) {
 
 /* ============================ LE WIDGET ============================ */
 
+/* ------------------------------------------------------------------ *
+ *  LA SIGNATURE DE L’ASSISTANT DANS LA BOUTIQUE.
+ *
+ *  Jusqu’ici, un visiteur envoyé par le bot vers box-plus arrivait
+ *  ANONYME : la boutique voyait une visite de plus, jamais « celle-ci
+ *  vient du chat de Ramonville ». On ne pouvait donc pas prouver que
+ *  l’assistant vend — ni décider quoi que ce soit sur cette base.
+ *
+ *  `boutique()` colle la signature sur les seuls liens sortants (les
+ *  liens internes, /tarifs/ ou /plannings/, n’ont rien à signer : la
+ *  page suivante est déjà chez nous).
+ *
+ *  L’ANCRE RESTE LA DERNIÈRE. `#promo` est ce qui fait ouvrir le bon
+ *  rayon de la boutique : une URL qui finirait par `#promo?utm_source=…`
+ *  enverrait le visiteur en haut de la page des abonnements, et la vente
+ *  la mieux amenée se perdrait dans le défilement. La requête se glisse
+ *  donc AVANT le croisillon, jamais après.
+ * ------------------------------------------------------------------ */
+const UTM = "utm_source=chatbot&utm_medium=bouton&utm_campaign=bc-ramonville";
+function boutique(url) {
+  const [base, ancre] = String(url).split("#");
+  return base + (base.includes("?") ? "&" : "?") + UTM + (ancre ? "#" + ancre : "");
+}
+
 /* La pensée Portet émulée : clés fermées → vrais boutons sous les messages. */
 const ACTIONS = {
-  offre:       { label: "Je prends ma place — 29€", href: "https://box-plus.vercel.app/abonnements#promo" },
-  saison:      { label: "Je réserve ma saison · 259€", href: "https://box-plus.vercel.app/abonnements#promo" },
-  essai:       { label: "Je viens essayer · 10€", href: "https://box-plus.vercel.app/seance-essai" },
-  enfants:     { label: "J’inscris mon enfant", href: "https://box-plus.vercel.app/abonnements#enfants" },
-  abonnements: { label: "Voir les abonnements", href: "https://box-plus.vercel.app/abonnements" },
-  boutique:    { label: "La boutique du club", href: "https://box-plus.vercel.app/" },
+  offre:       { label: "Je prends ma place — 29€", href: boutique("https://box-plus.vercel.app/abonnements#promo") },
+  saison:      { label: "Je réserve ma saison · 259€", href: boutique("https://box-plus.vercel.app/abonnements#promo") },
+  essai:       { label: "Je viens essayer · 10€", href: boutique("https://box-plus.vercel.app/seance-essai") },
+  enfants:     { label: "J’inscris mon enfant", href: boutique("https://box-plus.vercel.app/abonnements#enfants") },
+  abonnements: { label: "Voir les abonnements", href: boutique("https://box-plus.vercel.app/abonnements") },
+  boutique:    { label: "La boutique du club", href: boutique("https://box-plus.vercel.app/") },
+  premiere:    { label: "Comment se passe la 1re séance", href: "/premiere-seance/" },
   tarifs:      { label: "Les tarifs en détail", href: "/tarifs/" },
   planning:    { label: "Voir le planning", href: "/plannings/" },
   disciplines: { label: "Découvrir les cours", href: "/activites/" },
@@ -100,6 +125,15 @@ const ACTIONS = {
   offert:      { label: "Je réserve ma séance offerte", href: "/seance-offerte/" },
   rappel:      { label: "Être rappelé par un coach", act: "rappel" },
 };
+/* L’adresse NUE d’une action, signature retirée : c’est elle qui sert à
+   reconnaître une URL écrite en clair par le modèle (qui, lui, n’écrit
+   jamais d’utm_) et à éviter deux boutons pour la même destination.
+   L’ANCRE EST GARDÉE : sans elle, « abonnements » et « abonnements#promo »
+   se confondraient et l’un des deux boutons disparaîtrait. */
+function nue(href) {
+  const [base, ancre] = String(href || "").split("#");
+  return base.split("?")[0].replace(/\/$/, "") + (ancre ? "#" + ancre : "");
+}
 function resolveActions(keys) {
   const out = [];
   for (const k of keys) {
@@ -107,7 +141,7 @@ function resolveActions(keys) {
     const def = ACTIONS[key.trim()];
     if (!def) continue;
     const label = rest.join(":").trim();
-    if (!out.some((a) => (a.href || a.act) === (def.href || def.act))) out.push(label ? { ...def, label } : def);
+    if (!out.some((a) => (a.href ? nue(a.href) : a.act) === (def.href ? nue(def.href) : def.act))) out.push(label ? { ...def, label } : def);
     if (out.length >= 3) break;
   }
   return out;
@@ -120,8 +154,11 @@ function parseReply(brut) {
     return "";
   });
   text = text.replace(/(?:https?:\/\/)?box-plus\.vercel\.app[\w\/#-]*/gi, (u) => {
-    const href = (u.startsWith("http") ? u : "https://" + u).replace(/\/$/, "");
-    const hit = Object.entries(ACTIONS).find(([, d]) => (d.href || "").replace(/\/$/, "") === href);
+    /* le modèle écrit l’adresse sans signature : on compare donc du nu au nu,
+       sinon plus aucune URL en clair ne serait reconnue et le bot laisserait
+       traîner une URL brute dans sa phrase au lieu d’un bouton. */
+    const href = nue(u.startsWith("http") ? u : "https://" + u);
+    const hit = Object.entries(ACTIONS).find(([, d]) => nue(d.href) === href);
     if (hit && !keys.some((k) => k.split(":")[0] === hit[0])) keys.push(hit[0]);
     return hit ? "la boutique en ligne" : u;
   });

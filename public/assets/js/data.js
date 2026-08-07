@@ -97,8 +97,14 @@ export const LINKS = {
   google: "https://maps.google.com/?q=Boxing+Center+Ramonville+Saint+Agne",
 };
 
+/* `short` : le libellé que porte la BARRE, quand il doit être plus court que
+   celui du menu. La barre tient sur une ligne à partir de 1160 px et pas un
+   pixel de moins ; « Première séance » y prend la place de deux entrées, alors
+   qu’au tiroir il a toute la largeur pour se dire en entier. Une seule liste,
+   deux longueurs — pas deux listes à tenir d’accord. */
 export const NAV = [
   { href: "/", label: "Accueil" },
+  { href: "/premiere-seance/", label: "Ta première séance", short: "1re séance" },
   { href: "/la-salle/", label: "Le plateau" },
   { href: "/activites/", label: "Activités" },
   { href: "/coachs/", label: "Coachs" },
@@ -137,7 +143,13 @@ const _DISCIPLINES = [
     tag: "Le noble art",
     famille: "adulte",
     coach: "Valentin G · Farouk",
-    jours: "Anglaise mar. & ven. 12h40 · Loisirs lun./mer./ven. 19h45",
+    /* RECOPIÉ SUR LA GRILLE, PAS SUR LA VERSION D’AVANT. Le poster de la
+       rentrée a redressé le mercredi soir — un seul bloc d’anglaise 18h45 →
+       20h15 avec Farouk, et non un loisirs de 19h45. Cette ligne l’ignorait
+       encore : la fiche annonçait un créneau que la grille, deux pages plus
+       loin, ne montrait pas. Les cinq créneaux ci-dessous sont ceux de
+       SCHEDULE, un par un. */
+    jours: "Anglaise mar. & ven. 12h40 · mer. 18h45 → 20h15 · Loisirs lun. & ven. 19h45",
     niveau: "Débutant → confirmé",
     desc: "Jab, esquive, jeu de jambes. Les midis pour le geste propre, les soirs en loisirs quand la salle se remplit et que les frappes couvrent le bruit du dehors. Le fondamental de la maison.",
     img: "/assets/img/ram/anglaise.webp",
@@ -148,8 +160,12 @@ const _DISCIPLINES = [
     name: "Boxe Pieds-Poings",
     tag: "Tibias & poings",
     famille: "adulte",
-    coach: "Sonia",
-    jours: "Mer. 12h40 · lun. & ven. 18h40",
+    /* Le midi du pieds-poings a changé de jour au poster de la rentrée :
+       jeudi, plus mercredi. Et son coach n’est pas encore arrêté — on écrit
+       « à confirmer » plutôt que de prêter ce créneau à Sonia, qui tient les
+       deux soirs et rien d’autre. */
+    coach: "Sonia · jeudi midi à confirmer",
+    jours: "Jeu. 12h40 · lun. & ven. 18h40",
     niveau: "Tous niveaux",
     desc: "Poings, tibias, genoux : la boxe la plus complète, menée par Sonia. Trois créneaux par semaine, du midi qui réveille au soir qui défoule — et le sac encaisse tout, toi tu apprends.",
     /* CETTE FICHE N’AVAIT PAS D’IMAGE — et le carnet en avait une pour elle
@@ -197,10 +213,15 @@ const _DISCIPLINES = [
     name: "Boxing Camp",
     tag: "Le condensé",
     famille: "adulte",
-    coach: "Sonia · Farouk · Jérôme · Valentin G",
-    jours: "Lun./jeu. 12h40 · mer./jeu. 18h40 · sam. 11h",
+    /* Quatre créneaux, trois coachs — recompté sur la grille de la rentrée.
+       Le camp du mercredi soir est passé au midi, celui du jeudi midi est
+       devenu du pieds-poings, et Farouk n’en tient plus aucun : il a le bloc
+       d’anglaise du mercredi soir. On corrige la fiche plutôt que de laisser
+       la page promettre un cinquième créneau qui n’existe plus. */
+    coach: "Sonia · Jérôme · Valentin G · mer. midi à confirmer",
+    jours: "Lun. & mer. 12h40 · jeu. 18h40 · sam. 11h",
     niveau: "Tous niveaux",
-    desc: "Le format signature Boxing Center : technique, cardio et sacs dans une seule séance dense. Cinq créneaux, quatre coachs — le meilleur point d’entrée si tu hésites encore.",
+    desc: "Le format signature Boxing Center : technique, cardio et sacs dans une seule séance dense. Quatre créneaux, du lundi midi au samedi matin — le meilleur point d’entrée si tu hésites encore.",
     img: "/assets/img/ram/camp.webp",
   },
   {
@@ -369,7 +390,10 @@ export const PLATEAU = [
     n: "02",
     t: "L’octogone",
     tag: "7 m · la cage",
-    d: "Un octogone de 7 mètres, grillagé, pour le grappling, l’asso MMA et le travail au sol. La signature du plateau : pour le grappling et l’asso MMA. La signature du plateau : le mardi soir, c’est le créneau tous niveaux — la cage s’ouvre aux débutants, Jérôme tient la porte.",
+    /* La phrase disait deux fois « La signature du plateau : » et deux fois
+       « pour le grappling et l’asso MMA » — une fusion d’édition restée en
+       l’état. Une seule signature, une seule fois. */
+    d: "Un octogone de 7 mètres, grillagé, pour le grappling, l’asso MMA et le travail au sol. La signature du plateau : le mardi soir, c’est le créneau tous niveaux — la cage s’ouvre aux débutants, Jérôme tient la porte.",
     img: "/assets/img/ram/octogone.webp",
     specs: ["Octogone 7 m", "Grappling · Asso MMA"],
   },
@@ -440,14 +464,18 @@ const _COACHES = [
     tag: "L’homme de la cage",
     // Pas de patronyme : le brief §3 ne liste que « Jérôme » et aucun poster
     // officiel ne le confirme (même piège que « Valentin Tapia » / Valentin G).
-    note: "Le sol et l’octogone : grappling le mardi, asso MMA deux soirs. Jérôme tient le sol et l’octogone : grappling le mardi — le créneau tous niveaux, celui où la cage s’ouvre aux débutants — et l’asso MMA deux soirs, quand tu es prêt et si tu en as envie.",
+    // même défaut qu’à la fiche de l’octogone : la phrase se disait deux fois.
+    note: "Jérôme tient le sol et l’octogone : grappling le mardi — le créneau tous niveaux, celui où la cage s’ouvre aux débutants — et l’asso MMA deux soirs, quand tu es prêt et si tu en as envie.",
     img: "/assets/img/ram/coach-jerome.webp",
   },
   {
     name: "Farouk",
-    role: "Anglaise Loisirs · Boxing Camp",
+    /* Le poster de la rentrée lui a retiré le Boxing Camp du mercredi soir et
+       lui a donné le bloc d’anglaise 18h45 → 20h15 à la place. Sa fiche
+       annonçait encore un cours qu’il ne donne plus. */
+    role: "Anglaise Loisirs · le mercredi soir",
     tag: "Les soirs loisirs",
-    note: "L’anglaise loisirs trois soirs par semaine et le Boxing Camp du mercredi : les créneaux où la salle se remplit et où le collectif prend le dessus.",
+    note: "L’anglaise loisirs le lundi et le vendredi à 19h45, et le grand bloc d’anglaise du mercredi, 18h45 à 20h15 : les créneaux où la salle se remplit et où le collectif prend le dessus.",
     img: null,
   },
   {
@@ -525,7 +553,8 @@ export const ETE = {
     d: "Muscu, cardio, sacs et le plateau extérieur — 10h00 à 21h30, comme toute l’année.",
   },
   ferme: { k: "Dimanche", v: "Fermé", d: "Le seul jour où la cage est vide." },
-  retour: "La rentrée reprend le planning complet — vingt-trois cours, six jours sur sept.",
+  // recompté sur SCHEDULE après le redressement du poster : vingt-deux.
+  retour: "La rentrée reprend le planning complet — vingt-deux cours, six jours sur sept.",
 };
 
 /* LA LÉGENDE DE LA GRILLE — la grille code déjà deux familles à l'œil

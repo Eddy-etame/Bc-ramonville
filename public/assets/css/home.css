@@ -32,7 +32,14 @@
 @media (min-width: 820px){ .hero__stats { grid-template-columns: repeat(4,1fr); } }
 .stat { background: color-mix(in srgb, var(--paper-2) 62%, transparent); backdrop-filter: blur(6px); padding: clamp(1rem,2vw,1.5rem); }
 .stat__v { font-family: var(--f-display); font-weight: 700; letter-spacing: -.02em; font-size: clamp(1.7rem,3.6vw,2.7rem); color: var(--ink); display: flex; align-items: baseline; }
-.stat__v sup { font-size: .42em; margin-left: .12em; color: var(--accent); }
+/* LE PLANCHER TYPO S'APPLIQUE AUSSI AUX UNITÉS. La feuille exemptait les
+   exposants du plancher de 12 px (« jamais un exposant », plus bas) — la
+   règle vaut pour un vrai exposant, un « e » d'ordinal ou un renvoi de
+   note. Ici, `sup` ne porte pas un exposant : il porte l'UNITÉ du chiffre
+   qui vend la salle — « m », « m² », « j/7 ». Mesuré à 320 px : 11,4 px,
+   sous le plancher, sur les quatre chiffres du premier écran. `max()`
+   garde la proportion sur grand écran et pose le plancher sur petit. */
+.stat__v sup { font-size: max(.42em, .75rem); margin-left: .12em; color: var(--accent); }
 .stat__l { margin-top: .35rem; font-size: .76rem; color: var(--muted); line-height: 1.4; }
 
 /* ==================== MANIFESTO — une ligne dure ================= */

@@ -187,3 +187,23 @@
 .bcr-chat__action:hover { background: rgba(174, 188, 207, 0.16); border-color: rgba(174, 188, 207, 0.5); color: #fff; transform: translateY(-1px); }
 .bcr-chat__action--ext { background: linear-gradient(145deg, #2b5fd4, #4a8fe8); border-color: transparent; color: #fff; box-shadow: 0 4px 14px rgba(24, 40, 72, 0.35); }
 .bcr-chat__action--ext:hover { color: #fff; }
+
+/* ============ LE PANNEAU SOUS LE POUCE — mesuré, pas supposé ============
+   Relevé à 390 px de large, panneau ouvert : la croix de fermeture faisait
+   30 × 30, les cinq suggestions 27 px de haut, le champ 38 et le bouton
+   d'envoi 41 × 38, et les boutons d'action 40. Autrement dit : le seul
+   endroit du site où l'on TAPE vraiment, phrase après phrase, était le
+   dernier à ne pas respecter le plancher de 44 px que les huit pages
+   tiennent depuis le relevé précédent.
+
+   Rien ne bouge à la souris : tout est enfermé dans (hover: none), et les
+   suggestions gardent leur dessin — c'est la hauteur de la cible qui monte,
+   pas la taille du texte. */
+@media (hover: none) {
+  .bcr-chat__close { min-width: 44px; min-height: 44px; }
+  .bcr-chat__chips button { min-height: 44px; }
+  .bcr-chat__input { min-height: 44px; }
+  .bcr-chat__send { min-width: 44px; min-height: 44px; }
+  .bcr-chat__action { min-height: 44px; }
+  .bcr-chat__close:active, .bcr-chat__chips button:active, .bcr-chat__action:active { transform: translateY(1px); }
+}

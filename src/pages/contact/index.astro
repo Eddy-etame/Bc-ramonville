@@ -24,7 +24,7 @@
   <link rel="stylesheet" href="/assets/css/fonts.css?v=18" />
   <link rel="stylesheet" href="/assets/css/base.css?v=18" />
   <link rel="stylesheet" href="/assets/css/page.css?v=18" />
-  <meta name="keywords" content="contact boxe Ramonville, adresse Boxing Center Ramonville-Saint-Agne, métro B Ramonville, téléphone salle boxe Toulouse sud, itinéraire, boxing gym Toulouse, MMA gym Toulouse, octagon MMA Toulouse, kickboxing Toulouse, muay thai Toulouse, grappling Toulouse, kids boxing Toulouse, outdoor boxing Toulouse, boxing club Ramonville, martial arts gym near Toulouse" />
+  <meta name="keywords" content="contact boxe Ramonville, adresse Boxing Center Ramonville-Saint-Agne, métro B Ramonville, téléphone salle boxe Toulouse sud, itinéraire, boxing gym Toulouse, MMA gym Toulouse, octagon MMA Toulouse, kickboxing Toulouse, grappling Toulouse, kids boxing Toulouse, outdoor boxing Toulouse, boxing club Ramonville, martial arts gym near Toulouse" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="author" content="Boxing Center Ramonville" />
   <meta name="geo.region" content="FR-31" />
@@ -155,8 +155,7 @@
           "Boxing",
           "Mixed Martial Arts",
           "Kickboxing",
-          "Grappling",
-          "Muay Thai"
+          "Grappling"
         ],
         "foundingDate": "2019-09",
         "sameAs": [
@@ -198,14 +197,6 @@
           "itemListElement": [
             {
               "@type": "Offer",
-              "name": "Séance d’essai",
-              "price": "10",
-              "priceCurrency": "EUR",
-              "url": "https://box-plus.vercel.app/seance-essai",
-              "description": "Toutes disciplines, matériel prêté, sans engagement."
-            },
-            {
-              "@type": "Offer",
               "name": "Offre Rentrée",
               "price": "29",
               "priceCurrency": "EUR",
@@ -219,6 +210,14 @@
               "priceCurrency": "EUR",
               "url": "https://box-plus.vercel.app/abonnements#promo",
               "description": "259 € les 12 mois, payable en 4× sans frais, accès libre aux 5 clubs."
+            },
+            {
+              "@type": "Offer",
+              "name": "Séance d’essai",
+              "price": "10",
+              "priceCurrency": "EUR",
+              "url": "https://box-plus.vercel.app/seance-essai",
+              "description": "Toutes disciplines, matériel prêté, sans engagement."
             }
           ]
         },
@@ -268,7 +267,7 @@
         "@id": "https://bc-ramonville.vercel.app/#navigation",
         "name": "Les pages de Boxing Center Ramonville",
         "itemListOrder": "https://schema.org/ItemListOrderAscending",
-        "numberOfItems": 8,
+        "numberOfItems": 9,
         "itemListElement": [
           {
             "@type": "ListItem",
@@ -317,6 +316,12 @@
             "position": 8,
             "name": "Contact",
             "url": "https://bc-ramonville.vercel.app/contact/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 9,
+            "name": "Ta première séance",
+            "url": "https://bc-ramonville.vercel.app/premiere-seance/"
           }
         ]
       },
@@ -469,7 +474,11 @@
       <div class="wrap">
         <nav class="breadcrumb" aria-label="Fil d’ariane"><a href="/">Accueil</a> / <span>Contact</span></nav>
         <h1 class="display phero__title"><span class="reveal-mask"><span>Viens.</span></span><span class="reveal-mask"><span class="tint">C’est au terminus.</span></span></h1>
-        <p class="lead phero__lead" data-reveal>33 rue des Ormes, à côté du terminus métro B. Pas de formulaire à remplir ici : tu appelles et on te répond avant le prochain cours — ou tu réserves en ligne. Le reste se règle sur le plateau. Le reste se règle sur le plateau.</p>
+        <!-- « Le reste se règle sur le plateau. » était écrit DEUX FOIS de
+             suite dans ce chapô — une fusion d’édition restée en l’état sur la
+             page la plus consultée après l’accueil. Une bonne phrase ne se dit
+             qu’une fois, y compris à trois mots d’intervalle. -->
+        <p class="lead phero__lead" data-reveal>33 rue des Ormes, à côté du terminus métro B. Pas de formulaire à remplir ici : tu appelles et on te répond avant le prochain cours — ou tu réserves en ligne. Le reste se règle sur le plateau.</p>
         <!-- l’objet propre à ce hero (page.js → pheroMeta) -->
         <div class="phero__meta" id="phero-meta" data-reveal-group aria-label="Venir à la salle"></div>
       </div>
@@ -486,6 +495,12 @@
           <a class="btn btn--ghost" data-magnetic href="tel:+33562244682"><span>05 62 24 46 82</span></a>
           <a class="btn btn--ghost" data-magnetic href="https://maps.google.com/?q=33+rue+des+Ormes+31520+Ramonville-Saint-Agne" target="_blank" rel="noopener"><span>Itinéraire ↗</span></a>
         </div>
+        <!-- CELUI QUI EST SUR CETTE PAGE N’A PAS ENCORE POUSSÉ LA PORTE.
+             Il cherche l’adresse, donc il envisage de venir — et la question
+             qu’il n’a posée à personne, c’est ce qui se passe une fois dedans.
+             Le renvoi est ici, entre l’adresse et les horaires, pas noyé en
+             pied de page. -->
+        <p class="muted" data-reveal style="margin-top:1rem;font-size:var(--step--1)">Première fois&nbsp;? <a href="/premiere-seance/" style="color:var(--accent)">Voilà comment se passe une première séance</a> — le déroulé, la tenue, et ce qu’on ne te fera pas faire.</p>
       </div>
     </section>
 

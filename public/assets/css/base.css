@@ -604,6 +604,17 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
 .arpent__dim line { stroke: var(--accent-line); stroke-width: .7; }
 .arpent__lbl { fill: var(--muted); font-family: var(--f-mono); font-weight: 600; font-size: 9px; letter-spacing: .1em; text-transform: uppercase; }
 .arpent__lbl--cage { fill: var(--accent); }
+/* LES DEUX LÉGENDES DE LA PLANCHE PASSAIENT SOUS LE PLANCHER TYPO — et
+   seulement sur les écrans les plus étroits. Ces 9 px sont des UNITÉS de
+   viewBox, pas des pixels : la planche les redimensionne avec elle. Mesuré
+   au rendu : 24,2 px à 760 de large (colonne unique, planche de 661 px),
+   19,0 px à 1280 (deux colonnes, planche de 518 px) — et 9,5 px à 320. La
+   taille lue ne suit donc PAS la largeur de l'écran, elle suit celle de la
+   planche, qui atteint son minimum au téléphone. C'est là, et là seulement,
+   qu'il faut rendre des unités : 11,5 × 1,058 = 12,2 px. « 300 × 1 m² » et
+   « 7 m » sont les deux mots qui expliquent tout le relevé ; ils ne peuvent
+   pas être la seule chose illisible de la page. */
+@media (max-width: 380px) { .arpent__lbl { font-size: 11.5px; } }
 
 /* la ligne qui tient tout le parti pris — elle ne se dit qu'ici */
 .arpent__honest { position: relative; z-index: 2; margin: 0 clamp(1rem,2.4vw,1.4rem) .5rem; font: 600 var(--step--2)/1.5 var(--f-mono); letter-spacing: .04em; color: var(--muted); max-width: 46ch; }
@@ -719,7 +730,23 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
   .review__by, .cursor__label, .stat__l { font-size: .78rem !important; }
 
   .nav__links a, .menu__link, .menu__foot a, .footer__col a, .crumbs a,
-  .chip, .faq summary, a[class*="link"], .nav__brand, .menu__close { min-height: 44px; display: inline-flex; align-items: center; }
+  .chip, .faq summary, a[class*="link"], .nav__brand, .menu__close,
+  /* LE NUMÉRO DE LA SALLE MESURAIT 23 px SOUS LE POUCE, sur /la-salle/.
+     Le même numéro, dans la fiche du pied de page (.fiche__cell), avait
+     bien ses 44 px : c'est la ligne de la bande pratique qui manquait à
+     l'appel. Un numéro de téléphone est le lien le plus urgent du site —
+     celui qu'on tape quand on hésite encore. */
+  .practical__cell .fv a, .info__row .fv a { min-height: 44px; display: inline-flex; align-items: center; }
+  /* LE NUMÉRO DU HERO DE /contact/ MESURAIT 12 px DE HAUT. La pastille qui
+     le contient, elle, en fait 26 : c'est le lien qui ne remplissait pas
+     sa pastille, et c'est le lien qu'on tape. On pose donc le plancher sur
+     la pastille et on demande au lien de l'occuper entièrement — la ligne
+     de pastilles s'aligne d'un coup, ce qu'elle aurait dû faire d'emblée. */
+  .phero__meta span { min-height: 44px; padding-block: 0; }
+  /* 44 sur le LIEN, pas seulement sur la pastille : le liseré d'un pixel de
+     la pastille est compté dans sa hauteur (border-box) et volait les deux
+     derniers pixels de la cible. */
+  .phero__meta a { display: inline-flex; align-items: center; align-self: stretch; min-height: 44px; }
   /* .btn est déjà inline-flex centré dans base — seul le plancher tactile manque */
   .btn { min-height: 44px; }
 }

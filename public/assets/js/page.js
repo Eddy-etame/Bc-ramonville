@@ -92,7 +92,11 @@ function pheroMeta() {
   }
 
   if (page === "coachs") {
-    const named = new Set(SCHEDULE.map((s) => s.coach));
+    /* « Coach à confirmer » n’est PAS un coach : deux créneaux du poster de la
+       rentrée attendent encore leur nom. Les compter faisait annoncer cinq
+       coachs sur une page qui en présente quatre — le chiffre du hero
+       contredisait la page qu’il coiffe. */
+    const named = new Set(SCHEDULE.map((s) => s.coach).filter((c) => !/confirmer/i.test(c)));
     box.innerHTML = chip(`<b>${named.size}</b> coachs sur le planning`)
       + chip(`<b>${SCHEDULE.length}</b> créneaux / semaine`)
       + chip("Un visage dès que la photo est prouvée");
@@ -904,7 +908,7 @@ function boot() {
   window.BC.media(document);
   window.BC.reveal(document);
   window.BC.magnetic(document);
-  window.BC.touchLife(".coach, .tarif, .net, .promo, .station, .value, .route, .eslot, .venir__card");
+  window.BC.touchLife(".coach, .tarif, .net, .promo, .station, .value, .route, .eslot, .venir__card, .nope__card");
 
   // ancre profonde (ex. /activites/#grappling) après rendu dynamique
   if (location.hash) {

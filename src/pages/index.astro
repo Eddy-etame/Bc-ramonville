@@ -13,7 +13,7 @@ const nf = new Intl.NumberFormat("fr-FR");
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Salle de boxe &amp; MMA à Ramonville — Boxing Center</title>
-  <meta name="description" content="300 m² d’entraînement dehors et à l’abri : un octogone de 7 m, un grand ring de boxe, deux niveaux. Métro B, terminus. Ta première séance est à 10 €." />
+  <meta name="description" content="300 m² d’entraînement dehors et à l’abri : un octogone de 7 m, un grand ring de boxe, deux niveaux. Métro B, terminus. La rentrée est à 29 € par personne, l’essai à 10 €." />
 
   <!-- Préconnexions — avant toute feuille de style -->
   <link rel="preconnect" href="https://api.open-meteo.com" crossorigin />
@@ -34,7 +34,7 @@ const nf = new Intl.NumberFormat("fr-FR");
   <link rel="stylesheet" href="/assets/css/base.css?v=18" />
   <link rel="stylesheet" href="/assets/css/home.css?v=18" />
 
-  <meta name="keywords" content="salle de boxe Ramonville, MMA Ramonville-Saint-Agne, octogone Toulouse, grappling Toulouse sud, boxe anglaise Ramonville, Lady Punch, baby boxe 3 ans, Boxing Center Ramonville, 31520, boxing gym Toulouse, MMA gym Toulouse, octagon MMA Toulouse, kickboxing Toulouse, muay thai Toulouse, grappling Toulouse, kids boxing Toulouse, outdoor boxing Toulouse, boxing club Ramonville, martial arts gym near Toulouse" />
+  <meta name="keywords" content="salle de boxe Ramonville, MMA Ramonville-Saint-Agne, octogone Toulouse, grappling Toulouse sud, boxe anglaise Ramonville, Lady Punch, baby boxe 3 ans, Boxing Center Ramonville, 31520, boxing gym Toulouse, MMA gym Toulouse, octagon MMA Toulouse, kickboxing Toulouse, grappling Toulouse, kids boxing Toulouse, outdoor boxing Toulouse, boxing club Ramonville, martial arts gym near Toulouse" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="author" content="Boxing Center Ramonville" />
   <meta name="geo.region" content="FR-31" />
@@ -165,8 +165,7 @@ const nf = new Intl.NumberFormat("fr-FR");
           "Boxing",
           "Mixed Martial Arts",
           "Kickboxing",
-          "Grappling",
-          "Muay Thai"
+          "Grappling"
         ],
         "foundingDate": "2019-09",
         "sameAs": [
@@ -208,14 +207,6 @@ const nf = new Intl.NumberFormat("fr-FR");
           "itemListElement": [
             {
               "@type": "Offer",
-              "name": "Séance d’essai",
-              "price": "10",
-              "priceCurrency": "EUR",
-              "url": "https://box-plus.vercel.app/seance-essai",
-              "description": "Toutes disciplines, matériel prêté, sans engagement."
-            },
-            {
-              "@type": "Offer",
               "name": "Offre Rentrée",
               "price": "29",
               "priceCurrency": "EUR",
@@ -229,6 +220,14 @@ const nf = new Intl.NumberFormat("fr-FR");
               "priceCurrency": "EUR",
               "url": "https://box-plus.vercel.app/abonnements#promo",
               "description": "259 € les 12 mois, payable en 4× sans frais, accès libre aux 5 clubs."
+            },
+            {
+              "@type": "Offer",
+              "name": "Séance d’essai",
+              "price": "10",
+              "priceCurrency": "EUR",
+              "url": "https://box-plus.vercel.app/seance-essai",
+              "description": "Toutes disciplines, matériel prêté, sans engagement."
             }
           ]
         },
@@ -278,7 +277,7 @@ const nf = new Intl.NumberFormat("fr-FR");
         "@id": "https://bc-ramonville.vercel.app/#navigation",
         "name": "Les pages de Boxing Center Ramonville",
         "itemListOrder": "https://schema.org/ItemListOrderAscending",
-        "numberOfItems": 8,
+        "numberOfItems": 9,
         "itemListElement": [
           {
             "@type": "ListItem",
@@ -327,6 +326,12 @@ const nf = new Intl.NumberFormat("fr-FR");
             "position": 8,
             "name": "Contact",
             "url": "https://bc-ramonville.vercel.app/contact/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 9,
+            "name": "Ta première séance",
+            "url": "https://bc-ramonville.vercel.app/premiere-seance/"
           }
         ]
       },
@@ -355,7 +360,7 @@ const nf = new Intl.NumberFormat("fr-FR");
         "@id": "https://bc-ramonville.vercel.app/#webpage",
         "url": "https://bc-ramonville.vercel.app/",
         "name": "Boxing Center Ramonville — salle de boxe & MMA, l’octogone à ciel ouvert",
-        "description": "300 m² d’entraînement dehors et à l’abri : un octogone de 7 m, un grand ring de boxe, deux niveaux. Métro B, terminus. Ta première séance est à 10 €.",
+        "description": "300 m² d’entraînement dehors et à l’abri : un octogone de 7 m, un grand ring de boxe, deux niveaux. Métro B, terminus. La rentrée est à 29 € par personne, l’essai à 10 €.",
         "inLanguage": "fr-FR",
         "isPartOf": {
           "@id": "https://bc-ramonville.vercel.app/#website"
@@ -535,7 +540,13 @@ const nf = new Intl.NumberFormat("fr-FR");
           <div>
             <span class="eyebrow" data-reveal>L’instrument</span>
             <h2 class="display onav__title"><span class="reveal-mask"><span>Chaque côté de la cage ouvre un cours.</span></span></h2>
-            <p class="muted" data-reveal style="max-width:42ch;margin-top:.9rem">Huit côtés, un seul réflexe : dis au coach que c’est ta première fois — il te guide, ses créneaux, son coach. Fais tourner l’instrument en haut de page, ou choisis dans la liste — tout vient du planning officiel de la rentrée.</p>
+            <!-- LA PHRASE NE VOULAIT PLUS RIEN DIRE. Deux versions s’étaient
+                 fondues en une : « dis au coach que c’est ta première fois —
+                 il te guide, ses créneaux, son coach. » On rend à chacune ce
+                 qui lui appartient — la liste ici, la première fois sur la
+                 page qui lui est enfin consacrée. -->
+            <p class="muted" data-reveal style="max-width:42ch;margin-top:.9rem">Huit côtés, huit portes. Chaque arête ouvre sa fiche : son coach, ses créneaux, le niveau demandé à l’entrée. Fais tourner l’instrument en haut de page, ou choisis dans la liste — tout vient du planning officiel de la rentrée.</p>
+            <p class="muted" data-reveal style="max-width:42ch;margin-top:.7rem;font-size:var(--step--1)">Jamais boxé ? <a href="/premiere-seance/" style="color:var(--accent)">Voilà comment se passe une première séance</a> — et ce qu’on ne te fera pas faire.</p>
             <div class="octa-legend" id="octa-legend" data-reveal-group style="margin-top:clamp(1.4rem,3vw,2rem)"></div>
           </div>
         </div>
