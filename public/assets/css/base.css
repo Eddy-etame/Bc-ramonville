@@ -723,3 +723,18 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
   /* .btn est déjà inline-flex centré dans base — seul le plancher tactile manque */
   .btn { min-height: 44px; }
 }
+
+/* ---------- Responsive : l'octogone se tape au doigt ----------
+   Les 22 unités SVG de la cible invisible sont RÉDUITES par l'échelle du
+   viewBox : sur un écran de 320 px, l'octogone fait 276 px pour 348 unités
+   (×0,79) — soit 17 px réels au lieu des 44 px exigés par le pouce. On
+   épaissit donc la cible à mesure que le dessin rétrécit. La navigation
+   signature du site devient enfin tapable du premier coup. */
+@media (max-width: 760px) { .octa__edge { stroke-width: 40; } }
+@media (max-width: 480px) { .octa__edge { stroke-width: 56; } }
+
+/* La légende sous l'octogone débordait de 3 px à 320 px (nowrap + interlettre) :
+   elle se plie au lieu de pousser la page. */
+@media (max-width: 400px) {
+  .octa__hint { white-space: normal; text-align: center; width: min(100%, 18rem); letter-spacing: .08em; line-height: 1.35; }
+}

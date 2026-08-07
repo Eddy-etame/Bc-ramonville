@@ -270,3 +270,15 @@
   .coach--pillar { flex-direction: column; }
   .practical { grid-template-columns: 1fr; }
 }
+
+/* La grille defile horizontalement sur telephone : on le DIT, et on montre
+   que ca continue a droite (degrade). L'indice disparait des le premier
+   glissement — il a fait son travail. */
+.gridwrap__hint { display: none; }
+@media (max-width: 760px) {
+  .gridwrap__hint { display: block; margin: 0 0 .5rem; font: 600 .72rem/1.3 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); transition: opacity .3s; }
+  .gridwrap__hint.is-gone { opacity: 0; }
+  .gridwrap { position: relative; }
+  .gridwrap.has-more::after { content: ""; position: sticky; float: right; top: 0; right: 0; width: 2.2rem; height: 100%; pointer-events: none;
+    background: linear-gradient(to left, var(--paper-2), transparent); }
+}

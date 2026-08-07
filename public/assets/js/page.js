@@ -919,3 +919,18 @@ function boot() {
 
 if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
 else boot();
+
+/* ---------- L'indice de defilement de la grille planning ----------
+   Une table plus large que l'ecran ne se devine pas : on annonce le geste,
+   et on efface l'annonce des qu'il est fait. */
+(() => {
+  const wrap = document.querySelector(".gridwrap");
+  const hint = document.querySelector(".gridwrap__hint");
+  if (!wrap) return;
+  const majuscule = () => wrap.classList.toggle("has-more", wrap.scrollWidth > wrap.clientWidth + 4);
+  majuscule();
+  window.addEventListener("resize", majuscule, { passive: true });
+  wrap.addEventListener("scroll", () => {
+    if (hint && wrap.scrollLeft > 12) { hint.classList.add("is-gone"); }
+  }, { passive: true });
+})();
