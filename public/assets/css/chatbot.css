@@ -260,3 +260,16 @@
   to   { transform: none; opacity: 1; }
 }
 @media (prefers-reduced-motion: reduce) { .bc-amorce { animation: none; } }
+
+/* Le ruban ne cede plus a la compression. Il vit dans un conteneur en
+   colonne flex : sans consigne, il acceptait de retrecir et ecrasait ses
+   pastilles a la hauteur d'une ligne de texte — mesure au navigateur,
+   16 px au lieu de 28, des boutons illisibles et intouchables. */
+.bcm-chat__chips, .scchat__chips, .bcr-chat__chips {
+  flex: 0 0 auto;
+  align-items: center;
+  min-height: 46px;
+}
+@media (hover: none) and (pointer: coarse) {
+  .bcm-chat__chips, .scchat__chips, .bcr-chat__chips { min-height: 56px; }
+}

@@ -413,6 +413,28 @@ export function initChatbot() {
     [...panneau.querySelectorAll('button, input, a[href], [tabindex]:not([tabindex="-1"])')]
       .filter((el) => !el.hasAttribute("disabled") && el.offsetParent !== null);
 
+      /* Trois temps, jamais plus : bonjour + je vois ou vous etes, UN
+         fait vrai sur cette page, une question ouverte. Le fait est ce
+         qui separe un assistant d'un pop-up. Chiffres verifies dans
+         data.js, un par un. */
+    const ACCUEILS = {
+      "/tarifs/": ["Bonjour \u{1F44B} Vous \u00eates sur les tarifs.", "Six formules. La rentr\u00e9e \u00e0 29\u202f\u20ac par personne est la plus prise. Je vous aide \u00e0 choisir\u00a0?"],
+      "/activites/": ["Bonjour \u{1F44B} Vous regardez les disciplines.", "Huit, du baby boxe \u00e0 l\u2019asso MMA dans l\u2019octogone. Dites-moi votre objectif."],
+      "/plannings/": ["Bonjour \u{1F44B} Vous cherchez un cr\u00e9neau.", "Ouvert du lundi au samedi, 10h\u201321h30. Donnez-moi vos dispos, je vous dis lequel prendre."],
+      "/coachs/": ["Bonjour \u{1F44B} Vous regardez l\u2019\u00e9quipe.", "Quatre coachs\u00a0: Sonia, J\u00e9r\u00f4me, Farouk et Valentin G. Une question sur l\u2019un d\u2019eux\u00a0?"],
+      "/la-salle/": ["Bonjour \u{1F44B} Vous d\u00e9couvrez le plateau.", "300\u202fm\u00b2 en plein air, couverts et chauff\u00e9s, un octogone de 7\u202fm. Envie de passer\u00a0?"],
+      "/galerie/": ["Bonjour \u{1F44B} Vous parcourez la galerie.", "Six cl\u00e9ich\u00e9s du plateau. Une question sur ce que vous voyez\u00a0?"],
+      "/premiere-seance/": ["Bonjour \u{1F44B} Vous pr\u00e9parez votre premi\u00e8re s\u00e9ance.", "Gants pr\u00eat\u00e9s, aucun niveau demand\u00e9, pas de sparring impos\u00e9. Une question\u00a0?"],
+      "/contact/": ["Bonjour \u{1F44B} Vous cherchez \u00e0 nous joindre.", "33 rue des Ormes, au terminus du m\u00e9tro B. Ou laissez-moi votre num\u00e9ro."],
+    };
+  /** Le premier message, choisi selon la page — et rien de plus long. */
+  function _accueilRamonville() {
+    const p = location.pathname.replace(/index\.html$/, "");
+    const a = ACCUEILS[p];
+    return a ? a[0] + " " + a[1]
+      : "Bonjour \u{1F44B} Je suis l’assistant de Boxing Center Ramonville. Les créneaux, l’octogone, les tarifs — posez votre question.";
+  }
+
   async function ouvrir() {
     panneau.hidden = false;
     launcher.classList.add("is-open");
@@ -424,15 +446,19 @@ export function initChatbot() {
       await botDit(
         profil.prenom
           ? `Re-salut ${profil.prenom} ! Je suis toujours là — créneaux, octogone, tarifs, école enfants : demande.`
-          : "Bonjour 👋 Je suis l’assistant de Boxing Center Ramonville. Les créneaux, l’octogone, l’école enfants, les tarifs — posez votre question, je vous réponds. On est 33 rue des Ormes, au terminus du métro B.",
+          : _accueilRamonville(),
         700,
         resolveActions(["offre", "essai"])
       );
       /* on ne redemande JAMAIS un prénom déjà donné — c’est la première
          chose qui trahit un robot */
+      /* Le prenom en TROISIEME bulle, apres deux messages qui ont deja
+         rendu service : ce n'est plus une exigence, c'est une conversation
+         qui commence. Au vouvoiement, comme les bulles au-dessus. Et on ne
+         redemande JAMAIS un prenom deja donne. */
       if (!profil.prenom) {
         attendPrenom = true;
-        await botDit("Dis-moi d’abord ton prénom, qu’on se parle correctement.", 520);
+        await botDit("Et vous, comment vous appelez-vous ?", 460);
       }
       montrerChips();
     }
