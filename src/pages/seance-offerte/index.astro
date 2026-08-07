@@ -91,6 +91,16 @@
     const INLETT_URL = "https://inlett.vercel.app";
     const INLETT_ESSAI_FORM_ID = ""; // ← ID à coller dès qu’Eddy crée le formulaire Ramonville
     const form = document.getElementById("off-form");
+    /* Préremplissage : ce que le visiteur a déjà confié à l'assistant (même
+       session) — zéro re-saisie, la règle du réseau. */
+    try {
+      const p = JSON.parse(sessionStorage.getItem("bc-ram-chat-profil") || "{}");
+      const fill = (n, v) => { const i = form.querySelector(`[name="${n}"]`); if (i && !i.value && v) i.value = v; };
+      fill("first_name", p.prenom || "");
+      fill("last_name", p.nom || "");
+      fill("email", p.email || "");
+      fill("phone", p.phone || p.tel || "");
+    } catch { /* pas de profil : formulaire vierge */ }
     const status = document.getElementById("off-status");
     const sha256 = async (s) => [...new Uint8Array(await crypto.subtle.digest("SHA-256", new TextEncoder().encode(s)))].map((b) => b.toString(16).padStart(2, "0")).join("");
     async function pow(challenge, difficulty) {
