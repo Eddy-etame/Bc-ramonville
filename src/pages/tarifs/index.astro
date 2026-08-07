@@ -446,8 +446,16 @@ import { TARIFS, PROMOS } from "../../../public/assets/js/data.js";
              lus de TARIFS et PROMOS au build : la même source que le reste
              de la page, écrite une seule fois dans data.js. pheroMeta() voit
              le bandeau déjà rempli et le laisse tranquille. -->
+        <!-- ⚠ CE BANDEAU A DÉJÀ MENTI. Il lisait `TARIFS[0]` en pensant y
+             trouver l'essai — vrai à l'écriture, faux depuis que les cartes
+             ont été réordonnées par l'ordre de vente : `TARIFS[0]` est
+             devenu « Offre Rentrée ». La page annonçait donc « 29 € l'essai »
+             en haut, « la séance d'essai est à 10 € » plus bas, et un Offer
+             JSON-LD à 10 € dans le head : trois prix d'entrée sur une page.
+             On cherche désormais la carte PAR SON NOM : un réordonnancement
+             ne peut plus changer ce que la page affirme. -->
         <div class="phero__meta" id="phero-meta" data-reveal-group aria-label="Les trois prix">
-          <span><b>{TARIFS[0].price}</b> l’essai</span>
+          <span><b>{(TARIFS.find((t) => /essai/i.test(t.name)) || TARIFS[TARIFS.length - 1]).price}</b> l’essai</span>
           <span><b>{PROMOS.duo.price}</b> {PROMOS.duo.unit}</span>
           <span><b>{PROMOS.saisonOffre.price}</b> {PROMOS.saisonOffre.unit}</span>
         </div>
