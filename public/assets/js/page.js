@@ -778,7 +778,7 @@ function renderTarifs() {
     <article class="tarif ${t.highlight ? "tarif--hot" : ""}">
       ${t.highlight ? '<span class="tarif__badge">Le + malin</span>' : ""}
       <h3 class="tarif__name">${t.name}</h3>
-      <div class="tarif__price">${t.price}<small> ${t.period}</small></div>
+      <div class="tarif__price">${t.was ? `<s class="tarif__was">${t.was}</s> ` : ""}${t.price}<small> ${t.period}</small></div>
       <p class="tarif__feature">${t.feature}</p>
       <ul class="tarif__items">${t.items.map((i) => `<li>${i}</li>`).join("")}</ul>
       <a class="btn ${t.highlight ? "" : "btn--primary"}" data-magnetic href="${t.href}"><span>${t.cta}</span></a>

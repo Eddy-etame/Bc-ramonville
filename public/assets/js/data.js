@@ -683,6 +683,7 @@ const _TARIFS = [
   {
     name: "Offre Rentrée",
     price: "29 €",
+    was: "44,99 €",
     period: "/ personne · 4 semaines",
     feature: "Cours illimités · sans engagement — encore mieux à deux",
     items: ["4 semaines illimitées", "29 € par personne (au lieu de 44,99 €)", "Sans engagement"],
@@ -693,6 +694,7 @@ const _TARIFS = [
   {
     name: "Offre Saison",
     price: "259 €",
+    was: "400 €",
     period: "/ 12 mois",
     feature: "4× sans frais · accès aux 5 clubs — moins de 5 € par semaine",
     items: ["12 mois toutes disciplines", "4× 64,75 € sans frais", "Accès libre aux 5 clubs"],

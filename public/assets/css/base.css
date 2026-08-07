@@ -766,3 +766,8 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
 @media (max-width: 400px) {
   .octa__hint { white-space: normal; text-align: center; width: min(100%, 18rem); letter-spacing: .08em; line-height: 1.35; }
 }
+
+/* Le vrai ancien prix, barré à côté du nouveau : sans lui, « 29 € » n'est
+   qu'un prix — avec lui, c'est une affaire. L'ancre de prix est la mécanique
+   la plus rentable d'une page de tarifs. */
+.tarif__was, .promo__price s { opacity: .55; font-weight: 600; font-size: .62em; text-decoration-thickness: 2px; margin-right: .15em; }
