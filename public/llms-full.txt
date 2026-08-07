@@ -21,50 +21,50 @@
 
 ## Le plateau (équipement)
 
-- 300 m² d'entraînement extérieur, aménagés et protégés des intempéries — la seule salle du réseau Boxing Center qui s'entraîne dehors, toute l'année
+- 300 m² d’entraînement extérieur, aménagés et protégés des intempéries — la seule salle du réseau Boxing Center qui s’entraîne dehors, toute l’année
 - Octogone de 7 m (grappling, asso MMA, travail au sol)
 - Grand ring de boxe (anglaise, pieds-poings)
-- Deux niveaux : au rez-de-chaussée le plateau (cage, ring, ligne de sacs lourds, espaces libres) ; à l'étage la muscu et le cardio (charges libres, machines), en accès libre 6 j/7
-- Espaces d'entraînement libres et collectifs, dedans et dehors
+- Deux niveaux : au rez-de-chaussée le plateau (cage, ring, ligne de sacs lourds, espaces libres) ; à l’étage la muscu et le cardio (charges libres, machines), en accès libre 6 j/7
+- Espaces d’entraînement libres et collectifs, dedans et dehors
 
 ## Le relevé du plateau extérieur (zone non photographiée)
 
 Le site publie six photos de la salle, toutes prises à couvert. Les 300 m²
 extérieurs — le fait qui distingue Ramonville des quatre autres salles du
-réseau — n'ont pas encore été photographiés, et le site ne les illustre par
-aucune image d'intérieur. À la place, il ARPENTE la zone : le relevé écrit,
-une planche dessinée à l'échelle, et le ciel réel au-dessus du plateau, mis
+réseau — n’ont pas encore été photographiés, et le site ne les illustre par
+aucune image d’intérieur. À la place, il ARPENTE la zone : le relevé écrit,
+une planche dessinée à l’échelle, et le ciel réel au-dessus du plateau, mis
 à jour en direct.
 
 - Surface : 300 m² d’entraînement extérieur, aménagés
 - Couverture : couvert, protégé des intempéries
-- Ouverture : toute l'année, six jours sur sept, 10h00 – 21h30
-- Plafond : le ciel — c'est un extérieur, pas une salle de plus
+- Ouverture : toute l’année, six jours sur sept, 10h00 – 21h30
+- Plafond : le ciel — c’est un extérieur, pas une salle de plus
 - Cliché : non relevé. Aucune des six photos publiées ne montre le dehors.
 - Source du ciel affiché : Open-Meteo, coordonnées 43.546 / 1.474 (état du
   ciel, heure locale de la salle et température, relevés en direct)
 
-### La planche d'arpentage (pages Le plateau et Galerie)
+### La planche d’arpentage (pages Le plateau et Galerie)
 
 Faute de photographie, la surface est DESSINÉE, à partir des deux seules
-mesures officielles disponibles : les 300 m² et l'octogone de 7 m.
+mesures officielles disponibles : les 300 m² et l’octogone de 7 m.
 
-- 300 carrés d'un mètre sont tracés, un par mètre carré déclaré
-- L'octogone de 7 m est dessiné à la même échelle, à côté, comme étalon de
+- 300 carrés d’un mètre sont tracés, un par mètre carré déclaré
+- L’octogone de 7 m est dessiné à la même échelle, à côté, comme étalon de
   comparaison — la seule dimension connue de la salle
-- La FORME du plateau extérieur n'est PAS dessinée : aucune source publique
-  n'indique si les 300 m² sont carrés, en L ou en bande. Les carrés sont
+- La FORME du plateau extérieur n’est PAS dessinée : aucune source publique
+  n’indique si les 300 m² sont carrés, en L ou en bande. Les carrés sont
   rangés pour être comptés, jamais pour figurer une emprise, et la légende
   de la planche le dit explicitement : « La surface est relevée. La forme ne
-  l'est pas — on ne la dessine donc pas. »
+  l’est pas — on ne la dessine donc pas. »
 - Le fond de la planche reste le ciel réel de Ramonville (Open-Meteo)
 
 ## Disciplines (coach, créneaux, niveau)
 
 - Boxe Anglaise — coachs Valentin G (mardi et vendredi 12h40) et Farouk (anglaise loisirs lundi, mercredi, vendredi 19h45) — débutant à confirmé
 - Boxe Pieds-Poings — coach Sonia — mercredi 12h40, lundi et vendredi 18h40 — tous niveaux
-- Grappling — coach Jérôme — mardi 18h40, dans l'octogone de 7 m — tous niveaux
-- Asso MMA — coach Jérôme — mardi et jeudi 19h45–21h15, dans l'octogone — confirmé (association)
+- Grappling — coach Jérôme — mardi 18h40, dans l’octogone de 7 m — tous niveaux
+- Asso MMA — coach Jérôme — mardi et jeudi 19h45–21h15, dans l’octogone — confirmé (association)
 - Boxing Camp — coachs Sonia, Farouk, Jérôme, Valentin G — lundi et jeudi 12h40, mercredi et jeudi 18h40, samedi 11h00 — tous niveaux
 - Lady Punch (100 % féminin) — coach Sonia — lundi et vendredi 18h00–18h40 — zéro prérequis
 - École enfants — coach Valentin G — Baby Boxe 3/6 ans samedi 14h15 ; éducative 7/11 ans mercredi et samedi 15h00 ; ados 12/16 ans mercredi et samedi 16h00
@@ -80,7 +80,7 @@ Compté sur les 23 cours de la grille de la rentrée.
 - Féminin — 2 créneaux, lundi et vendredi — Lady Punch — zéro prérequis
 - Accès libre — hors grille, aucun créneau ni inscription — 10h00 à 21h30, six jours sur sept
 - Au total, 7 des 8 disciplines sont accessibles sans expérience préalable ;
-  seule l'asso MMA demande de savoir déjà tenir un round.
+  seule l’asso MMA demande de savoir déjà tenir un round.
 
 ## Planning hebdomadaire des cours (grille complète)
 
@@ -97,14 +97,14 @@ Compté sur les 23 cours de la grille de la rentrée.
 - Total : 23 cours encadrés par semaine, sur six jours
 - Par jour : lundi 4 · mardi 3 · mercredi 5 · jeudi 3 · vendredi 4 · samedi 4
 - Jour le plus chargé : le mercredi, 5 cours, de 12h40 à 19h45
-- Répartition : 6 cours le midi (avant 14h), 5 l'après-midi (14h–17h), 12 le soir (après 17h)
-- Les 5 créneaux d'après-midi sont tous des cours de l'école enfants (mercredi et samedi)
+- Répartition : 6 cours le midi (avant 14h), 5 l’après-midi (14h–17h), 12 le soir (après 17h)
+- Les 5 créneaux d’après-midi sont tous des cours de l’école enfants (mercredi et samedi)
 - Entre et autour des cours : accès libre muscu/cardio et plateau extérieur, 10h00–21h30, six jours sur sept
 
-## L'été
+## L’été
 
 - Deux cours encadrés par semaine, tous les deux le lundi : 12h30 (Renaud) et 20h00 (Fayez)
-- Renaud et Fayez sont des coachs du réseau Boxing Center en renfort sur l'été ; ils ne font pas partie de l'encadrement de la rentrée à Ramonville (Sonia, Jérôme, Farouk, Valentin G)
+- Renaud et Fayez sont des coachs du réseau Boxing Center en renfort sur l’été ; ils ne font pas partie de l’encadrement de la rentrée à Ramonville (Sonia, Jérôme, Farouk, Valentin G)
 - Du mardi au samedi : accès libre, 10h00–21h30 — muscu, cardio, sacs et plateau extérieur
 - Dimanche : fermé
 - La rentrée reprend le planning complet des 23 cours
@@ -118,7 +118,7 @@ Compté sur les 23 cours de la grille de la rentrée.
 
 ## Tarifs et offres
 
-- Séance d'essai : 10 €, toutes disciplines, matériel prêté, sans engagement — https://box-plus.vercel.app/seance-essai
+- Séance d’essai : 10 €, toutes disciplines, matériel prêté, sans engagement — https://box-plus.vercel.app/seance-essai
 - Offre Rentrée : 29 € par personne (au lieu de 44 €), 4 semaines de cours illimités, sans engagement — https://box-plus.vercel.app/abonnements#promo
 - Offre Saison : 259 € les 12 mois (au lieu de 400 €), payable en 4× sans frais, toutes disciplines, accès libre aux 5 clubs du réseau — https://box-plus.vercel.app/abonnements#promo
 - École enfants dès 3 ans : Baby Boxe 3/6, éducative 7/11, ados 12/16 — https://box-plus.vercel.app/abonnements#enfants
@@ -129,24 +129,24 @@ Compté sur les 23 cours de la grille de la rentrée.
 - Note : 4,1/5 — 47 avis Google, reproduits mot pour mot sur le site
 - « Un grand merci à Sonia qui nous accompagne avec bienveillance. Je recommande la salle de Ramonville les yeux fermés ! » — LEPICIER I. (5/5)
 - « Super salle avec une très bonne ambiance. Les coachs sont très sympas et pédagogues. Je recommande ! » — Camille L. (5/5)
-- « Les enfants aiment bien y aller ; malgré un déménagement à 35 km, ils veulent continuer à s'entraîner. » — Manjoo N. (4/5)
+- « Les enfants aiment bien y aller ; malgré un déménagement à 35 km, ils veulent continuer à s’entraîner. » — Manjoo N. (4/5)
 
 ## Questions fréquentes
 
-- Où se trouve Boxing Center Ramonville ? Au 33 rue des Ormes, 31520 Ramonville-Saint-Agne, dans le sud toulousain — à proximité du terminus du métro (ligne B, Ramonville) et de l'arrêt bus Ramonville Sud.
-- C'est vrai qu'on s'entraîne dehors ? Oui. Ramonville est la seule salle du réseau avec 300 m² extérieurs aménagés et protégés des intempéries : on s'entraîne à l'air, sous le ciel, toute l'année. Il y a aussi un octogone de 7 m et un grand ring de boxe.
-- Quelles disciplines peut-on pratiquer ? Boxe anglaise et anglaise loisirs, boxe pieds-poings, grappling, asso MMA dans l'octogone, Boxing Camp, Lady Punch (100 % féminin) et toute l'école enfants du Baby Boxe (3 ans) aux ados 12/16. Un étage muscu/cardio est en accès libre.
+- Où se trouve Boxing Center Ramonville ? Au 33 rue des Ormes, 31520 Ramonville-Saint-Agne, dans le sud toulousain — à proximité du terminus du métro (ligne B, Ramonville) et de l’arrêt bus Ramonville Sud.
+- C’est vrai qu’on s’entraîne dehors ? Oui. Ramonville est la seule salle du réseau avec 300 m² extérieurs aménagés et protégés des intempéries : on s’entraîne à l’air, sous le ciel, toute l’année. Il y a aussi un octogone de 7 m et un grand ring de boxe.
+- Quelles disciplines peut-on pratiquer ? Boxe anglaise et anglaise loisirs, boxe pieds-poings, grappling, asso MMA dans l’octogone, Boxing Camp, Lady Punch (100 % féminin) et toute l’école enfants du Baby Boxe (3 ans) aux ados 12/16. Un étage muscu/cardio est en accès libre.
 - Y a-t-il des cours pour les enfants ? Oui, dès 3 ans : Baby Boxe 3/6 le samedi, éducative 7/11 ans et ados 12/16 ans le mercredi et le samedi après-midi, encadrés par Valentin G.
-- Faut-il un niveau pour commencer ? Aucun. La séance d'essai à 10 € donne accès à toutes les disciplines, matériel prêté. La plupart des créneaux — loisirs, camp, pieds-poings — sont ouverts à tous les niveaux.
+- Faut-il un niveau pour commencer ? Aucun. La séance d’essai à 10 € donne accès à toutes les disciplines, matériel prêté. La plupart des créneaux — loisirs, camp, pieds-poings — sont ouverts à tous les niveaux.
 - Quels sont les horaires ? Du lundi au samedi, de 10h00 à 21h30, accès libre muscu/cardio inclus. Fermé le dimanche. Un émargement GPS est demandé en salle avant chaque cours.
 
-## Le réseau Boxing Center (accès libre avec l'offre Saison)
+## Le réseau Boxing Center (accès libre avec l’offre Saison)
 
 - Portet-sur-Garonne — grand ring de boxe, cage MMA — https://www.boxing-center-portet.fr/
 - Minimes — salle historique, 3 rings, école dès 3 ans
 - États-Unis — la plus grande salle de France dédiée aux sports de combat
 - Saint-Cyprien — 1 200 m², un seul niveau
-- Ramonville — l'octogone à ciel ouvert, 300 m² extérieur couvert
+- Ramonville — l’octogone à ciel ouvert, 300 m² extérieur couvert
 
 ## Pages du site
 

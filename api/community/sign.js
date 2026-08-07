@@ -6,18 +6,18 @@
    plus. On valide donc ici (identité, filtre à injures, débit par IP), on
    SIGNE des paramètres, et le navigateur téléverse en direct chez
    Cloudinary avec cette signature. Le clip atterrit tagué « pending » :
-   personne ne le voit tant que le staff ne l'a pas approuvé.
+   personne ne le voit tant que le staff ne l’a pas approuvé.
 
-   CE QU'ON EXIGE POUR DÉPOSER : un prénom, ET un moyen de recontact
-   (email OU téléphone). Ce n'est pas un péage, c'est la contrepartie
+   CE QU’ON EXIGE POUR DÉPOSER : un prénom, ET un moyen de recontact
+   (email OU téléphone). Ce n’est pas un péage, c’est la contrepartie
    honnête : on publie ta photo sur le site du club, on veut savoir à qui
-   dire merci — et le staff veut pouvoir te répondre. C'est aussi ce qui
+   dire merci — et le staff veut pouvoir te répondre. C’est aussi ce qui
    fait de la galerie une source de contacts (le navigateur poste ensuite
    vers /api/lead avec event="upload_contributor", dans le carnet qui
-   existe déjà — on n'ouvre pas un second registre).
+   existe déjà — on n’ouvre pas un second registre).
 
    LA VALIDATION DU FICHIER LUI-MÊME se fait en deux temps : le navigateur
-   refuse l'évident avant l'envoi (type, poids, durée), et
+   refuse l’évident avant l’envoi (type, poids, durée), et
    /api/community/check REVÉRIFIE APRÈS COUP sur les métadonnées que
    Cloudinary a extraites du fichier réel. Ce qui est vérifié ici ne peut
    pas être contourné en trafiquant le formulaire.
@@ -34,7 +34,7 @@ export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ error: "Méthode non autorisée" });
 
   if (!configuree())
-    return res.status(503).json({ error: "Le mur du club n'est pas encore ouvert. Reviens très vite." });
+    return res.status(503).json({ error: "Le mur du club n’est pas encore ouvert. Reviens très vite." });
 
   const ip = ipOf(req);
   // garde-fou immédiat, avant même de parler à Cloudinary
@@ -60,9 +60,9 @@ export default async function handler(req, res) {
   if (prenom.value.length < 2)
     return res.status(400).json({ error: "Donne-nous ton prénom — on veut savoir à qui dire merci." });
   if (prenom.bad || titre.bad)
-    return res.status(400).json({ error: "Ce nom ne passe pas. Trouve-en un autre, on n'est pas difficiles." });
+    return res.status(400).json({ error: "Ce nom ne passe pas. Trouve-en un autre, on n’est pas difficiles." });
   if (!email && !tel)
-    return res.status(400).json({ error: "Laisse un email ou un numéro : c'est comme ça qu'on te répond." });
+    return res.status(400).json({ error: "Laisse un email ou un numéro : c’est comme ça qu’on te répond." });
   if (email && !estEmail(email))
     return res.status(400).json({ error: "Cet email ne ressemble pas à un email. Vérifie-le." });
   if (tel && !estTel(tel))
@@ -71,7 +71,7 @@ export default async function handler(req, res) {
   const type = b.type === "image" ? "image" : "video";
 
   /* Débit par IP, vu depuis le stockage : le compteur en mémoire ci-dessus
-     ne survit pas au recyclage de l'instance, celui-ci compte les fichiers
+     ne survit pas au recyclage de l’instance, celui-ci compte les fichiers
      RÉELLEMENT déposés. La recherche est un service au mieux — si elle ne
      répond pas, on laisse passer plutôt que de bloquer un vrai visiteur. */
   const fenetreMin = +(process.env.COMMUNITY_FENETRE_MIN || 10);
@@ -83,12 +83,12 @@ export default async function handler(req, res) {
       .max_results(maxParFenetre + 1)
       .execute();
     if ((r.total_count ?? (r.resources || []).length) >= maxParFenetre)
-      return res.status(429).json({ error: `Trop d'envois d'un coup. Reviens dans ${fenetreMin} minutes.` });
-  } catch { /* au mieux — on ne punit pas le visiteur d'une panne d'index */ }
+      return res.status(429).json({ error: `Trop d’envois d’un coup. Reviens dans ${fenetreMin} minutes.` });
+  } catch { /* au mieux — on ne punit pas le visiteur d’une panne d’index */ }
 
   const timestamp = Math.round(Date.now() / 1000);
-  /* Le contexte voyage AVEC le fichier : c'est là que vivent le prénom, le
-     titre, l'IP (pour le débit) et le moyen de recontact. Le staff les relit
+  /* Le contexte voyage AVEC le fichier : c’est là que vivent le prénom, le
+     titre, l’IP (pour le débit) et le moyen de recontact. Le staff les relit
      dans Le vestiaire au moment de modérer. */
   const context = [
     `titre=${titre.value}`,

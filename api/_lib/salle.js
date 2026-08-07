@@ -1,13 +1,13 @@
 /* =====================================================================
    RAMONVILLE · api/_lib/salle.js — les FAITS, une seule fois.
 
-   Le bloc d'ancrage du bot est CONSTRUIT depuis public/assets/js/data.js,
-   c'est-à-dire depuis la même source que les pages. Personne ne re-tape
+   Le bloc d’ancrage du bot est CONSTRUIT depuis public/assets/js/data.js,
+   c’est-à-dire depuis la même source que les pages. Personne ne re-tape
    une adresse ni un horaire ici : si le planning bouge sur le site, le
    bot bouge avec lui, sans intervention.
 
    Par-dessus, src/content.json — ce que « Le vestiaire » modifie. Il ne
-   remplace que les champs qu'il contient réellement.
+   remplace que les champs qu’il contient réellement.
 
    Si la lecture échoue (bundle inattendu), un repli figé prend le relais :
    moins riche, mais jamais faux, jamais vide.
@@ -15,14 +15,14 @@
 import { readFileSync } from "fs";
 import { join } from "path";
 
-const REPLI = `- Boxing Center Ramonville : la seule salle du réseau qui s'entraîne dehors — 300 m² extérieurs aménagés et protégés des intempéries, un octogone de 7 m, un ring de boxe olympique, deux niveaux avec un étage muscu/cardio.
+const REPLI = `- Boxing Center Ramonville : la seule salle du réseau qui s’entraîne dehors — 300 m² extérieurs aménagés et protégés des intempéries, un octogone de 7 m, un ring de boxe olympique, deux niveaux avec un étage muscu/cardio.
 - Adresse : 33 rue des Ormes, 31520 Ramonville-Saint-Agne. Téléphone : 05 62 24 46 82. Email : boxingcenter31@gmail.com.
 - Accès : métro ligne B, terminus Ramonville, à proximité ; bus arrêt Ramonville Sud ; sortie rocade Ramonville.
 - Horaires : du lundi au samedi, 10h00 – 21h30. Fermé le dimanche. Accès libre muscu/cardio inclus.
 - Émargement GPS obligatoire en salle avant chaque cours.
-- Disciplines : boxe anglaise et anglaise loisirs, boxe pieds-poings, grappling, asso MMA (dans l'octogone), Boxing Camp, Lady Punch (100 % féminin), école enfants du Baby Boxe 3/6 ans aux ados 12/16, accès libre muscu/cardio.
+- Disciplines : boxe anglaise et anglaise loisirs, boxe pieds-poings, grappling, asso MMA (dans l’octogone), Boxing Camp, Lady Punch (100 % féminin), école enfants du Baby Boxe 3/6 ans aux ados 12/16, accès libre muscu/cardio.
 - Coachs : Sonia (pieds-poings, Lady Punch, Camp), Jérôme (grappling, asso MMA), Farouk (anglaise loisirs, Camp), Valentin G (anglaise, école enfants).
-- Tarifs : séance d'essai 10 € (toutes disciplines, matériel prêté, sans engagement) ; Offre Duo 29 € par personne pour 4 semaines illimitées ; Offre Saison 259 € les 12 mois, payable en 4× sans frais, accès libre aux 5 clubs du réseau ; école enfants dès 3 ans.
+- Tarifs : séance d’essai 10 € (toutes disciplines, matériel prêté, sans engagement) ; Offre Duo 29 € par personne pour 4 semaines illimitées ; Offre Saison 259 € les 12 mois, payable en 4× sans frais, accès libre aux 5 clubs du réseau ; école enfants dès 3 ans.
 - Avis Google : 4,1/5 sur 47 avis.`;
 
 let cache = null;
@@ -57,7 +57,7 @@ export async function infosSalle() {
   const L = [];
 
   L.push(
-    `${S.name} : ${S.baseline} La seule salle du réseau qui s'entraîne dehors — 300 m² extérieurs aménagés et protégés des intempéries, un octogone de 7 m, un ring de boxe olympique, deux niveaux avec un étage muscu/cardio.`
+    `${S.name} : ${S.baseline} La seule salle du réseau qui s’entraîne dehors — 300 m² extérieurs aménagés et protégés des intempéries, un octogone de 7 m, un ring de boxe olympique, deux niveaux avec un étage muscu/cardio.`
   );
   L.push(`Adresse : ${adresse.full}. Téléphone : ${S.phone}. Email : ${S.email}.`);
   if (Array.isArray(S.access) && S.access.length) L.push(`Accès : ${S.access.join(" ; ")}.`);
@@ -81,7 +81,7 @@ export async function infosSalle() {
     L.push(
       "Tarifs : " +
         tarifs.map((t) => `${t.name} ${t.price} ${t.period} — ${t.feature}`).join(" ; ") +
-        ". L'Offre Duo est de 29 € PAR PERSONNE (jamais « 29 € pour deux »)."
+        ". L’Offre Duo est de 29 € PAR PERSONNE (jamais « 29 € pour deux »)."
     );
 
   const planning = c.schedule || D.SCHEDULE;
@@ -100,11 +100,11 @@ export async function infosSalle() {
         "."
     );
 
-  if (D.ETE) L.push(`L'été : ${D.ETE.lead} ${D.ETE.libre.k} en accès libre. Dimanche fermé.`);
+  if (D.ETE) L.push(`L’été : ${D.ETE.lead} ${D.ETE.libre.k} en accès libre. Dimanche fermé.`);
   if (D.REVIEWS) L.push(`Avis Google : ${D.REVIEWS.rating} sur ${D.REVIEWS.count} avis.`);
   if (Array.isArray(D.NETWORK))
     L.push(
-      "Réseau Boxing Center (l'abonnement Saison donne accès libre aux 5 clubs) : " +
+      "Réseau Boxing Center (l’abonnement Saison donne accès libre aux 5 clubs) : " +
         D.NETWORK.map((n) => `${n.name} (${n.tag})`).join(", ") +
         ". Site du groupe : boxingcenter.fr."
     );

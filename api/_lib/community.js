@@ -1,31 +1,31 @@
 /* =====================================================================
    RAMONVILLE · api/_lib/community.js — LA GALERIE DU CLUB, côté serveur.
 
-   CE QUE C'EST : les visiteurs déposent leurs photos et leurs vidéos du
-   plateau ; rien n'est publié avant qu'un membre du staff l'ait approuvé
+   CE QUE C’EST : les visiteurs déposent leurs photos et leurs vidéos du
+   plateau ; rien n’est publié avant qu’un membre du staff l’ait approuvé
    depuis Le vestiaire. Le stockage est CLOUDINARY — le même que Portet,
-   pour que les deux salles se dépannent avec le même mode d'emploi :
+   pour que les deux salles se dépannent avec le même mode d’emploi :
    il stocke, il transcode, il sert, et ses TAGS servent de base de
    données (pending → approved). Aucun second système à maintenir.
 
    CHAQUE SALLE A SON DOSSIER. Ramonville écrit dans
    « bc-ramonville-community » : deux salles peuvent partager un compte
-   Cloudinary sans jamais mélanger leurs murs, et la modération de l'une
-   ne voit pas les fichiers de l'autre.
+   Cloudinary sans jamais mélanger leurs murs, et la modération de l’une
+   ne voit pas les fichiers de l’autre.
 
    SANS CLOUDINARY_URL, RIEN NE PLANTE. `configuree()` dit la vérité, les
    routes répondent « pas encore ouvert » en français, et la page publique
-   affiche un état vide honnête. Un service absent n'a jamais fait perdre
+   affiche un état vide honnête. Un service absent n’a jamais fait perdre
    une page à personne — une page qui plante, si.
    ===================================================================== */
 import { v2 as cloudinary } from "cloudinary";
 
-cloudinary.config({ secure: true }); // lit CLOUDINARY_URL dans l'environnement
+cloudinary.config({ secure: true }); // lit CLOUDINARY_URL dans l’environnement
 
 export { cloudinary };
 export const FOLDER = process.env.COMMUNITY_FOLDER || "bc-ramonville-community";
 
-/** Le dépôt n'est ouvert que si le stockage est réellement branché. */
+/** Le dépôt n’est ouvert que si le stockage est réellement branché. */
 export function configuree() {
   const c = cloudinary.config();
   return !!(c.cloud_name && c.api_key && c.api_secret);
@@ -40,16 +40,16 @@ export const LIMITES = {
   maxSecondes: +(process.env.COMMUNITY_MAX_SEC || 15),
 };
 
-/* Formats réellement acceptés — c'est Cloudinary qui nous dit le format
-   RÉEL après décodage, pas l'extension ni le type déclaré par le
+/* Formats réellement acceptés — c’est Cloudinary qui nous dit le format
+   RÉEL après décodage, pas l’extension ni le type déclaré par le
    navigateur. Un .exe renommé .jpg ne décode pas : il ne passe pas. */
 export const FORMATS_IMAGE = ["jpg", "jpeg", "png", "webp", "gif", "heic", "heif", "avif"];
 export const FORMATS_VIDEO = ["mp4", "mov", "webm", "m4v", "3gp", "avi", "mkv"];
 
 /* Le même filtre à injures que le reste du site, appliqué au prénom ET au
-   titre. Il est volontairement court et lisible : il attrape l'évident,
-   il n'a pas la prétention d'attraper l'ingénieux — la modération humaine
-   est derrière, et c'est elle qui décide. */
+   titre. Il est volontairement court et lisible : il attrape l’évident,
+   il n’a pas la prétention d’attraper l’ingénieux — la modération humaine
+   est derrière, et c’est elle qui décide. */
 const GROSMOTS = [
   "merde", "putain", "connard", "connasse", "salope", "encule", "pute", "bite", "couille", "nique",
   "ntm", "pd", "pede", "tapette", "bougnoule", "negro", "negre", "youpin", "salaud",

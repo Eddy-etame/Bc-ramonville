@@ -2,13 +2,13 @@
    RAMONVILLE · api/_lib/leads-store.js — où atterrissent les contacts.
 
    TROIS SORTIES, toutes optionnelles, toutes branchées par variable
-   d'environnement. Aucune n'est obligatoire : sans la moindre clé, la
+   d’environnement. Aucune n’est obligatoire : sans la moindre clé, la
    fonction répond quand même 200 et journalise proprement — le parcours
-   du visiteur ne casse JAMAIS parce qu'un service n'est pas configuré.
+   du visiteur ne casse JAMAIS parce qu’un service n’est pas configuré.
 
      1. REGISTRE  (KV_REST_API_URL + KV_REST_API_TOKEN)
         Redis REST (Vercel KV / Upstash), appelé en `fetch` : aucune
-        dépendance npm, offre gratuite suffisante. C'est ce registre que
+        dépendance npm, offre gratuite suffisante. C’est ce registre que
         « Le vestiaire » relit pour afficher la liste des contacts.
      2. E-MAIL    (RESEND_API_KEY + LEAD_TO, défaut boxingcenter31@gmail.com)
         Un appel HTTP, pas de SDK. Le staff reçoit le contact tout de suite.
@@ -53,7 +53,7 @@ export async function saveLead(lead) {
 
 /** Les contacts, du plus récent au plus ancien.
     UNE FICHE PAR VISITEUR : la conversation enrichit le profil au fil de
-    l'eau (d'abord le numéro, puis l'email…), et chaque enrichissement est
+    l’eau (d’abord le numéro, puis l’email…), et chaque enrichissement est
     écrit. On ne garde donc que la version la plus récente de chaque
     session — le staff lit des personnes, pas des versions. */
 export async function listLeads(limit = 200) {
@@ -73,7 +73,7 @@ export async function listLeads(limit = 200) {
   return out;
 }
 
-/** Envoi d'e-mail au staff. Silencieux si non configuré. */
+/** Envoi d’e-mail au staff. Silencieux si non configuré. */
 export async function mailLead(lead) {
   const key = process.env.RESEND_API_KEY;
   if (!key) return false;
@@ -87,7 +87,7 @@ export async function mailLead(lead) {
       from,
       to: [to],
       subject: `Nouveau contact — ${lead.prenom || "visiteur"}${lead.phone ? " · " + lead.phone : ""}`,
-      html: `<p>Un visiteur a laissé ses coordonnées dans l'assistant du site Ramonville.</p>
+      html: `<p>Un visiteur a laissé ses coordonnées dans l’assistant du site Ramonville.</p>
 <table style="font:14px/1.5 system-ui">
 ${ligne("Prénom", lead.prenom)}${ligne("Nom", lead.nom)}${ligne("Téléphone", lead.phone)}${ligne("Email", lead.email)}${ligne("Salle", lead.salle)}${ligne("Origine", lead.event)}${ligne("Reçu le", lead.at)}
 </table>`,

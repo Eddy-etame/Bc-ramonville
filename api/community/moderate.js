@@ -4,12 +4,12 @@
    « publier » : on pose le tag approved, on retire pending → le fichier
    apparaît sur le mur au prochain chargement de /galerie/.
    « supprimer » : on DÉTRUIT le fichier chez Cloudinary. Pas de corbeille,
-   pas de tag « refusé » qui garderait la photo de quelqu'un sur nos
-   serveurs pour rien — refuser, c'est effacer.
+   pas de tag « refusé » qui garderait la photo de quelqu’un sur nos
+   serveurs pour rien — refuser, c’est effacer.
 
    Le garde-fou du dossier est le même que dans check.js : on ne peut agir
    que sur une ressource DE NOTRE DOSSIER. Un identifiant deviné ne permet
-   pas de détruire le média d'une salle sœur qui partagerait le compte.
+   pas de détruire le média d’une salle sœur qui partagerait le compte.
    ===================================================================== */
 import { cloudinary, FOLDER, configuree } from "../_lib/community.js";
 import { allowCors, bodyOf, isAdmin } from "../_lib/util.js";
@@ -19,7 +19,7 @@ export default async function handler(req, res) {
   if (req.method === "OPTIONS") return res.status(204).end();
   if (req.method !== "POST") return res.status(405).json({ error: "Méthode non autorisée" });
   if (!isAdmin(req)) return res.status(401).json({ error: "Accès refusé" });
-  if (!configuree()) return res.status(503).json({ error: "La galerie du club n'est pas branchée (CLOUDINARY_URL manquant)." });
+  if (!configuree()) return res.status(503).json({ error: "La galerie du club n’est pas branchée (CLOUDINARY_URL manquant)." });
 
   const { id, action, type } = bodyOf(req);
   const kind = type === "image" ? "image" : "video";

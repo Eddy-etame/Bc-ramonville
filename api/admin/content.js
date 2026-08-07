@@ -6,7 +6,7 @@
 
    Le calque ne REMPLACE pas data.js : il le surcharge, champ par champ,
    au moment du build (scripts/content.mjs → content.gen.js). Une clé
-   absente du calque, c'est data.js qui parle. On ne peut donc pas vider
+   absente du calque, c’est data.js qui parle. On ne peut donc pas vider
    le site par mégarde depuis le vestiaire.
 
    Env : ADMIN_TOKEN, GITHUB_TOKEN, GITHUB_REPO, GITHUB_BRANCH,
@@ -38,7 +38,7 @@ export default async function handler(req, res) {
   if (!process.env.GITHUB_TOKEN || !REPO)
     return res.status(503).json({
       error:
-        "L'édition de contenu n'est pas branchée sur ce site (il manque GITHUB_TOKEN et/ou GITHUB_REPO). Les contacts, eux, fonctionnent.",
+        "L’édition de contenu n’est pas branchée sur ce site (il manque GITHUB_TOKEN et/ou GITHUB_REPO). Les contacts, eux, fonctionnent.",
     });
 
   if (req.method === "GET") {

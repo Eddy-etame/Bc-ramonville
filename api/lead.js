@@ -4,7 +4,7 @@
    RÈGLE : cette fonction ne casse JAMAIS le parcours du visiteur. Même
    sans registre, sans e-mail et sans webhook configurés, elle répond 200
    et journalise le contact dans les logs de la fonction (récupérable
-   depuis le tableau de bord Vercel). Un service absent n'a jamais fait
+   depuis le tableau de bord Vercel). Un service absent n’a jamais fait
    perdre un contact à personne — un formulaire qui plante, si.
 
    Les trois sorties possibles sont documentées dans api/_lib/leads-store.js
@@ -37,7 +37,7 @@ export default async function handler(req, res) {
     page: clean(b.page, 120),
   };
 
-  // sans moyen de recontact, il n'y a rien à transmettre au staff
+  // sans moyen de recontact, il n’y a rien à transmettre au staff
   if (!lead.email && !lead.phone)
     return res.status(400).json({ error: "Aucun moyen de recontact." });
 

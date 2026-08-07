@@ -6,7 +6,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ta séance offerte — Boxing Center Ramonville</title>
-  <meta name="description" content="Sur invitation de l'assistant du club : ta première séance au Boxing Center Ramonville est offerte." />
+  <meta name="description" content="Sur invitation de l’assistant du club : ta première séance au Boxing Center Ramonville est offerte." />
   <meta name="robots" content="noindex, nofollow" />
   <link rel="stylesheet" href="/assets/css/fonts.css?v=b18" />
   <link rel="stylesheet" href="/assets/css/base.css?v=b18" />
@@ -89,7 +89,7 @@
        de miel vers Inlett (email automatique, ID branché dès réception), et
        TOUJOURS la base commune via /api/lead (gestion-manager, champ salle). */
     const INLETT_URL = "https://inlett.vercel.app";
-    const INLETT_ESSAI_FORM_ID = ""; // ← ID à coller dès qu'Eddy crée le formulaire Ramonville
+    const INLETT_ESSAI_FORM_ID = ""; // ← ID à coller dès qu’Eddy crée le formulaire Ramonville
     const form = document.getElementById("off-form");
     const status = document.getElementById("off-status");
     const sha256 = async (s) => [...new Uint8Array(await crypto.subtle.digest("SHA-256", new TextEncoder().encode(s)))].map((b) => b.toString(16).padStart(2, "0")).join("");

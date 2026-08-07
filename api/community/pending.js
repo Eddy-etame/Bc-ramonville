@@ -3,7 +3,7 @@
 
    Ce que le staff voit dans Le vestiaire, section « La galerie du club » :
    tout ce qui est tagué « pending », le plus ancien en tête (on traite
-   dans l'ordre d'arrivée, personne n'attend derrière les autres).
+   dans l’ordre d’arrivée, personne n’attend derrière les autres).
 
    On renvoie AUSSI le moyen de recontact laissé par le contributeur : le
    coach qui approuve peut remercier, ou demander une précision. Cette
@@ -21,7 +21,7 @@ export default async function handler(req, res) {
   if (!configuree())
     return res.status(200).json({
       items: [], ouvert: false,
-      note: "La galerie du club n'est pas branchée : il manque CLOUDINARY_URL dans les réglages du site. Le reste du vestiaire fonctionne.",
+      note: "La galerie du club n’est pas branchée : il manque CLOUDINARY_URL dans les réglages du site. Le reste du vestiaire fonctionne.",
     });
 
   try {

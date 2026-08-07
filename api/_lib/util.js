@@ -26,7 +26,7 @@ export function isAdmin(req) {
   return timingSafeEqual(given, good);
 }
 
-/** Corps de requête, que Vercel l'ait parsé ou non. Ne lève jamais. */
+/** Corps de requête, que Vercel l’ait parsé ou non. Ne lève jamais. */
 export function bodyOf(req) {
   try {
     return typeof req.body === "string" ? JSON.parse(req.body || "{}") : req.body || {};
@@ -35,7 +35,7 @@ export function bodyOf(req) {
   }
 }
 
-/** Limiteur de débit en mémoire (par instance) — assez pour freiner l'abus
+/** Limiteur de débit en mémoire (par instance) — assez pour freiner l’abus
     évident sans dépendance ni stockage. Ne bloque jamais un vrai visiteur. */
 const HITS = new Map();
 export function rateLimit(key, max = 30, windowMs = 60_000) {
@@ -50,12 +50,12 @@ export function rateLimit(key, max = 30, windowMs = 60_000) {
   return slot.n <= max;
 }
 
-/** Nettoyage d'une chaîne venue du visiteur : longueur bornée, pas d'HTML. */
+/** Nettoyage d’une chaîne venue du visiteur : longueur bornée, pas d’HTML. */
 export function clean(s, max = 200) {
   return String(s ?? "").replace(/[<>]/g, "").trim().slice(0, max);
 }
 
-/* ---------- Preuve de travail (anti-bot, cout ~un clignement d'oeil) ----------
+/* ---------- Preuve de travail (anti-bot, cout ~un clignement d’oeil) ----------
    Meme mecanique que Portet et Minimes : defi signe HMAC (aucun etat serveur),
    le client trouve un nonce tel que sha256("challenge:nonce") commence par
    N zeros ; le serveur verifie signature, fraicheur et preuve. */

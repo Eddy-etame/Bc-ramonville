@@ -178,7 +178,7 @@ function brancherForm(form, etat) {
     const type = image ? "image" : "video";
     try {
       // 1) notre fonction valide l’identité et SIGNE — les octets ne passent pas par elle
-      /* 0) le defi anti-bot : emis par le serveur, resolu ici en un clin d'oeil */
+      /* 0) le defi anti-bot : emis par le serveur, resolu ici en un clin d’oeil */
       const powRes = await fetch(`${API}/api/community/sign`).then((r) => r.json()).catch(() => null);
       let powNonce = "";
       if (powRes && powRes.challenge) {
