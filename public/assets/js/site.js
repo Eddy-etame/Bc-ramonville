@@ -95,7 +95,7 @@ function mountNav() {
   /* `n.short` quand il existe : la barre est la seule ligne du site où la
      place manque vraiment (huit destinations, un logo, un bouton, un burger,
      à partir de 1160 px). Le tiroir, lui, garde le libellé entier. */
-  const links = NAV.filter((n) => n.href !== "/").map(
+  const links = NAV.filter((n) => n.href !== "/" && n.top !== false).map(
     (n) => `<a href="${n.href}"${n.href === path ? ' aria-current="page"' : ""}>${n.short || n.label}</a>`
   ).join("");
   document.getElementById("nav").innerHTML = `

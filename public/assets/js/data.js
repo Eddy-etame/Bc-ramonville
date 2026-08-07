@@ -104,11 +104,11 @@ export const LINKS = {
    deux longueurs — pas deux listes à tenir d’accord. */
 export const NAV = [
   { href: "/", label: "Accueil" },
-  { href: "/premiere-seance/", label: "Ta première séance", short: "1re séance" },
-  { href: "/la-salle/", label: "Le plateau" },
+  { href: "/premiere-seance/", label: "1re séance", short: "1re séance" },
+  { href: "/la-salle/", label: "Le plateau", top: false },
   { href: "/activites/", label: "Activités" },
   { href: "/coachs/", label: "Coachs" },
-  { href: "/galerie/", label: "Galerie" },
+  { href: "/galerie/", label: "Galerie", top: false },
   { href: "/plannings/", label: "Planning" },
   { href: "/tarifs/", label: "Tarifs" },
   { href: "/contact/", label: "Contact" },
