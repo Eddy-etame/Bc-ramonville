@@ -197,7 +197,7 @@ export function initChatbot() {
   racine.className = "bcr-chat";
   racine.id = "bcr-chat";
   racine.innerHTML = `
-    <section class="bcr-chat__panel" id="bcr-panel" role="dialog" aria-modal="true"
+    <section class="bcr-chat__panel" id="bcr-panel" data-lenis-prevent role="dialog" aria-modal="true"
              aria-label="Assistant de Boxing Center Ramonville" hidden>
       <header class="bcr-chat__head">
         <span class="bcr-chat__sigil" aria-hidden="true">
@@ -482,6 +482,8 @@ export function initChatbot() {
     if (e.shiftKey && document.activeElement === premier) { e.preventDefault(); dernier.focus(); }
     else if (!e.shiftKey && document.activeElement === dernier) { e.preventDefault(); premier.focus(); }
   });
+
+
 }
 
 initChatbot();
