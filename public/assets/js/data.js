@@ -629,7 +629,7 @@ export const POSTERS = [
   {
     src: "/assets/img/ram/planning-rentree-2026-full.webp",
     view: "/assets/img/ram/planning-rentree-2026.webp",
-    w: 1600, h: 1160,
+    w: 1600, h: 1189,
     label: `Rentrée ${SEASON}`,
     alt: `Planning officiel de la rentrée ${SEASON} de Boxing Center Ramonville : boxe anglaise, pieds-poings, grappling, asso MMA, boxing camp, Lady Punch et école enfants dès 3 ans, du lundi au samedi.`,
   },
