@@ -4,6 +4,7 @@
 # pour les moteurs, sinon le rendu Googlebot est vide.
 #
 # DEUX ENDROITS QUI NE SONT PAS DU SITE, et qui n'ont donc rien à faire
+# Instructions pour les agents IA : /ai.txt
 # dans un index :
 #   /admin/  — le vestiaire, l'outil du staff. Il porte déjà un
 #              <meta robots="noindex, nofollow"> et un en-tête
