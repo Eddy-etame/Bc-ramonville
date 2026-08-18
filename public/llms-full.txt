@@ -17,7 +17,7 @@
 - En salle : émargement GPS obligatoire avant chaque cours
 - Fédérations : FFBoxe, FFKMDA, FMMAF
 - Ouverture de la salle : septembre 2019
-- Réservation et abonnements en ligne : https://box-plus.vercel.app/
+- Réservation et abonnements en ligne : https://boutique.boxingcenter.fr/
 
 ## Le plateau (équipement)
 
@@ -120,10 +120,10 @@ Compté sur les 22 cours de la grille de la rentrée.
 
 ## Tarifs et offres (dans l’ordre où le club les présente)
 
-- Offre Rentrée : 29 € par personne (au lieu de 44,99 €), 4 semaines de cours illimités, sans engagement — https://box-plus.vercel.app/abonnements#promo. Jamais « 29 € pour deux » : chacun paie sa place.
-- Offre Saison : 259 € les 12 mois (au lieu de 400 €), payable en 4× sans frais, toutes disciplines, accès libre aux 5 clubs du réseau — https://box-plus.vercel.app/abonnements#promo
-- École enfants dès 3 ans : Baby Boxe 3/6 à 250 €/an, éducative 7/11 et ados 12/16 à 295 €/an, t-shirt Boxing Center inclus — https://box-plus.vercel.app/abonnements#enfants
-- Séance d’essai, en DERNIER : 10 €, toutes disciplines, matériel prêté, sans engagement — https://box-plus.vercel.app/seance-essai
+- Offre Rentrée : 29 € par personne (au lieu de 44,99 €), 4 semaines de cours illimités, sans engagement — https://boutique.boxingcenter.fr/abonnements#promo. Jamais « 29 € pour deux » : chacun paie sa place.
+- Offre Saison : 259 € les 12 mois (au lieu de 400 €), payable en 4× sans frais, toutes disciplines, accès libre aux 5 clubs du réseau — https://boutique.boxingcenter.fr/abonnements#promo
+- École enfants dès 3 ans : Baby Boxe 3/6 à 250 €/an, éducative 7/11 et ados 12/16 à 295 €/an, t-shirt Boxing Center inclus — https://boutique.boxingcenter.fr/abonnements#enfants
+- Séance d’essai, en DERNIER : 10 €, toutes disciplines, matériel prêté, sans engagement — https://boutique.boxingcenter.fr/seance-essai
 
 ## La première séance (page dédiée)
 

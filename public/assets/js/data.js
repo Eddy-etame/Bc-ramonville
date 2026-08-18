@@ -85,12 +85,12 @@ const _SALLE = {
 
 /* Conversion — TOUT pointe vers box-plus (liens vérifiés 2026-07-12). */
 export const LINKS = {
-  essai: "https://box-plus.vercel.app/seance-essai",       // CTA principal — essai 10€
-  abos: "https://box-plus.vercel.app/abonnements",
-  promos: "https://box-plus.vercel.app/abonnements#promo",
-  enfants: "https://box-plus.vercel.app/abonnements#enfants",
-  coachings: "https://box-plus.vercel.app/coachings",
-  boutique: "https://box-plus.vercel.app/",   // la BOUTIQUE, pas un rayon (parité Minimes/St-Cyprien)
+  essai: "https://boutique.boxingcenter.fr/seance-essai",       // CTA principal — essai 10€
+  abos: "https://boutique.boxingcenter.fr/abonnements",
+  promos: "https://boutique.boxingcenter.fr/abonnements#promo",
+  enfants: "https://boutique.boxingcenter.fr/abonnements#enfants",
+  coachings: "https://boutique.boxingcenter.fr/coachings",
+  boutique: "https://boutique.boxingcenter.fr/",   // la BOUTIQUE, pas un rayon (parité Minimes/St-Cyprien)
   groupe: "https://boxingcenter.fr/",
   facebook: "https://www.facebook.com/BoxingCenterToulouse/",
   instagram: "https://www.instagram.com/boxingcentertoulouse/",
@@ -657,7 +657,7 @@ const _PROMOS = {
     feature: "4 semaines · cours illimités · sans engagement",
     items: ["4 semaines illimitées", "Encore mieux à deux — 29 € chacun", "Sans engagement"],
     cta: "Je prends ma place — 29 €",
-    href: "https://box-plus.vercel.app/abonnements#promo",
+    href: "https://boutique.boxingcenter.fr/abonnements#promo",
     priority: true,
   },
   saisonOffre: {
@@ -672,7 +672,7 @@ const _PROMOS = {
       "Accès libre aux 5 clubs du réseau",
     ],
     cta: "Je prends ma saison",
-    href: "https://box-plus.vercel.app/abonnements#promo",
+    href: "https://boutique.boxingcenter.fr/abonnements#promo",
     priority: false,
   },
   bonus: "Inscription enfant : le t-shirt Boxing Center est inclus — pour tous.",
@@ -688,7 +688,7 @@ const _TARIFS = [
     feature: "Cours illimités · sans engagement — encore mieux à deux",
     items: ["4 semaines illimitées", "29 € par personne (au lieu de 44 €)", "Sans engagement"],
     cta: "Je prends ma place — 29 €",
-    href: "https://box-plus.vercel.app/abonnements#promo",
+    href: "https://boutique.boxingcenter.fr/abonnements#promo",
     highlight: true,
   },
   {
@@ -699,7 +699,7 @@ const _TARIFS = [
     feature: "4× sans frais · accès aux 5 clubs — moins de 5 € par semaine",
     items: ["12 mois toutes disciplines", "4× 64,75 € sans frais", "Accès libre aux 5 clubs"],
     cta: "Je prends ma saison",
-    href: "https://box-plus.vercel.app/abonnements#promo",
+    href: "https://boutique.boxingcenter.fr/abonnements#promo",
     highlight: false,
   },
   /* L'abonnement de tous les jours. Il manquait : la page passait de
@@ -713,7 +713,7 @@ const _TARIFS = [
     feature: "Étudiant 36 € sur justificatif — le tarif de tous les jours",
     items: ["Adulte 44 € / 4 semaines", "Étudiant 36 € / 4 semaines", "L’octogone, le ring, l’étage muscu", "Sans engagement"],
     cta: "Voir les formules au mois",
-    href: "https://box-plus.vercel.app/abonnements",
+    href: "https://boutique.boxingcenter.fr/abonnements",
     highlight: false,
   },
   {
@@ -723,7 +723,7 @@ const _TARIFS = [
     feature: "Baby Boxe 250 € · dès 3 ans, mercredi & samedi",
     items: ["Baby Boxe 3/6 ans : 250 €/an", "Éducative 7/11 & ados 12/16 : 295 €/an t-shirt inclus", "Encadrée par Valentin G"],
     cta: "Inscrire mon enfant",
-    href: "https://box-plus.vercel.app/abonnements#enfants",
+    href: "https://boutique.boxingcenter.fr/abonnements#enfants",
     highlight: false,
   },
   {
@@ -733,7 +733,7 @@ const _TARIFS = [
     feature: "Toujours là ? Alors viens essayer — matériel prêté",
     items: ["Toutes les disciplines", "Matériel prêté", "Sans engagement — tu viens, tu testes, tu décides"],
     cta: "Je viens essayer · 10 €",
-    href: "https://box-plus.vercel.app/seance-essai",
+    href: "https://boutique.boxingcenter.fr/seance-essai",
     highlight: false,
   },
 ];

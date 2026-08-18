@@ -17,7 +17,7 @@
  * REGLE DE SECURITE : pas de reponse, pas de compteur. Jamais de valeur de
  * repli — un compteur absent ne coute rien, un compteur invente coute tout.
  */
-const BCP_PLACES_SOURCE = "https://box-plus.vercel.app/api/offre-rentree/places";
+const BCP_PLACES_SOURCE = "https://boutique.boxingcenter.fr/api/offre-rentree/places";
 const BCP_PLACES_SEUIL = 25;   // au-dela, le nombre n'impressionne plus : on se tait
 
 let _bcpPlaces = null;
