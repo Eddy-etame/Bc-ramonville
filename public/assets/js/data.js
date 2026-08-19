@@ -87,8 +87,8 @@ const _SALLE = {
 export const LINKS = {
   essai: "https://boutique.boxingcenter.fr/seance-essai",       // CTA principal — essai 10€
   abos: "https://boutique.boxingcenter.fr/abonnements",
-  promos: "https://boutique.boxingcenter.fr/abonnements#promo",
-  enfants: "https://boutique.boxingcenter.fr/abonnements#enfants",
+  promos: "https://boutique.boxingcenter.fr/offres-speciales",
+  enfants: "https://boutique.boxingcenter.fr/abonnements",
   coachings: "https://boutique.boxingcenter.fr/coachings",
   boutique: "https://boutique.boxingcenter.fr/",   // la BOUTIQUE, pas un rayon (parité Minimes/St-Cyprien)
   groupe: "https://boxingcenter.fr/",
@@ -657,7 +657,7 @@ const _PROMOS = {
     feature: "4 semaines · cours illimités · sans engagement",
     items: ["4 semaines illimitées", "Encore mieux à deux — 29 € chacun", "Sans engagement"],
     cta: "Je prends ma place — 29 €",
-    href: "https://boutique.boxingcenter.fr/abonnements#promo",
+    href: "https://boutique.boxingcenter.fr/offre/29",
     priority: true,
   },
   saisonOffre: {
@@ -672,7 +672,7 @@ const _PROMOS = {
       "Accès libre aux 5 clubs du réseau",
     ],
     cta: "Je prends ma saison",
-    href: "https://boutique.boxingcenter.fr/abonnements#promo",
+    href: "https://boutique.boxingcenter.fr/offre/259",
     priority: false,
   },
   bonus: "Inscription enfant : le t-shirt Boxing Center est inclus — pour tous.",
@@ -688,7 +688,7 @@ const _TARIFS = [
     feature: "Cours illimités · sans engagement — encore mieux à deux",
     items: ["4 semaines illimitées", "29 € par personne (au lieu de 44 €)", "Sans engagement"],
     cta: "Je prends ma place — 29 €",
-    href: "https://boutique.boxingcenter.fr/abonnements#promo",
+    href: "https://boutique.boxingcenter.fr/offre/29",
     highlight: true,
   },
   {
@@ -699,7 +699,7 @@ const _TARIFS = [
     feature: "4× sans frais · accès aux 5 clubs — moins de 5 € par semaine",
     items: ["12 mois toutes disciplines", "4× 64,75 € sans frais", "Accès libre aux 5 clubs"],
     cta: "Je prends ma saison",
-    href: "https://boutique.boxingcenter.fr/abonnements#promo",
+    href: "https://boutique.boxingcenter.fr/offre/259",
     highlight: false,
   },
   /* L'abonnement de tous les jours. Il manquait : la page passait de
@@ -723,7 +723,7 @@ const _TARIFS = [
     feature: "Baby Boxe 250 € · dès 3 ans, mercredi & samedi",
     items: ["Baby Boxe 3/6 ans : 250 €/an", "Éducative 7/11 & ados 12/16 : 295 €/an t-shirt inclus", "Encadrée par Valentin G"],
     cta: "Inscrire mon enfant",
-    href: "https://boutique.boxingcenter.fr/abonnements#enfants",
+    href: "https://boutique.boxingcenter.fr/abonnements",
     highlight: false,
   },
   {

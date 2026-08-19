@@ -107,10 +107,10 @@ function boutique(url) {
 
 /* La pensée Portet émulée : clés fermées → vrais boutons sous les messages. */
 const ACTIONS = {
-  offre:       { label: "Je prends ma place — 29€", href: boutique("https://boutique.boxingcenter.fr/abonnements#promo") },
-  saison:      { label: "Je réserve ma saison · 259€", href: boutique("https://boutique.boxingcenter.fr/abonnements#promo") },
+  offre:       { label: "Je prends ma place — 29€", href: boutique("https://boutique.boxingcenter.fr/offre/29") },
+  saison:      { label: "Je réserve ma saison · 259€", href: boutique("https://boutique.boxingcenter.fr/offre/259") },
   essai:       { label: "Je viens essayer · 10€", href: boutique("https://boutique.boxingcenter.fr/seance-essai") },
-  enfants:     { label: "J’inscris mon enfant", href: boutique("https://boutique.boxingcenter.fr/abonnements#enfants") },
+  enfants:     { label: "J’inscris mon enfant", href: boutique("https://boutique.boxingcenter.fr/abonnements") },
   abonnements: { label: "Voir les abonnements", href: boutique("https://boutique.boxingcenter.fr/abonnements") },
   boutique:    { label: "La boutique du club", href: boutique("https://boutique.boxingcenter.fr/") },
   premiere:    { label: "Comment se passe la 1re séance", href: "/premiere-seance/" },
