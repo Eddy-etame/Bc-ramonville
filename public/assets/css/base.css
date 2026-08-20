@@ -284,7 +284,13 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
 
 .footer__col a .ext { opacity: .6; }
 .footer__reseau { margin-top: clamp(1.4rem,3vw,2rem); font: 600 var(--step--2)/1.6 var(--f-mono); letter-spacing: .06em; color: var(--muted); max-width: 62ch; }
-.nav__cta { display: none; }
+/* Le bouton d'achat de l'en-tete etait masque sous 1240px, avec les neuf
+   pastilles. Or sous ce seuil les pastilles sont deja remplacees par le
+   burger : la barre ne porte plus que la marque et lui, et la place est
+   libre. Mesure au navigateur de 320 a 1180px : il tient partout, sans
+   deborder ni chevaucher le burger. Le masquer, c'etait retirer le seul
+   chemin d'achat permanent sur l'appareil qui fait l'essentiel du trafic. */
+.nav__cta { display: inline-flex; }
 /* 1240 px : sous ce seuil la barre se chevauchait — le menu prend le relais. */
 @media (min-width: 1240px){ .nav__links { display: flex; } .nav__cta { display: inline-flex; } }
 .burger { display: inline-flex; flex-direction: column; justify-content: center; gap: 5px; width: 44px; height: 44px; padding: 0 11px; border: 1.5px solid var(--line); border-radius: var(--radius); background: color-mix(in srgb, var(--paper-2) 82%, transparent); transition: border-color .3s; }
