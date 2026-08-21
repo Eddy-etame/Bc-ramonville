@@ -85,6 +85,12 @@ const _SALLE = {
 
 /* Conversion — TOUT pointe vers box-plus (liens vérifiés 2026-07-12). */
 export const LINKS = {
+  /* Le bouton permanent de l'en-tête vend l'OFFRE, pas l'essai (ordre
+     d'Eddy, 21/08) : le clic toujours visible doit porter le produit qui
+     fait entrer, pas le moins cher. La destination est celle qu'il a
+     donnée telle quelle — /offre/29, sans UTM, comme les autres liens
+     d'offre déjà en place sur le site. */
+  rentree: "https://boutique.boxingcenter.fr/offre/29",
   essai: "https://boutique.boxingcenter.fr/seance-essai",       // CTA principal — essai 10€
   abos: "https://boutique.boxingcenter.fr/abonnements",
   promos: "https://boutique.boxingcenter.fr/offres-speciales",

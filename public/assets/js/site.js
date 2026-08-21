@@ -120,7 +120,7 @@ function mountNav() {
            exactement comme avant. Ce qui change, c’est qu’ils ne se battent
            plus avec huit entrées de menu pour trois centimètres de barre. -->
       <div class="nav__right">
-        <a class="btn btn--primary nav__cta" data-magnetic href="${LINKS.essai}"><span>Essai · 10€</span></a>
+        <a class="btn btn--primary nav__cta" data-magnetic href="${LINKS.rentree}"><span>Ma place · 29€</span></a>
         <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
     </nav>`;
