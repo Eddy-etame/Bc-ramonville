@@ -301,12 +301,12 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
 .is-menu-open .burger span:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
 
 /* ---------------------- FULL-SCREEN MENU -------------------------- */
-.menu { position: fixed; inset: 0; z-index: 7990; background: var(--paper); color: var(--ink); display: grid; grid-template-rows: auto 1fr auto; padding: clamp(1.2rem,3vw,2rem) var(--gut) clamp(1.5rem,3vw,2.4rem); clip-path: inset(0 0 100% 0); pointer-events: none; transition: clip-path .65s var(--ease-out); overflow: hidden; }
+.menu { position: fixed; inset: 0; z-index: 7990; background: var(--paper); color: var(--ink); display: grid; grid-template-rows: auto 1fr auto; overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; padding: clamp(1.2rem,3vw,2rem) var(--gut) clamp(1.5rem,3vw,2.4rem); clip-path: inset(0 0 100% 0); pointer-events: none; transition: clip-path .65s var(--ease-out); overflow-x: hidden /* le vertical reste en auto : le menu doit defiler */; }
 .menu::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: radial-gradient(60% 55% at 82% 8%, var(--sky-glow), transparent 60%); }
 .menu.is-open { clip-path: inset(0 0 0 0); pointer-events: auto; }
 .menu__top { display: flex; justify-content: space-between; align-items: center; }
 .menu__close { font: 600 var(--step--1)/1 var(--f-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--ink); display: inline-flex; align-items: center; gap: .7ch; }
-.menu__nav { align-self: center; display: flex; flex-direction: column; gap: clamp(.1rem,.7vw,.3rem); }
+.menu__nav { align-self: safe center; display: flex; flex-direction: column; gap: clamp(.1rem,.7vw,.3rem); }
 .menu__link { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: clamp(2.1rem,9vw,5.4rem); letter-spacing: -.02em; line-height: 1.04; color: var(--ink); display: inline-flex; align-items: baseline; gap: 1.1rem; width: max-content; max-width: 100%; transition: color .3s, transform .5s var(--ease-out); }
 .menu__link .n { font: 600 clamp(.65rem,1.3vw,.9rem)/1 var(--f-mono); color: var(--accent); }
 .menu__link:hover { color: var(--accent); transform: translateX(14px); }

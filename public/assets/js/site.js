@@ -129,7 +129,7 @@ function mountNav() {
     (n, i) => `<a class="menu__link" href="${n.href}"><span class="n">${String(i + 1).padStart(2, "0")}</span>${n.label}</a>`
   ).join("");
   document.getElementById("drawer").innerHTML = `
-    <div class="menu" id="menu" aria-hidden="true">
+    <div class="menu" id="menu" aria-hidden="true" data-lenis-prevent>
       <div class="menu__top">
         <a class="nav__brand" href="/" aria-label="Boxing Center Ramonville — accueil">
           <!-- alt="" : le lien parent porte déjà aria-label="Boxing Center

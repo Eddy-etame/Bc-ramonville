@@ -122,7 +122,6 @@ const ACTIONS = {
   galerie:     { label: "Voir la galerie", href: "/galerie/" },
   contact:     { label: "Adresse & contact", href: "/contact/" },
   appeler:     { label: "Appeler la salle", href: "tel:+33562244682" },
-  offert:      { label: "Je réserve ma séance offerte", href: "/seance-offerte/" },
   rappel:      { label: "Être rappelé par un coach", act: "rappel" },
 };
 /* L’adresse NUE d’une action, signature retirée : c’est elle qui sert à
@@ -229,7 +228,7 @@ export function initChatbot() {
             </svg>
           </button>
         </form>
-        <p class="bcr-chat__legal">Réponses ancrées sur les infos du club · la salle : <a href="tel:${SALLE.phoneHref}">${SALLE.phone}</a></p>
+        <p class="bcr-chat__legal">Réponses ancrées sur les infos du club.</p>
       </div>
     </section>`;
   document.body.appendChild(racine);
@@ -448,7 +447,7 @@ export function initChatbot() {
           ? `Re-salut ${profil.prenom} ! Je suis toujours là — créneaux, octogone, tarifs, école enfants : demande.`
           : _accueilRamonville(),
         700,
-        resolveActions(["offre", "essai"])
+        resolveActions(["offre", "saison"])
       );
       /* on ne redemande JAMAIS un prénom déjà donné — c’est la première
          chose qui trahit un robot */

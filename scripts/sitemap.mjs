@@ -69,6 +69,18 @@ const I = {
   muscu:     ["/assets/img/ram/muscu.webp", `L'étage musculation et cardio — ${CLUB}`, "L'espace musculation-cardio à l'étage du Boxing Center Ramonville, compris dans l'abonnement."],
   sonia:     ["/assets/img/ram/coach-sonia.webp", `Sonia, coach au ${CLUB}`, "Sonia encadre les cours du Boxing Center Ramonville, enfants dès 3 ans comme adultes débutants."],
   jerome:    ["/assets/img/ram/coach-jerome.webp", `Jérôme, coach au ${CLUB}`, "Jérôme, coach au Boxing Center Ramonville-Saint-Agne."],
+  /* Les huit photos livrees le 24/08/2026 — une par discipline. Le nom du
+     fichier porte les mots qu'on tape : Google indexe l'URL autant que
+     l'alt, et « kick-boxing-coup-de-pied-haut-... » remonte la ou
+     « pieds-poings.webp » ne disait rien. */
+  pAnglaise: ["/assets/img/ram/photos/cours-de-boxe-anglaise-sur-le-ring-boxing-center-ramonville.webp", `Cours de boxe anglaise sur le ring — ${CLUB}`, "Cours de boxe anglaise sur le grand ring du Boxing Center Ramonville, tous niveaux."],
+  pKick:     ["/assets/img/ram/photos/kick-boxing-coup-de-pied-haut-boxing-center-ramonville.webp", `Kick-boxing, coup de pied haut — ${CLUB}`, "Coup de pied haut au bouclier pendant le cours de boxe pieds-poings du Boxing Center Ramonville."],
+  pGrap:     ["/assets/img/ram/photos/grappling-controle-au-sol-boxing-center-ramonville.webp", `Grappling, contrôle au sol — ${CLUB}`, "Contrôle au sol pendant le cours de grappling du Boxing Center Ramonville."],
+  pMma:      ["/assets/img/ram/photos/octogone-mma-cours-au-sol-boxing-center-ramonville.webp", `MMA dans l'octogone de 7 m — ${CLUB}`, "Cours de MMA au sol dans l'octogone de 7 mètres du Boxing Center Ramonville."],
+  pCamp:     ["/assets/img/ram/photos/boxing-camp-circuit-de-renforcement-boxing-center-ramonville.webp", `Boxing Camp, circuit de renforcement — ${CLUB}`, "Circuit de renforcement du Boxing Camp au Boxing Center Ramonville, en groupe."],
+  pLady:     ["/assets/img/ram/photos/lady-punch-boxe-100-pour-cent-feminin-boxing-center-ramonville.webp", `Lady Punch, 100 % féminin — ${CLUB}`, "Une pratiquante du cours Lady Punch au Boxing Center Ramonville, enchaînement aux gants."],
+  pEcole:    ["/assets/img/ram/photos/boxe-educative-enfants-boxing-center-ramonville.webp", `Boxe éducative enfants — ${CLUB}`, "Cours de boxe éducative pour enfants au Boxing Center Ramonville, dès 3 ans."],
+  pMuscu:    ["/assets/img/ram/photos/etage-musculation-sous-la-charpente-boxing-center-ramonville.webp", `L'étage musculation — ${CLUB}`, "L'étage musculation du Boxing Center Ramonville sous la charpente, en accès libre."],
   planRent:  ["/assets/img/ram/planning-rentree-2026-full.webp", `Planning de la rentrée 2026 — ${CLUB}`, "Le planning officiel des cours de la rentrée 2026 au Boxing Center Ramonville."],
   planEte:   ["/assets/img/ram/planning-ete-2026-full.webp", `Planning d'été 2026 — ${CLUB}`, "Le planning des cours d'été 2026 au Boxing Center Ramonville."],
 };
@@ -78,7 +90,7 @@ const I = {
 const PAGES = [
   { chemin: "", priorite: "1.0", freq: "weekly", imgs: [I.hero, I.octogone, I.plateau, I.anglaise] },
   { chemin: "la-salle/", priorite: "0.8", freq: "monthly", imgs: [I.plateau, I.octogone, I.muscu, I.camp, I.heroLarge] },
-  { chemin: "activites/", priorite: "0.8", freq: "monthly", imgs: [I.octogone, I.anglaise, I.pieds, I.grappling, I.camp, I.muscu] },
+  { chemin: "activites/", priorite: "0.8", freq: "monthly", imgs: [I.pAnglaise, I.pKick, I.pGrap, I.pMma, I.pCamp, I.pLady, I.pEcole, I.pMuscu] },
   { chemin: "coachs/", priorite: "0.8", freq: "monthly", imgs: [I.sonia, I.jerome] },
   { chemin: "galerie/", priorite: "0.8", freq: "monthly", imgs: [I.heroLarge, I.plateau, I.octogone, I.anglaise, I.pieds, I.grappling, I.camp, I.muscu] },
   { chemin: "plannings/", priorite: "0.8", freq: "weekly", imgs: [I.planRent, I.planEte] },

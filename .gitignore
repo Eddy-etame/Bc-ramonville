@@ -15,3 +15,11 @@ _tmp_lh/
 .env
 .env.*
 !.env.example
+
+# Les 62 photos livrees le 24/08/2026 : 819 Mo d'originaux 24 Mpx.
+# La regle maison garde les sources dans img-src/ pour pouvoir les
+# re-encoder — mais pas a ce poids-la : un depot que personne ne peut
+# plus cloner ne sert plus a rien, et GitHub refuse au-dela de 100 Mo.
+# Elles restent sur le disque, hors de git. Ce qui est versionne :
+# les WebP servis et le manifeste, qui eux decrivent le site.
+scripts/img-src/photos-2026/

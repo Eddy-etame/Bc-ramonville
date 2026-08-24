@@ -24,7 +24,7 @@ export const QUICKS = [
     a: "Un octogone de 7 mètres, grillagé. Grappling le mardi 18h40 avec Jérôme — c’est le créneau tous niveaux, celui où on ouvre la cage aux débutants. L’asso MMA, mardi et jeudi 19h45, c’est pour quand tu es prêt.",
   },
   {
-    label: "Essai · 10€",
+    label: "Ta 1re fois",
     q: "Comment se passe la séance d’essai ?",
     a: "Tu dis à l’accueil que c’est ta première fois, un coach te prête les gants et te montre le plateau. Échauffement, technique, sac — à ton rythme, et personne ne monte sur le ring sans en avoir envie. 10 € la séance, toutes disciplines, sans engagement. Le déroulé complet est sur la page « Ta première séance ». [boutons: premiere, essai]",
   },

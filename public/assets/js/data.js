@@ -161,7 +161,7 @@ const _DISCIPLINES = [
     jours: "Anglaise mar. & ven. 12h40 · mer. 18h45 → 20h15 · Loisirs lun. & ven. 19h45",
     niveau: "Débutant → confirmé",
     desc: "Jab, esquive, jeu de jambes. Les midis pour le geste propre, les soirs en loisirs quand la salle se remplit et que les frappes couvrent le bruit du dehors. Le fondamental de la maison.",
-    img: "/assets/img/ram/anglaise.webp",
+    img: "/assets/img/ram/photos/cours-de-boxe-anglaise-sur-le-ring-boxing-center-ramonville.webp",
   },
   {
     key: "pieds-poings",
@@ -183,8 +183,8 @@ const _DISCIPLINES = [
        pattes d’ours près du ring servent aux deux boxes, c’est la salle qui
        le dit, pas nous. On ne va pas chercher une photo d’une autre
        discipline, on branche celle qui était déjà déclarée pour celle-ci. */
-    img: "/assets/img/ram/pieds-poings.webp",
-    imgAlt: "Travail aux pattes d’ours près du ring à Boxing Center Ramonville : le geste commun à la boxe anglaise et au pieds-poings.",
+    img: "/assets/img/ram/photos/kick-boxing-coup-de-pied-haut-boxing-center-ramonville.webp",
+    imgAlt: "Coup de pied haut au bouclier pendant le cours de boxe pieds-poings du Boxing Center Ramonville.",
   },
   {
     key: "grappling",
@@ -196,12 +196,12 @@ const _DISCIPLINES = [
     jours: "Mardi · 18h40",
     niveau: "Tous niveaux",
     desc: "Contrôle, projections, travail au sol dans l’octogone de 7 m. Jérôme y enseigne la partie que la boxe ignore : le sol. Mardi soir, tous niveaux — c’est le créneau où la cage s’ouvre aux débutants.",
-    img: "/assets/img/ram/grappling.webp",
+    img: "/assets/img/ram/photos/grappling-controle-au-sol-boxing-center-ramonville.webp",
   },
   {
     key: "asso-mma",
     edge: 3,
-    name: "Asso MMA",
+    name: "MMA tous niveaux",
     tag: "Dans la cage",
     famille: "mma",
     coach: "Jérôme",
@@ -213,8 +213,8 @@ const _DISCIPLINES = [
        indexée `discs: ["grappling", "asso-mma"]`. La fiche du créneau qui se
        passe DANS la cage s’affichait sans la seule photo de la cage : ce
        n’était pas un manque de matière, c’était un fil non branché. */
-    img: "/assets/img/ram/octogone.webp",
-    imgAlt: "Séance d’asso MMA dans l’octogone de 7 m à Boxing Center Ramonville, le groupe au sol.",
+    img: "/assets/img/ram/photos/octogone-mma-cours-au-sol-boxing-center-ramonville.webp",
+    imgAlt: "Cours de MMA au sol dans l'octogone de 7 mètres du Boxing Center Ramonville.",
   },
   {
     key: "boxing-camp",
@@ -231,7 +231,7 @@ const _DISCIPLINES = [
     jours: "Lun. & mer. 12h40 · jeu. 18h40 · sam. 11h",
     niveau: "Tous niveaux",
     desc: "Le format signature Boxing Center : technique, cardio et sacs dans une seule séance dense. Quatre créneaux, du lundi midi au samedi matin — le meilleur point d’entrée si tu hésites encore.",
-    img: "/assets/img/ram/camp.webp",
+    img: "/assets/img/ram/photos/boxing-camp-circuit-de-renforcement-boxing-center-ramonville.webp",
   },
   {
     key: "lady-punch",
@@ -249,6 +249,8 @@ const _DISCIPLINES = [
        photo par une PLAQUE assumée, avec cette phrase-là dessus. */
     img: null,
     nophoto: "Aucune photo du créneau féminin n’a encore été prise. On préfère te le dire que te montrer quelqu’un d’autre — viens voir Sonia le lundi.",
+    img: "/assets/img/ram/photos/lady-punch-boxe-100-pour-cent-feminin-boxing-center-ramonville.webp",
+    imgAlt: "Une pratiquante du cours Lady Punch au Boxing Center Ramonville, enchaînement aux gants."
   },
   {
     key: "ecole",
@@ -265,6 +267,8 @@ const _DISCIPLINES = [
        photos prouvées n’en montre. La plaque le dit franchement. */
     img: null,
     nophoto: "Pas de photo des cours enfants : on ne publie pas le visage d’un enfant sans l’accord de ses parents. Le mercredi et le samedi, la salle est à eux.",
+    img: "/assets/img/ram/photos/boxe-educative-enfants-boxing-center-ramonville.webp",
+    imgAlt: "Cours de boxe éducative pour enfants au Boxing Center Ramonville."
   },
   {
     key: "acces-libre",
@@ -276,7 +280,7 @@ const _DISCIPLINES = [
     jours: "Lun. – sam. · 10h00 – 21h30",
     niveau: "À ton rythme",
     desc: "L’étage muscu/cardio et les espaces d’entraînement libres, ouverts six jours sur sept. Charges, machines, sacs : personne ne te dira quand venir.",
-    img: "/assets/img/ram/muscu.webp",
+    img: "/assets/img/ram/photos/etage-musculation-sous-la-charpente-boxing-center-ramonville.webp",
   },
 ];
 
@@ -514,20 +518,20 @@ const _SCHEDULE = [
   { day: "Lun", start: "18h40", cours: "Boxe Pieds-Poings", coach: "Sonia", fam: "adulte", disc: "pieds-poings" },
   { day: "Lun", start: "19h45", cours: "Anglaise Loisirs", coach: "Farouk", fam: "adulte", disc: "anglaise" },
   // Mardi
-  { day: "Mar", start: "12h40", cours: "Boxe Anglaise", coach: "Valentin G", fam: "adulte", disc: "anglaise" },
+  { day: "Mar", start: "12h40", cours: "Boxe Anglaise", coach: "Hicham", fam: "adulte", disc: "anglaise" },
   { day: "Mar", start: "18h40", cours: "Grappling", coach: "Jérôme", fam: "mma", disc: "grappling" },
-  { day: "Mar", start: "19h45", cours: "Asso MMA", coach: "Jérôme", fam: "mma", disc: "asso-mma" },
+  { day: "Mar", start: "19h45", cours: "MMA tous niveaux", coach: "Jérôme", fam: "mma", disc: "asso-mma" },
   // Mercredi
-  { day: "Mer", start: "12h40", cours: "Boxing Camp", coach: "Coach à confirmer", fam: "adulte", disc: "boxing-camp" },
+  { day: "Mer", start: "12h40", cours: "Boxing Camp", coach: "Hicham", fam: "adulte", disc: "boxing-camp" },
   { day: "Mer", start: "15h00", cours: "Éducative 7/11", coach: "Valentin G", fam: "enfant", disc: "ecole" },
   { day: "Mer", start: "16h00", cours: "Éducative 12/16", coach: "Valentin G", fam: "enfant", disc: "ecole" },
   { day: "Mer", start: "18h45", cours: "Boxe Anglaise (jusqu’à 20h15)", coach: "Farouk", fam: "adulte", disc: "anglaise" },
   // Jeudi
-  { day: "Jeu", start: "12h40", cours: "Boxe Pieds-Poings", coach: "Coach à confirmer", fam: "adulte", disc: "pieds-poings" },
+  { day: "Jeu", start: "12h40", cours: "Boxe Pieds-Poings", coach: "Sonia", fam: "adulte", disc: "pieds-poings" },
   { day: "Jeu", start: "18h40", cours: "Boxing Camp", coach: "Jérôme", fam: "adulte", disc: "boxing-camp" },
-  { day: "Jeu", start: "19h45", cours: "Asso MMA", coach: "Jérôme", fam: "mma", disc: "asso-mma" },
+  { day: "Jeu", start: "19h45", cours: "MMA tous niveaux", coach: "Jérôme", fam: "mma", disc: "asso-mma" },
   // Vendredi
-  { day: "Ven", start: "12h40", cours: "Boxe Anglaise", coach: "Valentin G", fam: "adulte", disc: "anglaise" },
+  { day: "Ven", start: "12h40", cours: "Boxe Anglaise", coach: "Hicham", fam: "adulte", disc: "anglaise" },
   { day: "Ven", start: "18h00", cours: "Lady Punch", coach: "Sonia", fam: "feminin", disc: "lady-punch" },
   { day: "Ven", start: "18h40", cours: "Boxe Pieds-Poings", coach: "Sonia", fam: "adulte", disc: "pieds-poings" },
   { day: "Ven", start: "19h45", cours: "Anglaise Loisirs", coach: "Farouk", fam: "adulte", disc: "anglaise" },
@@ -540,8 +544,6 @@ const _SCHEDULE = [
 
 /* Variante été 2026 — cours réduits, reste en accès libre (brief §3). */
 export const SCHEDULE_ETE = [
-  { day: "Lun", start: "12h30", cours: "Cours d’été", coach: "Renaud", fam: "adulte", disc: "anglaise" },
-  { day: "Lun", start: "20h00", cours: "Cours d’été", coach: "Fayez", fam: "adulte", disc: "anglaise" },
 ];
 
 /* L’ÉTÉ, DIT COMME IL EST — l’été ne tenait pas dans la grille de la rentrée.
