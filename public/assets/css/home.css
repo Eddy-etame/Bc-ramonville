@@ -39,7 +39,7 @@
    qui vend la salle — « m », « m² », « j/7 ». Mesuré à 320 px : 11,4 px,
    sous le plancher, sur les quatre chiffres du premier écran. `max()`
    garde la proportion sur grand écran et pose le plancher sur petit. */
-.stat__v sup { font-size: max(.42em, .75rem); margin-left: .12em; color: var(--accent); }
+.stat__v sup { font-size: max(.42em, .8rem);   /* le « m » de « 7 m » : un 7 sans son m ne veut rien dire */ margin-left: .12em; color: var(--accent); }
 .stat__l { margin-top: .35rem; font-size: .76rem; color: var(--muted); line-height: 1.4; }
 
 /* ==================== MANIFESTO — une ligne dure ================= */
@@ -167,37 +167,16 @@
 
 /* LISIBILITÉ MOBILE — plancher 12px sur les micro-labels mono (retour
    client). @media ≤600px, desktop intact. */
-@media (max-width: 600px) {
-  .coach__role { font-size: .8rem !important; }
-  .coach__tag { font-size: .8rem !important; }
-  .dehors__tags span { font-size: .8rem !important; }
-  .disc__fact b { font-size: .8rem !important; }
-  .floor__zones span { font-size: .8rem !important; }
-  .info__row .fk { font-size: .8rem !important; }
-  .menu__link .n { font-size: .8rem !important; }
-  .mur__play { font-size: .8rem !important; }
-  .oleg__n { font-size: .8rem !important; }
-  .oleg__tag { font-size: .8rem !important; }
-  .poster::after { font-size: .8rem !important; }
-  .practical .fk { font-size: .8rem !important; }
-  .promo__badge { font-size: .8rem !important; }
-  .promo__price i { font-size: .8rem !important; }
-  .promo__price s { font-size: .8rem !important; }
-  .rail__label { font-size: .8rem !important; }
-  .regle__n { font-size: .8rem !important; }
-  .slotline .d { font-size: .8rem !important; }
-  .staff__meta .mono { font-size: .8rem !important; }
-  .staff__meta i { font-size: .8rem !important; }
-  .station__n { font-size: .8rem !important; }
-  .station__specs span { font-size: .8rem !important; }
-  .tarif__badge { font-size: .8rem !important; }
-  .tournage__lead { font-size: .8rem !important; }
-  .value__n { font-size: .8rem !important; }
-  /* couleur, jamais grisé */
-.poster__cap { font-size: .8rem !important; }
-
-  .nav__links a, .menu__link, .menu__foot a, .footer__col a, .crumbs a, .chip, .faq summary, a[class*='link'] { min-height: 44px; display: inline-flex; align-items: center; }
-}
+/* LE BLOC « PLANCHER MOBILE » A ÉTÉ RETIRÉ D'ICI (24/08/2026).
+   Il en existait deux copies mot pour mot — 25 règles font-size
+   !important dans base.css ET dans ce fichier, même spécificité. L'accueil
+   charge base puis home : c'était donc toujours cette copie-ci qui
+   gagnait, et celle de base.css était morte sur la page la plus vue.
+   Constaté en direct : la remontée des planchers a dû être écrite deux
+   fois, et entre les deux écritures l'accueil était la seule page restée
+   à l'ancienne valeur. base.css est chargé par les dix pages : il suffit.
+   Si une classe de l'accueil a besoin d'une valeur propre, elle prend un
+   sélecteur nommé — pas une copie du bloc entier. */
 
 /* Supplément lisibilité mobile — labels en unités em (ratés par le scan rem) :
    les périodes de prix (« / an », « les 12 mois »), les numéros de rail, le
@@ -260,4 +239,18 @@
 @media (prefers-reduced-motion: reduce) {
   .onav__vue img { transition: none; }
   .onav:hover .onav__vue img { transform: none; }
+}
+
+/* CE QU'ON ACHÈTE POUR 29 EUROS.
+   Cette ligne — « 29 € par personne · 4 semaines · gants prêtés » — vivait
+   dans un style INLINE à .78rem et opacity .7, juste sous le bouton qui vend
+   l'offre. Un style inline échappe au plancher mobile de base.css comme à
+   celui d'ici : aucun @media ne peut le rattraper. 12,48 px mesurés à 375,
+   pâles, pour le seul texte qui dit ce qu'on obtient contre son argent.
+   La nuance passe par --muted, pas par une opacité qui délave aussi le prix. */
+.offre__detail {
+  margin-top: .55rem;
+  font: 600 var(--step--1)/1.45 var(--f-mono);
+  letter-spacing: .06em;
+  color: var(--muted);
 }

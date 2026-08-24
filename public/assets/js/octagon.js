@@ -59,7 +59,7 @@ const TOUR_SEC = 72;
 /* labels courts propres à l’instrument (le nom long vit dans la fiche) */
 const SHORT = {
   anglaise: "Anglaise", "pieds-poings": "P-Poings", grappling: "Grappling",
-  "asso-mma": "MMA tous niveaux", "boxing-camp": "Camp", "lady-punch": "Lady",
+  "asso-mma": "MMA", "boxing-camp": "Camp", "lady-punch": "Lady",
   ecole: "École", "acces-libre": "Libre",
 };
 
@@ -201,9 +201,20 @@ export function mountOctagon(host) {
   const cadrer = () => {
     const w = svg.getBoundingClientRect().width;
     if (!w) return;                                   // pas encore mesurable
-    // sous ~360 px de large, les libellés s’effacent : à cette taille ils
-    // mangeraient la cage. La légende .oleg (déjà ≥44px) reste la nav primaire.
-    const hide = w < 360;
+    /* LE SEUIL COMPARAIT LA LARGEUR DU SVG, PAS CELLE DE L’ÉCRAN.
+       Le SVG fait 311 px sur un iPhone 14 (390) comme sur un Android de 360 :
+       la condition était donc vraie dans les DEUX cas, et les huit libellés
+       disparaissaient sur tout téléphone. Résultat : l’objet signature du
+       site, sur le premier écran de la page la plus vue, huit bandes
+       cliquables anonymes — on tape au hasard et on atterrit sur une
+       discipline qu’on n’a pas choisie. Huit cibles sans nom valent moins
+       que zéro.
+       Ce qui débordait vraiment, c’était « MMA tous niveaux » : le libellé
+       court d’asso-mma avait hérité du nom long au renommage de la
+       discipline — 16 caractères là où les sept autres en font 4 à 9. Il
+       redevient « MMA », et la cage tient. Le seuil ne sert plus que de
+       filet pour les très petits écrans. */
+    const hide = w < 250;
     if (hide !== labelsHidden) {
       labelsHidden = hide;
       svg.querySelectorAll(".octa__label").forEach((l) => { l.style.display = hide ? "none" : ""; });

@@ -35,10 +35,17 @@
 .plan__note b { color: var(--accent); }
 /* `max-height` : SANS contrainte de hauteur, le sticky du thead ne colle à
    RIEN. overflow-x:auto force overflow-y à calculer `auto`, ce qui fait de
-   .gridwrap le scrollport le plus proche ; sans hauteur il ne défile jamais
+   /* LE TABLEAU CAPTAIT LE POUCE. 70vh se calcule sur le GRAND viewport :
+   la boîte faisait 591 px de haut sur un écran de 844, soit 70 % des
+   pixels visibles. Sans overscroll-behavior, un balayage sur cette zone
+   faisait défiler le tableau et non la page — sur la page utilitaire
+   qu'on ouvre pour savoir à quelle heure est le cours. Le max-height ne
+   sert qu'à rendre le thead collant utile : 55svh suffit, et svh tient
+   compte de la barre d'adresse. */
+.gridwrap le scrollport le plus proche ; sans hauteur il ne défile jamais
    verticalement, donc l'en-tête s'en allait avec la page — sur une grille de
    720×740 px, exactement quand on a besoin de savoir quel jour on lit. */
-.gridwrap { border: 1px solid var(--line); border-radius: var(--radius); overflow-x: auto; max-height: min(70vh, 640px); background: var(--paper-2); }
+.gridwrap { border: 1px solid var(--line); border-radius: var(--radius); overflow-x: auto; max-height: min(55svh, 520px); overscroll-behavior: contain; background: var(--paper-2); }
 .grid { width: 100%; min-width: 720px; border-collapse: separate; border-spacing: 0; }
 .grid th, .grid td { border-bottom: 1px solid var(--line-soft); border-right: 1px solid var(--line-soft); padding: .6rem .7rem; text-align: left; vertical-align: top; }
 /* fond OPAQUE obligatoire : le corps défile dessous */
