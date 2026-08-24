@@ -74,6 +74,33 @@ function renderOctaLegend() {
       <span class="oleg__tag">${d.tag}</span>
     </a>`
   ).join("");
+
+  /* LA FENETRE SUIT LA LISTE. Survoler (ou tabuler sur) une discipline
+     change la photo dans l'octogone : l'objet repond au geste qu'il
+     appelle. Sans ca, la roue montre une image fixe et la liste a cote
+     ne sert a rien. Au doigt, c'est le premier contact qui bascule —
+     un survol n'existe pas sur telephone. */
+  const vue = document.querySelector("#octa-vue img");
+  if (vue) {
+    const parDefaut = vue.getAttribute("src");
+    const petite = (u) => u.replace(/(-boxing-center-ramonville)\.webp$/, "$1-800.webp");
+    const montrer = (d) => {
+      const u = d && d.img ? petite(d.img) : parDefaut;
+      if (vue.getAttribute("src") === u) return;
+      vue.style.opacity = "0";
+      const suivant = new Image();
+      suivant.onload = () => { vue.src = u; vue.style.opacity = ""; };
+      suivant.src = u;
+    };
+    const fiches = [...DISCIPLINES].sort((a, b) => a.edge - b.edge);
+    box.querySelectorAll(".oleg").forEach((el, i) => {
+      const d = fiches[i];
+      el.addEventListener("pointerenter", () => montrer(d));
+      el.addEventListener("focus", () => montrer(d));
+      el.addEventListener("touchstart", () => montrer(d), { passive: true });
+    });
+    box.addEventListener("pointerleave", () => montrer(null));
+  }
 }
 
 /* ------------------------- CHOREOGRAPHY --------------------------- */

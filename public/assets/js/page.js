@@ -7,8 +7,8 @@
    ===================================================================== */
 import {
   DISCIPLINES, PLATEAU, VALUES, NETWORK, SALLE, SEASON, SEASON_LABEL,
-  DAYS, SCHEDULE, SCHEDULE_ETE, FAMILLES, POSTERS, TARIFS, PROMOS, REVIEWS,
-  GALLERY, PHOTO_CREDIT, FAQ, LINKS, DEHORS, ETE, GRID_LEGEND, COACHES, ARPENT,
+  DAYS, SCHEDULE, FAMILLES, POSTERS, TARIFS, PROMOS, REVIEWS,
+  GALLERY, PHOTO_CREDIT, FAQ, LINKS, DEHORS, GRID_LEGEND, COACHES, ARPENT,
   ENTREE, CARNET,
 } from "./data.js?v=19";
 
@@ -620,31 +620,6 @@ function renderPlanning() {
      Même données, rendu honnête. */
   const buildEte = () => {
     if (!eteBox) return;
-    eteBox.innerHTML = `
-      <p class="ete__lead">${ETE.lead}</p>
-      <div class="ete__slots">
-        ${SCHEDULE_ETE.map((s) => `
-          <a class="eslot" href="/activites/#${s.disc}">
-            <span class="eslot__d">${s.day}</span>
-            <span class="eslot__t">${s.start}</span>
-            <b class="eslot__c">${s.cours}</b>
-            <span class="eslot__k">${s.coach}</span>
-          </a>`).join("")}
-      </div>
-      <div class="ete__rest">
-        <div class="ete__cell">
-          <span class="fk">${ETE.libre.k}</span>
-          <b>${ETE.libre.v}</b>
-          <span class="ete__d">${ETE.libre.d}</span>
-        </div>
-        <div class="ete__cell ete__cell--off">
-          <span class="fk">${ETE.ferme.k}</span>
-          <b>${ETE.ferme.v}</b>
-          <span class="ete__d">${ETE.ferme.d}</span>
-        </div>
-      </div>
-      <p class="ete__renfort">${ETE.renfort}</p>
-      <p class="ete__back">${ETE.retour}</p>`;
   };
 
   /* bascule d’AFFICHAGE : la grille et l’été ne coexistent jamais à l’écran,

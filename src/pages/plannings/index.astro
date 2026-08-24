@@ -42,7 +42,7 @@
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:site_name" content="Boxing Center Ramonville" />
   <meta property="og:title" content="Planning | Boxing Center Ramonville" />
-  <meta property="og:description" content="La grille de la rentrée filtrable par famille, le rythme d’été, et les posters officiels en couleur." />
+  <meta property="og:description" content="La grille de la rentrée filtrable par famille, et les posters officiels en couleur." />
   <meta property="og:url" content="https://bc-ramonville.vercel.app/plannings/" />
   <!-- L’APERÇU DE PARTAGE PÈSE 132 ko, PLUS 2 Mo.
        Cette page pointait son og:image sur le PNG d’origine du poster :
@@ -59,7 +59,7 @@
   <meta property="og:image:alt" content="Le planning officiel de la rentrée à Boxing Center Ramonville." />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Planning | Boxing Center Ramonville" />
-  <meta name="twitter:description" content="La grille de la rentrée, le rythme d’été, les posters officiels en couleur." />
+  <meta name="twitter:description" content="La grille de la rentrée, les posters officiels en couleur." />
   <meta name="twitter:image" content="https://bc-ramonville.vercel.app/assets/img/ram/planning-rentree-2026.webp" />
   <meta name="twitter:image:alt" content="Le planning officiel de la rentrée à Boxing Center Ramonville." />
 
@@ -346,8 +346,8 @@
         "@type": "WebPage",
         "@id": "https://bc-ramonville.vercel.app/plannings/#webpage",
         "url": "https://bc-ramonville.vercel.app/plannings/",
-        "name": "Planning — Boxing Center Ramonville · grille des cours de la rentrée et de l’été",
-        "description": "Le planning des cours de Boxing Center Ramonville : la grille de la rentrée filtrable par famille, le rythme d’été, le poids de chaque jour de la semaine, et les posters officiels en couleur. Anglaise, pieds-poings, grappling, asso MMA, Lady Punch, école dès 3 ans.",
+        "name": "Planning — Boxing Center Ramonville · grille des cours de la rentrée",
+        "description": "Le planning des cours de Boxing Center Ramonville : la grille de la rentrée filtrable par famille, le poids de chaque jour de la semaine, et les posters officiels en couleur. Anglaise, pieds-poings, grappling, asso MMA, Lady Punch, école dès 3 ans.",
         "inLanguage": "fr-FR",
         "isPartOf": {
           "@id": "https://bc-ramonville.vercel.app/#website"
@@ -428,7 +428,7 @@
       <div class="wrap">
         <nav class="breadcrumb" aria-label="Fil d’ariane"><a href="/">Accueil</a> / <span>Planning</span></nav>
         <h1 class="display phero__title"><span class="reveal-mask"><span>La semaine,</span></span><span class="reveal-mask"><span class="tint">côté par côté.</span></span></h1>
-        <p class="lead phero__lead" data-reveal>La grille officielle de la rentrée, filtrable par famille. Une variante d’été. Et les posters en couleur, cliquables plein format. Clique un cours pour ouvrir sa discipline.</p>
+        <p class="lead phero__lead" data-reveal>La grille officielle de la rentrée, filtrable par famille. Et les posters en couleur, cliquables plein format. Clique un cours pour ouvrir sa discipline.</p>
         <!-- l’objet propre à ce hero (page.js → pheroMeta) -->
         <div class="phero__meta" id="phero-meta" data-reveal-group aria-label="Ce qui se passe maintenant à la salle"></div>
       </div>
@@ -438,8 +438,7 @@
       <div class="wrap">
         <div class="plan__tabs" id="plan-tabs" role="group" aria-label="Choisir la période">
           <button class="plan__tab is-on" data-mode="rentree" type="button" aria-pressed="true">Rentrée</button>
-          <button class="plan__tab" data-mode="ete" type="button" aria-pressed="false">Cours d’été</button>
-        </div>
+                  </div>
         <!-- Repli sans-JS SANS millésime : le libellé de saison passe par
              SEASON_LABEL (data.js), injecté par page.js à l’hydratation.
              Un millésime en dur ici = seconde source de vérité (standards §4). -->
@@ -459,7 +458,6 @@
              Rendus dans la grille à six colonnes, ils laissaient dix cases
              vides sur douze — une page qui semblait cassée alors que la salle
              lève simplement le pied. Bloc masqué tant qu’on est en rentrée. -->
-        <div class="ete" id="ete" hidden></div>
 
         <div class="posters" id="posters" aria-label="Posters officiels"></div>
       </div>

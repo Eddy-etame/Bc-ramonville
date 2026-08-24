@@ -542,31 +542,8 @@ const _SCHEDULE = [
   { day: "Sam", start: "16h00", cours: "Éducative 12/16", coach: "Valentin G", fam: "enfant", disc: "ecole" },
 ];
 
-/* Variante été 2026 — cours réduits, reste en accès libre (brief §3). */
-export const SCHEDULE_ETE = [
-];
 
-/* L’ÉTÉ, DIT COMME IL EST — l’été ne tenait pas dans la grille de la rentrée.
-   Deux cours, tous les deux le lundi : rendus dans un tableau à six colonnes,
-   ça donnait DIX cases vides sur douze et une page qui avait l’air cassée
-   plutôt qu’une salle qui lève le pied. L’été a donc son propre objet et son
-   propre rendu : deux créneaux nommés, puis la vérité du reste de la semaine —
-   l’accès libre, qui lui ne s’arrête jamais. Faits : posters officiels. */
-export const ETE = {
-  label: "Cours d’été",
-  lead: "L’été, la salle ne ferme pas — elle change de rythme. Deux cours encadrés le lundi, et le plateau ouvert le reste de la semaine.",
-  // les renforts : ni Renaud ni Fayez ne sont sur une fiche de Ramonville
-  // (coachs du réseau) → on le DIT, on ne laisse pas deux noms sans visage.
-  renfort: "Renaud et Fayez sont des coachs du réseau Boxing Center, en renfort sur l’été. Tu ne les trouveras pas sur la page Coachs : l’encadrement de la rentrée, c’est Sonia, Jérôme, Farouk et Valentin G.",
-  libre: {
-    k: "Mardi → samedi",
-    v: "Accès libre",
-    d: "Muscu, cardio, sacs et le plateau extérieur — 10h00 à 21h30, comme toute l’année.",
-  },
-  ferme: { k: "Dimanche", v: "Fermé", d: "Le seul jour où la cage est vide." },
-  // recompté sur SCHEDULE après le redressement du poster : vingt-deux.
-  retour: "La rentrée reprend le planning complet — vingt-deux cours, six jours sur sept.",
-};
+
 
 /* LA LÉGENDE DE LA GRILLE — la grille code déjà deux familles à l'œil
    (le liseré argent du Lady Punch, le point des créneaux cage). Ce code
@@ -643,13 +620,6 @@ export const POSTERS = [
     w: 1600, h: 1189,
     label: `Rentrée ${SEASON}`,
     alt: `Planning officiel de la rentrée ${SEASON} de Boxing Center Ramonville : boxe anglaise, pieds-poings, grappling, asso MMA, boxing camp, Lady Punch et école enfants dès 3 ans, du lundi au samedi.`,
-  },
-  {
-    src: "/assets/img/ram/planning-ete-2026-full.webp",
-    view: "/assets/img/ram/planning-ete-2026.webp",
-    w: 1600, h: 680,
-    label: "Cours d’été",
-    alt: "Planning officiel d’été de Boxing Center Ramonville : cours d’été le lundi midi et soir, reste de la semaine en accès libre muscu/cardio.",
   },
 ];
 

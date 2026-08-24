@@ -74,7 +74,6 @@ await mkdir(IMG, { recursive: true });
 /* ---- 1 & 2. les plannings : plein format sans perte + vue calibrée ---- */
 const PLANNINGS = [
   { nom: "planning-rentree-2026", vue: 1600 },
-  { nom: "planning-ete-2026", vue: 1600 },
 ];
 
 for (const { nom, vue } of PLANNINGS) {

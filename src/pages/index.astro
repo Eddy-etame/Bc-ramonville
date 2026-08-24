@@ -538,6 +538,15 @@ const nf = new Intl.NumberFormat("fr-FR");
       <div class="wrap">
         <div class="onav__grid">
           <div class="onav__stage" data-reveal>
+            <!-- LA FENETRE. L’octogone ne montrait rien : huit traits gris et du
+                 vide, sur le plus gros objet de la page la plus vue. Il montre
+                 desormais la salle — la photo de la discipline choisie remplit
+                 la forme, le filaire reste par-dessus. On regarde DANS
+                 l’octogone, ce qui est exactement ce qu’on vient chercher. -->
+            <div class="onav__vue" id="octa-vue" aria-hidden="true">
+              <img src="/assets/img/ram/photos/octogone-mma-cours-au-sol-boxing-center-ramonville-800.webp"
+                   alt="" width="800" height="533" decoding="async" fetchpriority="low" />
+            </div>
             <div class="onav__filaire" id="octa-motif" aria-hidden="true">
               <svg viewBox="0 0 200 200"><path class="m-out" d="M65.6 16.8 L134.4 16.8 L183.2 65.6 L183.2 134.4 L134.4 183.2 L65.6 183.2 L16.8 134.4 L16.8 65.6 Z"/><g transform="translate(100 100) scale(.58) translate(-100 -100)"><path class="m-in" d="M65.6 16.8 L134.4 16.8 L183.2 65.6 L183.2 134.4 L134.4 183.2 L65.6 183.2 L16.8 134.4 L16.8 65.6 Z"/></g><line class="m-spoke" x1="100" y1="100" x2="65.6" y2="16.8"/><line class="m-spoke" x1="100" y1="100" x2="134.4" y2="16.8"/><line class="m-spoke" x1="100" y1="100" x2="183.2" y2="65.6"/><line class="m-spoke" x1="100" y1="100" x2="183.2" y2="134.4"/><line class="m-spoke" x1="100" y1="100" x2="134.4" y2="183.2"/><line class="m-spoke" x1="100" y1="100" x2="65.6" y2="183.2"/><line class="m-spoke" x1="100" y1="100" x2="16.8" y2="134.4"/><line class="m-spoke" x1="100" y1="100" x2="16.8" y2="65.6"/></svg>
             </div>

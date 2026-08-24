@@ -117,7 +117,6 @@ export async function infosSalle() {
     "Première séance (page dédiée : /premiere-seance/) : on arrive un quart d’heure avant le cours, on dit à l’accueil que c’est sa première fois, on émarge, un coach prête les gants et les bandes et montre le plateau ; puis c’est le cours normal — échauffement, technique, sac. AUCUN sparring imposé (personne ne monte sur le ring sans en avoir envie), AUCUN test de niveau, AUCUN engagement. À apporter : t-shirt, short ou legging, baskets propres gardées pour l’intérieur, bouteille d’eau."
   );
 
-  if (D.ETE) L.push(`L’été : ${D.ETE.lead} ${D.ETE.libre.k} en accès libre. Dimanche fermé.`);
   if (D.REVIEWS) L.push(`Avis Google : ${D.REVIEWS.rating} sur ${D.REVIEWS.count} avis.`);
   if (Array.isArray(D.NETWORK))
     L.push(

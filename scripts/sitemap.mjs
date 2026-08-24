@@ -82,7 +82,6 @@ const I = {
   pEcole:    ["/assets/img/ram/photos/boxe-educative-enfants-boxing-center-ramonville.webp", `Boxe éducative enfants — ${CLUB}`, "Cours de boxe éducative pour enfants au Boxing Center Ramonville, dès 3 ans."],
   pMuscu:    ["/assets/img/ram/photos/etage-musculation-sous-la-charpente-boxing-center-ramonville.webp", `L'étage musculation — ${CLUB}`, "L'étage musculation du Boxing Center Ramonville sous la charpente, en accès libre."],
   planRent:  ["/assets/img/ram/planning-rentree-2026-full.webp", `Planning de la rentrée 2026 — ${CLUB}`, "Le planning officiel des cours de la rentrée 2026 au Boxing Center Ramonville."],
-  planEte:   ["/assets/img/ram/planning-ete-2026-full.webp", `Planning d'été 2026 — ${CLUB}`, "Le planning des cours d'été 2026 au Boxing Center Ramonville."],
 };
 
 /* `changefreq` suit le rythme réel : le planning et l'accueil bougent à la
@@ -93,7 +92,7 @@ const PAGES = [
   { chemin: "activites/", priorite: "0.8", freq: "monthly", imgs: [I.pAnglaise, I.pKick, I.pGrap, I.pMma, I.pCamp, I.pLady, I.pEcole, I.pMuscu] },
   { chemin: "coachs/", priorite: "0.8", freq: "monthly", imgs: [I.sonia, I.jerome] },
   { chemin: "galerie/", priorite: "0.8", freq: "monthly", imgs: [I.heroLarge, I.plateau, I.octogone, I.anglaise, I.pieds, I.grappling, I.camp, I.muscu] },
-  { chemin: "plannings/", priorite: "0.8", freq: "weekly", imgs: [I.planRent, I.planEte] },
+  { chemin: "plannings/", priorite: "0.8", freq: "weekly", imgs: [I.planRent] },
   { chemin: "tarifs/", priorite: "0.8", freq: "monthly", imgs: [I.camp, I.plateau] },
   { chemin: "contact/", priorite: "0.8", freq: "monthly", imgs: [I.plateau] },
   /* La page de la première séance vaut le même poids que les tarifs : c'est

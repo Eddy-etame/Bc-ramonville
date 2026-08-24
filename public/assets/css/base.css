@@ -54,9 +54,9 @@
    via color-mix : une seule ligne re-teinte le site entier. */
 :root {
   --void:     #0a0e18;   /* le noir du hangar, sous la charpente */
-  --paper:    #10151f;   /* fond — la nuit bleu-noir (navy Boxing Center) */
-  --paper-2:  #1a2130;   /* panneau surélevé */
-  --paper-3:  #263041;   /* pressé */
+  --paper:    #141a26;   /* fond — la nuit bleu-noir (navy Boxing Center) */
+  --paper-2:  #1f2738;   /* panneau surélevé */
+  --paper-3:  #2c374b;   /* pressé */
   --ink:      #e8ebf4;   /* texte — ≈15:1 */
   --ink-soft: #c0c7d8;
   --muted:    #8a93a8;   /* labels — ≈5.9:1, AA */
@@ -65,11 +65,11 @@
   --accent-2: #d3e2f5;   /* argent clair, dégradés */
 
   /* dérivés de l'accent — une seule ligne à changer pour tout re-teinter */
-  --line:      color-mix(in srgb, var(--ink) 13%, transparent);
-  --line-soft: color-mix(in srgb, var(--ink) 6%, transparent);
-  --accent-line: color-mix(in srgb, var(--accent) 34%, transparent);
-  --glow:      0 0 38px color-mix(in srgb, var(--accent) 30%, transparent);
-  --glow-soft: 0 0 22px color-mix(in srgb, var(--accent) 18%, transparent);
+  --line:      color-mix(in srgb, var(--ink) 20%, transparent);
+  --line-soft: color-mix(in srgb, var(--ink) 10%, transparent);
+  --accent-line: color-mix(in srgb, var(--accent) 52%, transparent);
+  --glow:      0 0 38px color-mix(in srgb, var(--accent) 42%, transparent);
+  --glow-soft: 0 0 22px color-mix(in srgb, var(--accent) 26%, transparent);
   --uv:        linear-gradient(118deg, var(--accent) 6%, var(--accent-2) 44%, var(--ink) 60%, var(--accent) 100%);
   --shadow:    0 24px 64px -22px rgba(0,0,0,.82);
 
