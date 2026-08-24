@@ -254,3 +254,48 @@
   letter-spacing: .06em;
   color: var(--muted);
 }
+
+/* ============ LES TROIS PROMESSES DU PREMIER SOIR ================ *
+   Elles empruntaient .claim__fig — la classe des CHIFFRES (« 300 m² » +
+   « couverts et chauffes »). Sur telephone, la regle mobile de cette
+   classe-la met le <b> et le <span> cote a cote : parfait pour un chiffre
+   et son unite, desastreux pour une phrase et un paragraphe. Le titre, en
+   display, se retrouvait coince dans 90 px et tombait a un mot par ligne —
+   cinq lignes pour six mots.
+
+   Ici : le titre au-dessus, le texte dessous, toujours. Et le texte n'est
+   plus en capitales mono : ce registre est celui des etiquettes de la
+   maison, pas celui de la prose. Ces trois phrases repondent a la peur de
+   quelqu'un qui n'est jamais entre dans une salle de boxe — ce sont
+   exactement celles qu'il faut pouvoir lire. */
+.promesses {
+  display: grid; gap: 1px; margin-top: clamp(1.4rem, 3vw, 2.2rem);
+  background: var(--line-soft); border: 1px solid var(--line);
+}
+@media (min-width: 860px) { .promesses { grid-template-columns: repeat(3, 1fr); } }
+
+.promesse {
+  background: color-mix(in srgb, var(--paper-2) 70%, transparent);
+  padding: clamp(1.2rem, 3vw, 1.9rem);
+  display: grid; gap: .7rem; align-content: start;
+  transition: background .35s var(--ease-out, ease);
+}
+.promesse:hover { background: var(--paper-2); }
+
+/* le losange de la maison, pose devant la promesse */
+.promesse b {
+  display: grid; grid-template-columns: auto 1fr; align-items: start; gap: .75ch;
+  font-family: var(--f-display); font-weight: 700;
+  font-size: clamp(1.15rem, 1rem + .75vw, 1.5rem); line-height: 1.18;
+  letter-spacing: -.01em; color: var(--accent); text-wrap: balance;
+}
+.promesse b::before {
+  content: ""; width: 9px; height: 9px; margin-top: .42em;
+  transform: rotate(45deg); background: var(--accent);
+  box-shadow: 0 0 10px var(--accent);
+}
+.promesse span {
+  font: 400 var(--step--1)/1.6 var(--f-body);
+  letter-spacing: 0; text-transform: none; color: var(--muted);
+  max-width: 46ch;
+}
