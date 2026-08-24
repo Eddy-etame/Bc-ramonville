@@ -177,6 +177,7 @@ export function initChatbot() {
   let echanges = 0;        // réponses données par le bot
   let relanceFaite = false; // l’invitation douce a-t-elle été passée ?
   let attendPrenom = false; // le bot vient de demander le prénom
+  let reponsesRendues = 0;  // combien de fois il a VRAIMENT repondu a une question
   /* la signature repart du profil DÉJÀ connu : si le lead a été transmis
      sur une page précédente, on ne le retransmet pas au chargement suivant */
   let signature = profil.email || profil.phone ? JSON.stringify(profil) : "";
@@ -192,6 +193,16 @@ export function initChatbot() {
   const etiquette = launcher.querySelector(".chatbot__label");
   if (etiquette) etiquette.innerHTML = "Une question&nbsp;? Parle au coach";
 
+  /* IL A UN NOM ET UN VISAGE. Il s'annoncait « L'assistant du plateau » :
+     pas de nom, pas de visage, pas de signature — il parlait de lui a la
+     troisieme personne, comme un service. Portet a Gus depuis longtemps.
+     Otto, c'est l'octogone du site devenu personnage : la signature de la
+     salle, huit cotes, huit disciplines. Meme loi de construction que la
+     mascotte de Portet — un disque, UN objet, deux yeux, rien d'autre —
+     et verifie a 26 px, la taille du plus petit avatar du fil. */
+  const BOT_NOM = "Otto";
+  const BOT_AVATAR = "/assets/img/ram/mascotte.svg";
+
   const racine = document.createElement("div");
   racine.className = "bcr-chat";
   racine.id = "bcr-chat";
@@ -199,14 +210,10 @@ export function initChatbot() {
     <section class="bcr-chat__panel" id="bcr-panel" data-lenis-prevent role="dialog" aria-modal="true"
              aria-label="Assistant de Boxing Center Ramonville" hidden>
       <header class="bcr-chat__head">
-        <span class="bcr-chat__sigil" aria-hidden="true">
-          <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="9">
-            <path d="M65.6 16.8 L134.4 16.8 L183.2 65.6 L183.2 134.4 L134.4 183.2 L65.6 183.2 L16.8 134.4 L16.8 65.6 Z"/>
-          </svg>
-        </span>
+        <img class="bcr-chat__avatar" src="${BOT_AVATAR}" alt="" width="40" height="40" decoding="async" />
         <span class="bcr-chat__head-text">
-          <b>Boxing Center Ramonville</b>
-          <span class="bcr-chat__status">L’assistant du plateau</span>
+          <b>${BOT_NOM} · Boxing Center Ramonville</b>
+          <span class="bcr-chat__status">L’assistant de la salle</span>
         </span>
         <button type="button" class="bcr-chat__close" id="bcr-close" aria-label="Fermer l’assistant">
           <svg width="12" height="12" viewBox="0 0 14 14" fill="none" aria-hidden="true">
@@ -255,14 +262,25 @@ export function initChatbot() {
             const ext = /^https?:/i.test(a.href);
             return `<a class="bcr-chat__action${ext ? " bcr-chat__action--ext" : ""}" href="${a.href.replace(/"/g, "&quot;")}"${ext ? ` target="_blank" rel="noopener"` : ""}>${echappe(a.label)}</a>`;
           }).join("")}</div>` : "";
-          return `<div class="bcr-chat__msg bcr-chat__msg--${m.role}"><div class="bcr-chat__stack"><div class="bcr-chat__bubble">${echappe(m.text)}</div>${actions}</div></div>`;
+          const face = m.role === "bot"
+            ? `<img class="bcr-chat__msg-avatar" src="${BOT_AVATAR}" alt="" width="26" height="26" decoding="async" />`
+            : "";
+          return `<div class="bcr-chat__msg bcr-chat__msg--${m.role}">${face}<div class="bcr-chat__stack"><div class="bcr-chat__bubble">${echappe(m.text)}</div>${actions}</div></div>`;
         })
         .join("") +
       (enTrainDeTaper
-        ? `<div class="bcr-chat__msg bcr-chat__msg--bot"><div class="bcr-chat__bubble"><span class="bcr-chat__dots" aria-label="L’assistant écrit"><i></i><i></i><i></i></span></div></div>`
+        ? `<div class="bcr-chat__msg bcr-chat__msg--bot"><img class="bcr-chat__msg-avatar" src="${BOT_AVATAR}" alt="" width="26" height="26" decoding="async" /><div class="bcr-chat__bubble"><span class="bcr-chat__dots" aria-label="${BOT_NOM} écrit"><i></i><i></i><i></i></span></div></div>`
         : "");
     logEl.scrollTop = logEl.scrollHeight;
   }
+  /* Le moment ou le prenom devient une question naturelle : deux reponses
+     rendues, et on ne l'a pas encore. Une seule fois. */
+  async function peutEtreDemanderPrenom() {
+    if (profil.prenom || attendPrenom || reponsesRendues < 2) return;
+    attendPrenom = true;
+    await botDit("Au fait, moi c’est Otto — et toi ?", 520);
+  }
+
   async function botDit(text, pause = 520, actions) {
     enTrainDeTaper = true; rendre();
     await delay(pause);
@@ -366,6 +384,11 @@ export function initChatbot() {
     historique.push({ role: "user", content: texte }, { role: "assistant", content: reponse });
     await botDit(reponse, 520, boutons);
     echanges++;
+    /* Une VRAIE reponse vient d'etre rendue. C'est ce compteur-la, et pas le
+       nombre de tours, qui autorise la question du prenom : on ne demande
+       rien avant d'avoir servi a quelque chose. */
+    if (!attendPrenom) reponsesRendues++;
+    await peutEtreDemanderPrenom();
 
     if (envoye && rappelDemande) {
       rappelDemande = false;
@@ -412,26 +435,48 @@ export function initChatbot() {
     [...panneau.querySelectorAll('button, input, a[href], [tabindex]:not([tabindex="-1"])')]
       .filter((el) => !el.hasAttribute("disabled") && el.offsetParent !== null);
 
-      /* Trois temps, jamais plus : bonjour + je vois ou vous etes, UN
-         fait vrai sur cette page, une question ouverte. Le fait est ce
-         qui separe un assistant d'un pop-up. Chiffres verifies dans
-         data.js, un par un. */
+      /* LES HUIT OUVERTURES — une par page, deux phrases, un fait vrai et UNE
+     question. Elles ont été reprises le 24/08/2026 pour trois raisons :
+
+       · Otto VOUVOYAIT. 21 « vous / votre » contre 9 « tu / ton » dans ce
+         seul fichier, alors que tout le site tutoie — « Ce qui t'attend le
+         premier soir », « Ta 1re fois », et jusqu'à sa propre zone de
+         saisie, « Écris ta question… ». Ses boutons disaient « Je prends
+         ma place » pendant qu'il répondait « posez votre question ». Deux
+         personnes dans la même fenêtre.
+
+       · Il ne se NOMMAIT pas : « Je suis l'assistant de Boxing Center
+         Ramonville » est une fonction, pas quelqu'un. Il se présente une
+         fois, au premier message, et plus jamais ensuite.
+
+       · /tarifs/ ouvrait sur la GRILLE — « Six formules. La rentrée à 29 €
+         est la plus prise. » C'est le catalogue lâché avant de savoir ce que
+         la personne cherche, et six options font chuter la décision. Une
+         question de situation d'abord ; les prix viennent après, et deux au
+         maximum.
+
+     Deux faits périmés corrigés au passage : « six clichés » (la galerie en
+     porte vingt-quatre depuis ce matin) et « six formules » (la page en
+     compte sept). Chiffres vérifiés dans data.js, un par un.
+
+     JAMAIS DEUX QUESTIONS dans la même bulle : on ne répond qu'à la
+     dernière, et la première information est perdue. */
     const ACCUEILS = {
-      "/tarifs/": ["Bonjour \u{1F44B} Vous \u00eates sur les tarifs.", "Six formules. La rentr\u00e9e \u00e0 29\u202f\u20ac par personne est la plus prise. Je vous aide \u00e0 choisir\u00a0?"],
-      "/activites/": ["Bonjour \u{1F44B} Vous regardez les disciplines.", "Huit, du baby boxe \u00e0 l\u2019MMA tous niveaux dans l\u2019octogone. Dites-moi votre objectif."],
-      "/plannings/": ["Bonjour \u{1F44B} Vous cherchez un cr\u00e9neau.", "Ouvert du lundi au samedi, 10h\u201321h30. Donnez-moi vos dispos, je vous dis lequel prendre."],
-      "/coachs/": ["Bonjour \u{1F44B} Vous regardez l\u2019\u00e9quipe.", "Cinq coachs\u00a0: J\u00e9r\u00f4me (head coach), Sonia, Hicham, Farouk et Valentin Guth. Une question sur l\u2019un d\u2019eux\u00a0?"],
-      "/la-salle/": ["Bonjour \u{1F44B} Vous d\u00e9couvrez le plateau.", "300\u202fm\u00b2 en plein air, couverts et chauff\u00e9s, un octogone de 7\u202fm. Envie de passer\u00a0?"],
-      "/galerie/": ["Bonjour \u{1F44B} Vous parcourez la galerie.", "Six cl\u00e9ich\u00e9s du plateau. Une question sur ce que vous voyez\u00a0?"],
-      "/premiere-seance/": ["Bonjour \u{1F44B} Vous pr\u00e9parez votre premi\u00e8re s\u00e9ance.", "Gants pr\u00eat\u00e9s, aucun niveau demand\u00e9, pas de sparring impos\u00e9. Une question\u00a0?"],
-      "/contact/": ["Bonjour \u{1F44B} Vous cherchez \u00e0 nous joindre.", "33 rue des Ormes, au terminus du m\u00e9tro B. Ou laissez-moi votre num\u00e9ro."],
+      "/tarifs/": ["Salut 👋 Moi c’est Otto.", "Avant de te sortir des prix : c’est pour toi ou pour ton enfant ?"],
+      "/activites/": ["Salut 👋 Moi c’est Otto.", "Huit disciplines, du baby boxe dès 3 ans au MMA tous niveaux dans l’octogone. Tu cherches à te défouler, à apprendre à te battre, ou à te remettre en forme ?"],
+      "/plannings/": ["Salut 👋 Moi c’est Otto.", "Vingt-deux cours par semaine, du lundi au samedi, 10h–21h30. Dis-moi tes créneaux possibles et je te dis lesquels tombent bien."],
+      "/coachs/": ["Salut 👋 Moi c’est Otto.", "Cinq coachs : Jérôme le head coach, Sonia, Hicham, Farouk et Valentin Guth. Tu veux savoir qui tient quel cours ?"],
+      "/la-salle/": ["Salut 👋 Moi c’est Otto.", "300 m² dehors, couverts et chauffés, un octogone de 7 m et un grand ring. Tu veux venir voir avant de décider ?"],
+      "/galerie/": ["Salut 👋 Moi c’est Otto.", "Vingt-quatre cadres, tous pris ici — aucune banque d’images. Il y a une discipline qui t’a accroché l’œil ?"],
+      "/premiere-seance/": ["Salut 👋 Moi c’est Otto.", "Gants et bandes prêtés, aucun niveau demandé, et personne ne te met en face de quelqu’un le premier soir. C’est quoi qui te retient ?"],
+      "/contact/": ["Salut 👋 Moi c’est Otto.", "33 rue des Ormes, au terminus du métro B, parking gratuit. Tu veux passer quel jour ?"],
     };
   /** Le premier message, choisi selon la page — et rien de plus long. */
   function _accueilRamonville() {
     const p = location.pathname.replace(/index\.html$/, "");
     const a = ACCUEILS[p];
     return a ? a[0] + " " + a[1]
-      : "Bonjour \u{1F44B} Je suis l’assistant de Boxing Center Ramonville. Les créneaux, l’octogone, les tarifs — posez votre question.";
+      : "Salut 👋 Moi c’est Otto, l’assistant de la salle. Les créneaux, l’octogone, les tarifs — demande-moi.";
   }
 
   async function ouvrir() {
@@ -451,14 +496,19 @@ export function initChatbot() {
       );
       /* on ne redemande JAMAIS un prénom déjà donné — c’est la première
          chose qui trahit un robot */
-      /* Le prenom en TROISIEME bulle, apres deux messages qui ont deja
-         rendu service : ce n'est plus une exigence, c'est une conversation
-         qui commence. Au vouvoiement, comme les bulles au-dessus. Et on ne
-         redemande JAMAIS un prenom deja donne. */
-      if (!profil.prenom) {
-        attendPrenom = true;
-        await botDit("Et vous, comment vous appelez-vous ?", 460);
-      }
+      /* LE PRENOM NE SE DEMANDE PLUS ICI. Ce commentaire portait deja la
+         bonne regle — « en troisieme bulle, apres deux messages qui ont
+         rendu service » — mais le code posait la question juste apres
+         l'accueil, donc en DEUXIEME bulle. Deux degats :
+
+           · deux questions dans le meme tour (« pour toi ou pour ton
+             enfant ? » puis « comment tu t'appelles ? ») : on ne repond
+             qu'a la derniere, et c'est la question de qualification qui
+             se perd — celle qui sert a vendre ;
+           · un nom demande avant d'avoir rien donne, c'est un peage.
+
+         Il se demande maintenant apres DEUX vraies reponses (voir
+         `reponsesRendues`), et jamais s'il est deja connu. */
       montrerChips();
     }
   }

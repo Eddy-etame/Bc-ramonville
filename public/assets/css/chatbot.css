@@ -273,3 +273,20 @@
 @media (hover: none) and (pointer: coarse) {
   .bcm-chat__chips, .scchat__chips, .bcr-chat__chips { min-height: 56px; }
 }
+
+/* ============ OTTO ================================================ *
+   L'assistant s'annoncait « L'assistant du plateau » : pas de nom, pas de
+   visage. Otto, c'est l'octogone du site devenu personnage — meme loi de
+   construction que la mascotte de Portet, verifiee a 26 px.
+   L'avatar du fil est aligne sur le HAUT de la bulle : cale au milieu, il
+   descend avec les longues reponses et finit a cote du vide. */
+.bcr-chat__avatar {
+  flex: 0 0 auto; width: 40px; height: 40px; display: block; border-radius: 50%;
+}
+.bcr-chat__msg--bot { display: flex; align-items: flex-start; gap: .55rem; }
+.bcr-chat__msg-avatar {
+  flex: 0 0 auto; width: 26px; height: 26px; display: block; border-radius: 50%;
+  margin-top: 2px;
+}
+/* le visiteur n'a pas d'avatar : sa bulle garde toute la largeur */
+.bcr-chat__msg--user .bcr-chat__msg-avatar { display: none; }

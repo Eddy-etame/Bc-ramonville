@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="otto-t">
+  <title id="otto-t">Otto, la plaque à huit côtés</title>
+  <!-- LA MASCOTTE DE RAMONVILLE, batie sur la loi de celle de Portet :
+       un disque, UN seul objet qui remplit le cadre, deux couleurs plus une
+       nuance, et deux yeux. Rien d'autre — pas de bouche, pas de sourcils,
+       pas de contour, pas de degrade, pas de filtre. La contrainte n'est pas
+       artistique, elle est mesurable : ca doit tenir a 26 px, la taille du
+       plus petit avatar du fil. La premiere mascotte de Portet a ete jetee
+       pour exces de detail ; on ne recommence pas.
+
+       L'OBJET, ici, ne pouvait etre que l'octogone : c'est la signature du
+       site, « 8 cotes, 8 disciplines », sur le premier ecran de la page la
+       plus vue. La mascotte est cet octogone devenu personnage.
+
+       Il est tourne de 22,5 degres pour qu'un COTE PLAT soit en haut. Pointe
+       en haut, un octogone se lit « stop » ; cote plat en haut, il se lit
+       « plaque » — et une plaque, ca accueille. -->
+  <circle cx="32" cy="32" r="32" fill="#141a26"/>
+  <!-- l'epaisseur de la plaque : le meme octogone, decale de 2 px, dans une
+       nuance plus sombre de l'accent. C'est ce qui lui donne du volume sans
+       ajouter une seule forme nouvelle. -->
+  <polygon points="55.10,43.57 41.57,57.10 22.43,57.10 8.90,43.57 8.90,24.43 22.43,10.90 41.57,10.90 55.10,24.43" fill="#6f88b0"/>
+  <!-- la plaque, dans l'argent lunaire de la salle -->
+  <polygon points="55.10,41.57 41.57,55.10 22.43,55.10 8.90,41.57 8.90,22.43 22.43,8.90 41.57,8.90 55.10,22.43" fill="#9fb6d9"/>
+  <!-- les yeux : deux points francs, dans la couleur du disque. Le seul
+       detail qui survit a 26 px. Legerement dissymetriques — une plaque
+       parfaitement symetrique est un panneau, pas quelqu'un. -->
+  <circle cx="26.4" cy="29.4" r="3.1" fill="#141a26"/>
+  <circle cx="37.8" cy="28.6" r="3.1" fill="#141a26"/>
+</svg>
