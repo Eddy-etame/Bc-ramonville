@@ -349,7 +349,7 @@ function renderDiscs() {
           <div class="disc__fact"><b>Niveau</b><span>${d.niveau}</span></div>
         </div>
         <div class="disc__cta">
-          <a class="btn btn--primary" data-magnetic href="${LINKS.essai}"><span>Essayer · 10€</span></a>
+          <a class="btn btn--primary" data-magnetic href="${LINKS.rentree}"><span>Quatre semaines · 29€</span></a>
           <a class="btn btn--ghost" data-magnetic href="/plannings/"><span>Voir le planning</span></a>
         </div>
       </div>

@@ -227,24 +227,16 @@ const nf = new Intl.NumberFormat("fr-FR");
               "priceCurrency": "EUR",
               "url": "https://boutique.boxingcenter.fr/offre/259",
               "description": "259 € les 12 mois, payable en 4× sans frais, accès libre aux 5 clubs."
-            },
-            {
-              "@type": "Offer",
-              "name": "Séance d’essai",
-              "price": "10",
-              "priceCurrency": "EUR",
-              "url": "https://boutique.boxingcenter.fr/seance-essai",
-              "description": "Toutes disciplines, matériel prêté, sans engagement."
             }
           ]
         },
         "potentialAction": [
           {
             "@type": "ReserveAction",
-            "name": "Réserver la séance d’essai",
+            "name": "Prendre l’offre de rentrée à 29 €",
             "target": {
               "@type": "EntryPoint",
-              "urlTemplate": "https://boutique.boxingcenter.fr/seance-essai",
+              "urlTemplate": "https://boutique.boxingcenter.fr/offre/29",
               "inLanguage": "fr-FR",
               "actionPlatform": [
                 "http://schema.org/DesktopWebPlatform",
@@ -253,7 +245,7 @@ const nf = new Intl.NumberFormat("fr-FR");
             },
             "result": {
               "@type": "Reservation",
-              "name": "Séance d’essai — Boxing Center Ramonville"
+              "name": "Offre de rentrée — Boxing Center Ramonville"
             }
           },
           {
@@ -277,7 +269,7 @@ const nf = new Intl.NumberFormat("fr-FR");
         "parentOrganization": {
           "@id": "https://boxingcenter.fr/#organization"
         },
-        "description": "La seule salle du réseau Boxing Center qui s’entraîne dehors : 300 m² extérieurs couverts, un octogone de 7 m, un grand ring de boxe et deux niveaux avec un étage muscu/cardio, à Ramonville-Saint-Agne. Boxe anglaise, pieds-poings, grappling, asso MMA, Boxing Camp, Lady Punch et école enfants dès 3 ans. Séance d’essai 10€."
+        "description": "La seule salle du réseau Boxing Center qui s’entraîne dehors : 300 m² extérieurs couverts, un octogone de 7 m, un grand ring de boxe et deux niveaux avec un étage muscu/cardio, à Ramonville-Saint-Agne. Boxe anglaise, pieds-poings, grappling, asso MMA, Boxing Camp, Lady Punch et école enfants dès 3 ans."
       },
       {
         "@type": "ItemList",
@@ -367,7 +359,7 @@ const nf = new Intl.NumberFormat("fr-FR");
         "@id": "https://bc-ramonville.vercel.app/#webpage",
         "url": "https://bc-ramonville.vercel.app/",
         "name": "Boxing Center Ramonville — salle de boxe & MMA, l’octogone à ciel ouvert",
-        "description": "300 m² d’entraînement dehors et à l’abri : un octogone de 7 m, un grand ring de boxe, deux niveaux. Métro B, terminus. La rentrée est à 29 € par personne, l’essai à 10 €.",
+        "description": "300 m² d’entraînement dehors et à l’abri : un octogone de 7 m, un grand ring de boxe, deux niveaux. Métro B, terminus. La rentrée est à 29 € par personne.",
         "inLanguage": "fr-FR",
         "isPartOf": {
           "@id": "https://bc-ramonville.vercel.app/#website"
@@ -594,8 +586,8 @@ const nf = new Intl.NumberFormat("fr-FR");
       </div>
     </section>
 
-    <!-- ==================== LA CARTE ESSAI 10€ ===================== -->
-    <section class="essai" aria-label="La séance d’essai">
+    <!-- ============= LA CARTE DE L’OFFRE DE RENTRÉE · 29€ ============= -->
+    <section class="essai" aria-label="L’offre de rentrée">
       <div class="wrap">
         <div class="essai__card" data-reveal>
           <div class="essai__grid">
@@ -625,14 +617,14 @@ const nf = new Intl.NumberFormat("fr-FR");
       <div class="gong__inner">
         <span class="eyebrow" style="justify-content:center" data-reveal>Venir essayer</span>
         <h2 class="display"><span class="reveal-mask"><span>On t’attend</span></span><span class="reveal-mask"><span class="tint">au terminus.</span></span></h2>
-        <!-- Ce paragraphe vendait l'essai à 10 € juste au-dessus d'un bouton
+        <!-- Ce paragraphe vendait l'essai à 10 € juste au-dessus d'un bouton  (corrige : le 10 € ne vit plus que dans la grille tarifs)
              qui mène à l'offre à 29 € : le visiteur lisait un prix et cliquait
              sur un autre. Il dit maintenant la même chose que le bouton, et
              le prix barré donne au 29 € sa mesure. -->
-        <p class="lead" data-reveal>Quatre semaines à <s class="was">44,99&nbsp;€</s> <strong>29&nbsp;€ par personne</strong> : l’octogone, le grand ring, l’étage muscu, et aucun engagement à signer. Le plateau est couvert et chauffé — on s’entraîne à l’air même en janvier. 33 rue des Ormes, terminus du métro B, du lundi au samedi de 10h à 21h30. Tu préfères voir avant ? La séance d’essai reste à 10&nbsp;€.</p>
+        <p class="lead" data-reveal>Quatre semaines à <s class="was">44,99&nbsp;€</s> <strong>29&nbsp;€ par personne</strong> : l’octogone, le grand ring, l’étage muscu, et aucun engagement à signer. Le plateau est couvert et chauffé — on s’entraîne à l’air même en janvier. 33 rue des Ormes, terminus du métro B, du lundi au samedi de 10h à 21h30. Tu préfères voir avant ? Pousse la porte : on te fait le tour du plateau, sans rendez-vous et sans rien signer.</p>
         <p class="places" data-places hidden></p>
         <div class="gong__cta" data-reveal>
-          <a class="btn btn--primary" data-magnetic href="https://boutique.boxingcenter.fr/inscription?product=offre-duo&step=1&utm_source=site&utm_medium=cta&utm_campaign=bc-ramonville"><span>Ma place de rentrée — 29€</span></a><a class="btn btn--ghost" data-magnetic href="https://boutique.boxingcenter.fr/seance-essai?utm_source=site&utm_medium=cta&utm_campaign=bc-ramonville"><span>Essayer d’abord · 10€</span></a>
+          <a class="btn btn--primary" data-magnetic href="https://boutique.boxingcenter.fr/inscription?product=offre-duo&step=1&utm_source=site&utm_medium=cta&utm_campaign=bc-ramonville"><span>Ma place de rentrée — 29€</span></a><a class="btn btn--ghost" data-magnetic href="https://boutique.boxingcenter.fr/offre/29?utm_source=site&utm_medium=cta&utm_campaign=bc-ramonville"><span>Quatre semaines · 29€</span></a>
           <a class="btn btn--ghost" data-magnetic href="tel:+33562244682"><span>05 62 24 46 82</span></a>
         </div>
       </div>

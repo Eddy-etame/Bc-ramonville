@@ -11,7 +11,9 @@
    particulier, n’est PAS écrit en dur — la maison l’interdit. */
 import { SALLE, TARIFS, PROMOS, DISCIPLINES } from "../../../public/assets/js/data.js";
 
-const essai = TARIFS.find((t) => /essai/i.test(t.name));
+/* Le 10 € ne vit que dans la grille tarifs (ordre du 24/08/2026) : cette
+   page vend l’offre de rentrée, pas la séance d’essai. */
+const essai = PROMOS.duo;
 /* le compte des portes ouvertes, RECOMPTÉ ici plutôt qu’affirmé : si un
    niveau change dans data.js, la phrase change avec lui. */
 const ouvertes = ["Zéro prérequis", "Tous niveaux", "Débutant → confirmé", "Baby → ados", "À ton rythme"];
@@ -24,7 +26,7 @@ const totalDisc = DISCIPLINES.length;
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>1re séance sport de combat | Boxing Center Ramonville</title>
-  <meta name="description" content="Jamais boxé ? Le déroulé réel d’une première séance à Ramonville : gants prêtés, aucun sparring imposé, aucun niveau demandé. La tenue, l’adresse, et l’essai à 10 €." />
+  <meta name="description" content="Jamais boxé ? Le déroulé réel d’une première séance à Ramonville : gants prêtés, aucun sparring imposé, aucun niveau demandé. La tenue, l’adresse." />
 
   <!-- Préconnexions — avant toute feuille de style -->
   <link rel="preconnect" href="https://api.open-meteo.com" crossorigin />
@@ -38,7 +40,7 @@ const totalDisc = DISCIPLINES.length;
   <link rel="stylesheet" href="/assets/css/page.css?v=19" />
   <!-- la feuille propre à cette page : le déroulé, les trois refus, la tenue -->
   <link rel="stylesheet" href="/assets/css/premiere.css?v=19" />
-  <meta name="keywords" content="première séance boxe Ramonville, débuter la boxe Toulouse, cours de boxe débutant Ramonville-Saint-Agne, essai boxe 10 euros, jamais fait de boxe, sparring pas obligatoire, tenue cours de boxe, boxing gym Toulouse, MMA gym Toulouse, octagon MMA Toulouse, grappling Toulouse, kids boxing Toulouse, outdoor boxing Toulouse, boxing club Ramonville, martial arts gym near Toulouse" />
+  <meta name="keywords" content="première séance boxe Ramonville, débuter la boxe Toulouse, cours de boxe débutant Ramonville-Saint-Agne, jamais fait de boxe, sparring pas obligatoire, tenue cours de boxe, boxing gym Toulouse, MMA gym Toulouse, octagon MMA Toulouse, grappling Toulouse, kids boxing Toulouse, outdoor boxing Toulouse, boxing club Ramonville, martial arts gym near Toulouse" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="author" content="Boxing Center Ramonville" />
   <meta name="geo.region" content="FR-31" />
@@ -56,7 +58,7 @@ const totalDisc = DISCIPLINES.length;
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:site_name" content="Boxing Center Ramonville" />
   <meta property="og:title" content="Ta première séance | Boxing Center Ramonville" />
-  <meta property="og:description" content="Tu dis que c’est ta première fois, un coach te prête les gants et t’emmène. Pas de sparring imposé, pas de test, pas d’engagement. L’essai est à 10 €." />
+  <meta property="og:description" content="Tu dis que c’est ta première fois, un coach te prête les gants et t’emmène. Pas de sparring imposé, pas de test, pas d’engagement." />
   <meta property="og:url" content="https://bc-ramonville.vercel.app/premiere-seance/" />
   <meta property="og:image" content="https://bc-ramonville.vercel.app/assets/img/ram/camp.webp" />
   <meta property="og:image:width" content="1200" />
@@ -65,7 +67,7 @@ const totalDisc = DISCIPLINES.length;
   <meta property="og:image:alt" content="La ligne de sacs lourds pendant le Boxing Camp à Boxing Center Ramonville." />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Ta première séance | Boxing Center Ramonville" />
-  <meta name="twitter:description" content="Le déroulé réel : gants prêtés, aucun sparring imposé, aucun niveau demandé. Essai 10 €, 33 rue des Ormes." />
+  <meta name="twitter:description" content="Le déroulé réel : gants prêtés, aucun sparring imposé, aucun niveau demandé. 33 rue des Ormes." />
   <meta name="twitter:image" content="https://bc-ramonville.vercel.app/assets/img/ram/camp.webp" />
   <meta name="twitter:image:alt" content="La ligne de sacs lourds pendant le Boxing Camp à Boxing Center Ramonville." />
 
@@ -232,24 +234,16 @@ const totalDisc = DISCIPLINES.length;
               "priceCurrency": "EUR",
               "url": "https://boutique.boxingcenter.fr/offre/259",
               "description": "259 € les 12 mois, payable en 4× sans frais, accès libre aux 5 clubs."
-            },
-            {
-              "@type": "Offer",
-              "name": "Séance d’essai",
-              "price": "10",
-              "priceCurrency": "EUR",
-              "url": "https://boutique.boxingcenter.fr/seance-essai",
-              "description": "Toutes disciplines, matériel prêté, sans engagement."
             }
           ]
         },
         "potentialAction": [
           {
             "@type": "ReserveAction",
-            "name": "Réserver la séance d’essai",
+            "name": "Prendre l’offre de rentrée à 29 €",
             "target": {
               "@type": "EntryPoint",
-              "urlTemplate": "https://boutique.boxingcenter.fr/seance-essai",
+              "urlTemplate": "https://boutique.boxingcenter.fr/offre/29",
               "inLanguage": "fr-FR",
               "actionPlatform": [
                 "https://schema.org/DesktopWebPlatform",
@@ -258,7 +252,7 @@ const totalDisc = DISCIPLINES.length;
             },
             "result": {
               "@type": "Reservation",
-              "name": "Séance d’essai — Boxing Center Ramonville"
+              "name": "Offre de rentrée — Boxing Center Ramonville"
             }
           },
           {
@@ -279,7 +273,7 @@ const totalDisc = DISCIPLINES.length;
           "areaServed": "FR",
           "availableLanguage": "French"
         },
-        "description": "La seule salle du réseau Boxing Center qui s’entraîne dehors : 300 m² extérieurs couverts, un octogone de 7 m, un grand ring de boxe et deux niveaux avec un étage muscu/cardio, à Ramonville-Saint-Agne. Boxe anglaise, pieds-poings, grappling, asso MMA, Boxing Camp, Lady Punch et école enfants dès 3 ans. Séance d’essai 10€.",
+        "description": "La seule salle du réseau Boxing Center qui s’entraîne dehors : 300 m² extérieurs couverts, un octogone de 7 m, un grand ring de boxe et deux niveaux avec un étage muscu/cardio, à Ramonville-Saint-Agne. Boxe anglaise, pieds-poings, grappling, asso MMA, Boxing Camp, Lady Punch et école enfants dès 3 ans.",
         "parentOrganization": {
           "@id": "https://boxingcenter.fr/#organization"
         }
@@ -365,7 +359,7 @@ const totalDisc = DISCIPLINES.length;
         "@id": "https://bc-ramonville.vercel.app/premiere-seance/#webpage",
         "url": "https://bc-ramonville.vercel.app/premiere-seance/",
         "name": "Ta première séance — comment ça se passe | Boxing Center Ramonville",
-        "description": "Jamais boxé ? Le déroulé réel d’une première séance à Ramonville : gants prêtés, aucun sparring imposé, aucun niveau demandé. La tenue, l’adresse, et l’essai à 10 €.",
+        "description": "Jamais boxé ? Le déroulé réel d’une première séance à Ramonville : gants prêtés, aucun sparring imposé, aucun niveau demandé. La tenue, l’adresse.",
         "inLanguage": "fr-FR",
         "isPartOf": {
           "@id": "https://bc-ramonville.vercel.app/#website"
@@ -409,7 +403,7 @@ const totalDisc = DISCIPLINES.length;
             "name": "Combien coûte la première séance ?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "La séance d’essai est à 10 €, toutes disciplines, matériel prêté, sans engagement. Si tu enchaînes, l’offre Rentrée est à 29 € par personne pour 4 semaines de cours illimités."
+              "text": "L’offre de rentrée est à 29 € par personne : quatre semaines de cours illimités, toutes disciplines, matériel prêté, sans engagement. Si tu enchaînes, l’offre Rentrée est à 29 € par personne pour 4 semaines de cours illimités."
             }
           },
           {
@@ -569,7 +563,7 @@ const totalDisc = DISCIPLINES.length;
           <article class="nope__card">
             <span class="nope__k">03 · Le contrat</span>
             <h3 class="nope__t">Pas d’engagement</h3>
-            <p class="nope__d">La séance d’essai est à {essai.price} et s’arrête là. Rien à signer sur place, pas de reconduction en douce&nbsp;: si tu ne reviens pas, il ne se passe rien. Tout se règle en ligne, quand tu l’as décidé.</p>
+            <p class="nope__d">L’offre de rentrée est à {essai.price} par personne et s’arrête là. Rien à signer sur place, pas de reconduction en douce&nbsp;: si tu ne reviens pas, il ne se passe rien. Tout se règle en ligne, quand tu l’as décidé.</p>
           </article>
         </div>
       </div>
@@ -646,7 +640,7 @@ const totalDisc = DISCIPLINES.length;
             <span class="fv">Dès 3 ans, t-shirt Boxing Center inclus, avec Valentin G</span>
           </div>
           <div class="info__row">
-            <span class="fk">Séance d’essai — {essai.price}</span>
+            <span class="fk">Offre de rentrée — {essai.price} par personne</span>
             <span class="fv">{essai.feature}</span>
           </div>
         </div>
@@ -676,7 +670,7 @@ const totalDisc = DISCIPLINES.length;
           </details>
           <details>
             <summary>Combien coûte la première séance&nbsp;?</summary>
-            <p>La séance d’essai est à {essai.price}, toutes disciplines, matériel prêté, sans engagement. Si tu enchaînes, l’offre Rentrée est à {PROMOS.duo.price} {PROMOS.duo.unit} pour 4 semaines de cours illimités.</p>
+            <p>L’offre de rentrée est à {PROMOS.duo.price} {PROMOS.duo.unit} : quatre semaines de cours illimités, toutes disciplines, matériel prêté, sans engagement. Tu viens, tu testes, et tu décides ensuite.</p>
           </details>
           <details>
             <summary>J’arrive à quelle heure, et où exactement&nbsp;?</summary>
@@ -703,7 +697,7 @@ const totalDisc = DISCIPLINES.length;
         <p class="lead" data-reveal>Après, tu es quelqu’un qui s’entraîne à Ramonville. {SALLE.hours}, {SALLE.address.full}.</p>
         <div class="ctaband__cta" data-reveal>
           <a class="btn btn--primary" data-magnetic href="https://boutique.boxingcenter.fr/inscription?product=offre-duo&step=1&utm_source=site&utm_medium=cta&utm_campaign=bc-ramonville"><span>Je prends ma place de rentrée — {PROMOS.duo.price}</span></a>
-          <a class="btn btn--ghost" data-magnetic href="https://boutique.boxingcenter.fr/seance-essai"><span>Je viens essayer · {essai.price}</span></a>
+          <a class="btn btn--ghost" data-magnetic href="https://boutique.boxingcenter.fr/offre/29"><span>Je viens essayer · {essai.price}</span></a>
         </div>
       </div>
     </section>

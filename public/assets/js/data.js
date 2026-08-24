@@ -91,7 +91,10 @@ export const LINKS = {
      donnée telle quelle — /offre/29, sans UTM, comme les autres liens
      d'offre déjà en place sur le site. */
   rentree: "https://boutique.boxingcenter.fr/offre/29",
-  essai: "https://boutique.boxingcenter.fr/seance-essai",       // CTA principal — essai 10€
+  /* Ne sert PLUS que la ligne « Séance d’essai » de la grille tarifs.
+     Ailleurs le 10 € a quitté le site : ordre d’Eddy du 24/08/2026, le
+     prix ne vit que dans la section tarifs et dans le bot. */
+  essai: "https://boutique.boxingcenter.fr/seance-essai",
   abos: "https://boutique.boxingcenter.fr/abonnements",
   promos: "https://boutique.boxingcenter.fr/offres-speciales",
   enfants: "https://boutique.boxingcenter.fr/abonnements",
@@ -684,7 +687,8 @@ const _PROMOS = {
   bonus: "Inscription enfant : le t-shirt Boxing Center est inclus — pour tous.",
 };
 
-/* Les tarifs affichés (page /tarifs/). Essai 10€ en premier (standards §3). */
+/* Les tarifs affichés (page /tarifs/). C’est le SEUL endroit du site où
+   le 10 € a le droit d’apparaître — ordre d’Eddy du 24/08/2026. */
 const _TARIFS = [
   {
     name: "Offre Rentrée",
@@ -856,7 +860,7 @@ export const FAQ = [
   { q: "C’est vrai qu’on s’entraîne dehors ?", a: "Oui, et c’est la seule des cinq salles où c’est possible : 300 m² dehors, aménagés et couverts, praticables toute l’année — une averse ne renvoie personne à l’intérieur. Sous charpente, tu as l’octogone de 7 m et le grand ring de boxe." },
   { q: "Quelles disciplines peut-on pratiquer ?", a: "Boxe anglaise et anglaise loisirs, boxe pieds-poings, grappling, asso MMA dans l’octogone, Boxing Camp, Lady Punch (100 % féminin) et toute l’école enfants du Baby Boxe (3 ans) aux ados 12/16. Un étage muscu/cardio est en accès libre." },
   { q: "Y a-t-il des cours pour les enfants ?", a: "Oui, dès 3 ans : Baby Boxe 3/6 le samedi, éducative 7/11 ans et ados 12/16 ans le mercredi et le samedi après-midi, encadrés par Valentin G." },
-  { q: "Faut-il un niveau pour commencer ?", a: "Aucun. La séance d’essai à 10 € donne accès à toutes les disciplines, matériel prêté. La plupart des créneaux — loisirs, camp, pieds-poings — sont ouverts à tous les niveaux." },
+  { q: "Faut-il un niveau pour commencer ?", a: "Aucun. L’offre de rentrée à 29 € par personne ouvre quatre semaines de cours illimités, matériel prêté. La plupart des créneaux — loisirs, camp, pieds-poings — sont ouverts à tous les niveaux." },
   { q: "Quels sont les horaires ?", a: "Du lundi au samedi, de 10h00 à 21h30, accès libre muscu/cardio inclus. Fermé le dimanche. Un émargement GPS est demandé en salle avant chaque cours." },
 ];
 
