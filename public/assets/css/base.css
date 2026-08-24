@@ -53,10 +53,10 @@
    Couleurs 100 % marque : navy + argent. Les glows/filets dérivent de --accent
    via color-mix : une seule ligne re-teinte le site entier. */
 :root {
-  --void:     #04060c;   /* le noir du hangar, sous la charpente */
-  --paper:    #070a12;   /* fond — la nuit bleu-noir (navy Boxing Center) */
-  --paper-2:  #0e1320;   /* panneau surélevé */
-  --paper-3:  #161c2c;   /* pressé */
+  --void:     #0a0e18;   /* le noir du hangar, sous la charpente */
+  --paper:    #10151f;   /* fond — la nuit bleu-noir (navy Boxing Center) */
+  --paper-2:  #1a2130;   /* panneau surélevé */
+  --paper-3:  #263041;   /* pressé */
   --ink:      #e8ebf4;   /* texte — ≈15:1 */
   --ink-soft: #c0c7d8;
   --muted:    #8a93a8;   /* labels — ≈5.9:1, AA */

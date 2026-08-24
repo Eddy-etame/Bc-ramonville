@@ -328,19 +328,19 @@ function reveal(scope = document) {
     if (m.dataset.revBound || !kids.length) return; m.dataset.revBound = "1";
     if (premierEcran(m)) return;
     gsap.set(kids, { yPercent: 112, opacity: 0 });
-    gsap.to(kids, { yPercent: 0, opacity: 1, duration: 1, ease: "power4.out", stagger: 0.08, scrollTrigger: { trigger: m, start: "top 90%" } });
+    gsap.to(kids, { yPercent: 0, opacity: 1, duration: 0.6, ease: "power2.out", stagger: 0.05, scrollTrigger: { trigger: m, start: "top 90%" } });
   });
   scope.querySelectorAll("[data-reveal]").forEach((el) => {
     if (el.dataset.revBound) return; el.dataset.revBound = "1";
     if (premierEcran(el)) return;
-    gsap.to(el, { opacity: 1, y: 0, duration: 0.9, ease: "power3.out", scrollTrigger: { trigger: el, start: "top 92%" } });
+    gsap.to(el, { opacity: 1, y: 0, duration: 0.55, ease: "power2.out", scrollTrigger: { trigger: el, start: "top 92%" } });
   });
   scope.querySelectorAll("[data-reveal-group]").forEach((g) => {
     const kids = [...g.children];
     if (g.dataset.revBound || !kids.length) return; g.dataset.revBound = "1";
     if (premierEcran(g)) return;
-    gsap.set(kids, { opacity: 0, y: 30 });
-    gsap.to(kids, { opacity: 1, y: 0, duration: 0.85, ease: "power3.out", stagger: 0.07, scrollTrigger: { trigger: g, start: "top 88%" } });
+    gsap.set(kids, { opacity: 0, y: 12 });
+    gsap.to(kids, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out", stagger: 0.04, scrollTrigger: { trigger: g, start: "top 88%" } });
   });
 
   /* Dead-man net (loi de lisibilité) : si le ticker gèle, tout redevient
