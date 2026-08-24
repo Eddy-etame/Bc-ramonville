@@ -38,7 +38,7 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const DIST = join(ROOT, "dist");
 
-const { LINKS, NETWORK } = await import(
+const { LINKS, NETWORK, NAV } = await import(
   pathToFileURL(join(ROOT, "public/assets/js/data.js")).href
 );
 
@@ -75,17 +75,38 @@ const MAILLAGE =
   soeurs.map((s) => lien(s.url, s.name, `${s.name} — ${s.feat}`)).join("") +
   `</div></div></div></footer>`;
 
+/* LA NAVIGATION INTERNE, MEME RAISON, MEME GESTE.
+   Le pied de page etait ecrit en dur ici depuis longtemps ; la nav, non. Le
+   HTML livre de l'accueil ne contenait donc que DEUX liens internes
+   (/plannings/ et /premiere-seance/, poses a la main dans le contenu) et pas
+   une balise de navigation. Pour un moteur de reponse qui n'execute pas de
+   JavaScript — GPTBot, ClaudeBot, PerplexityBot — le site etait dix iles sans
+   un pont : rien ne menait a /coachs/, /activites/, /tarifs/ ni /galerie/.
+   On liait le reseau pour les machines, et seules les machines ne voyaient
+   pas le site.
+
+   NAV vient de data.js, la meme source que site.js. Celui-ci remplace #nav
+   des qu'il tourne : le rendu final est identique. `aria-hidden` non — ces
+   liens doivent etre lus. */
+const NAVIGATION =
+  `<nav class="nav__statique" aria-label="Navigation du site"><div class="wrap">` +
+  (NAV || []).map((n) => `<a href="${attr(n.href)}">${attr(n.label)}</a>`).join("") +
+  `</div></nav>`;
+
+const CIBLE_NAV = '<div id="nav"></div>';
 const CIBLE = '<div id="footer"></div>';
 let n = 0;
 for await (const f of fichiers(DIST)) {
   if (extname(f) !== ".html") continue;
   const html = await readFile(f, "utf8");
   if (!html.includes(CIBLE)) continue;          // /admin/ n'a pas de pied de page
-  await writeFile(f, html.replace(CIBLE, `<div id="footer">${MAILLAGE}</div>`));
+  let out = html.replace(CIBLE, `<div id="footer">${MAILLAGE}</div>`);
+  if (out.includes(CIBLE_NAV)) out = out.replace(CIBLE_NAV, `<div id="nav">${NAVIGATION}</div>`);
+  await writeFile(f, out);
   n++;
 }
 
 console.log(
-  `[maillage] ${n} pages · ${2 + soeurs.length} liens du réseau écrits en dur ` +
-  `(groupe, boutique, ${soeurs.length} salles sœurs) · remplacés par site.js au montage`
+  `[maillage] ${n} pages · ${2 + soeurs.length} liens du réseau + ${(NAV || []).length} de navigation interne ` +
+  `écrits en dur · remplacés par site.js au montage`
 );
