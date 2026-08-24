@@ -88,6 +88,12 @@ const PAGES = [
      l'autre porte d'entrée de quelqu'un qui n'est jamais venu. `monthly` :
      son contenu ne bouge qu'avec le planning et le prix de l'essai. */
   { chemin: "premiere-seance/", priorite: "0.8", freq: "monthly", imgs: [I.camp, I.anglaise, I.sonia] },
+  /* Les fiches destinees aux IA. Un robot ne les decouvre autrement que par
+     robots.txt : les declarer ici les met au meme rang que les pages.
+     `fichier: true` : ce ne sont pas des dossiers avec un index.html. */
+  { chemin: "llms.txt", fichier: true, priorite: "0.4", freq: "weekly", imgs: [] },
+  { chemin: "llms-full.txt", fichier: true, priorite: "0.3", freq: "weekly", imgs: [] },
+  { chemin: "ai.txt", fichier: true, priorite: "0.3", freq: "monthly", imgs: [] },
 ];
 
 const aujourdhui = new Date().toISOString().slice(0, 10);
@@ -97,7 +103,7 @@ const lignes = [];
 let bouges = 0;
 
 for (const p of PAGES) {
-  const f = join(DIST, p.chemin, "index.html");
+  const f = p.fichier ? join(DIST, p.chemin) : join(DIST, p.chemin, "index.html");
   const html = await readFile(f, "utf8");
   const empreinte = createHash("sha256").update(html).digest("hex").slice(0, 16);
   const ancien = etat[p.chemin || "/"];
