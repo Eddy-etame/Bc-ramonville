@@ -161,7 +161,7 @@ const _DISCIPLINES = [
     jours: "Anglaise mar. & ven. 12h40 · mer. 18h45 → 20h15 · Loisirs lun. & ven. 19h45",
     niveau: "Débutant → confirmé",
     desc: "Jab, esquive, jeu de jambes. Les midis pour le geste propre, les soirs en loisirs quand la salle se remplit et que les frappes couvrent le bruit du dehors. Le fondamental de la maison.",
-    img: "/assets/img/ram/photos/cours-de-boxe-anglaise-sur-le-ring-boxing-center-ramonville.webp",
+    img: "/assets/img/ram/photos/boxe-anglaise-en-binome-boxing-center-ramonville.webp",
   },
   {
     key: "pieds-poings",
@@ -196,7 +196,7 @@ const _DISCIPLINES = [
     jours: "Mardi · 18h40",
     niveau: "Tous niveaux",
     desc: "Contrôle, projections, travail au sol dans l’octogone de 7 m. Jérôme y enseigne la partie que la boxe ignore : le sol. Mardi soir, tous niveaux — c’est le créneau où la cage s’ouvre aux débutants.",
-    img: "/assets/img/ram/photos/grappling-controle-au-sol-boxing-center-ramonville.webp",
+    img: "/assets/img/ram/photos/jiu-jitsu-bresilien-au-sol-boxing-center-ramonville.webp",
   },
   {
     key: "asso-mma",
@@ -213,8 +213,8 @@ const _DISCIPLINES = [
        indexée `discs: ["grappling", "asso-mma"]`. La fiche du créneau qui se
        passe DANS la cage s’affichait sans la seule photo de la cage : ce
        n’était pas un manque de matière, c’était un fil non branché. */
-    img: "/assets/img/ram/photos/octogone-mma-cours-au-sol-boxing-center-ramonville.webp",
-    imgAlt: "Cours de MMA au sol dans l'octogone de 7 mètres du Boxing Center Ramonville.",
+    img: "/assets/img/ram/photos/cours-de-mma-groupe-debout-boxing-center-ramonville.webp",
+    imgAlt: "Le groupe debout dans l'octogone de 7 mètres pendant un cours de MMA au Boxing Center Ramonville.",
   },
   {
     key: "boxing-camp",
@@ -267,7 +267,7 @@ const _DISCIPLINES = [
        photos prouvées n’en montre. La plaque le dit franchement. */
     img: null,
     nophoto: "Pas de photo des cours enfants : on ne publie pas le visage d’un enfant sans l’accord de ses parents. Le mercredi et le samedi, la salle est à eux.",
-    img: "/assets/img/ram/photos/boxe-educative-enfants-boxing-center-ramonville.webp",
+    img: "/assets/img/ram/photos/cours-de-renforcement-vue-plongeante-boxing-center-ramonville.webp",
     imgAlt: "Cours de boxe éducative pour enfants au Boxing Center Ramonville."
   },
   {
@@ -463,46 +463,109 @@ export const VALUES = [
    Jérôme prouvées (roster.json). Farouk & Valentin G sans photo prouvée →
    tuiles nom/silhouette (JAMAIS de stock, JAMAIS la face d’un autre). */
 const _COACHES = [
-  {
-    name: "Sonia",
-    role: "Pieds-poings · Lady Punch · Camp",
-    tag: "Le pilier",
-    pillar: true,
-    note: "Le fil rouge de la semaine : boxe pieds-poings, Lady Punch et Boxing Camp. Celle que les avis citent par son nom — l’accueil du plateau, c’est elle. Première fois au club ? C’est vers elle qu’on t’envoie.",
-    img: "/assets/img/ram/coach-sonia.webp",
-  },
+  /* L'ORDRE EST UNE INFORMATION. Sonia ouvrait la liste en Â« pilier Â» ; le
+     head coach est Jerome, et c'est imprime sous son nom sur le visuel
+     officiel de la saison 2026/2027. Il ouvre donc, et les quatre autres
+     suivent dans l'ordre ou la semaine les rencontre.
+
+     Les cinq fiches portent desormais ce que les visuels disent : les
+     disciplines, la bio, les qualites, la formation, l'approche, la devise.
+     C'etait imprime sur le pave blanc de chaque visuel. On ne recopie pas ce
+     pave en image â le site a sa propre fiche â mais on en garde chaque mot :
+     une image ne s'indexe pas, un texte oui.
+
+     `planning` : la cle qui relie au planning quand elle differe du nom
+     affiche. Valentin s'appelle Guth (son visuel le dit) ; le planning
+     officiel ecrit Â« Valentin G Â». On corrige l'affichage sans toucher au
+     planning â un poster fait foi sur le planning, pas sur l'etat civil. */
   {
     name: "Jérôme",
-    role: "Grappling · Asso MMA",
-    tag: "L’homme de la cage",
-    // Pas de patronyme : le brief §3 ne liste que « Jérôme » et aucun poster
-    // officiel ne le confirme (même piège que « Valentin Tapia » / Valentin G).
-    // même défaut qu’à la fiche de l’octogone : la phrase se disait deux fois.
-    note: "Jérôme tient le sol et l’octogone : grappling le mardi — le créneau tous niveaux, celui où la cage s’ouvre aux débutants — et l’asso MMA deux soirs, quand tu es prêt et si tu en as envie.",
+    role: "MMA · Grappling · Prépa physique",
+    tag: "Head coach",
+    pillar: true,
+    disciplines: ["MMA", "Grappling", "Prépa physique"],
+    note: "Ancien combattant professionnel de MMA, Jérôme a évolué aux plus hauts niveaux aux États-Unis et au Canada. Passionné, exigeant et humain, il transmet son expérience avec rigueur et détermination pour faire progresser chaque membre et repousser ses limites.",
+    qualites: ["Leadership", "Exigence", "Passionné", "Pédagogue", "Mental d'acier"],
+    parcours: "Ancien combattant professionnel de MMA — États-Unis et Canada",
+    approche: [
+      "Technique et discipline au service de la performance",
+      "Progression individuelle et esprit d'équipe",
+      "Respect, humilité et dépassement de soi",
+    ],
+    devise: "Discipline. Dépassement. Respect. Esprit de combat.",
     img: "/assets/img/ram/coach-jerome.webp",
   },
   {
-    name: "Farouk",
-    /* Le poster de la rentrée lui a retiré le Boxing Camp du mercredi soir et
-       lui a donné le bloc d’anglaise 18h45 → 20h15 à la place. Sa fiche
-       annonçait encore un cours qu’il ne donne plus. */
-    role: "Anglaise Loisirs · le mercredi soir",
-    tag: "Les soirs loisirs",
-    note: "L’anglaise loisirs le lundi et le vendredi à 19h45, et le grand bloc d’anglaise du mercredi, 18h45 à 20h15 : les créneaux où la salle se remplit et où le collectif prend le dessus.",
-    img: null,
+    name: "Sonia",
+    role: "Boxe thaï · Kickboxing · Boxing Lady",
+    tag: "Le fil rouge de la semaine",
+    disciplines: ["Boxe thaï", "Kickboxing", "Préparation physique", "Boxing Lady"],
+    note: "Passionnée, déterminée et bienveillante, Sonia met son énergie et son savoir-faire au service de chaque adhérent. Spécialiste des sports de combat et du coaching féminin, elle aide chacun à se dépasser et à révéler son potentiel. C'est elle que les avis Google citent par son nom.",
+    qualites: ["Dynamique", "Exigeante", "Passionnée", "À l'écoute", "Mental d'acier"],
+    formation: ["BPJEPS Sports de contact"],
+    approche: [
+      "Technique et pédagogie au service de la progression",
+      "Entraînements variés, intenses et adaptés",
+      "Bienveillance, motivation et dépassement de soi",
+    ],
+    devise: "Force, discipline, confiance : ensemble on va plus loin.",
+    img: "/assets/img/ram/coach-sonia.webp",
   },
   {
-    name: "Valentin G",
-    role: "Anglaise · École enfants",
-    tag: "L’école",
-    // « aux États-Unis » se lisait comme le PAYS. La source (et /llms-full.txt)
-    // parlent de la salle du réseau qui porte ce nom, à Toulouse. Un lecteur
-    // qui comprend « il enseigne en Amérique » a lu un fait qui n’existe pas :
-    // on lève l’ambiguïté au lieu de la laisser flatter la fiche.
-    note: "L’anglaise du midi et toute l’école : Baby Boxe dès 3 ans, éducative 7/11 et ados 12/16, mercredi et samedi. Il enseigne aussi à la salle des États-Unis, dans le réseau.",
-    img: null,
+    /* ABSENT DU SITE JUSQU'AU 24/08. Hicham tient les TROIS midis du planning
+       officiel de la rentrée â le site le faisait travailler sans le nommer
+       nulle part, et sa fiche n'existait pas. */
+    name: "Hicham",
+    role: "Boxe anglaise · les trois midis",
+    tag: "Les midis",
+    disciplines: ["Boxe anglaise", "Préparation physique"],
+    note: "Passionné par la boxe anglaise et la préparation physique, Hicham accompagne chaque pratiquant avec exigence et pédagogie. Son objectif : développer la technique, la condition physique et la confiance pour permettre à chacun de progresser à son rythme.",
+    qualites: ["Pédagogue", "Rigoureux", "À l'écoute", "Motivant", "Exigeant"],
+    formation: ["BPJEPS AF"],
+    approche: [
+      "Technique et condition physique",
+      "Progression adaptée à chacun",
+      "Exigence et pédagogie",
+    ],
+    devise: "Se préparer. Apprendre. Progresser.",
+    img: "/assets/img/ram/coach-hicham.webp",
+  },
+  {
+    name: "Farouk",
+    role: "Anglaise loisirs · Anglaise compétiteurs",
+    tag: "Les soirs loisirs",
+    disciplines: ["Boxe anglaise loisirs", "Boxe anglaise compétiteurs"],
+    note: "Passionné par la boxe anglaise, Farouk met son exigence et son expérience au service de chacun. Il accompagne les pratiquants loisirs comme les compétiteurs avec rigueur, bienveillance et détermination pour les aider à atteindre leurs objectifs et se dépasser.",
+    qualites: ["Pédagogue", "Rigoureux", "À l'écoute", "Motivant", "Exigeant"],
+    formation: ["Licence STAPS"],
+    approche: [
+      "Technique et tactique de la boxe",
+      "Progression adaptée à chacun",
+      "Exigence et bienveillance",
+    ],
+    devise: "Discipline. Technique. Progression. Dépassement.",
+    img: "/assets/img/ram/coach-farouk.webp",
+  },
+  {
+    name: "Valentin Guth",
+    planning: "Valentin G",
+    role: "Boxe loisirs · Boxe éducative",
+    tag: "L'école",
+    disciplines: ["Boxe loisirs", "Boxe éducative"],
+    note: "Boxeur professionnel, Valentin transmet une boxe exigeante, technique et engagée. Fort de son expérience en compétition, il accompagne chaque élève avec passion, de l'initiation au perfectionnement. C'est lui qui tient toute l'école : Baby Boxe dès 3 ans, éducative 7/11 et ados 12/16, mercredi et samedi.",
+    qualites: ["Technique", "Combatif", "Rigoureux", "Passionné", "Pédagogue"],
+    formation: ["BPJEPS Boxe anglaise", "BPJEPS Sports de contact"],
+    parcours: "Boxeur professionnel — 3 victoires, 1 défaite, 1 nul · 2ᵉ français chez les super-coqs",
+    approche: [
+      "Technique et engagement",
+      "De l'initiation au perfectionnement",
+      "Passion et exigence à chaque séance",
+    ],
+    devise: "Apprendre. Combattre. Progresser.",
+    img: "/assets/img/ram/coach-valentin.webp",
   },
 ];
+
 
 /* ------------------------------------------------------------------ *
  *  LE PLANNING — grille filtrable (page /plannings/). Source : posters
@@ -778,27 +841,27 @@ export const GALLERY = [
   { img: "/assets/img/ram/photos/plateau-ring-tatami-et-octogone-boxing-center-ramonville-800.webp", plein: "/assets/img/ram/photos/plateau-ring-tatami-et-octogone-boxing-center-ramonville.webp", w: 800, h: 534, zone: "Le plateau", place: "ring, tatami et octogone", alt: "Le plateau du Boxing Center Ramonville : le ring, le tatami et l'octogone sous la charpente.", discs: [] },
   { img: "/assets/img/ram/photos/octogone-7-metres-vide-boxing-center-ramonville-800.webp", plein: "/assets/img/ram/photos/octogone-7-metres-vide-boxing-center-ramonville.webp", w: 800, h: 533, zone: "Le plateau", place: "l'octogone au repos", alt: "L'octogone de 7 mètres du Boxing Center Ramonville, vide, entre deux cours.", discs: [] },
   { img: "/assets/img/ram/photos/etage-musculation-sous-la-charpente-boxing-center-ramonville-800.webp", plein: "/assets/img/ram/photos/etage-musculation-sous-la-charpente-boxing-center-ramonville.webp", w: 800, h: 534, zone: "Le plateau", place: "l'étage, sous la charpente", alt: "L'étage musculation du Boxing Center Ramonville, sous la charpente métallique.", discs: [] },
-  { img: "/assets/img/ram/photos/octogone-mma-cours-au-sol-boxing-center-ramonville-800.webp", plein: "/assets/img/ram/photos/octogone-mma-cours-au-sol-boxing-center-ramonville.webp", w: 800, h: 532, zone: "L'octogone", place: "MMA au sol", alt: "Cours de MMA au sol dans l'octogone de 7 mètres du Boxing Center Ramonville.", discs: ["asso-mma", "grappling"] },
+  { img: "/assets/img/ram/photos/octogone-cours-vu-d-en-haut-boxing-center-ramonville-800.webp", plein: "/assets/img/ram/photos/octogone-cours-vu-d-en-haut-boxing-center-ramonville.webp", w: 800, h: 532, zone: "L'octogone", place: "MMA au sol", alt: "Cours de MMA au sol dans l'octogone de 7 mètres du Boxing Center Ramonville.", discs: ["asso-mma", "grappling"] },
   { img: "/assets/img/ram/photos/octogone-vue-plongeante-boxing-center-ramonville-800.webp", plein: "/assets/img/ram/photos/octogone-vue-plongeante-boxing-center-ramonville.webp", w: 800, h: 532, zone: "L'octogone", place: "vue de dessus", alt: "L'octogone de 7 mètres du Boxing Center Ramonville vu de dessus pendant un cours.", discs: ["asso-mma"] },
   { img: "/assets/img/ram/photos/cours-de-mma-groupe-debout-boxing-center-ramonville-800.webp", plein: "/assets/img/ram/photos/cours-de-mma-groupe-debout-boxing-center-ramonville.webp", w: 800, h: 532, zone: "L'octogone", place: "le groupe debout", alt: "Le groupe du cours de MMA debout dans l'octogone du Boxing Center Ramonville.", discs: ["asso-mma"] },
   { img: "/assets/img/ram/photos/grappling-controle-au-sol-boxing-center-ramonville-800.webp", plein: "/assets/img/ram/photos/grappling-controle-au-sol-boxing-center-ramonville.webp", w: 800, h: 534, zone: "L'octogone", place: "contrôle au sol", alt: "Contrôle au sol pendant le cours de grappling du Boxing Center Ramonville.", discs: ["grappling"] },
   { img: "/assets/img/ram/photos/jiu-jitsu-bresilien-au-sol-boxing-center-ramonville-800.webp", plein: "/assets/img/ram/photos/jiu-jitsu-bresilien-au-sol-boxing-center-ramonville.webp", w: 800, h: 534, zone: "L'octogone", place: "travail au sol", alt: "Travail de jiu-jitsu brésilien au sol dans l'octogone du Boxing Center Ramonville.", discs: ["grappling"] },
-  { img: "/assets/img/ram/photos/grappling-projection-debout-boxing-center-ramonville-800.webp", plein: "/assets/img/ram/photos/grappling-projection-debout-boxing-center-ramonville.webp", w: 800, h: 534, zone: "L'octogone", place: "projection debout", alt: "Travail de projection en grappling au Boxing Center Ramonville.", discs: ["grappling"] },
+  { img: "/assets/img/ram/photos/demonstration-de-soumission-au-sol-boxing-center-ramonville-800.webp", plein: "/assets/img/ram/photos/demonstration-de-soumission-au-sol-boxing-center-ramonville.webp", w: 800, h: 534, zone: "L'octogone", place: "projection debout", alt: "Travail de projection en grappling au Boxing Center Ramonville.", discs: ["grappling"] },
   { img: "/assets/img/ram/photos/octogone-vu-du-grillage-boxing-center-ramonville-800.webp", plein: "/assets/img/ram/photos/octogone-vu-du-grillage-boxing-center-ramonville.webp", w: 800, h: 532, zone: "L'octogone", place: "vu du grillage", alt: "L'intérieur de l'octogone du Boxing Center Ramonville vu à travers le grillage.", discs: [] },
   { img: "/assets/img/ram/photos/mma-entrainement-dans-l-octogone-boxing-center-ramonville-800.webp", plein: "/assets/img/ram/photos/mma-entrainement-dans-l-octogone-boxing-center-ramonville.webp", w: 800, h: 532, zone: "L'octogone", place: "à l'entraînement", alt: "Entraînement de MMA dans l'octogone grillagé du Boxing Center Ramonville.", discs: ["asso-mma"] },
   { img: "/assets/img/ram/photos/cours-de-boxe-anglaise-sur-le-ring-boxing-center-ramonville-800.webp", plein: "/assets/img/ram/photos/cours-de-boxe-anglaise-sur-le-ring-boxing-center-ramonville.webp", w: 800, h: 532, zone: "Le ring", place: "cours d'anglaise", alt: "Cours de boxe anglaise sur le ring du Boxing Center Ramonville, travail de déplacements.", discs: ["anglaise"] },
-  { img: "/assets/img/ram/photos/travail-aux-pattes-d-ours-boxing-center-ramonville-800.webp", plein: "/assets/img/ram/photos/travail-aux-pattes-d-ours-boxing-center-ramonville.webp", w: 800, h: 534, zone: "Le ring", place: "pattes d'ours", alt: "Travail aux pattes d'ours en binôme au Boxing Center Ramonville.", discs: ["anglaise", "pieds-poings"] },
+  { img: "/assets/img/ram/photos/echauffement-du-groupe-debout-boxing-center-ramonville-800.webp", plein: "/assets/img/ram/photos/echauffement-du-groupe-debout-boxing-center-ramonville.webp", w: 800, h: 534, zone: "Le ring", place: "pattes d'ours", alt: "Travail aux pattes d'ours en binôme au Boxing Center Ramonville.", discs: ["anglaise", "pieds-poings"] },
   { img: "/assets/img/ram/photos/boxe-anglaise-garde-haute-boxing-center-ramonville-800.webp", plein: "/assets/img/ram/photos/boxe-anglaise-garde-haute-boxing-center-ramonville.webp", w: 800, h: 534, zone: "Le ring", place: "la garde", alt: "Un boxeur en garde haute au Boxing Center Ramonville, devant la fresque du club.", discs: ["anglaise"] },
   { img: "/assets/img/ram/photos/boxe-anglaise-en-binome-boxing-center-ramonville-800.webp", plein: "/assets/img/ram/photos/boxe-anglaise-en-binome-boxing-center-ramonville.webp", w: 800, h: 492, zone: "Le ring", place: "en binôme", alt: "Travail de boxe anglaise en binôme au Boxing Center Ramonville, devant le ring.", discs: ["anglaise"] },
   { img: "/assets/img/ram/photos/kick-boxing-coup-de-pied-haut-boxing-center-ramonville-800.webp", plein: "/assets/img/ram/photos/kick-boxing-coup-de-pied-haut-boxing-center-ramonville.webp", w: 800, h: 534, zone: "Le ring", place: "kick, coup de pied haut", alt: "Coup de pied haut au bouclier pendant le cours de kick-boxing du Boxing Center Ramonville.", discs: ["pieds-poings"] },
   { img: "/assets/img/ram/photos/sparring-pieds-poings-sur-tatami-boxing-center-ramonville-800.webp", plein: "/assets/img/ram/photos/sparring-pieds-poings-sur-tatami-boxing-center-ramonville.webp", w: 800, h: 533, zone: "Le ring", place: "sparring pieds-poings", alt: "Sparring pieds-poings sur le tatami du Boxing Center Ramonville.", discs: ["pieds-poings"] },
   { img: "/assets/img/ram/photos/boxing-camp-circuit-de-renforcement-boxing-center-ramonville-800.webp", plein: "/assets/img/ram/photos/boxing-camp-circuit-de-renforcement-boxing-center-ramonville.webp", w: 800, h: 447, zone: "Les sacs", place: "Boxing Camp", alt: "Circuit de renforcement du Boxing Camp au Boxing Center Ramonville, en groupe.", discs: ["boxing-camp"] },
-  { img: "/assets/img/ram/photos/frappe-au-sac-lourd-boxing-center-ramonville-800.webp", plein: "/assets/img/ram/photos/frappe-au-sac-lourd-boxing-center-ramonville.webp", w: 800, h: 534, zone: "Les sacs", place: "frappe au sac", alt: "Frappe au sac lourd pendant le Boxing Camp du Boxing Center Ramonville.", discs: ["boxing-camp"] },
+  { img: "/assets/img/ram/photos/direct-aux-pattes-d-ours-boxing-center-ramonville-800.webp", plein: "/assets/img/ram/photos/direct-aux-pattes-d-ours-boxing-center-ramonville.webp", w: 800, h: 534, zone: "Les sacs", place: "frappe au sac", alt: "Frappe au sac lourd pendant le Boxing Camp du Boxing Center Ramonville.", discs: ["boxing-camp"] },
   { img: "/assets/img/ram/photos/sacs-de-frappe-entrainement-boxing-center-ramonville-800.webp", plein: "/assets/img/ram/photos/sacs-de-frappe-entrainement-boxing-center-ramonville.webp", w: 800, h: 532, zone: "Les sacs", place: "la ligne de sacs", alt: "Deux pratiquants devant la ligne de sacs lourds du Boxing Center Ramonville, sous la charpente.", discs: ["boxing-camp"] },
   { img: "/assets/img/ram/photos/espace-musculation-poulies-boxing-center-ramonville-800.webp", plein: "/assets/img/ram/photos/espace-musculation-poulies-boxing-center-ramonville.webp", w: 800, h: 532, zone: "L'étage", place: "poulies et charges", alt: "L'espace musculation du Boxing Center Ramonville : poulies, bancs et charges libres.", discs: ["acces-libre"] },
-  { img: "/assets/img/ram/photos/espace-cardio-velos-boxing-center-ramonville-800.webp", plein: "/assets/img/ram/photos/espace-cardio-velos-boxing-center-ramonville.webp", w: 800, h: 532, zone: "L'étage", place: "le cardio", alt: "L'espace cardio du Boxing Center Ramonville : vélos et rameurs à l'étage.", discs: ["acces-libre"] },
+  { img: "/assets/img/ram/photos/etage-bancs-et-machines-boxing-center-ramonville-800.webp", plein: "/assets/img/ram/photos/etage-bancs-et-machines-boxing-center-ramonville.webp", w: 800, h: 532, zone: "L'étage", place: "le cardio", alt: "L'espace cardio du Boxing Center Ramonville : vélos et rameurs à l'étage.", discs: ["acces-libre"] },
   { img: "/assets/img/ram/photos/lady-punch-boxe-100-pour-cent-feminin-boxing-center-ramonville-800.webp", plein: "/assets/img/ram/photos/lady-punch-boxe-100-pour-cent-feminin-boxing-center-ramonville.webp", w: 800, h: 534, zone: "Les cours", place: "Lady Punch", alt: "Une pratiquante du cours Lady Punch au Boxing Center Ramonville, enchaînement aux gants.", discs: ["lady-punch"] },
-  { img: "/assets/img/ram/photos/boxe-educative-enfants-boxing-center-ramonville-800.webp", plein: "/assets/img/ram/photos/boxe-educative-enfants-boxing-center-ramonville.webp", w: 800, h: 533, zone: "Les cours", place: "l'école, dès 3 ans", alt: "Cours de boxe éducative pour enfants au Boxing Center Ramonville.", discs: ["ecole"] },
+  { img: "/assets/img/ram/photos/cours-de-renforcement-vue-plongeante-boxing-center-ramonville-800.webp", plein: "/assets/img/ram/photos/cours-de-renforcement-vue-plongeante-boxing-center-ramonville.webp", w: 800, h: 533, zone: "Les cours", place: "l'école, dès 3 ans", alt: "Cours de boxe éducative pour enfants au Boxing Center Ramonville.", discs: ["ecole"] },
 ];
 
 

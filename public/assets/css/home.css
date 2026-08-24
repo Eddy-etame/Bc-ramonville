@@ -237,11 +237,11 @@
   display: block;
   /* la photo recule d'un cran : le filaire et la légende restent lisibles
      par-dessus, et on garde l'aspect « vu à travers » plutôt qu'« affiche ». */
-  opacity: .72;
-  filter: saturate(.9) contrast(1.04);
+  opacity: .88;
+  filter: saturate(.98) contrast(1.02);
   transition: opacity .5s var(--ease-out, ease), transform .9s var(--ease-out, ease);
 }
-.onav:hover .onav__vue img { opacity: .92; transform: scale(1.03); }
+.onav:hover .onav__vue img { opacity: 1; transform: scale(1.03); }
 
 /* Le filaire passe DEVANT la photo — c'est lui qui donne la forme. */
 .onav__filaire { position: relative; z-index: 1; }

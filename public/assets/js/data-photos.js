@@ -34,8 +34,8 @@ export const PHOTOS = [
     "h": 4024
   },
   {
-    "nom": "octogone-mma-cours-au-sol-boxing-center-ramonville",
-    "alt": "Cours de MMA au sol dans l'octogone de 7 mètres du Boxing Center Ramonville.",
+    "nom": "octogone-cours-vu-d-en-haut-boxing-center-ramonville",
+    "alt": "Cours dans l'octogone de 7 mètres, vu d'en haut, au Boxing Center Ramonville.",
     "w": 6048,
     "h": 4024
   },
@@ -46,8 +46,8 @@ export const PHOTOS = [
     "h": 4024
   },
   {
-    "nom": "espace-cardio-velos-boxing-center-ramonville",
-    "alt": "L'espace cardio du Boxing Center Ramonville : vélos et rameurs à l'étage.",
+    "nom": "etage-bancs-et-machines-boxing-center-ramonville",
+    "alt": "Bancs et machines de musculation à l'étage du Boxing Center Ramonville.",
     "w": 6048,
     "h": 4024
   },
@@ -64,8 +64,8 @@ export const PHOTOS = [
     "h": 3954
   },
   {
-    "nom": "espace-cardio-rameur-boxing-center-ramonville",
-    "alt": "Un rameur de l'espace cardio du Boxing Center Ramonville, à l'étage du club.",
+    "nom": "espace-cardio-velo-et-tapis-boxing-center-ramonville",
+    "alt": "Vélo et tapis de course à l'étage cardio du Boxing Center Ramonville.",
     "w": 6048,
     "h": 4024
   },
@@ -88,8 +88,8 @@ export const PHOTOS = [
     "h": 4024
   },
   {
-    "nom": "grappling-groupe-dans-l-octogone-boxing-center-ramonville",
-    "alt": "Un groupe de grappling réuni dans l'octogone du Boxing Center Ramonville.",
+    "nom": "groupe-avant-le-cours-de-grappling-boxing-center-ramonville",
+    "alt": "Le groupe debout avant le cours de grappling, au Boxing Center Ramonville.",
     "w": 6048,
     "h": 4024
   },
@@ -148,8 +148,8 @@ export const PHOTOS = [
     "h": 3744
   },
   {
-    "nom": "travail-aux-pattes-d-ours-boxing-center-ramonville",
-    "alt": "Travail aux pattes d'ours en binôme au Boxing Center Ramonville.",
+    "nom": "echauffement-du-groupe-debout-boxing-center-ramonville",
+    "alt": "Échauffement du groupe debout avant le cours, au Boxing Center Ramonville.",
     "w": 5728,
     "h": 3824
   },
@@ -160,20 +160,20 @@ export const PHOTOS = [
     "h": 3694
   },
   {
-    "nom": "frappe-au-sac-lourd-boxing-center-ramonville",
-    "alt": "Frappe au sac lourd pendant le Boxing Camp du Boxing Center Ramonville.",
+    "nom": "direct-aux-pattes-d-ours-boxing-center-ramonville",
+    "alt": "Direct aux pattes d'ours pendant un cours de boxe au Boxing Center Ramonville.",
     "w": 5821,
     "h": 3886
   },
   {
-    "nom": "coach-de-boxe-portrait-boxing-center-ramonville",
-    "alt": "Un coach du Boxing Center Ramonville en garde, portrait devant le ring.",
+    "nom": "coach-de-dos-avant-le-cours-boxing-center-ramonville",
+    "alt": "Un coach de dos avant le début du cours, au Boxing Center Ramonville.",
     "w": 4016,
     "h": 6016
   },
   {
-    "nom": "grappling-projection-debout-boxing-center-ramonville",
-    "alt": "Travail de projection en grappling au Boxing Center Ramonville.",
+    "nom": "demonstration-de-soumission-au-sol-boxing-center-ramonville",
+    "alt": "Démonstration d'une soumission au sol devant le groupe, au Boxing Center Ramonville.",
     "w": 5639,
     "h": 3764
   },
@@ -232,8 +232,8 @@ export const PHOTOS = [
     "h": 4480
   },
   {
-    "nom": "boxe-educative-enfants-boxing-center-ramonville",
-    "alt": "Cours de boxe éducative pour enfants au Boxing Center Ramonville.",
+    "nom": "cours-de-renforcement-vue-plongeante-boxing-center-ramonville",
+    "alt": "Cours de renforcement vu du plafond au Boxing Center Ramonville : haltères, disques et tapis.",
     "w": 6720,
     "h": 4480
   },
@@ -304,8 +304,8 @@ export const PHOTOS = [
     "h": 4299
   },
   {
-    "nom": "pratiquant-senior-devant-le-ring-boxing-center-ramonville",
-    "alt": "Un pratiquant senior du Boxing Center Ramonville devant le ring de boxe.",
+    "nom": "pratiquant-bras-croises-devant-les-pneus-boxing-center-ramonville",
+    "alt": "Un pratiquant bras croisés devant les pneus d'entraînement du Boxing Center Ramonville.",
     "w": 4229,
     "h": 6252
   },
@@ -370,8 +370,8 @@ export const PHOTOS = [
     "h": 4480
   },
   {
-    "nom": "renforcement-squat-aux-halteres-boxing-center-ramonville",
-    "alt": "Squat aux haltères pendant le renforcement du Boxing Center Ramonville.",
+    "nom": "renforcement-squat-au-poids-du-corps-boxing-center-ramonville",
+    "alt": "Travail de squat au poids du corps pendant un cours de renforcement au Boxing Center Ramonville.",
     "w": 6720,
     "h": 4480
   }

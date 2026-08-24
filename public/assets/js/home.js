@@ -46,7 +46,10 @@ function renderTicker() {
   t.innerHTML = row + row; t.dataset.speed = "0.55";
 }
 
-/* la bande staff — 4 vrais visages si prouvés, tuiles nom sinon (jamais stock) */
+/* la bande staff — les CINQ visages de la saison 2026/2027. Ils sont tous
+   prouvés depuis le 24/08 : la tuile d'initiales ne se déclenche plus,
+   mais elle reste — le jour où un coach arrive avant sa photo, on veut
+   une plaque, pas une image d'emprunt. */
 function renderStaff() {
   const box = $("#staff"); if (!box) return;
   box.innerHTML = COACHES.map((c) => {
@@ -59,6 +62,7 @@ function renderStaff() {
         <b>${c.name}</b>
         <span class="mono">${c.role}</span>
         <i>${c.tag}</i>
+        ${c.devise ? `<em class="staff__devise">${c.devise}</em>` : ""}
       </div>
     </a>`;
   }).join("");

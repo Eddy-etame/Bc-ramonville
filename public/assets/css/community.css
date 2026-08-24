@@ -23,7 +23,7 @@
 .mur { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr)); gap: clamp(.5rem,1.4vw,.9rem); }
 .mur__item { position: relative; margin: 0; aspect-ratio: 4/5; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper-2); transition: border-color .3s, transform .35s var(--ease-spring); }
 .mur__item:hover { border-color: var(--accent); transform: translateY(-3px); }
-.mur__item img, .mur__item video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: contrast(1.08) brightness(.86) saturate(.9); }
+.mur__item img, .mur__item video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: contrast(1.04) brightness(.98) saturate(.96); }
 /* le voile bas : la légende ne se lit jamais contre la photo elle-même */
 .mur__item::after { content: ""; position: absolute; inset: auto 0 0 0; height: 46%; background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--void) 88%, transparent)); pointer-events: none; }
 .mur__cap { position: absolute; left: .5rem; right: .5rem; bottom: .5rem; z-index: 2; font: 600 var(--step--2)/1.35 var(--f-mono); letter-spacing: .06em; color: var(--ink); background: color-mix(in srgb, var(--void) 78%, transparent); border: 1px solid var(--line); border-radius: var(--radius); padding: .5em .65em; backdrop-filter: blur(5px); overflow: hidden; text-overflow: ellipsis; }

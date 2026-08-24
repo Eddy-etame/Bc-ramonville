@@ -374,7 +374,7 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
    Photos traitées NUIT (registre documentaire) : contraste haut, léger
    désaturé. Caption mono façon carnet de terrain. */
 .media { position: relative; overflow: hidden; background: var(--paper-2); border-radius: var(--radius); }
-.media img, .media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: contrast(1.12) brightness(.82) saturate(.86); }
+.media img, .media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: contrast(1.04) brightness(.98) saturate(.96); }
 .media::after { content: attr(data-label); position: absolute; left: .8rem; bottom: .75rem; z-index: 2; font: 600 var(--step--2)/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--ink); background: color-mix(in srgb, var(--void) 70%, transparent); padding: .5em .8em; border-radius: var(--radius); backdrop-filter: blur(4px); border: 1px solid var(--line); }
 .media[data-label=""]::after { display: none; }
 /* GRAIN DOCUMENTAIRE — c'est la texture qui porte tout le registre « filmé
@@ -417,14 +417,79 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
 :root[data-daypart="nuit"]      { --sky-top:#04060e; --sky-mid:#080e22; --sky-low:#111633; }
 :root[data-daypart="crepuscule"]{ --sky-top:#08091a; --sky-mid:#10152e; --sky-low:#1c2340; }
 :root[data-daypart="aube"]      { --sky-top:#0b1020; --sky-mid:#1a1c3a; --sky-low:#33324f; }
-:root[data-daypart="jour"]      { --sky-top:#0a1020; --sky-mid:#131d31; --sky-low:#1c2740; }
-/* la nuit domine — c'est le monde de la salle : la lune reste présente à TOUTE
-   heure (pleine la nuit/au crépuscule, atténuée à l'aube et le jour), jamais
-   absente, pour que « à ciel ouvert » se lise même aux heures de bureau. */
+:root[data-daypart="jour"]      { --sky-top:#1b2a45; --sky-mid:#2b446e; --sky-low:#3d5a87; }
+
+/* LE JOUR ETAIT PLUS SOMBRE QUE L'AUBE. Cette ligne valait #0a1020 quand
+   `aube` valait #0b1020 : l'après-midi rendu plus noir que 6 h du matin. Et
+   la lune restait allumée à 0,34 en plein soleil — pas une intention, un
+   oubli d'extinction. À 17 h, par 27 °C, la page ouvrait sur une nuit ; ce
+   sont les heures de bureau, donc les heures de visite.
+
+   Le parti tient : la nuit domine, et nuit/crépuscule/aube ne bougent pas
+   d'un ton. Seul le jour devient le jour. La limite est le titre du hero,
+   blanc cassé — le bleu de midi s'arrête à #3d5d8c, soit 6,4:1, mesuré. */
+
+/* — LE DISQUE DU CIEL — une lune la nuit, un SOLEIL le jour.
+   C'est le même élément : le hero de dix pages n'a pas besoin d'une balise
+   de plus, il a besoin que celle qui existe dise l'heure qu'il est. */
 :root[data-daypart="nuit"] .sky__moon,
 :root[data-daypart="crepuscule"] .sky__moon { opacity: .85; }
 :root[data-daypart="aube"] .sky__moon { opacity: .5; }
-:root[data-daypart="jour"] .sky__moon { opacity: .34; }
+:root[data-daypart="jour"] .sky__moon {
+  opacity: .92;
+  /* plus haut et plus petit qu'une lune : un soleil d'août est un point dur,
+     pas un disque contemplatif. */
+  width: clamp(26px,4vw,44px);
+  top: clamp(1.4rem,7vh,4.5rem);
+  background: radial-gradient(circle at 50% 50%, #fff 34%, #fdf3d8 58%, color-mix(in srgb,#ffe9b0 60%, transparent) 72%, transparent 76%);
+  box-shadow: 0 0 clamp(30px,7vw,90px) color-mix(in srgb,#ffe6a8 42%, transparent),
+              0 0 clamp(90px,20vw,260px) color-mix(in srgb,#ffd98a 20%, transparent);
+}
+/* LE VOILE D'AOUT ECLAIRCIT. `voile` ne posait qu'une lueur et une brume
+   sombre — vrai la nuit, faux le jour : un ciel voilé en été est blanc, pas
+   noir. C'est l'état qu'il faisait à l'heure où ce défaut a été trouvé. */
+:root[data-daypart="jour"][data-sky="voile"] { --sky-top:#26364f; --sky-mid:#3b537c; --sky-low:#4d6890; }
+:root[data-daypart="jour"][data-sky="voile"] .sky__haze {
+  background: linear-gradient(180deg, color-mix(in srgb,#dfe8f7 22%, transparent), color-mix(in srgb,#eef3fc 34%, transparent));
+  opacity: .62;
+}
+:root[data-daypart="jour"][data-sky="voile"] .sky__moon { opacity: .5; }
+/* les étoiles n'ont rien à faire dans un ciel de midi. */
+:root[data-daypart="jour"] .sky__stars { opacity: .12; }
+
+/* L'ARGENT MONTE AVEC LE SOLEIL.
+   Eclaircir le ciel a fait tomber huit textes du hero sous le seuil d'un
+   coup : « À CIEL » à 1,94:1, la roue des disciplines à 2,29. Ce n'est pas
+   le ciel qui a un défaut, c'est la conséquence d'une palette bâtie pour du
+   noir : l'argent et le gris de cette maison sont des LUMIÈRES, et une
+   lumière ne se voit pas sur du clair.
+
+   On ne les assombrit pas — ce serait une autre couleur, et « À CIEL »
+   cesserait d'être une lueur. On les monte. La nuit, le mot brille sur le
+   noir ; le jour, il est découpé en blanc dans le bleu. Même famille, même
+   intention, deux états — et le contraste revient au-dessus de 4,5:1,
+   mesuré au navigateur, pas estimé.
+
+   Portée volontairement limitée aux zones de ciel (.hero, .phero) : le
+   reste du site garde sa palette de nuit, qui n'a jamais eu de problème. */
+:root[data-daypart="jour"] .hero,
+:root[data-daypart="jour"] .phero {
+  --accent: #e2eaf8;
+  --muted:  #c6d0e2;
+  --line:        color-mix(in srgb, #e2eaf8 30%, transparent);
+  --line-soft:   color-mix(in srgb, #e2eaf8 18%, transparent);
+  --accent-line: color-mix(in srgb, #e2eaf8 62%, transparent);
+  /* --uv est le degrade qui peint le titre (.tint, fond decoupe en texte).
+     Il est declare sur :root : ses var(--accent) y sont donc resolus AVEC
+     l'accent de :root, et le redefinir plus bas ne le rattrape pas. Il
+     faut le redeclarer ici, sinon « À CIEL » garde son argent de nuit
+     sur un ciel de jour — 2,3:1, illisible. */
+  --uv: linear-gradient(118deg, #e2eaf8 6%, #ffffff 44%, #ffffff 60%, #dbe6f8 100%);
+}
+/* Le fondu du bas passe de 34 % à 52 % le jour : la bande haute reste un
+   vrai ciel — avec son soleil — et le contenu retrouve un sol. */
+:root[data-daypart="jour"] .hero::after,
+:root[data-daypart="jour"] .phero::after { height: 52%; }
 
 /* — météo (data-sky) — voile atténue, pluie/orage referment le ciel — */
 :root[data-sky="voile"]  { --sky-glow: color-mix(in srgb, var(--accent) 12%, transparent); }
@@ -433,6 +498,11 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
 :root[data-sky="pluie"] .sky__haze  { background: linear-gradient(180deg, color-mix(in srgb,var(--ink) 4%, transparent), color-mix(in srgb,var(--ink) 9%, transparent)); opacity: .7; }
 :root[data-sky="orage"]  { --sky-top:#050609; --sky-mid:#0a0c16; --sky-low:#12111f; --sky-glow: color-mix(in srgb, var(--accent) 6%, transparent); }
 :root[data-sky="orage"] .sky__haze  { background: color-mix(in srgb,var(--ink) 8%, transparent); opacity: .8; }
+/* Pluie et orage DE JOUR : gris, pas noirs. Les deux règles au-dessus sont
+   écrites pour la nuit ; appliquées telles quelles à 15 h, elles éteignaient
+   la page plus qu'un orage ne le fait vraiment. */
+:root[data-daypart="jour"][data-sky="pluie"] { --sky-top:#1c2433; --sky-mid:#2a3547; --sky-low:#3a4759; }
+:root[data-daypart="jour"][data-sky="orage"] { --sky-top:#161c27; --sky-mid:#222937; --sky-low:#2f3745; }
 @media (prefers-reduced-motion: reduce){ .sky__stars { opacity: .6; } }
 
 /* ==================== CHROME DES PAGES INTÉRIEURES =============== *

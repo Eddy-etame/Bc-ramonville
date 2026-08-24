@@ -38,8 +38,14 @@
 @media (min-width: 620px){ .gallery { columns: 2; } }
 @media (min-width: 1000px){ .gallery { columns: 3; } }
 .shot { break-inside: avoid; margin-bottom: .9rem; position: relative; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--paper-2); cursor: zoom-in; }
-.shot img { width: 100%; height: auto; display: block; filter: contrast(1.12) brightness(.84) saturate(.86); transition: filter .5s var(--ease), transform .6s var(--ease); }
-.shot:hover img { filter: contrast(1.05) brightness(1) saturate(.95); transform: scale(1.03); }
+/* LE GRADE, RELEVE LE 24/08. Il etait a brightness(.84) saturate(.86) :
+   15 % d'assombrissement et 15 % de desaturation sur des photos d'une
+   salle qui a un sol rouge et vert, un ring bleu et quatre drapeaux au
+   mur. La maison reste sombre — c'est sa DA — mais elle n'a pas besoin
+   d'eteindre ses propres cliches pour ca. Au survol et au doigt, plus
+   aucun voile : la photo telle qu'elle a ete prise. */
+.shot img { width: 100%; height: auto; display: block; filter: contrast(1.04) brightness(.98) saturate(.96); transition: filter .5s var(--ease), transform .6s var(--ease); }
+.shot:hover img { filter: contrast(1.02) brightness(1.04) saturate(1); transform: scale(1.03); }
 .shot__cap { position: absolute; left: .7rem; bottom: .7rem; right: .7rem; font: 600 var(--step--2)/1.35 var(--f-mono); letter-spacing: .06em; color: var(--ink); background: color-mix(in srgb,var(--void) 68%, transparent); padding: .5em .7em; border: 1px solid var(--line); border-radius: var(--radius); backdrop-filter: blur(4px); pointer-events: none; }
 .shot__cap b { color: var(--accent); font-weight: 600; }
 /* le crédit photo : le filigrane est incrusté dans deux fichiers sources — on
@@ -122,7 +128,7 @@
 .lightbox { position: fixed; inset: 0; z-index: 9000; display: none; place-items: center; padding: clamp(1rem,4vw,3rem); background: color-mix(in srgb,var(--void) 88%, transparent); backdrop-filter: blur(8px); }
 .lightbox.is-open { display: grid; }
 .lightbox__frame { position: relative; max-width: min(92vw, 1100px); max-height: 88vh; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); background: var(--paper); }
-.lightbox__frame img { max-width: 100%; max-height: 82vh; width: auto; height: auto; display: block; filter: contrast(1.08) brightness(.92) saturate(.9); }
+.lightbox__frame img { max-width: 100%; max-height: 82vh; width: auto; height: auto; display: block; filter: contrast(1.02) brightness(1.02) saturate(1); }
 .lightbox__cap { position: absolute; left: 0; right: 0; bottom: 0; padding: .8rem 1rem; font: 600 var(--step--1)/1.3 var(--f-mono); letter-spacing: .04em; color: var(--ink); background: linear-gradient(0deg, color-mix(in srgb,var(--void) 82%, transparent), transparent); }
 .lightbox__cap b { color: var(--accent); }
 .lightbox__close { position: absolute; top: -.2rem; right: 0; transform: translateY(-115%); font: 600 var(--step--1)/1 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--ink); display: inline-flex; align-items: center; gap: .7ch; }
@@ -136,12 +142,12 @@
    (hover:none : galerie.css = 0 bloc, :active = 0). Sur un vrai Android ça
    voulait dire : la loupe jamais affichée (donc zéro signal que les 6 photos
    s'ouvrent), aucun accusé de réception au toucher, et des photos bloquées à
-   brightness(.84) parce que le rehaut ne vivait qu'en :hover. */
+   assombries parce que le rehaut ne vivait qu'en :hover. */
 @media (hover: none) {
   .shot__zoom { opacity: 1; }                 /* la loupe = le seul signal « ça s'ouvre » */
-  .shot img { filter: contrast(1.05) brightness(1) saturate(.95); }
+  .shot img { filter: contrast(1.04) brightness(.98) saturate(.96); }
   .shot:active { border-color: var(--accent); transform: translateY(1px); }
-  .shot:active img { filter: contrast(1.08) brightness(1.06) saturate(1); }
+  .shot:active img { filter: contrast(1.02) brightness(1.04) saturate(1); }
   .lightbox__close { min-height: 44px; }
   .lightbox__close:active { color: var(--accent); }
   /* les nouvelles surfaces du carnet reçoivent la même passe tactile que le

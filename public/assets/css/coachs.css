@@ -32,11 +32,17 @@
    c'est le vrai .coach__tag qui prend l'habillage badge. */
 .coach--pillar .coach__tag { align-self: flex-start; color: var(--void); background: var(--accent); padding: .5em .8em; border-radius: var(--radius); box-shadow: var(--glow-soft); }
 
-.coach__face { position: relative; aspect-ratio: 3/4; overflow: hidden; }
+/* LE CADRE SUIT LA PHOTO, PAS L INVERSE. Il etait a 3/4 quand les deux
+   seules photos etaient en PAYSAGE 768x512 : le cadre rognait donc a mort,
+   et object-position rattrapait a la main. Les cinq portraits de la saison
+   2026/2027 sont recadres a 511x871 depuis les visuels officiels — le
+   coach entier, avec de l air autour, comme sur Portet. Le cadre prend
+   leur rapport exact : plus une seule coupe apres coup. */
+.coach__face { position: relative; aspect-ratio: 511 / 871; overflow: hidden; }
 /* photo réelle (registre documentaire, traitée nuit — via .media de site.js) ;
    cadrage haut (object-position) car les portraits sont paysage forcés en
    portrait : aucun visage rogné (loi « nom ≡ photo », finding 20). */
-.coach__face.media img { filter: contrast(1.12) brightness(.84) saturate(.85); object-position: 50% 28%; }
+.coach__face.media img { filter: contrast(1.04) brightness(.98) saturate(.96); object-position: 50% 50%; }
 /* ------------------------- LA PLAQUE ----------------------------- *
    Pas de cliché prouvé → PAS de placeholder. L'ancienne tuile affichait des
    initiales et, dessous, « PHOTO À VENIR » : un manque annoncé, en toutes
@@ -130,3 +136,46 @@
   .route:active { transform: translateY(1px); border-color: var(--accent); }
 }
 @media (max-width: 760px){ .coach--pillar .coach__face { aspect-ratio: 16/10; } }
+
+/* ============ CE QUE LE VISUEL DISAIT, EN TEXTE ================== *
+   Chaque coach a un visuel officiel 2026/2027 : cadre sombre en haut (le
+   coach), pave blanc en bas (disciplines, bio, qualites, formation,
+   approche, devise). L'image ne garde que le coup — le pave devient du
+   texte, ici. Une image ne s'indexe pas ; une liste, si.
+   Aucun token nouveau : meme argent, meme navy, meme mono que partout. */
+.coach__disc { display: flex; flex-wrap: wrap; gap: .4rem; margin: .9rem 0 0; padding: 0; list-style: none; }
+.coach__disc li { font: 600 var(--step--2)/1 var(--f-mono); letter-spacing: .08em; text-transform: uppercase;
+  color: var(--accent); border: 1px solid var(--accent-line); border-radius: 2px; padding: .38em .6em; }
+
+.coach__parcours { margin-top: .9rem; font: 600 var(--step--1)/1.5 var(--f-mono); color: var(--ink);
+  border-left: 2px solid var(--accent-line); padding-left: .9rem; }
+.coach__parcours span { display: block; font-size: var(--step--2); letter-spacing: .14em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: .25em; }
+
+.coach__bloc { margin-top: 1.1rem; }
+.coach__k { display: block; font: 600 var(--step--2)/1 var(--f-mono); letter-spacing: .14em;
+  text-transform: uppercase; color: var(--muted); margin-bottom: .55rem; }
+.coach__bloc ul { margin: 0; padding: 0; list-style: none; display: grid; gap: .4rem; }
+.coach__bloc li { position: relative; padding-left: 1.1rem; font-size: var(--step--1); line-height: 1.5; color: var(--ink); }
+.coach__bloc li::before { content: ""; position: absolute; left: 0; top: .55em; width: 6px; height: 6px;
+  transform: rotate(45deg); background: var(--accent); }
+/* qualites et formation : des etiquettes, pas des phrases — elles se posent
+   en ligne et perdent la puce, qui ferait une fausse enumeration. */
+/* .coach__bloc ul pose display:grid et pese (0,1,1) ; .coach__inline seul
+   pesait (0,1,0) et perdait — les etiquettes s empilaient sur toute la
+   largeur au lieu de s aligner. On qualifie, on ne met pas de !important. */
+.coach__bloc ul.coach__inline { display: flex; flex-wrap: wrap; gap: .4rem; }
+.coach__bloc ul.coach__inline li { padding-left: 0; font: 600 var(--step--2)/1 var(--f-mono); letter-spacing: .06em;
+  color: var(--muted); border: 1px solid var(--line); border-radius: 2px; padding: .38em .6em; }
+.coach__bloc ul.coach__inline li::before { content: none; }
+
+@media (min-width: 720px){ .coach__pied { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; align-items: start; } }
+
+/* La devise est signee par le coach : elle se dit une fois, en display, et
+   on ne lui met pas de guillemets dessines — la barre suffit. */
+.coach__devise { margin: 1.3rem 0 0; padding: .2rem 0 .2rem 1rem; border-left: 2px solid var(--accent);
+  font-family: var(--f-display); font-weight: 700; text-transform: uppercase;
+  font-size: clamp(1rem, .9rem + .4vw, 1.2rem); line-height: 1.25; letter-spacing: .01em; color: var(--accent); }
+
+.staff__devise { display: block; margin-top: .5rem; font: 600 var(--step--2)/1.35 var(--f-mono);
+  font-style: normal; letter-spacing: .04em; color: var(--muted); }

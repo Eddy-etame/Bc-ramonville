@@ -5,7 +5,7 @@
    1. Il RENOMME chaque photo d'après ce qu'elle montre, en français, avec
       les mots qu'on tape dans Google. Un fichier qui s'appelle
       « 2023-01-09-Cécile-Domenech-TMBC-268-.jpg » ne dit rien à personne ;
-      « octogone-mma-cours-au-sol-boxing-center-ramonville.webp » dit à
+      « octogone-cours-vu-d-en-haut-boxing-center-ramonville.webp » dit à
       Google de quoi il s'agit, et remonte sur « MMA Ramonville ».
    2. Il RANGE les originaux dans scripts/img-src/photos-2026/ — la règle de
       la maison : les sources ne sont jamais déployées, elles restent la
@@ -37,16 +37,16 @@ const MAP = [
   ["cours-de-boxe-collectif-sur-le-ring", "Cours de boxe collectif sur le ring du Boxing Center Ramonville, une dizaine de pratiquants."],
   ["cours-de-boxe-anglaise-sur-le-ring", "Cours de boxe anglaise sur le ring du Boxing Center Ramonville, travail de déplacements."],
   ["ring-de-boxe-et-fresque-murale", "Le ring de boxe du Boxing Center Ramonville devant la fresque murale du club."],
-  ["octogone-mma-cours-au-sol", "Cours de MMA au sol dans l'octogone de 7 mètres du Boxing Center Ramonville."],
+  ["octogone-cours-vu-d-en-haut", "Cours de MMA au sol dans l'octogone de 7 mètres du Boxing Center Ramonville."],
   ["sac-de-frappe-plateau-bois", "Un pratiquant au sac de frappe sur le plateau bois du Boxing Center Ramonville."],
-  ["espace-cardio-velos", "L'espace cardio du Boxing Center Ramonville : vélos et rameurs à l'étage."],
+  ["etage-bancs-et-machines", "L'espace cardio du Boxing Center Ramonville : vélos et rameurs à l'étage."],
   ["espace-musculation-poulies", "L'espace musculation du Boxing Center Ramonville : poulies, bancs et charges libres."],
   ["salle-de-musculation-machines", "La salle de musculation du Boxing Center Ramonville et ses machines guidées."],
-  ["espace-cardio-rameur", "Un rameur de l'espace cardio du Boxing Center Ramonville, à l'étage du club."],
+  ["espace-cardio-velo-et-tapis", "Un rameur de l'espace cardio du Boxing Center Ramonville, à l'étage du club."],
   ["octogone-mma-et-drapeaux", "Un pratiquant dans l'octogone du Boxing Center Ramonville, devant le mur de drapeaux."],
   ["octogone-vu-du-grillage-noir-et-blanc", "L'octogone du Boxing Center Ramonville vu à travers le grillage, en noir et blanc."],
   ["octogone-vu-du-grillage", "L'intérieur de l'octogone du Boxing Center Ramonville vu à travers le grillage."],
-  ["grappling-groupe-dans-l-octogone", "Un groupe de grappling réuni dans l'octogone du Boxing Center Ramonville."],
+  ["groupe-avant-le-cours-de-grappling", "Un groupe de grappling réuni dans l'octogone du Boxing Center Ramonville."],
   ["mma-entrainement-dans-l-octogone", "Entraînement de MMA dans l'octogone grillagé du Boxing Center Ramonville."],
 
   ["octogone-vue-plongeante", "L'octogone de 7 mètres du Boxing Center Ramonville vu de dessus pendant un cours."],
@@ -57,11 +57,11 @@ const MAP = [
   ["etage-musculation-sous-la-charpente", "L'étage musculation du Boxing Center Ramonville, sous la charpente métallique."],
   ["boxe-pieds-poings-noir-et-blanc", "Cours de boxe pieds-poings au Boxing Center Ramonville, vu à travers le grillage."],
   ["boxe-anglaise-garde-haute", "Un boxeur en garde haute au Boxing Center Ramonville, devant la fresque du club."],
-  ["travail-aux-pattes-d-ours", "Travail aux pattes d'ours en binôme au Boxing Center Ramonville."],
+  ["echauffement-du-groupe-debout", "Travail aux pattes d'ours en binôme au Boxing Center Ramonville."],
   ["lady-punch-boxe-100-pour-cent-feminin", "Une pratiquante du cours Lady Punch au Boxing Center Ramonville, enchaînement aux gants."],
-  ["frappe-au-sac-lourd", "Frappe au sac lourd pendant le Boxing Camp du Boxing Center Ramonville."],
-  ["coach-de-boxe-portrait", "Un coach du Boxing Center Ramonville en garde, portrait devant le ring."],
-  ["grappling-projection-debout", "Travail de projection en grappling au Boxing Center Ramonville."],
+  ["direct-aux-pattes-d-ours", "Frappe au sac lourd pendant le Boxing Camp du Boxing Center Ramonville."],
+  ["coach-de-dos-avant-le-cours", "Un coach du Boxing Center Ramonville en garde, portrait devant le ring."],
+  ["demonstration-de-soumission-au-sol", "Travail de projection en grappling au Boxing Center Ramonville."],
   ["cours-de-grappling-plusieurs-binomes", "Cours de grappling au Boxing Center Ramonville, vue haute sur plusieurs binômes."],
   ["grappling-controle-au-sol", "Contrôle au sol pendant le cours de grappling du Boxing Center Ramonville."],
   ["jiu-jitsu-bresilien-au-sol", "Travail de jiu-jitsu brésilien au sol dans l'octogone du Boxing Center Ramonville."],
@@ -72,7 +72,7 @@ const MAP = [
   ["etage-musculation-vue-generale", "Vue générale de l'étage musculation du Boxing Center Ramonville."],
   ["machines-de-musculation-guidees", "Les machines de musculation guidées du Boxing Center Ramonville."],
   ["octogone-7-metres-vide", "L'octogone de 7 mètres du Boxing Center Ramonville, vide, entre deux cours."],
-  ["boxe-educative-enfants", "Cours de boxe éducative pour enfants au Boxing Center Ramonville."],
+  ["cours-de-renforcement-vue-plongeante", "Cours de boxe éducative pour enfants au Boxing Center Ramonville."],
   ["boxing-lady-renforcement", "Renforcement pendant le cours Boxing Lady du Boxing Center Ramonville."],
   ["coach-au-milieu-du-cours", "Un coach du Boxing Center Ramonville au milieu de son cours collectif."],
   ["coach-portrait-devant-l-octogone", "Portrait d'un coach du Boxing Center Ramonville devant l'octogone."],
@@ -85,7 +85,7 @@ const MAP = [
 
   ["pratiquant-senior-portrait", "Portrait d'un pratiquant senior du Boxing Center Ramonville devant le ring."],
   ["pratiquant-senior-bras-croises", "Un pratiquant senior du Boxing Center Ramonville, bras croisés devant les pneus du Boxing Camp."],
-  ["pratiquant-senior-devant-le-ring", "Un pratiquant senior du Boxing Center Ramonville devant le ring de boxe."],
+  ["pratiquant-bras-croises-devant-les-pneus", "Un pratiquant senior du Boxing Center Ramonville devant le ring de boxe."],
   ["kick-boxing-coup-de-pied-haut", "Coup de pied haut au bouclier pendant le cours de kick-boxing du Boxing Center Ramonville."],
   ["sparring-pieds-poings-sur-tatami", "Sparring pieds-poings sur le tatami du Boxing Center Ramonville."],
   ["boxeur-portrait-devant-l-octogone", "Portrait d'un boxeur du Boxing Center Ramonville devant l'octogone."],
@@ -96,7 +96,7 @@ const MAP = [
   ["boxe-anglaise-garde-en-binome", "Deux pratiquants en garde pendant le cours de boxe anglaise du Boxing Center Ramonville."],
   ["coach-aux-pattes-d-ours-direct", "Un coach du Boxing Center Ramonville reçoit un direct aux pattes d'ours."],
   ["gainage-planche-au-sol", "Gainage en planche pendant le renforcement du Boxing Center Ramonville."],
-  ["renforcement-squat-aux-halteres", "Squat aux haltères pendant le renforcement du Boxing Center Ramonville."],
+  ["renforcement-squat-au-poids-du-corps", "Squat aux haltères pendant le renforcement du Boxing Center Ramonville."],
 ];
 
 const fics = fs.readdirSync(SRC).filter((f) => /\.jpe?g$/i.test(f)).sort();
