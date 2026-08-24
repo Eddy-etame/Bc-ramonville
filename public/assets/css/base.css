@@ -785,6 +785,18 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
   .breadcrumb a:active { color: var(--accent); }
 }
 
+/* LE ZOOM D'iOS. Safari sur iPhone grossit la page des qu'on met le doigt dans
+   un champ dont la police fait moins de 16 px : la page saute, et il faut
+   pincer pour revenir. Ce n'est pas un reglage qu'on peut couper — la seule
+   parade est 16 px. Le champ du chat heritait de --step--1 (14 px) : c'est
+   pourtant LE champ ou quelqu'un pose la question qui precede un achat, et il
+   sautait a chaque fois. La regle vaut pour tous les champs de texte. */
+@media (max-width: 600px) {
+  input[type="text"], input[type="email"], input[type="tel"], input[type="search"],
+  input[type="number"], input[type="url"], input[type="password"], input:not([type]),
+  textarea, select, .bcr-chat__input { font-size: 16px !important; }
+}
+
 /* LISIBILITÉ MOBILE (base.css = chargé sur TOUTES les pages, y compris celles
    en page.css). @media ≤600px.
 
