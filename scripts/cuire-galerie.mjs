@@ -39,9 +39,9 @@ const { GALLERY, PHOTO_CREDIT } = await import(
 const LOUPE =
   `<span class="shot__zoom" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="7"/><line x1="21" y1="21" x2="15.5" y2="15.5"/><line x1="10.5" y1="7.5" x2="10.5" y2="13.5"/><line x1="7.5" y1="10.5" x2="13.5" y2="10.5"/></svg></span>`;
 
-const figures = GALLERY.map((g) => `
+const figures = GALLERY.map((g, i) => `
     <figure class="shot" role="button" tabindex="0" aria-label="Agrandir — ${g.zone} · ${g.place}">
-      <img src="${g.img}" ${g.plein ? `data-plein="${g.plein}" ` : ""}alt="${g.alt}" width="${g.w}" height="${g.h}" loading="lazy" decoding="async" />
+      <img src="${g.img}" ${g.plein ? `data-plein="${g.plein}" ` : ""}alt="${g.alt}" width="${g.w}" height="${g.h}" ${i < 3 ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"'} decoding="async" />
       ${LOUPE}
       <figcaption class="shot__cap"><b data-cap="${g.zone}">${g.zone}</b> · ${g.place}${g.credit ? `<em class="shot__credit">Photo ${PHOTO_CREDIT}</em>` : ""}</figcaption>
     </figure>`).join("");

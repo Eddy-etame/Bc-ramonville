@@ -32,6 +32,7 @@ import { existsSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
+import { pathToFileURL } from "node:url";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const DIST = join(ROOT, "dist");
@@ -84,6 +85,24 @@ const I = {
   planRent:  ["/assets/img/ram/planning-rentree-2026-full.webp", `Planning de la rentrée 2026 — ${CLUB}`, "Le planning officiel des cours de la rentrée 2026 au Boxing Center Ramonville."],
 };
 
+/* LES VINGT-QUATRE CADRES DE /galerie/, LUS DU TABLEAU LUI-MÊME.
+   Cette page déclarait six images choisies à la main. La galerie en sert
+   vingt-quatre depuis le 24/08 : la déclaration officielle annonçait donc à
+   Google six photos qui ne sont plus sur la page, et taisait les vingt-quatre
+   qui y sont. Une liste écrite à la main à côté d'un tableau qui bouge finit
+   toujours ainsi — on la dérive.
+
+   On déclare le PLEIN CADRE (`plein`), pas la vignette : Google Images
+   indexe le fichier qu'il faut servir à quelqu'un qui clique. */
+const { GALLERY } = await import(
+  pathToFileURL(join(ROOT, "public", "assets", "js", "data.js")).href
+);
+const IMGS_GALERIE = GALLERY.map((g) => [
+  g.plein || g.img,
+  `${g.zone} — ${g.place} · ${CLUB}`,
+  g.alt,
+]);
+
 /* `changefreq` suit le rythme réel : le planning et l'accueil bougent à la
    saison, le reste beaucoup moins. */
 const PAGES = [
@@ -91,7 +110,7 @@ const PAGES = [
   { chemin: "la-salle/", priorite: "0.8", freq: "monthly", imgs: [I.plateau, I.octogone, I.muscu, I.camp, I.heroLarge] },
   { chemin: "activites/", priorite: "0.8", freq: "monthly", imgs: [I.pAnglaise, I.pKick, I.pGrap, I.pMma, I.pCamp, I.pLady, I.pEcole, I.pMuscu] },
   { chemin: "coachs/", priorite: "0.8", freq: "monthly", imgs: [I.sonia, I.jerome] },
-  { chemin: "galerie/", priorite: "0.8", freq: "monthly", imgs: [I.heroLarge, I.plateau, I.octogone, I.anglaise, I.pieds, I.grappling, I.camp, I.muscu] },
+  { chemin: "galerie/", priorite: "0.8", freq: "monthly", imgs: IMGS_GALERIE },
   { chemin: "plannings/", priorite: "0.8", freq: "weekly", imgs: [I.planRent] },
   { chemin: "tarifs/", priorite: "0.8", freq: "monthly", imgs: [I.camp, I.plateau] },
   { chemin: "contact/", priorite: "0.8", freq: "monthly", imgs: [I.plateau] },

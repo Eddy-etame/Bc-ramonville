@@ -500,9 +500,9 @@ function renderGallery() {
   // visionneuse avait déjà Escape, piège à focus, retour de focus, role=dialog
   // et aria-modal — tout sauf la porte d’entrée : au clavier, les 6 photos
   // étaient inatteignables (WCAG 2.1.1, niveau A).
-  box.innerHTML = GALLERY.map((g) => `
+  box.innerHTML = GALLERY.map((g, i) => `
     <figure class="shot" role="button" tabindex="0" aria-label="Agrandir — ${g.zone} · ${g.place}">
-      <img src="${g.img}" ${g.plein ? `data-plein="${g.plein}" ` : ""}alt="${g.alt}" width="${g.w}" height="${g.h}" loading="lazy" decoding="async" />
+      <img src="${g.img}" ${g.plein ? `data-plein="${g.plein}" ` : ""}alt="${g.alt}" width="${g.w}" height="${g.h}" ${i < 3 ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"'} decoding="async" />
       <span class="shot__zoom" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="7"/><line x1="21" y1="21" x2="15.5" y2="15.5"/><line x1="10.5" y1="7.5" x2="10.5" y2="13.5"/><line x1="7.5" y1="10.5" x2="13.5" y2="10.5"/></svg></span>
       <figcaption class="shot__cap"><b data-cap="${g.zone}">${g.zone}</b> · ${g.place}${g.credit ? `<em class="shot__credit">Photo ${PHOTO_CREDIT}</em>` : ""}</figcaption>
     </figure>`).join("");
@@ -526,30 +526,47 @@ function renderGallery() {
    même signature. 149 mots sur 358 appartenaient à une autre page — et sans
    ce doublon il ne restait que trois sections. Le relevé est rendu à sa page.
    Le carnet gagne la sienne avec ce que lui seul peut dire : ce que chacun
-   des six cadres contient, et à quelle heure ça se produit dans la semaine.
+   des vingt-quatre cadres contient, et à quelle heure ça se produit dans la semaine.
    Tout est RECOMPTÉ depuis SCHEDULE — si le planning bouge, le carnet bouge. */
 function renderCarnet() {
   const dayIx = (d) => DAYS.indexOf(d);
 
-  /* les six zones rendues au planning officiel */
+  /* LES ZONES, PAS LES CLICHES.
+     Cette boucle mappait GALLERY : une ligne par photo. Avec six cliches,
+     une photo = une zone, et le compte tombait juste par accident. Avec
+     vingt-quatre, « L'octogone » s'ecrivait huit fois de suite avec les
+     memes horaires recopies dessous. On regroupe donc par zone et on fait
+     l'union de ses disciplines : le carnet ne depend plus de la taille du
+     lot. */
   const usage = $("#carnet-usage");
   if (usage) {
-    usage.innerHTML = GALLERY.map((g) => {
-      const discs = (g.discs || []).map((k) => DISCIPLINES.find((d) => d.key === k)).filter(Boolean);
+    const zones = [];
+    const parZone = new Map();
+    for (const g of GALLERY) {
+      let z = parZone.get(g.zone);
+      if (!z) { z = { zone: g.zone, n: 0, discs: [], hors: "" }; parZone.set(g.zone, z); zones.push(z); }
+      z.n++;
+      if (g.hors && !z.hors) z.hors = g.hors;
+      for (const k of (g.discs || [])) if (!z.discs.includes(k)) z.discs.push(k);
+    }
+
+    usage.innerHTML = zones.map((z) => {
+      const cadres = `${z.n} cadre${z.n > 1 ? "s" : ""}`;
+      const discs = z.discs.map((k) => DISCIPLINES.find((d) => d.key === k)).filter(Boolean);
       if (!discs.length) {
         // plan large : aucune discipline ne lui appartient. On le dit.
         return `<article class="zrow zrow--wide">
-          <span class="zrow__z">${g.zone}</span>
+          <span class="zrow__z">${z.zone}<i class="zrow__n">${cadres}</i></span>
           <span class="zrow__k">${CARNET.kLarge}</span>
-          <p class="zrow__d">${g.hors}</p>
+          <p class="zrow__d">${z.hors || CARNET.horsDefaut}</p>
         </article>`;
       }
       const lines = discs.map((d) => {
         const slots = SCHEDULE.filter((s) => s.disc === d.key)
           .sort((a, b) => (dayIx(a.day) - dayIx(b.day)) || toMin(a.start) - toMin(b.start));
-        /* l’accès libre n’a aucun créneau : ce n’est pas un zéro, c’est une
-           autre nature — même règle que /activites/. On lit ses horaires
-           d’ouverture au lieu d’inventer une case vide. */
+        /* l'acces libre n'a aucun creneau : ce n'est pas un zero, c'est une
+           autre nature — meme regle que /activites/. On lit ses horaires
+           d'ouverture au lieu d'inventer une case vide. */
         const when = slots.length
           ? [...new Set(slots.map((s) => `${s.day} ${s.start}`))].join(" · ")
           : d.jours;
@@ -560,14 +577,15 @@ function renderCarnet() {
         </a>`;
       }).join("");
       return `<article class="zrow">
-        <span class="zrow__z">${g.zone}</span>
+        <span class="zrow__z">${z.zone}<i class="zrow__n">${cadres}</i></span>
         <span class="zrow__k">${CARNET.kQuoi} · ${CARNET.kQuand}</span>
         <div class="zrow__lines">${lines}</div>
       </article>`;
-    }).join("") + `<p class="zrow__foot">${CARNET.usageFoot}</p>`;
+    }).join("") + `<p class="zrow__foot">${CARNET.usageFoot(zones)}</p>`;
   }
 
-  /* la méthode — trois règles, tenues sur les six cadres */
+
+  /* la méthode — trois règles, tenues sur les vingt-quatre cadres */
   const meth = $("#carnet-methode");
   if (meth) {
     meth.innerHTML = CARNET.regles.map((r, i) => `

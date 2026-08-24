@@ -149,3 +149,13 @@
   .zline:active { border-color: var(--accent); background: color-mix(in srgb,var(--void) 70%, transparent); transform: translateX(2px); }
   .regle:active { border-color: var(--accent); transform: translateY(1px); }
 }
+
+/* Le compteur de cadres — apparu le 24/08 avec le lot de vingt-quatre.
+   Une zone qui porte huit clichés et une qui en porte deux ne se valent
+   pas : le sommaire le dit au lieu de les aligner à plat. Chiffre en
+   mono, discret, jamais en couleur d’accent — ce n’est pas un prix. */
+.cix b { display: flex; align-items: baseline; gap: .5rem; }
+.cix__n, .zrow__n { font: 600 var(--step--2)/1 var(--f-mono); font-style: normal;
+  letter-spacing: .06em; color: var(--muted); border: 1px solid var(--line);
+  border-radius: 2px; padding: .2em .45em; font-variant-numeric: tabular-nums; }
+.zrow__n { margin-left: .6rem; }

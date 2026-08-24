@@ -288,7 +288,7 @@ const _DISCIPLINES = [
  *  LE RELEVÉ DU DEHORS — le différenciateur, en fiche documentaire.
  *
  *  Les 300 m² extérieurs sont LE fait qui distingue Ramonville, et c’est
- *  le seul lieu de la salle dont on n’a AUCUN cliché : les six photos
+ *  le seul lieu de la salle dont on n’a AUCUN cliché : les vingt-quatre photos
  *  prouvées sont toutes prises à couvert. Pendant trois versions, ce trou
  *  a été traité en « tuile photo à venir » — c’est-à-dire en excuse : un
  *  cadre gris au milieu de cinq vraies photos, qui se lit « inachevé ».
@@ -326,7 +326,7 @@ export const DEHORS = {
   nonReleve: {
     k: "Cliché",
     v: "Non relevé",
-    d: "Les six photos du carnet sont prises à couvert. Aucune ne montre le dehors — on ne montre que ce qu’on a filmé.",
+    d: "Les vingt-quatre photos du carnet sont prises à couvert. Aucune ne montre le dehors — on ne montre que ce qu’on a filmé.",
   },
   /* la légende du cadre vivant (le ciel remplace la photo absente) */
   cadre: {
@@ -770,19 +770,37 @@ export const PHOTO_CREDIT = "Axel Derewiany";
    sept »). Les deux plans larges n’ont pas de créneau à eux : ils portent
    `hors`, qui dit leur nature au lieu de leur inventer un horaire. */
 export const GALLERY = [
-  /* `plein` : la seule photo de la mosaïque dont la vignette et le grand
-     format diffèrent. hero.webp fait 1 920 px et 238 ko ; dans la grille il
-     n’occupe jamais plus de 415 px CSS (1 070 px à 3× sur mobile, mesuré au
-     rendu) — plus du double des pixels utiles, sur la page la plus lourde du
-     site. La grille charge donc la version 1 200 px, et la visionneuse va
-     chercher le 1 920 AU CLIC, quand quelqu’un le demande vraiment. */
-  { img: "/assets/img/ram/hero-1200.webp", plein: "/assets/img/ram/hero.webp", w: 1200, h: 801, zone: "Le plateau", place: "octogone 7 m + grand ring", alt: "Le plateau de Boxing Center Ramonville sous la charpente : l’octogone de 7 m grillagé et le grand ring de boxe.", discs: [], hors: "Le plan large — les deux instruments de la salle tiennent dans le même cadre, et rien ne les sépare." },
-  { img: "/assets/img/ram/octogone.webp", w: 768, h: 512, zone: "L’octogone", place: "asso MMA · vue de dessus", alt: "Séance d’asso MMA dans l’octogone de 7 m à Boxing Center Ramonville, vue de dessus, le groupe au sol.", discs: ["grappling", "asso-mma"] },
-  { img: "/assets/img/ram/anglaise.webp", w: 768, h: 512, zone: "Le ring", place: "pattes d’ours", alt: "Travail aux pattes d’ours près du ring à Boxing Center Ramonville, un boxeur enchaîne face au coach.", credit: true, discs: ["anglaise", "pieds-poings"] },
-  { img: "/assets/img/ram/camp.webp", w: 768, h: 512, zone: "Les sacs", place: "Boxing Camp", alt: "La ligne de sacs lourds pendant le Boxing Camp à Boxing Center Ramonville, plusieurs pratiquants aux gants.", discs: ["boxing-camp"] },
-  { img: "/assets/img/ram/muscu.webp", w: 768, h: 512, zone: "L’étage", place: "muscu / cardio", alt: "L’étage muscu/cardio de Boxing Center Ramonville : charges libres, bancs et machines en accès libre.", credit: true, discs: ["acces-libre"] },
-  { img: "/assets/img/ram/plateau.webp", w: 768, h: 512, zone: "Les tatamis", place: "espaces libres · drapeaux au mur", alt: "Le plateau de Boxing Center Ramonville en couleur : l’octogone, le ring et les tatamis, drapeaux au mur.", discs: [], hors: "Les espaces libres et collectifs — aucun créneau ne les réserve, c’est ce qui les rend utilisables toute la journée." },
+  /* 24 clichés choisis parmi les 62 livrés le 24/08/2026, dans l'ordre où
+     on traverse la salle : le plateau, l'octogone, le ring, les sacs,
+     l'étage, les cours. On n'en verse pas 62 — une galerie qui déverse
+     n'est plus un carnet, c'est un dossier. La vignette charge la 800 ;
+     la visionneuse va chercher la 1600 AU CLIC, quand on la demande. */
+  { img: "/assets/img/ram/photos/plateau-ring-tatami-et-octogone-boxing-center-ramonville-800.webp", plein: "/assets/img/ram/photos/plateau-ring-tatami-et-octogone-boxing-center-ramonville.webp", w: 800, h: 534, zone: "Le plateau", place: "ring, tatami et octogone", alt: "Le plateau du Boxing Center Ramonville : le ring, le tatami et l'octogone sous la charpente.", discs: [] },
+  { img: "/assets/img/ram/photos/octogone-7-metres-vide-boxing-center-ramonville-800.webp", plein: "/assets/img/ram/photos/octogone-7-metres-vide-boxing-center-ramonville.webp", w: 800, h: 533, zone: "Le plateau", place: "l'octogone au repos", alt: "L'octogone de 7 mètres du Boxing Center Ramonville, vide, entre deux cours.", discs: [] },
+  { img: "/assets/img/ram/photos/etage-musculation-sous-la-charpente-boxing-center-ramonville-800.webp", plein: "/assets/img/ram/photos/etage-musculation-sous-la-charpente-boxing-center-ramonville.webp", w: 800, h: 534, zone: "Le plateau", place: "l'étage, sous la charpente", alt: "L'étage musculation du Boxing Center Ramonville, sous la charpente métallique.", discs: [] },
+  { img: "/assets/img/ram/photos/octogone-mma-cours-au-sol-boxing-center-ramonville-800.webp", plein: "/assets/img/ram/photos/octogone-mma-cours-au-sol-boxing-center-ramonville.webp", w: 800, h: 532, zone: "L'octogone", place: "MMA au sol", alt: "Cours de MMA au sol dans l'octogone de 7 mètres du Boxing Center Ramonville.", discs: ["asso-mma", "grappling"] },
+  { img: "/assets/img/ram/photos/octogone-vue-plongeante-boxing-center-ramonville-800.webp", plein: "/assets/img/ram/photos/octogone-vue-plongeante-boxing-center-ramonville.webp", w: 800, h: 532, zone: "L'octogone", place: "vue de dessus", alt: "L'octogone de 7 mètres du Boxing Center Ramonville vu de dessus pendant un cours.", discs: ["asso-mma"] },
+  { img: "/assets/img/ram/photos/cours-de-mma-groupe-debout-boxing-center-ramonville-800.webp", plein: "/assets/img/ram/photos/cours-de-mma-groupe-debout-boxing-center-ramonville.webp", w: 800, h: 532, zone: "L'octogone", place: "le groupe debout", alt: "Le groupe du cours de MMA debout dans l'octogone du Boxing Center Ramonville.", discs: ["asso-mma"] },
+  { img: "/assets/img/ram/photos/grappling-controle-au-sol-boxing-center-ramonville-800.webp", plein: "/assets/img/ram/photos/grappling-controle-au-sol-boxing-center-ramonville.webp", w: 800, h: 534, zone: "L'octogone", place: "contrôle au sol", alt: "Contrôle au sol pendant le cours de grappling du Boxing Center Ramonville.", discs: ["grappling"] },
+  { img: "/assets/img/ram/photos/jiu-jitsu-bresilien-au-sol-boxing-center-ramonville-800.webp", plein: "/assets/img/ram/photos/jiu-jitsu-bresilien-au-sol-boxing-center-ramonville.webp", w: 800, h: 534, zone: "L'octogone", place: "travail au sol", alt: "Travail de jiu-jitsu brésilien au sol dans l'octogone du Boxing Center Ramonville.", discs: ["grappling"] },
+  { img: "/assets/img/ram/photos/grappling-projection-debout-boxing-center-ramonville-800.webp", plein: "/assets/img/ram/photos/grappling-projection-debout-boxing-center-ramonville.webp", w: 800, h: 534, zone: "L'octogone", place: "projection debout", alt: "Travail de projection en grappling au Boxing Center Ramonville.", discs: ["grappling"] },
+  { img: "/assets/img/ram/photos/octogone-vu-du-grillage-boxing-center-ramonville-800.webp", plein: "/assets/img/ram/photos/octogone-vu-du-grillage-boxing-center-ramonville.webp", w: 800, h: 532, zone: "L'octogone", place: "vu du grillage", alt: "L'intérieur de l'octogone du Boxing Center Ramonville vu à travers le grillage.", discs: [] },
+  { img: "/assets/img/ram/photos/mma-entrainement-dans-l-octogone-boxing-center-ramonville-800.webp", plein: "/assets/img/ram/photos/mma-entrainement-dans-l-octogone-boxing-center-ramonville.webp", w: 800, h: 532, zone: "L'octogone", place: "à l'entraînement", alt: "Entraînement de MMA dans l'octogone grillagé du Boxing Center Ramonville.", discs: ["asso-mma"] },
+  { img: "/assets/img/ram/photos/cours-de-boxe-anglaise-sur-le-ring-boxing-center-ramonville-800.webp", plein: "/assets/img/ram/photos/cours-de-boxe-anglaise-sur-le-ring-boxing-center-ramonville.webp", w: 800, h: 532, zone: "Le ring", place: "cours d'anglaise", alt: "Cours de boxe anglaise sur le ring du Boxing Center Ramonville, travail de déplacements.", discs: ["anglaise"] },
+  { img: "/assets/img/ram/photos/travail-aux-pattes-d-ours-boxing-center-ramonville-800.webp", plein: "/assets/img/ram/photos/travail-aux-pattes-d-ours-boxing-center-ramonville.webp", w: 800, h: 534, zone: "Le ring", place: "pattes d'ours", alt: "Travail aux pattes d'ours en binôme au Boxing Center Ramonville.", discs: ["anglaise", "pieds-poings"] },
+  { img: "/assets/img/ram/photos/boxe-anglaise-garde-haute-boxing-center-ramonville-800.webp", plein: "/assets/img/ram/photos/boxe-anglaise-garde-haute-boxing-center-ramonville.webp", w: 800, h: 534, zone: "Le ring", place: "la garde", alt: "Un boxeur en garde haute au Boxing Center Ramonville, devant la fresque du club.", discs: ["anglaise"] },
+  { img: "/assets/img/ram/photos/boxe-anglaise-en-binome-boxing-center-ramonville-800.webp", plein: "/assets/img/ram/photos/boxe-anglaise-en-binome-boxing-center-ramonville.webp", w: 800, h: 492, zone: "Le ring", place: "en binôme", alt: "Travail de boxe anglaise en binôme au Boxing Center Ramonville, devant le ring.", discs: ["anglaise"] },
+  { img: "/assets/img/ram/photos/kick-boxing-coup-de-pied-haut-boxing-center-ramonville-800.webp", plein: "/assets/img/ram/photos/kick-boxing-coup-de-pied-haut-boxing-center-ramonville.webp", w: 800, h: 534, zone: "Le ring", place: "kick, coup de pied haut", alt: "Coup de pied haut au bouclier pendant le cours de kick-boxing du Boxing Center Ramonville.", discs: ["pieds-poings"] },
+  { img: "/assets/img/ram/photos/sparring-pieds-poings-sur-tatami-boxing-center-ramonville-800.webp", plein: "/assets/img/ram/photos/sparring-pieds-poings-sur-tatami-boxing-center-ramonville.webp", w: 800, h: 533, zone: "Le ring", place: "sparring pieds-poings", alt: "Sparring pieds-poings sur le tatami du Boxing Center Ramonville.", discs: ["pieds-poings"] },
+  { img: "/assets/img/ram/photos/boxing-camp-circuit-de-renforcement-boxing-center-ramonville-800.webp", plein: "/assets/img/ram/photos/boxing-camp-circuit-de-renforcement-boxing-center-ramonville.webp", w: 800, h: 447, zone: "Les sacs", place: "Boxing Camp", alt: "Circuit de renforcement du Boxing Camp au Boxing Center Ramonville, en groupe.", discs: ["boxing-camp"] },
+  { img: "/assets/img/ram/photos/frappe-au-sac-lourd-boxing-center-ramonville-800.webp", plein: "/assets/img/ram/photos/frappe-au-sac-lourd-boxing-center-ramonville.webp", w: 800, h: 534, zone: "Les sacs", place: "frappe au sac", alt: "Frappe au sac lourd pendant le Boxing Camp du Boxing Center Ramonville.", discs: ["boxing-camp"] },
+  { img: "/assets/img/ram/photos/sacs-de-frappe-entrainement-boxing-center-ramonville-800.webp", plein: "/assets/img/ram/photos/sacs-de-frappe-entrainement-boxing-center-ramonville.webp", w: 800, h: 532, zone: "Les sacs", place: "la ligne de sacs", alt: "Deux pratiquants devant la ligne de sacs lourds du Boxing Center Ramonville, sous la charpente.", discs: ["boxing-camp"] },
+  { img: "/assets/img/ram/photos/espace-musculation-poulies-boxing-center-ramonville-800.webp", plein: "/assets/img/ram/photos/espace-musculation-poulies-boxing-center-ramonville.webp", w: 800, h: 532, zone: "L'étage", place: "poulies et charges", alt: "L'espace musculation du Boxing Center Ramonville : poulies, bancs et charges libres.", discs: ["acces-libre"] },
+  { img: "/assets/img/ram/photos/espace-cardio-velos-boxing-center-ramonville-800.webp", plein: "/assets/img/ram/photos/espace-cardio-velos-boxing-center-ramonville.webp", w: 800, h: 532, zone: "L'étage", place: "le cardio", alt: "L'espace cardio du Boxing Center Ramonville : vélos et rameurs à l'étage.", discs: ["acces-libre"] },
+  { img: "/assets/img/ram/photos/lady-punch-boxe-100-pour-cent-feminin-boxing-center-ramonville-800.webp", plein: "/assets/img/ram/photos/lady-punch-boxe-100-pour-cent-feminin-boxing-center-ramonville.webp", w: 800, h: 534, zone: "Les cours", place: "Lady Punch", alt: "Une pratiquante du cours Lady Punch au Boxing Center Ramonville, enchaînement aux gants.", discs: ["lady-punch"] },
+  { img: "/assets/img/ram/photos/boxe-educative-enfants-boxing-center-ramonville-800.webp", plein: "/assets/img/ram/photos/boxe-educative-enfants-boxing-center-ramonville.webp", w: 800, h: 533, zone: "Les cours", place: "l'école, dès 3 ans", alt: "Cours de boxe éducative pour enfants au Boxing Center Ramonville.", discs: ["ecole"] },
 ];
+
 
 /* ------------------------------------------------------------------ *
  *  LE CARNET — la matière PROPRE à /galerie/.
@@ -806,7 +824,22 @@ export const CARNET = {
   kQuoi: "Ce qui s’y tient",
   kQuand: "Quand",
   kLarge: "Plan large",
-  usageFoot: "Quatre zones sur six ont un horaire. Les deux autres sont des plans d’ensemble : on ne leur en fabrique pas un.",
+  /* COMPTE, PAS TEXTE. Cette phrase disait « quatre zones sur six » en
+     dur : elle redevenait fausse au premier cliché ajouté — et elle l'est
+     devenue le 24/08. Elle se calcule maintenant sur ce qui est
+     réellement affiché. */
+  usageFoot: (zones) => {
+    const N = ["zéro", "Une", "Deux", "Trois", "Quatre", "Cinq", "Six", "Sept", "Huit"];
+    const avec = zones.filter((z) => z.discs.length).length;
+    const sans = zones.length - avec;
+    const g = `${N[avec] || avec} zone${avec > 1 ? "s" : ""} sur ${N[zones.length]?.toLowerCase() || zones.length} ${avec > 1 ? "ont" : "a"} un horaire.`;
+    if (!sans) return `${g} Chacune est rendue au planning officiel.`;
+    const q = sans > 1
+      ? `Les ${N[sans].toLowerCase()} autres sont des plans d’ensemble : on ne leur en fabrique pas un.`
+      : "L’autre est un plan d’ensemble : on ne lui en fabrique pas un.";
+    return `${g} ${q}`;
+  },
+  horsDefaut: "Plan d’ensemble : on y voit les volumes, pas un cours. Aucun horaire ne lui appartient en propre — on n’en invente pas.",
   /* les trois règles du carnet — la méthode, dite une fois, ici et nulle part
      ailleurs sur le site. */
   regles: [
@@ -820,7 +853,7 @@ export const CARNET = {
     },
     {
       k: "Aucune heure sur les légendes",
-      d: "Les six cadres sont pris de jour et à couvert. La seule heure du carnet est celle de la bande du haut : elle vient du ciel de Ramonville, à la seconde où tu lis.",
+      d: "Les vingt-quatre cadres sont pris de jour et à couvert. La seule heure du carnet est celle de la bande du haut : elle vient du ciel de Ramonville, à la seconde où tu lis.",
     },
   ],
   // le renvoi de la page blanche : le relevé complet appartient à /la-salle/

@@ -566,7 +566,7 @@
 
     <!-- ================= LA GALERIE DU CLUB =======================
          LE CARNET EST DE NOUS. CE MUR-LÀ EST DE VOUS.
-         Le carnet plus haut ne contient que les six photos prouvées de la
+         Le carnet plus haut ne contient que les vingt-quatre photos prouvées de la
          salle, prises par la maison. Cette section-ci est l’autre moitié :
          ce que les gens du club rapportent eux-mêmes du plateau. Rien n’y
          apparaît sans qu’un coach l’ait relu (Le vestiaire → La galerie du
@@ -644,7 +644,7 @@
   <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo agrandie">
     <div class="lightbox__frame">
       <button class="lightbox__close" id="lb-close" type="button">Fermer <span aria-hidden="true">✕</span></button>
-      <img id="lb-img" alt="" />
+      <img id="lb-img" alt="" width="1600" height="1067" decoding="async" loading="lazy" />
       <div class="lightbox__cap" id="lb-cap"></div>
     </div>
   </div>
@@ -734,8 +734,20 @@
     const gallery = document.getElementById("gallery");
     const cix = document.getElementById("carnet-index");
     if (cix) {
-      cix.innerHTML = GALLERY.map((g) =>
-        `<div class="cix"><b>${g.zone}</b><span>${g.place}</span></div>`).join("");
+      /* UNE LIGNE PAR ZONE, pas par cliché. Cette boucle mappait GALLERY :
+         tant qu'il y avait six photos pour six zones, elle tombait juste par
+         accident. À vingt-quatre, elle écrivait « L'octogone » huit fois. Un
+         sommaire annonce des zones et combien de cadres chacune porte. */
+      const zs = [];
+      const vus = new Map();
+      for (const g of GALLERY) {
+        let z = vus.get(g.zone);
+        if (!z) { z = { zone: g.zone, n: 0, places: [] }; vus.set(g.zone, z); zs.push(z); }
+        z.n++;
+        if (z.places.length < 2 && g.place) z.places.push(g.place);
+      }
+      cix.innerHTML = zs.map((z) =>
+        `<div class="cix"><b>${z.zone}<i class="cix__n">${z.n}</i></b><span>${z.places.join(" · ")}</span></div>`).join("");
     }
 
     /* --- visionneuse plein cadre (délégation : marche quel que soit l’ordre) --- */
