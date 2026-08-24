@@ -51,7 +51,7 @@
 /* le crédit photo : le filigrane est incrusté dans deux fichiers sources — on
    cite le photographe plutôt que de rogner sa signature. Un carnet de terrain
    crédite ses images ; c'est le registre, pas une concession. */
-.shot__credit { display: block; margin-top: .3em; font-style: normal; font-size: max(.75rem, .88em); color: var(--muted); letter-spacing: .08em; text-transform: uppercase; }
+.shot__credit { display: block; margin-top: .3em; font-style: normal; font-size: max(.8rem, .88em); color: var(--muted); letter-spacing: .08em; text-transform: uppercase; }
 .shot__zoom { position: absolute; top: .6rem; right: .6rem; width: 26px; height: 26px; display: grid; place-items: center; color: var(--ink); background: color-mix(in srgb,var(--void) 60%, transparent); border: 1px solid var(--line); border-radius: var(--radius); opacity: 0; transition: opacity .3s; pointer-events: none; z-index: 2; }
 .shot:hover .shot__zoom, .shot:focus-visible .shot__zoom { opacity: 1; }
 /* les vignettes sont de vrais contrôles (role=button tabindex=0) : elles
