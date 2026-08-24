@@ -440,6 +440,12 @@ const nf = new Intl.NumberFormat("fr-FR");
           <h1 class="display hero__title">
             <span class="reveal-mask"><span class="l1">L’octogone</span></span>
             <span class="reveal-mask"><span class="tint">à ciel ouvert.</span></span>
+            <!-- La suite du titre : lue par Google et par les lecteurs d’écran,
+                 invisible à l’œil. Elle n’invente rien, c’est la phrase que porte
+                 déjà le lead juste dessous. Elle vit DANS le h1 pour que la page
+                 garde un seul titre, contrairement au h1 caché de Minimes qui
+                 dit autre chose que ce qu’on voit. -->
+            <span class="sr-only"> Boxing Center Ramonville-Saint-Agne : club de boxe anglaise, boxe pieds-poings, MMA et grappling au terminus du métro B, cours tous niveaux dès 3 ans.</span>
           </h1>
           <p class="lead hero__sub" data-reveal>Un club de boxe et de MMA à Ramonville-Saint-Agne, au terminus du métro B. <b>300 m² d’entraînement en plein air, couverts et chauffés</b>, un octogone de 7 mètres, un grand ring et un étage musculation-cardio. Enfants dès 3 ans, adultes de tous niveaux.</p>
           <div class="hero__badges" data-reveal>
