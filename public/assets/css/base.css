@@ -84,9 +84,24 @@
   /* PLANCHER TYPO : --step--2 ne descend JAMAIS sous ~11px. Les micro-labels
      mono (le tic documentaire de la maison) tombaient à 9,3–10,2px un peu
      partout — le registre « carnet de terrain » se lisait comme du bruit.
-     Tout label mono passe par ce token, aucun `.5xrem` en dur. */
-  --step--2: clamp(.75rem, .72rem + .12vw, .8rem);
-  --step--1: clamp(.78rem, .72rem + .3vw, .9rem);
+     Tout label mono passe par ce token, aucun `.5xrem` en dur.
+
+     LES PLANCHERS RELEVÉS (24/08/2026), PARCE QUE CE SITE EST D'ABORD UN
+     SITE DE TÉLÉPHONE. Mesuré sur /tarifs/ à 375 px : 102 éléments de texte
+     sur 132 — 77 % — se rendaient sous 14 px. Le coupable n'était aucune
+     règle en particulier, c'était la forme des clamps :
+
+         --step--1 : 12,6 px à 375 px  →  14,4 px à 1280 px
+
+     C'est le token le plus utilisé du site (69 occurrences). Il donnait donc
+     son plus PETIT rendu au téléphone et son plus grand au bureau — l'inverse
+     exact de ce qu'il faut quand neuf visiteurs sur dix sont sur téléphone.
+
+     On relève les planchers, on garde les plafonds : le bureau ne bouge pas
+     d'un pixel, le téléphone gagne 11 %. Sous 14 px un texte de soutien se
+     saute, et un argument de vente qu'on ne lit pas ne vend pas. */
+  --step--2: clamp(.8rem, .76rem + .12vw, .8rem);
+  --step--1: clamp(.875rem, .8rem + .28vw, .9rem);
   --step-0:  clamp(1rem, .95rem + .28vw, 1.12rem);
   --step-1:  clamp(1.25rem, 1.05rem + 1vw, 1.85rem);
   --step-2:  clamp(2rem, 1.4rem + 2.8vw, 3.9rem);
@@ -770,41 +785,54 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
   .breadcrumb a:active { color: var(--accent); }
 }
 
-/* LISIBILITÉ MOBILE (dans base.css = chargé sur TOUTES les pages, y compris
-   celles en page.css) — plancher 12px sur les micro-labels. @media ≤600px. */
+/* LISIBILITÉ MOBILE (base.css = chargé sur TOUTES les pages, y compris celles
+   en page.css). @media ≤600px.
+
+   Ce bloc était DÉJÀ une correction : des micro-labels tombaient à 9,3 px, il
+   les a remontés à 12. Bon geste, plancher trop bas — calibré pour « qu'on
+   PUISSE le lire » et non pour « qu'on le LISE ». Sur un site où neuf
+   visiteurs sur dix sont sur téléphone, ce n'est pas la même exigence.
+
+   Deux planchers maintenant, selon ce que le texte porte :
+     · 12,8 px — les micro-labels décoratifs : numéros de section, tics de
+       carnet, tags en capitales tracées. Ils comptent, ils ne vendent pas.
+     · 14 px — tout ce qui porte un ARGUMENT : l'unité du prix
+       (« / personne · 4 semaines », c'est elle qui dit ce qu'on achète pour
+       29 €), l'ancien prix barré, la signature d'un avis, le libellé d'un
+       chiffre. Un argument qu'on ne lit pas ne vend pas. */
 @media (max-width: 600px) {
-  .coach__role { font-size: .75rem !important; }
-  .coach__tag { font-size: .75rem !important; }
-  .dehors__tags span { font-size: .75rem !important; }
-  .disc__fact b { font-size: .75rem !important; }
-  .floor__zones span { font-size: .75rem !important; }
-  .info__row .fk { font-size: .75rem !important; }
-  .menu__link .n { font-size: .75rem !important; }
-  .mur__play { font-size: .75rem !important; }
-  .oleg__n { font-size: .75rem !important; }
-  .oleg__tag { font-size: .75rem !important; }
-  .poster::after { font-size: .75rem !important; }
-  .practical .fk { font-size: .75rem !important; }
-  .promo__badge { font-size: .75rem !important; }
-  .promo__price i { font-size: .75rem !important; }
-  .promo__price s { font-size: .75rem !important; }
-  .rail__label { font-size: .75rem !important; }
-  .regle__n { font-size: .75rem !important; }
-  .slotline .d { font-size: .75rem !important; }
-  .staff__meta .mono { font-size: .75rem !important; }
-  .staff__meta i { font-size: .75rem !important; }
-  .station__n { font-size: .75rem !important; }
-  .station__specs span { font-size: .75rem !important; }
-  .tarif__badge { font-size: .75rem !important; }
-  .tournage__lead { font-size: .75rem !important; }
-  .value__n { font-size: .75rem !important; }
+  .coach__role { font-size: .8rem !important; }
+  .coach__tag { font-size: .8rem !important; }
+  .dehors__tags span { font-size: .8rem !important; }
+  .disc__fact b { font-size: .8rem !important; }
+  .floor__zones span { font-size: .8rem !important; }
+  .info__row .fk { font-size: .8rem !important; }
+  .menu__link .n { font-size: .8rem !important; }
+  .mur__play { font-size: .8rem !important; }
+  .oleg__n { font-size: .8rem !important; }
+  .oleg__tag { font-size: .8rem !important; }
+  .poster::after { font-size: .8rem !important; }
+  .practical .fk { font-size: .8rem !important; }
+  .promo__badge { font-size: .8rem !important; }
+  .promo__price i { font-size: .8rem !important; }
+  .promo__price s { font-size: .8rem !important; }
+  .rail__label { font-size: .8rem !important; }
+  .regle__n { font-size: .8rem !important; }
+  .slotline .d { font-size: .8rem !important; }
+  .staff__meta .mono { font-size: .8rem !important; }
+  .staff__meta i { font-size: .8rem !important; }
+  .station__n { font-size: .8rem !important; }
+  .station__specs span { font-size: .8rem !important; }
+  .tarif__badge { font-size: .8rem !important; }
+  .tournage__lead { font-size: .8rem !important; }
+  .value__n { font-size: .8rem !important; }
   /* couleur, jamais grisé */
-.poster__cap { font-size: .75rem !important; }
+.poster__cap { font-size: .8rem !important; }
 
   .tarif__price small, .price small, small:not(sup), .who__tick span,
   [class*="__tick"] span, [class*="__rail"] span, .hero__round-k, .oleg__n,
   .oleg__tag, .octa__now-tag, .octa__hint, .tarif__badge, .promo__badge,
-  .review__by, .cursor__label, .stat__l { font-size: .78rem !important; }
+  .review__by, .cursor__label, .stat__l { font-size: .875rem !important; }
 
   .nav__links a, .menu__link, .menu__foot a, .footer__col a, .crumbs a,
   .chip, .faq summary, a[class*="link"], .nav__brand, .menu__close,
