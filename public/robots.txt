@@ -104,4 +104,34 @@ Disallow: /admin/
 Disallow: /api/
 Allow: /
 
+
+# ------- Ajoutes le 24/08/2026 : les deux salles du reseau declaraient
+#         des agents differents. Il n'y a aucune raison qu'un moteur de
+#         reponse lise une salle et pas sa soeur. Plus DuckAssistBot et
+#         Applebot-Extended, qui manquaient aux deux.
+User-agent: anthropic-ai
+Disallow: /admin/
+Disallow: /api/
+Allow: /
+
+User-agent: Amazonbot
+Disallow: /admin/
+Disallow: /api/
+Allow: /
+
+User-agent: cohere-ai
+Disallow: /admin/
+Disallow: /api/
+Allow: /
+
+User-agent: DuckAssistBot
+Disallow: /admin/
+Disallow: /api/
+Allow: /
+
+User-agent: Applebot-Extended
+Disallow: /admin/
+Disallow: /api/
+Allow: /
+
 Sitemap: https://bc-ramonville.vercel.app/sitemap.xml
