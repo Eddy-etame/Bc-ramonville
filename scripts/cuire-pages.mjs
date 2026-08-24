@@ -55,6 +55,14 @@ const coachroster = COACHES.map((c) => {
   )}</article>`;
 }).join("");
 
+/* Le poster ecrit « Valentin G » ; c'est la cle qui relie un creneau a
+   une fiche, et elle ne bouge pas. Mais cette table est ce qu'un robot
+   lit SANS JavaScript : elle doit porter le nom, comme la version
+   hydratee. */
+const NOM_COACH = Object.fromEntries(
+  COACHES.filter((c) => c.planning).map((c) => [c.planning, c.name]));
+const nomDe = (c) => NOM_COACH[c] || c;
+
 /* /plannings — la semaine. Le creux est une <table> : on écrit un vrai
    corps de tableau, pas des <section> — du HTML invalide dans une table est
    reparenté par le navigateur et casserait la page avant que le JS passe. */
@@ -66,7 +74,7 @@ const grid =
       .map(
         (s) =>
           `<tr><th scope="row">${e(j)} · ${e(s.start)}</th><td>${e(s.cours)}</td><td>${
-            s.coach ? e(s.coach) : ""
+            s.coach ? e(nomDe(s.coach)) : ""
           }</td></tr>`
       )
       .join("")

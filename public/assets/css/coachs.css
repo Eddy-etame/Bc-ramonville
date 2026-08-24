@@ -23,7 +23,12 @@
 
 /* le pilier — grand, à l'horizontale, occupe toute la largeur en haut */
 .coach--pillar { grid-column: 1 / -1; border-color: var(--accent-line); background: color-mix(in srgb,var(--paper-2) 88%, var(--accent)); }
-@media (min-width: 760px){ .coach--pillar { flex-direction: row; align-items: stretch; } .coach--pillar .coach__face { flex: 0 0 42%; aspect-ratio: auto; min-height: 340px; } .coach--pillar .coach__body { padding: clamp(1.6rem,3vw,2.6rem); } }
+/* Le cadre du pilier gardait aspect-ratio:auto dans une rangee stretch :
+   il prenait la hauteur de la colonne de texte. Sans consequence sur un
+   cliche anonyme ; sur une AFFICHE composee — nom, pastille, cartouche —
+   ca en coupe un morceau, et lequel depend de la longueur de la bio.
+   Il garde son rapport (pose par fiche), la rangee s aligne en haut. */
+@media (min-width: 760px){ .coach--pillar { flex-direction: row; align-items: flex-start; } .coach--pillar .coach__face { flex: 0 0 42%; min-height: 0; } .coach--pillar .coach__body { padding: clamp(1.6rem,3vw,2.6rem); } }
 /* Le badge du pilier est STYLÉ ici, mais son texte vient de data.js (c.tag) et
    est rendu dans .coach__tag. Il existait aussi en `content:"Le pilier"` sur ce
    ::after : la carte de Sonia — la coach que les avis Google citent par son nom —
@@ -32,13 +37,18 @@
    c'est le vrai .coach__tag qui prend l'habillage badge. */
 .coach--pillar .coach__tag { align-self: flex-start; color: var(--void); background: var(--accent); padding: .5em .8em; border-radius: var(--radius); box-shadow: var(--glow-soft); }
 
-/* LE CADRE SUIT LA PHOTO, PAS L INVERSE. Il etait a 3/4 quand les deux
-   seules photos etaient en PAYSAGE 768x512 : le cadre rognait donc a mort,
-   et object-position rattrapait a la main. Les cinq portraits de la saison
-   2026/2027 sont recadres a 511x871 depuis les visuels officiels — le
-   coach entier, avec de l air autour, comme sur Portet. Le cadre prend
-   leur rapport exact : plus une seule coupe apres coup. */
-.coach__face { position: relative; aspect-ratio: 511 / 871; overflow: hidden; }
+/* LE VISUEL ENTIER, PAS UN DETOURAGE.
+   Le fichier livre pour chaque coach est une fiche : un bloc SOMBRE en
+   haut — la photo occupe TOUTE la largeur, le nom, la pastille et le
+   cartouche DISCIPLINES sont poses PAR-DESSUS elle — puis un pave blanc
+   imprime en bas. C est ce pave-la, et lui seul, qu il fallait couper.
+   Premiere passe : cadre 3/4 a droite du nom, donc le coach seul, coupe
+   au buste — la moitie du travail du graphiste jetee.
+   Le rapport est pose PAR FICHE en style inline (champ ratio de data.js) :
+   le cartouche fait deux lignes chez Hicham et quatre chez Sonia, donc
+   les blocs sombres n ont pas la meme hauteur. Une hauteur commune les
+   rognait. Ici, rien n est rogne. */
+.coach__face { position: relative; aspect-ratio: 1086 / 900; overflow: hidden; }
 /* photo réelle (registre documentaire, traitée nuit — via .media de site.js) ;
    cadrage haut (object-position) car les portraits sont paysage forcés en
    portrait : aucun visage rogné (loi « nom ≡ photo », finding 20). */
@@ -135,7 +145,7 @@
   .route { min-height: 44px; }
   .route:active { transform: translateY(1px); border-color: var(--accent); }
 }
-@media (max-width: 760px){ .coach--pillar .coach__face { aspect-ratio: 16/10; } }
+/* sur telephone non plus : le rapport de la fiche fait foi. */
 
 /* ============ CE QUE LE VISUEL DISAIT, EN TEXTE ================== *
    Chaque coach a un visuel officiel 2026/2027 : cadre sombre en haut (le

@@ -273,7 +273,7 @@ const totalDisc = DISCIPLINES.length;
           "areaServed": "FR",
           "availableLanguage": "French"
         },
-        "description": "La seule salle du réseau Boxing Center qui s’entraîne dehors : 300 m² extérieurs couverts, un octogone de 7 m, un grand ring de boxe et deux niveaux avec un étage muscu/cardio, à Ramonville-Saint-Agne. Boxe anglaise, pieds-poings, grappling, asso MMA, Boxing Camp, Lady Punch et école enfants dès 3 ans.",
+        "description": "La seule salle du réseau Boxing Center qui s’entraîne dehors : 300 m² extérieurs couverts, un octogone de 7 m, un grand ring de boxe et deux niveaux avec un étage muscu/cardio, à Ramonville-Saint-Agne. Boxe anglaise, pieds-poings, grappling, MMA tous niveaux, Boxing Camp, Lady Punch et école enfants dès 3 ans.",
         "parentOrganization": {
           "@id": "https://boxingcenter.fr/#organization"
         }
@@ -379,7 +379,7 @@ const totalDisc = DISCIPLINES.length;
             "name": "Je n’ai jamais fait de sport de combat. Je peux venir quand même ?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Oui. Sept des huit disciplines de la salle sont affichées « tous niveaux », « zéro prérequis » ou « débutant » sur le planning officiel — seule l’asso MMA demande de l’expérience. Tu dis à l’accueil que c’est ta première fois, et un coach prend le relais."
+              "text": "Oui. Sept des huit disciplines de la salle sont affichées « tous niveaux », « zéro prérequis » ou « débutant » sur le planning officiel — aucune ne demande d’expérience préalable. Tu dis à l’accueil que c’est ta première fois, et un coach prend le relais."
             }
           },
           {
@@ -518,7 +518,7 @@ const totalDisc = DISCIPLINES.length;
           <li>
             <span class="pas__n">03 — L’accueil</span>
             <h3 class="pas__t">Un coach te prend en charge</h3>
-            <p class="pas__d">C’est en général vers <b>Sonia</b> qu’on t’envoie : elle tient le pieds-poings, le Lady Punch et le Boxing Camp, et c’est son nom qui revient dans les avis de la salle. Elle te prête les gants et les bandes, te montre où poser tes affaires, et te dit ce qui va se passer avant que ça se passe. <a href="/coachs/">Les quatre coachs</a>.</p>
+            <p class="pas__d">C’est en général vers <b>Sonia</b> qu’on t’envoie : elle tient la boxe thaï, le kickboxing et le Boxing Lady, et c’est son nom qui revient dans les avis de la salle. Elle te prête les gants et les bandes, te montre où poser tes affaires, et te dit ce qui va se passer avant que ça se passe. <a href="/coachs/">Les cinq coachs</a>.</p>
           </li>
           <li>
             <span class="pas__n">04 — Le tour</span>
@@ -553,12 +553,12 @@ const totalDisc = DISCIPLINES.length;
           <article class="nope__card">
             <span class="nope__k">01 · Le ring</span>
             <h3 class="nope__t">Pas de sparring imposé</h3>
-            <p class="nope__d">Personne ne monte sur le ring sans en avoir envie — ça se demande, ça ne s’impose pas. La cage suit la même règle : le grappling du mardi soir est le créneau tous niveaux, et l’asso MMA reste marquée « confirmé » au planning, pas ouverte par surprise.</p>
+            <p class="nope__d">Personne ne monte sur le ring sans en avoir envie — ça se demande, ça ne s’impose pas. La cage suit la même règle : le grappling du mardi soir est le créneau tous niveaux, et le MMA tous niveaux reste marquée « confirmé » au planning, pas ouverte par surprise.</p>
           </article>
           <article class="nope__card">
             <span class="nope__k">02 · Le niveau</span>
             <h3 class="nope__t">Pas de test à l’entrée</h3>
-            <p class="nope__d">Sur les {totalDisc} disciplines de la salle, {sansPrerequis} portent « tous niveaux », « zéro prérequis » ou « débutant » sur le planning officiel. La seule qui demande de l’expérience est l’asso MMA, et c’est écrit noir sur blanc sur sa fiche.</p>
+            <p class="nope__d">Sur les {totalDisc} disciplines de la salle, {sansPrerequis} portent « tous niveaux », « zéro prérequis » ou « débutant » sur le planning officiel. La seule qui demande de l’expérience est le MMA tous niveaux, et c’est écrit noir sur blanc sur sa fiche.</p>
           </article>
           <article class="nope__card">
             <span class="nope__k">03 · Le contrat</span>
@@ -637,7 +637,7 @@ const totalDisc = DISCIPLINES.length;
           </div>
           <div class="info__row">
             <span class="fk">École enfants — 295 € l’an, baby 250 €</span>
-            <span class="fv">Dès 3 ans, t-shirt Boxing Center inclus, avec Valentin G</span>
+            <span class="fv">Dès 3 ans, t-shirt Boxing Center inclus, avec Valentin Guth</span>
           </div>
           <div class="info__row">
             <span class="fk">Offre de rentrée — {essai.price} par personne</span>
@@ -658,7 +658,7 @@ const totalDisc = DISCIPLINES.length;
         <div class="faq">
           <details>
             <summary>Je n’ai jamais fait de sport de combat. Je peux venir quand même&nbsp;?</summary>
-            <p>Oui. {sansPrerequis} des {totalDisc} disciplines de la salle sont affichées « tous niveaux », « zéro prérequis » ou « débutant » sur le planning officiel — seule l’asso MMA demande de l’expérience. Tu dis à l’accueil que c’est ta première fois, et un coach prend le relais.</p>
+            <p>Oui. {sansPrerequis} des {totalDisc} disciplines de la salle sont affichées « tous niveaux », « zéro prérequis » ou « débutant » sur le planning officiel — aucune ne demande d’expérience préalable. Tu dis à l’accueil que c’est ta première fois, et un coach prend le relais.</p>
           </details>
           <details>
             <summary>Est-ce que je vais devoir monter sur le ring&nbsp;?</summary>

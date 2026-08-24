@@ -418,9 +418,9 @@ export function initChatbot() {
          data.js, un par un. */
     const ACCUEILS = {
       "/tarifs/": ["Bonjour \u{1F44B} Vous \u00eates sur les tarifs.", "Six formules. La rentr\u00e9e \u00e0 29\u202f\u20ac par personne est la plus prise. Je vous aide \u00e0 choisir\u00a0?"],
-      "/activites/": ["Bonjour \u{1F44B} Vous regardez les disciplines.", "Huit, du baby boxe \u00e0 l\u2019asso MMA dans l\u2019octogone. Dites-moi votre objectif."],
+      "/activites/": ["Bonjour \u{1F44B} Vous regardez les disciplines.", "Huit, du baby boxe \u00e0 l\u2019MMA tous niveaux dans l\u2019octogone. Dites-moi votre objectif."],
       "/plannings/": ["Bonjour \u{1F44B} Vous cherchez un cr\u00e9neau.", "Ouvert du lundi au samedi, 10h\u201321h30. Donnez-moi vos dispos, je vous dis lequel prendre."],
-      "/coachs/": ["Bonjour \u{1F44B} Vous regardez l\u2019\u00e9quipe.", "Quatre coachs\u00a0: Sonia, J\u00e9r\u00f4me, Farouk et Valentin G. Une question sur l\u2019un d\u2019eux\u00a0?"],
+      "/coachs/": ["Bonjour \u{1F44B} Vous regardez l\u2019\u00e9quipe.", "Cinq coachs\u00a0: J\u00e9r\u00f4me (head coach), Sonia, Hicham, Farouk et Valentin Guth. Une question sur l\u2019un d\u2019eux\u00a0?"],
       "/la-salle/": ["Bonjour \u{1F44B} Vous d\u00e9couvrez le plateau.", "300\u202fm\u00b2 en plein air, couverts et chauff\u00e9s, un octogone de 7\u202fm. Envie de passer\u00a0?"],
       "/galerie/": ["Bonjour \u{1F44B} Vous parcourez la galerie.", "Six cl\u00e9ich\u00e9s du plateau. Une question sur ce que vous voyez\u00a0?"],
       "/premiere-seance/": ["Bonjour \u{1F44B} Vous pr\u00e9parez votre premi\u00e8re s\u00e9ance.", "Gants pr\u00eat\u00e9s, aucun niveau demand\u00e9, pas de sparring impos\u00e9. Une question\u00a0?"],

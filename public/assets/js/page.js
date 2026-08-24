@@ -57,7 +57,7 @@ function pheroMeta() {
       const p = planningNow();
       if (p.closed) { box.innerHTML = chip("Dimanche — <b>la salle est fermée</b>") + chip("Lun–sam · 10h–21h30"); return; }
       const head = p.live
-        ? chip(`En ce moment — <b>${p.live.cours}</b> · ${p.live.coach}`)
+        ? chip(`En ce moment — <b>${p.live.cours}</b> · ${nomDe(p.live.coach)}`)
         : p.next
           ? chip(`Prochain cours — <b>${p.next.cours}</b> à ${p.next.start}`)
           : chip("Plus de cours aujourd’hui — <b>accès libre</b> jusqu’à 21h30");
@@ -387,7 +387,7 @@ function renderEntree() {
     const jours = [...new Set(slots.map((s) => s.day))].sort((a, b) => dayIx(a) - dayIx(b));
     const nOpen = discs.filter(isOpen).length;
     /* MIXTE, et il faut le dire : le grappling est « Tous niveaux » quand
-       l’asso MMA est « Confirmé ». Marquer toute la famille « quand tu es
+       le MMA tous niveaux est « Confirmé ». Marquer toute la famille « quand tu es
        prêt » fermait une porte que la salle ouvre — et contredisait le code
        du plateau, qui écrit noir sur blanc que la cage du mardi est celle
        des débutants. On compte les portes au lieu de les rabattre. */
@@ -458,13 +458,13 @@ function renderCoachDepth() {
   if (garde) {
     garde.innerHTML = DAYS.map((d) => {
       const slots = SCHEDULE.filter((s) => s.day === d);
-      const names = [...new Set(slots.map((s) => s.coach))];
+      const names = [...new Set(slots.map((s) => nomDe(s.coach)))];
       return `<div class="garde__day">
         <span class="garde__d">${d}</span>
         <div class="garde__who">
           ${names.map((n) => {
             const c = COACHES.find((x) => x.name === n);
-            const n2 = slots.filter((s) => s.coach === n).length;
+            const n2 = slots.filter((s) => nomDe(s.coach) === n).length;
             return `<span class="gwho${c?.pillar ? " is-pillar" : ""}">${n}<i>${n2}</i></span>`;
           }).join("")}
         </div>
@@ -478,7 +478,7 @@ function renderCoachDepth() {
   if (route) {
     route.innerHTML = [...DISCIPLINES].sort((a, b) => a.edge - b.edge).map((d) => {
       const slots = SCHEDULE.filter((s) => s.disc === d.key);
-      const names = [...new Set(slots.map((s) => s.coach))];
+      const names = [...new Set(slots.map((s) => nomDe(s.coach)))];
       const soirs = [...new Set(slots.sort((a, b) => dayIx(a.day) - dayIx(b.day)).map((s) => s.day))];
       // « Accès libre » n’a ni coach ni créneau : on le dit, on ne l’invente pas
       const who = names.length ? names.join(" · ") : d.coach;
@@ -492,6 +492,16 @@ function renderCoachDepth() {
     }).join("");
   }
 }
+
+/* LE NOM AFFICHE, PAS LA CLE DU POSTER.
+   Le poster de la rentree ecrit « Valentin G » : c'est la cle qui relie
+   un creneau a une fiche, et elle ne bouge pas — un poster fait foi sur
+   le planning. Mais elle n'a rien a faire a l'ecran, et elle s'affichait
+   six fois dans la grille. Une fiche qui porte `planning` declare sa
+   cle ; partout ailleurs on lit son nom. */
+const NOM_COACH = Object.fromEntries(
+  COACHES.filter((c) => c.planning).map((c) => [c.planning, c.name]));
+const nomDe = (c) => NOM_COACH[c] || c;
 
 /* ----------------------------- GALERIE --------------------------- */
 function renderGallery() {
@@ -573,7 +583,7 @@ function renderCarnet() {
         return `<a class="zline" href="/activites/#${d.key}">
           <b>${d.name}</b>
           <span class="zline__when">${when}</span>
-          <i class="zline__who">${slots.length ? [...new Set(slots.map((s) => s.coach))].join(" · ") : d.coach}</i>
+          <i class="zline__who">${slots.length ? [...new Set(slots.map((s) => nomDe(s.coach)))].join(" · ") : d.coach}</i>
         </a>`;
       }).join("");
       return `<article class="zrow">
@@ -622,7 +632,7 @@ function renderPlanning() {
         if (!slots.length) return `<td class="empty" aria-hidden="true">·</td>`;
         return `<td>${slots.map((s) => `
           <a class="slot ${fam !== "all" && s.fam !== fam ? "is-dim" : ""}" data-fam="${s.fam}" href="/activites/#${s.disc}">
-            <b>${s.cours}</b><span>${s.coach}</span>
+            <b>${s.cours}</b><span>${nomDe(s.coach)}</span>
           </a>`).join("")}</td>`;
       }).join("");
       return `<tr><td class="time">${t}</td>${cells}</tr>`;

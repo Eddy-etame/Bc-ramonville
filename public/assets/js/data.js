@@ -151,7 +151,7 @@ const _DISCIPLINES = [
     name: "Boxe Anglaise",
     tag: "Le noble art",
     famille: "adulte",
-    coach: "Valentin G · Farouk",
+    coach: "Valentin Guth · Farouk",
     /* RECOPIÉ SUR LA GRILLE, PAS SUR LA VERSION D’AVANT. Le poster de la
        rentrée a redressé le mercredi soir — un seul bloc d’anglaise 18h45 →
        20h15 avec Farouk, et non un loisirs de 19h45. Cette ligne l’ignorait
@@ -206,10 +206,10 @@ const _DISCIPLINES = [
     famille: "mma",
     coach: "Jérôme",
     jours: "Mardi & jeudi · 19h45 – 21h15",
-    niveau: "Confirmé · asso",
+    niveau: "Tous niveaux · débutants acceptés",
     desc: "Le créneau association : MMA complet dans l’octogone, debout et au sol. Deux soirs par semaine avec Jérôme, quand la cage est à nous et que le plateau, à deux pas, reste ouvert sur le soir.",
-    /* octogone.webp EST une photo d’asso MMA — son `alt` du carnet le dit mot
-       pour mot (« Séance d’asso MMA dans l’octogone de 7 m »), et elle est
+    /* octogone.webp EST une photo d’MMA tous niveaux — son `alt` du carnet le dit mot
+       pour mot (« Séance d’MMA tous niveaux dans l’octogone de 7 m »), et elle est
        indexée `discs: ["grappling", "asso-mma"]`. La fiche du créneau qui se
        passe DANS la cage s’affichait sans la seule photo de la cage : ce
        n’était pas un manque de matière, c’était un fil non branché. */
@@ -227,7 +227,7 @@ const _DISCIPLINES = [
        devenu du pieds-poings, et Farouk n’en tient plus aucun : il a le bloc
        d’anglaise du mercredi soir. On corrige la fiche plutôt que de laisser
        la page promettre un cinquième créneau qui n’existe plus. */
-    coach: "Sonia · Jérôme · Valentin G · mer. midi à confirmer",
+    coach: "Sonia · Jérôme · Valentin Guth · mer. midi à confirmer",
     jours: "Lun. & mer. 12h40 · jeu. 18h40 · sam. 11h",
     niveau: "Tous niveaux",
     desc: "Le format signature Boxing Center : technique, cardio et sacs dans une seule séance dense. Quatre créneaux, du lundi midi au samedi matin — le meilleur point d’entrée si tu hésites encore.",
@@ -258,10 +258,10 @@ const _DISCIPLINES = [
     name: "École enfants",
     tag: "Dès 3 ans",
     famille: "enfant",
-    coach: "Valentin G",
+    coach: "Valentin Guth",
     jours: "Baby 3/6 sam. 14h15 · 7/11 mer./sam. 15h · 12/16 mer./sam. 16h",
     niveau: "Baby → ados",
-    desc: "Du Baby Boxe (dès 3 ans) à l’éducative ados, la règle est fédérale et non négociable : on touche, on ne frappe pas. Pas de coups portés — de la motricité, de la concentration, du respect, à hauteur d’enfant. Valentin G tient toute l’école, mercredi et samedi après-midi. Parents : restez, la salle est ouverte pendant le cours.",
+    desc: "Du Baby Boxe (dès 3 ans) à l’éducative ados, la règle est fédérale et non négociable : on touche, on ne frappe pas. Pas de coups portés — de la motricité, de la concentration, du respect, à hauteur d’enfant. Valentin Guth tient toute l’école, mercredi et samedi après-midi. Parents : restez, la salle est ouverte pendant le cours.",
     /* Même règle, et elle est plus stricte encore ici : on ne publie pas le
        visage d’un enfant sans l’accord écrit des parents, et aucune des six
        photos prouvées n’en montre. La plaque le dit franchement. */
@@ -404,11 +404,11 @@ export const PLATEAU = [
     t: "L’octogone",
     tag: "7 m · la cage",
     /* La phrase disait deux fois « La signature du plateau : » et deux fois
-       « pour le grappling et l’asso MMA » — une fusion d’édition restée en
+       « pour le grappling et le MMA tous niveaux » — une fusion d’édition restée en
        l’état. Une seule signature, une seule fois. */
-    d: "Un octogone de 7 mètres, grillagé, pour le grappling, l’asso MMA et le travail au sol. La signature du plateau : le mardi soir, c’est le créneau tous niveaux — la cage s’ouvre aux débutants, Jérôme tient la porte.",
+    d: "Un octogone de 7 mètres, grillagé, pour le grappling, le MMA tous niveaux et le travail au sol. La signature du plateau : le mardi soir, c’est le créneau tous niveaux — la cage s’ouvre aux débutants, Jérôme tient la porte.",
     img: "/assets/img/ram/octogone.webp",
-    specs: ["Octogone 7 m", "Grappling · Asso MMA"],
+    specs: ["Octogone 7 m", "Grappling · MMA tous niveaux"],
   },
   {
     n: "03",
@@ -451,16 +451,16 @@ export const VALUES = [
      à l’accueil, où elle porte le claim. Ici, le registre est documentaire —
      on décrit le plateau, on ne le proclame pas. */
   { n: "01", t: "Dehors, vraiment", d: "300 m² extérieurs couverts. Tu sors du vestiaire et tu y es : la météo fait partie de la séance, pas d’un décor peint sur un mur." },
-  // 02 : la cage tourne 3 créneaux/semaine et l’asso MMA est marquée « Confirmé »
+  // 02 : la cage tourne 3 créneaux/semaine et le MMA tous niveaux est marquée « Confirmé »
   // → « tu tournes dedans dès la première séance » contredisait /plannings/.
-  { n: "02", t: "La cage est à toi le mardi", d: "Un octogone de 7 m. Grappling le mardi soir, tous niveaux : c’est le créneau où on ouvre la cage aux débutants. L’asso MMA, deux soirs, quand tu es prêt." },
+  { n: "02", t: "La cage est à toi le mardi", d: "Un octogone de 7 m. Grappling le mardi soir, tous niveaux : c’est le créneau où on ouvre la cage aux débutants. L’MMA tous niveaux, deux soirs, quand tu es prêt." },
   { n: "03", t: "Le geste d’abord", d: "Un grand ring, des coachs qui corrigent le geste avant de te faire suer. La justesse avant le bruit." },
   // 04 : la salle n’émet aucune clé — le fait verrouillé est l’émargement GPS.
   { n: "04", t: "À ton heure", d: "Deux niveaux, étage muscu/cardio, accès libre six jours sur sept. Rien à réserver, personne à convaincre : la porte est ouverte de 10h à 21h30." },
 ];
 
 /* L’encadrement — noms = posters officiels rentrée 2026. Photos : Sonia &
-   Jérôme prouvées (roster.json). Farouk & Valentin G sans photo prouvée →
+   Jérôme prouvées (roster.json). Farouk & Valentin Guth sans photo prouvée →
    tuiles nom/silhouette (JAMAIS de stock, JAMAIS la face d’un autre). */
 const _COACHES = [
   /* L'ORDRE EST UNE INFORMATION. Sonia ouvrait la liste en Â« pilier Â» ; le
@@ -476,10 +476,11 @@ const _COACHES = [
 
      `planning` : la cle qui relie au planning quand elle differe du nom
      affiche. Valentin s'appelle Guth (son visuel le dit) ; le planning
-     officiel ecrit Â« Valentin G Â». On corrige l'affichage sans toucher au
+     officiel ecrit Â« Valentin Guth Â». On corrige l'affichage sans toucher au
      planning â un poster fait foi sur le planning, pas sur l'etat civil. */
   {
     name: "Jérôme",
+    ratio: "1086 / 992",   /* le bloc sombre de SON visuel : le cadre s'y accorde */
     role: "MMA · Grappling · Prépa physique",
     tag: "Head coach",
     pillar: true,
@@ -497,6 +498,7 @@ const _COACHES = [
   },
   {
     name: "Sonia",
+    ratio: "1086 / 941",   /* le bloc sombre de SON visuel : le cadre s'y accorde */
     role: "Boxe thaï · Kickboxing · Boxing Lady",
     tag: "Le fil rouge de la semaine",
     disciplines: ["Boxe thaï", "Kickboxing", "Préparation physique", "Boxing Lady"],
@@ -516,6 +518,7 @@ const _COACHES = [
        officiel de la rentrée â le site le faisait travailler sans le nommer
        nulle part, et sa fiche n'existait pas. */
     name: "Hicham",
+    ratio: "1086 / 879",   /* le bloc sombre de SON visuel : le cadre s'y accorde */
     role: "Boxe anglaise · les trois midis",
     tag: "Les midis",
     disciplines: ["Boxe anglaise", "Préparation physique"],
@@ -532,6 +535,7 @@ const _COACHES = [
   },
   {
     name: "Farouk",
+    ratio: "1086 / 877",   /* le bloc sombre de SON visuel : le cadre s'y accorde */
     role: "Anglaise loisirs · Anglaise compétiteurs",
     tag: "Les soirs loisirs",
     disciplines: ["Boxe anglaise loisirs", "Boxe anglaise compétiteurs"],
@@ -548,6 +552,7 @@ const _COACHES = [
   },
   {
     name: "Valentin Guth",
+    ratio: "1086 / 928",   /* le bloc sombre de SON visuel : le cadre s'y accorde */
     planning: "Valentin G",
     role: "Boxe loisirs · Boxe éducative",
     tag: "L'école",
@@ -614,7 +619,7 @@ const _SCHEDULE = [
    Il se lit maintenant. */
 export const GRID_LEGEND = [
   { cls: "feminin", label: "Lady Punch", d: "créneau 100 % féminin" },
-  { cls: "mma", label: "Cage", d: "grappling & asso MMA, dans l’octogone" },
+  { cls: "mma", label: "Cage", d: "grappling & MMA tous niveaux, dans l’octogone" },
   { cls: "enfant", label: "École", d: "Baby Boxe, éducative, ados" },
 ];
 
@@ -682,7 +687,7 @@ export const POSTERS = [
     view: "/assets/img/ram/planning-rentree-2026.webp",
     w: 1600, h: 1189,
     label: `Rentrée ${SEASON}`,
-    alt: `Planning officiel de la rentrée ${SEASON} de Boxing Center Ramonville : boxe anglaise, pieds-poings, grappling, asso MMA, boxing camp, Lady Punch et école enfants dès 3 ans, du lundi au samedi.`,
+    alt: `Planning officiel de la rentrée ${SEASON} de Boxing Center Ramonville : boxe anglaise, pieds-poings, grappling, MMA tous niveaux, boxing camp, Lady Punch et école enfants dès 3 ans, du lundi au samedi.`,
   },
 ];
 
@@ -766,7 +771,7 @@ const _TARIFS = [
     price: "295 €",
     period: "/ an · t-shirt inclus",
     feature: "Baby Boxe 250 € · dès 3 ans, mercredi & samedi",
-    items: ["Baby Boxe 3/6 ans : 250 €/an", "Éducative 7/11 & ados 12/16 : 295 €/an t-shirt inclus", "Encadrée par Valentin G"],
+    items: ["Baby Boxe 3/6 ans : 250 €/an", "Éducative 7/11 & ados 12/16 : 295 €/an t-shirt inclus", "Encadrée par Valentin Guth"],
     cta: "Inscrire mon enfant",
     href: "https://boutique.boxingcenter.fr/abonnements",
     highlight: false,
@@ -827,7 +832,7 @@ export const PHOTO_CREDIT = "Axel Derewiany";
    carnet, et il n’invente rien : chaque clé renvoie à une discipline de
    DISCIPLINES, et les jours/heures affichés sont RECOMPTÉS depuis SCHEDULE au
    rendu. La correspondance zone → discipline est celle qu’écrivent déjà les
-   fiches de PLATEAU (l’octogone « pour le grappling, l’asso MMA » ; le ring
+   fiches de PLATEAU (l’octogone « pour le grappling, le MMA tous niveaux » ; le ring
    « là que le jab se règle et que le pieds-poings prend ses distances » ; les
    sacs « pour le Boxing Camp » ; l’étage « en accès libre six jours sur
    sept »). Les deux plans larges n’ont pas de créneau à eux : ils portent
@@ -926,8 +931,8 @@ export const CARNET = {
 export const FAQ = [
   { q: "Où se trouve Boxing Center Ramonville ?", a: "Au 33 rue des Ormes, 31520 Ramonville-Saint-Agne, dans le sud toulousain — à proximité du terminus du métro (ligne B, Ramonville) et de l’arrêt bus Ramonville Sud." },
   { q: "C’est vrai qu’on s’entraîne dehors ?", a: "Oui, et c’est la seule des cinq salles où c’est possible : 300 m² dehors, aménagés et couverts, praticables toute l’année — une averse ne renvoie personne à l’intérieur. Sous charpente, tu as l’octogone de 7 m et le grand ring de boxe." },
-  { q: "Quelles disciplines peut-on pratiquer ?", a: "Boxe anglaise et anglaise loisirs, boxe pieds-poings, grappling, asso MMA dans l’octogone, Boxing Camp, Lady Punch (100 % féminin) et toute l’école enfants du Baby Boxe (3 ans) aux ados 12/16. Un étage muscu/cardio est en accès libre." },
-  { q: "Y a-t-il des cours pour les enfants ?", a: "Oui, dès 3 ans : Baby Boxe 3/6 le samedi, éducative 7/11 ans et ados 12/16 ans le mercredi et le samedi après-midi, encadrés par Valentin G." },
+  { q: "Quelles disciplines peut-on pratiquer ?", a: "Boxe anglaise et anglaise loisirs, boxe pieds-poings, grappling, MMA tous niveaux dans l’octogone, Boxing Camp, Lady Punch (100 % féminin) et toute l’école enfants du Baby Boxe (3 ans) aux ados 12/16. Un étage muscu/cardio est en accès libre." },
+  { q: "Y a-t-il des cours pour les enfants ?", a: "Oui, dès 3 ans : Baby Boxe 3/6 le samedi, éducative 7/11 ans et ados 12/16 ans le mercredi et le samedi après-midi, encadrés par Valentin Guth." },
   { q: "Faut-il un niveau pour commencer ?", a: "Aucun. L’offre de rentrée à 29 € par personne ouvre quatre semaines de cours illimités, matériel prêté. La plupart des créneaux — loisirs, camp, pieds-poings — sont ouverts à tous les niveaux." },
   { q: "Quels sont les horaires ?", a: "Du lundi au samedi, de 10h00 à 21h30, accès libre muscu/cardio inclus. Fermé le dimanche. Un émargement GPS est demandé en salle avant chaque cours." },
 ];

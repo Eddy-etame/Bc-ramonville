@@ -21,7 +21,7 @@ export const QUICKS = [
   {
     label: "L’octogone",
     q: "Parle-moi de l’octogone",
-    a: "Un octogone de 7 mètres, grillagé. Grappling le mardi 18h40 avec Jérôme — c’est le créneau tous niveaux, celui où on ouvre la cage aux débutants. L’asso MMA, mardi et jeudi 19h45, c’est pour quand tu es prêt.",
+    a: "Un octogone de 7 mètres, grillagé. Grappling le mardi 18h40 avec Jérôme — c’est le créneau tous niveaux, celui où on ouvre la cage aux débutants. L’MMA tous niveaux, mardi et jeudi 19h45, c’est pour quand tu es prêt.",
   },
   {
     label: "Ta 1re fois",
@@ -46,17 +46,17 @@ export const QUICKS = [
   {
     label: "Les cours",
     q: "Quelles disciplines proposez-vous ?",
-    a: "Boxe anglaise et anglaise loisirs, boxe pieds-poings, grappling, asso MMA dans l’octogone, Boxing Camp, Lady Punch (100 % féminin) et toute l’école enfants du Baby Boxe 3/6 aux ados 12/16. L’étage muscu/cardio est en accès libre.",
+    a: "Boxe anglaise et anglaise loisirs, boxe pieds-poings, grappling, MMA tous niveaux dans l’octogone, Boxing Camp, Lady Punch (100 % féminin) et toute l’école enfants du Baby Boxe 3/6 aux ados 12/16. L’étage muscu/cardio est en accès libre.",
   },
   {
     label: "Les enfants",
     q: "Il y a des cours pour les enfants ?",
-    a: "Dès 3 ans. Baby Boxe 3/6 le samedi 14h15, éducative 7/11 mercredi et samedi 15h, ados 12/16 mercredi et samedi 16h. Toute l’école est tenue par Valentin G.",
+    a: "Dès 3 ans. Baby Boxe 3/6 le samedi 14h15, éducative 7/11 mercredi et samedi 15h, ados 12/16 mercredi et samedi 16h. Toute l’école est tenue par Valentin Guth.",
   },
   {
     label: "Les coachs",
     q: "Qui sont les coachs ?",
-    a: "Quatre, pas quarante. Sonia tient le pieds-poings, le Lady Punch et le Camp. Jérôme, c’est la cage : grappling et asso MMA. Farouk mène l’anglaise loisirs du soir. Valentin G a l’anglaise du midi et toute l’école enfants.",
+    a: "Cinq, pas cinquante. Jérôme est le head coach : la cage, grappling et MMA tous niveaux. Sonia tient la boxe thaï, le kickboxing et le Boxing Lady. Hicham a l’anglaise des trois midis. Farouk mène l’anglaise loisirs et compétiteurs du soir. Valentin Guth, boxeur professionnel, a toute l’école enfants.",
   },
   {
     label: "Lady Punch",

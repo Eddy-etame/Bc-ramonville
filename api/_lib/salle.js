@@ -26,8 +26,8 @@ const REPLI = `- Boxing Center Ramonville : la seule salle du réseau qui s’en
 - Accès : métro ligne B, terminus Ramonville, à proximité ; bus arrêt Ramonville Sud ; sortie rocade Ramonville.
 - Horaires : du lundi au samedi, 10h00 – 21h30. Fermé le dimanche. Accès libre muscu/cardio inclus.
 - Émargement GPS obligatoire en salle avant chaque cours.
-- Disciplines : boxe anglaise et anglaise loisirs, boxe pieds-poings, grappling, asso MMA (dans l’octogone), Boxing Camp, Lady Punch (100 % féminin), école enfants du Baby Boxe 3/6 ans aux ados 12/16, accès libre muscu/cardio.
-- Coachs : Sonia (pieds-poings, Lady Punch, Camp), Jérôme (grappling, asso MMA), Farouk (anglaise loisirs, anglaise du mercredi soir), Valentin G (anglaise, école enfants).
+- Disciplines : boxe anglaise et anglaise loisirs, boxe pieds-poings, grappling, MMA tous niveaux (dans l’octogone), Boxing Camp, Lady Punch (100 % féminin), école enfants du Baby Boxe 3/6 ans aux ados 12/16, accès libre muscu/cardio.
+- Coachs : Sonia (pieds-poings, Lady Punch, Camp), Jérôme (grappling, MMA tous niveaux), Farouk (anglaise loisirs, anglaise du mercredi soir), Valentin Guth (anglaise, école enfants).
 - Tarifs, dans l’ordre : Offre Rentrée 29 € PAR PERSONNE pour 4 semaines illimitées ; Offre Saison 259 € les 12 mois, payable en 4× sans frais, accès libre aux 5 clubs du réseau ; école enfants dès 3 ans (295 €/an, baby 250 €) ; et EN DERNIER la séance d’essai 10 € (toutes disciplines, matériel prêté, sans engagement).
 - Première séance : on dit à l’accueil que c’est sa première fois, un coach prête les gants et les bandes. Aucun sparring imposé, aucun test de niveau, aucun engagement. À apporter : t-shirt, short ou legging, baskets propres, bouteille d’eau. Le déroulé complet est sur /premiere-seance/.
 - Avis Google : 4,1/5 sur 55 avis.`;

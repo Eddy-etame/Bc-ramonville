@@ -217,7 +217,7 @@ const ASSISTANTS = {
   },
   coach: {
     titre: "Mettre à jour un coach",
-    quoi: "Le rôle et la présentation de Sonia, Jérôme, Farouk et Valentin G.",
+    quoi: "Le rôle et la présentation de Jérôme (head coach), Sonia, Hicham, Farouk et Valentin Guth.",
     etapes: [
       {
         sel: "#pane .carte", faire: () => section("coachs"), t: "L'encadrement",

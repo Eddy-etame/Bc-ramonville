@@ -59,7 +59,7 @@ const TOUR_SEC = 72;
 /* labels courts propres à l’instrument (le nom long vit dans la fiche) */
 const SHORT = {
   anglaise: "Anglaise", "pieds-poings": "P-Poings", grappling: "Grappling",
-  "asso-mma": "Asso MMA", "boxing-camp": "Camp", "lady-punch": "Lady",
+  "asso-mma": "MMA tous niveaux", "boxing-camp": "Camp", "lady-punch": "Lady",
   ecole: "École", "acces-libre": "Libre",
 };
 

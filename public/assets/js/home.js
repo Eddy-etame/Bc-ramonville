@@ -41,7 +41,7 @@ function renderStats() {
 
 function renderTicker() {
   const t = $("#marquee"); if (!t) return;
-  const items = ["300 m² dehors", "Octogone 7 m", "Grand ring de boxe", "Anglaise", "Pieds-poings", "Grappling", "Asso MMA", "Boxing Camp", "Lady Punch", "Dès 3 ans", "Accès libre 6 j/7", "Métro B · Ramonville"];
+  const items = ["300 m² dehors", "Octogone 7 m", "Grand ring de boxe", "Anglaise", "Pieds-poings", "Grappling", "MMA tous niveaux", "Boxing Camp", "Lady Punch", "Dès 3 ans", "Accès libre 6 j/7", "Métro B · Ramonville"];
   const row = items.map((i) => `<span>${i}</span>`).join("");
   t.innerHTML = row + row; t.dataset.speed = "0.55";
 }
@@ -54,7 +54,7 @@ function renderStaff() {
   const box = $("#staff"); if (!box) return;
   box.innerHTML = COACHES.map((c) => {
     const face = c.img
-      ? `<div class="media staff__face" data-img="${c.img}" data-label="" data-alt="${c.name} — coach à Boxing Center Ramonville"></div>`
+      ? `<div class="media staff__face"${c.ratio ? ` style="aspect-ratio:${c.ratio}"` : ""} data-img="${c.img}" data-label="" data-alt="Visuel officiel 2026/2027 de ${c.name}, ${c.tag.toLowerCase()} au Boxing Center Ramonville"></div>`
       : `<div class="staff__face staff__face--tile" aria-hidden="true"><span>${c.name.split(" ").map((w) => w[0]).join("")}</span></div>`;
     return `<a class="staff__card ${c.pillar ? "is-pillar" : ""}" href="/coachs/">
       ${face}

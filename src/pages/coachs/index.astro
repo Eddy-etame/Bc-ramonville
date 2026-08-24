@@ -25,7 +25,7 @@
   <link rel="stylesheet" href="/assets/css/fonts.css?v=19" />
   <link rel="stylesheet" href="/assets/css/base.css?v=19" />
   <link rel="stylesheet" href="/assets/css/coachs.css?v=19" />
-  <meta name="keywords" content="coach boxe Ramonville, Jérôme head coach Ramonville, Hicham boxe anglaise Ramonville, Valentin Guth boxe, Sonia Boxing Center, coach grappling Toulouse, coach MMA Toulouse sud, encadrement boxe Ramonville-Saint-Agne, Valentin G école, boxing gym Toulouse, MMA gym Toulouse, octagon MMA Toulouse, kickboxing Toulouse, grappling Toulouse, kids boxing Toulouse, outdoor boxing Toulouse, boxing club Ramonville, martial arts gym near Toulouse" />
+  <meta name="keywords" content="coach boxe Ramonville, Jérôme head coach Ramonville, Hicham boxe anglaise Ramonville, Valentin Guth boxe, Sonia Boxing Center, coach grappling Toulouse, coach MMA Toulouse sud, encadrement boxe Ramonville-Saint-Agne, Valentin Guth école, boxing gym Toulouse, MMA gym Toulouse, octagon MMA Toulouse, kickboxing Toulouse, grappling Toulouse, kids boxing Toulouse, outdoor boxing Toulouse, boxing club Ramonville, martial arts gym near Toulouse" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="author" content="Boxing Center Ramonville" />
   <meta name="geo.region" content="FR-31" />
@@ -257,7 +257,7 @@
           "areaServed": "FR",
           "availableLanguage": "French"
         },
-        "description": "La seule salle du réseau Boxing Center qui s’entraîne dehors : 300 m² extérieurs couverts, un octogone de 7 m, un grand ring de boxe et deux niveaux avec un étage muscu/cardio, à Ramonville-Saint-Agne. Boxe anglaise, pieds-poings, grappling, asso MMA, Boxing Camp, Lady Punch et école enfants dès 3 ans.",
+        "description": "La seule salle du réseau Boxing Center qui s’entraîne dehors : 300 m² extérieurs couverts, un octogone de 7 m, un grand ring de boxe et deux niveaux avec un étage muscu/cardio, à Ramonville-Saint-Agne. Boxe anglaise, pieds-poings, grappling, MMA tous niveaux, Boxing Camp, Lady Punch et école enfants dès 3 ans.",
         "parentOrganization": {
           "@id": "https://boxingcenter.fr/#organization"
         }
@@ -472,7 +472,7 @@
       <div class="wrap">
         <nav class="breadcrumb" aria-label="Fil d’ariane"><a href="/">Accueil</a> / <span>Coachs</span></nav>
         <h1 class="display phero__title"><span class="reveal-mask"><span>Ceux qui</span></span><span class="reveal-mask"><span class="tint">tiennent la cage.</span></span></h1>
-        <p class="lead phero__lead" data-reveal>Quatre encadrants, quatre territoires : le ring, la cage, les soirs loisirs, l’école. Chacun avec ses vrais créneaux de la semaine — et un vrai visage dès que la photo est prouvée, jamais un figurant à la place d’un nom.</p>
+        <p class="lead phero__lead" data-reveal>Cinq encadrants, cinq territoires : la cage, le ring, les trois midis, les soirs loisirs, l’école. Chacun avec ses vrais créneaux de la semaine, et son visuel officiel de la saison — jamais un figurant à la place d’un nom.</p>
         <!-- l’objet propre à ce hero (page.js → pheroMeta) -->
         <div class="phero__meta" id="phero-meta" data-reveal-group aria-label="L’encadrement, en chiffres"></div>
       </div>
@@ -482,7 +482,7 @@
       <div class="wrap">
         <div class="shead" data-reveal>
           <span class="eyebrow">Sur le plateau</span>
-          <h2 class="display"><span class="reveal-mask"><span>Quatre noms,</span></span><span class="reveal-mask"><span class="tint">une semaine entière.</span></span></h2>
+          <h2 class="display"><span class="reveal-mask"><span>Cinq noms,</span></span><span class="reveal-mask"><span class="tint">une semaine entière.</span></span></h2>
         </div>
         <!-- roster rendu par le module en bas (créneaux dérivés du planning) ;
              id distinct de #coachs → page.js ne touche pas cette page. -->
@@ -598,7 +598,7 @@
       // regroupe les créneaux du planning par coach (nom ≡ SCHEDULE.coach)
       /* `planning` : la cle du planning quand elle differe du nom affiche.
          Valentin s'appelle Guth (son visuel officiel le dit) ; le poster
-         de la rentree ecrit « Valentin G ». On corrige l'affichage sans
+         de la rentree ecrit « Valentin Guth ». On corrige l'affichage sans
          toucher au planning. */
       const slotsFor = (c) => SCHEDULE
         .filter((s) => s.coach === (c.planning || c.name))
@@ -617,7 +617,7 @@
            d'emprunt pris dans une banque d'images. aria-hidden : le nom
            et le rôle sont déjà annoncés juste dessous. */
         const face = c.img
-          ? `<div class="coach__face media" data-img="${c.img}" data-label="" data-alt="${c.name}, coach à Boxing Center Ramonville"></div>`
+          ? `<div class="coach__face media"${c.ratio ? ` style="aspect-ratio:${c.ratio}"` : ""} data-img="${c.img}" data-label="" data-alt="Visuel officiel 2026/2027 de ${c.name}, ${c.tag.toLowerCase()} au Boxing Center Ramonville"></div>`
           : `<div class="coach__face coach__face--plaque" aria-hidden="true">
                <span class="plaque__rule"></span>
                <span class="plaque__name">${c.name}</span>
