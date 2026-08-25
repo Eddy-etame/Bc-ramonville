@@ -207,7 +207,10 @@ CARTES = [
     ("contact", "photos/octogone-7-metres-vide-boxing-center-ramonville.webp",
      "VENIR À LA SALLE",
      "33 rue des Ormes, Ramonville.",
-     ["Terminus métro B", "Parking gratuit", "06 87 90 02 16"]),
+     # « Parking gratuit » etait INVENTE — la base du reseau interdit
+     # explicitement d'affirmer qu'une salle a un parking. Et le numero
+     # etait celui de PORTET : celui de Ramonville est le 05 62 24 46 82.
+     ["Terminus métro B", "Lun. – sam. 10h–21h30", "05 62 24 46 82"]),
 
     ("galerie", "photos/octogone-vu-du-grillage-boxing-center-ramonville.webp",
      "LE CARNET",

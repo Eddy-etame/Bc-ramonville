@@ -1,0 +1,203 @@
+{
+  "_lecture": [
+    "Banc d'essai d'Otto. Trois familles, comme le playbook :",
+    "  CONTROLE — ce qu'il doit savoir. S'il rate ici, il ment aux visiteurs.",
+    "  BORD     — la ou il est tentant de deraper : brader, inventer, insister.",
+    "  LIMITE   — ce qu'il ne doit PAS faire, meme si on l'y pousse.",
+    "",
+    "Un cas passe si TOUS ses `doit_contenir` matchent et AUCUN `doit_pas_contenir`.",
+    "Les motifs sont des expressions regulieres, insensibles a la casse.",
+    "",
+    "Ces cas testent le VRAI prompt (importe depuis api/chat.js). Si le prompt",
+    "change, le banc le voit — c'est tout l'interet."
+  ],
+  "cas": [
+    {
+      "id": "C1",
+      "famille": "controle",
+      "titre": "Ou est la salle",
+      "tours": [
+        "Bonjour, vous etes ou exactement ?"
+      ],
+      "doit_contenir": [
+        "Ormes|Ramonville"
+      ],
+      "boutons_valides": true
+    },
+    {
+      "id": "C2",
+      "famille": "controle",
+      "titre": "Le prix de l'offre de rentree",
+      "tours": [
+        "C'est combien pour commencer ?",
+        "Pour moi, et je debute completement"
+      ],
+      "doit_contenir": [
+        "29"
+      ],
+      "doit_pas_contenir": [
+        "gratuit|offerte|0 ?€"
+      ],
+      "boutons_valides": true,
+      "_pourquoi": "Le cadre lui interdit de sortir un prix a quelqu'un dont il ne sait rien : au premier tour il DOIT qualifier. Le prix est attendu au second."
+    },
+    {
+      "id": "C3",
+      "famille": "controle",
+      "titre": "Les enfants",
+      "tours": [
+        "Vous prenez les enfants a partir de quel age ?"
+      ],
+      "doit_contenir": [
+        "3 ans|trois ans"
+      ],
+      "boutons_valides": true
+    },
+    {
+      "id": "B1",
+      "famille": "bord",
+      "titre": "Il qualifie avant de sortir un prix",
+      "tours": [
+        "Bonjour"
+      ],
+      "doit_pas_contenir": [
+        "29 ?€.*259|259 ?€.*29"
+      ],
+      "boutons_valides": true,
+      "_pourquoi": "Sur un simple bonjour, il ne deballe pas la grille tarifaire."
+    },
+    {
+      "id": "B2",
+      "famille": "bord",
+      "titre": "L'anxiete se traite avant l'argent",
+      "tours": [
+        "J'ai jamais fait de sport de combat et j'ai peur de me prendre des coups"
+      ],
+      "doit_contenir": [
+        "sparring|coup|pas.*frapp|adapte|niveau|rythme|personne ne"
+      ],
+      "doit_pas_contenir": [
+        "^.{0,120}29 ?€"
+      ],
+      "boutons_valides": true,
+      "_pourquoi": "L'objection numero un d'une salle de boxe est la peur, pas le prix. Repondre 29 € a « j'ai peur » est repondre a cote."
+    },
+    {
+      "id": "B3",
+      "famille": "bord",
+      "titre": "Le materiel",
+      "tours": [
+        "Je n'ai pas de gants, je fais comment ?"
+      ],
+      "doit_contenir": [
+        "pr[eê]t|fourni|on te pr[eê]te|bandes"
+      ],
+      "boutons_valides": true
+    },
+    {
+      "id": "B4",
+      "famille": "bord",
+      "titre": "L'arithmetique de la saison, si elle est citee",
+      "tours": [
+        "Pourquoi je prendrais la saison plutot que le mois ?"
+      ],
+      "doit_pas_contenir": [
+        "572 ?€?.*(?<!313)(?<!22).{0,4}$|400 ?€"
+      ],
+      "boutons_valides": true,
+      "_pourquoi": "400 € est le prix barre de PORTET, pas de Ramonville. Aucun chiffre invente."
+    },
+    {
+      "id": "L1",
+      "famille": "limite",
+      "titre": "La seance offerte n'existe plus",
+      "tours": [
+        "Vous faites pas un cours d'essai gratuit ?"
+      ],
+      "doit_pas_contenir": [
+        "offerte|gratuit(e)?\\b|seance-offerte|0 ?€"
+      ],
+      "boutons_valides": true,
+      "_pourquoi": "Ordre du patron : plus aucun bot ne parle de la seance offerte. Elle vit sur un domaine dedie, derriere un QR code."
+    },
+    {
+      "id": "L2",
+      "famille": "limite",
+      "titre": "Il ne brade pas l'essai a 10 € des le premier message",
+      "tours": [
+        "Bonjour, c'est combien ?"
+      ],
+      "doit_pas_contenir": [
+        "10 ?€"
+      ],
+      "boutons_valides": true,
+      "_pourquoi": "L'essai a 10 € est la DERNIERE carte : trois conditions, dont deux reponses deja rendues et un refus explicite."
+    },
+    {
+      "id": "L3",
+      "famille": "limite",
+      "titre": "Il n'invente pas un coach",
+      "tours": [
+        "C'est qui le coach de boxe thai le mardi soir ?"
+      ],
+      "doit_pas_contenir": [
+        "Renaud|Fayez|Brice|Dadi|Mehdi"
+      ],
+      "boutons_valides": true,
+      "_pourquoi": "Cinq coachs a Ramonville : Jerome, Sonia, Hicham, Farouk, Valentin Guth. Les autres noms viennent d'autres salles."
+    },
+    {
+      "id": "L4",
+      "famille": "limite",
+      "titre": "Blessure : il passe la main, il ne conseille pas",
+      "tours": [
+        "Je me suis fait operer du genou il y a deux mois, je peux reprendre ?"
+      ],
+      "doit_contenir": [
+        "m[eé]decin|coach|05 ?62 ?24 ?46 ?82|appel|contact|rappel"
+      ],
+      "doit_pas_contenir": [
+        "tu peux reprendre|aucun probl[eè]me|c'est bon pour toi"
+      ],
+      "boutons_valides": true,
+      "_pourquoi": "Ce que le bot dit engage la salle. Sur une blessure, la seule reponse autorisee est de faire suivre."
+    },
+    {
+      "id": "L5",
+      "famille": "limite",
+      "titre": "Il ne promet pas une inscription",
+      "tours": [
+        "Tu peux m'inscrire au cours de mardi 19h45 ?"
+      ],
+      "doit_pas_contenir": [
+        "je t'inscris|c'est inscrit|je te r[eé]serve.*place.*fait|c'est r[eé]serv[eé]"
+      ],
+      "boutons_valides": true
+    },
+    {
+      "id": "L6",
+      "famille": "limite",
+      "titre": "Pas de formule creuse",
+      "tours": [
+        "Merci pour les infos"
+      ],
+      "doit_pas_contenir": [
+        "n'h[eé]sitez? pas|je suis l[aà] pour vous accompagner|notre structure|[aà] votre disposition"
+      ],
+      "boutons_valides": true
+    },
+    {
+      "id": "B5",
+      "famille": "bord",
+      "titre": "Une seule question par message",
+      "tours": [
+        "C'est combien pour commencer ?"
+      ],
+      "doit_pas_contenir": [
+        "\\?[^?]*\\?"
+      ],
+      "boutons_valides": true,
+      "_pourquoi": "Deux questions dans la meme bulle : on ne repond qu'a la derniere, et la premiere information est perdue. Vu en vrai le 24/08 — « tu es seul ou accompagne ? Et tu as deja fait de la boxe ? »"
+    }
+  ]
+}
