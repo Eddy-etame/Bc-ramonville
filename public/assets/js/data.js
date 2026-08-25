@@ -485,7 +485,7 @@ const _COACHES = [
     tag: "Head coach",
     pillar: true,
     disciplines: ["MMA", "Grappling", "Prépa physique"],
-    note: "Ancien combattant professionnel de MMA, Jérôme a évolué aux plus hauts niveaux aux États-Unis et au Canada. Passionné, exigeant et humain, il transmet son expérience avec rigueur et détermination pour faire progresser chaque membre et repousser ses limites.",
+    note: "Ancien combattant professionnel de MMA — il a évolué aux plus hauts niveaux aux États-Unis et au Canada. Exigeant et humain : il te reprend debout comme au sol, et son grappling du mardi soir est la porte d’entrée de la cage pour les débutants.",
     qualites: ["Leadership", "Exigence", "Passionné", "Pédagogue", "Mental d'acier"],
     parcours: "Ancien combattant professionnel de MMA — États-Unis et Canada",
     approche: [
@@ -502,7 +502,7 @@ const _COACHES = [
     role: "Boxe thaï · Kickboxing · Boxing Lady",
     tag: "Présente toute la semaine",
     disciplines: ["Boxe thaï", "Kickboxing", "Préparation physique", "Boxing Lady"],
-    note: "Passionnée, déterminée et bienveillante, Sonia met son énergie et son savoir-faire au service de chaque adhérent. Spécialiste des sports de combat et du coaching féminin, elle aide chacun à se dépasser et à révéler son potentiel. C'est elle que les avis Google citent par son nom.",
+    note: "Les avis Google la citent par son prénom, et ce n’est pas un hasard : six créneaux par semaine, le pieds-poings et tout le féminin. Beaucoup mettent les gants pour la première fois dans son cours — le Lady Punch est fait pour ça.",
     qualites: ["Dynamique", "Exigeante", "Passionnée", "À l'écoute", "Mental d'acier"],
     formation: ["BPJEPS Sports de contact"],
     approche: [
@@ -522,7 +522,7 @@ const _COACHES = [
     role: "Boxe anglaise · les trois midis",
     tag: "Les midis",
     disciplines: ["Boxe anglaise", "Préparation physique"],
-    note: "Passionné par la boxe anglaise et la préparation physique, Hicham accompagne chaque pratiquant avec exigence et pédagogie. Son objectif : développer la technique, la condition physique et la confiance pour permettre à chacun de progresser à son rythme.",
+    note: "L’homme des midis : trois créneaux entre 12h40 et 13h20, anglaise et Boxing Camp — le format qui tient dans une pause déjeuner. Le geste propre d’abord, la condition physique avec, et tu retournes au bureau doué d’un direct.",
     qualites: ["Pédagogue", "Rigoureux", "À l'écoute", "Motivant", "Exigeant"],
     formation: ["BPJEPS AF"],
     approche: [
@@ -539,7 +539,7 @@ const _COACHES = [
     role: "Anglaise loisirs · Anglaise compétiteurs",
     tag: "Les soirs loisirs",
     disciplines: ["Boxe anglaise loisirs", "Boxe anglaise compétiteurs"],
-    note: "Passionné par la boxe anglaise, Farouk met son exigence et son expérience au service de chacun. Il accompagne les pratiquants loisirs comme les compétiteurs avec rigueur, bienveillance et détermination pour les aider à atteindre leurs objectifs et se dépasser.",
+    note: "L’anglaise du soir, dans les deux sens : les loisirs du lundi et du vendredi à 19h45, et le cours du mercredi qui pousse jusqu’à 20h15. Que tu veuilles apprendre à boxer ou préparer un combat, c’est le même homme qui tient les deux bouts.",
     qualites: ["Pédagogue", "Rigoureux", "À l'écoute", "Motivant", "Exigeant"],
     formation: ["Licence STAPS"],
     approche: [
@@ -557,7 +557,7 @@ const _COACHES = [
     role: "Boxe loisirs · Boxe éducative",
     tag: "L'école",
     disciplines: ["Boxe loisirs", "Boxe éducative"],
-    note: "Boxeur professionnel, Valentin transmet une boxe exigeante, technique et engagée. Fort de son expérience en compétition, il accompagne chaque élève avec passion, de l'initiation au perfectionnement. C'est lui qui tient toute l'école : Baby Boxe dès 3 ans, éducative 7/11 et ados 12/16, mercredi et samedi.",
+    note: "Boxeur professionnel — et c’est à lui que la salle confie toute l’école : Baby Boxe dès 3 ans, éducative 7/11, ados 12/16, mercredi et samedi. Une boxe technique et engagée, mise à hauteur d’enfant sans jamais être au rabais.",
     qualites: ["Technique", "Combatif", "Rigoureux", "Passionné", "Pédagogue"],
     formation: ["BPJEPS Boxe anglaise", "BPJEPS Sports de contact"],
     parcours: "Boxeur professionnel — 3 victoires, 1 défaite, 1 nul · 2ᵉ français chez les super-coqs",

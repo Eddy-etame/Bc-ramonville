@@ -16,7 +16,10 @@ import { SALLE, TARIFS, PROMOS, DISCIPLINES } from "../../../public/assets/js/da
 const essai = PROMOS.duo;
 /* le compte des portes ouvertes, RECOMPTÉ ici plutôt qu’affirmé : si un
    niveau change dans data.js, la phrase change avec lui. */
-const ouvertes = ["Zéro prérequis", "Tous niveaux", "Débutant → confirmé", "Baby → ados", "À ton rythme"];
+/* « Tous niveaux · débutants acceptés » manquait : le compteur affichait 7/8
+   alors que les huit disciplines sont ouvertes — et la page en déduisait que
+   le MMA « demande de l’expérience », contredisant sa propre fiche. */
+const ouvertes = ["Zéro prérequis", "Tous niveaux", "Tous niveaux · débutants acceptés", "Débutant → confirmé", "Baby → ados", "À ton rythme"];
 const sansPrerequis = DISCIPLINES.filter((d) => ouvertes.includes(d.niveau)).length;
 const totalDisc = DISCIPLINES.length;
 ---
@@ -553,12 +556,12 @@ const totalDisc = DISCIPLINES.length;
           <article class="nope__card">
             <span class="nope__k">01 · Le ring</span>
             <h3 class="nope__t">Pas de sparring imposé</h3>
-            <p class="nope__d">Personne ne monte sur le ring sans en avoir envie — ça se demande, ça ne s’impose pas. La cage suit la même règle : le grappling du mardi soir est le créneau tous niveaux, et le MMA tous niveaux reste marquée « confirmé » au planning, pas ouverte par surprise.</p>
+            <p class="nope__d">Personne ne monte sur le ring sans en avoir envie — ça se demande, ça ne s’impose pas. La cage suit la même règle : le grappling du mardi soir et le MMA du soir sont « tous niveaux, débutants acceptés » — on t’y encadre, on ne t’y jette pas.</p>
           </article>
           <article class="nope__card">
             <span class="nope__k">02 · Le niveau</span>
             <h3 class="nope__t">Pas de test à l’entrée</h3>
-            <p class="nope__d">Sur les {totalDisc} disciplines de la salle, {sansPrerequis} portent « tous niveaux », « zéro prérequis » ou « débutant » sur le planning officiel. La seule qui demande de l’expérience est le MMA tous niveaux, et c’est écrit noir sur blanc sur sa fiche.</p>
+            <p class="nope__d">Sur les {totalDisc} disciplines de la salle, {sansPrerequis} portent « tous niveaux », « zéro prérequis » ou « débutant » sur le planning officiel. Le MMA du soir lui-même accepte les débutants — c’est écrit noir sur blanc sur sa fiche.</p>
           </article>
           <article class="nope__card">
             <span class="nope__k">03 · Le contrat</span>

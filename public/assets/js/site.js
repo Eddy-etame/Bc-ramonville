@@ -142,7 +142,7 @@ function mountNav() {
       </div>
       <nav class="menu__nav">${menuLinks}</nav>
       <div class="menu__foot">
-        <a class="btn btn--primary" data-magnetic href="${LINKS.rentree}"><span>Quatre semaines · 29€</span></a>
+        <a class="btn btn--primary" data-magnetic href="${LINKS.rentree}"><span>Je prends ma place — 29 €</span></a>
         <div class="menu__ext">
           ${lienExt(LINKS.groupe, "Le site officiel — boxingcenter.fr")}
           ${lienExt(LINKS.boutique, "La boutique — box-plus")}
@@ -213,7 +213,7 @@ function mountFooter() {
             <span class="eyebrow">Le plateau t’attend</span>
             <h2 class="display footer__cut" aria-label="Même le plafond est une excuse en moins.">Même le plafond<br><span class="tint">est une excuse en moins.</span></h2>
           </div>
-          <a class="btn btn--primary" data-magnetic href="${LINKS.rentree}"><span>Quatre semaines · 29€</span></a>
+          <a class="btn btn--primary" data-magnetic href="${LINKS.rentree}"><span>Je prends ma place — 29 €</span></a>
         </div>
         <div class="fiche" aria-label="Fiche de la salle">
           ${fields.map((f) => `<div class="fiche__cell${f.wide ? " fiche__cell--wide" : ""}"><span class="fk">${f.k}</span><span class="fv">${f.v}</span></div>`).join("")}
