@@ -219,6 +219,10 @@ async function openaiLike(url, key, model, messages, system) {
       model,
       max_tokens: 700,
       temperature: 0.4,
+      /* gpt-oss range sa reflexion dans un champ separe, mais elle se paie
+         sur max_tokens : sans effort bas, une reponse un peu longue revient
+         VIDE et le maillon parait mort alors que la cle est bonne. */
+      ...(/gpt-oss/.test(model) ? { reasoning_effort: "low" } : {}),
       messages: [{ role: "system", content: system }, ...messages],
     }),
   });
@@ -259,52 +263,77 @@ export default async function handler(req, res) {
   const messages = [...history, { role: "user", content: message }];
   const system = await systemFor(body.context);
 
-  // 1) pool Gemini — mélangé, les clés mortes sont sautées
-  const gKeys = Object.keys(process.env)
-    .filter((k) => /^GEMINI_API_KEY/.test(k))
-    .map((k) => process.env[k])
-    .filter(Boolean);
-  for (let i = gKeys.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [gKeys[i], gKeys[j]] = [gKeys[j], gKeys[i]];
-  }
+  /* LES BASSINS. Une cle morte ou saturee ne doit jamais couter plus qu'un
+     tour de boucle. Chaque fournisseur lit TOUTES ses variables — GROQ_API_KEY,
+     GROQ_API_KEY_2, GROQ_API_KEY_3… — et pas seulement la premiere : le
+     25/08, Groq et Mistral n'en lisaient qu'une, si bien qu'ajouter des cles
+     au .env ne changeait rien. On melange pour repartir la charge et pour que
+     la meme cle ne prenne pas tous les premiers appels. */
+  const bassin = (prefixe) => {
+    const t = Object.keys(process.env)
+      .filter((k) => k === prefixe || k.startsWith(prefixe + "_"))
+      .sort()
+      .map((k) => process.env[k])
+      .filter(Boolean);
+    for (let i = t.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [t[i], t[j]] = [t[j], t[i]];
+    }
+    return t;
+  };
+
+  // 1) Gemini — onze cles eprouvees
   const gModel = process.env.GEMINI_MODEL || "gemini-2.5-flash";
-  for (const key of gKeys) {
+  for (const key of bassin("GEMINI_API_KEY")) {
     try {
       return res.status(200).json({ reply: await gemini(key, gModel, messages, system), via: "gemini" });
-    } catch { /* clé suivante */ }
+    } catch { /* cle suivante */ }
   }
 
-  // 2) Groq
-  if (process.env.GROQ_API_KEY) {
+  /* 2) Gemini 3 — un bassin a part, et ce n'est pas un caprice : cette cle
+     refuse tous les modeles anterieurs (« no longer available to new users »)
+     et ne repond que sur gemini-3-flash-preview. Dans le bassin d'au-dessus
+     elle demanderait 2.5-flash et serait sautee en silence. Elle vient APRES
+     les onze : un quota de plus, sans mettre le chemin principal sur un
+     modele en preview. */
+  const g3Model = process.env.GEMINI3_MODEL || "gemini-3-flash-preview";
+  for (const key of bassin("GEMINI3_API_KEY")) {
     try {
-      return res.status(200).json({
-        reply: await openaiLike(
-          "https://api.groq.com/openai/v1/chat/completions",
-          process.env.GROQ_API_KEY,
-          process.env.GROQ_MODEL || "llama-3.3-70b-versatile",
-          messages, system
-        ),
-        via: "groq",
-      });
-    } catch { /* on continue */ }
+      return res.status(200).json({ reply: await gemini(key, g3Model, messages, system), via: "gemini3" });
+    } catch { /* cle suivante */ }
   }
 
-  // 3) Mistral
-  if (process.env.MISTRAL_API_KEY) {
+  /* 3) Groq — GROQ_MODEL accepte une LISTE separee par des virgules, essayee
+     dans l'ordre. Duel du 25/08 sur le vrai prompt : gpt-oss-120b rendait
+     « On samedi, on ouvre de 11 h 00 » — l'article manque ET l'horaire est
+     faux, la salle ouvre a 10 h ; compound rendait « Le samedi, on est ouvert
+     de 10 h 00 a 21 h 30 ». compound passe donc devant, mais il sait chercher
+     sur le web — ce qu'on interdit ici — donc on garde gpt-oss derriere plutot
+     que de tout miser sur lui. Changer d'avis = reordonner le .env. */
+  const qModels = (process.env.GROQ_MODEL || "groq/compound,openai/gpt-oss-120b")
+    .split(",").map((m) => m.trim()).filter(Boolean);
+  for (const qModel of qModels) {
+    for (const key of bassin("GROQ_API_KEY")) {
+      try {
+        return res.status(200).json({
+          reply: await openaiLike("https://api.groq.com/openai/v1/chat/completions", key, qModel, messages, system),
+          via: "groq",
+        });
+      } catch { /* cle suivante, puis modele suivant */ }
+    }
+  }
+
+  // 4) Mistral
+  const mModel = process.env.MISTRAL_MODEL || "mistral-small-latest";
+  for (const key of bassin("MISTRAL_API_KEY")) {
     try {
       return res.status(200).json({
-        reply: await openaiLike(
-          "https://api.mistral.ai/v1/chat/completions",
-          process.env.MISTRAL_API_KEY,
-          process.env.MISTRAL_MODEL || "mistral-small-latest",
-          messages, system
-        ),
+        reply: await openaiLike("https://api.mistral.ai/v1/chat/completions", key, mModel, messages, system),
         via: "mistral",
       });
-    } catch { /* on continue */ }
+    } catch { /* cle suivante */ }
   }
 
-  // 4) le filet local — 200, jamais une page morte
+  // 5) le filet local — 200, jamais une page morte
   return res.status(200).json({ reply: await replicoteLocale(message), via: "local" });
 }

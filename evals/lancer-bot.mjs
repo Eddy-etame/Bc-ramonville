@@ -82,33 +82,61 @@ async function repondre(messages, system) {
       derniere = "reponse vide";
     } catch (e) { derniere = String(e.message || e); }
   }
-  /* Meme repli que la production : Gemini -> Groq -> Mistral. Un banc d essai
-     qui tombe des que le quota gratuit sature ne mesure plus rien. */
-  for (const [nom, url, cle, modele] of [
-    ["groq", "https://api.groq.com/openai/v1/chat/completions", process.env.GROQ_API_KEY, process.env.GROQ_MODEL || "llama-3.3-70b-versatile"],
-    ["mistral", "https://api.mistral.ai/v1/chat/completions", process.env.MISTRAL_API_KEY, process.env.MISTRAL_MODEL || "mistral-small-latest"],
-  ]) {
-    if (!cle) continue;
+  /* MEME CHEMIN QUE LA PRODUCTION — c'est tout l'interet. api/chat.js lit
+     desormais TOUTES les variables de chaque fournisseur (GROQ_API_KEY,
+     GROQ_API_KEY_2, …) et a gagne un maillon Gemini 3, dont la cle ne repond
+     que sur gemini-3-flash-preview. Le banc doit refaire exactement ces
+     bonds : sinon il annonce une panne qui n'existe que chez lui. */
+  const bassin = (p) => Object.keys(process.env)
+    .filter((k) => k === p || k.startsWith(p + "_")).sort()
+    .map((k) => process.env[k]).filter(Boolean);
+
+  for (const cle of bassin("GEMINI3_API_KEY")) {
     try {
-      const r = await fetch(url, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Authorization: `Bearer ${cle}` },
-        body: JSON.stringify({ model: modele, max_tokens: 1024, temperature: 0.4, messages: [{ role: "system", content: system }, ...messages] }),
+      const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${process.env.GEMINI3_MODEL || "gemini-3-flash-preview"}:generateContent?key=${cle}`, {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          system_instruction: { parts: [{ text: system }] },
+          contents: messages.map((m) => ({ role: m.role === "assistant" ? "model" : "user", parts: [{ text: m.content }] })),
+          generationConfig: { maxOutputTokens: 1024, temperature: 0.4, thinkingConfig: { thinkingBudget: 0 } },
+        }),
       });
-      if (!r.ok) {
-        /* 401 = cle morte, pas un incident : on le dit une fois, fort. La
-           production fait le meme repli en silence, donc une cle morte y
-           retire un maillon sans que personne le sache. */
-        if (r.status === 401 && !clesRefusees.has(nom)) {
-          clesRefusees.add(nom);
-          console.log(`  ALERTE    la cle ${nom.toUpperCase()}_API_KEY est REFUSEE (401) — le repli n a plus que ${2 - clesRefusees.size} maillon(s)`);
-        }
-        derniere = nom + " HTTP " + r.status; continue;
-      }
+      if (!r.ok) { derniere = "gemini3 HTTP " + r.status; continue; }
       const j = await r.json();
-      const t = j?.choices?.[0]?.message?.content || "";
-      if (t.trim()) { fournisseur = nom; return t.trim(); }
-    } catch (e) { derniere = nom + " " + String(e.message || e); }
+      const t = j?.candidates?.[0]?.content?.parts?.map((p) => p.text).join("") || "";
+      if (t.trim()) { fournisseur = "gemini3"; return t.trim(); }
+    } catch (e) { derniere = "gemini3 " + String(e.message || e); }
+  }
+
+  for (const [nom, url, modele] of [
+    ["groq", "https://api.groq.com/openai/v1/chat/completions", process.env.GROQ_MODEL || "openai/gpt-oss-120b"],
+    ["mistral", "https://api.mistral.ai/v1/chat/completions", process.env.MISTRAL_MODEL || "mistral-small-latest"],
+  ]) {
+    for (const cle of bassin(nom.toUpperCase() + "_API_KEY")) {
+      try {
+        const corps = { model: modele, max_tokens: 1024, temperature: 0.4,
+          messages: [{ role: "system", content: system }, ...messages] };
+        if (/gpt-oss/.test(modele)) corps.reasoning_effort = "low";
+        const r = await fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Authorization: `Bearer ${cle}` },
+          body: JSON.stringify(corps),
+        });
+        if (!r.ok) {
+          /* 401 = cle morte, pas un incident de debit : on le dit une fois,
+             fort. La production fait le meme repli en silence, donc une cle
+             morte y retire un maillon sans que personne le sache. */
+          if (r.status === 401 && !clesRefusees.has(nom)) {
+            clesRefusees.add(nom);
+            console.log(`  ALERTE    une cle ${nom.toUpperCase()}_API_KEY est REFUSEE (401)`);
+          }
+          derniere = nom + " HTTP " + r.status; continue;
+        }
+        const j = await r.json();
+        const t = j?.choices?.[0]?.message?.content || "";
+        if (t.trim()) { fournisseur = nom; return t.trim(); }
+      } catch (e) { derniere = nom + " " + String(e.message || e); }
+    }
   }
   throw new Error("aucun fournisseur n a repondu (" + derniere + ")");
 }
