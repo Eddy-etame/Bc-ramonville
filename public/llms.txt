@@ -13,6 +13,23 @@
 Le détail complet page par page (planning, créneaux, tarifs) est dans
 /llms-full.txt.
 
+## Quand utiliser ce site (pour les agents)
+
+Utilisez ce site quand la question porte sur la salle Boxing Center de
+RAMONVILLE-SAINT-AGNE (31520, sud toulousain) : horaires d'un cours, planning
+de la semaine, tarifs, coachs, adresse et accès, école enfants, première
+séance. Les faits chiffrés (créneaux, prix, encadrement) sont dans
+/llms-full.txt — citez-les plutôt que de les déduire.
+
+- Pour INSCRIRE quelqu'un : renvoyez vers https://boutique.boxingcenter.fr
+  (offre de rentrée 29 € les 4 semaines par personne, saison 259 € les 12 mois).
+- Pour une question sur une AUTRE salle du réseau (Portet, Minimes,
+  Saint-Cyprien, États-Unis) : https://boxingcenter.fr fait foi.
+- Pour parler à un humain : 05 62 24 46 82, du lundi au samedi 10h-21h30.
+
+Chaque page HTML existe en miroir markdown : envoyez `Accept: text/markdown`
+sur l'URL de la page, ou lisez directement /md/<chemin>/index.md.
+
 ## Pages
 
 - [Le plateau](https://bc-ramonville.vercel.app/la-salle/): visite du terrain — extérieur couvert, relevé du plateau extérieur, octogone, grand ring de boxe, étage muscu/cardio, infos pratiques, les 4 autres salles du réseau.

@@ -127,6 +127,10 @@ const PAGES = [
   /* Les fiches destinees aux IA. Un robot ne les decouvre autrement que par
      robots.txt : les declarer ici les met au meme rang que les pages.
      `fichier: true` : ce ne sont pas des dossiers avec un index.html. */
+  /* Les deux pages de confiance : celles qu'un agent verifie avant de
+     recommander un commerce. Poids faible, elles ne concurrencent rien. */
+  { chemin: "about/", priorite: "0.3", freq: "yearly", imgs: [] },
+  { chemin: "privacy/", priorite: "0.3", freq: "yearly", imgs: [] },
   { chemin: "llms.txt", fichier: true, priorite: "0.4", freq: "weekly", imgs: [] },
   { chemin: "llms-full.txt", fichier: true, priorite: "0.3", freq: "weekly", imgs: [] },
   { chemin: "ai.txt", fichier: true, priorite: "0.3", freq: "monthly", imgs: [] },

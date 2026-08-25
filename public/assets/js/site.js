@@ -238,7 +238,7 @@ function mountFooter() {
              visiteur (et le moteur) puissent y aller. -->
         <p class="footer__reseau">Cinq salles à Toulouse et alentour, un seul abonnement : l’Offre Saison donne l’accès libre aux ${(NETWORK || []).length} clubs du réseau.</p>
         <div class="footer__bottom">
-          <span>© ${new Date().getFullYear()} Boxing Center Ramonville.</span>
+          <span>© ${new Date().getFullYear()} Boxing Center Ramonville. · <a href="/about/">À propos</a> · <a href="/privacy/">Confidentialité</a></span>
           <span class="footer__stamp">${SEASON_LABEL} · sous le ciel de Ramonville</span>
         </div>
       </div>

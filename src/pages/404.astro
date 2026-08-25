@@ -91,6 +91,20 @@
       </div>
       <span class="e404__label">Les huit côtés</span>
       <nav class="e404__edges" id="e404-edges" aria-label="Les huit disciplines"></nav>
+      <!-- Les huit cotes ci-dessus sont rendus en JS : sans lui, l'impasse
+           revenait. Ces reperes-ci sont dans le HTML — un agent (ou un
+           navigateur sans script) repart toujours quelque part. -->
+      <span class="e404__label">Repères</span>
+      <nav class="e404__edges e404__pages" aria-label="Pages principales">
+        <a class="e404__edge" href="/"><b>Accueil</b><span>la salle en une page</span></a>
+        <a class="e404__edge" href="/activites/"><b>Activités</b><span>les 8 disciplines</span></a>
+        <a class="e404__edge" href="/plannings/"><b>Planning</b><span>22 cours par semaine</span></a>
+        <a class="e404__edge" href="/tarifs/"><b>Tarifs</b><span>29 € les 4 semaines</span></a>
+        <a class="e404__edge" href="/contact/"><b>Contact</b><span>adresse &amp; horaires</span></a>
+        <a class="e404__edge" href="/sitemap.xml"><b>Plan du site</b><span>toutes les URL</span></a>
+        <a class="e404__edge" href="/llms.txt"><b>llms.txt</b><span>fiche pour les agents</span></a>
+        <a class="e404__edge" href="/llms-full.txt"><b>llms-full.txt</b><span>le détail complet</span></a>
+      </nav>
     </div>
   </main>
 

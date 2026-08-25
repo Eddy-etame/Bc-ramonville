@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Politique de confidentialité | Boxing Center Ramonville</title>
+  <meta name="description" content="Ce que le site du Boxing Center Ramonville collecte (et ne collecte pas) : pas de compte, pas de pisteur, un chat qui passe par des fournisseurs d'IA." />
+  <link rel="canonical" href="https://bc-ramonville.vercel.app/privacy/" />
+  <link rel="preload" href="/fonts/chakrapetch-700-latin.woff2?v=19" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/manrope-var-latin.woff2?v=19" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/jetbrainsmono-var-latin.woff2?v=19" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=19" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=19" />
+  <link rel="stylesheet" href="/assets/css/page.css?v=19" />
+  <meta name="theme-color" content="#070a12" />
+  <link rel="icon" href="/favicon.svg?i=2" type="image/svg+xml" />
+  <link rel="icon" href="/favicon.png?i=2" type="image/png" sizes="32x32" />
+  <link rel="icon" href="/favicon-192.png?i=2" type="image/png" sizes="192x192" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png?i=2" sizes="180x180" />
+  <style is:inline>
+    .fiche-page { background: var(--void); min-height: 100svh; padding: clamp(7rem,16vh,10rem) var(--gut) clamp(4rem,8vh,6rem); }
+    .fiche-page__inner { width: min(92vw, 760px); margin-inline: auto; }
+    .fiche-page h1 { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: clamp(1.9rem,5vw,3rem); color: var(--ink); line-height: 1.05; margin-bottom: 1.6rem; }
+    .fiche-page h2 { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: clamp(1.15rem,2.6vw,1.5rem); color: var(--accent); margin: 2.2rem 0 .7rem; }
+    .fiche-page p, .fiche-page li { color: var(--ink-soft); line-height: 1.65; max-width: 62ch; }
+    .fiche-page p + p { margin-top: .8rem; }
+    .fiche-page ul { margin: .6rem 0 0 1.1rem; display: grid; gap: .45rem; list-style: square; }
+    .fiche-page a { color: var(--accent-2); }
+    .fiche-page .eyebrow { margin-bottom: .9rem; }
+  </style>
+  <script is:inline defer src="/assets/vendor/gsap.min.js?v=19"></script>
+  <script is:inline defer src="/assets/vendor/ScrollTrigger.min.js?v=19"></script>
+  <script is:inline defer src="/assets/vendor/lenis.min.js?v=19"></script>
+</head>
+<body data-page="privacy">
+  <a class="sr-only" href="#main">Aller au contenu</a>
+  <div id="nav"></div>
+  <div id="drawer"></div>
+  <main class="fiche-page" id="main">
+    <div class="fiche-page__inner">
+      <span class="eyebrow">Vie privée</span>
+      <h1>Politique de confidentialité</h1>
+      <p>Ce site est une vitrine : il présente la salle, ses cours et ses
+      tarifs. Il ne demande aucune création de compte, ne dépose aucun cookie
+      publicitaire et n'embarque aucun outil de mesure d'audience tiers.</p>
+      <h2>Ce que le site collecte</h2>
+      <ul>
+        <li><b>L'assistant de la salle (le chat)</b> : les messages que vous
+        écrivez sont transmis à un fournisseur d'intelligence artificielle
+        (Google Gemini, Groq ou Mistral) uniquement pour générer la réponse.
+        Ils ne servent ni à la publicité, ni à un profilage. N'y écrivez pas
+        d'informations médicales : pour toute question de santé, appelez la
+        salle.</li>
+        <li><b>Journaux techniques</b> : l'hébergeur (Vercel) et notre limite
+        anti-abus conservent temporairement l'adresse IP des requêtes, comme
+        pour tout site web.</li>
+        <li><b>Inscriptions et paiements</b> : ils ne se font pas ici mais sur
+        <a href="https://boutique.boxingcenter.fr" rel="noopener">la boutique
+        officielle du réseau</a>, qui a ses propres conditions.</li>
+      </ul>
+      <h2>Vos droits</h2>
+      <p>Conformément au RGPD, vous pouvez demander l'accès, la rectification
+      ou la suppression des données vous concernant en écrivant à
+      <a href="mailto:boxingcenter31@gmail.com">boxingcenter31@gmail.com</a>
+      ou en appelant le <a href="tel:+33562244682">05 62 24 46 82</a>
+      (Boxing Center Ramonville, 33 rue des Ormes, 31520 Ramonville-Saint-Agne).</p>
+      <p>Les photos publiées dans la galerie sont prises dans la salle avec
+      l'accord des personnes reconnaissables ; si vous apparaissez sur l'une
+      d'elles et souhaitez son retrait, le même e-mail suffit.</p>
+    </div>
+  </main>
+  <div id="footer"></div>
+  <script is:inline type="module" src="/assets/js/site.js?v=19"></script>
+</body>
+</html>

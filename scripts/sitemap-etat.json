@@ -1,43 +1,51 @@
 {
   "/": {
-    "empreinte": "2f9a58e10333dfb1",
+    "empreinte": "4c05f818500fc689",
     "lastmod": "2026-08-25"
   },
   "la-salle/": {
-    "empreinte": "7ef5d4053dfb396b",
+    "empreinte": "8edce7f8408876be",
     "lastmod": "2026-08-25"
   },
   "activites/": {
-    "empreinte": "ce641fe14b586a79",
+    "empreinte": "641b0cb7fe8b4387",
     "lastmod": "2026-08-25"
   },
   "coachs/": {
-    "empreinte": "c6047231afd6110d",
+    "empreinte": "2368b4bdabcaba04",
     "lastmod": "2026-08-25"
   },
   "galerie/": {
-    "empreinte": "c64abbc5aa4a8310",
+    "empreinte": "f46e6affd4a63c4e",
     "lastmod": "2026-08-25"
   },
   "plannings/": {
-    "empreinte": "5f3a3757e2e1a46a",
+    "empreinte": "aa159eed297ce8a8",
     "lastmod": "2026-08-25"
   },
   "tarifs/": {
-    "empreinte": "414c77c75eb28e45",
+    "empreinte": "c9449b508f61e6d0",
     "lastmod": "2026-08-25"
   },
   "contact/": {
-    "empreinte": "ca2fd134e85cf5db",
+    "empreinte": "32f3291513ac8bfb",
     "lastmod": "2026-08-25"
   },
   "premiere-seance/": {
-    "empreinte": "285fff4bc23d153e",
+    "empreinte": "bca34129ec35b3ed",
+    "lastmod": "2026-08-25"
+  },
+  "about/": {
+    "empreinte": "76d064a231d1913b",
+    "lastmod": "2026-08-25"
+  },
+  "privacy/": {
+    "empreinte": "96545c34c3d5abdf",
     "lastmod": "2026-08-25"
   },
   "llms.txt": {
-    "empreinte": "d8b37c997a8b913d",
-    "lastmod": "2026-08-24"
+    "empreinte": "62345e3f8a7727d7",
+    "lastmod": "2026-08-25"
   },
   "llms-full.txt": {
     "empreinte": "6cb97023ca6bad3d",
