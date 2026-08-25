@@ -748,7 +748,12 @@ function renderRythme() {
   });
   const max = Math.max(...perDay.map((p) => p.n)) || 1;
   const sum = (k) => perDay.reduce((a, p) => a + p[k], 0);
+  /* PAS un reduce aveugle : plusieurs jours peuvent etre a egalite — c'est
+     le cas a la rentree 2026 (lun, mer, ven, sam : 4 cours chacun).
+     Affirmer « LE jour le plus charge » quand ils sont quatre, c'est un
+     faux que le lecteur verifie trois lignes plus haut. */
   const busiest = perDay.reduce((a, p) => (p.n > a.n ? p : a), perDay[0]);
+  const exAequo = perDay.filter((p) => p.n === busiest.n);
   const apremSlots = SCHEDULE.filter((s) => tranche(s.start) === "aprem");
   // vérifié, pas affirmé : les après-midis appartiennent-ils vraiment à l’école ?
   const apremEcole = apremSlots.every((s) => s.fam === "enfant");
@@ -767,7 +772,7 @@ function renderRythme() {
     </div>
     <div class="rythme__reads" data-reveal-group>
       <p><b>${sum("midi")}</b> cours le midi, <b>${sum("soir")}</b> le soir. La salle se remplit deux fois par jour : la pause déjeuner pour le geste propre, le soir pour le volume et le bruit.</p>
-      <p><b>${busiest.d}</b> est le jour le plus chargé — ${busiest.n} cours, de ${busiest.first} à ${busiest.last}. Tu veux du monde sur le plateau ? Viens ce jour-là. Tu veux de la place ? Prends un midi.</p>
+      <p>${exAequo.length > 1 ? `<b>${exAequo.map((p) => p.d).join(", ")}</b> sont les jours les plus chargés — ${busiest.n} cours chacun.` : `<b>${busiest.d}</b> est le jour le plus chargé — ${busiest.n} cours, de ${busiest.first} à ${busiest.last}.`} Tu veux du monde sur le plateau ? Viens ${exAequo.length > 1 ? "ces jours-là" : "ce jour-là"}. Tu veux de la place ? Prends un midi.</p>
       <p>${apremEcole
         ? `Les <b>${sum("aprem")}</b> créneaux d’après-midi sont <b>tous</b> à l’école enfants — mercredi et samedi, entre 14h et 17h, le plateau est à eux.`
         : `<b>${sum("aprem")}</b> créneaux d’après-midi, entre 14h et 17h.`}
