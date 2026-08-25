@@ -917,3 +917,110 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
    Partout ou 29 EUR est ecrit, le prix qu'il remplace est ecrit a cote. */
 .was { opacity: .55; text-decoration: line-through; text-decoration-thickness: 2px; font-weight: 600; }
 @media (prefers-reduced-motion: reduce) { .places::before { animation: none; } }
+
+
+/* ================== LE PIÈGE, SUR TOUTES LES PAGES ==================
+   La plaque vivait dans home.css : les sous-pages ne la voyaient pas, et un
+   visiteur entré par /coachs/ ou /galerie/ ne croisait aucun objet de vente
+   — quand Portet pose son billet sur dix pages et Minimes épingle ses deux
+   offres sous le hero. Elle vit ici parce que base.css est chargée partout.
+
+   L'AMORCE : la phrase qui relie ce que le visiteur vient de voir à ce qu'il
+   peut prendre. Elle change à chaque page — une amorce recopiée est un piège
+   mort. Acier, pas or : même retenue que le reste du site, le halo en moins. */
+.piege { position: relative; background: var(--void); border-block: 1px solid var(--line); }
+.piege .wrap { padding-block: clamp(3rem, 7vw, 5rem); display: grid; gap: 1.4rem;
+  justify-items: center; }
+.amorce-ram { max-width: 44ch; text-align: center; font-family: var(--f-display);
+  font-weight: 700; text-transform: uppercase; letter-spacing: .015em;
+  font-size: clamp(1.05rem, 2.6vw, 1.5rem); line-height: 1.25; color: var(--accent);
+  text-wrap: balance; }
+.amorce-ram::after { content: ""; display: block; width: 2.2em; height: 2px;
+  margin: .55em auto 0; background: currentColor; opacity: .5; }
+.piege .plaque { width: min(100%, 330px); }
+/* ===================== LA PLAQUE (le piège) =====================
+   Portet a son BILLET — bord déchiré, talon perforé, or en trois couches.
+   Il est juste là-bas : ce site raconte un combat en six rounds. Ici on
+   raconte la seule salle du réseau qui s’entraîne DEHORS, et un billet de
+   papier y prendrait la pluie.
+
+   L’objet juste, c’est la PLAQUE : de l’acier boulonné sur une clôture, qui
+   reste dehors toute l’année. Coins coupés — l’octogone de 7 m est la
+   signature de la salle, c’est déjà la forme d’Otto. Quatre rivets.
+
+   TROIS COUCHES, la leçon du billet appliquée à un autre métal : un aplat
+   gris reste plat sur du navy. Le dégradé directionnel fait le brossage, le
+   liséré intérieur fait l’arête qui accroche la lumière, le halo froid porté
+   fait le projecteur du plateau extérieur. Aucun or : la palette d’ici est
+   un acier bleuté, et l’or appartient à Portet.
+   ================================================================ */
+.plaque {
+  --coin: 18px;
+  position: relative; display: grid; gap: .1rem; justify-items: center; text-align: center;
+  padding: clamp(1.5rem, 4vw, 2.1rem) clamp(1.4rem, 4vw, 2.4rem);
+  text-decoration: none; color: #0d1420; isolation: isolate;
+  /* les coins coupés — l’octogone */
+  clip-path: polygon(
+    var(--coin) 0, calc(100% - var(--coin)) 0, 100% var(--coin),
+    100% calc(100% - var(--coin)), calc(100% - var(--coin)) 100%,
+    var(--coin) 100%, 0 calc(100% - var(--coin)), 0 var(--coin));
+  /* couche 1 — le brossage directionnel */
+  background:
+    linear-gradient(112deg, #f2f6fc 0%, #cfdaea 22%, #a9b9d0 46%, #c6d3e6 62%, #93a5be 100%);
+  /* couches 2 et 3 — l’arête, puis le projecteur */
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.65) inset,
+    0 2px 0 rgba(255,255,255,.45) inset,
+    0 -2px 0 rgba(13,20,32,.16) inset,
+    0 10px 34px rgba(159,182,217,.30),
+    0 0 78px rgba(159,182,217,.18);
+  transition: transform .35s cubic-bezier(.2,.7,.3,1), filter .35s, box-shadow .35s;
+}
+/* LES QUATRE RIVETS — un par coin coupé. Des ombres, pas des images : ils
+   suivent la plaque quelle que soit sa taille. */
+.plaque::before {
+  content: ""; position: absolute; inset: 13px; pointer-events: none; z-index: 2;
+  background:
+    radial-gradient(circle 3.5px at 0 0, #7f8ea6 0 55%, rgba(255,255,255,.75) 60%, transparent 72%),
+    radial-gradient(circle 3.5px at 100% 0, #7f8ea6 0 55%, rgba(255,255,255,.75) 60%, transparent 72%),
+    radial-gradient(circle 3.5px at 0 100%, #7f8ea6 0 55%, rgba(255,255,255,.75) 60%, transparent 72%),
+    radial-gradient(circle 3.5px at 100% 100%, #7f8ea6 0 55%, rgba(255,255,255,.75) 60%, transparent 72%);
+  background-repeat: no-repeat;
+}
+.plaque:hover {
+  transform: translateY(-3px); filter: brightness(1.05) saturate(1.04);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.8) inset,
+    0 2px 0 rgba(255,255,255,.55) inset,
+    0 -2px 0 rgba(13,20,32,.18) inset,
+    0 16px 44px rgba(159,182,217,.44),
+    0 0 120px rgba(159,182,217,.28);
+}
+.plaque:focus-visible { outline: 3px solid var(--accent-2); outline-offset: 4px; }
+
+.plaque__sur { font: 600 .62rem/1 var(--f-mono); letter-spacing: .22em; text-transform: uppercase; opacity: .62; }
+/* le prix : c’est LUI qu’on voit de loin, avant de lire quoi que ce soit */
+.plaque__prix { display: flex; align-items: flex-start; gap: .04em; line-height: .82; margin: .45rem 0 .1rem; }
+.plaque__prix b { font-family: var(--f-display); font-weight: 700; font-size: clamp(3.4rem, 12vw, 5.2rem); letter-spacing: -.035em; }
+.plaque__prix i { font-style: normal; font-family: var(--f-display); font-weight: 700; font-size: clamp(1.2rem, 4vw, 1.9rem); margin-top: .32em; }
+.plaque__unit { font: 600 .68rem/1.3 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; opacity: .72; }
+.plaque__barre { font: 600 .66rem/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; opacity: .55;
+  text-decoration: line-through; text-decoration-thickness: 1.5px; margin-top: .3rem; }
+.plaque__go { margin-top: .9rem; font-weight: 700; font-size: .9rem; display: inline-flex; align-items: center; gap: .5ch; }
+.plaque__go i { font-style: normal; transition: transform .25s cubic-bezier(.2,.7,.3,1); }
+.plaque:hover .plaque__go i { transform: translateX(4px); }
+
+/* Au doigt, rien ne reste collé après une tape, et la tape se voit. */
+@media (hover: none) {
+  .plaque:hover { transform: none; }
+  .plaque:active { transform: translateY(1px); filter: brightness(1.06); }
+}
+@media (prefers-reduced-motion: reduce) { .plaque, .plaque__go i { transition: none; } }
+/* SUR TÉLÉPHONE, LA PLAQUE MÈNE. La grille passe à une colonne sous 820 px et
+   la plaque tombait SOUS un bouton qui dit déjà « Je prends ma place — 29€ » :
+   deux fois la même offre, l’objet qui devait arrêter l’œil arrivant après
+   qu’on a déjà décidé. Elle passe devant — le prix accroche, le texte
+   explique, le bouton conclut. Au-dessus de 820 px la grille a deux colonnes :
+   elle est à côté, pas dessous, et l’ordre naturel est le bon. */
+@media (max-width: 819px) {
+  .essai__grid .plaque { order: -1; justify-self: stretch; }
