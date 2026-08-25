@@ -614,7 +614,19 @@ const nf = new Intl.NumberFormat("fr-FR");
                 <a class="btn btn--ghost" data-magnetic href="/plannings/"><span>Voir le planning</span></a>
               </div>
             </div>
-            <div class="essai__price">29€<small>par personne</small></div>
+            <!-- LA PLAQUE. Le prix était un chiffre posé à plat dans une carte
+                 déjà discrète : le moment de vente n’arrêtait pas l’œil. La plaque est
+                 l’objet juste ICI — de l’acier boulonné qui vit dehors, coins coupés
+                 comme l’octogone. Portet a son billet de papier ; dehors, un billet
+                 prendrait la pluie. -->
+            <a class="plaque" data-reveal href="https://boutique.boxingcenter.fr/inscription?product=offre-duo&step=1&utm_source=site&utm_medium=plaque&utm_campaign=rentree"
+               aria-label="Offre de rentrée : 29 € par personne pour 4 semaines, au lieu de 44 €">
+              <span class="plaque__sur">Offre de rentrée</span>
+              <span class="plaque__prix"><b>29</b><i>€</i></span>
+              <span class="plaque__unit">par personne · 4 semaines</span>
+              <span class="plaque__barre">au lieu de 44 €</span>
+              <span class="plaque__go">Je prends ma place <i aria-hidden="true">→</i></span>
+            </a>
           </div>
         </div>
       </div>
@@ -630,7 +642,7 @@ const nf = new Intl.NumberFormat("fr-FR");
              qui mène à l'offre à 29 € : le visiteur lisait un prix et cliquait
              sur un autre. Il dit maintenant la même chose que le bouton, et
              le prix barré donne au 29 € sa mesure. -->
-        <p class="lead" data-reveal>Quatre semaines à <s class="was">44,99&nbsp;€</s> <strong>29&nbsp;€ par personne</strong> : l’octogone, le grand ring, l’étage muscu, et aucun engagement à signer. Le plateau est couvert et chauffé — on s’entraîne à l’air même en janvier. 33 rue des Ormes, terminus du métro B, du lundi au samedi de 10h à 21h30. Tu préfères voir avant ? Pousse la porte : on te fait le tour du plateau, sans rendez-vous et sans rien signer.</p>
+        <p class="lead" data-reveal>Quatre semaines à <s class="was">44&nbsp;€</s> <strong>29&nbsp;€ par personne</strong> : l’octogone, le grand ring, l’étage muscu, et aucun engagement à signer. Le plateau est couvert et chauffé — on s’entraîne à l’air même en janvier. 33 rue des Ormes, terminus du métro B, du lundi au samedi de 10h à 21h30. Tu préfères voir avant ? Pousse la porte : on te fait le tour du plateau, sans rendez-vous et sans rien signer.</p>
         <p class="places" data-places hidden></p>
         <div class="gong__cta" data-reveal>
           <a class="btn btn--primary" data-magnetic href="https://boutique.boxingcenter.fr/inscription?product=offre-duo&step=1&utm_source=site&utm_medium=cta&utm_campaign=bc-ramonville"><span>Ma place de rentrée — 29€</span></a><a class="btn btn--ghost" data-magnetic href="https://boutique.boxingcenter.fr/offre/29?utm_source=site&utm_medium=cta&utm_campaign=bc-ramonville"><span>Quatre semaines · 29€</span></a>
