@@ -52,8 +52,9 @@ for (const p of pages) {
 const mw = await readFile(join(ROOT, "middleware.js"), "utf8");
 dit(/text\\\/markdown/.test(mw) && /x-middleware-rewrite/.test(mw), "middleware.js — négociation Accept: text/markdown");
 const vc = JSON.parse(await readFile(join(ROOT, "vercel.json"), "utf8"));
-const global_ = vc.headers.find((h) => h.source === "/(.*)");
-dit(global_.headers.some((x) => x.key === "Vary" && /Accept/.test(x.value)), "vercel.json — Vary: Accept sur toutes les réponses");
+/* PAS .find() : plusieurs blocs peuvent viser /(.*) — securite d'un cote,
+   cache de l'autre. Il suffit qu'UN bloc porte le Vary. */
+dit(vc.headers.some((h) => h.source === "/(.*)" && h.headers.some((x) => x.key === "Vary" && /Accept/.test(x.value))), "vercel.json — Vary: Accept sur toutes les réponses");
 const md_ = vc.headers.find((h) => h.source === "/md/(.*)");
 dit(!!md_ && md_.headers.some((x) => x.key === "Content-Type" && /text\/markdown/.test(x.value)), "vercel.json — /md/ servi en text/markdown");
 
