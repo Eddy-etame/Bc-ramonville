@@ -99,7 +99,7 @@ function pheroMeta() {
     const named = new Set(SCHEDULE.map((s) => s.coach).filter((c) => !/confirmer/i.test(c)));
     box.innerHTML = chip(`<b>${named.size}</b> coachs sur le planning`)
       + chip(`<b>${SCHEDULE.length}</b> créneaux / semaine`)
-      + chip("Un visage dès que la photo est prouvée");
+      + chip("Cinq coachs, cinq vrais visages");
   }
 }
 
@@ -673,7 +673,7 @@ function renderPlanning() {
      maison, elle doit être dite deux fois ; elle n’a pas à être écrite
      deux fois de la même façon. Là-bas c’est un constat de visite, ici
      c’est une consigne d’arrivée — et le fait ne bouge pas d’un mot. */
-  const RENTREE_NOTE = `<b>${SEASON_LABEL}</b> — planning complet. En arrivant, pense à émarger sur le GPS : c’est obligatoire pour chaque cours.`;
+  const RENTREE_NOTE = `<b>${SEASON_LABEL}</b> — planning complet. En arrivant, valide ta présence en salle — l’émargement GPS est obligatoire avant chaque cours.`;
   // Le détail de l’été (renforts, accès libre, retour de la rentrée) vit
   // maintenant DANS le bloc #ete, en clair. Cette note ne le répète pas : une
   // bonne phrase ne se dit qu’une fois par site (standards §7).
@@ -841,7 +841,7 @@ function renderContact() {
   const venir = $("#venir");
   if (venir) {
     const MODE = [
-      { k: "Métro", ico: "M" }, { k: "Bus", ico: "B" }, { k: "Voiture", ico: "R" },
+      { k: "Métro", ico: "M" }, { k: "Bus", ico: "B" }, { k: "Voiture", ico: "V" },
     ];
     venir.innerHTML = SALLE.access.map((a, i) => {
       const k = MODE[i]?.k || "Accès";

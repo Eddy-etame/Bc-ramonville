@@ -61,9 +61,9 @@ const _SALLE = {
   // Ciel réel — coordonnées Ramonville pour Open-Meteo (sky.js)
   geo: { lat: 43.546, lon: 1.474 },
   access: [
-    "Métro ligne B — terminus Ramonville, à proximité",
+    "Métro ligne B — descends au terminus, tu y es",
     "Bus — arrêt Ramonville Sud, au pied de la salle",
-    "Sud toulousain — sortie rocade Ramonville",
+    "Rocade — sortie Ramonville, parking gratuit",
   ],
   phone: "05 62 24 46 82",
   phoneHref: "+33562244682",
@@ -500,7 +500,7 @@ const _COACHES = [
     name: "Sonia",
     ratio: "1086 / 941",   /* le bloc sombre de SON visuel : le cadre s'y accorde */
     role: "Boxe thaï · Kickboxing · Boxing Lady",
-    tag: "Le fil rouge de la semaine",
+    tag: "Présente toute la semaine",
     disciplines: ["Boxe thaï", "Kickboxing", "Préparation physique", "Boxing Lady"],
     note: "Passionnée, déterminée et bienveillante, Sonia met son énergie et son savoir-faire au service de chaque adhérent. Spécialiste des sports de combat et du coaching féminin, elle aide chacun à se dépasser et à révéler son potentiel. C'est elle que les avis Google citent par son nom.",
     qualites: ["Dynamique", "Exigeante", "Passionnée", "À l'écoute", "Mental d'acier"],
@@ -929,7 +929,7 @@ export const CARNET = {
 };
 
 export const FAQ = [
-  { q: "Où se trouve Boxing Center Ramonville ?", a: "Au 33 rue des Ormes, 31520 Ramonville-Saint-Agne, dans le sud toulousain — à proximité du terminus du métro (ligne B, Ramonville) et de l’arrêt bus Ramonville Sud." },
+  { q: "Où se trouve Boxing Center Ramonville ?", a: "Au 33 rue des Ormes, 31520 Ramonville-Saint-Agne, dans le sud toulousain — au pied du terminus du métro (ligne B, Ramonville) et de l’arrêt bus Ramonville Sud." },
   { q: "C’est vrai qu’on s’entraîne dehors ?", a: "Oui, et c’est la seule des cinq salles où c’est possible : 300 m² dehors, aménagés et couverts, praticables toute l’année — une averse ne renvoie personne à l’intérieur. Sous charpente, tu as l’octogone de 7 m et le grand ring de boxe." },
   { q: "Quelles disciplines peut-on pratiquer ?", a: "Boxe anglaise et anglaise loisirs, boxe pieds-poings, grappling, MMA tous niveaux dans l’octogone, Boxing Camp, Lady Punch (100 % féminin) et toute l’école enfants du Baby Boxe (3 ans) aux ados 12/16. Un étage muscu/cardio est en accès libre." },
   { q: "Y a-t-il des cours pour les enfants ?", a: "Oui, dès 3 ans : Baby Boxe 3/6 le samedi, éducative 7/11 ans et ados 12/16 ans le mercredi et le samedi après-midi, encadrés par Valentin Guth." },
