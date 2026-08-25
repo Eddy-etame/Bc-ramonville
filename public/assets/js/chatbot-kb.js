@@ -14,6 +14,18 @@
 
 export const QUICKS = [
   {
+    /* AJOUTÉE LE 25/08. En production, « il y a t il la clim ? » recevait
+       « Oui, la salle est aménagée et protégée des intempéries. » Le bot n'a
+       rien inventé : il a recyclé le fait le plus proche, faute d'en avoir un
+       vrai. Un trou dans la base ne produit pas un « je ne sais pas », il
+       produit un oui. Et Ramonville n'est pas Portet : ici c'est couvert et
+       CHAUFFÉ — pas de clim parce qu'on est dehors, pas par négligence. */
+    q: "Il y a la clim ?",
+    a: "Non, pas de clim — et pour une bonne raison : le plateau est dehors. " +
+       "C’est couvert et chauffé l’hiver, et l’été tu as l’air libre et l’ombre. " +
+       "Quand ça tape, les créneaux du midi et du soir sont les plus respirables.",
+  },
+  {
     label: "Le dehors",
     q: "C’est vrai qu’on s’entraîne dehors ?",
     a: "Oui, et c’est le seul plateau du réseau qui a ça : 300 m² d’entraînement extérieur, aménagés et protégés des intempéries. Couvert veut dire couvert — tu t’entraînes à l’air toute l’année, pas seulement quand il fait beau.",
@@ -67,16 +79,20 @@ export const QUICKS = [
 
 /* Ordre = priorité. Le premier motif qui accroche donne la réponse. */
 const RULES = [
-  [/dehors|ext[ée]rieur|plein air|300|couvert|intemp[ée]rie|ciel/i, 0],
-  [/octogone|cage|mma|grappling|sol|soumission/i, 1],
-  [/essai|d[ée]couvr|tester|premi[èe]re|essayer|10\s?€/i, 2],
-  [/tarif|prix|co[ûu]te|combien|abonn|duo|saison|mensuel|annuel/i, 3],
-  [/horaire|ouvert|ferm|heure|dimanche|[ée]margement/i, 4],
-  [/adresse|o[ùu]\b|situ|acc[èe]s|m[ée]tro|bus|parking|venir|plan|rue|rocade/i, 5],
-  [/discipline|cours|anglaise|pieds.?poings|camp|muscu|cardio|libre|boxe/i, 6],
-  [/enfant|gamin|baby|ado|fils|fille|ans\b|[ée]cole|[ée]ducative/i, 7],
-  [/coach|entra[îi]neur|prof|encadr|[ée]quipe|sonia|j[ée]r[ôo]me|farouk|valentin/i, 8],
-  [/lady|femme|f[ée]minin|meuf|entre filles/i, 9],
+  /* EN TÊTE, et c'est voulu : « clim » tombait sinon sur la règle du dehors
+     (/couvert|intempérie/), qui répond « oui, on est protégés » — la réponse
+     exacte à une AUTRE question. */
+  [/clim|climatis|air.?conditionn|ventil|il fait (chaud|froid)|temp[ée]rature|canicule/i, 0],
+  [/dehors|ext[ée]rieur|plein air|300|couvert|intemp[ée]rie|ciel/i, 1],
+  [/octogone|cage|mma|grappling|sol|soumission/i, 2],
+  [/essai|d[ée]couvr|tester|premi[èe]re|essayer|10\s?€/i, 3],
+  [/tarif|prix|co[ûu]te|combien|abonn|duo|saison|mensuel|annuel/i, 4],
+  [/horaire|ouvert|ferm|heure|dimanche|[ée]margement/i, 5],
+  [/adresse|o[ùu]\b|situ|acc[èe]s|m[ée]tro|bus|parking|venir|plan|rue|rocade/i, 6],
+  [/discipline|cours|anglaise|pieds.?poings|camp|muscu|cardio|libre|boxe/i, 7],
+  [/enfant|gamin|baby|ado|fils|fille|ans\b|[ée]cole|[ée]ducative/i, 8],
+  [/coach|entra[îi]neur|prof|encadr|[ée]quipe|sonia|j[ée]r[ôo]me|farouk|valentin/i, 9],
+  [/lady|femme|f[ée]minin|meuf|entre filles/i, 10],
 ];
 
 export function fallbackAnswer(msg) {
