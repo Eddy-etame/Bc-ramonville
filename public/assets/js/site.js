@@ -363,11 +363,25 @@ function hydrateMedia(scope = document) {
   scope.querySelectorAll(".media[data-img]").forEach((el) => {
     if (el.dataset.mediaBound) return; el.dataset.mediaBound = "1";
     const img = new Image();
-    img.src = el.dataset.img;
+    /* L’ORDRE DÉCIDE. Dès que `src` est affecté, le navigateur lance le
+       téléchargement et fige son choix : un srcset posé après est ignoré
+       (vu le 25/08 — currentSrc restait sur le fichier de 1086 px alors que
+       la vignette de 320 était bien déclarée). Idem pour `loading`. Donc
+       srcset, sizes et loading D’ABORD, src EN DERNIER. */
     img.alt = el.dataset.alt || el.dataset.label || "";
     img.loading = el.hasAttribute("data-eager") ? "eager" : "lazy"; img.decoding = "async";
+    /* Le navigateur choisit la taille. Mesuré le 25/08 sur l’accueil à 375 px :
+       les cinq portraits descendaient en 1086 px pour une case de 143 — 483 ko
+       pour 69 ko utiles. `srcset` ne remplace rien, il ajoute un choix, et le
+       navigateur prend toujours la plus petite image qui suffit. */
     if (el.dataset.w) img.width = el.dataset.w;
     if (el.dataset.h) img.height = el.dataset.h;
+    /* `sizes` D’ABORD : affecter `srcset` lance la sélection sur-le-champ, et
+       si `sizes` vaut encore 100vw à cet instant, le navigateur croit avoir
+       besoin de 750 px sur un écran de 375 en densité 2 — il prend la grande,
+       et la ligne `sizes` posée juste après arrive trop tard. */
+    if (el.dataset.srcset) { img.sizes = el.dataset.sizes || "100vw"; img.srcset = el.dataset.srcset; }
+    img.src = el.dataset.img;   /* EN DERNIER — voir le commentaire plus haut */
     el.prepend(img);
   });
 }
