@@ -33,18 +33,25 @@
 .plan__tab.is-on, .plan__tab[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--void); }
 .plan__note { font-size: var(--step--1); color: var(--muted); margin-bottom: 1.2rem; }
 .plan__note b { color: var(--accent); }
-/* `max-height` : SANS contrainte de hauteur, le sticky du thead ne colle à
-   RIEN. overflow-x:auto force overflow-y à calculer `auto`, ce qui fait de
-   /* LE TABLEAU CAPTAIT LE POUCE. 70vh se calcule sur le GRAND viewport :
-   la boîte faisait 591 px de haut sur un écran de 844, soit 70 % des
-   pixels visibles. Sans overscroll-behavior, un balayage sur cette zone
-   faisait défiler le tableau et non la page — sur la page utilitaire
-   qu'on ouvre pour savoir à quelle heure est le cours. Le max-height ne
-   sert qu'à rendre le thead collant utile : 55svh suffit, et svh tient
-   compte de la barre d'adresse. */
-.gridwrap le scrollport le plus proche ; sans hauteur il ne défile jamais
-   verticalement, donc l'en-tête s'en allait avec la page — sur une grille de
-   720×740 px, exactement quand on a besoin de savoir quel jour on lit. */
+/* DEUX COMMENTAIRES S'ÉTAIENT EMBOÎTÉS ICI, et CSS ne connaît pas
+   l'imbrication : le premier « * / » fermait tout, et les trois lignes de
+   texte restées nues formaient un sélecteur invalide dont la récupération
+   d'erreur AVALAIT la règle .gridwrap entière. Résultat, constaté le 25/08
+   à 375 px : plus d'overflow-x, la table de 723 px poussait la page à
+   défiler horizontalement de 367 px — pendant que l'indication « Fais
+   glisser la grille → » promettait un défilement intérieur.
+
+   Ce que la règle fait, et pourquoi :
+   · overflow-x:auto — la grille (min-width 720 px) défile DANS sa boîte,
+     jamais la page.
+   · max-height min(55svh, 520px) — sans contrainte de hauteur, le sticky
+     du thead ne colle à rien : l'en-tête partait avec la page sur une
+     grille de 720×740 px, exactement quand on a besoin de savoir quel jour
+     on lit. 55svh et pas 70vh : 70vh se calcule sur le GRAND viewport et
+     faisait 591 px sur un écran de 844 — 70 % des pixels captés par le
+     tableau ; svh tient compte de la barre d'adresse.
+   · overscroll-behavior:contain — sans lui, un balayage sur cette zone
+     faisait défiler le tableau ET la page. */
 .gridwrap { border: 1px solid var(--line); border-radius: var(--radius); overflow-x: auto; max-height: min(55svh, 520px); overscroll-behavior: contain; background: var(--paper-2); }
 .grid { width: 100%; min-width: 720px; border-collapse: separate; border-spacing: 0; }
 .grid th, .grid td { border-bottom: 1px solid var(--line-soft); border-right: 1px solid var(--line-soft); padding: .6rem .7rem; text-align: left; vertical-align: top; }
