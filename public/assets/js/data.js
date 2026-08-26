@@ -61,9 +61,9 @@ const _SALLE = {
   // Ciel réel — coordonnées Ramonville pour Open-Meteo (sky.js)
   geo: { lat: 43.546, lon: 1.474 },
   access: [
-    "Métro ligne B — descends au terminus, tu y es",
-    "Bus — arrêt Ramonville Sud, au pied de la salle",
-    "Rocade — sortie Ramonville, parking gratuit",
+    "Ligne B — terminus Ramonville : la salle est au pied de la station, et le soir c’est d’ici que le métro repart",
+    "Arrêt Ramonville Sud — le bus s’arrête au pied de la salle, pas à trois rues de là",
+    "Rocade, sortie Ramonville — parking gratuit : rien à payer, rien à chercher avant le cours",
   ],
   phone: "05 62 24 46 82",
   phoneHref: "+33562244682",
@@ -132,7 +132,7 @@ export const NAV = [
    ils sont le fait, et ils restent écrits à un seul endroit. L’accueil dit
    CE QUE C’EST ; le plateau, page de visite, dit CE QUE ÇA FAIT sur place. */
 export const STATS = [
-  { v: 7, suffix: " m", l: "l’octogone, sous le ciel", rail: "la cage, en plein air" },
+  { v: 7, suffix: " m", l: "l’octogone, grillagé", rail: "l’octogone, ouvert aux débutants le mardi" },
   { v: 300, suffix: " m²", l: "d’extérieur couvert, aménagé", rail: "dehors, et à l’abri de la pluie" },
   { v: 2, suffix: "", l: "niveaux, étage muscu/cardio", rail: "niveaux : le plateau, puis la muscu" },
   { v: 6, suffix: " j/7", l: "de 10h à 21h30, accès libre inclus", raw: true, rail: "jours ouverts, 10h–21h30" },
@@ -160,7 +160,7 @@ const _DISCIPLINES = [
        SCHEDULE, un par un. */
     jours: "Anglaise mar. & ven. 12h40 · mer. 18h45 → 20h15 · Loisirs lun. & ven. 19h45",
     niveau: "Débutant → confirmé",
-    desc: "Jab, esquive, jeu de jambes. Les midis pour le geste propre, les soirs en loisirs quand la salle se remplit et que les frappes couvrent le bruit du dehors. Le fondamental de la maison.",
+    desc: "Jab, garde, jeu de jambes. Le midi tient dans une pause déjeuner : 12h40 avec Hicham, tu es ressorti à 13h20. Le soir, tu as le temps de travailler — Farouk tient les loisirs du lundi et du vendredi, et le mercredi va jusqu’à 20h15. Débutant complet ou déjà licencié, c’est le même cours : chacun repart avec son exercice, pas celui du voisin.",
     img: "/assets/img/ram/photos/boxe-anglaise-en-binome-boxing-center-ramonville.webp",
   },
   {
@@ -176,7 +176,7 @@ const _DISCIPLINES = [
     coach: "Sonia · jeudi midi à confirmer",
     jours: "Jeu. 12h40 · lun. & ven. 18h40",
     niveau: "Tous niveaux",
-    desc: "Poings, tibias, genoux : la boxe la plus complète, menée par Sonia. Trois créneaux par semaine, du midi qui réveille au soir qui défoule — et le sac encaisse tout, toi tu apprends.",
+    desc: "Poings, tibias, genoux — tout le corps est dans le coup. Sonia la tient trois fois par semaine : le jeudi midi, le lundi et le vendredi à 18h40. Tous niveaux au sens strict : on t’apprend le mouvement avant de te demander de le placer, et ta première séance se passe sur les sacs et les pattes d’ours, pas en face de quelqu’un.",
     /* CETTE FICHE N’AVAIT PAS D’IMAGE — et le carnet en avait une pour elle
        depuis le début. anglaise.webp est indexée `discs: ["anglaise",
        "pieds-poings"]` dans CARNET, plus bas dans ce même fichier : les
@@ -195,7 +195,7 @@ const _DISCIPLINES = [
     coach: "Jérôme",
     jours: "Mardi · 18h40",
     niveau: "Tous niveaux",
-    desc: "Contrôle, projections, travail au sol dans l’octogone de 7 m. Jérôme y enseigne la partie que la boxe ignore : le sol. Mardi soir, tous niveaux — c’est le créneau où la cage s’ouvre aux débutants.",
+    desc: "Contrôle, projections, travail au sol — la moitié du combat qu’aucune boxe ne t’apprend. Jérôme, ancien combattant professionnel, la tient le mardi à 18h40 dans l’octogone de 7 m. On n’y échange pas de coups : on apprend à tenir, à sortir, à respirer quand quelqu’un pèse sur toi. C’est la porte la plus simple pour entrer dans une cage — tous niveaux, dès le premier mardi.",
     img: "/assets/img/ram/photos/jiu-jitsu-bresilien-au-sol-boxing-center-ramonville.webp",
   },
   {
@@ -207,7 +207,7 @@ const _DISCIPLINES = [
     coach: "Jérôme",
     jours: "Mardi & jeudi · 19h45 – 21h15",
     niveau: "Tous niveaux · débutants acceptés",
-    desc: "Le créneau association : MMA complet dans l’octogone, debout et au sol. Deux soirs par semaine avec Jérôme, quand la cage est à nous et que le plateau, à deux pas, reste ouvert sur le soir.",
+    desc: "Debout et au sol, dans l’octogone de 7 m : la discipline entière dans le même cours. Mardi et jeudi de 19h45 à 21h15 avec Jérôme, qui a combattu en professionnel aux États-Unis et au Canada. Débutants acceptés, au sens propre : c’est le niveau annoncé du créneau, et personne ne monte dans la cage sans l’avoir demandé. Et le grappling du mardi, juste avant, est la marche d’avant si tu la veux.",
     /* octogone.webp EST une photo d’MMA tous niveaux — son `alt` du carnet le dit mot
        pour mot (« Séance d’MMA tous niveaux dans l’octogone de 7 m »), et elle est
        indexée `discs: ["grappling", "asso-mma"]`. La fiche du créneau qui se
@@ -230,7 +230,7 @@ const _DISCIPLINES = [
     coach: "Sonia · Hicham · Jérôme · Valentin Guth",
     jours: "Lun. & mer. 12h40 · jeu. 18h40 · sam. 11h",
     niveau: "Tous niveaux",
-    desc: "Le format signature Boxing Center : technique, cardio et sacs dans une seule séance dense. Quatre créneaux, du lundi midi au samedi matin — le meilleur point d’entrée si tu hésites encore.",
+    desc: "Technique, cardio et sacs dans la même séance : tu frappes, tu souffles, tu recommences. Quatre créneaux, quatre coachs — Sonia le lundi midi, Hicham le mercredi midi, Jérôme le jeudi soir, Valentin Guth le samedi à 11h. Si tu ne sais pas par où commencer, commence ici : en une séance tu as touché à tout, et tu ressors en sachant ce que tu as envie de reprendre.",
     img: "/assets/img/ram/photos/boxing-camp-circuit-de-renforcement-boxing-center-ramonville.webp",
   },
   {
@@ -242,7 +242,7 @@ const _DISCIPLINES = [
     coach: "Sonia",
     jours: "Lundi & vendredi · 18h00 – 18h40",
     niveau: "Zéro prérequis",
-    desc: "Un créneau à vous, lundi et vendredi 18h : la vraie boxe, le cardio, la frappe qui défoule — entre femmes, avec Sonia qui tient la porte. Zéro prérequis : beaucoup y mettent les gants pour la première fois. Et à 18h40, celles qui veulent enchaînent sur le pieds-poings.",
+    desc: "Lundi et vendredi, 18h00 à 18h40, entre femmes, avec Sonia. La vraie boxe — la garde, les enchaînements, le cardio qui fait transpirer — pas un cours de fitness déguisé. Zéro prérequis, et ce n’est pas une formule de brochure : beaucoup mettent les gants pour la première fois de leur vie dans ce cours-là. Et si à 18h40 tu en veux encore, le pieds-poings enchaîne juste derrière.",
     /* LES SIX PHOTOS PROUVÉES DE LA SALLE NE MONTRENT AUCUN CRÉNEAU FÉMININ.
        Illustrer un cours 100 % féminin avec un adulte masculin, ce serait
        mentir sur la seule chose qui définit ce créneau. `nophoto` remplace la
@@ -261,14 +261,14 @@ const _DISCIPLINES = [
     coach: "Valentin Guth",
     jours: "Baby 3/6 sam. 14h15 · 7/11 mer./sam. 15h · 12/16 mer./sam. 16h",
     niveau: "Baby → ados",
-    desc: "Du Baby Boxe (dès 3 ans) à l’éducative ados, la règle est fédérale et non négociable : on touche, on ne frappe pas. Pas de coups portés — de la motricité, de la concentration, du respect, à hauteur d’enfant. Valentin Guth tient toute l’école, mercredi et samedi après-midi. Parents : restez, la salle est ouverte pendant le cours.",
+    desc: "Du Baby Boxe (dès 3 ans) à l’éducative ados, la règle est fédérale et non négociable : on touche, on ne frappe pas. Pas de coups portés — de la motricité, de la concentration, du respect, à hauteur d’enfant. Valentin Guth — boxeur professionnel, 2ᵉ Français chez les super-coqs — tient toute l’école, mercredi et samedi après-midi. Celui qui apprend à ton enfant à tenir sa garde sait de quoi il parle. Parents : restez, la salle est ouverte pendant le cours.",
     /* Même règle, et elle est plus stricte encore ici : on ne publie pas le
        visage d’un enfant sans l’accord écrit des parents, et aucune des six
        photos prouvées n’en montre. La plaque le dit franchement. */
     img: null,
     nophoto: "Pas de photo des cours enfants : on ne publie pas le visage d’un enfant sans l’accord de ses parents. Le mercredi et le samedi, la salle est à eux.",
     img: "/assets/img/ram/photos/cours-de-renforcement-vue-plongeante-boxing-center-ramonville.webp",
-    imgAlt: "Cours collectif vu d’en haut sur le plateau du Boxing Center Ramonville."
+    imgAlt: "Cours de renforcement vu d’en haut au Boxing Center Ramonville : haltères, disques et tapis."
   },
   {
     key: "acces-libre",
@@ -279,7 +279,7 @@ const _DISCIPLINES = [
     coach: "En autonomie",
     jours: "Lun. – sam. · 10h00 – 21h30",
     niveau: "À ton rythme",
-    desc: "L’étage muscu/cardio et les espaces d’entraînement libres, ouverts six jours sur sept. Charges, machines, sacs : personne ne te dira quand venir.",
+    desc: "L’étage muscu/cardio, la ligne de sacs, et les espaces libres dedans comme dehors. C’est inclus dans l’abonnement et ça ne se réserve pas : tu passes entre 10h et 21h30, du lundi au samedi. Les semaines où aucun créneau ne tombe bien, tu viens quand même.",
     img: "/assets/img/ram/photos/etage-musculation-sous-la-charpente-boxing-center-ramonville.webp",
   },
 ];
@@ -309,24 +309,24 @@ export const DEHORS = {
   // NE REPREND PAS la formule de la section « 300 m² plein ciel » plus haut
   // (« couvert veut dire couvert… ») : une bonne phrase ne se dit qu’une fois
   // par site. Celle-ci pose le registre du relevé, pas le claim.
-  lead: "Le plateau extérieur, en chiffres : sa surface, sa couverture, ses heures — et le ciel au-dessus, relevé en direct.",
+  lead: "Ce que ça change pour toi, en quatre lignes : la place que tu as, ce qui te protège, quand tu peux y être — et le temps qu’il fait dessus, maintenant.",
   /* les quatre lignes mesurées — verbatims officiels, rien d’ajouté */
   mesures: [
     // « d’un seul tenant » a été retiré : aucune source ne dit que les 300 m²
     // sont contigus. Le relevé ne note que ce qui est écrit noir sur blanc —
     // c’est tout l’intérêt d’un relevé.
     { k: "Surface", v: "300 m²", d: "d’entraînement extérieur, aménagés" },
-    { k: "Couverture", v: "Couvert", d: "protégé des intempéries" },
+    { k: "Couverture", v: "Couvert", d: "tu ne changes pas de plan quand la météo change" },
     { k: "Ouverture", v: "Toute l’année", d: "six jours sur sept, 10h – 21h30" },
     // « l’air du dehors, pas un mur » appartient déjà au bloc RDC de la coupe
     // (/la-salle/) : une bonne phrase ne se dit qu’une fois par site.
-    { k: "Plafond", v: "Le ciel", d: "aucune autre salle du réseau n’a ça" },
+    { k: "Plafond", v: "Le ciel", d: "tu sais le temps qu’il fera à la sortie avant d’avoir mis les gants" },
   ],
   /* la ligne qu’on n’a pas — assumée, au même format que les autres */
   nonReleve: {
     k: "Cliché",
     v: "Non relevé",
-    d: "Aucune des vingt-quatre photos de la galerie ne montre le dehors : il n’a pas encore été shooté. En attendant, voilà ses chiffres — et le vrai ciel au-dessus.",
+    d: "Aucune des vingt-quatre photos de la galerie ne le montre : il n’a pas encore été photographié. C’est la seule zone que tu découvriras sur place, et pas sur un écran.",
   },
   /* la légende du cadre vivant (le ciel remplace la photo absente) */
   cadre: {
@@ -374,7 +374,7 @@ export const ARPENT = {
   kCage: "L’octogone · 7 m",
   scale: "Même échelle",
   // la phrase qui tient tout le parti pris — elle ne se dit qu’ICI
-  honest: "300 m² mesurés sur les documents officiels de la salle. La forme exacte, tu la verras sur place.",
+  honest: "Trois cents carrés d’un mètre : c’est la surface, ce n’est pas le plan. La forme, tu la verras en arrivant.",
   legend: "300 carrés d’un mètre chacun — la surface réelle du plateau extérieur. À droite, l’octogone de 7 m à la même échelle : compare, et tu vois ce qui t’attend dehors.",
 };
 
@@ -388,7 +388,7 @@ export const PLATEAU = [
     n: "01",
     t: "L’extérieur couvert",
     tag: "300 m² · protégés des intempéries",
-    d: "300 m² d’entraînement dehors, aménagés et protégés des intempéries. La seule salle du réseau où l’air, le ciel et le soir font partie de la séance. Tu t’échauffes sous les étoiles, tu récupères au grand air.",
+    d: "300 m² dehors, aménagés et couverts. C’est là qu’on s’échauffe, qu’on gaine, qu’on s’étire et qu’on souffle entre deux rounds — à l’air, en juillet comme en janvier.",
     // Pas de photo : les 6 clichés prouvés de la salle sont TOUS intérieurs.
     // Illustrer les 300 m² extérieurs avec un cadre sous charpente serait le
     // seul vrai mensonge du site (registre documentaire, /galerie/ : « on ne
@@ -406,7 +406,7 @@ export const PLATEAU = [
     /* La phrase disait deux fois « La signature du plateau : » et deux fois
        « pour le grappling et le MMA tous niveaux » — une fusion d’édition restée en
        l’état. Une seule signature, une seule fois. */
-    d: "Un octogone de 7 mètres, grillagé, pour le grappling, le MMA tous niveaux et le travail au sol. La signature du plateau : le mardi soir, c’est le créneau tous niveaux — la cage s’ouvre aux débutants, Jérôme tient la porte.",
+    d: "Un octogone de 7 mètres, grillagé, sous la charpente. Vue du dehors, une cage impressionne ; dedans, le mardi à 18h40, c’est du grappling annoncé tous niveaux — on y contrôle et on y travaille au sol, on n’y frappe pas. C’est par ce créneau-là qu’on entre dans la cage quand on débute, et c’est Jérôme, ancien combattant professionnel passé par les États-Unis et le Canada, qui tient la porte.",
     img: "/assets/img/ram/octogone.webp",
     specs: ["Octogone 7 m", "Grappling · MMA tous niveaux"],
   },
@@ -414,7 +414,7 @@ export const PLATEAU = [
     n: "03",
     t: "Le grand ring",
     tag: "Anglaise · pieds-poings",
-    d: "Un grand ring de boxe, cordes tendues, coin bleu, coin rouge. C’est là que le jab se règle et que le pieds-poings prend ses distances, midi et soir — et que le débutant apprend d’abord à toucher, pas à frapper.",
+    d: "Un grand ring de boxe, cordes tendues, coin bleu, coin rouge. C’est là que le jab se règle et que le pieds-poings prend ses distances, à 12h40 comme à 19h45. Jamais monté sur un ring ? On y apprend d’abord à toucher, pas à frapper — et personne ne t’y fait grimper avant que tu le demandes.",
     img: "/assets/img/ram/anglaise.webp",
     specs: ["Grand ring de boxe", "Anglaise · Pieds-poings"],
   },
@@ -422,7 +422,7 @@ export const PLATEAU = [
     n: "04",
     t: "L’étage muscu/cardio",
     tag: "Deux niveaux",
-    d: "Deux niveaux : en haut, l’étage muscu et cardio. Charges libres, machines, cardio — la caisse et la force qui portent tout le reste, en accès libre six jours sur sept.",
+    d: "Un étage entier : charges libres, machines, cardio. Il est compris dans l’abonnement — ce n’est pas une salle de sport voisine à payer en plus — et il n’a aucun créneau au planning : tu montes à 10h du matin ou à 21h, six jours sur sept.",
     img: "/assets/img/ram/muscu.webp",
     specs: ["Étage muscu/cardio", "Accès libre 6 j/7"],
   },
@@ -430,7 +430,7 @@ export const PLATEAU = [
     n: "05",
     t: "Les sacs",
     tag: "Boxing Camp · loisirs",
-    d: "La ligne de sacs lourds pour le Boxing Camp et les créneaux loisirs : le volume, la répétition, le souffle qui brûle. On tape jusqu’à ne plus entendre que le cuir.",
+    d: "La ligne de sacs lourds : le volume, la répétition, le souffle qui brûle. C’est là qu’un geste appris au ring se répète jusqu’à ne plus demander de réfléchir — au Boxing Camp du midi comme aux loisirs de 19h45. On tape jusqu’à ne plus entendre que le cuir.",
     img: "/assets/img/ram/camp.webp",
     specs: ["Sacs lourds", "Camp · Loisirs"],
   },
@@ -438,7 +438,7 @@ export const PLATEAU = [
     n: "06",
     t: "Les espaces libres",
     tag: "Libres & collectifs",
-    d: "Des espaces d’entraînement libres et collectifs, dedans et dehors, pour s’échauffer, gainer, étirer, ou juste souffler entre deux rounds, à l’air du soir.",
+    d: "Des espaces d’entraînement libres et collectifs, dedans et dehors, qui n’appartiennent à aucun cours. Arrive en avance, tu as la place de te préparer ; reste après, personne ne te pousse vers la sortie. Et les semaines où aucun créneau ne tombe bien, tu viens quand même : 10h – 21h30, six jours sur sept.",
     img: "/assets/img/ram/plateau.webp",
     specs: ["Libres & collectifs", "Dedans · dehors"],
   },
@@ -453,8 +453,8 @@ export const VALUES = [
   { n: "01", t: "Dehors, vraiment", d: "300 m² extérieurs couverts. Tu sors du vestiaire et tu y es : la météo fait partie de la séance, pas d’un décor peint sur un mur." },
   // 02 : la cage tourne 3 créneaux/semaine et le MMA tous niveaux est marquée « Confirmé »
   // → « tu tournes dedans dès la première séance » contredisait /plannings/.
-  { n: "02", t: "La cage est à toi le mardi", d: "Un octogone de 7 m. Grappling le mardi soir, tous niveaux : c’est le créneau où on ouvre la cage aux débutants. L’MMA tous niveaux, deux soirs, quand tu es prêt." },
-  { n: "03", t: "Le geste d’abord", d: "Un grand ring, des coachs qui corrigent le geste avant de te faire suer. La justesse avant le bruit." },
+  { n: "02", t: "La cage est à toi le mardi", d: "Un octogone de 7 m, et un créneau qui t’attend dedans sans condition : le grappling du mardi soir est ouvert à tous les niveaux. Le MMA, deux soirs par semaine, porte « débutants acceptés » noir sur blanc — tu y vas quand tu le décides, pas quand quelqu’un te juge prêt." },
+  { n: "03", t: "Le geste d’abord", d: "Un grand ring, et cinq coachs diplômés qui corrigent le geste avant de te faire suer : BPJEPS, licence STAPS, un ancien combattant professionnel de MMA, un boxeur professionnel. Quelqu’un te reprend dès la première séance. La justesse avant le bruit." },
   // 04 : la salle n’émet aucune clé — le fait verrouillé est l’émargement GPS.
   { n: "04", t: "À ton heure", d: "Deux niveaux, étage muscu/cardio, accès libre six jours sur sept. Rien à réserver, personne à convaincre : la porte est ouverte de 10h à 21h30." },
 ];
@@ -485,7 +485,7 @@ const _COACHES = [
     tag: "Head coach",
     pillar: true,
     disciplines: ["MMA", "Grappling", "Prépa physique"],
-    note: "Ancien combattant professionnel de MMA — il a évolué aux plus hauts niveaux aux États-Unis et au Canada. Exigeant et humain : il te reprend debout comme au sol, et son grappling du mardi soir est la porte d’entrée de la cage pour les débutants.",
+    note: "Ancien combattant professionnel de MMA — il a évolué aux plus hauts niveaux aux États-Unis et au Canada. La cage impressionne : c’est pour ça que son grappling du mardi soir est ouvert à tous les niveaux. Tu entres sans rien savoir faire au sol, il te reprend debout comme à terre, et tu ressors en sachant ce que ça fait d’être dessous — et comment on en sort.",
     qualites: ["Leadership", "Exigence", "Passionné", "Pédagogue", "Mental d'acier"],
     parcours: "Ancien combattant professionnel de MMA — États-Unis et Canada",
     approche: [
@@ -502,7 +502,7 @@ const _COACHES = [
     role: "Boxe thaï · Kickboxing · Boxing Lady",
     tag: "Présente toute la semaine",
     disciplines: ["Boxe thaï", "Kickboxing", "Préparation physique", "Boxing Lady"],
-    note: "Les avis Google la citent par son prénom, et ce n’est pas un hasard : six créneaux par semaine, le pieds-poings et tout le féminin. Beaucoup mettent les gants pour la première fois dans son cours — le Lady Punch est fait pour ça.",
+    note: "Six créneaux par semaine : le Boxing Camp du lundi midi, le pieds-poings lundi, jeudi et vendredi, et les deux Lady Punch de 18h00. Jamais mis un gant ? C’est exactement le public du Lady Punch — zéro prérequis, entre femmes, et à 18h40 celles qui veulent enchaînent sur le pieds-poings avec elle. Elle adapte l’intensité, jamais l’exigence.",
     qualites: ["Dynamique", "Exigeante", "Passionnée", "À l'écoute", "Mental d'acier"],
     formation: ["BPJEPS Sports de contact"],
     approche: [
@@ -522,7 +522,7 @@ const _COACHES = [
     role: "Boxe anglaise · les trois midis",
     tag: "Les midis",
     disciplines: ["Boxe anglaise", "Préparation physique"],
-    note: "L’homme des midis : trois créneaux entre 12h40 et 13h20, anglaise et Boxing Camp — le format qui tient dans une pause déjeuner. Le geste propre d’abord, la condition physique avec, et tu retournes au bureau doué d’un direct.",
+    note: "Les trois midis de la semaine sont à lui : mardi, mercredi, vendredi, toujours à 12h40 — l’anglaise deux fois, le Boxing Camp une fois. C’est le format de ceux qui n’ont pas leur soirée : tu arrives sur ta pause, tu travailles le geste d’abord, la condition physique avec, et tu repars l’après-midi avec les épaules qui chauffent encore.",
     qualites: ["Pédagogue", "Rigoureux", "À l'écoute", "Motivant", "Exigeant"],
     formation: ["BPJEPS AF"],
     approche: [
@@ -539,7 +539,7 @@ const _COACHES = [
     role: "Anglaise loisirs · Anglaise compétiteurs",
     tag: "Les soirs loisirs",
     disciplines: ["Boxe anglaise loisirs", "Boxe anglaise compétiteurs"],
-    note: "L’anglaise du soir, dans les deux sens : les loisirs du lundi et du vendredi à 19h45, et le cours du mercredi qui pousse jusqu’à 20h15. Que tu veuilles apprendre à boxer ou préparer un combat, c’est le même homme qui tient les deux bouts.",
+    note: "L’anglaise du soir, dans les deux sens : les loisirs du lundi et du vendredi à 19h45, et le bloc du mercredi qui pousse de 18h45 à 20h15. Tu ne sais pas encore où tu te situes ? Prends un lundi — c’est un cours loisirs, la progression s’adapte à ce que tu sais faire. Et le jour où tu voudras préparer un combat, tu n’auras pas de coach à réapprendre : c’est le même homme qui tient les deux bouts.",
     qualites: ["Pédagogue", "Rigoureux", "À l'écoute", "Motivant", "Exigeant"],
     formation: ["Licence STAPS"],
     approche: [
@@ -557,7 +557,7 @@ const _COACHES = [
     role: "Boxe loisirs · Boxe éducative",
     tag: "L'école",
     disciplines: ["Boxe loisirs", "Boxe éducative"],
-    note: "Boxeur professionnel — et c’est à lui que la salle confie toute l’école : Baby Boxe dès 3 ans, éducative 7/11, ados 12/16, mercredi et samedi. Une boxe technique et engagée, mise à hauteur d’enfant sans jamais être au rabais.",
+    note: "Boxeur professionnel, 2ᵉ français chez les super-coqs — et c’est à lui que la salle confie toute l’école : Baby Boxe dès 3 ans le samedi à 14h15, éducative 7/11 et ados 12/16 le mercredi et le samedi. La règle est fédérale et il ne la négocie pas : on touche, on ne frappe pas. Tu n’as pas à déposer ton enfant et repartir — la salle reste ouverte pendant le cours, tu peux t’asseoir et regarder. Et le samedi à 11h, le Boxing Camp des adultes, c’est lui aussi.",
     qualites: ["Technique", "Combatif", "Rigoureux", "Passionné", "Pédagogue"],
     formation: ["BPJEPS Boxe anglaise", "BPJEPS Sports de contact"],
     parcours: "Boxeur professionnel — 3 victoires, 1 défaite, 1 nul · 2ᵉ français chez les super-coqs",
@@ -618,9 +618,9 @@ const _SCHEDULE = [
    n’était écrit NULLE PART : un signal visuel que personne ne pouvait lire.
    Il se lit maintenant. */
 export const GRID_LEGEND = [
-  { cls: "feminin", label: "Lady Punch", d: "créneau 100 % féminin" },
-  { cls: "mma", label: "Cage", d: "grappling & MMA tous niveaux, dans l’octogone" },
-  { cls: "enfant", label: "École", d: "Baby Boxe, éducative, ados" },
+  { cls: "feminin", label: "Lady Punch", d: "100 % féminin, lundi et vendredi 18h avec Sonia — beaucoup y mettent un gant pour la première fois" },
+  { cls: "mma", label: "Cage", d: "l’octogone de 7 m — mardi soir, le grappling y prend les débutants ; le MMA deux soirs, mardi et jeudi" },
+  { cls: "enfant", label: "École", d: "dès 3 ans, mercredi et samedi après-midi — et tu peux rester dans la salle pendant le cours" },
 ];
 
 /* ------------------------------------------------------------------ *
@@ -642,7 +642,7 @@ export const GRID_LEGEND = [
  * ------------------------------------------------------------------ */
 export const ENTREE = {
   eyebrow: "Par où on entre",
-  lead: "Chaque famille pesée contre le planning de la rentrée : ce qu’elle occupe dans la semaine, quels jours, et ce qu’on te demande de savoir en poussant la porte.",
+  lead: "Tu ne sais pas par laquelle commencer ? Prends le problème par les jours : combien de créneaux chaque famille occupe dans la semaine, quand ils tombent, et ce qu’on te demande de savoir en arrivant. Pour cette dernière colonne, la réponse est courte : rien.",
   // verbatims du champ `niveau` (DISCIPLINES) — aucune reformulation
   ouvertes: ["Zéro prérequis", "Tous niveaux", "Tous niveaux · débutants acceptés", "Débutant → confirmé", "Baby → ados", "À ton rythme"],
   kOuvert: "Sans prérequis",
@@ -900,28 +900,29 @@ export const CARNET = {
     const N = ["zéro", "Une", "Deux", "Trois", "Quatre", "Cinq", "Six", "Sept", "Huit"];
     const avec = zones.filter((z) => z.discs.length).length;
     const sans = zones.length - avec;
-    const g = `${N[avec] || avec} zone${avec > 1 ? "s" : ""} sur ${N[zones.length]?.toLowerCase() || zones.length} ${avec > 1 ? "ont" : "a"} un horaire.`;
-    if (!sans) return `${g} Chacune est rendue au planning officiel.`;
+    const g = `${N[avec] || avec} zone${avec > 1 ? "s" : ""} sur ${N[zones.length]?.toLowerCase() || zones.length} ${avec > 1 ? "portent" : "porte"} un créneau au planning.`;
+    const clic = "Clique un cours : tu tombes sur son niveau, ses jours et le coach qui le tient.";
+    if (!sans) return `${g} ${clic}`;
     const q = sans > 1
-      ? `Les ${N[sans].toLowerCase()} autres sont des plans d’ensemble : aucun cours ne s’y donne, donc aucun horaire.`
-      : "L’autre est un plan d’ensemble : aucun cours ne s’y donne, donc aucun horaire.";
-    return `${g} ${q}`;
+      ? `Les ${N[sans].toLowerCase()} autres sont des vues d’ensemble : tu y vois la salle, pas un cours.`
+      : "L’autre est une vue d’ensemble : tu y vois la salle, pas un cours.";
+    return `${g} ${q} ${clic}`;
   },
-  horsDefaut: "Plan d’ensemble : on y voit l’espace, pas un cours. Donc pas d’horaire — on n’en invente pas.",
+  horsDefaut: "C’est la vue d’ensemble : le ring, le tatami, l’octogone, et l’étage au-dessus. Aucun cours ne porte ce nom-là — c’est le décor de tous les autres.",
   /* les trois règles du carnet — la méthode, dite une fois, ici et nulle part
      ailleurs sur le site. */
   regles: [
     {
-      k: "Une seule salle",
-      d: "Aucun cadre ne vient d’une autre salle du réseau ni d’une banque d’images. Si ce n’est pas Ramonville, ce n’est pas dans ces pages — même quand ça laisse un trou.",
+      k: "Le son",
+      d: "La ligne de sacs lourds, les pattes d’ours en binôme, le Boxing Camp du samedi 11h : rien de ce qui s’entend ici ne tient dans un fichier image. C’est pourtant la première chose qui te tombe dessus en entrant.",
     },
     {
-      k: "Le photographe est nommé",
-      d: `Deux photos portent la signature de leur auteur, ${PHOTO_CREDIT} — incrustée dans l’image, on ne la rogne pas — c’est la seule façon honnête de garder l’image.`,
+      k: "Le niveau des autres",
+      d: "Sur une photo, tout le monde a l’air de savoir déjà. Le planning dit autre chose : le grappling du mardi et le MMA du jeudi sont marqués tous niveaux, débutants acceptés ; le Lady Punch du lundi, zéro prérequis. On ne te demande rien à l’entrée.",
     },
     {
-      k: "Aucune heure sur les légendes",
-      d: "Les vingt-quatre cadres sont pris de jour et à couvert. La seule heure du carnet est celle de la bande du haut : elle vient du ciel de Ramonville, à la seconde où tu lis.",
+      k: "L’heure d’après",
+      d: "Les photos s’arrêtent à la fin du cours ; la salle non. L’étage muscu/cardio est en accès libre de 10h à 21h30, six jours sur sept, sans créneau ni inscription : tu montes avant, tu restes après, ou tu viens sans qu’aucun cours ne t’attende.",
     },
   ],
   // le renvoi de la page blanche : le relevé complet appartient à /la-salle/
@@ -929,12 +930,12 @@ export const CARNET = {
 };
 
 export const FAQ = [
-  { q: "Où se trouve Boxing Center Ramonville ?", a: "Au 33 rue des Ormes, 31520 Ramonville-Saint-Agne, dans le sud toulousain — au pied du terminus du métro (ligne B, Ramonville) et de l’arrêt bus Ramonville Sud." },
+  { q: "Où se trouve Boxing Center Ramonville ?", a: "Au 33 rue des Ormes, 31520 Ramonville-Saint-Agne, dans le sud toulousain — au pied du terminus du métro (ligne B, Ramonville) et de l’arrêt bus Ramonville Sud. En voiture, c’est la sortie Ramonville de la rocade, et le parking est gratuit." },
   { q: "C’est vrai qu’on s’entraîne dehors ?", a: "Oui, et c’est la seule des cinq salles où c’est possible : 300 m² dehors, aménagés et couverts, praticables toute l’année — une averse ne renvoie personne à l’intérieur. Sous charpente, tu as l’octogone de 7 m et le grand ring de boxe." },
-  { q: "Quelles disciplines peut-on pratiquer ?", a: "Boxe anglaise et anglaise loisirs, boxe pieds-poings, grappling, MMA tous niveaux dans l’octogone, Boxing Camp, Lady Punch (100 % féminin) et toute l’école enfants du Baby Boxe (3 ans) aux ados 12/16. Un étage muscu/cardio est en accès libre." },
-  { q: "Y a-t-il des cours pour les enfants ?", a: "Oui, dès 3 ans : Baby Boxe 3/6 le samedi, éducative 7/11 ans et ados 12/16 ans le mercredi et le samedi après-midi, encadrés par Valentin Guth." },
-  { q: "Faut-il un niveau pour commencer ?", a: "Aucun. L’offre de rentrée à 29 € par personne ouvre quatre semaines de cours illimités, matériel prêté. La plupart des créneaux — loisirs, camp, pieds-poings — sont ouverts à tous les niveaux." },
-  { q: "Quels sont les horaires ?", a: "Du lundi au samedi, de 10h00 à 21h30, accès libre muscu/cardio inclus. Fermé le dimanche. Un émargement GPS est demandé en salle avant chaque cours." },
+  { q: "Quelles disciplines peut-on pratiquer ?", a: "Boxe anglaise et anglaise loisirs, boxe pieds-poings, grappling, MMA tous niveaux dans l’octogone, Boxing Camp, Lady Punch (100 % féminin) et toute l’école enfants du Baby Boxe (3 ans) aux ados 12/16. Un étage muscu/cardio est en accès libre. Aucune ne demande d’expérience — c’est écrit sur chaque fiche, du Lady Punch (« zéro prérequis ») au MMA du soir (« débutants acceptés »). Si tu ne sais pas par où entrer, le Boxing Camp est le meilleur point d’entrée : samedi 11h, avec Valentin Guth." },
+  { q: "Y a-t-il des cours pour les enfants ?", a: "Oui, dès 3 ans : Baby Boxe 3/6 le samedi à 14h15 ; éducative 7/11 ans à 15h et ados 12/16 ans à 16h, le mercredi et le samedi après-midi. Valentin Guth tient toute l’école. La règle est fédérale et ne se négocie pas : chez les enfants, on touche, on ne frappe pas — aucun coup porté. Et tu peux rester dans la salle pendant le cours, personne ne te demandera de revenir dans une heure." },
+  { q: "Faut-il un niveau pour commencer ?", a: "Aucun. L’offre de rentrée à 29 € par personne ouvre quatre semaines de cours illimités, matériel prêté. La plupart des créneaux — loisirs, camp, pieds-poings — sont ouverts à tous les niveaux. Le jour venu, tu dis « c’est ma première fois » à l’accueil et tu n’as plus rien à gérer : les gants sont prêtés, un coach t’emmène, personne ne te met sur le ring. Le déroulé complet est sur la page « Ta première séance »." },
+  { q: "Quels sont les horaires ?", a: "Du lundi au samedi, de 10h00 à 21h30, accès libre muscu/cardio inclus. Fermé le dimanche. Un émargement GPS est demandé en salle avant chaque cours : c’est la seule formalité de la maison, elle se fait sur place en arrivant, et elle vaut pour tout le monde — toi le premier soir comme ceux qui viennent depuis des années." },
 ];
 
 /* ------------------------------------------------------------------ *

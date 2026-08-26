@@ -120,7 +120,7 @@ function mountNav() {
            exactement comme avant. Ce qui change, c’est qu’ils ne se battent
            plus avec huit entrées de menu pour trois centimètres de barre. -->
       <div class="nav__right">
-        <a class="btn btn--primary nav__cta" data-magnetic href="${LINKS.rentree}"><span>Ma place · 29€</span></a>
+        <a class="btn btn--primary nav__cta" data-magnetic href="${LINKS.rentree}"><span>Ma place · 29 €</span></a>
         <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
     </nav>`;
@@ -197,7 +197,7 @@ function mountFooter() {
   const cols = [{ h: "Le plateau", links: NAV.slice(1, 6) }];
   const fields = [
     { k: "Établissement", v: "Boxing Center — Ramonville", wide: true },
-    { k: "Le signe", v: "Octogone 7 m · 300 m² extérieur couvert" },
+    { k: "Extérieur", v: "300 m² couverts · octogone de 7 m" },
     { k: "Niveaux", v: "2 · étage muscu/cardio" },
     { k: "Adresse", v: SALLE.address.full, wide: true },
     { k: "Horaires", v: SALLE.hours },
@@ -211,7 +211,7 @@ function mountFooter() {
         <div class="footer__head">
           <div>
             <span class="eyebrow">Le plateau t’attend</span>
-            <h2 class="display footer__cut" aria-label="Même le plafond est une excuse en moins.">Même le plafond<br><span class="tint">est une excuse en moins.</span></h2>
+            <h2 class="display footer__cut" aria-label="Le seul plateau du réseau qui a un ciel pour plafond.">Le seul plateau du réseau<br><span class="tint">qui a un ciel pour plafond.</span></h2>
           </div>
           <a class="btn btn--primary" data-magnetic href="${LINKS.rentree}"><span>Je prends ma place — 29 €</span></a>
         </div>

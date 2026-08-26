@@ -54,7 +54,7 @@ function renderStaff() {
   const box = $("#staff"); if (!box) return;
   box.innerHTML = COACHES.map((c) => {
     const face = c.img
-      ? `<div class="media staff__face"${c.ratio ? ` style="aspect-ratio:${c.ratio}"` : ""} data-img="${c.img}" data-srcset="${c.img.replace(/\.webp$/, "-320.webp")} 320w, ${c.img} 1086w" data-sizes="(max-width: 700px) 160px, 240px" data-label="" data-alt="Visuel officiel 2026/2027 de ${c.name}, ${c.tag.toLowerCase()} au Boxing Center Ramonville"></div>`
+      ? `<div class="media staff__face"${c.ratio ? ` style="aspect-ratio:${c.ratio}"` : ""} data-img="${c.img}" data-srcset="${c.img.replace(/\.webp$/, "-320.webp")} 320w, ${c.img} 1086w" data-sizes="(max-width: 700px) 160px, 240px" data-label="" data-alt="Visuel officiel 2026/2027 de ${c.name}, coach au Boxing Center Ramonville — ${c.role}"></div>`
       : `<div class="staff__face staff__face--tile" aria-hidden="true"><span>${c.name.split(" ").map((w) => w[0]).join("")}</span></div>`;
     return `<a class="staff__card ${c.pillar ? "is-pillar" : ""}" href="/coachs/">
       ${face}

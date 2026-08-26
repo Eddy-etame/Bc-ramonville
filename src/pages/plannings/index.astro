@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Le planning des cours | Boxing Center Ramonville</title>
-  <meta name="description" content="La grille officielle, filtrable par famille : adultes, féminin, grappling &amp; MMA, enfants. Lundi à samedi, 10h – 21h30." />
+  <meta name="description" content="22 cours par semaine sur 6 jours : anglaise, pieds-poings, grappling, MMA, Boxing Camp, Lady Punch et école dès 3 ans. Midi et soir, du lundi au samedi — trouve ton créneau." />
 
   <!-- Préconnexions — avant toute feuille de style -->
   <link rel="preconnect" href="https://api.open-meteo.com" crossorigin />
@@ -42,7 +42,7 @@
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:site_name" content="Boxing Center Ramonville" />
   <meta property="og:title" content="Planning | Boxing Center Ramonville" />
-  <meta property="og:description" content="La grille de la rentrée filtrable par famille, et les posters officiels en couleur." />
+  <meta property="og:description" content="22 cours par semaine, midi et soir, six jours sur sept. Regarde lequel tombe quand tu es libre." />
   <meta property="og:url" content="https://bc-ramonville.vercel.app/plannings/" />
   <!-- L’APERÇU DE PARTAGE PÈSE 132 ko, PLUS 2 Mo.
        Cette page pointait son og:image sur le PNG d’origine du poster :
@@ -59,7 +59,7 @@
   <meta property="og:image:alt" content="Cours dans l’octogone de 7 m vu d’en haut, au Boxing Center Ramonville." />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Planning | Boxing Center Ramonville" />
-  <meta name="twitter:description" content="La grille de la rentrée, les posters officiels en couleur." />
+  <meta name="twitter:description" content="22 cours par semaine, midi et soir, six jours sur sept. Trouve celui qui tient dans ta semaine." />
   <meta name="twitter:image" content="https://bc-ramonville.vercel.app/assets/img/ram/og/plannings.jpg?v=1" />
   <meta name="twitter:image:alt" content="Cours dans l’octogone de 7 m vu d’en haut, au Boxing Center Ramonville." />
 
@@ -428,7 +428,7 @@
       <div class="wrap">
         <nav class="breadcrumb" aria-label="Fil d’ariane"><a href="/">Accueil</a> / <span>Planning</span></nav>
         <h1 class="display phero__title"><span class="reveal-mask"><span>La semaine,</span></span><span class="reveal-mask"><span class="tint">cours par cours.</span></span></h1>
-        <p class="lead phero__lead" data-reveal>Du premier cours de 12h40 au dernier round qui finit à 21h15, six jours sur sept : vingt-deux cours, midi et soir, plus l’étage en accès libre. Filtre par famille, clique un cours — sa discipline s’ouvre.</p>
+        <p class="lead phero__lead" data-reveal>Du premier cours de 12h40 au dernier round qui finit à 21h15, six jours sur sept : vingt-deux cours, midi et soir, plus l’étage en accès libre. Tu n’as jamais boxé ? Les midis partent du débutant — anglaise, camp, pieds-poings, le geste propre avant le reste. Regarde simplement ce qui tombe quand tu es libre.</p>
         <!-- l’objet propre à ce hero (page.js → pheroMeta) -->
         <div class="phero__meta" id="phero-meta" data-reveal-group aria-label="Ce qui se passe maintenant à la salle"></div>
       </div>
@@ -445,7 +445,7 @@
         <!-- Repli sans JS : page.js réécrit cette ligne (RENTREE_NOTE). Les
              deux disent la même chose de la même façon, exprès — c’est la
              même ligne à l’écran, pas deux formules concurrentes. -->
-        <p class="plan__note" id="plan-note">Planning complet. En arrivant, valide ta présence en salle — l’émargement GPS est obligatoire avant chaque cours.</p>
+        <p class="plan__note" id="plan-note">C’est la grille qu’on affiche en salle, recopiée ici — clique un cours, tu tombes sur sa fiche. La seule formalité, c’est l’émargement GPS : tu valides ta présence à l’accueil avant chaque cours, et tu montes.</p>
         <div class="famfilter" id="plan-filter" role="group" aria-label="Filtrer par famille"></div>
         <p class="gridwrap__hint" aria-hidden="true">Fais glisser la grille →</p>
         <div class="gridwrap">
@@ -459,6 +459,7 @@
              vides sur douze — une page qui semblait cassée alors que la salle
              lève simplement le pied. Bloc masqué tant qu’on est en rentrée. -->
 
+        <p class="muted" data-reveal style="margin-top:clamp(2rem,4vw,3rem)">Et si tu la veux dans la poche : ouvre l’affiche en grand, garde-la sur ton téléphone. Tu sauras quand tu boxes sans rouvrir le site.</p>
         <div class="posters" id="posters" aria-label="Posters officiels"></div>
       </div>
     </section>
@@ -472,7 +473,7 @@
         <div class="shead" data-reveal>
           <span class="eyebrow">Le nombre de cours, jour par jour</span>
           <h2 class="display"><span class="reveal-mask"><span>Les jours</span></span><span class="reveal-mask"><span class="tint">les plus chargés.</span></span></h2>
-          <p class="muted">La même grille, en chiffres. De quoi choisir ton créneau selon ce que tu cherches : du monde, ou de la place.</p>
+          <p class="muted">Tu hésites entre deux soirs ? Voilà ce que pèse chacun. Du monde pour se pousser, de la place pour apprendre tranquille — les deux sont dans la même semaine.</p>
         </div>
         <div class="rythme" id="rythme"></div>
       </div>
@@ -499,7 +500,7 @@
       <div class="ctaband__inner">
         <span class="eyebrow" style="justify-content:center" data-reveal>Des cours midi et soir, six jours sur sept</span>
         <h2 class="display"><span class="reveal-mask"><span>Choisis ton soir.</span></span></h2>
-        <p class="lead" data-reveal>Ce planning est celui qu’on affiche en salle. Gants et bandes prêtés, tu montes sur le plateau.</p>
+        <p class="lead" data-reveal>Tu n’as rien à acheter pour commencer : le matériel est prêté. Tu arrives en tenue, un coach te met dans le cours, et tu frappes le soir même.</p>
         <div class="ctaband__cta" data-reveal>
           <a class="btn btn--primary" data-magnetic href="https://boutique.boxingcenter.fr/inscription?product=offre-duo&step=1&utm_source=site&utm_medium=cta&utm_campaign=bc-ramonville"><span>Je prends ma place — 29 €</span></a>
           <a class="btn btn--ghost" data-magnetic href="/tarifs/"><span>Voir les tarifs</span></a>

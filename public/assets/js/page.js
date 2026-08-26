@@ -75,9 +75,9 @@ function pheroMeta() {
        annonce « 29 € l’essai » quand l’essai est a 10 €. Un rang se deplace,
        un nom non. */
     const essai = TARIFS.find((t) => /essai/i.test(t.name || ""));
-    box.innerHTML = (essai ? chip(`<b>${essai.price}</b> l’essai`) : "")
-      + chip(`<b>${PROMOS.duo.price}</b> ${PROMOS.duo.unit}`)
-      + chip(`<b>${PROMOS.saisonOffre.price}</b> ${PROMOS.saisonOffre.unit}`);
+    box.innerHTML = chip(`<b>${PROMOS.duo.price}</b> ${PROMOS.duo.unit} · 4 semaines`)
+      + chip(`<b>${PROMOS.saisonOffre.price}</b> ${PROMOS.saisonOffre.unit} · les 5 clubs`)
+      + (essai ? chip(`<b>${essai.price}</b> l’essai, matériel prêté`) : "");
     return;
   }
 
@@ -104,7 +104,7 @@ function pheroMeta() {
     const named = new Set(SCHEDULE.map((s) => s.coach).filter((c) => !/confirmer/i.test(c)));
     box.innerHTML = chip(`<b>${named.size}</b> coachs sur le planning`)
       + chip(`<b>${SCHEDULE.length}</b> créneaux / semaine`)
-      + chip("Cinq coachs, cinq vrais visages");
+      + chip("Du <b>Baby Boxe</b> à la cage");
   }
 }
 
@@ -354,7 +354,7 @@ function renderDiscs() {
           <div class="disc__fact"><b>Niveau</b><span>${d.niveau}</span></div>
         </div>
         <div class="disc__cta">
-          <a class="btn btn--primary" data-magnetic href="${LINKS.rentree}"><span>Quatre semaines · 29€</span></a>
+          <a class="btn btn--primary" data-magnetic href="${LINKS.rentree}"><span>Quatre semaines · 29 €</span></a>
           <a class="btn btn--ghost" data-magnetic href="/plannings/"><span>Voir le planning</span></a>
         </div>
       </div>
@@ -391,11 +391,13 @@ function renderEntree() {
     const slots = SCHEDULE.filter((s) => s.fam === key);
     const jours = [...new Set(slots.map((s) => s.day))].sort((a, b) => dayIx(a) - dayIx(b));
     const nOpen = discs.filter(isOpen).length;
-    /* MIXTE, et il faut le dire : le grappling est « Tous niveaux » quand
-       le MMA tous niveaux est « Confirmé ». Marquer toute la famille « quand tu es
-       prêt » fermait une porte que la salle ouvre — et contredisait le code
-       du plateau, qui écrit noir sur blanc que la cage du mardi est celle
-       des débutants. On compte les portes au lieu de les rabattre. */
+    /* ON COMPTE LES PORTES, ON NE LES RABAT PAS. Les deux créneaux de la
+       cage sont ouverts : le grappling est « Tous niveaux », le MMA est
+       « Tous niveaux · débutants acceptés ». Ce second libellé manquait à
+       ENTREE.ouvertes — et son absence faisait écrire à la page que le MMA
+       attend que tu saches tenir un round, contre sa propre fiche affichée
+       quinze centimètres plus haut. Le compte reste conservé tel quel pour
+       le jour où un créneau, lui, se refermera vraiment. */
     const lvl = nOpen === discs.length ? ENTREE.kOuvert
       : nOpen === 0 ? ENTREE.kReserve
       : `${nOpen} sur ${discs.length} sans prérequis`;
@@ -423,9 +425,9 @@ function renderEntree() {
     <p class="entree__lead" data-reveal>${ENTREE.lead}</p>
     <div class="fams" data-reveal-group>${cards}</div>
     <p class="entree__read" data-reveal>
-      <b>${nOpen} côtés sur ${DISCIPLINES.length}</b> s’ouvrent sans rien savoir faire — tu prends des gants, tu montes.
+      <b>${nOpen} côtés sur ${DISCIPLINES.length}</b> s’ouvrent sans rien savoir faire : les gants et les bandes sont prêtés, tu préviens le coach en arrivant, et tu fais la séance avec les autres.
       ${reserve.length
-        ? `${reserve.length === 1 ? "Le dernier" : `Les ${reserve.length} derniers`} — ${reserve.map((d) => d.name).join(", ")} — ${reserve.length === 1 ? "attend" : "attendent"} que tu saches déjà tenir un round : c’est écrit, on ne t’y pousse pas le premier soir.`
+        ? `${reserve.length === 1 ? "Le dernier" : `Les ${reserve.length} derniers`} — ${reserve.map((d) => d.name).join(", ")} — ${reserve.length === 1 ? "demande" : "demandent"} quelques séances derrière toi : on te le dira, on ne t’y enverra pas le premier soir.`
         : ""}
     </p>`;
 
@@ -678,7 +680,7 @@ function renderPlanning() {
      maison, elle doit être dite deux fois ; elle n’a pas à être écrite
      deux fois de la même façon. Là-bas c’est un constat de visite, ici
      c’est une consigne d’arrivée — et le fait ne bouge pas d’un mot. */
-  const RENTREE_NOTE = `<b>${SEASON_LABEL}</b> — planning complet. En arrivant, valide ta présence en salle — l’émargement GPS est obligatoire avant chaque cours.`;
+  const RENTREE_NOTE = `<b>${SEASON_LABEL}</b> — la grille qu’on affiche en salle, recopiée ici : clique un cours, tu tombes sur sa fiche. La seule formalité, c’est l’émargement GPS — tu valides ta présence à l’accueil avant chaque cours, et tu montes.`;
   // Le détail de l’été (renforts, accès libre, retour de la rentrée) vit
   // maintenant DANS le bloc #ete, en clair. Cette note ne le répète pas : une
   // bonne phrase ne se dit qu’une fois par site (standards §7).
@@ -776,10 +778,10 @@ function renderRythme() {
         </div>`).join("")}
     </div>
     <div class="rythme__reads" data-reveal-group>
-      <p><b>${sum("midi")}</b> cours le midi, <b>${sum("soir")}</b> le soir. La salle se remplit deux fois par jour : la pause déjeuner pour le geste propre, le soir pour le volume et le bruit.</p>
+      <p><b>${sum("midi")}</b> cours le midi, <b>${sum("soir")}</b> le soir. La salle se remplit deux fois par jour. Le midi, c’est le format qui tient dans une pause déjeuner : tu tapes, tu souffles, tu repars les épaules cuites et tu es à l’heure. Le soir, c’est le volume, le bruit, et du monde à qui se mesurer.</p>
       <p>${exAequo.length > 1 ? `<b>${exAequo.map((p) => p.d).join(", ")}</b> sont les jours les plus chargés — ${busiest.n} cours chacun.` : `<b>${busiest.d}</b> est le jour le plus chargé — ${busiest.n} cours, de ${busiest.first} à ${busiest.last}.`} Tu veux du monde sur le plateau ? Viens ${exAequo.length > 1 ? "ces jours-là" : "ce jour-là"}. Tu veux de la place ? Prends un midi.</p>
       <p>${apremEcole
-        ? `Les <b>${sum("aprem")}</b> créneaux d’après-midi sont <b>tous</b> à l’école enfants — mercredi et samedi, entre 14h et 17h, le plateau est à eux.`
+        ? `Les <b>${sum("aprem")}</b> créneaux d’après-midi sont <b>tous</b> à l’école enfants — mercredi et samedi, entre 14h et 17h, le plateau est à eux. Et si c’est ton enfant qui boxe, tu n’es pas obligé d’attendre dehors : la salle reste ouverte pendant le cours.`
         : `<b>${sum("aprem")}</b> créneaux d’après-midi, entre 14h et 17h.`}
         Le reste du temps, rien ne ferme : accès libre de 10h à 21h30, six jours sur sept.</p>
     </div>`;
@@ -881,7 +883,7 @@ function renderContact() {
       <span class="hrow__d">${h.d}</span>
       <span class="hrow__h">${h.h}</span>
     </div>`).join("")
-    + `<p class="hrow__note">L’accès libre muscu/cardio suit les mêmes horaires : tant que la salle est ouverte, le plateau et l’étage le sont.</p>`;
+    + `<p class="hrow__note">L’accès libre muscu/cardio suit les mêmes horaires : tant que la salle est ouverte, le plateau et l’étage le sont. Tu n’as personne à prévenir — tu viens à l’heure qui t’arrange, tu montes, tu t’entraînes.</p>`;
 
   const map = $("#map");
   if (map) map.innerHTML = `<iframe title="Carte — Boxing Center Ramonville, ${SALLE.address.full}" src="${SALLE.mapsUrl}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`;

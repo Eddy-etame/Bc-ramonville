@@ -36,7 +36,7 @@ function _bcpLirePlaces() {
   return _bcpPlaces;
 }
 
-const _BCP_MOIS = ["janvier", "fevrier", "mars", "avril", "mai", "juin", "juillet", "aout", "septembre", "octobre", "novembre", "decembre"];
+const _BCP_MOIS = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"];
 
 function _bcpDateEnClair(iso) {
   const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || "");
@@ -55,7 +55,7 @@ export async function initPlaces() {
   const fin = d.fin ? _bcpDateEnClair(d.fin) : null;
   cibles.forEach((el) => {
     el.textContent = n === 1
-      ? "Derniere place a ce prix"
+      ? "Dernière place à ce prix"
       : "Plus que " + n + " places a ce prix" + (fin ? ", jusqu\u2019au " + fin : "");
     el.hidden = false;
     el.setAttribute("role", "status");
