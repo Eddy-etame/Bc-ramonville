@@ -309,7 +309,7 @@ export const DEHORS = {
   // NE REPREND PAS la formule de la section « 300 m² plein ciel » plus haut
   // (« couvert veut dire couvert… ») : une bonne phrase ne se dit qu’une fois
   // par site. Celle-ci pose le registre du relevé, pas le claim.
-  lead: "Ce qu’on sait mesurer d’un lieu qu’on n’a pas encore photographié : sa surface, sa couverture, ses heures — et le ciel qu’il a au-dessus, qui lui se relève en direct.",
+  lead: "Le plateau extérieur, en chiffres : sa surface, sa couverture, ses heures — et le ciel au-dessus, relevé en direct.",
   /* les quatre lignes mesurées — verbatims officiels, rien d’ajouté */
   mesures: [
     // « d’un seul tenant » a été retiré : aucune source ne dit que les 300 m²
@@ -326,7 +326,7 @@ export const DEHORS = {
   nonReleve: {
     k: "Cliché",
     v: "Non relevé",
-    d: "Les vingt-quatre photos du carnet sont prises à couvert. Aucune ne montre le dehors — on ne montre que ce qu’on a filmé.",
+    d: "Aucune des vingt-quatre photos de la galerie ne montre le dehors : il n’a pas encore été shooté. En attendant, voilà ses chiffres — et le vrai ciel au-dessus.",
   },
   /* la légende du cadre vivant (le ciel remplace la photo absente) */
   cadre: {
@@ -374,8 +374,8 @@ export const ARPENT = {
   kCage: "L’octogone · 7 m",
   scale: "Même échelle",
   // la phrase qui tient tout le parti pris — elle ne se dit qu’ICI
-  honest: "La surface est relevée. La forme ne l’est pas — on ne la dessine donc pas.",
-  legend: "Trois cents carrés d’un mètre, rangés pour être comptés. À droite, la cage de 7 m au même étalon : c’est l’écart entre ce que tu connais déjà et ce qui t’attend dehors.",
+  honest: "300 m² mesurés sur les documents officiels de la salle. La forme exacte, tu la verras sur place.",
+  legend: "300 carrés d’un mètre chacun — la surface réelle du plateau extérieur. À droite, l’octogone de 7 m à la même échelle : compare, et tu vois ce qui t’attend dehors.",
 };
 
 /* ------------------------------------------------------------------ *
@@ -889,8 +889,8 @@ export const GALLERY = [
 export const CARNET = {
   // les en-têtes de section vivent en clair dans /galerie/ (comme partout sur
   // le site) ; ici, seulement ce qui est DONNÉE ou étiquette réutilisée.
-  kQuoi: "Ce qui s’y tient",
-  kQuand: "Quand",
+  kQuoi: "Les cours",
+  kQuand: "Les jours",
   kLarge: "Plan large",
   /* COMPTE, PAS TEXTE. Cette phrase disait « quatre zones sur six » en
      dur : elle redevenait fausse au premier cliché ajouté — et elle l'est
@@ -903,11 +903,11 @@ export const CARNET = {
     const g = `${N[avec] || avec} zone${avec > 1 ? "s" : ""} sur ${N[zones.length]?.toLowerCase() || zones.length} ${avec > 1 ? "ont" : "a"} un horaire.`;
     if (!sans) return `${g} Chacune est rendue au planning officiel.`;
     const q = sans > 1
-      ? `Les ${N[sans].toLowerCase()} autres sont des plans d’ensemble : on ne leur en fabrique pas un.`
-      : "L’autre est un plan d’ensemble : on ne lui en fabrique pas un.";
+      ? `Les ${N[sans].toLowerCase()} autres sont des plans d’ensemble : aucun cours ne s’y donne, donc aucun horaire.`
+      : "L’autre est un plan d’ensemble : aucun cours ne s’y donne, donc aucun horaire.";
     return `${g} ${q}`;
   },
-  horsDefaut: "Plan d’ensemble : on y voit les volumes, pas un cours. Aucun horaire ne lui appartient en propre — on n’en invente pas.",
+  horsDefaut: "Plan d’ensemble : on y voit l’espace, pas un cours. Donc pas d’horaire — on n’en invente pas.",
   /* les trois règles du carnet — la méthode, dite une fois, ici et nulle part
      ailleurs sur le site. */
   regles: [
@@ -917,7 +917,7 @@ export const CARNET = {
     },
     {
       k: "Le photographe est nommé",
-      d: `Deux fichiers portent une signature incrustée : ${PHOTO_CREDIT}. On la cite sous le cadre au lieu de la rogner — c’est la seule façon honnête de garder l’image.`,
+      d: `Deux photos portent la signature de leur auteur, ${PHOTO_CREDIT} — incrustée dans l’image, on ne la rogne pas — c’est la seule façon honnête de garder l’image.`,
     },
     {
       k: "Aucune heure sur les légendes",
@@ -925,7 +925,7 @@ export const CARNET = {
     },
   ],
   // le renvoi de la page blanche : le relevé complet appartient à /la-salle/
-  renvoi: { label: "Voir le relevé du dehors", href: "/la-salle/#releve" },
+  renvoi: { label: "Découvrir le plateau extérieur", href: "/la-salle/#releve" },
 };
 
 export const FAQ = [
