@@ -70,7 +70,12 @@ function pheroMeta() {
   }
 
   if (page === "tarifs") {
-    box.innerHTML = chip(`<b>${TARIFS[0].price}</b> l’essai`)
+    /* PAR SON NOM, PAS PAR SON RANG. TARIFS[0] a designe la Seance d’essai
+       jusqu’au jour ou l’Offre Rentree est passee en tete : la chip a alors
+       annonce « 29 € l’essai » quand l’essai est a 10 €. Un rang se deplace,
+       un nom non. */
+    const essai = TARIFS.find((t) => /essai/i.test(t.name || ""));
+    box.innerHTML = (essai ? chip(`<b>${essai.price}</b> l’essai`) : "")
       + chip(`<b>${PROMOS.duo.price}</b> ${PROMOS.duo.unit}`)
       + chip(`<b>${PROMOS.saisonOffre.price}</b> ${PROMOS.saisonOffre.unit}`);
     return;

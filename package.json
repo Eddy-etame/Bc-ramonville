@@ -6,13 +6,14 @@
     "_note_prepare": "npm install branche le crochet qui retire les signatures d'outil des messages de commit (voir .githooks/commit-msg)",
     "prepare": "git config core.hooksPath .githooks",
     "dev": "astro dev",
-    "build": "node scripts/content.mjs && astro build && node scripts/maillage.mjs && node scripts/cuire-galerie.mjs && node scripts/cuire-pages.mjs && node scripts/minify.mjs && node scripts/empreinte-assets.mjs && node scripts/cuire-llms.mjs && node scripts/sitemap.mjs && node scripts/cuire-md.mjs",
+    "build": "node scripts/verifier-coherence.mjs && node scripts/content.mjs && astro build && node scripts/maillage.mjs && node scripts/cuire-galerie.mjs && node scripts/cuire-pages.mjs && node scripts/minify.mjs && node scripts/empreinte-assets.mjs && node scripts/cuire-llms.mjs && node scripts/sitemap.mjs && node scripts/cuire-md.mjs",
     "content": "node scripts/content.mjs",
     "preview": "astro preview",
     "images": "node scripts/images.mjs",
     "minify": "node scripts/minify.mjs",
     "sitemap": "node scripts/sitemap.mjs",
-    "fonts": "python scripts/fonts.py"
+    "fonts": "python scripts/fonts.py",
+    "coherence": "node scripts/verifier-coherence.mjs"
   },
   "dependencies": {
     "astro": "^5.0.0",

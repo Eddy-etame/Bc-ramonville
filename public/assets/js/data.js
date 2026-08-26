@@ -151,7 +151,7 @@ const _DISCIPLINES = [
     name: "Boxe Anglaise",
     tag: "Le noble art",
     famille: "adulte",
-    coach: "Valentin Guth · Farouk",
+    coach: "Hicham · Farouk",
     /* RECOPIÉ SUR LA GRILLE, PAS SUR LA VERSION D’AVANT. Le poster de la
        rentrée a redressé le mercredi soir — un seul bloc d’anglaise 18h45 →
        20h15 avec Farouk, et non un loisirs de 19h45. Cette ligne l’ignorait
@@ -227,7 +227,7 @@ const _DISCIPLINES = [
        devenu du pieds-poings, et Farouk n’en tient plus aucun : il a le bloc
        d’anglaise du mercredi soir. On corrige la fiche plutôt que de laisser
        la page promettre un cinquième créneau qui n’existe plus. */
-    coach: "Sonia · Jérôme · Valentin Guth · mer. midi à confirmer",
+    coach: "Sonia · Hicham · Jérôme · Valentin Guth",
     jours: "Lun. & mer. 12h40 · jeu. 18h40 · sam. 11h",
     niveau: "Tous niveaux",
     desc: "Le format signature Boxing Center : technique, cardio et sacs dans une seule séance dense. Quatre créneaux, du lundi midi au samedi matin — le meilleur point d’entrée si tu hésites encore.",
@@ -268,7 +268,7 @@ const _DISCIPLINES = [
     img: null,
     nophoto: "Pas de photo des cours enfants : on ne publie pas le visage d’un enfant sans l’accord de ses parents. Le mercredi et le samedi, la salle est à eux.",
     img: "/assets/img/ram/photos/cours-de-renforcement-vue-plongeante-boxing-center-ramonville.webp",
-    imgAlt: "Cours de boxe éducative pour enfants au Boxing Center Ramonville."
+    imgAlt: "Cours collectif vu d’en haut sur le plateau du Boxing Center Ramonville."
   },
   {
     key: "acces-libre",
@@ -644,7 +644,7 @@ export const ENTREE = {
   eyebrow: "Par où on entre",
   lead: "Chaque famille pesée contre le planning de la rentrée : ce qu’elle occupe dans la semaine, quels jours, et ce qu’on te demande de savoir en poussant la porte.",
   // verbatims du champ `niveau` (DISCIPLINES) — aucune reformulation
-  ouvertes: ["Zéro prérequis", "Tous niveaux", "Débutant → confirmé", "Baby → ados", "À ton rythme"],
+  ouvertes: ["Zéro prérequis", "Tous niveaux", "Tous niveaux · débutants acceptés", "Débutant → confirmé", "Baby → ados", "À ton rythme"],
   kOuvert: "Sans prérequis",
   kReserve: "Quand tu es prêt",
   kSlots: "créneaux / semaine",
