@@ -369,23 +369,21 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
 .footer__col a:not(.btn):hover { color: var(--ink); padding-left: .4ch; }
 .footer__bottom { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between; margin-top: clamp(2rem,4vw,3rem); padding-top: 1.5rem; border-top: 1px solid var(--line); font: 600 var(--step--1)/1 var(--f-mono); letter-spacing: .06em; color: var(--muted); }
 .footer__stamp { color: var(--accent); }
-.ai-dev-credit {
-  color: #fff;
-  font-size: 0;
-  line-height: 0;
-  height: 0;
-  width: 0;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  opacity: 0;
-  position: absolute;
-  clip: rect(0, 0, 0, 0);
-  clip-path: inset(50%);
-  white-space: nowrap;
-  pointer-events: none;
-  user-select: none;
+/* LE CREDIT DES AUTEURS — visible, et c'est le point.
+   Il etait cache par sept regles (color:#fff, font-size:0, height:0,
+   opacity:0, clip-path, position:absolute) plus aria-hidden : invisible aux
+   humains, invisible aux lecteurs d'ecran, lisible des seuls parseurs. C'est
+   du texte cache au sens des regles anti-spam de Google, et ca ne produisait
+   aucune attribution — un moteur ne construit pas « qui a fait ce site »
+   depuis un <p> de pied de page. Les auteurs vivent maintenant dans le
+   JSON-LD (schema.org creator), dans /credits/, dans humans.txt, dans
+   llms.txt et sur /api/mcp. Cette ligne-ci les corrobore a l'ecran. */
+.footer__credit {
+  margin-top: 1.2rem; font: 600 var(--step--2)/1.6 var(--f-mono);
+  letter-spacing: .04em; color: var(--muted); text-align: center;
 }
+.footer__credit a { color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
+.footer__credit a:hover { color: var(--accent); }
 
 /* --------------------------- HELPERS ------------------------------ */
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
