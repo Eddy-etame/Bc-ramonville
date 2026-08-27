@@ -425,9 +425,9 @@ function renderEntree() {
     <p class="entree__lead" data-reveal>${ENTREE.lead}</p>
     <div class="fams" data-reveal-group>${cards}</div>
     <p class="entree__read" data-reveal>
-      <b>${nOpen} côtés sur ${DISCIPLINES.length}</b> s’ouvrent sans rien savoir faire : les gants et les bandes sont prêtés, tu préviens le coach en arrivant, et tu fais la séance avec les autres.
+      <b>${nOpen} côtés sur ${DISCIPLINES.length}</b> s’ouvrent sans rien savoir faire. Les gants et les bandes sont prêtés. Tu préviens le coach en arrivant. Tu fais la séance avec les autres.
       ${reserve.length
-        ? `${reserve.length === 1 ? "Le dernier" : `Les ${reserve.length} derniers`} — ${reserve.map((d) => d.name).join(", ")} — ${reserve.length === 1 ? "demande" : "demandent"} quelques séances derrière toi : on te le dira, on ne t’y enverra pas le premier soir.`
+        ? `${reserve.length === 1 ? "Le dernier" : `Les ${reserve.length} derniers`} — ${reserve.map((d) => d.name).join(", ")} — ${reserve.length === 1 ? "demande" : "demandent"} quelques séances derrière toi. On te le dira. On ne t’y enverra pas le premier soir.`
         : ""}
     </p>`;
 
@@ -680,7 +680,7 @@ function renderPlanning() {
      maison, elle doit être dite deux fois ; elle n’a pas à être écrite
      deux fois de la même façon. Là-bas c’est un constat de visite, ici
      c’est une consigne d’arrivée — et le fait ne bouge pas d’un mot. */
-  const RENTREE_NOTE = `<b>${SEASON_LABEL}</b> — la grille qu’on affiche en salle, recopiée ici : clique un cours, tu tombes sur sa fiche. La seule formalité, c’est l’émargement GPS — tu valides ta présence à l’accueil avant chaque cours, et tu montes.`;
+  const RENTREE_NOTE = `<b>${SEASON_LABEL}</b> — la grille affichée en salle, recopiée ici. Clique un cours, tu tombes sur sa fiche. Une seule formalité : l’émargement GPS. Tu valides ta présence à l’accueil avant chaque cours. Et tu montes.`;
   // Le détail de l’été (renforts, accès libre, retour de la rentrée) vit
   // maintenant DANS le bloc #ete, en clair. Cette note ne le répète pas : une
   // bonne phrase ne se dit qu’une fois par site (standards §7).
@@ -778,12 +778,12 @@ function renderRythme() {
         </div>`).join("")}
     </div>
     <div class="rythme__reads" data-reveal-group>
-      <p><b>${sum("midi")}</b> cours le midi, <b>${sum("soir")}</b> le soir. La salle se remplit deux fois par jour. Le midi, c’est le format qui tient dans une pause déjeuner : tu tapes, tu souffles, tu repars les épaules cuites et tu es à l’heure. Le soir, c’est le volume, le bruit, et du monde à qui se mesurer.</p>
-      <p>${exAequo.length > 1 ? `<b>${exAequo.map((p) => p.d).join(", ")}</b> sont les jours les plus chargés — ${busiest.n} cours chacun.` : `<b>${busiest.d}</b> est le jour le plus chargé — ${busiest.n} cours, de ${busiest.first} à ${busiest.last}.`} Tu veux du monde sur le plateau ? Viens ${exAequo.length > 1 ? "ces jours-là" : "ce jour-là"}. Tu veux de la place ? Prends un midi.</p>
+      <p><b>${sum("midi")}</b> cours le midi, <b>${sum("soir")}</b> le soir. La salle se remplit deux fois par jour. Le midi tient dans une pause déjeuner. Tu tapes, tu souffles, tu repars les épaules cuites. Et tu es à l’heure. Le soir, c’est le volume et le bruit. Et du monde à qui se mesurer.</p>
+      <p>${exAequo.length > 1 ? `<b>${exAequo.map((p) => p.d).join(", ")}</b> sont les jours les plus chargés. ${busiest.n} cours chacun.` : `<b>${busiest.d}</b> est le jour le plus chargé. ${busiest.n} cours, de ${busiest.first} à ${busiest.last}.`} Tu veux du monde sur le plateau ? Viens ${exAequo.length > 1 ? "ces jours-là" : "ce jour-là"}. Tu veux de la place ? Prends un midi.</p>
       <p>${apremEcole
-        ? `Les <b>${sum("aprem")}</b> créneaux d’après-midi sont <b>tous</b> à l’école enfants — mercredi et samedi, entre 14h et 17h, le plateau est à eux. Et si c’est ton enfant qui boxe, tu n’es pas obligé d’attendre dehors : la salle reste ouverte pendant le cours.`
+        ? `Les <b>${sum("aprem")}</b> créneaux d’après-midi sont <b>tous</b> à l’école enfants. Mercredi et samedi, entre 14h et 17h, le plateau est à eux. Ton enfant boxe ? Tu n’es pas obligé d’attendre dehors. La salle reste ouverte pendant le cours.`
         : `<b>${sum("aprem")}</b> créneaux d’après-midi, entre 14h et 17h.`}
-        Le reste du temps, rien ne ferme : accès libre de 10h à 21h30, six jours sur sept.</p>
+        Le reste du temps, rien ne ferme. Accès libre de 10h à 21h30, six jours sur sept.</p>
     </div>`;
 }
 
@@ -883,7 +883,7 @@ function renderContact() {
       <span class="hrow__d">${h.d}</span>
       <span class="hrow__h">${h.h}</span>
     </div>`).join("")
-    + `<p class="hrow__note">L’accès libre muscu/cardio suit les mêmes horaires : tant que la salle est ouverte, le plateau et l’étage le sont. Tu n’as personne à prévenir — tu viens à l’heure qui t’arrange, tu montes, tu t’entraînes.</p>`;
+    + `<p class="hrow__note">L’accès libre muscu/cardio suit les mêmes horaires : salle ouverte, plateau et étage ouverts. Tu n’as personne à prévenir. Tu viens à l’heure qui t’arrange. Tu montes. Tu t’entraînes.</p>`;
 
   const map = $("#map");
   if (map) map.innerHTML = `<iframe title="Carte — Boxing Center Ramonville, ${SALLE.address.full}" src="${SALLE.mapsUrl}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`;
