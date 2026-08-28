@@ -52,6 +52,15 @@
       ]
     },
     {
+      "source": "/api/mcp",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "all"
+        }
+      ]
+    },
+    {
       "source": "/api/(.*)",
       "headers": [
         {

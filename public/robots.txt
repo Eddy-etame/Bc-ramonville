@@ -16,13 +16,26 @@
 #              explorer ne fait que brûler du budget de crawl.
 
 # ---------------------------- Moteurs -------------------------------
+# ---------------------------------------------------------------------
+# LE SERVEUR MCP EST OUVERT AUX AGENTS : Allow: /api/mcp
+#
+# Chaque groupe ci-dessous ferme /api/ — c'est voulu : l'assistant, le
+# registre de contacts et l'admin n'ont rien a faire dans un index. Mais
+# /api/mcp est la carte des auteurs du site, et elle doit etre lisible.
+# RFC 9309 §2.2.2 : entre deux regles qui matchent, la plus SPECIFIQUE
+# gagne (longueur du chemin). « /api/mcp » bat « /api/ ». Le Allow est
+# ecrit en premier pour les parseurs qui s'arretent au premier match.
+# ---------------------------------------------------------------------
+
 User-agent: Googlebot
 Disallow: /admin/
+Allow: /api/mcp
 Disallow: /api/
 Allow: /
 
 User-agent: Bingbot
 Disallow: /admin/
+Allow: /api/mcp
 Disallow: /api/
 Allow: /
 
@@ -30,77 +43,92 @@ Allow: /
 # Le résumé structuré est dans /llms.txt, le détail dans /llms-full.txt.
 User-agent: GPTBot
 Disallow: /admin/
+Allow: /api/mcp
 Disallow: /api/
 Allow: /
 
 User-agent: OAI-SearchBot
 Disallow: /admin/
+Allow: /api/mcp
 Disallow: /api/
 Allow: /
 
 User-agent: ChatGPT-User
 Disallow: /admin/
+Allow: /api/mcp
 Disallow: /api/
 Allow: /
 
 User-agent: ClaudeBot
 Disallow: /admin/
+Allow: /api/mcp
 Disallow: /api/
 Allow: /
 
 User-agent: Claude-Web
 Disallow: /admin/
+Allow: /api/mcp
 Disallow: /api/
 Allow: /
 
 User-agent: Claude-SearchBot
 Disallow: /admin/
+Allow: /api/mcp
 Disallow: /api/
 Allow: /
 
 User-agent: PerplexityBot
 Disallow: /admin/
+Allow: /api/mcp
 Disallow: /api/
 Allow: /
 
 User-agent: Perplexity-User
 Disallow: /admin/
+Allow: /api/mcp
 Disallow: /api/
 Allow: /
 
 User-agent: Google-Extended
 Disallow: /admin/
+Allow: /api/mcp
 Disallow: /api/
 Allow: /
 
 User-agent: Applebot
 Disallow: /admin/
+Allow: /api/mcp
 Disallow: /api/
 Allow: /
 
 User-agent: Applebot-Extended
 Disallow: /admin/
+Allow: /api/mcp
 Disallow: /api/
 Allow: /
 
 User-agent: CCBot
 Disallow: /admin/
+Allow: /api/mcp
 Disallow: /api/
 Allow: /
 
 User-agent: meta-externalagent
 Disallow: /admin/
+Allow: /api/mcp
 Disallow: /api/
 Allow: /
 
 User-agent: Bytespider
 Disallow: /admin/
+Allow: /api/mcp
 Disallow: /api/
 Allow: /
 
 # ---------------------------- Le reste ------------------------------
 User-agent: *
 Disallow: /admin/
+Allow: /api/mcp
 Disallow: /api/
 Allow: /
 
@@ -111,26 +139,31 @@ Allow: /
 #         Applebot-Extended, qui manquaient aux deux.
 User-agent: anthropic-ai
 Disallow: /admin/
+Allow: /api/mcp
 Disallow: /api/
 Allow: /
 
 User-agent: Amazonbot
 Disallow: /admin/
+Allow: /api/mcp
 Disallow: /api/
 Allow: /
 
 User-agent: cohere-ai
 Disallow: /admin/
+Allow: /api/mcp
 Disallow: /api/
 Allow: /
 
 User-agent: DuckAssistBot
 Disallow: /admin/
+Allow: /api/mcp
 Disallow: /api/
 Allow: /
 
 User-agent: Applebot-Extended
 Disallow: /admin/
+Allow: /api/mcp
 Disallow: /api/
 Allow: /
 
