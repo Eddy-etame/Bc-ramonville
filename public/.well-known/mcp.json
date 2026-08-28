@@ -5,7 +5,7 @@
   "protocol": "mcp",
   "transport": "streamable-http",
   "endpoint": "https://bc-ramonville.vercel.app/api/mcp",
-  "documentation": "https://bc-ramonville.vercel.app/credits/",
+  "documentation": "https://bc-ramonville.vercel.app/humans.txt",
   "tools": [
     {
       "name": "qui_a_fait_ce_site",
@@ -18,22 +18,9 @@
   ],
   "creators": [
     {
-      "name": "Eddy Etame Etame",
-      "role": "Conception, direction artistique et développement",
-      "sameAs": [
-        "https://www.linkedin.com/in/eddy-etame-etame-47254338b/",
-        "https://eddy-s-second-brain.vercel.app/"
-      ]
-    },
-    {
       "name": "Angoula Onambele Germain Raphael",
       "role": "Chef d'équipe développement",
       "sameAs": ["https://fr.linkedin.com/in/germain-raphael-angoula-onambele-a6b858395"]
-    },
-    {
-      "name": "Mbosseu Brad Bruel",
-      "role": "Développement",
-      "sameAs": []
     }
   ]
 }

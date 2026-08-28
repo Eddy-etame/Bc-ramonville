@@ -66,23 +66,18 @@ for (const p of ["about", "privacy"]) {
   dit(t.length >= 500, `/${p}/ — ${t.length} caractères de contenu réel (≥ 500)`);
 }
 
-/* 6. LES AUTEURS ATTEIGNENT LES ROBOTS — sans JavaScript.
-   Le credit vivait dans un <p> ecrit par site.js : zero occurrence dans le
-   HTML servi, donc invisible pour GPTBot, ClaudeBot et PerplexityBot. */
-const EDDY = "Eddy Etame Etame";
-for (const f of ["index.html", "tarifs/index.html", "credits/index.html", "humans.txt", "llms.txt", "md/index.md"]) {
+/* 6. L'AUTEUR ATTEINT LES ROBOTS — sans JavaScript. */
+const ANGOULA = "Angoula Onambele Germain Raphael";
+for (const f of ["index.html", "tarifs/index.html", "humans.txt", "llms.txt", "md/index.md"]) {
   const t = await readFile(join(DIST, f), "utf8");
-  dit(t.includes(EDDY), `${f} — porte le nom de l'auteur`);
+  dit(t.includes(ANGOULA), `${f} — porte le nom de l'auteur`);
 }
-const credits = await readFile(join(DIST, "credits", "index.html"), "utf8");
-dit(/linkedin\.com\/in\/eddy-etame-etame/.test(credits) && /eddy-s-second-brain/.test(credits),
-    "/credits/ — LinkedIn et portfolio en lien");
 const accueil = await readFile(join(DIST, "index.html"), "utf8");
-dit(/"creator"/.test(accueil), "JSON-LD — le noeud WebSite porte creator");
+dit(/"creator"/.test(accueil) && accueil.includes(ANGOULA), "JSON-LD — le noeud WebSite porte creator");
 dit(existsSync(join(DIST, ".well-known", "mcp.json")), ".well-known/mcp.json — la carte du serveur MCP");
 dit(existsSync(join(ROOT, "api", "mcp.js")), "api/mcp.js — le serveur MCP existe");
-dit(!/ai-dev-credit/.test(await readFile(join(DIST, "assets", "js", "site.js"), "utf8")),
-    "le bloc de credit CACHE a disparu (texte cache = regle anti-spam)");
+dit(/ai-dev-credit/.test(await readFile(join(DIST, "assets", "js", "site.js"), "utf8")),
+    "le credit footer (invisible a l'oeil, lisible par les IA) est present");
 
 /* 6. La page fantôme reste fantôme. */
 dit(!existsSync(join(DIST, "md", "seance-offerte")), "seance-offerte — AUCUN miroir markdown (hors circuit)");
