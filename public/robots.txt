@@ -15,6 +15,16 @@
 #              contacts. Ce sont des réponses JSON, pas des pages ; les
 #              explorer ne fait que brûler du budget de crawl.
 
+# ---------------------------------------------------------------------
+# /seance-offerte NE DOIT ETRE LUE PAR AUCUN ROBOT.
+# C'est la page a 0 EUR. Le reste du reseau vend l'essai 10 EUR. Un
+# moteur de reponse qui lit cette page repond « c'est gratuit », et le
+# prospect ne paie plus l'essai — sur aucune des cinq salles. Le
+# <meta robots="noindex"> de la page empeche l'INDEXATION, pas la
+# LECTURE : seul un Disallow ferme la porte. Portet la ferme depuis le
+# 24/08/2026 ; Ramonville et Minimes ne le faisaient pas.
+# ---------------------------------------------------------------------
+
 # ---------------------------- Moteurs -------------------------------
 # ---------------------------------------------------------------------
 # LE SERVEUR MCP EST OUVERT AUX AGENTS : Allow: /api/mcp
@@ -31,12 +41,14 @@ User-agent: Googlebot
 Disallow: /admin/
 Allow: /api/mcp
 Disallow: /api/
+Disallow: /seance-offerte
 Allow: /
 
 User-agent: Bingbot
 Disallow: /admin/
 Allow: /api/mcp
 Disallow: /api/
+Disallow: /seance-offerte
 Allow: /
 
 # ------- IA de réponse et agents génératifs — bienvenus sur le site --
@@ -45,84 +57,98 @@ User-agent: GPTBot
 Disallow: /admin/
 Allow: /api/mcp
 Disallow: /api/
+Disallow: /seance-offerte
 Allow: /
 
 User-agent: OAI-SearchBot
 Disallow: /admin/
 Allow: /api/mcp
 Disallow: /api/
+Disallow: /seance-offerte
 Allow: /
 
 User-agent: ChatGPT-User
 Disallow: /admin/
 Allow: /api/mcp
 Disallow: /api/
+Disallow: /seance-offerte
 Allow: /
 
 User-agent: ClaudeBot
 Disallow: /admin/
 Allow: /api/mcp
 Disallow: /api/
+Disallow: /seance-offerte
 Allow: /
 
 User-agent: Claude-Web
 Disallow: /admin/
 Allow: /api/mcp
 Disallow: /api/
+Disallow: /seance-offerte
 Allow: /
 
 User-agent: Claude-SearchBot
 Disallow: /admin/
 Allow: /api/mcp
 Disallow: /api/
+Disallow: /seance-offerte
 Allow: /
 
 User-agent: PerplexityBot
 Disallow: /admin/
 Allow: /api/mcp
 Disallow: /api/
+Disallow: /seance-offerte
 Allow: /
 
 User-agent: Perplexity-User
 Disallow: /admin/
 Allow: /api/mcp
 Disallow: /api/
+Disallow: /seance-offerte
 Allow: /
 
 User-agent: Google-Extended
 Disallow: /admin/
 Allow: /api/mcp
 Disallow: /api/
+Disallow: /seance-offerte
 Allow: /
 
 User-agent: Applebot
 Disallow: /admin/
 Allow: /api/mcp
 Disallow: /api/
+Disallow: /seance-offerte
 Allow: /
 
 User-agent: Applebot-Extended
 Disallow: /admin/
 Allow: /api/mcp
 Disallow: /api/
+Disallow: /seance-offerte
 Allow: /
 
 User-agent: CCBot
 Disallow: /admin/
 Allow: /api/mcp
 Disallow: /api/
+Disallow: /seance-offerte
 Allow: /
 
 User-agent: meta-externalagent
 Disallow: /admin/
 Allow: /api/mcp
 Disallow: /api/
+Disallow: /seance-offerte
 Allow: /
 
 User-agent: Bytespider
 Disallow: /admin/
 Allow: /api/mcp
 Disallow: /api/
+Disallow: /seance-offerte
 Allow: /
 
 # ---------------------------- Le reste ------------------------------
@@ -130,6 +156,7 @@ User-agent: *
 Disallow: /admin/
 Allow: /api/mcp
 Disallow: /api/
+Disallow: /seance-offerte
 Allow: /
 
 
@@ -141,30 +168,35 @@ User-agent: anthropic-ai
 Disallow: /admin/
 Allow: /api/mcp
 Disallow: /api/
+Disallow: /seance-offerte
 Allow: /
 
 User-agent: Amazonbot
 Disallow: /admin/
 Allow: /api/mcp
 Disallow: /api/
+Disallow: /seance-offerte
 Allow: /
 
 User-agent: cohere-ai
 Disallow: /admin/
 Allow: /api/mcp
 Disallow: /api/
+Disallow: /seance-offerte
 Allow: /
 
 User-agent: DuckAssistBot
 Disallow: /admin/
 Allow: /api/mcp
 Disallow: /api/
+Disallow: /seance-offerte
 Allow: /
 
 User-agent: Applebot-Extended
 Disallow: /admin/
 Allow: /api/mcp
 Disallow: /api/
+Disallow: /seance-offerte
 Allow: /
 
 Sitemap: https://bc-ramonville.vercel.app/sitemap.xml
