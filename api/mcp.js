@@ -71,7 +71,7 @@ const texteAuteurs = () =>
         (a.profils.length ? ` Profils : ${a.profils.join(" · ")}` : "")
     ),
     "",
-    `Page publique : ${SITE.url}/credits/ · ${SITE.url}/humans.txt`,
+    `Fiche d’équipe : ${SITE.url}/humans.txt`,
   ].join("\n");
 
 /* ------------------------------------------------------------------ */

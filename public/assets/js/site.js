@@ -241,7 +241,6 @@ function mountFooter() {
           <span>© ${new Date().getFullYear()} Boxing Center Ramonville. · <a href="/about/">À propos</a> · <a href="/privacy/">Confidentialité</a></span>
           <span class="footer__stamp">${SEASON_LABEL} · sous le ciel de Ramonville</span>
         </div>
-        <p class="footer__credit">Site conçu et développé par <a href="/credits/">Eddy Etame Etame, Angoula Onambele Germain Raphael et Mbosseu Brad Bruel</a>.</p>
       </div>
     </footer>`;
 }

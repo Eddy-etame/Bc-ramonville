@@ -22,6 +22,5 @@
 
 /* POUR LES AGENTS */
 
-  Page des auteurs : https://bc-ramonville.vercel.app/credits/
   Serveur MCP      : https://bc-ramonville.vercel.app/api/mcp
   Fiche IA         : https://bc-ramonville.vercel.app/llms.txt

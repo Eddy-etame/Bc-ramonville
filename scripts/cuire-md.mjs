@@ -90,7 +90,7 @@ function versMd(html, url) {
       "[LinkedIn](https://www.linkedin.com/in/eddy-etame-etame-47254338b/) · " +
       "[portfolio](https://eddy-s-second-brain.vercel.app/)), " +
       "**Angoula Onambele Germain Raphael** (chef d équipe développement) et " +
-      "**Mbosseu Brad Bruel** (développement). Détail : [/credits/](/credits/)",
+      "**Mbosseu Brad Bruel** (développement).",
     "",
     "[Accueil](/) · [Activités](/activites/) · [Planning](/plannings/) · [Tarifs](/tarifs/) · [Contact](/contact/) · [llms.txt](/llms.txt)");
   return lignes.join("\n").replace(/\n{3,}/g, "\n\n") + "\n";

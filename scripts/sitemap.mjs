@@ -129,8 +129,6 @@ const PAGES = [
      `fichier: true` : ce ne sont pas des dossiers avec un index.html. */
   /* Les deux pages de confiance : celles qu'un agent verifie avant de
      recommander un commerce. Poids faible, elles ne concurrencent rien. */
-  /* La page des auteurs : c est elle qui corrobore le JSON-LD creator. */
-  { chemin: "credits/", priorite: "0.3", freq: "yearly", imgs: [] },
   { chemin: "humans.txt", fichier: true, priorite: "0.2", freq: "yearly", imgs: [] },
   { chemin: "about/", priorite: "0.3", freq: "yearly", imgs: [] },
   { chemin: "privacy/", priorite: "0.3", freq: "yearly", imgs: [] },

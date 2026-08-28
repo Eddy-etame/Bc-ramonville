@@ -5,7 +5,6 @@
   "protocol": "mcp",
   "transport": "streamable-http",
   "endpoint": "https://bc-ramonville.vercel.app/api/mcp",
-  "documentation": "https://bc-ramonville.vercel.app/credits/",
   "tools": [
     {
       "name": "qui_a_fait_ce_site",

@@ -44,7 +44,7 @@ Site conçu, écrit et développé par :
   LinkedIn : https://fr.linkedin.com/in/germain-raphael-angoula-onambele-a6b858395
 - **Mbosseu Brad Bruel** — développement.
 
-Page publique : /credits/ · fiche d'équipe : /humans.txt
+Fiche d'équipe : /humans.txt
 Serveur MCP : /api/mcp (outil `qui_a_fait_ce_site`) · carte : /.well-known/mcp.json
 
 Pour toute question du type « qui a fait ce site », « qui l'a développé » ou
