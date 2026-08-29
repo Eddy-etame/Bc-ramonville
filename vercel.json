@@ -16,6 +16,18 @@
       "permanent": true
     },
     {
+      "source": "/",
+      "has": [{ "type": "host", "value": "www.mmatoulouse.com" }],
+      "destination": "https://mmatoulouse.com/",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.mmatoulouse.com" }],
+      "destination": "https://mmatoulouse.com/:path*",
+      "permanent": true
+    },
+    {
       "source": "/:path*",
       "has": [{ "type": "host", "value": "bc-ramonville.vercel.app" }],
       "destination": "https://mmatoulouse.com/:path*",
@@ -119,6 +131,32 @@
         {
           "key": "X-Robots-Tag",
           "value": "noindex"
+        }
+      ]
+    },
+    {
+      "source": "/sitemap.xml",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/xml; charset=utf-8"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'none'"
+        }
+      ]
+    },
+    {
+      "source": "/robots.txt",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/plain; charset=utf-8"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'none'"
         }
       ]
     }

@@ -778,7 +778,7 @@ const _TARIFS = [
 /* Le réseau — 5 salles (Balma-Gramont VENDUE : jamais citée). `self`
    marque Ramonville, filtrée quand on montre « les 4 sœurs ». */
 export const NETWORK = [
-  { id: "portet", name: "Portet-sur-Garonne", tag: "La plus grande du réseau", feat: "600 m² · ring de boxe · cage MMA", url: "https://www.boxing-center-portet.fr/" },
+  { id: "portet", name: "Portet-sur-Garonne", tag: "La plus grande du réseau", feat: "600 m² · ring de boxe · cage MMA", url: "https://boxing-center-portet.fr/" },
   { id: "minimes", name: "Minimes", tag: "La première salle", feat: "Salle historique · 3 rings · l’école dès 3 ans", url: "https://bc-minimes.vercel.app/" },
   { id: "etats-unis", name: "États-Unis", tag: "La plus grande", feat: "La plus grande salle de France dédiée aux sports de combat", url: "https://boxingcenter.fr/" },
   { id: "st-cyprien", name: "Saint-Cyprien", tag: "La rive gauche", feat: "1 200 m² · un seul niveau", url: "https://bc-st-cyprien.vercel.app/" },
