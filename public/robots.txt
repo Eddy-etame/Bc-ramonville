@@ -3,8 +3,9 @@
 # Le contenu des pages est rendu en JS : ne jamais bloquer /assets/js/
 # pour les moteurs, sinon le rendu Googlebot est vide.
 #
+# Fiches agents : /ai.txt · /llms.txt · /llms-full.txt
+#
 # DEUX ENDROITS QUI NE SONT PAS DU SITE, et qui n'ont donc rien à faire
-# Instructions pour les agents IA : /ai.txt
 # dans un index :
 #   /admin/  — le vestiaire, l'outil du staff. Il porte déjà un
 #              <meta robots="noindex, nofollow"> et un en-tête
@@ -198,4 +199,4 @@ Disallow: /api/
 Disallow: /seance-offerte
 Allow: /
 
-Sitemap: https://bc-ramonville.vercel.app/sitemap.xml
+Sitemap: https://mmatoulouse.com/sitemap.xml

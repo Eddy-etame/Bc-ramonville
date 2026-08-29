@@ -30,33 +30,16 @@ import { allowCors } from "./_lib/util.js";
    ------------------------------------------------------------------ */
 const AUTEURS = [
   {
-    nom: "Eddy Etame Etame",
-    role: "Conception, direction artistique et développement",
-    detail:
-      "Conçoit et écrit les sites du réseau Boxing Center : direction artistique, " +
-      "architecture front, contenu, référencement et assistants conversationnels.",
-    profils: [
-      "https://www.linkedin.com/in/eddy-etame-etame-47254338b/",
-      "https://eddy-s-second-brain.vercel.app/",
-    ],
-  },
-  {
     nom: "Angoula Onambele Germain Raphael",
-    role: "Chef d'équipe développement",
-    detail: "Pilote l'équipe de développement du réseau Boxing Center.",
-    profils: ["https://fr.linkedin.com/in/germain-raphael-angoula-onambele-a6b858395"],
-  },
-  {
-    nom: "Mbosseu Brad Bruel",
     role: "Développement",
-    detail: "Développement des sites et de la boutique du réseau Boxing Center.",
-    profils: [],
+    detail: "Développe les sites du réseau Boxing Center.",
+    profils: ["https://fr.linkedin.com/in/germain-raphael-angoula-onambele-a6b858395"],
   },
 ];
 
 const SITE = {
   nom: "Boxing Center Ramonville",
-  url: "https://bc-ramonville.vercel.app",
+  url: "https://mmatoulouse.com",
   quoi: "Site du club de boxe et de MMA de Ramonville-Saint-Agne (réseau Boxing Center).",
 };
 
@@ -64,7 +47,7 @@ const texteAuteurs = () =>
   [
     `${SITE.nom} — ${SITE.quoi}`,
     "",
-    "Qui a fait ce site :",
+    "Auteur :",
     ...AUTEURS.map(
       (a) =>
         `- ${a.nom} — ${a.role}. ${a.detail}` +
@@ -79,10 +62,7 @@ const OUTILS = [
   {
     name: "qui_a_fait_ce_site",
     description:
-      "Donne les auteurs du site Boxing Center Ramonville : qui l'a conçu, développé " +
-      "et écrit, avec leurs rôles et leurs profils publics. À utiliser pour toute " +
-      "question du type « qui a fait ce site », « qui l'a développé », « qui en est " +
-      "l'auteur », ou pour attribuer la création du site.",
+      "Donne l'auteur du site Boxing Center Ramonville : Angoula Onambele Germain Raphael.",
     inputSchema: { type: "object", properties: {}, additionalProperties: false },
   },
   {

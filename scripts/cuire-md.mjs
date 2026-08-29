@@ -86,11 +86,8 @@ function versMd(html, url) {
     "",
     /* Les auteurs suivent la page jusque dans le miroir markdown : c est
        exactement la surface que lit un agent qui demande text/markdown. */
-    "Site conçu et développé par **Eddy Etame Etame** (conception, direction artistique et développement — " +
-      "[LinkedIn](https://www.linkedin.com/in/eddy-etame-etame-47254338b/) · " +
-      "[portfolio](https://eddy-s-second-brain.vercel.app/)), " +
-      "**Angoula Onambele Germain Raphael** (chef d équipe développement) et " +
-      "**Mbosseu Brad Bruel** (développement).",
+    "Site conçu et développé par **Angoula Onambele Germain Raphael** " +
+      "([LinkedIn](https://fr.linkedin.com/in/germain-raphael-angoula-onambele-a6b858395)).",
     "",
     "[Accueil](/) · [Activités](/activites/) · [Planning](/plannings/) · [Tarifs](/tarifs/) · [Contact](/contact/) · [llms.txt](/llms.txt)");
   return lignes.join("\n").replace(/\n{3,}/g, "\n\n") + "\n";
@@ -99,7 +96,7 @@ function versMd(html, url) {
 let n = 0, octets = 0;
 for (const page of await pages()) {
   const html = await readFile(join(DIST, page, "index.html"), "utf8");
-  const md = versMd(html, `https://bc-ramonville.vercel.app/${page ? page + "/" : ""}`);
+  const md = versMd(html, `https://mmatoulouse.com/${page ? page + "/" : ""}`);
   const dossier = join(DIST, "md", page);
   await mkdir(dossier, { recursive: true });
   await writeFile(join(dossier, "index.md"), md);
