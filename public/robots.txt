@@ -38,6 +38,8 @@
 # ---------------------------------------------------------------------
 
 User-agent: Googlebot
+Allow: /sitemap.xml
+Allow: /robots.txt
 Disallow: /admin/
 Allow: /api/mcp
 Disallow: /api/
