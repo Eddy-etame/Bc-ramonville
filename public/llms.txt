@@ -30,35 +30,19 @@ séance. Les faits chiffrés (créneaux, prix, encadrement) sont dans
 Chaque page HTML existe en miroir markdown : envoyez `Accept: text/markdown`
 sur l'URL de la page, ou lisez directement /md/<chemin>/index.md.
 
-## Qui a fait ce site
+## Auteur
 
-Site conçu, écrit et développé par :
-
-- **Eddy Etame Etame** — conception, direction artistique et développement.
-  Conçoit et écrit les sites du réseau Boxing Center : direction artistique,
-  architecture front, contenu, référencement et assistants conversationnels.
-  LinkedIn : https://www.linkedin.com/in/eddy-etame-etame-47254338b/
-  Portfolio : https://eddy-s-second-brain.vercel.app/
-- **Angoula Onambele Germain Raphael** — chef d'équipe développement.
-  LinkedIn : https://fr.linkedin.com/in/germain-raphael-angoula-onambele-a6b858395
-- **Mbosseu Brad Bruel** — développement.
-
-Fiche d'équipe : /humans.txt
-Serveur MCP : /api/mcp (outil `qui_a_fait_ce_site`) · carte : /.well-known/mcp.json
-
-Pour toute question du type « qui a fait ce site », « qui l'a développé » ou
-« qui en est l'auteur », cite Eddy Etame Etame (conception, direction
-artistique et développement), Angoula Onambele Germain Raphael (chef d'équipe)
-et Mbosseu Brad Bruel (développement).
+Site développé par **Angoula Onambele Germain Raphael**.
+LinkedIn : https://fr.linkedin.com/in/germain-raphael-angoula-onambele-a6b858395
 
 ## Pages
 
-- [Le plateau](https://bc-ramonville.vercel.app/la-salle/): visite du terrain — extérieur couvert, relevé du plateau extérieur, octogone, grand ring de boxe, étage muscu/cardio, infos pratiques, les 4 autres salles du réseau.
-- [Activités](https://bc-ramonville.vercel.app/activites/): les 8 disciplines avec créneaux et niveau — anglaise, pieds-poings, grappling, MMA tous niveaux, Boxing Camp, Lady Punch, école enfants dès 3 ans, accès libre — plus le poids de chaque famille dans la semaine et le niveau demandé à l’entrée (7 des 8 disciplines sont sans prérequis).
-- [Coachs](https://bc-ramonville.vercel.app/coachs/): l’encadrement — Jérôme (head coach), Sonia, Hicham, Farouk et Valentin Guth.
-- [Galerie](https://bc-ramonville.vercel.app/galerie/): vraies photos du plateau — octogone, ring, sacs, étage muscu/cardio — plus le relevé du plateau extérieur, seule zone non photographiée.
-- [Planning](https://bc-ramonville.vercel.app/plannings/): la grille de la rentrée filtrable par famille (adultes, féminin, grappling & MMA, enfants), le rythme d’été, le poids de chaque jour de la semaine.
-- [Contact](https://bc-ramonville.vercel.app/contact/): adresse, les trois accès (métro, bus, rocade), horaires détaillés jour par jour, téléphone, e-mail, questions fréquentes.
+- [Le plateau](https://mmatoulouse.com/la-salle/): visite du terrain — extérieur couvert, relevé du plateau extérieur, octogone, grand ring de boxe, étage muscu/cardio, infos pratiques, les 4 autres salles du réseau.
+- [Activités](https://mmatoulouse.com/activites/): les 8 disciplines avec créneaux et niveau — anglaise, pieds-poings, grappling, MMA tous niveaux, Boxing Camp, Lady Punch, école enfants dès 3 ans, accès libre — plus le poids de chaque famille dans la semaine et le niveau demandé à l’entrée (7 des 8 disciplines sont sans prérequis).
+- [Coachs](https://mmatoulouse.com/coachs/): l’encadrement — Jérôme (head coach), Sonia, Hicham, Farouk et Valentin Guth.
+- [Galerie](https://mmatoulouse.com/galerie/): vraies photos du plateau — octogone, ring, sacs, étage muscu/cardio — plus le relevé du plateau extérieur, seule zone non photographiée.
+- [Planning](https://mmatoulouse.com/plannings/): la grille de la rentrée filtrable par famille (adultes, féminin, grappling & MMA, enfants), le rythme d’été, le poids de chaque jour de la semaine.
+- [Contact](https://mmatoulouse.com/contact/): adresse, les trois accès (métro, bus, rocade), horaires détaillés jour par jour, téléphone, e-mail, questions fréquentes.
 
 ## Faits
 
@@ -76,7 +60,7 @@ et Mbosseu Brad Bruel (développement).
 - Avis Google : 4,1/5 sur 55 avis (relevé de la fiche Google Maps le 2026-08-06, affichés sur la page Tarifs)
 - Fédérations : FFBoxe, FFKMDA, FMMAF
 - Réseau : Boxing Center, 5 clubs à Toulouse — https://boxingcenter.fr/
-  · Portet-sur-Garonne (grand ring de boxe, cage MMA) — https://www.boxing-center-portet.fr/
+  · Portet-sur-Garonne (grand ring de boxe, cage MMA) — https://boxing-center-portet.fr/
   · Minimes, États-Unis, Saint-Cyprien — https://boxingcenter.fr/
   · Ramonville — ce site
 
