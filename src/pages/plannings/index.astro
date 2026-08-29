@@ -22,7 +22,7 @@
        ni une requête de plus, elle arrive seulement à l’heure. -->
   <link rel="preload" href="/fonts/jetbrainsmono-var-latin.woff2?v=19" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="/assets/css/fonts.css?v=19" />
-  <link rel="stylesheet" href="/assets/css/base.css?v=19" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=22" />
   <link rel="stylesheet" href="/assets/css/page.css?v=19" />
   <meta name="keywords" content="planning boxe Ramonville, horaires cours boxe Toulouse sud, planning MMA octogone, grappling créneaux Ramonville-Saint-Agne, Lady Punch horaires, boxing gym Toulouse, MMA gym Toulouse, octagon MMA Toulouse, kickboxing Toulouse, grappling Toulouse, kids boxing Toulouse, outdoor boxing Toulouse, boxing club Ramonville, martial arts gym near Toulouse" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -285,7 +285,7 @@
           {
             "@type": "ListItem",
             "position": 2,
-            "name": "Le plateau",
+            "name": "La salle",
             "url": "https://bc-ramonville.vercel.app/la-salle/"
           },
           {
@@ -323,12 +323,6 @@
             "position": 8,
             "name": "Contact",
             "url": "https://bc-ramonville.vercel.app/contact/"
-          },
-          {
-            "@type": "ListItem",
-            "position": 9,
-            "name": "Ta première séance",
-            "url": "https://bc-ramonville.vercel.app/premiere-seance/"
           }
         ]
       },
@@ -453,9 +447,6 @@
       <div class="wrap">
         <nav class="breadcrumb" aria-label="Fil d’ariane"><a href="/">Accueil</a> / <span>Planning</span></nav>
         <h1 class="display phero__title"><span class="reveal-mask"><span>La semaine,</span></span><span class="reveal-mask"><span class="tint">cours par cours.</span></span></h1>
-        <p class="lead phero__lead" data-reveal>Le premier cours part à 12h40. Le dernier round finit à 21h15. Six jours sur sept, vingt-deux cours, midi et soir. L’étage reste en accès libre. Tu n’as jamais boxé ? Les midis partent du débutant. Anglaise, camp, pieds-poings : le geste propre avant le reste. Regarde ce qui tombe quand tu es libre.</p>
-        <!-- l’objet propre à ce hero (page.js → pheroMeta) -->
-        <div class="phero__meta" id="phero-meta" data-reveal-group aria-label="Ce qui se passe maintenant à la salle"></div>
       </div>
     </header>
 
@@ -483,9 +474,6 @@
              Rendus dans la grille à six colonnes, ils laissaient dix cases
              vides sur douze — une page qui semblait cassée alors que la salle
              lève simplement le pied. Bloc masqué tant qu’on est en rentrée. -->
-
-        <p class="muted" data-reveal style="margin-top:clamp(2rem,4vw,3rem)">Tu la veux dans la poche ? Ouvre l’affiche en grand, garde-la sur ton téléphone. Tu sauras quand tu boxes sans rouvrir le site.</p>
-        <div class="posters" id="posters" aria-label="Posters officiels"></div>
       </div>
     </section>
 
@@ -498,7 +486,6 @@
         <div class="shead" data-reveal>
           <span class="eyebrow">Le nombre de cours, jour par jour</span>
           <h2 class="display"><span class="reveal-mask"><span>Les jours</span></span><span class="reveal-mask"><span class="tint">les plus chargés.</span></span></h2>
-          <p class="muted">Tu hésites entre deux soirs ? Voilà ce que pèse chacun. Du monde pour se pousser. De la place pour apprendre tranquille. Les deux sont dans la même semaine.</p>
         </div>
         <div class="rythme" id="rythme"></div>
       </div>
@@ -515,7 +502,7 @@
           <span class="plaque__prix"><b>29</b><i>€</i></span>
           <span class="plaque__unit">par personne · 4 semaines</span>
           <span class="plaque__barre">au lieu de 44 €</span>
-          <span class="plaque__go">Je prends ma place <i aria-hidden="true">→</i></span>
+          <span class="plaque__go">Je profite de l'offre <i aria-hidden="true">→</i></span>
         </a>
       </div>
     </section>
@@ -525,9 +512,8 @@
       <div class="ctaband__inner">
         <span class="eyebrow" style="justify-content:center" data-reveal>Des cours midi et soir, six jours sur sept</span>
         <h2 class="display"><span class="reveal-mask"><span>Choisis ton soir.</span></span></h2>
-        <p class="lead" data-reveal>Tu n’as rien à acheter pour commencer. Le matériel est prêté. Tu arrives en tenue. Un coach te met dans le cours. Tu frappes le soir même.</p>
         <div class="ctaband__cta" data-reveal>
-          <a class="btn btn--primary" data-magnetic href="https://boutique.boxingcenter.fr/inscription?product=offre-duo&step=1&utm_source=site&utm_medium=cta&utm_campaign=bc-ramonville"><span>Je prends ma place — 29 €</span></a>
+          <a class="btn btn--primary" data-magnetic href="https://boutique.boxingcenter.fr/inscription?product=offre-duo&step=1&utm_source=site&utm_medium=cta&utm_campaign=bc-ramonville"><span>Je profite de l'offre — 29 €</span></a>
           <a class="btn btn--ghost" data-magnetic href="/tarifs/"><span>Voir les tarifs</span></a>
         </div>
       </div>
@@ -536,50 +522,9 @@
 
   <div id="footer"></div>
 
-  <a class="chatbot" href="tel:+33562244682" aria-label="Une question ? Appelle la salle Boxing Center Ramonville">
-    <span class="chatbot__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M8.6 3H15.4L21 8.6V15.4L15.4 21H8.6L3 15.4V8.6Z"/><circle cx="8.6" cy="12" r="1.05" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.05" fill="currentColor" stroke="none"/><circle cx="15.4" cy="12" r="1.05" fill="currentColor" stroke="none"/></svg></span>
-    <span class="chatbot__label">Une question&nbsp;? Appelle la salle</span>
-  </a>
 
-  <!-- ===================== L’ASSISTANT, À LA DEMANDE =====================
-       L’assistant ne coûte plus rien tant qu’on ne lui parle pas. Il pesait
-       17,5 ko de module + 7,6 ko de feuille BLOQUANT LE RENDU, sur les huit
-       pages, pour un panneau que la plupart des visiteurs n’ouvriront jamais.
-       Rien n’est retiré à l’écran : la pastille est peinte par base.css comme
-       avant, et chatbot.css ne décrit que le panneau — qui n’existe pas encore.
-       On charge au premier signe d’intention (survol, doigt, tabulation), donc
-       avant le clic dans la quasi-totalité des cas ; le clic reste le filet.
-       Sans JavaScript, la pastille est toujours le lien tel: d’origine. -->
-  <script is:inline>
-    (function () {
-      var pastille = document.querySelector("a.chatbot");
-      if (!pastille) return;
-      var venue = null;
-      function venir() {
-        if (venue) return venue;
-        var f = document.createElement("link");
-        f.rel = "stylesheet"; f.href = "/assets/css/chatbot.css?v=19";
-        document.head.appendChild(f);
-        venue = import("/assets/js/chatbot.js?v=19").catch(function () { venue = null; });
-        return venue;
-      }
-      ["pointerenter", "touchstart", "focus"].forEach(function (e) {
-        pastille.addEventListener(e, venir, { once: true, passive: true });
-      });
-      pastille.addEventListener("click", function (e) {
-        /* aria-expanded n’est posé que par chatbot.js : sa présence signifie
-           que le vrai widget a pris la main et gère déjà ce clic. */
-        if (pastille.hasAttribute("aria-expanded")) return;
-        e.preventDefault();
-        var p = venir();
-        if (p) p.then(function () { pastille.click(); });
-        else window.location.href = pastille.href;   // le module n’est pas venu : on appelle la salle
-      });
-    })();
-  </script>
-
-  <script is:inline type="module" src="/assets/js/site.js?v=19"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=23"></script>
   <script is:inline type="module" src="/assets/js/sky.js?v=19"></script>
-  <script is:inline type="module" src="/assets/js/page.js?v=19"></script>
+  <script is:inline type="module" src="/assets/js/page.js?v=23"></script>
 </body>
 </html>

@@ -171,17 +171,12 @@ CARTES = [
      "L’octogone à ciel ouvert.",
      ["Dès 29 €/mois", "4,3★ sur Google", "300 m² couverts"]),
 
-    ("premiere-seance", "photos/boxe-anglaise-en-binome-boxing-center-ramonville.webp",
-     "TA PREMIÈRE FOIS",
-     "Personne ne te frappera le premier soir.",
-     ["Gants prêtés", "Aucun niveau requis", "Dès 3 ans"]),
-
     # Le titre annonce les 300 m2 couverts : l ancienne photo montrait l etage
     # de muscu, vide. On montre l espace couvert EN USAGE — tatami rouge et vert
     # sous la charpente, c est exactement ce dont la phrase parle.
     ("la-salle", "photos/sparring-pieds-poings-sur-tatami-boxing-center-ramonville.webp",
      "LE PLATEAU",
-     "300 m² dehors, couverts et chauffés.",
+     "300 m² dehors, couverts.",
      ["Octogone de 7 m", "Grand ring", "Muscu & cardio"]),
 
     ("activites", "photos/kick-boxing-coup-de-pied-haut-boxing-center-ramonville.webp",

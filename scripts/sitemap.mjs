@@ -49,7 +49,7 @@ const BASE = "https://bc-ramonville.vercel.app";
 
    On n'en déclarait qu'UNE par page. On les déclare toutes, chacune avec
    son titre et sa légende — les mots de Ramonville, pas ceux d'une autre
-   salle du réseau : le plateau couvert et chauffé, l'octogone de 7 m, le
+   salle du réseau : le plateau couvert, l'octogone de 7 m, le
    terminus du métro B. Une légende recopiée d'un site frère serait du
    doublon aux yeux du moteur, et un mensonge aux yeux du lecteur.
 
@@ -59,7 +59,7 @@ const BASE = "https://bc-ramonville.vercel.app";
    --------------------------------------------------------------------- */
 const CLUB = "Boxing Center Ramonville";
 const I = {
-  hero:      ["/assets/img/ram/hero.webp", `L'octogone de 7 m et le grand ring — ${CLUB}`, "Le plateau de Ramonville-Saint-Agne : un octogone de 7 mètres et un grand ring, en plein air, couverts et chauffés."],
+  hero:      ["/assets/img/ram/hero.webp", `L'octogone de 7 m et le grand ring — ${CLUB}`, "Le plateau de Ramonville-Saint-Agne : un octogone de 7 mètres et un grand ring, en plein air, couverts."],
   heroLarge: ["/assets/img/ram/hero-1200.webp", `Le plateau sous la charpente — ${CLUB}`, "Les 300 m² d'entraînement en plein air du club de Ramonville, sous charpente."],
   plateau:   ["/assets/img/ram/plateau.webp", `Le plateau : octogone, ring et tatamis — ${CLUB}`, "L'aire d'entraînement du Boxing Center Ramonville, 33 rue des Ormes, au terminus du métro B."],
   octogone:  ["/assets/img/ram/octogone.webp", `Cours de MMA dans l'octogone — ${CLUB}`, "Cours de Cours de MMA dans l'octogoneètres du club de Ramonville-Saint-Agne."],
@@ -120,10 +120,6 @@ const PAGES = [
   { chemin: "plannings/", priorite: "0.8", freq: "weekly", imgs: [I.planRent] },
   { chemin: "tarifs/", priorite: "0.8", freq: "monthly", imgs: [I.camp, I.plateau] },
   { chemin: "contact/", priorite: "0.8", freq: "monthly", imgs: [I.plateau] },
-  /* La page de la première séance vaut le même poids que les tarifs : c'est
-     l'autre porte d'entrée de quelqu'un qui n'est jamais venu. `monthly` :
-     son contenu ne bouge qu'avec le planning et le prix de l'essai. */
-  { chemin: "premiere-seance/", priorite: "0.8", freq: "monthly", imgs: [I.camp, I.anglaise, I.jerome, I.sonia] },
   /* Les fiches destinees aux IA. Un robot ne les decouvre autrement que par
      robots.txt : les declarer ici les met au meme rang que les pages.
      `fichier: true` : ce ne sont pas des dossiers avec un index.html. */

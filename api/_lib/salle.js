@@ -21,15 +21,15 @@ import { join } from "path";
    la salle ne confirme pas, purgé partout ailleurs), « Offre Duo » (le nom
    abandonné) et 47 avis (il y en a 55). Un repli a le droit d’être moins
    riche ; il n’a jamais le droit d’être faux. */
-const REPLI = `- Boxing Center Ramonville : la seule salle du réseau qui s’entraîne dehors — 300 m² extérieurs aménagés et protégés des intempéries, un octogone de 7 m, un grand ring de boxe, deux niveaux avec un étage muscu/cardio.
+const REPLI = `- Boxing Center Ramonville : un club ouvert à tous, même si tu n’as jamais fait de sport. La seule salle du réseau qui s’entraîne dehors — 300 m² couverts, une cage de 7 m (octogone), un grand ring de boxe, deux niveaux avec muscu et cardio.
 - Adresse : 33 rue des Ormes, 31520 Ramonville-Saint-Agne. Téléphone : 05 62 24 46 82. Email : boxingcenter31@gmail.com.
 - Accès : métro ligne B, terminus Ramonville, à proximité ; bus arrêt Ramonville Sud ; sortie rocade Ramonville.
 - Horaires : du lundi au samedi, 10h00 – 21h30. Fermé le dimanche. Accès libre muscu/cardio inclus.
-- Émargement GPS obligatoire en salle avant chaque cours.
-- Disciplines : boxe anglaise et anglaise loisirs, boxe pieds-poings, grappling, MMA tous niveaux (dans l’octogone), Boxing Camp, Lady Punch (100 % féminin), école enfants du Baby Boxe 3/6 ans aux ados 12/16, accès libre muscu/cardio.
-- Coachs : Sonia (pieds-poings, Lady Punch, Camp), Jérôme (grappling, MMA tous niveaux), Farouk (anglaise loisirs, anglaise du mercredi soir), Valentin Guth (anglaise, école enfants).
-- Tarifs, dans l’ordre : Offre Rentrée 29 € PAR PERSONNE pour 4 semaines illimitées ; Offre Saison 259 € les 12 mois, payable en 4× sans frais, accès libre aux 5 clubs du réseau ; école enfants dès 3 ans (295 €/an, baby 250 €) ; et EN DERNIER la séance d’essai 10 € (toutes disciplines, matériel prêté, sans engagement).
-- Première séance : on dit à l’accueil que c’est sa première fois, un coach prête les gants et les bandes. Aucun sparring imposé, aucun test de niveau, aucun engagement. À apporter : t-shirt, short ou legging, baskets propres, bouteille d’eau. Le déroulé complet est sur /premiere-seance/.
+- Avant chaque cours : valider sa présence à l’accueil (émargement GPS).
+- Cours : boxe anglaise, boxe pieds-poings, grappling (combat au sol), MMA tous niveaux (dans la cage), Boxing Camp, Lady Punch (100 % féminin), école enfants dès 3 ans, accès libre muscu/cardio. Tous ouverts aux débutants.
+- Coachs : Sonia (pieds-poings, Lady Punch, Camp), Jérôme (grappling, MMA), Farouk (boxe anglaise du soir), Valentin Guth (école enfants), Hicham (boxe anglaise des midis).
+- Tarifs, dans l’ordre : Offre Rentrée 29 € PAR PERSONNE pour 4 semaines illimitées ; Offre Saison 259 € les 12 mois, payable en 4× sans frais, accès libre aux 5 clubs du réseau ; école enfants dès 3 ans (295 €/an, baby 250 €) ; et EN DERNIER la séance d’essai 10 € (tous les cours, matériel prêté, sans engagement).
+- Première séance : on dit à l’accueil que c’est sa première fois, un coach prête les gants et les bandes. Aucun combat imposé, aucun test de niveau, aucun engagement. À apporter : t-shirt, short ou legging, baskets propres, bouteille d’eau.
 - Avis Google : 4,1/5 sur 55 avis.`;
 
 let cache = null;
@@ -78,7 +78,7 @@ export async function infosSalle() {
   if (Array.isArray(disciplines) && disciplines.length)
     L.push(
       "Disciplines : " +
-        disciplines.map((d) => `${d.name} (${d.coach} — ${d.jours} — ${d.niveau})`).join(" ; ") +
+        disciplines.map((d) => `${d.name} (${d.jours} — ${d.niveau})`).join(" ; ") +
         "."
     );
 
@@ -102,7 +102,7 @@ export async function infosSalle() {
           .map((j) => {
             const lignes = planning.filter((s) => s.day === j);
             return lignes.length
-              ? `${j} — ${lignes.map((s) => `${s.start} ${s.cours} (${s.coach})`).join(", ")}`
+              ? `${j} — ${lignes.map((s) => `${s.start} ${s.cours}`).join(", ")}`
               : null;
           })
           .filter(Boolean)
@@ -112,9 +112,9 @@ export async function infosSalle() {
 
   /* CE QUE LE BOT NE SAVAIT PAS DIRE : ce qui se passe une première fois.
      C’est pourtant la question la plus fréquente d’un visiteur qui n’a
-     jamais boxé — et la page /premiere-seance/ y répond en entier. */
+     jamais boxé. */
   L.push(
-    "Première séance (page dédiée : /premiere-seance/) : on arrive un quart d’heure avant le cours, on dit à l’accueil que c’est sa première fois, on émarge, un coach prête les gants et les bandes et montre le plateau ; puis c’est le cours normal — échauffement, technique, sac. AUCUN sparring imposé (personne ne monte sur le ring sans en avoir envie), AUCUN test de niveau, AUCUN engagement. À apporter : t-shirt, short ou legging, baskets propres gardées pour l’intérieur, bouteille d’eau."
+    "Première séance : on arrive un quart d’heure avant le cours, on dit à l’accueil que c’est sa première fois, on valide sa présence, un coach prête les gants et les bandes et montre la salle ; puis c’est le cours normal — échauffement, un geste, du sac. AUCUN combat imposé (personne ne monte sur le ring sans en avoir envie), AUCUN test de niveau, AUCUN engagement. À apporter : t-shirt, short ou legging, baskets propres gardées pour l’intérieur, bouteille d’eau."
   );
 
   if (D.REVIEWS) L.push(`Avis Google : ${D.REVIEWS.rating} sur ${D.REVIEWS.count} avis.`);

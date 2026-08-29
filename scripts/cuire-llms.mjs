@@ -63,13 +63,8 @@ function sectionDisciplines() {
       out.push(`- ${d.name} — en autonomie — ${d.jours}`);
       continue;
     }
-    /* un coach → ses jours ; plusieurs → chacun avec les siens */
-    const coachs = [...new Set(slots.map((s) => s.coach))];
-    const detail = coachs.map((c) => {
-      const j = slots.filter((s) => s.coach === c).map((s) => `${JOUR[s.day]} ${s.start}`);
-      return `${nomDe(c)} (${liste(j)})`;
-    });
-    out.push(`- ${d.name} — ${coachs.length > 1 ? "coachs" : "coach"} ${detail.join(" ; ")} — ${d.niveau}`);
+    const jours = [...new Set(slots.map((s) => `${JOUR[s.day]} ${s.start}`))];
+    out.push(`- ${d.name} — ${liste(jours)} — ${d.niveau}`);
   }
   return out.join("\n");
 }
@@ -101,15 +96,9 @@ function sectionPlanning() {
   for (const j of DAYS) {
     const s = SCHEDULE.filter((x) => x.day === j).sort(parJour);
     out.push(`- ${JOUR[j][0].toUpperCase()}${JOUR[j].slice(1)} : ` +
-      s.map((x) => `${x.start} ${x.cours} (${nomDe(x.coach)})`).join(" · "));
+      s.map((x) => `${x.start} ${x.cours}`).join(" · "));
   }
   out.push("- Dimanche : fermé");
-  const flous = SCHEDULE.filter((s) => /confirmer|\?|à définir/i.test(s.coach));
-  if (flous.length) {
-    out.push(`- ${flous.length} créneau(x) sans coach nommé : ` +
-      flous.map((s) => `${JOUR[s.day]} ${s.start}`).join(", ") +
-      " — le site écrit « coach à confirmer » plutôt que d'attribuer un nom au hasard");
-  }
   return out.join("\n");
 }
 
@@ -130,11 +119,9 @@ function sectionRythme() {
 
 function sectionCoachs() {
   return COACHES.map((c) => {
-    const cle = c.planning || c.name;
-    const n = SCHEDULE.filter((s) => s.coach === cle).length;
     const disc = (c.disciplines || []).join(", ").toLowerCase();
-    const tete = c.tag?.toLowerCase().includes("head") ? " — head coach" : "";
-    return `- ${c.name}${tete} — ${disc} — ${n} créneau${n > 1 ? "x" : ""} par semaine`;
+    const tete = c.tag?.toLowerCase().includes("head") || c.pillar ? " — head coach" : "";
+    return `- ${c.name}${tete} — ${disc}`;
   }).join("\n");
 }
 

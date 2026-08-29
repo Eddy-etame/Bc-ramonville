@@ -22,7 +22,7 @@
        ni une requête de plus, elle arrive seulement à l’heure. -->
   <link rel="preload" href="/fonts/jetbrainsmono-var-latin.woff2?v=19" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="/assets/css/fonts.css?v=19" />
-  <link rel="stylesheet" href="/assets/css/base.css?v=19" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=22" />
   <link rel="stylesheet" href="/assets/css/page.css?v=19" />
 
   <meta name="theme-color" content="#070a12" />
@@ -108,7 +108,8 @@
       }
     ],
     "author": { "@id": "https://eddy-s-second-brain.vercel.app/#eddy" },
-    "publisher": { "@type": "Organization", "name": "Boxing Center Ramonville" }
+    "publisher": { "@type": "Organization", "name": "Boxing Center Ramonville" },
+    "mainEntityOfPage": "https://bc-ramonville.vercel.app/credits/"
   }
   </script>
 </head>
@@ -124,15 +125,15 @@
     <div class="e404__inner">
       <div class="e404__head">
         <div class="e404__code">404</div>
-        <h1>Hors du plateau</h1>
-        <p>Ce côté de l’octogone n’existe pas. Les huit autres, si — ils sont juste en dessous.</p>
+        <h1>Cette page n’existe pas</h1>
+        <p>Pas de souci. Les huit cours sont juste en dessous. Ou reviens à l’accueil.</p>
         <div class="e404__cta">
           <a class="btn btn--primary" data-magnetic href="/"><span>Retour à l’accueil</span></a>
           <a class="btn btn--ghost" data-magnetic href="/plannings/"><span>Voir le planning</span></a>
         </div>
       </div>
-      <span class="e404__label">Les huit côtés</span>
-      <nav class="e404__edges" id="e404-edges" aria-label="Les huit disciplines"></nav>
+      <span class="e404__label">Les huit cours</span>
+      <nav class="e404__edges" id="e404-edges" aria-label="Les huit cours"></nav>
       <!-- Les huit cotes ci-dessus sont rendus en JS : sans lui, l'impasse
            revenait. Ces reperes-ci sont dans le HTML — un agent (ou un
            navigateur sans script) repart toujours quelque part. -->
@@ -152,55 +153,14 @@
 
   <div id="footer"></div>
 
-  <a class="chatbot" href="tel:+33562244682" aria-label="Une question ? Appelle la salle Boxing Center Ramonville">
-    <span class="chatbot__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8.4 16.6V9.9A4.7 4.7 0 0 1 13.1 5.2h1.2A4.7 4.7 0 0 1 19 9.9V13a3.4 3.4 0 0 1-1.3 2.7v.9Z"/><path d="M8.4 10.9H6.9a2.3 2.3 0 0 0 0 4.6h1.5"/><path d="M8.4 12.9H19"/><path d="M8.2 17.4h9.7v1.9a1.8 1.8 0 0 1-1.8 1.8h-6.1a1.8 1.8 0 0 1-1.8-1.8Z"/></svg></span>
-    <span class="chatbot__label">Une question&nbsp;? Appelle la salle</span>
-  </a>
 
-  <!-- ===================== L’ASSISTANT, À LA DEMANDE =====================
-       L’assistant ne coûte plus rien tant qu’on ne lui parle pas. Il pesait
-       17,5 ko de module + 7,6 ko de feuille BLOQUANT LE RENDU, sur les huit
-       pages, pour un panneau que la plupart des visiteurs n’ouvriront jamais.
-       Rien n’est retiré à l’écran : la pastille est peinte par base.css comme
-       avant, et chatbot.css ne décrit que le panneau — qui n’existe pas encore.
-       On charge au premier signe d’intention (survol, doigt, tabulation), donc
-       avant le clic dans la quasi-totalité des cas ; le clic reste le filet.
-       Sans JavaScript, la pastille est toujours le lien tel: d’origine. -->
-  <script is:inline>
-    (function () {
-      var pastille = document.querySelector("a.chatbot");
-      if (!pastille) return;
-      var venue = null;
-      function venir() {
-        if (venue) return venue;
-        var f = document.createElement("link");
-        f.rel = "stylesheet"; f.href = "/assets/css/chatbot.css?v=19";
-        document.head.appendChild(f);
-        venue = import("/assets/js/chatbot.js?v=19").catch(function () { venue = null; });
-        return venue;
-      }
-      ["pointerenter", "touchstart", "focus"].forEach(function (e) {
-        pastille.addEventListener(e, venir, { once: true, passive: true });
-      });
-      pastille.addEventListener("click", function (e) {
-        /* aria-expanded n’est posé que par chatbot.js : sa présence signifie
-           que le vrai widget a pris la main et gère déjà ce clic. */
-        if (pastille.hasAttribute("aria-expanded")) return;
-        e.preventDefault();
-        var p = venir();
-        if (p) p.then(function () { pastille.click(); });
-        else window.location.href = pastille.href;   // le module n’est pas venu : on appelle la salle
-      });
-    })();
-  </script>
-
-  <script is:inline type="module" src="/assets/js/site.js?v=19"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=23"></script>
   <script is:inline type="module" src="/assets/js/sky.js?v=19"></script>
 
   <!-- Les huit côtés, depuis la source de vérité — un 404 qui renvoie
        quelque part vaut mieux qu’un 404 qui s’excuse. -->
   <script is:inline type="module">
-    import { DISCIPLINES } from "/assets/js/data.js?v=19";
+    import { DISCIPLINES } from "/assets/js/data.js?v=22";
     const box = document.getElementById("e404-edges");
     if (box && DISCIPLINES) {
       box.innerHTML = [...DISCIPLINES].sort((a, b) => a.edge - b.edge).map((d) =>

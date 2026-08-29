@@ -44,7 +44,7 @@
    LES HUIT LIBELLÉS RESTENT DES LIENS RÉELS, fixes et droits (un texte qui
    tourne ne se lit pas), avec 44 px de cible tactile garantis.
    ===================================================================== */
-import { DISCIPLINES } from "./data.js?v=19";
+import { DISCIPLINES } from "./data.js?v=22";
 
 const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const NS = "http://www.w3.org/2000/svg";

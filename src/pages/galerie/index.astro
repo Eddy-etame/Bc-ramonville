@@ -29,7 +29,7 @@
        double le poids. Le 1 920 reste chargé — au clic, par la visionneuse. -->
   <link rel="preload" as="image" href="/assets/img/ram/hero-1200.webp" fetchpriority="high" />
   <link rel="stylesheet" href="/assets/css/fonts.css?v=19" />
-  <link rel="stylesheet" href="/assets/css/base.css?v=19" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=22" />
   <link rel="stylesheet" href="/assets/css/galerie.css?v=19" />
   <meta name="keywords" content="photos salle de boxe Ramonville, octogone MMA photo, ring boxe Toulouse, boxing center Ramonville-Saint-Agne galerie, carnet de terrain, boxing gym Toulouse, MMA gym Toulouse, octagon MMA Toulouse, kickboxing Toulouse, grappling Toulouse, kids boxing Toulouse, outdoor boxing Toulouse, boxing club Ramonville, martial arts gym near Toulouse" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -284,7 +284,7 @@
           {
             "@type": "ListItem",
             "position": 2,
-            "name": "Le plateau",
+            "name": "La salle",
             "url": "https://bc-ramonville.vercel.app/la-salle/"
           },
           {
@@ -322,12 +322,6 @@
             "position": 8,
             "name": "Contact",
             "url": "https://bc-ramonville.vercel.app/contact/"
-          },
-          {
-            "@type": "ListItem",
-            "position": 9,
-            "name": "Ta première séance",
-            "url": "https://bc-ramonville.vercel.app/premiere-seance/"
           }
         ]
       },
@@ -505,7 +499,6 @@
       <div class="wrap">
         <nav class="breadcrumb" aria-label="Fil d’ariane"><a href="/">Accueil</a> / <span>Galerie</span></nav>
         <h1 class="display phero__title"><span class="reveal-mask"><span>La salle,</span></span><span class="reveal-mask"><span class="tint">avant d’y mettre les pieds.</span></span></h1>
-        <p class="lead phero__lead" data-reveal>Vingt-quatre photos, une seule salle. Celle du 33 rue des Ormes, au terminus du métro B. L’octogone de 7 m, le grand ring, la ligne de sacs, l’étage au-dessus. Clique un cadre, il s’agrandit. Dessous, tu lis sa zone. Et les cours qui s’y donnent dans la semaine. La bande suivante donne le ciel de Ramonville à la seconde. Dehors, les 300 m² sont couverts. Une averse n’annule pas ta séance.</p>
         <!-- conditions au tournage : branché sur window.__SKY (sky.js) -->
         <div class="tournage" id="tournage" aria-label="Conditions au-dessus du plateau"></div>
       </div>
@@ -530,8 +523,7 @@
       <div class="wrap">
         <div class="shead" data-reveal>
           <span class="eyebrow">Chaque zone, ses cours</span>
-          <h2 class="display"><span class="reveal-mask"><span>Six zones,</span></span><span class="reveal-mask"><span class="tint">et à quelle heure tu y seras.</span></span></h2>
-          <p class="muted">Une photo te montre un endroit. Elle ne te dit pas quand y aller. Alors c’est écrit. Pour chaque zone : les cours, le jour, l’heure, et le coach qui les tient. Tu repars d’ici en sachant quel soir pousser la porte.</p>
+          <h2 class="display"><span class="reveal-mask"><span>Six zones,</span></span><span class="reveal-mask"><span class="tint">et à quelle heure y aller.</span></span></h2>
         </div>
         <div class="zones" id="carnet-usage" data-reveal-group></div>
       </div>
@@ -542,8 +534,7 @@
       <div class="wrap">
         <div class="shead" data-reveal>
           <span class="eyebrow">Ce que l’image rate</span>
-          <h2 class="display"><span class="reveal-mask"><span>Trois choses</span></span><span class="reveal-mask"><span class="tint">qu’aucune photo ne te donnera.</span></span></h2>
-          <p class="muted">Un cadre fixe et muet, c’est peu pour une salle de boxe. Voilà ce que ces vingt-quatre photos ne te transmettront pas. Celles-là, il faudra venir les chercher.</p>
+          <h2 class="display"><span class="reveal-mask"><span>Trois choses</span></span><span class="reveal-mask"><span class="tint">qu’une photo ne montre pas.</span></span></h2>
         </div>
         <div class="regles" id="carnet-methode" data-reveal-group></div>
       </div>
@@ -556,10 +547,8 @@
     <section class="section blanche" aria-label="Ce que le carnet ne montre pas">
       <div class="wrap">
         <div class="blanche__inner" data-reveal>
-          <span class="eyebrow">Le plateau extérieur</span>
+          <span class="eyebrow">Le dehors</span>
           <h2 class="display"><span class="reveal-mask"><span>Le dehors n’est pas en photo.</span></span><span class="reveal-mask"><span class="tint">Il est en vrai.</span></span></h2>
-          <p class="lead">Il manque une zone à cette page. Aucune autre salle du réseau ne l’a. Les 300 m² où on s’entraîne dehors. Couverts, praticables toute l’année. Personne ne les a encore photographiés. Tu ne les verras donc pas ici. Tu les verras en vrai, dès ta première séance.</p>
-          <p class="muted">Sa surface, sa couverture et ses heures sont relevées sur la page du plateau. Le ciel de Ramonville y est en direct, au-dessus. De quoi savoir ce qui t’attend dehors avant d’y sortir.</p>
           <div class="blanche__cta" id="carnet-renvoi"></div>
         </div>
       </div>
@@ -583,7 +572,6 @@
           <span class="eyebrow">La galerie du club</span>
           <h2 class="display"><span class="reveal-mask"><span>Nos photos au-dessus.</span></span><span class="reveal-mask"><span class="tint">Les tiennes ici.</span></span></h2>
         </div>
-        <p class="communaute__lead" data-reveal>Ta photo du plateau, ton round au sac, la tête du groupe après le Boxing Camp. Tu déposes, un coach relit, ça monte sur le mur.</p>
 
         <div class="mur" id="communaute-mur" data-reveal>
           <p class="mur__vide">Le mur se charge…</p>
@@ -638,7 +626,7 @@
           <span class="plaque__prix"><b>29</b><i>€</i></span>
           <span class="plaque__unit">par personne · 4 semaines</span>
           <span class="plaque__barre">au lieu de 44 €</span>
-          <span class="plaque__go">Je prends ma place <i aria-hidden="true">→</i></span>
+          <span class="plaque__go">Je profite de l'offre <i aria-hidden="true">→</i></span>
         </a>
       </div>
     </section>
@@ -648,9 +636,8 @@
       <div class="ctaband__inner">
         <span class="eyebrow" style="justify-content:center" data-reveal>La photo ne rend pas tout</span>
         <h2 class="display"><span class="reveal-mask"><span>Le mieux,</span></span><span class="reveal-mask"><span class="tint">c’est en vrai.</span></span></h2>
-        <p class="lead" data-reveal>La prochaine photo, c’est toi. Gants prêtés dès le premier soir.</p>
         <div class="ctaband__cta" data-reveal>
-          <a class="btn btn--primary" data-magnetic href="https://boutique.boxingcenter.fr/inscription?product=offre-duo&step=1&utm_source=site&utm_medium=cta&utm_campaign=bc-ramonville"><span>Je prends ma place — 29 €</span></a>
+          <a class="btn btn--primary" data-magnetic href="https://boutique.boxingcenter.fr/inscription?product=offre-duo&step=1&utm_source=site&utm_medium=cta&utm_campaign=bc-ramonville"><span>Je profite de l'offre — 29 €</span></a>
           <a class="btn btn--ghost" data-magnetic href="/la-salle/"><span>Voir le plateau</span></a>
         </div>
       </div>
@@ -668,58 +655,17 @@
 
   <div id="footer"></div>
 
-  <a class="chatbot" href="tel:+33562244682" aria-label="Une question ? Appelle la salle Boxing Center Ramonville">
-    <span class="chatbot__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M8.6 3H15.4L21 8.6V15.4L15.4 21H8.6L3 15.4V8.6Z"/><circle cx="8.6" cy="12" r="1.05" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.05" fill="currentColor" stroke="none"/><circle cx="15.4" cy="12" r="1.05" fill="currentColor" stroke="none"/></svg></span>
-    <span class="chatbot__label">Une question&nbsp;? Appelle la salle</span>
-  </a>
 
-  <!-- ===================== L’ASSISTANT, À LA DEMANDE =====================
-       L’assistant ne coûte plus rien tant qu’on ne lui parle pas. Il pesait
-       17,5 ko de module + 7,6 ko de feuille BLOQUANT LE RENDU, sur les huit
-       pages, pour un panneau que la plupart des visiteurs n’ouvriront jamais.
-       Rien n’est retiré à l’écran : la pastille est peinte par base.css comme
-       avant, et chatbot.css ne décrit que le panneau — qui n’existe pas encore.
-       On charge au premier signe d’intention (survol, doigt, tabulation), donc
-       avant le clic dans la quasi-totalité des cas ; le clic reste le filet.
-       Sans JavaScript, la pastille est toujours le lien tel: d’origine. -->
-  <script is:inline>
-    (function () {
-      var pastille = document.querySelector("a.chatbot");
-      if (!pastille) return;
-      var venue = null;
-      function venir() {
-        if (venue) return venue;
-        var f = document.createElement("link");
-        f.rel = "stylesheet"; f.href = "/assets/css/chatbot.css?v=19";
-        document.head.appendChild(f);
-        venue = import("/assets/js/chatbot.js?v=19").catch(function () { venue = null; });
-        return venue;
-      }
-      ["pointerenter", "touchstart", "focus"].forEach(function (e) {
-        pastille.addEventListener(e, venir, { once: true, passive: true });
-      });
-      pastille.addEventListener("click", function (e) {
-        /* aria-expanded n’est posé que par chatbot.js : sa présence signifie
-           que le vrai widget a pris la main et gère déjà ce clic. */
-        if (pastille.hasAttribute("aria-expanded")) return;
-        e.preventDefault();
-        var p = venir();
-        if (p) p.then(function () { pastille.click(); });
-        else window.location.href = pastille.href;   // le module n’est pas venu : on appelle la salle
-      });
-    })();
-  </script>
-
-  <script is:inline type="module" src="/assets/js/site.js?v=19"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=23"></script>
   <script is:inline type="module" src="/assets/js/sky.js?v=19"></script>
-  <script is:inline type="module" src="/assets/js/page.js?v=19"></script>
+  <script is:inline type="module" src="/assets/js/page.js?v=23"></script>
 
   <!-- Enrichissement PROPRE à la page : la bande de conditions au-dessus du
        plateau (ciel réel), le sommaire du carnet et la visionneuse plein
        cadre. page.js a déjà rendu #gallery (légendes par zone + scramble),
        #carnet-usage, #carnet-methode et #carnet-renvoi. -->
   <script is:inline type="module">
-    import { GALLERY } from "/assets/js/data.js?v=19";
+    import { GALLERY } from "/assets/js/data.js?v=22";
     const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
     const root = document.documentElement;
 

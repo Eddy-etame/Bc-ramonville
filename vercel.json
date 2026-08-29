@@ -4,6 +4,18 @@
       "includeFiles": "src/content.json"
     }
   },
+  "redirects": [
+    {
+      "source": "/premiere-seance",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/premiere-seance/",
+      "destination": "/",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",

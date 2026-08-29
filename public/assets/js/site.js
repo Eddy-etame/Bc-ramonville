@@ -9,7 +9,7 @@
    figé, il n’y a plus rien à basculer.
    Aucun chrome copié de Saint-Cyprien.
    ===================================================================== */
-import { NAV, LINKS, SALLE, SEASON_LABEL, NETWORK } from "./data.js?v=19";
+import { NAV, LINKS, SALLE, SEASON_LABEL, NETWORK } from "./data.js?v=22";
 
 import { initPlaces } from "./places.js?v=19";
 /* --------------------------- LE MAILLAGE --------------------------- *
@@ -142,7 +142,7 @@ function mountNav() {
       </div>
       <nav class="menu__nav">${menuLinks}</nav>
       <div class="menu__foot">
-        <a class="btn btn--primary" data-magnetic href="${LINKS.rentree}"><span>Je prends ma place — 29 €</span></a>
+        <a class="btn btn--primary" data-magnetic href="${LINKS.rentree}"><span>Je profite de l'offre — 29 €</span></a>
         <div class="menu__ext">
           ${lienExt(LINKS.groupe, "Le site officiel — boxingcenter.fr")}
           ${lienExt(LINKS.boutique, "La boutique — box-plus")}
@@ -169,7 +169,7 @@ function mountNav() {
     if (lenis) open ? lenis.stop() : lenis.start();
     // gestion du focus : entre dans le menu à l’ouverture, revient au burger à la fermeture
     if (open) menuClose?.focus();
-    else if (wasOpen) burger.focus();
+    else if (wasOpen && getComputedStyle(burger).display !== "none") burger.focus();
     if (gsap && !reduce && open) {
       gsap.fromTo(items, { yPercent: 110, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.62, ease: "power4.out", stagger: 0.05, delay: 0.16 });
     }
@@ -178,6 +178,10 @@ function mountNav() {
   document.getElementById("menu-close").addEventListener("click", () => setOpen(false));
   menu.querySelectorAll(".menu__link, .menu__foot a").forEach((a) => a.addEventListener("click", () => setOpen(false)));
   addEventListener("keydown", (e) => { if (e.key === "Escape") setOpen(false); });
+  const desktopNav = matchMedia("(min-width: 1240px)");
+  const closeIfDesktop = () => { if (desktopNav.matches) setOpen(false); };
+  desktopNav.addEventListener("change", closeIfDesktop);
+  closeIfDesktop();
 
   let last = 0;
   ScrollTrigger?.create({
@@ -194,11 +198,11 @@ function mountNav() {
 
 /* --------------------- FOOTER — la fiche de terrain ---------------- */
 function mountFooter() {
-  const cols = [{ h: "Le plateau", links: NAV.slice(1, 6) }];
+  const cols = [{ h: "La salle", links: NAV.slice(1, 6) }];
   const fields = [
     { k: "Établissement", v: "Boxing Center — Ramonville", wide: true },
-    { k: "Extérieur", v: "300 m² couverts · octogone de 7 m" },
-    { k: "Niveaux", v: "2 · étage muscu/cardio" },
+    { k: "Extérieur", v: "300 m² couverts · cage de 7 m" },
+    { k: "Niveaux", v: "2 · muscu et cardio" },
     { k: "Adresse", v: SALLE.address.full, wide: true },
     { k: "Horaires", v: SALLE.hours },
     { k: "Téléphone", v: `<a href="tel:${SALLE.phoneHref}">${SALLE.phone}</a>` },
@@ -210,10 +214,10 @@ function mountFooter() {
       <div class="wrap">
         <div class="footer__head">
           <div>
-            <span class="eyebrow">Le plateau t’attend</span>
-            <h2 class="display footer__cut" aria-label="Le seul plateau du réseau qui a un ciel pour plafond.">Le seul plateau du réseau<br><span class="tint">qui a un ciel pour plafond.</span></h2>
+            <span class="eyebrow">La salle t’attend</span>
+            <h2 class="display footer__cut" aria-label="La seule salle du réseau où on s’entraîne dehors.">La seule salle du réseau<br><span class="tint">où on s’entraîne dehors.</span></h2>
           </div>
-          <a class="btn btn--primary" data-magnetic href="${LINKS.rentree}"><span>Je prends ma place — 29 €</span></a>
+          <a class="btn btn--primary" data-magnetic href="${LINKS.rentree}"><span>Je profite de l'offre — 29 €</span></a>
         </div>
         <div class="fiche" aria-label="Fiche de la salle">
           ${fields.map((f) => `<div class="fiche__cell${f.wide ? " fiche__cell--wide" : ""}"><span class="fk">${f.k}</span><span class="fv">${f.v}</span></div>`).join("")}
@@ -435,88 +439,6 @@ function labelSplitHeadings(scope = document) {
 
 const refresh = () => ScrollTrigger?.refresh();
 
-/* ================================================================
-   L'ASSISTANT SE PRESENTE TOUT SEUL — une fois, au bon moment.
-
-   Une pastille muette dans un coin ne se remarque pas : personne ne
-   clique sur ce qu'il n'a pas compris. Le bot se presente donc de
-   lui-meme, mais seulement quand le visiteur a montre qu'il lisait
-   (il a fait defiler). Jamais a l'arrivee : s'ouvrir sur le nez de
-   quelqu'un qui vient d'atterrir, c'est le geste qui fait fermer
-   l'onglet.
-
-   POURQUOI UN CLIC SIMULE plutot qu'un appel de fonction : le module
-   du bot ne descend qu'a l'intention de parler, et chaque salle a sa
-   propre mecanique de chargement. Cliquer la pastille, c'est le chemin
-   qu'emprunte un vrai visiteur — il marche partout, sans rien savoir
-   de ce qu'il y a derriere.
-
-   Deux garde-fous : une seule fois par session ; jamais si le panneau
-   est deja la.
-
-   Sur telephone, le panneau couvre l'ecran : on y pose une BULLE avec
-   la premiere phrase et un bouton. Le message est vu, la page reste au
-   visiteur.
-   ================================================================ */
-function presentationAssistant() {
-  const CLE = "bcr-chat-auto", SEUIL_PX = 900, SEUIL_PART = 0.28;
-  const pastille = document.querySelector("a.chatbot, .chatbot");
-  if (!pastille) return;
-  try { if (sessionStorage.getItem(CLE)) return; } catch (e) { /* stockage indispo */ }
-
-  let fait = false, bulle = null;
-  const dejaLa = () => !!document.querySelector('[class*="chat__panel"], [class*="chat-panel"], #bcr-panel, #scchat-panel');
-  const congedier = () => { if (bulle) { bulle.remove(); bulle = null; } };
-  const ouvrir = () => pastille.click();
-
-  function poserBulle(texte) {
-    if (bulle) return;
-    bulle = document.createElement("div");
-    bulle.className = "bc-amorce";
-    bulle.setAttribute("role", "status");
-    bulle.innerHTML =
-      '<button type="button" class="bc-amorce__fermer" aria-label="Masquer le message de l’assistant">×</button>' +
-      '<p class="bc-amorce__texte">' + texte + "</p>" +
-      '<span class="bc-amorce__cta">Discuter →</span>';
-    bulle.addEventListener("click", (e) => {
-      const ferme = e.target.closest(".bc-amorce__fermer");
-      congedier();
-      if (!ferme) ouvrir();
-    });
-    document.body.appendChild(bulle);
-  }
-
-  function regarder() {
-    if (fait || dejaLa()) return;
-    const h = document.documentElement;
-    const y = window.scrollY || h.scrollTop || 0;
-    const total = Math.max(1, h.scrollHeight - h.clientHeight);
-    if (y < SEUIL_PX && y / total < SEUIL_PART) return;
-    fait = true;
-    try { sessionStorage.setItem(CLE, "1"); } catch (e) { /* stockage indispo */ }
-    setTimeout(() => {
-      if (dejaLa()) return;
-      if (window.matchMedia("(max-width: 480px)").matches) poserBulle("Une question sur les offres, l’octogone ou les créneaux ? Je réponds tout de suite.");
-      else ouvrir();
-    }, 650);
-  }
-
-  /* On LIT la position, on n'attend pas qu'on nous la signale : aucun
-     evenement `scroll` n'est emis sur ce site (Lenis les absorbe — mesure
-     faite au navigateur). Un intervalle plutot que requestAnimationFrame,
-     parce que rAF est gele des que la page ne compose plus d'images
-     (onglet d'arriere-plan) : la presentation ne partirait jamais pour
-     quelqu'un qui ouvre le site dans un onglet et y revient. 300 ms coute
-     cent fois moins qu'une image. On s'arrete pour de bon au premier
-     declenchement, et on abandonne au bout de deux minutes. */
-  const minuteur = setInterval(() => {
-    regarder();
-    if (fait) clearInterval(minuteur);
-  }, 300);
-  setTimeout(() => clearInterval(minuteur), 120000);
-  regarder();   // page deja defilee (retour arriere, ancre) : on tranche tout de suite
-}
-
 /* ------------------------------ BOOT ------------------------------ */
 window.BC = {
   reveal, magnetic, refresh, media: hydrateMedia, split, scramble, initKinetics, touchLife,
@@ -533,6 +455,5 @@ touchLife();
 /* « Plus que N places » : le nombre vient des ventes reelles de la
    boutique. Sans reponse, aucun compteur ne s'affiche — voir places.js. */
 void initPlaces();
-presentationAssistant();
 
 export const BC = window.BC;

@@ -29,7 +29,7 @@ import { TARIFS, PROMOS } from "../../../public/assets/js/data.js";
        ni une requête de plus, elle arrive seulement à l’heure. -->
   <link rel="preload" href="/fonts/jetbrainsmono-var-latin.woff2?v=19" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="/assets/css/fonts.css?v=19" />
-  <link rel="stylesheet" href="/assets/css/base.css?v=19" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=22" />
   <link rel="stylesheet" href="/assets/css/page.css?v=19" />
   <meta name="keywords" content="tarif boxe Ramonville, prix salle de boxe Toulouse sud, offre rentrée boxe, abonnement boxe MMA Ramonville-Saint-Agne, essai boxe 10 euros, boxing gym Toulouse, MMA gym Toulouse, octagon MMA Toulouse, kickboxing Toulouse, grappling Toulouse, kids boxing Toulouse, outdoor boxing Toulouse, boxing club Ramonville, martial arts gym near Toulouse" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -292,7 +292,7 @@ import { TARIFS, PROMOS } from "../../../public/assets/js/data.js";
           {
             "@type": "ListItem",
             "position": 2,
-            "name": "Le plateau",
+            "name": "La salle",
             "url": "https://bc-ramonville.vercel.app/la-salle/"
           },
           {
@@ -330,12 +330,6 @@ import { TARIFS, PROMOS } from "../../../public/assets/js/data.js";
             "position": 8,
             "name": "Contact",
             "url": "https://bc-ramonville.vercel.app/contact/"
-          },
-          {
-            "@type": "ListItem",
-            "position": 9,
-            "name": "Ta première séance",
-            "url": "https://bc-ramonville.vercel.app/premiere-seance/"
           }
         ]
       },
@@ -459,31 +453,7 @@ import { TARIFS, PROMOS } from "../../../public/assets/js/data.js";
       <div class="sky" aria-hidden="true"><canvas class="sky__stars"></canvas><div class="sky__haze"></div><div class="sky__moon"></div></div>
       <div class="wrap">
         <nav class="breadcrumb" aria-label="Fil d’ariane"><a href="/">Accueil</a> / <span>Tarifs</span></nav>
-        <h1 class="display phero__title phero__title--long"><span class="reveal-mask"><span>Un prix. Le ciel compris.</span></span></h1>
-        <p class="lead phero__lead" data-reveal>Tu veux savoir combien. Et si c’est bien ce que tu paieras. Les deux réponses sont ici. Toutes les formules sont écrites en entier, avec ce qu’elles contiennent. Rien ne se découvre au comptoir.</p>
-        <!-- l’objet propre à ce hero (page.js → pheroMeta) -->
-        <!-- LES TROIS PRIX SONT DANS LE HTML.
-             Ce bandeau arrivait vide et se remplissait en JavaScript : 67 px
-             qui apparaissaient d’un coup sous le chapeau et poussaient toute
-             la page des formules vers le bas. C’était, de loin, le plus gros
-             décalage du site (0,621 mesuré en 4G bridée) — et il tombait sur
-             la page qui doit inspirer le plus confiance. Trois prix fixes,
-             lus de TARIFS et PROMOS au build : la même source que le reste
-             de la page, écrite une seule fois dans data.js. pheroMeta() voit
-             le bandeau déjà rempli et le laisse tranquille. -->
-        <!-- ⚠ CE BANDEAU A DÉJÀ MENTI. Il lisait `TARIFS[0]` en pensant y
-             trouver l'essai — vrai à l'écriture, faux depuis que les cartes
-             ont été réordonnées par l'ordre de vente : `TARIFS[0]` est
-             devenu « Offre Rentrée ». La page annonçait donc « 29 € l'essai »
-             en haut, « la séance d'essai est à 10 € » plus bas, et un Offer
-             JSON-LD à 10 € dans le head : trois prix d'entrée sur une page.
-             On cherche désormais la carte PAR SON NOM : un réordonnancement
-             ne peut plus changer ce que la page affirme. -->
-        <div class="phero__meta" id="phero-meta" data-reveal-group aria-label="Les trois prix">
-          <span><b>{(TARIFS.find((t) => /essai/i.test(t.name)) || TARIFS[TARIFS.length - 1]).price}</b> l’essai</span>
-          <span><b>{PROMOS.duo.price}</b> {PROMOS.duo.unit}</span>
-          <span><b>{PROMOS.saisonOffre.price}</b> {PROMOS.saisonOffre.unit}</span>
-        </div>
+        <h1 class="display phero__title phero__title--long"><span class="reveal-mask"><span>Des prix clairs.</span></span><span class="reveal-mask"><span class="tint">Rien de caché.</span></span></h1>
       </div>
     </header>
 
@@ -493,14 +463,8 @@ import { TARIFS, PROMOS } from "../../../public/assets/js/data.js";
         <div class="shead" data-reveal>
           <span class="eyebrow">Les formules</span>
           <h2 class="display"><span class="reveal-mask"><span>Tu viens voir,</span></span><span class="reveal-mask"><span class="tint">ou tu t’installes&nbsp;?</span></span></h2>
-          <p class="muted">L’essai, pour te faire une idée. La rentrée, pour quatre semaines. La saison, pour l’année. L’abonnement au mois, si tu ne veux rien signer de long. L’école, pour les enfants dès 3 ans. Et aucune ne se prolonge toute seule.</p>
         </div>
         <div class="tarifs" id="tarifs" data-reveal-group></div>
-        <!-- LE PRIX N’EST PAS LE VRAI FREIN, ET CETTE PAGE LE SAIT.
-             Dix euros n’arrêtent personne ; ce qui arrête, c’est de ne pas
-             savoir ce qui se passe une fois la porte franchie. Le renvoi est
-             donc collé aux formules, là où la main hésite. -->
-        <p class="muted" data-reveal style="margin-top:1.4rem;font-size:var(--step--1);max-width:62ch">Ce n’est pas le prix qui retient, en général. <a href="/premiere-seance/" style="color:var(--accent)">Voilà comment se passe une première séance</a>. Le déroulé, la tenue, et les trois choses qu’on ne te fera pas faire.</p>
       </div>
     </section>
 
@@ -510,7 +474,6 @@ import { TARIFS, PROMOS } from "../../../public/assets/js/data.js";
         <div class="shead" data-reveal>
           <span class="eyebrow">Les offres</span>
           <h2 class="display"><span class="reveal-mask"><span>À deux, c’est</span></span><span class="reveal-mask"><span class="tint">29 € chacun.</span></span></h2>
-          <p class="muted">Chacun paie sa place. 29 € par personne, pas 29 € pour le couple. Venir accompagné ne change rien à la facture. Ça change la première séance. Tu n’es plus le seul à ne rien savoir faire.</p>
         </div>
         <div class="promos" id="promos" data-reveal></div>
         <div class="promo__bonus" id="promo-bonus" data-reveal></div>
@@ -521,8 +484,8 @@ import { TARIFS, PROMOS } from "../../../public/assets/js/data.js";
     <section class="section" aria-label="Avis Google">
       <div class="wrap">
         <div class="shead" data-reveal>
-          <span class="eyebrow">Avant de sortir ta carte</span>
-          <h2 class="display"><span class="reveal-mask"><span>Ils l’ont payée,</span></span><span class="reveal-mask"><span class="tint">cette salle.</span></span></h2>
+          <span class="eyebrow">Ils ont payé cette salle</span>
+          <h2 class="display"><span class="reveal-mask"><span>Ce qu’ils en disent.</span></span></h2>
         </div>
         <div class="reviews__head" id="reviews-head" data-reveal></div>
         <div class="reviews" id="reviews" data-reveal-group></div>
@@ -535,16 +498,15 @@ import { TARIFS, PROMOS } from "../../../public/assets/js/data.js";
          l’ouvre par « On préfère te les écrire ici que te les faire découvrir
          au comptoir » : sur une page de prix, la peur n’est pas le montant,
          c’est le supplément qu’on découvre après avoir dit oui. Même procédé
-         ici, six réponses, chaque chiffre relu dans data.js (PROMOS, TARIFS,
+         ici, cinq réponses, chaque chiffre relu dans data.js (PROMOS, TARIFS,
          SALLE, NETWORK). Le composant .faq vit dans page.css, déjà chargée par
          cette page ; aucun JS ne le pilote (page.js ne rend que #faq, sur
          /contact/), les <details> sont donc du HTML nu. -->
     <section class="section" style="background:var(--void);border-block:1px solid var(--line)" aria-labelledby="argent-titre">
       <div class="wrap">
         <div class="shead" data-reveal>
-          <span class="eyebrow">Aucun chiffre au comptoir</span>
-          <h2 class="display" id="argent-titre"><span class="reveal-mask"><span>Ce qui sort</span></span><span class="reveal-mask"><span class="tint">de ta poche.</span></span></h2>
-          <p class="muted">Six réponses écrites avant que tu aies à les demander. S’il en manque une, appelle le 05 62 24 46 82. Avant de payer, pas après.</p>
+          <span class="eyebrow">Rien de caché</span>
+          <h2 class="display" id="argent-titre"><span class="reveal-mask"><span>Ce que tu paies.</span></span><span class="reveal-mask"><span class="tint">Rien d’autre.</span></span></h2>
         </div>
         <div class="faq" data-reveal>
           <details open>
@@ -564,10 +526,6 @@ import { TARIFS, PROMOS } from "../../../public/assets/js/data.js";
             <p>Non, il est compris. Les espaces d’entraînement libres aussi. Ouvert du lundi au samedi, de 10h00 à 21h30. Sans créneau ni réservation. Les jours où aucun cours ne te va, tu viens quand même.</p>
           </details>
           <details>
-            <summary>Le t-shirt de mon enfant est en supplément&nbsp;?</summary>
-            <p>Non, il est inclus dans l’inscription. Pour tous les enfants de l’école. 295 € l’année pour l’éducative 7/11 et les ados 12/16. 250 € pour le Baby Boxe 3/6 ans. Valentin Guth les prend le mercredi et le samedi après-midi.</p>
-          </details>
-          <details>
             <summary>Je peux m’entraîner dans les autres salles&nbsp;?</summary>
             <p>Avec la saison, oui. Elle ouvre les cinq clubs du réseau. Portet, Minimes, États-Unis, Saint-Cyprien et ici. Un seul abonnement, cinq portes. Et une seule des cinq où l’entraînement se fait dehors.</p>
           </details>
@@ -580,7 +538,7 @@ import { TARIFS, PROMOS } from "../../../public/assets/js/data.js";
       <div class="wrap" style="max-width:76ch">
         <h2 id="seo-title" class="display" style="font-size:clamp(1.6rem,3.4vw,2.5rem);margin-bottom:1rem;text-transform:none">Combien coûte la boxe à Ramonville-Saint-Agne ?</h2>
         <p class="lead" style="font-size:var(--step-0)">La <strong>séance d’essai est à 10 €</strong>, toutes disciplines, matériel prêté. Pour continuer, l'<strong>offre Rentrée</strong> revient à <strong>29 € par personne</strong>. Quatre semaines de cours illimités, sans engagement. L'<strong>offre Saison</strong>, c’est <strong>259 € les 12 mois</strong>, payable en <strong>4× sans frais</strong>. Elle ouvre l’accès libre aux <strong>5 clubs</strong> du réseau Boxing Center à Toulouse. L'<strong>école enfants</strong> accueille dès <strong>3 ans</strong>, en Baby Boxe. Puis 7/11 et ados 12/16.</p>
-        <p class="lead" style="font-size:var(--step-0);margin-top:1rem">Tout se réserve en ligne. Le prix que tu lis ici est celui que tu paieras. Rien ne s’ajoute au comptoir. La salle est ouverte du lundi au samedi, de 10h00 à 21h30. L’accès libre muscu/cardio est compris. Sur place, on te demandera une seule chose. Émarger avant ton cours.</p>
+        <p class="lead" style="font-size:var(--step-0);margin-top:1rem">Tout se réserve en ligne. Le prix que tu lis ici est celui que tu paieras. Rien ne s’ajoute à l’accueil. La salle est ouverte du lundi au samedi, de 10h00 à 21h30. La muscu et le cardio sont compris. Sur place, une seule chose : valider ta présence avant le cours.</p>
       </div>
     </section>
     <!-- LE PIÈGE. Même plaque que l’accueil (base.css), amorce propre à la
@@ -595,7 +553,7 @@ import { TARIFS, PROMOS } from "../../../public/assets/js/data.js";
           <span class="plaque__prix"><b>29</b><i>€</i></span>
           <span class="plaque__unit">par personne · 4 semaines</span>
           <span class="plaque__barre">au lieu de 44 €</span>
-          <span class="plaque__go">Je prends ma place <i aria-hidden="true">→</i></span>
+          <span class="plaque__go">Je profite de l'offre <i aria-hidden="true">→</i></span>
         </a>
       </div>
     </section>
@@ -605,9 +563,8 @@ import { TARIFS, PROMOS } from "../../../public/assets/js/data.js";
       <div class="ctaband__inner">
         <span class="eyebrow" style="justify-content:center" data-reveal>Le premier pas est à 10€</span>
         <h2 class="display"><span class="reveal-mask"><span>Commence</span></span><span class="reveal-mask"><span class="tint">par l’essai.</span></span></h2>
-        <p class="lead" data-reveal>Tu décideras du reste après avoir mis les pieds sur le plateau.</p>
         <div class="ctaband__cta" data-reveal>
-          <a class="btn btn--primary" data-magnetic href="https://boutique.boxingcenter.fr/inscription?product=offre-duo&step=1&utm_source=site&utm_medium=cta&utm_campaign=bc-ramonville"><span>Je prends ma place — 29 €</span></a><a class="btn btn--ghost" data-magnetic href="https://boutique.boxingcenter.fr/seance-essai?utm_source=site&utm_medium=cta&utm_campaign=bc-ramonville"><span>Essayer d’abord · 10€</span></a>
+          <a class="btn btn--primary" data-magnetic href="https://boutique.boxingcenter.fr/inscription?product=offre-duo&step=1&utm_source=site&utm_medium=cta&utm_campaign=bc-ramonville"><span>Je profite de l'offre — 29 €</span></a><a class="btn btn--ghost" data-magnetic href="https://boutique.boxingcenter.fr/seance-essai?utm_source=site&utm_medium=cta&utm_campaign=bc-ramonville"><span>Essayer d’abord · 10€</span></a>
           <a class="btn btn--ghost" data-magnetic href="https://boutique.boxingcenter.fr/offre/29"><span>Voir les abonnements</span></a>
         </div>
       </div>
@@ -616,50 +573,9 @@ import { TARIFS, PROMOS } from "../../../public/assets/js/data.js";
 
   <div id="footer"></div>
 
-  <a class="chatbot" href="tel:+33562244682" aria-label="Une question ? Appelle la salle Boxing Center Ramonville">
-    <span class="chatbot__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M8.6 3H15.4L21 8.6V15.4L15.4 21H8.6L3 15.4V8.6Z"/><circle cx="8.6" cy="12" r="1.05" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.05" fill="currentColor" stroke="none"/><circle cx="15.4" cy="12" r="1.05" fill="currentColor" stroke="none"/></svg></span>
-    <span class="chatbot__label">Une question&nbsp;? Appelle la salle</span>
-  </a>
 
-  <!-- ===================== L’ASSISTANT, À LA DEMANDE =====================
-       L’assistant ne coûte plus rien tant qu’on ne lui parle pas. Il pesait
-       17,5 ko de module + 7,6 ko de feuille BLOQUANT LE RENDU, sur les huit
-       pages, pour un panneau que la plupart des visiteurs n’ouvriront jamais.
-       Rien n’est retiré à l’écran : la pastille est peinte par base.css comme
-       avant, et chatbot.css ne décrit que le panneau — qui n’existe pas encore.
-       On charge au premier signe d’intention (survol, doigt, tabulation), donc
-       avant le clic dans la quasi-totalité des cas ; le clic reste le filet.
-       Sans JavaScript, la pastille est toujours le lien tel: d’origine. -->
-  <script is:inline>
-    (function () {
-      var pastille = document.querySelector("a.chatbot");
-      if (!pastille) return;
-      var venue = null;
-      function venir() {
-        if (venue) return venue;
-        var f = document.createElement("link");
-        f.rel = "stylesheet"; f.href = "/assets/css/chatbot.css?v=19";
-        document.head.appendChild(f);
-        venue = import("/assets/js/chatbot.js?v=19").catch(function () { venue = null; });
-        return venue;
-      }
-      ["pointerenter", "touchstart", "focus"].forEach(function (e) {
-        pastille.addEventListener(e, venir, { once: true, passive: true });
-      });
-      pastille.addEventListener("click", function (e) {
-        /* aria-expanded n’est posé que par chatbot.js : sa présence signifie
-           que le vrai widget a pris la main et gère déjà ce clic. */
-        if (pastille.hasAttribute("aria-expanded")) return;
-        e.preventDefault();
-        var p = venir();
-        if (p) p.then(function () { pastille.click(); });
-        else window.location.href = pastille.href;   // le module n’est pas venu : on appelle la salle
-      });
-    })();
-  </script>
-
-  <script is:inline type="module" src="/assets/js/site.js?v=19"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=23"></script>
   <script is:inline type="module" src="/assets/js/sky.js?v=19"></script>
-  <script is:inline type="module" src="/assets/js/page.js?v=19"></script>
+  <script is:inline type="module" src="/assets/js/page.js?v=23"></script>
 </body>
 </html>

@@ -306,8 +306,9 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
    deborder ni chevaucher le burger. Le masquer, c'etait retirer le seul
    chemin d'achat permanent sur l'appareil qui fait l'essentiel du trafic. */
 .nav__cta { display: inline-flex; }
-/* 1240 px : sous ce seuil la barre se chevauchait — le menu prend le relais. */
-@media (min-width: 1240px){ .nav__links { display: flex; } .nav__cta { display: inline-flex; } }
+/* 1240 px : sous ce seuil la barre se chevauchait — le menu burger prend le relais.
+   Au-dessus, les liens sont dans la barre : le burger n’a plus rien à faire. */
+@media (min-width: 1240px){ .nav__links { display: flex; } .nav__cta { display: inline-flex; } .burger { display: none; } }
 .burger { display: inline-flex; flex-direction: column; justify-content: center; gap: 5px; width: 44px; height: 44px; padding: 0 11px; border: 1.5px solid var(--line); border-radius: var(--radius); background: color-mix(in srgb, var(--paper-2) 82%, transparent); transition: border-color .3s; }
 .burger:hover { border-color: var(--accent); }
 .burger span { height: 2px; background: var(--ink); transform-origin: center; transition: transform .4s var(--ease-spring), opacity .25s; }
@@ -321,10 +322,10 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
 .menu.is-open { clip-path: inset(0 0 0 0); pointer-events: auto; }
 .menu__top { display: flex; justify-content: space-between; align-items: center; }
 .menu__close { font: 600 var(--step--1)/1 var(--f-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--ink); display: inline-flex; align-items: center; gap: .7ch; }
-.menu__nav { align-self: safe center; display: flex; flex-direction: column; gap: clamp(.1rem,.7vw,.3rem); }
-.menu__link { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: clamp(2.1rem,9vw,5.4rem); letter-spacing: -.02em; line-height: 1.04; color: var(--ink); display: inline-flex; align-items: baseline; gap: 1.1rem; width: max-content; max-width: 100%; transition: color .3s, transform .5s var(--ease-out); }
-.menu__link .n { font: 600 clamp(.65rem,1.3vw,.9rem)/1 var(--f-mono); color: var(--accent); }
-.menu__link:hover { color: var(--accent); transform: translateX(14px); }
+.menu__nav { align-self: safe center; display: flex; flex-direction: column; gap: clamp(.2rem, .9vw, .5rem); }
+.menu__link { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: clamp(1.4rem, 1.1rem + 1.8vw, 2.15rem); letter-spacing: -.02em; line-height: 1.12; color: var(--ink); display: inline-flex; align-items: baseline; gap: .7rem; width: max-content; max-width: 100%; transition: color .3s, transform .5s var(--ease-out); }
+.menu__link .n { font: 600 clamp(.6rem,1.1vw,.8rem)/1 var(--f-mono); color: var(--accent); }
+.menu__link:hover { color: var(--accent); transform: translateX(8px); }
 .menu__foot { display: flex; flex-wrap: wrap; gap: 1rem 2rem; justify-content: space-between; align-items: center; border-top: 1px solid var(--line); padding-top: 1.4rem; }
 /* `:not(.btn)` — SANS ce garde, ce sélecteur (0,1,1) battait `.btn--primary`
    (0,1,0) et repeignait le CTA du menu plein écran en --muted sur --accent :
@@ -338,14 +339,6 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
 .marquee__track { display: inline-flex; gap: 2.4rem; white-space: nowrap; will-change: transform; }
 .marquee__track span { font: 600 var(--step--1)/1 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-soft); display: inline-flex; align-items: center; gap: 2.4rem; }
 .marquee__track span::after { content: ""; width: 7px; height: 7px; background: var(--accent); transform: rotate(45deg); }
-
-/* ------------------------ CHATBOT → tél réel ---------------------- */
-.chatbot { position: fixed; right: clamp(1rem,2.5vw,2rem); bottom: clamp(1rem,2.5vw,2rem); z-index: 8500; height: 54px; width: 54px; display: inline-flex; align-items: center; overflow: hidden; background: var(--accent); color: var(--void); border-radius: 100px; box-shadow: var(--glow), var(--shadow); transition: width .45s var(--ease-spring), transform .35s var(--ease); }
-.chatbot__icon { flex: 0 0 54px; width: 54px; height: 54px; display: grid; place-items: center; }
-.chatbot__icon svg { width: 22px; height: 22px; }
-.chatbot__label { white-space: nowrap; font: 600 var(--step--1)/1 var(--f-mono); letter-spacing: .04em; padding-right: 1.4rem; opacity: 0; transform: translateX(-8px); transition: opacity .3s, transform .35s var(--ease); }
-.chatbot:hover { width: 16.5rem; transform: translateY(-3px); }
-.chatbot:hover .chatbot__label { opacity: 1; transform: none; }
 
 /* ------------------- FOOTER — la fiche de terrain ----------------- */
 .footer { background: color-mix(in srgb, var(--paper-2) 70%, transparent); border-top: 1px solid var(--line); padding-block: clamp(3rem,6vw,4.5rem) 2rem; position: relative; overflow: hidden; }
@@ -793,7 +786,7 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
 @media (max-width: 600px) {
   input[type="text"], input[type="email"], input[type="tel"], input[type="search"],
   input[type="number"], input[type="url"], input[type="password"], input:not([type]),
-  textarea, select, .bcr-chat__input { font-size: 16px !important; }
+  textarea, select { font-size: 16px !important; }
 }
 
 /* LISIBILITÉ MOBILE (base.css = chargé sur TOUTES les pages, y compris celles
@@ -1016,7 +1009,7 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
 }
 @media (prefers-reduced-motion: reduce) { .plaque, .plaque__go i { transition: none; } }
 /* SUR TÉLÉPHONE, LA PLAQUE MÈNE. La grille passe à une colonne sous 820 px et
-   la plaque tombait SOUS un bouton qui dit déjà « Je prends ma place — 29€ » :
+   la plaque tombait SOUS un bouton qui dit déjà « Je profite de l'offre — 29€ » :
    deux fois la même offre, l’objet qui devait arrêter l’œil arrivant après
    qu’on a déjà décidé. Elle passe devant — le prix accroche, le texte
    explique, le bouton conclut. Au-dessus de 820 px la grille a deux colonnes :

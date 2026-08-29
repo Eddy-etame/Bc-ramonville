@@ -77,8 +77,8 @@ const MAILLAGE =
 
 /* LA NAVIGATION INTERNE, MEME RAISON, MEME GESTE.
    Le pied de page etait ecrit en dur ici depuis longtemps ; la nav, non. Le
-   HTML livre de l'accueil ne contenait donc que DEUX liens internes
-   (/plannings/ et /premiere-seance/, poses a la main dans le contenu) et pas
+   HTML livre de l'accueil ne contenait donc que quelques liens internes
+   poses a la main dans le contenu, et pas
    une balise de navigation. Pour un moteur de reponse qui n'execute pas de
    JavaScript — GPTBot, ClaudeBot, PerplexityBot — le site etait dix iles sans
    un pont : rien ne menait a /coachs/, /activites/, /tarifs/ ni /galerie/.

@@ -59,17 +59,17 @@ mesures officielles disponibles : les 300 m² et l’octogone de 7 m.
   l’est pas — on ne la dessine donc pas. »
 - Le fond de la planche reste le ciel réel de Ramonville (Open-Meteo)
 
-## Disciplines (coach, créneaux, niveau)
+## Disciplines (créneaux, niveau)
 
 <!--calcule:disciplines-->
-- Boxe Anglaise — coachs Valentin Guth (mardi et vendredi 12h40) et Farouk (anglaise loisirs lundi et vendredi 19h45 ; bloc d’anglaise du mercredi 18h45–20h15) — débutant à confirmé
-- Boxe Pieds-Poings — coach Sonia (lundi et vendredi 18h40) ; jeudi 12h40, coach à confirmer — tous niveaux
-- Grappling — coach Jérôme — mardi 18h40, dans l’octogone de 7 m — tous niveaux
-- MMA tous niveaux — coach Jérôme — mardi et jeudi 19h45–21h15, dans l’octogone — confirmé (association)
-- Boxing Camp — coachs Sonia (lundi 12h40), Jérôme (jeudi 18h40), Valentin Guth (samedi 11h00) ; mercredi 12h40, coach à confirmer — tous niveaux
-- Lady Punch (100 % féminin) — coach Sonia — lundi et vendredi 18h00–18h40 — zéro prérequis
-- École enfants — coach Valentin Guth — Baby Boxe 3/6 ans samedi 14h15 ; éducative 7/11 ans mercredi et samedi 15h00 ; ados 12/16 ans mercredi et samedi 16h00
-- Accès libre muscu/cardio — en autonomie — lundi à samedi 10h00–21h30
+- Boxe Anglaise — mardi et vendredi 12h40, mercredi 18h45, lundi et vendredi 19h45 — débutant à confirmé
+- Boxe Pieds-Poings — jeudi 12h40, lundi et vendredi 18h40 — tous niveaux
+- Grappling — mardi 18h40 — tous niveaux
+- MMA tous niveaux — mardi et jeudi 19h45 — tous niveaux · débutants acceptés
+- Boxing Camp — lundi et mercredi 12h40, jeudi 18h40, samedi 11h00 — tous niveaux
+- Lady Punch — lundi et vendredi 18h00 — zéro prérequis
+- École enfants — samedi 14h15, mercredi et samedi 15h00 et 16h00 — Baby → ados
+- Accès libre — en autonomie — 10h00 à 21h30, six jours sur sept
 <!--/calcule:disciplines-->
 
 ### Poids de chaque famille dans la semaine (page Activités)
@@ -89,14 +89,13 @@ Compté sur les 22 cours de la grille de la rentrée.
 ## Planning hebdomadaire des cours (grille complète)
 
 <!--calcule:planning-->
-- Lundi : 12h40 Boxing Camp (Sonia) · 18h00 Lady Punch (Sonia) · 18h40 Boxe Pieds-Poings (Sonia) · 19h45 Anglaise Loisirs (Farouk)
-- Mardi : 12h40 Boxe Anglaise (Valentin Guth) · 18h40 Grappling (Jérôme) · 19h45 MMA tous niveaux (Jérôme)
-- Mercredi : 12h40 Boxing Camp (coach à confirmer) · 15h00 Éducative 7/11 (Valentin Guth) · 16h00 Éducative 12/16 (Valentin Guth) · 18h45–20h15 Boxe Anglaise (Farouk)
-- Jeudi : 12h40 Boxe Pieds-Poings (coach à confirmer) · 18h40 Boxing Camp (Jérôme) · 19h45 MMA tous niveaux (Jérôme)
-- Vendredi : 12h40 Boxe Anglaise (Valentin Guth) · 18h00 Lady Punch (Sonia) · 18h40 Boxe Pieds-Poings (Sonia) · 19h45 Anglaise Loisirs (Farouk)
-- Samedi : 11h00 Boxing Camp (Valentin Guth) · 14h15 Baby Boxe 3/6 (Valentin Guth) · 15h00 Éducative 7/11 (Valentin Guth) · 16h00 Éducative 12/16 (Valentin Guth)
+- Lundi : 12h40 Boxing Camp · 18h00 Lady Punch · 18h40 Boxe Pieds-Poings · 19h45 Anglaise Loisirs
+- Mardi : 12h40 Boxe Anglaise · 18h40 Grappling · 19h45 MMA tous niveaux
+- Mercredi : 12h40 Boxing Camp · 15h00 Éducative 7/11 · 16h00 Éducative 12/16 · 18h45–20h15 Boxe Anglaise
+- Jeudi : 12h40 Boxe Pieds-Poings · 18h40 Boxing Camp · 19h45 MMA tous niveaux
+- Vendredi : 12h40 Boxe Anglaise · 18h00 Lady Punch · 18h40 Boxe Pieds-Poings · 19h45 Anglaise Loisirs
+- Samedi : 11h00 Boxing Camp · 14h15 Baby Boxe 3/6 · 15h00 Éducative 7/11 · 16h00 Éducative 12/16
 - Dimanche : fermé
-- Deux créneaux du poster de la rentrée n’ont pas encore de coach nommé (mercredi 12h40 et jeudi 12h40) : le site écrit « coach à confirmer » plutôt que d’attribuer le cours à quelqu’un.
 <!--/calcule:planning-->
 
 ## Le rythme de la semaine (comptes tirés de la grille ci-dessus)
@@ -113,25 +112,25 @@ Compté sur les 22 cours de la grille de la rentrée.
 ## Les coachs
 
 <!--calcule:coachs-->
-- Sonia — boxe pieds-poings, Lady Punch, Boxing Camp — 5 créneaux par semaine (photo réelle sur le site) ; c’est vers elle qu’on oriente les premières venues
-- Jérôme — grappling, MMA tous niveaux, Boxing Camp du jeudi — 4 créneaux par semaine (photo réelle sur le site)
-- Farouk — anglaise loisirs (lundi, vendredi) et bloc d’anglaise du mercredi soir — 3 créneaux par semaine
-- Valentin Guth — boxe anglaise, école enfants (Baby Boxe, éducative, ados) — 8 créneaux par semaine ; il enseigne aussi à la salle des États-Unis, dans le réseau Boxing Center à Toulouse
-- Deux créneaux de midi (mercredi, jeudi) attendent encore leur coach : le site les affiche « coach à confirmer »
+- Jérôme — head coach — MMA, grappling, forme physique
+- Sonia — boxe thaï, kickboxing, Boxing Lady
+- Hicham — boxe anglaise
+- Farouk — boxe anglaise
+- Valentin Guth — boxe loisirs, école enfants
 <!--/calcule:coachs-->
 
 ## Tarifs et offres (dans l’ordre où le club les présente)
 
 - Offre Rentrée : 29 € par personne (au lieu de 44,99 €), 4 semaines de cours illimités, sans engagement. Jamais « 29 € pour deux » : chacun paie sa place. Lien : https://boutique.boxingcenter.fr/offre/29
 - Offre Saison : 259 € les 12 mois (au lieu de 400 €), payable en 4× sans frais, toutes disciplines, accès libre aux 5 clubs du réseau — https://boutique.boxingcenter.fr/offre/259
-- École enfants dès 3 ans : Baby Boxe 3/6 à 250 €/an, éducative 7/11 et ados 12/16 à 295 €/an, t-shirt Boxing Center inclus — https://boutique.boxingcenter.fr/abonnements
+- École enfants dès 3 ans : Baby Boxe 3/6 à 250 €/an, éducative 7/11 et ados 12/16 à 295 €/an — https://boutique.boxingcenter.fr/abonnements
 
-## La première séance (page dédiée)
+## La première séance
 
-- Le déroulé publié sur https://bc-ramonville.vercel.app/premiere-seance/ : on arrive un quart d’heure avant le cours au 33 rue des Ormes, on dit à l’accueil que c’est sa première fois, on émarge (émargement GPS obligatoire en salle, pour tout le monde), un coach prête les gants et les bandes, montre le plateau, puis c’est le cours normal — échauffement, technique, sac.
+- On arrive un quart d’heure avant le cours au 33 rue des Ormes, on dit à l’accueil que c’est sa première fois, on émarge (émargement GPS obligatoire en salle, pour tout le monde), un coach prête les gants et les bandes, montre le plateau, puis c’est le cours normal — échauffement, technique, sac.
 - Ce que le club ne fait PAS : aucun sparring imposé (personne ne monte sur le ring sans en avoir envie), aucun test de niveau à l’entrée, aucun engagement à signer sur place.
 - À apporter : un t-shirt, un short ou un legging, des baskets propres réservées à l’intérieur, une bouteille d’eau. Gants et bandes prêtés par la salle.
-- Créneaux conseillés pour une première fois : Boxing Camp (4 créneaux, tous niveaux), Lady Punch lundi et vendredi 18h00 avec Sonia (100 % féminin, zéro prérequis), grappling mardi 18h40 avec Jérôme (le créneau tous niveaux de l’octogone).
+- Créneaux conseillés pour une première fois : Boxing Camp (tous niveaux), Lady Punch (100 % féminin, zéro prérequis), grappling (tous niveaux, dans l’octogone).
 - 7 des 8 disciplines sont affichées « tous niveaux », « zéro prérequis » ou « débutant » ; aucune ne demande d’expérience préalable.
 
 ## Avis Google (affichés sur la page Tarifs)
@@ -167,7 +166,6 @@ Compté sur les 22 cours de la grille de la rentrée.
 - Planning : https://bc-ramonville.vercel.app/plannings/
 - Tarifs : https://bc-ramonville.vercel.app/tarifs/
 - Contact : https://bc-ramonville.vercel.app/contact/
-- Ta première séance : https://bc-ramonville.vercel.app/premiere-seance/
 
 ## Qui a fait ce site
 

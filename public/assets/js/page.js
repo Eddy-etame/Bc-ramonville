@@ -10,7 +10,7 @@ import {
   DAYS, SCHEDULE, FAMILLES, POSTERS, TARIFS, PROMOS, REVIEWS,
   GALLERY, PHOTO_CREDIT, FAQ, LINKS, DEHORS, GRID_LEGEND, COACHES, ARPENT,
   ENTREE, CARNET,
-} from "./data.js?v=19";
+} from "./data.js?v=22";
 
 const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const $ = (s, r = document) => r.querySelector(s);
@@ -57,7 +57,7 @@ function pheroMeta() {
       const p = planningNow();
       if (p.closed) { box.innerHTML = chip("Dimanche — <b>la salle est fermée</b>") + chip("Lun–sam · 10h–21h30"); return; }
       const head = p.live
-        ? chip(`En ce moment — <b>${p.live.cours}</b> · ${nomDe(p.live.coach)}`)
+        ? chip(`En ce moment — <b>${p.live.cours}</b>`)
         : p.next
           ? chip(`Prochain cours — <b>${p.next.cours}</b> à ${p.next.start}`)
           : chip("Plus de cours aujourd’hui — <b>accès libre</b> jusqu’à 21h30");
@@ -349,7 +349,6 @@ function renderDiscs() {
         <h2>${d.name}</h2>
         <p>${d.desc}</p>
         <div class="disc__facts">
-          <div class="disc__fact"><b>Coach</b><span>${d.coach}</span></div>
           <div class="disc__fact"><b>Créneaux</b><span>${d.jours}</span></div>
           <div class="disc__fact"><b>Niveau</b><span>${d.niveau}</span></div>
         </div>
@@ -590,7 +589,6 @@ function renderCarnet() {
         return `<a class="zline" href="/activites/#${d.key}">
           <b>${d.name}</b>
           <span class="zline__when">${when}</span>
-          <i class="zline__who">${slots.length ? [...new Set(slots.map((s) => nomDe(s.coach)))].join(" · ") : d.coach}</i>
         </a>`;
       }).join("");
       return `<article class="zrow">
@@ -639,7 +637,7 @@ function renderPlanning() {
         if (!slots.length) return `<td class="empty" aria-hidden="true">·</td>`;
         return `<td>${slots.map((s) => `
           <a class="slot ${fam !== "all" && s.fam !== fam ? "is-dim" : ""}" data-fam="${s.fam}" href="/activites/#${s.disc}">
-            <b>${s.cours}</b><span>${nomDe(s.coach)}</span>
+            <b>${s.cours}</b>
           </a>`).join("")}</td>`;
       }).join("");
       return `<tr><td class="time">${t}</td>${cells}</tr>`;
@@ -680,7 +678,7 @@ function renderPlanning() {
      maison, elle doit être dite deux fois ; elle n’a pas à être écrite
      deux fois de la même façon. Là-bas c’est un constat de visite, ici
      c’est une consigne d’arrivée — et le fait ne bouge pas d’un mot. */
-  const RENTREE_NOTE = `<b>${SEASON_LABEL}</b> — la grille affichée en salle, recopiée ici. Clique un cours, tu tombes sur sa fiche. Une seule formalité : l’émargement GPS. Tu valides ta présence à l’accueil avant chaque cours. Et tu montes.`;
+  const RENTREE_NOTE = `<b>${SEASON_LABEL}</b> — la grille affichée en salle, recopiée ici. Clique un cours, tu tombes sur sa fiche. Une seule formalité : valider ta présence à l’accueil avant chaque cours. Puis tu montes.`;
   // Le détail de l’été (renforts, accès libre, retour de la rentrée) vit
   // maintenant DANS le bloc #ete, en clair. Cette note ne le répète pas : une
   // bonne phrase ne se dit qu’une fois par site (standards §7).
@@ -821,7 +819,10 @@ function renderTarifs() {
       </article>`;
   }
   const bonus = $("#promo-bonus");
-  if (bonus) bonus.innerHTML = `<b>Bonus rentrée —</b> ${PROMOS.bonus}`;
+  if (bonus) {
+    if (PROMOS.bonus) bonus.innerHTML = `<b>Bonus rentrée —</b> ${PROMOS.bonus}`;
+    else bonus.remove();
+  }
 
   // avis Google réels (jamais inventés)
   const rbox = $("#reviews");
@@ -883,7 +884,7 @@ function renderContact() {
       <span class="hrow__d">${h.d}</span>
       <span class="hrow__h">${h.h}</span>
     </div>`).join("")
-    + `<p class="hrow__note">L’accès libre muscu/cardio suit les mêmes horaires : salle ouverte, plateau et étage ouverts. Tu n’as personne à prévenir. Tu viens à l’heure qui t’arrange. Tu montes. Tu t’entraînes.</p>`;
+    + `<p class="hrow__note">La muscu et le cardio suivent les mêmes horaires : salle ouverte, étage ouvert. Tu n’as personne à prévenir. Tu viens à l’heure qui t’arrange.</p>`;
 
   const map = $("#map");
   if (map) map.innerHTML = `<iframe title="Carte — Boxing Center Ramonville, ${SALLE.address.full}" src="${SALLE.mapsUrl}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`;
@@ -902,10 +903,7 @@ function boot() {
   if (page === "la-salle") { renderReleve(); renderPlateau(); renderValues(); renderNetwork(); }
   if (page === "activites") { renderDiscs(); renderEntree(); }
   /* page === "coachs" : le roster est rendu par le module inline de la page
-     (#coachroster) ; la garde de la semaine et l’aiguillage le sont ici. */
-  if (page === "coachs") renderCoachDepth();
-  /* /galerie/ ne rend PLUS le relevé : il appartient à /la-salle/, une fois.
-     Le carnet a sa propre matière — les six zones rendues au planning. */
+     (#coachroster). Les créneaux nominatifs ne s’affichent plus. */
   if (page === "galerie") { renderGallery(); renderCarnet(); }
   if (page === "plannings") renderPlanning();
   if (page === "tarifs") renderTarifs();
