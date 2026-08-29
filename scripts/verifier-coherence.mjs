@@ -154,7 +154,7 @@ for (const f of ["public/assets/js/page.js", "public/assets/js/home.js", "public
    ------------------------------------------------------------------ */
 const { readdir } = await import("fs/promises");
 for (const dir of await readdir(join(ROOT, "src/pages"), { withFileTypes: true })) {
-  if (!dir.isDirectory() || ["tarifs", "seance-offerte"].includes(dir.name)) continue;
+  if (!dir.isDirectory() || dir.name === "tarifs") continue;
   let src = "";
   try { src = await readFile(join(ROOT, "src/pages", dir.name, "index.astro"), "utf8"); } catch { continue; }
   const sansCommentaires = src.replace(/\/\*[\s\S]*?\*\//g, "").replace(/<!--[\s\S]*?-->/g, "");

@@ -292,10 +292,6 @@ export function initChatbot() {
   logEl.addEventListener("click", (e) => {
     const act = e.target.closest("button[data-act]");
     if (act && act.dataset.act === "rappel") demanderRappel();
-    /* Le laissez-passer de la seance offerte : sans ce jeton depose par le
-       bot au moment ou il l'offre, l'URL rend une 404. */
-    const lien = e.target.closest('a[href^="/seance-offerte"]');
-    if (lien) { try { sessionStorage.setItem("bcr-offert-pass", String(Date.now())); } catch (_) {} }
   });
 
   /* -------------------------- SUGGESTIONS -------------------------- */

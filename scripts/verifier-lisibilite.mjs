@@ -88,7 +88,7 @@ const mesure = (morceaux) => {
 
 const pages = [""];
 for (const e of await readdir(DIST, { withFileTypes: true })) {
-  if (!e.isDirectory() || ["admin", "seance-offerte", "md", "assets", "fonts", "img"].includes(e.name)) continue;
+  if (!e.isDirectory() || ["admin", "md", "assets", "fonts", "img"].includes(e.name)) continue;
   if (existsSync(join(DIST, e.name, "index.html"))) pages.push(e.name);
 }
 

@@ -24,7 +24,7 @@ const texteDe = (h) => h
 /* 1. Chaque page publique a UN h1 et du texte sans JavaScript. */
 const pages = [""];
 for (const e of await readdir(DIST)) {
-  if (["admin", "seance-offerte", "md", "fonts", "assets"].includes(e)) continue;
+  if (["admin", "md", "fonts", "assets"].includes(e)) continue;
   if (existsSync(join(DIST, e, "index.html"))) pages.push(e);
 }
 for (const p of pages) {
@@ -85,7 +85,7 @@ dit(!/ai-dev-credit/.test(await readFile(join(DIST, "assets", "js", "site.js"), 
     "le bloc de credit CACHE a disparu (texte cache = regle anti-spam)");
 
 /* 6. La page fantôme reste fantôme. */
-dit(!existsSync(join(DIST, "md", "seance-offerte")), "seance-offerte — AUCUN miroir markdown (hors circuit)");
+dit(!existsSync(join(DIST, "seance-offerte")), "seance-offerte — la page n’existe plus sur ce site");
 dit(!llms.includes("seance-offerte"), "seance-offerte — absente de llms.txt");
 
 console.log(`\n  ${ok} passes / ${ok + ko}${ko ? `  —  ${ko} ECHECS` : "  —  tout passe"}`);

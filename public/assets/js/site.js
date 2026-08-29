@@ -451,9 +451,8 @@ const refresh = () => ScrollTrigger?.refresh();
    qu'emprunte un vrai visiteur — il marche partout, sans rien savoir
    de ce qu'il y a derriere.
 
-   Trois garde-fous : une seule fois par session ; jamais si le panneau
-   est deja la ; jamais sur /seance-offerte/, page de conversion ou le
-   formulaire ne doit rien avoir devant lui.
+   Deux garde-fous : une seule fois par session ; jamais si le panneau
+   est deja la.
 
    Sur telephone, le panneau couvre l'ecran : on y pose une BULLE avec
    la premiere phrase et un bouton. Le message est vu, la page reste au
@@ -464,7 +463,6 @@ function presentationAssistant() {
   const pastille = document.querySelector("a.chatbot, .chatbot");
   if (!pastille) return;
   try { if (sessionStorage.getItem(CLE)) return; } catch (e) { /* stockage indispo */ }
-  if (location.pathname.indexOf("/seance-offerte") === 0) return;
 
   let fait = false, bulle = null;
   const dejaLa = () => !!document.querySelector('[class*="chat__panel"], [class*="chat-panel"], #bcr-panel, #scchat-panel');
