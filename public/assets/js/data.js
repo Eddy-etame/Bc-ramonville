@@ -791,7 +791,7 @@ const _TARIFS = [
 /* Le réseau — 5 salles (Balma-Gramont VENDUE : jamais citée). `self`
    marque Ramonville, filtrée quand on montre « les 4 sœurs ». */
 export const NETWORK = [
-  { id: "portet", name: "Portet-sur-Garonne", tag: "Le vaisseau amiral", feat: "600 m² · ring de boxe anglaise · cage MMA", url: "https://www.boxing-center-portet.fr/" },
+  { id: "portet", name: "Portet-sur-Garonne", tag: "Le vaisseau amiral", feat: "600 m² · ring de boxe anglaise · cage MMA", url: "https://boxing-center-portet.fr/" },
   { id: "minimes", name: "Minimes", tag: "Le berceau", feat: "Salle historique · 3 rings · l’école dès 3 ans", url: "https://boxe-toulouse.com/" },
   { id: "etats-unis", name: "États-Unis", tag: "Le colosse", feat: "La plus grande salle de France dédiée aux sports de combat", url: "https://clubmma.fr/" },
   { id: "st-cyprien", name: "Saint-Cyprien", tag: "La rive gauche", feat: "1 200 m² · un seul niveau", url: "https://club-boxe-toulouse.com/" },
