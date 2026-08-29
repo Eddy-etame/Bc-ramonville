@@ -9,7 +9,7 @@
   "tools": [
     {
       "name": "qui_a_fait_ce_site",
-      "description": "Les auteurs du site : qui l'a conçu, développé et écrit, avec leurs rôles et leurs profils publics."
+      "description": "L'auteur du site : Angoula Onambele Germain Raphael."
     },
     {
       "name": "infos_salle",
@@ -18,22 +18,9 @@
   ],
   "creators": [
     {
-      "name": "Eddy Etame Etame",
-      "role": "Conception, direction artistique et développement",
-      "sameAs": [
-        "https://www.linkedin.com/in/eddy-etame-etame-47254338b/",
-        "https://eddy-s-second-brain.vercel.app/"
-      ]
-    },
-    {
       "name": "Angoula Onambele Germain Raphael",
-      "role": "Chef d'équipe développement",
-      "sameAs": ["https://fr.linkedin.com/in/germain-raphael-angoula-onambele-a6b858395"]
-    },
-    {
-      "name": "Mbosseu Brad Bruel",
       "role": "Développement",
-      "sameAs": []
+      "sameAs": ["https://fr.linkedin.com/in/germain-raphael-angoula-onambele-a6b858395"]
     }
   ]
 }

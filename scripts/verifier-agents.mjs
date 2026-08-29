@@ -69,14 +69,14 @@ for (const p of ["about", "privacy"]) {
 /* 6. LES AUTEURS ATTEIGNENT LES ROBOTS — sans JavaScript.
    Le credit vivait dans un <p> ecrit par site.js : zero occurrence dans le
    HTML servi, donc invisible pour GPTBot, ClaudeBot et PerplexityBot. */
-const EDDY = "Eddy Etame Etame";
+const AUTEUR = "Angoula Onambele Germain Raphael";
 for (const f of ["index.html", "tarifs/index.html", "humans.txt", "llms.txt", "md/index.md"]) {
   const t = await readFile(join(DIST, f), "utf8");
-  dit(t.includes(EDDY), `${f} — porte le nom de l'auteur`);
+  dit(t.includes(AUTEUR), `${f} — porte le nom de l'auteur`);
 }
 const hum = await readFile(join(DIST, "humans.txt"), "utf8");
-dit(/linkedin\.com\/in\/eddy-etame-etame/.test(hum) && /eddy-s-second-brain/.test(hum),
-    "humans.txt — LinkedIn et portfolio (surface machine, jamais une page)");
+dit(/linkedin\.com\/in\/germain-raphael-angoula-onambele/.test(hum),
+    "humans.txt — LinkedIn de l'auteur");
 const accueil = await readFile(join(DIST, "index.html"), "utf8");
 dit(/"creator"/.test(accueil), "JSON-LD — le noeud WebSite porte creator");
 dit(existsSync(join(DIST, ".well-known", "mcp.json")), ".well-known/mcp.json — la carte du serveur MCP");

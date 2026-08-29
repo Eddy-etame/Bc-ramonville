@@ -30,7 +30,7 @@
   <link rel="preload" as="image" href="/assets/img/ram/hero-1200.webp" fetchpriority="high" />
   <link rel="stylesheet" href="/assets/css/fonts.css?v=19" />
   <link rel="stylesheet" href="/assets/css/base.css?v=19" />
-  <link rel="stylesheet" href="/assets/css/galerie.css?v=19" />
+  <link rel="stylesheet" href="/assets/css/galerie.css?v=20" />
   <meta name="keywords" content="photos salle de boxe Ramonville, octogone MMA photo, ring boxe Toulouse, boxing center Ramonville-Saint-Agne galerie, carnet de terrain, boxing gym Toulouse, MMA gym Toulouse, octagon MMA Toulouse, kickboxing Toulouse, grappling Toulouse, kids boxing Toulouse, outdoor boxing Toulouse, boxing club Ramonville, martial arts gym near Toulouse" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="author" content="Boxing Center Ramonville" />
@@ -663,10 +663,11 @@
     </section>
   </main>
 
-  <!-- la visionneuse plein cadre -->
+  <!-- la visionneuse plein cadre — le bouton Fermer est HORS du cadre
+       (overflow:hidden y coupait le clic). Un clic n’importe où ferme. -->
   <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo agrandie">
+    <button class="lightbox__close" id="lb-close" type="button">Fermer <span aria-hidden="true">✕</span></button>
     <div class="lightbox__frame">
-      <button class="lightbox__close" id="lb-close" type="button">Fermer <span aria-hidden="true">✕</span></button>
       <img id="lb-img" alt="" width="1600" height="1067" decoding="async" loading="lazy" />
       <div class="lightbox__cap" id="lb-cap"></div>
     </div>
@@ -820,8 +821,8 @@
         e.preventDefault();  // Espace ne doit pas faire défiler la page
         openFrom(shot);
       });
-      lbClose.addEventListener("click", closeLb);
-      lb.addEventListener("click", (e) => { if (e.target === lb) closeLb(); });
+      lbClose.addEventListener("click", (e) => { e.stopPropagation(); closeLb(); });
+      lb.addEventListener("click", closeLb);
       addEventListener("keydown", (e) => {
         if (!lb.classList.contains("is-open")) return;
         if (e.key === "Escape") closeLb();
