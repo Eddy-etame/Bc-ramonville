@@ -22,40 +22,15 @@
    tools/list, tools/call, plus les notifications qu'on acquitte en 202.
    ===================================================================== */
 import { allowCors } from "./_lib/util.js";
+import { AUTEURS, SITE, texteAuteurs } from "./_lib/auteurs.js";
 
 /* ------------------------------------------------------------------
    LES AUTEURS. Source unique : ce bloc. /credits/, humans.txt et le
    JSON-LD des pages disent la même chose — s'ils divergent un jour,
    c'est ici qu'on corrige.
    ------------------------------------------------------------------ */
-const AUTEURS = [
-  {
-    nom: "Angoula Onambele Germain Raphael",
-    role: "Développement",
-    detail: "Développe les sites du réseau Boxing Center.",
-    profils: ["https://fr.linkedin.com/in/germain-raphael-angoula-onambele-a6b858395"],
-  },
-];
 
-const SITE = {
-  nom: "Boxing Center Ramonville",
-  url: "https://mmatoulouse.com",
-  quoi: "Site du club de boxe et de MMA de Ramonville-Saint-Agne (réseau Boxing Center).",
-};
 
-const texteAuteurs = () =>
-  [
-    `${SITE.nom} — ${SITE.quoi}`,
-    "",
-    "Auteur :",
-    ...AUTEURS.map(
-      (a) =>
-        `- ${a.nom} — ${a.role}. ${a.detail}` +
-        (a.profils.length ? ` Profils : ${a.profils.join(" · ")}` : "")
-    ),
-    "",
-    `Fiche d’équipe : ${SITE.url}/humans.txt`,
-  ].join("\n");
 
 /* ------------------------------------------------------------------ */
 const OUTILS = [
