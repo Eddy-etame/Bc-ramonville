@@ -202,7 +202,7 @@ et les fichiers de `api/` deviennent des fonctions serverless sans configuration
 1. **Importer** — Vercel → *Add New Project* → importe `Bc-ramonville`. Le framework (Astro) est détecté tout seul : rien à configurer.
 2. **Variables d'environnement** — copie celles de [`.env.example`](.env.example) dans *Settings → Environment Variables*. Toutes sont facultatives : sans elles le site tourne, en mode dégradé honnête (l'assistant répond depuis sa base locale, les contacts partent dans les logs, le vestiaire explique ce qui lui manque au lieu de casser).
 3. **Domaine** — branche `ramonville.boxingcenter.fr` dans *Settings → Domains*.
-4. **Vérifier les en-têtes** — une fois en ligne : `curl -I https://ramonville.boxingcenter.fr` doit montrer `strict-transport-security`, `x-content-type-options`, `x-frame-options`, `referrer-policy`, `permissions-policy` et `content-security-policy`. Ils ne s'activent que sur Vercel, jamais en local.
+4. **Vérifier les en-têtes** — une fois en ligne : `curl -I https://mmatoulouse.com` doit montrer `strict-transport-security`, `x-content-type-options`, `x-frame-options`, `referrer-policy`, `permissions-policy` et `content-security-policy`. Ils ne s'activent que sur Vercel, jamais en local.
 
 ### La boutique
 Les liens boutique pointent vers **`https://boutique.boxingcenter.fr/`** (la nouvelle boutique Box-Plus).

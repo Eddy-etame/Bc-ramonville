@@ -99,7 +99,7 @@ function versMd(html, url) {
 let n = 0, octets = 0;
 for (const page of await pages()) {
   const html = await readFile(join(DIST, page, "index.html"), "utf8");
-  const md = versMd(html, `https://bc-ramonville.vercel.app/${page ? page + "/" : ""}`);
+  const md = versMd(html, `https://mmatoulouse.com/${page ? page + "/" : ""}`);
   const dossier = join(DIST, "md", page);
   await mkdir(dossier, { recursive: true });
   await writeFile(join(dossier, "index.md"), md);

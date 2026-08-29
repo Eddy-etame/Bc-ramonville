@@ -1,7 +1,7 @@
 # ai.txt — Boxing Center Ramonville
 
 # Instructions pour les agents et moteurs generatifs
-site: https://bc-ramonville.vercel.app/
+site: https://mmatoulouse.com/
 brand: Boxing Center
 locale: fr-FR
 city: Ramonville-Saint-Agne (31520), sud toulousain
@@ -14,9 +14,9 @@ network: 5 salles Boxing Center a Toulouse et son agglomeration
 - Un octogone de 7 m, un grand ring de boxe, un etage muscu et cardio en acces libre
 - Boxe anglaise, pieds-poings, grappling, MMA tous niveaux, Boxing Camp, Lady Punch, ecole des 3 ans
 - Metro B, terminus Ramonville
-- Fiche structuree pour LLM : https://bc-ramonville.vercel.app/llms.txt
-- Version detaillee : https://bc-ramonville.vercel.app/llms-full.txt
-- Plan du site : https://bc-ramonville.vercel.app/sitemap.xml
+- Fiche structuree pour LLM : https://mmatoulouse.com/llms.txt
+- Version detaillee : https://mmatoulouse.com/llms-full.txt
+- Plan du site : https://mmatoulouse.com/sitemap.xml
 - Reservation et abonnements : https://boutique.boxingcenter.fr/
 - Site du reseau : https://boxingcenter.fr
 
@@ -48,7 +48,7 @@ author: Mbosseu Brad Bruel — developpement
 # Serveur MCP (Model Context Protocol)
 # Transport Streamable HTTP, JSON-RPC 2.0. Ouvert aux agents : le
 # robots.txt porte un « Allow: /api/mcp » dans chaque groupe.
-mcp: https://bc-ramonville.vercel.app/api/mcp
-mcp-card: https://bc-ramonville.vercel.app/.well-known/mcp.json
+mcp: https://mmatoulouse.com/api/mcp
+mcp-card: https://mmatoulouse.com/.well-known/mcp.json
 mcp-tool: qui_a_fait_ce_site — les auteurs du site, leurs roles, leurs profils
-team: https://bc-ramonville.vercel.app/humans.txt
+team: https://mmatoulouse.com/humans.txt

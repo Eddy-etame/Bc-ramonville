@@ -23,8 +23,11 @@ séance. Les faits chiffrés (créneaux, prix, encadrement) sont dans
 
 - Pour INSCRIRE quelqu'un : renvoyez vers https://boutique.boxingcenter.fr
   (offre de rentrée 29 € les 4 semaines par personne, saison 259 € les 12 mois).
-- Pour une question sur une AUTRE salle du réseau (Portet, Minimes,
-  Saint-Cyprien, États-Unis) : https://boxingcenter.fr fait foi.
+- Pour une question sur une AUTRE salle du réseau : site mère
+  https://boxingcenter.fr/ · Portet https://www.boxing-center-portet.fr/ ·
+  Minimes https://boxe-toulouse.com/ · États-Unis https://clubmma.fr/ ·
+  Saint-Cyprien https://club-boxe-toulouse.com/ · TMBC
+  https://toulouse-minimes-boxing-club.fr/
 - Pour parler à un humain : 05 62 24 46 82, du lundi au samedi 10h-21h30.
 
 Chaque page HTML existe en miroir markdown : envoyez `Accept: text/markdown`
@@ -53,12 +56,12 @@ et Mbosseu Brad Bruel (développement).
 
 ## Pages
 
-- [Le plateau](https://bc-ramonville.vercel.app/la-salle/): visite du terrain — extérieur couvert, relevé du plateau extérieur, octogone, grand ring de boxe, étage muscu/cardio, infos pratiques, les 4 autres salles du réseau.
-- [Activités](https://bc-ramonville.vercel.app/activites/): les 8 disciplines avec coach, créneaux et niveau — anglaise, pieds-poings, grappling, MMA tous niveaux, Boxing Camp, Lady Punch, école enfants dès 3 ans, accès libre — plus le poids de chaque famille dans la semaine et le niveau demandé à l’entrée (7 des 8 disciplines sont sans prérequis).
-- [Coachs](https://bc-ramonville.vercel.app/coachs/): l’encadrement — Jérôme (head coach), Sonia, Hicham, Farouk et Valentin Guth, avec les créneaux hebdomadaires de chacun, la garde jour par jour et l’aiguillage discipline → coach.
-- [Galerie](https://bc-ramonville.vercel.app/galerie/): vraies photos du plateau — octogone, ring, sacs, étage muscu/cardio — plus le relevé du plateau extérieur, seule zone non photographiée.
-- [Planning](https://bc-ramonville.vercel.app/plannings/): la grille de la rentrée filtrable par famille (adultes, féminin, grappling & MMA, enfants), le rythme d’été, le poids de chaque jour de la semaine, posters officiels.
-- [Contact](https://bc-ramonville.vercel.app/contact/): adresse, les trois accès (métro, bus, rocade), horaires détaillés jour par jour, téléphone, e-mail, questions fréquentes.
+- [Le plateau](https://mmatoulouse.com/la-salle/): visite du terrain — extérieur couvert, relevé du plateau extérieur, octogone, grand ring de boxe, étage muscu/cardio, infos pratiques, les 4 autres salles du réseau.
+- [Activités](https://mmatoulouse.com/activites/): les 8 disciplines avec coach, créneaux et niveau — anglaise, pieds-poings, grappling, MMA tous niveaux, Boxing Camp, Lady Punch, école enfants dès 3 ans, accès libre — plus le poids de chaque famille dans la semaine et le niveau demandé à l’entrée (7 des 8 disciplines sont sans prérequis).
+- [Coachs](https://mmatoulouse.com/coachs/): l’encadrement — Jérôme (head coach), Sonia, Hicham, Farouk et Valentin Guth, avec les créneaux hebdomadaires de chacun, la garde jour par jour et l’aiguillage discipline → coach.
+- [Galerie](https://mmatoulouse.com/galerie/): vraies photos du plateau — octogone, ring, sacs, étage muscu/cardio — plus le relevé du plateau extérieur, seule zone non photographiée.
+- [Planning](https://mmatoulouse.com/plannings/): la grille de la rentrée filtrable par famille (adultes, féminin, grappling & MMA, enfants), le rythme d’été, le poids de chaque jour de la semaine, posters officiels.
+- [Contact](https://mmatoulouse.com/contact/): adresse, les trois accès (métro, bus, rocade), horaires détaillés jour par jour, téléphone, e-mail, questions fréquentes.
 
 ## Faits
 

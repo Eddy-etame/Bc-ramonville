@@ -37,7 +37,7 @@ import { pathToFileURL } from "node:url";
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const DIST = join(ROOT, "dist");
 const ETAT = join(ROOT, "scripts", "sitemap-etat.json");
-const BASE = "https://bc-ramonville.vercel.app";
+const BASE = "https://mmatoulouse.com";
 
 /* ---------------------------------------------------------------------
    L'INVENTAIRE DES PHOTOS — et pourquoi il est ici plutôt que dans le HTML.
@@ -129,12 +129,8 @@ const PAGES = [
      `fichier: true` : ce ne sont pas des dossiers avec un index.html. */
   /* Les deux pages de confiance : celles qu'un agent verifie avant de
      recommander un commerce. Poids faible, elles ne concurrencent rien. */
-  { chemin: "humans.txt", fichier: true, priorite: "0.2", freq: "yearly", imgs: [] },
   { chemin: "about/", priorite: "0.3", freq: "yearly", imgs: [] },
   { chemin: "privacy/", priorite: "0.3", freq: "yearly", imgs: [] },
-  { chemin: "llms.txt", fichier: true, priorite: "0.4", freq: "weekly", imgs: [] },
-  { chemin: "llms-full.txt", fichier: true, priorite: "0.3", freq: "weekly", imgs: [] },
-  { chemin: "ai.txt", fichier: true, priorite: "0.3", freq: "monthly", imgs: [] },
 ];
 
 const aujourdhui = new Date().toISOString().slice(0, 10);

@@ -56,7 +56,7 @@ const AUTEURS = [
 
 const SITE = {
   nom: "Boxing Center Ramonville",
-  url: "https://bc-ramonville.vercel.app",
+  url: "https://mmatoulouse.com",
   quoi: "Site du club de boxe et de MMA de Ramonville-Saint-Agne (réseau Boxing Center).",
 };
 

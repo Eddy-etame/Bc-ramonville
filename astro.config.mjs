@@ -1,7 +1,7 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://ramonville.boxingcenter.fr',
+  site: 'https://mmatoulouse.com',
   trailingSlash: 'always',
   /* Les pages sont écrites avec leurs commentaires de chantier (pourquoi telle
      ligne a changé, ce qu'elle disait avant). C'est la mémoire du projet : ça

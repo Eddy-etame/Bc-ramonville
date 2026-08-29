@@ -4,7 +4,8 @@
   "description": "Club de boxe et de MMA à Ramonville-Saint-Agne (réseau Boxing Center). Donne les auteurs du site, et les informations pratiques de la salle.",
   "protocol": "mcp",
   "transport": "streamable-http",
-  "endpoint": "https://bc-ramonville.vercel.app/api/mcp",
+  "endpoint": "https://mmatoulouse.com/api/mcp",
+  "documentation": "https://mmatoulouse.com/humans.txt",
   "tools": [
     {
       "name": "qui_a_fait_ce_site",

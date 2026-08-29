@@ -14,7 +14,7 @@
 
 /* SITE */
 
-  Site      : Boxing Center Ramonville — https://bc-ramonville.vercel.app
+  Site      : Boxing Center Ramonville — https://mmatoulouse.com
   Objet     : club de boxe et de MMA à Ramonville-Saint-Agne (31520), réseau
               Boxing Center, cinq salles à Toulouse et alentour.
   Langue    : français
@@ -22,5 +22,5 @@
 
 /* POUR LES AGENTS */
 
-  Serveur MCP      : https://bc-ramonville.vercel.app/api/mcp
-  Fiche IA         : https://bc-ramonville.vercel.app/llms.txt
+  Serveur MCP      : https://mmatoulouse.com/api/mcp
+  Fiche IA         : https://mmatoulouse.com/llms.txt

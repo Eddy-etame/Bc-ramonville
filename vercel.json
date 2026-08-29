@@ -104,5 +104,13 @@
         }
       ]
     }
+  ],
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "bc-ramonville.vercel.app" }],
+      "destination": "https://mmatoulouse.com/:path*",
+      "permanent": true
+    }
   ]
 }
