@@ -21,9 +21,9 @@ export const QUICKS = [
        produit un oui. Et Ramonville n'est pas Portet : ici c'est couvert et
        CHAUFFÉ — pas de clim parce qu'on est dehors, pas par négligence. */
     q: "Il y a la clim ?",
-    a: "Non, pas de clim — et pour une bonne raison : le plateau est dehors. " +
-       "C’est couvert et chauffé l’hiver, et l’été tu as l’air libre et l’ombre. " +
-       "Quand ça tape, les créneaux du midi et du soir sont les plus respirables.",
+    a: "Non, ni clim ni chauffage — aucune de nos salles n’en a. Ici le plateau est " +
+       "dehors : il est couvert et protégé des intempéries, et l’été tu as l’air libre " +
+       "et l’ombre. Quand ça tape, les créneaux du midi et du soir sont les plus respirables.",
   },
   {
     label: "Le dehors",
