@@ -343,11 +343,21 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
 
 /* ------------------------ CHATBOT → tél réel ---------------------- */
 .chatbot { position: fixed; right: clamp(1rem,2.5vw,2rem); bottom: clamp(1rem,2.5vw,2rem); z-index: 8500; height: 54px; width: 54px; display: inline-flex; align-items: center; overflow: hidden; background: var(--accent); color: var(--void); border-radius: 100px; box-shadow: var(--glow), var(--shadow); transition: width .45s var(--ease-spring), transform .35s var(--ease); }
-.chatbot__icon { flex: 0 0 54px; width: 54px; height: 54px; display: grid; place-items: center; }
-/* 34 px dans une pastille de 54 : la mascotte occupe 63 % de la
-   largeur. À 22 px elle en occupait 17 % de la surface — un vide
-   de cette taille se lit comme une erreur, pas comme du calme. */
-.chatbot__icon svg { width: 34px; height: 34px; }
+/* LE CENTRAGE, ÉPINGLÉ. Mesuré : .chatbot__icon démarrait à x=12 dans
+   une pastille de 54, et faisait lui-même 54 de large — il débordait
+   donc à droite, et la mascotte atterrissait 12 px hors de l'axe. La
+   cause n'était pas le dessin (l'encre est centrée dans son viewBox)
+   mais le LIBELLÉ : frère de flex large de 282 px dans un conteneur de
+   54 en overflow:hidden, il déplaçait la boîte de l'icône.
+   En absolu sur le carré de la pastille, le libellé peut faire ce qu'il
+   veut : l'icône ne bouge plus. */
+.chatbot__icon {
+  position: absolute; left: 0; top: 0;
+  width: 54px; height: 54px;
+  display: grid; place-items: center;
+}
+.chatbot__icon svg { width: 36px; height: 36px; }
+.chatbot__label { margin-left: 54px; }
 .chatbot__label { white-space: nowrap; font: 600 var(--step--1)/1 var(--f-mono); letter-spacing: .04em; padding-right: 1.4rem; opacity: 0; transform: translateX(-8px); transition: opacity .3s, transform .35s var(--ease); }
 .chatbot:hover { width: 16.5rem; transform: translateY(-3px); }
 .chatbot:hover .chatbot__label { opacity: 1; transform: none; }
