@@ -344,10 +344,40 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
 /* ------------------------ CHATBOT → tél réel ---------------------- */
 .chatbot { position: fixed; right: clamp(1rem,2.5vw,2rem); bottom: clamp(1rem,2.5vw,2rem); z-index: 8500; height: 54px; width: 54px; display: inline-flex; align-items: center; overflow: hidden; background: var(--accent); color: var(--void); border-radius: 100px; box-shadow: var(--glow), var(--shadow); transition: width .45s var(--ease-spring), transform .35s var(--ease); }
 .chatbot__icon { flex: 0 0 54px; width: 54px; height: 54px; display: grid; place-items: center; }
-.chatbot__icon svg { width: 22px; height: 22px; }
+/* 34 px dans une pastille de 54 : la mascotte occupe 63 % de la
+   largeur. À 22 px elle en occupait 17 % de la surface — un vide
+   de cette taille se lit comme une erreur, pas comme du calme. */
+.chatbot__icon svg { width: 34px; height: 34px; }
 .chatbot__label { white-space: nowrap; font: 600 var(--step--1)/1 var(--f-mono); letter-spacing: .04em; padding-right: 1.4rem; opacity: 0; transform: translateX(-8px); transition: opacity .3s, transform .35s var(--ease); }
 .chatbot:hover { width: 16.5rem; transform: translateY(-3px); }
 .chatbot:hover .chatbot__label { opacity: 1; transform: none; }
+
+/* ------------------- LA MASCOTTE RESPIRE -------------------------
+   « Interdit du statique. » Une pastille immobile dans un coin ne se
+   remarque pas : l'oeil la range avec le reste du decor et n'y revient
+   jamais. Trois gestes, tous discrets, aucun qui vole la lecture :
+
+     · elle CLIGNE toutes les 6 s — un ecrasement vertical de 90 ms.
+       C'est le geste qui transforme un pictogramme en quelqu'un ;
+     · elle se PENCHE au survol, 6 degres, comme on incline la tete
+       quand on ecoute ;
+     · elle GRANDIT d'un souffle a la pression, puis revient.
+
+   `prefers-reduced-motion` coupe tout : qui a demande le calme
+   l'obtient, et la pastille reste parfaitement utilisable. */
+.chatbot__icon svg { transform-origin: 50% 62%; animation: bc-cligne 6s ease-in-out infinite; }
+@keyframes bc-cligne {
+  0%, 92%, 100% { transform: scaleY(1); }
+  95%           { transform: scaleY(.08); }
+  97%           { transform: scaleY(1); }
+}
+.chatbot:hover .chatbot__icon svg { animation: none; transform: rotate(-6deg) scale(1.04); transition: transform .28s cubic-bezier(.34,1.56,.64,1); }
+.chatbot:active .chatbot__icon svg { transform: rotate(-6deg) scale(.94); }
+@media (prefers-reduced-motion: reduce) {
+  .chatbot__icon svg,
+  .chatbot:hover .chatbot__icon svg { animation: none; transform: none; transition: none; }
+}
+
 
 /* ------------------- FOOTER — la fiche de terrain ----------------- */
 .footer { background: color-mix(in srgb, var(--paper-2) 70%, transparent); border-top: 1px solid var(--line); padding-block: clamp(3rem,6vw,4.5rem) 2rem; position: relative; overflow: hidden; }
