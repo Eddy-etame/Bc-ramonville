@@ -1133,4 +1133,23 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
   .flotte .plaque__go { margin: 0; font-size: 0; }
   .flotte .plaque__go i { font-size: 1.05rem; }
 }
+/* Pas encore arrivée (ordinateur, avant les disciplines) ou déjà doublée par
+   une grande plaque : invisible ET hors du parcours clavier. */
+.flotte.is-avant, .flotte.is-cachee { opacity: 0; transform: translateY(14px); pointer-events: none; visibility: hidden;
+  transition: opacity .35s, transform .35s cubic-bezier(.2,.7,.3,1), visibility 0s linear .35s; }
 @media (prefers-reduced-motion: reduce) { .flotte { transition: none; } }
+
+/* L’ANCIEN PRIX, BARRÉ (Eddy, 13/09) : 400 € → 259 €, 44 € → 29 €, sur
+   chaque bouton, la barre, le menu, le pied de page, le détail du hero et
+   la plaque de poche. Barré net, un ton en dessous du nouveau prix. */
+s.ancien { text-decoration: line-through; text-decoration-thickness: .12em; opacity: .6; font-size: .86em; font-weight: 500; }
+.flotte .plaque__barre { margin-top: .15rem; font-size: .62rem; }
+@media (max-width: 600px) {
+  /* sur téléphone, l’ancien prix se lit d’un coup d’œil à côté du nouveau */
+  s.ancien { font-size: .96em; opacity: .78; text-decoration-thickness: .14em; }
+  /* le bouton de la barre garde ses deux prix mais laisse tomber le mot :
+     avec l’ancien prix, « L’année · » poussait le menu hors de l’écran */
+  .nav__mot { display: none; }
+  .plaque__barre { font-size: .8rem; opacity: .74; text-decoration-thickness: 2px; }
+  .flotte .plaque__barre { margin: 0; font-size: .76rem; opacity: .78; }
+}

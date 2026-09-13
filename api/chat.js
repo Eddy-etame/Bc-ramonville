@@ -12,6 +12,7 @@
    ===================================================================== */
 import { allowCors, bodyOf, ipOf, rateLimit, clean } from "./_lib/util.js";
 import { infosSalle } from "./_lib/salle.js";
+import { contexteDuMoment } from "./_lib/moment.js";
 
 const CADRE = `Tu es l’assistant du BOXING CENTER RAMONVILLE — la salle du réseau qui s’entraîne dehors, à Ramonville-Saint-Agne (sud toulousain).
 
@@ -185,7 +186,8 @@ FAITS (tout ce que tu sais, et rien d’autre) :
    copie — une copie derive, et un banc qui derive ment mieux qu il ne mesure. */
 export async function systemFor(context) {
   const c = clean(context, 300);
-  const base = CADRE + (await infosSalle());
+  /* les FAITS sont en cache ; le MOMENT est recalculé à chaque message */
+  const base = CADRE + (await infosSalle()) + "\n\n" + (await contexteDuMoment());
   return c ? `${base}\n\nCONTEXTE VISITEUR (déjà connu — ne le redemande pas) : ${c}` : base;
 }
 

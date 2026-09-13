@@ -109,6 +109,7 @@ function boutique(url) {
 const ACTIONS = {
   offre:       { label: "Voir l’offre · 29 €/4 sem.", href: boutique("https://boutique.boxingcenter.fr/offre/29") },
   saison:      { label: "Voir la Saison · 259 € comptant", href: boutique("https://boutique.boxingcenter.fr/offre/259") },
+  promos:      { label: "Les offres spéciales", href: boutique("https://boutique.boxingcenter.fr/offres-speciales") },
   essai:       { label: "Je viens essayer · 10€", href: boutique("https://boutique.boxingcenter.fr/seance-essai") },
   enfants:     { label: "J’inscris mon enfant", href: boutique("https://boutique.boxingcenter.fr/abonnements#enfants") },
   abonnements: { label: "Voir les abonnements", href: boutique("https://boutique.boxingcenter.fr/abonnements") },

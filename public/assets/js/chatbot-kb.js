@@ -12,6 +12,10 @@
    Voix de coach, tutoiement, pas de brochure.
    ===================================================================== */
 
+/* Le planning, pour les deux réponses qui dépendent de lui : l’âge d’un
+   enfant et « ce soir / demain ». Alias propre : aucune collision possible. */
+import { SCHEDULE as PLANNING_KB } from "./data.js?v=25";
+
 export const QUICKS = [
   {
     /* AJOUTÉE LE 25/08. En production, « il y a t il la clim ? » recevait
@@ -75,6 +79,11 @@ export const QUICKS = [
     q: "C’est quoi le Lady Punch ?",
     a: "Un créneau 100 % féminin, lundi et vendredi 18h00 – 18h40, avec Sonia. Zéro prérequis : la vraie boxe, le cardio, la frappe qui défoule, entre femmes. Il tombe juste avant le pieds-poings du soir si tu veux enchaîner.",
   },
+  {
+    /* 13/09 : les boutons du site mènent tous à la page « offres spéciales ». */
+    q: "Quelles sont les offres spéciales ?",
+    a: "Deux offres en ce moment. L’année complète à 259 € comptant : 12 mois, accès aux 5 clubs. Et l’offre de rentrée à 29 € par personne toutes les 4 semaines, sans engagement (badge 34,99 € en plus). Les deux sont sur la page des offres spéciales de la boutique. [boutons: promos, tarifs]",
+  },
 ];
 
 /* Ordre = priorité. Le premier motif qui accroche donne la réponse. */
@@ -84,18 +93,71 @@ const RULES = [
      exacte à une AUTRE question. */
   [/clim|climatis|air.?conditionn|ventil|il fait (chaud|froid)|temp[ée]rature|canicule/i, 0],
   [/dehors|ext[ée]rieur|plein air|300|couvert|intemp[ée]rie|ciel/i, 1],
+  /* 13/09 — LES ENFANTS REMONTENT. « mon fils, quels cours ? » tombait sur
+     /cours/ (la liste adulte) et « combien pour ma fille » sur les tarifs
+     adultes. Et « ans\b » accrochait « dans la cage » : il faut un nombre. */
+  [/enfant|gamin|b[ée]b[ée]|baby|\bados?\b|fils|fille|[ée]cole|[ée]ducative/i, 8],   // l’âge seul est traité par reponseAge (≤ 16 ans) : « j’ai 25 ans » n’est pas un enfant
+  [/promo|offres? sp[ée]ciale|bon plan|r[ée]duc/i, 11],
   [/octogone|cage|mma|grappling|sol|soumission/i, 2],
-  [/essai|d[ée]couvr|tester|premi[èe]re|essayer|10\s?€/i, 3],
+  [/essai|d[ée]couvr|tester|premi[èe]re|essayer|10\s?€|d[ée]but/i, 3],
   [/tarif|prix|co[ûu]te|combien|abonn|duo|saison|mensuel|annuel/i, 4],
   [/horaire|ouvert|ferm|heure|dimanche|[ée]margement/i, 5],
   [/adresse|o[ùu]\b|situ|acc[èe]s|m[ée]tro|bus|parking|venir|plan|rue|rocade/i, 6],
   [/discipline|cours|anglaise|pieds.?poings|camp|muscu|cardio|libre|boxe/i, 7],
-  [/enfant|gamin|baby|ado|fils|fille|ans\b|[ée]cole|[ée]ducative/i, 8],
   [/coach|entra[îi]neur|prof|encadr|[ée]quipe|sonia|j[ée]r[ôo]me|farouk|valentin/i, 9],
   [/lady|femme|f[ée]minin|meuf|entre filles/i, 10],
 ];
 
+const JOURS_KB = { Lun: "lundi", Mar: "mardi", Mer: "mercredi", Jeu: "jeudi", Ven: "vendredi", Sam: "samedi" };
+const CLES_KB = ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"];
+const mn = (h) => { const m = /(\d{1,2})h(\d{2})?/.exec(h || ""); return m ? +m[1] * 60 + +(m[2] || 0) : null; };
+
+/* L’ÂGE D’UN ENFANT → la bonne ligne de l’école, tout de suite, tirée du
+   planning (jours, heure) : « mon fils a 3 ans » ne doit pas recevoir un
+   catalogue. Au-delà de 16 ans, ce n’est plus l’école : les règles suivent. */
+function reponseAge(msg) {
+  const m = /\b(\d{1,2})\s*ans\b/i.exec(msg);
+  if (!m || +m[1] > 16) return null;
+  const n = +m[1];
+  if (n < 3) return "L’école commence à 3 ans, avec le Baby Boxe 3/6 le samedi à 14h15. Tu peux venir voir un cours avant : les parents restent dans la salle. [boutons: enfants, contact]";
+  const g = new Map();
+  for (const s of PLANNING_KB.filter((x) => x.fam === "enfant")) {
+    const a = /(\d+)\/(\d+)/.exec(s.cours);
+    if (!a || n < +a[1] || n > +a[2]) continue;
+    const e = g.get(s.cours) || { cours: s.cours, jours: [], start: s.start };
+    e.jours.push(JOURS_KB[s.day]);
+    g.set(s.cours, e);
+  }
+  const e = [...g.values()][0];
+  if (!e) return null;
+  const prix = /baby/i.test(e.cours) ? "250 € l’année" : "295 € l’année";
+  return `À ${n} ans, c’est le cours ${e.cours} : le ${e.jours.join(" et le ")} à ${e.start}, avec Valentin Guth. ${prix}. Tu peux rester dans la salle pendant le cours. [boutons: enfants, planning]`;
+}
+
+/* « Il y a cours ce soir ? » / « demain ? » — en heure de Paris, jamais une date devinée. */
+function reponseDuJour(msg) {
+  if (!/aujourd|ce soir|ce midi|cet apr[èe]s|demain|maintenant|en ce moment/i.test(msg)) return null;
+  const p = Object.fromEntries(new Intl.DateTimeFormat("en-US", { timeZone: "Europe/Paris", weekday: "short", hour: "2-digit", minute: "2-digit", hourCycle: "h23" })
+    .formatToParts(new Date()).map((x) => [x.type, x.value]));
+  const i = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].indexOf(p.weekday);
+  const maint = +p.hour * 60 + +p.minute;
+  const du = (cle) => PLANNING_KB.filter((s) => s.day === cle).sort((a, b) => mn(a.start) - mn(b.start));
+  const liste = (l) => l.map((s) => `${s.start} ${s.cours}`).join(", ");
+  if (/demain/i.test(msg)) {
+    const cle = CLES_KB[(i + 1) % 7], l = du(cle);
+    return l.length ? `Demain, ${JOURS_KB[cle]} : ${liste(l)}. [boutons: planning]` : "Demain, c’est dimanche : la salle est fermée. On reprend lundi dès 10h. [boutons: planning]";
+  }
+  if (CLES_KB[i] === "Dim") return `Le dimanche, la salle est fermée. On reprend lundi : ${liste(du("Lun"))}. [boutons: planning]`;
+  const reste = du(CLES_KB[i]).filter((s) => mn(s.start) > maint);
+  if (reste.length) return `Aujourd’hui, il reste : ${liste(reste)}. [boutons: planning]`;
+  const cle = CLES_KB[(i + 1) % 7] === "Dim" ? "Lun" : CLES_KB[(i + 1) % 7];
+  return `C’est fini pour aujourd’hui. Prochains cours ${JOURS_KB[cle]} : ${liste(du(cle))}. [boutons: planning]`;
+}
+
 export function fallbackAnswer(msg) {
+  if (RULES[0][0].test(msg)) return QUICKS[0].a;           // la clim d’abord, toujours
+  const direct = reponseAge(msg) || reponseDuJour(msg);
+  if (direct) return direct;
   for (const [re, i] of RULES) if (re.test(msg)) return QUICKS[i].a;
   return "Je peux te répondre sur le plateau extérieur, l’octogone, les créneaux, les tarifs ou l’école enfants. Pose ta question — ou appelle la salle au 09 39 03 67 48.";
 }

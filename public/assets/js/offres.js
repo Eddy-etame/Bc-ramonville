@@ -82,11 +82,13 @@ const FACES = `
       <span class="plaque__face alt__face is-on">
         <span class="plaque__sur">L’année complète</span>
         <span class="plaque__prix"><b>259</b><i>€</i></span>
+        <span class="plaque__barre">400 €</span>
         <span class="plaque__unit">12 mois · les 5 clubs</span>
       </span>
       <span class="plaque__face alt__face" aria-hidden="true">
         <span class="plaque__sur">Offre de rentrée</span>
         <span class="plaque__prix"><b>29</b><i>€</i></span>
+        <span class="plaque__barre">44 €</span>
         <span class="plaque__unit">par personne · 4 sem.</span>
       </span>`;
 
@@ -95,9 +97,32 @@ function monterFlotte() {
   const a = document.createElement("a");
   a.className = "plaque flotte";
   a.href = PROMOS;
-  a.setAttribute("aria-label", "Offres spéciales : l’année complète à 259 € au lieu de 400 €, ou l’offre de rentrée à 29 € par personne pour 4 semaines");
+  a.setAttribute("aria-label", "Offres spéciales : l’année complète à 259 € au lieu de 400 €, ou l’offre de rentrée à 29 € par personne pour 4 semaines au lieu de 44 €");
   a.innerHTML = `<span class="plaque__faces alt" data-alterne>${FACES}</span><span class="plaque__go">Offres spéciales <i aria-hidden="true">→</i></span>`;
+
+  /* SUR ORDINATEUR, PAS DANS LE HERO (Eddy, 13/09). À l’accueil, la plaque
+     arrive quand on ENTRE dans les disciplines (#onav, juste après « 300 m²
+     dehors ») et repart si l’on remonte au-dessus ; sur les autres pages,
+     une fois le hero passé. Téléphone et tablette : elle est là dès
+     l’arrivée — c’est validé tel quel. */
+  const bureau = window.matchMedia("(min-width: 980px)");
+  const repere = document.getElementById("onav");
+  const hero = document.querySelector(".phero, .hero");
+  const avant = () => {
+    if (!bureau.matches) return false;
+    // « quand j’entre dans la section » : son haut a passé le milieu de l’écran, pas un simple bord qui dépasse
+    if (repere) return repere.getBoundingClientRect().top > window.innerHeight * 0.5;
+    if (hero) return hero.getBoundingClientRect().bottom > 90;
+    return false;
+  };
+  let image = 0;
+  const maj = () => { image = 0; a.classList.toggle("is-avant", avant()); };
+  const planifier = () => { if (!image) image = requestAnimationFrame(maj); };
+  a.classList.toggle("is-avant", avant());   // posée AVANT l’insertion : aucun éclair au chargement
   document.body.appendChild(a);
+  window.addEventListener("scroll", planifier, { passive: true });
+  window.addEventListener("resize", planifier);
+  bureau.addEventListener?.("change", planifier);
 
   const grandes = [...document.querySelectorAll(".plaque:not(.flotte)")];
   if (grandes.length && "IntersectionObserver" in window) {
