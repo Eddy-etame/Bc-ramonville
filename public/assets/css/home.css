@@ -178,6 +178,18 @@
   .claim__fig { display: flex; align-items: baseline; gap: .8ch; }
 }
 
+/* Le titre local est volontairement précis, donc plus long. Sur téléphone,
+   ses deux lignes éditoriales doivent pouvoir se replier : `nowrap` donnait
+   au premier enfant de la grille une largeur supérieure au viewport et
+   poussait aussi les CTA hors écran. */
+@media (max-width: 600px) {
+  .hero__grid > * { min-width: 0; }
+  .hero__title { max-width: 100%; font-size: clamp(2rem, 9vw, 2.55rem); line-height: .98; }
+  .hero__title .l1,
+  .hero__title .l2 { white-space: normal; text-wrap: balance; }
+  .hero__cta .btn { flex: 1 1 100%; min-width: 0; }
+}
+
 /* LISIBILITÉ MOBILE — plancher 12px sur les micro-labels mono (retour
    client). @media ≤600px, desktop intact. */
 /* LE BLOC « PLANCHER MOBILE » A ÉTÉ RETIRÉ D'ICI (24/08/2026).

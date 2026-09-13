@@ -73,6 +73,10 @@ const MAILLAGE =
   `</div>` +
   `<div class="footer__col"><h4>Les salles sœurs</h4>` +
   soeurs.map((s) => lien(s.url, s.name, `${s.name} — ${s.feat}`)).join("") +
+  `</div>` +
+  `<div class="footer__col"><h4>Le site</h4>` +
+  `<a href="/about/">À propos</a>` +
+  `<a href="/privacy/">Confidentialité</a>` +
   `</div></div></div></footer>`;
 
 /* LA NAVIGATION INTERNE, MEME RAISON, MEME GESTE.

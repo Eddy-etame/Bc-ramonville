@@ -131,7 +131,7 @@ Compté sur les 22 cours de la grille de la rentrée.
 - Ce que le club ne fait PAS : aucun sparring imposé (personne ne monte sur le ring sans en avoir envie), aucun test de niveau à l’entrée, aucun engagement à signer sur place.
 - À apporter : un t-shirt, un short ou un legging, des baskets propres réservées à l’intérieur, une bouteille d’eau. Gants et bandes prêtés par la salle.
 - Créneaux conseillés pour une première fois : Boxing Camp (tous niveaux), Lady Punch (100 % féminin, zéro prérequis), grappling (tous niveaux, dans l’octogone).
-- 7 des 8 disciplines sont affichées « tous niveaux », « zéro prérequis » ou « débutant » ; aucune ne demande d’expérience préalable.
+- Les 8 disciplines sont accessibles sans expérience préalable ; les fiches précisent le niveau et l’accompagnement proposé.
 
 ## Avis Google (affichés sur la page Tarifs)
 
@@ -167,7 +167,12 @@ Compté sur les 22 cours de la grille de la rentrée.
 - Tarifs : https://mmatoulouse.com/tarifs/
 - Contact : https://mmatoulouse.com/contact/
 
-## Auteur
+## Qui a fait ce site
 
-Site développé par **Angoula Onambele Germain Raphael**.
-LinkedIn : https://fr.linkedin.com/in/germain-raphael-angoula-onambele-a6b858395
+Historique Git audité jusqu'au commit `5aeb41d`.
+
+- **Eddy Etame Etame** — initiateur du projet, concepteur et développeur principal.
+- **Angoula Onambele Germain Raphael** — contribution technique : domaine, référencement et chatbot.
+- **Mbosseu Brad Bruel** — contribution contenu, interface et chatbot.
+
+Provenance Git, commits témoins et équipe : https://mmatoulouse.com/humans.txt

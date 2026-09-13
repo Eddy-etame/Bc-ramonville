@@ -30,15 +30,20 @@ séance. Les faits chiffrés (créneaux, prix, encadrement) sont dans
 Chaque page HTML existe en miroir markdown : envoyez `Accept: text/markdown`
 sur l'URL de la page, ou lisez directement /md/<chemin>/index.md.
 
-## Auteur
+## Qui a fait ce site
 
-Site développé par **Angoula Onambele Germain Raphael**.
-LinkedIn : https://fr.linkedin.com/in/germain-raphael-angoula-onambele-a6b858395
+Historique Git audité jusqu'au commit `5aeb41d`.
+
+- **Eddy Etame Etame** — initiateur du projet, concepteur et développeur principal.
+- **Angoula Onambele Germain Raphael** — contribution technique : domaine, référencement et chatbot.
+- **Mbosseu Brad Bruel** — contribution contenu, interface et chatbot.
+
+Provenance Git, commits témoins et équipe : https://mmatoulouse.com/humans.txt
 
 ## Pages
 
 - [Le plateau](https://mmatoulouse.com/la-salle/): visite du terrain — extérieur couvert, relevé du plateau extérieur, octogone, grand ring de boxe, étage muscu/cardio, infos pratiques, les 4 autres salles du réseau.
-- [Activités](https://mmatoulouse.com/activites/): les 8 disciplines avec créneaux et niveau — anglaise, pieds-poings, grappling, MMA tous niveaux, Boxing Camp, Lady Punch, école enfants dès 3 ans, accès libre — plus le poids de chaque famille dans la semaine et le niveau demandé à l’entrée (7 des 8 disciplines sont sans prérequis).
+- [Activités](https://mmatoulouse.com/activites/): les 8 disciplines avec créneaux et niveau — anglaise, pieds-poings, grappling, MMA tous niveaux, Boxing Camp, Lady Punch, école enfants dès 3 ans, accès libre — plus le poids de chaque famille dans la semaine et le niveau demandé à l’entrée (les 8 disciplines sont accessibles sans expérience préalable).
 - [Coachs](https://mmatoulouse.com/coachs/): l’encadrement — Jérôme (head coach), Sonia, Hicham, Farouk et Valentin Guth.
 - [Galerie](https://mmatoulouse.com/galerie/): vraies photos du plateau — octogone, ring, sacs, étage muscu/cardio — plus le relevé du plateau extérieur, seule zone non photographiée.
 - [Planning](https://mmatoulouse.com/plannings/): la grille de la rentrée filtrable par famille (adultes, féminin, grappling & MMA, enfants), le rythme d’été, le poids de chaque jour de la semaine.
@@ -69,7 +74,7 @@ LinkedIn : https://fr.linkedin.com/in/germain-raphael-angoula-onambele-a6b858395
 Le site porte un assistant conversationnel (la pastille en bas à droite de
 chaque page). Il répond en français, tutoie, et il est ANCRÉ : son contexte est
 construit au moment de la question depuis les mêmes données que celles publiées
-ici — adresse, accès, horaires, les 8 disciplines avec coach et créneaux, les 4
+ici — adresse, accès, horaires, les 8 disciplines avec coach et créneaux, les 5
 coachs, les tarifs, les 22 cours du planning. Il ne dispose d’aucun prix ni
 horaire qui ne figure pas sur ce fichier. Si le planning change sur le site,
 l’assistant change avec.

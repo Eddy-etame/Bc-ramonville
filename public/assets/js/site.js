@@ -120,7 +120,7 @@ function mountNav() {
            exactement comme avant. Ce qui change, c’est qu’ils ne se battent
            plus avec huit entrées de menu pour trois centimètres de barre. -->
       <div class="nav__right">
-        <a class="btn btn--primary nav__cta" data-magnetic href="${LINKS.rentree}"><span>Ma place · 29 €</span></a>
+        <a class="btn btn--primary nav__cta" data-magnetic href="${LINKS.rentree}"><span>Offre · 29 € / 4 sem.</span></a>
         <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
     </nav>`;
@@ -142,7 +142,7 @@ function mountNav() {
       </div>
       <nav class="menu__nav">${menuLinks}</nav>
       <div class="menu__foot">
-        <a class="btn btn--primary" data-magnetic href="${LINKS.rentree}"><span>Je profite de l'offre — 29 €</span></a>
+        <a class="btn btn--primary" data-magnetic href="${LINKS.rentree}"><span>Voir l’offre · 29 € / 4 sem.</span></a>
         <div class="menu__ext">
           ${lienExt(LINKS.groupe, "Le site officiel — boxingcenter.fr")}
           ${lienExt(LINKS.boutique, "La boutique — box-plus")}
@@ -217,7 +217,7 @@ function mountFooter() {
             <span class="eyebrow">La salle t’attend</span>
             <h2 class="display footer__cut" aria-label="La seule salle du réseau où on s’entraîne dehors.">La seule salle du réseau<br><span class="tint">où on s’entraîne dehors.</span></h2>
           </div>
-          <a class="btn btn--primary" data-magnetic href="${LINKS.rentree}"><span>Je profite de l'offre — 29 €</span></a>
+          <a class="btn btn--primary" data-magnetic href="${LINKS.rentree}"><span>Voir l’offre · 29 € / 4 sem.</span></a>
         </div>
         <div class="fiche" aria-label="Fiche de la salle">
           ${fields.map((f) => `<div class="fiche__cell${f.wide ? " fiche__cell--wide" : ""}"><span class="fk">${f.k}</span><span class="fv">${f.v}</span></div>`).join("")}

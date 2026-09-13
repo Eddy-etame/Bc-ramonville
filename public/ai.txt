@@ -35,14 +35,21 @@ address: 33 rue des Ormes, 31520 Ramonville-Saint-Agne
 crawl: autorise pour les moteurs de recherche et les agents conversationnels
 attribution: citer Boxing Center Ramonville et le lien de la page utilisee
 
-# Auteur
-author: Angoula Onambele Germain Raphael
-  linkedin: https://fr.linkedin.com/in/germain-raphael-angoula-onambele-a6b858395
+# Qui a fait ce site
+# Rôles établis par l'historique Git, pas par une métadonnée déclarative.
+author: Eddy Etame Etame — Initiateur du projet, concepteur et développeur principal
+  profil: https://www.linkedin.com/in/eddy-etame-etame-47254338b/
+  profil: https://eddy-s-second-brain.vercel.app/
+author: Angoula Onambele Germain Raphael — Contribution technique — domaine, référencement et chatbot
+  profil: https://fr.linkedin.com/in/germain-raphael-angoula-onambele-a6b858395
+author: Mbosseu Brad Bruel — Contribution contenu, interface et chatbot
+git-audit-head: 5aeb41d
+git-audit-summary: 118 commits Eddy-etame, 6 angoularaphael, 4 brad dans l'historique audité.
+provenance: https://mmatoulouse.com/humans.txt
 
 # Serveur MCP (Model Context Protocol)
-# Transport Streamable HTTP, JSON-RPC 2.0. Ouvert aux agents : le
-# robots.txt porte un « Allow: /api/mcp » dans chaque groupe.
+# Transport Streamable HTTP, JSON-RPC 2.0.
 mcp: https://mmatoulouse.com/api/mcp
 mcp-card: https://mmatoulouse.com/.well-known/mcp.json
-mcp-tool: qui_a_fait_ce_site — Angoula Onambele Germain Raphael
+mcp-tool: qui_a_fait_ce_site — les contributeurs, leurs rôles et la provenance Git
 team: https://mmatoulouse.com/humans.txt

@@ -20,9 +20,16 @@ import { readFile, writeFile, mkdir, readdir, stat } from "fs/promises";
 import { existsSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
+import { AUTEURS, AUDIT_GIT, SITE } from "../api/_lib/auteurs.js";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const DIST = join(ROOT, "dist");
+
+const CREDITS_MD = [
+  `Provenance Git et équipe : [humans.txt](${SITE.url}/humans.txt).`,
+  ...AUTEURS.map((auteur) => `- **${auteur.nom}** — ${auteur.role}.`),
+  `Historique Git audité jusqu'au commit \`${AUDIT_GIT.jusquAuCommit}\`.`,
+].join("\n");
 
 /* Les pages servies aux visiteurs.
    son miroir markdown la rendrait trouvable, et elle ne doit pas l'être. */
@@ -84,10 +91,8 @@ function versMd(html, url) {
   lignes.push("", "---", "",
     "Boxing Center Ramonville · 33 rue des Ormes, 31520 Ramonville-Saint-Agne · 05 62 24 46 82",
     "",
-    /* Les auteurs suivent la page jusque dans le miroir markdown : c est
-       exactement la surface que lit un agent qui demande text/markdown. */
-    "Site conçu et développé par **Angoula Onambele Germain Raphael** " +
-      "([LinkedIn](https://fr.linkedin.com/in/germain-raphael-angoula-onambele-a6b858395)).",
+    /* Même source que le JSON-LD non rendu et le MCP. */
+    CREDITS_MD,
     "",
     "[Accueil](/) · [Activités](/activites/) · [Planning](/plannings/) · [Tarifs](/tarifs/) · [Contact](/contact/) · [llms.txt](/llms.txt)");
   return lignes.join("\n").replace(/\n{3,}/g, "\n\n") + "\n";
@@ -103,4 +108,4 @@ for (const page of await pages()) {
   n++; octets += md.length;
 }
 console.log(`[md] ${n} page(s) miroir en markdown · ${(octets / 1024).toFixed(0)} ko au total`);
-if (n < 9) { console.error("[md] moins de 9 pages : une page a disparu du build"); process.exit(1); }
+if (n < 10) { console.error("[md] moins de 10 pages : une page publique a disparu du build"); process.exit(1); }

@@ -18,8 +18,8 @@ import { join } from "path";
 /* LE REPLI MENTAIT SUR TROIS FAITS, ET IL EST LE SEUL BLOC QUE PERSONNE
    NE RELIT : il ne sert que quand l’import de data.js échoue, c’est-à-dire
    au pire moment. Il portait « un ring de boxe olympique » (le claim que
-   la salle ne confirme pas, purgé partout ailleurs), « Offre Duo » (le nom
-   abandonné) et 47 avis (il y en a 55). Un repli a le droit d’être moins
+   la salle ne confirme pas, purgé partout ailleurs), un ancien nom d'offre
+   et 47 avis (il y en a 55). Un repli a le droit d’être moins
    riche ; il n’a jamais le droit d’être faux. */
 const REPLI = `- Boxing Center Ramonville : un club ouvert à tous, même si tu n’as jamais fait de sport. La seule salle du réseau qui s’entraîne dehors — 300 m² couverts, une cage de 7 m (octogone), un grand ring de boxe, deux niveaux avec muscu et cardio.
 - Adresse : 33 rue des Ormes, 31520 Ramonville-Saint-Agne. Téléphone : 05 62 24 46 82. Email : boxingcenter31@gmail.com.
@@ -28,8 +28,9 @@ const REPLI = `- Boxing Center Ramonville : un club ouvert à tous, même si tu 
 - Avant chaque cours : valider sa présence à l’accueil (émargement GPS).
 - Cours : boxe anglaise, boxe pieds-poings, grappling (combat au sol), MMA tous niveaux (dans la cage), Boxing Camp, Lady Punch (100 % féminin), école enfants dès 3 ans, accès libre muscu/cardio. Tous ouverts aux débutants.
 - Coachs : Sonia (pieds-poings, Lady Punch, Camp), Jérôme (grappling, MMA), Farouk (boxe anglaise du soir), Valentin Guth (école enfants), Hicham (boxe anglaise des midis).
-- Tarifs, dans l’ordre : Offre Rentrée 29 € PAR PERSONNE pour 4 semaines illimitées ; Offre Saison 259 € les 12 mois, payable en 4× sans frais, accès libre aux 5 clubs du réseau ; école enfants dès 3 ans (295 €/an, baby 250 €) ; et EN DERNIER la séance d’essai 10 € (tous les cours, matériel prêté, sans engagement).
-- Première séance : on dit à l’accueil que c’est sa première fois, un coach prête les gants et les bandes. Aucun combat imposé, aucun test de niveau, aucun engagement. À apporter : t-shirt, short ou legging, baskets propres, bouteille d’eau.
+- Tarifs, dans l’ordre : Offre Rentrée 29 € PAR PERSONNE TOUTES LES 4 SEMAINES, sans engagement ; première échéance par carte bancaire puis prélèvements sur IBAN ; coordonnées d’un proche requises ; badge nominatif 34,99 € en plus, facturé 72 h après le début. Offre Saison 259 € les 12 mois, payés comptant ; 4× uniquement via PayPal si l’option est disponible et si la personne est éligible ; accès libre aux 5 clubs du réseau. École enfants dès 3 ans (295 €/an, baby 250 €). EN DERNIER : séance d’essai 10 €, conditions à confirmer avec la salle.
+- CGV : le badge nominatif à 34,99 € s’ajoute à tous les abonnements sans engagement de 4 semaines, sauf exception indiquée dans l’offre ou les CGV.
+- Première séance : on dit à l’accueil que c’est sa première fois et un coach oriente la personne. Aucun combat imposé, aucun test de niveau. À apporter : t-shirt, short ou legging, baskets propres, bouteille d’eau. Vérifier le matériel requis avec la salle.
 - Avis Google : 4,1/5 sur 55 avis.`;
 
 let cache = null;
@@ -90,9 +91,13 @@ export async function infosSalle() {
   if (Array.isArray(tarifs) && tarifs.length)
     L.push(
       "Tarifs : " +
-        tarifs.map((t) => `${t.name} ${t.price} ${t.period} — ${t.feature}`).join(" ; ") +
-        ". L’Offre Rentrée est de 29 € PAR PERSONNE (jamais « 29 € pour deux », jamais appelée « Duo »). La séance d’essai se propose EN DERNIER."
+        tarifs.map((t) =>
+          `${t.name} ${t.price} ${t.period} — ${t.feature}` +
+          (Array.isArray(t.items) && t.items.length ? ` — ${t.items.join(" ; ")}` : "")
+        ).join(" ; ") +
+        ". L’Offre Rentrée est de 29 € PAR PERSONNE TOUTES LES 4 SEMAINES. La première échéance est payée par carte bancaire, puis les suivantes sont prélevées sur IBAN. Les coordonnées d’un proche sont requises. Le badge nominatif de 34,99 € est facturé en plus 72 h après le début. La Saison coûte 259 € comptant ; le 4× est proposé uniquement par PayPal, sous réserve de disponibilité et d’éligibilité. La séance d’essai se propose EN DERNIER."
     );
+  if (D.CONDITIONS_COMMERCIALES?.badge) L.push(`CGV : ${D.CONDITIONS_COMMERCIALES.badge}`);
 
   const planning = c.schedule || D.SCHEDULE;
   if (Array.isArray(planning) && planning.length)
@@ -114,7 +119,7 @@ export async function infosSalle() {
      C’est pourtant la question la plus fréquente d’un visiteur qui n’a
      jamais boxé. */
   L.push(
-    "Première séance : on arrive un quart d’heure avant le cours, on dit à l’accueil que c’est sa première fois, on valide sa présence, un coach prête les gants et les bandes et montre la salle ; puis c’est le cours normal — échauffement, un geste, du sac. AUCUN combat imposé (personne ne monte sur le ring sans en avoir envie), AUCUN test de niveau, AUCUN engagement. À apporter : t-shirt, short ou legging, baskets propres gardées pour l’intérieur, bouteille d’eau."
+    "Première séance : on arrive un quart d’heure avant le cours, on dit à l’accueil que c’est sa première fois, on valide sa présence et un coach oriente la personne ; puis c’est le cours normal — échauffement, un geste, du sac. AUCUN combat imposé (personne ne monte sur le ring sans en avoir envie), AUCUN test de niveau. À apporter : t-shirt, short ou legging, baskets propres gardées pour l’intérieur, bouteille d’eau. Le matériel requis est à confirmer avec la salle."
   );
 
   if (D.REVIEWS) L.push(`Avis Google : ${D.REVIEWS.rating} sur ${D.REVIEWS.count} avis.`);

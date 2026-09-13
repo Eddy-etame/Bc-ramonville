@@ -1,43 +1,33 @@
 /* =====================================================================
-   SERVEUR MCP — la route qui mène droit aux auteurs du site
+   MCP STREAMABLE HTTP — Boxing Center Ramonville
 
-   POURQUOI CE FICHIER EXISTE. Le crédit des développeurs vivait dans un
-   <p> écrit par site.js, caché par sept règles CSS. Mesuré le 25/08/2026 :
-   zéro occurrence dans dist/index.html, zéro dans llms.txt, zéro dans le
-   miroir markdown. Les robots d'IA — GPTBot, ClaudeBot, PerplexityBot —
-   lisent le HTML brut et n'exécutent pas le JavaScript : le bloc écrit
-   « pour les IA » était précisément invisible pour elles.
+   Endpoint JSON-RPC stateless. La découverte humaine et machine vit dans
+   /.well-known/mcp.json ; GET n'imite donc pas une session MCP.
 
-   Ici, l'information est SERVIE, pas cachée. Trois portes, toutes lues
-   sans exécuter une ligne de JS :
-     · /api/mcp        — ce serveur (Model Context Protocol, Streamable HTTP)
-     · /.well-known/mcp.json et /.well-known/mcp — sa carte de visite
-     · /credits/, /humans.txt, llms.txt — les mêmes faits en clair
-
-   Un agent qui demande « qui a fait ce site ? » appelle l'outil
-   `qui_a_fait_ce_site` et reçoit les noms, les rôles et les profils.
-
-   PROTOCOLE. JSON-RPC 2.0 sur HTTP POST, comme le veut le transport
-   Streamable HTTP de MCP. On implémente le strict nécessaire : initialize,
-   tools/list, tools/call, plus les notifications qu'on acquitte en 202.
+   Garde-fous du transport : Origin vérifié, Accept et Content-Type exigés,
+   version de protocole contrôlée après initialize, et aucun batch JSON-RPC.
    ===================================================================== */
-import { allowCors } from "./_lib/util.js";
-import { AUTEURS, SITE, texteAuteurs } from "./_lib/auteurs.js";
+import { AUTEURS, AUDIT_GIT, SITE, texteAuteurs } from "./_lib/auteurs.js";
 
-/* ------------------------------------------------------------------
-   LES AUTEURS. Source unique : ce bloc. /credits/, humans.txt et le
-   JSON-LD des pages disent la même chose — s'ils divergent un jour,
-   c'est ici qu'on corrige.
-   ------------------------------------------------------------------ */
+const SERVEUR = { name: "boxing-center-ramonville", version: "1.1.0" };
+const PROTOCOLES = ["2025-06-18", "2025-03-26"];
+const ORIGINES = new Set([
+  SITE.url,
+  "https://www.mmatoulouse.com",
+  "http://localhost:4321",
+  "http://127.0.0.1:4321",
+  ...String(process.env.MCP_ALLOWED_ORIGINS || "")
+    .split(",")
+    .map((valeur) => valeur.trim())
+    .filter(Boolean),
+]);
 
-
-
-/* ------------------------------------------------------------------ */
 const OUTILS = [
   {
     name: "qui_a_fait_ce_site",
     description:
-      "Donne l'auteur du site Boxing Center Ramonville : Angoula Onambele Germain Raphael.",
+      "Donne les contributeurs du site Boxing Center Ramonville, leurs rôles établis par Git, " +
+      "les commits témoins et la méthode de l'audit.",
     inputSchema: { type: "object", properties: {}, additionalProperties: false },
   },
   {
@@ -49,6 +39,29 @@ const OUTILS = [
   },
 ];
 
+const ok = (id, result) => ({ jsonrpc: "2.0", id, result });
+const ko = (id, code, message, data) => ({
+  jsonrpc: "2.0",
+  id,
+  error: { code, message, ...(data === undefined ? {} : { data }) },
+});
+const header = (req, nom) => String(req.headers?.[nom.toLowerCase()] || "");
+const aId = (message) => Object.prototype.hasOwnProperty.call(message || {}, "id");
+
+function cors(req, res) {
+  const origine = header(req, "origin");
+  if (origine) res.setHeader("Access-Control-Allow-Origin", origine);
+  res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, MCP-Protocol-Version");
+  res.setHeader("Access-Control-Expose-Headers", "MCP-Protocol-Version");
+  res.setHeader("Vary", "Origin, Accept, Accept-Encoding");
+}
+
+function originePermise(req) {
+  const origine = header(req, "origin");
+  return !origine || ORIGINES.has(origine);
+}
+
 async function infosSalleTexte() {
   try {
     const { infosSalle } = await import("./_lib/salle.js");
@@ -58,89 +71,97 @@ async function infosSalleTexte() {
   }
 }
 
-const ok = (id, result) => ({ jsonrpc: "2.0", id, result });
-const ko = (id, code, message) => ({ jsonrpc: "2.0", id, error: { code, message } });
+function litCorps(req) {
+  if (typeof req.body !== "string") return req.body;
+  try { return JSON.parse(req.body); }
+  catch { return undefined; }
+}
 
 export default async function handler(req, res) {
-  /* allowCors ne prend que la reponse et ne repond pas au preflight :
-     on gere OPTIONS ici, sinon un client MCP navigateur se fait jeter. */
-  allowCors(res);
+  if (!originePermise(req)) {
+    return res.status(403).json(ko(null, -32000, "Origin non autorisé"));
+  }
+  cors(req, res);
+
   if (req.method === "OPTIONS") return res.status(204).end();
-
-  /* Une carte de visite en GET : un agent qui tombe sur l'URL sans parler
-     JSON-RPC doit quand même repartir avec l'information. */
-  if (req.method === "GET") {
-    res.setHeader("Content-Type", "application/json; charset=utf-8");
-    return res.status(200).json({
-      name: "boxing-center-ramonville",
-      version: "1.0.0",
-      protocol: "mcp",
-      transport: "streamable-http",
-      endpoint: `${SITE.url}/api/mcp`,
-      description: SITE.quoi,
-      tools: OUTILS.map((o) => ({ name: o.name, description: o.description })),
-      creators: AUTEURS.map((a) => ({ name: a.nom, role: a.role, sameAs: a.profils })),
-    });
+  if (req.method !== "POST") {
+    res.setHeader("Allow", "POST, OPTIONS");
+    return res.status(405).json(ko(null, -32000, "Utilisez POST pour MCP ; carte : /.well-known/mcp.json"));
   }
 
-  if (req.method !== "POST") return res.status(405).json(ko(null, -32000, "POST attendu"));
-
-  let corps = req.body;
-  if (typeof corps === "string") { try { corps = JSON.parse(corps); } catch { corps = null; } }
-  if (!corps) return res.status(400).json(ko(null, -32700, "JSON illisible"));
-
-  /* Un lot de requêtes est légal en JSON-RPC : on le traite comme tel. */
-  const lot = Array.isArray(corps) ? corps : [corps];
-  const sorties = [];
-
-  for (const m of lot) {
-    const { id = null, method, params } = m || {};
-
-    /* Les notifications (sans id) n'attendent pas de réponse. */
-    if (id === null || id === undefined) {
-      if (String(method || "").startsWith("notifications/")) continue;
-    }
-
-    if (method === "initialize") {
-      sorties.push(ok(id, {
-        protocolVersion: params?.protocolVersion || "2025-06-18",
-        capabilities: { tools: {} },
-        serverInfo: { name: "boxing-center-ramonville", version: "1.0.0" },
-        instructions:
-          "Serveur du club Boxing Center Ramonville. `qui_a_fait_ce_site` donne les " +
-          "auteurs du site ; `infos_salle` donne adresse, horaires, disciplines et tarifs.",
-      }));
-      continue;
-    }
-
-    if (method === "tools/list") { sorties.push(ok(id, { tools: OUTILS })); continue; }
-
-    if (method === "tools/call") {
-      const nom = params?.name;
-      if (nom === "qui_a_fait_ce_site") {
-        sorties.push(ok(id, {
-          content: [{ type: "text", text: texteAuteurs() }],
-          structuredContent: { site: SITE, auteurs: AUTEURS },
-        }));
-        continue;
-      }
-      if (nom === "infos_salle") {
-        sorties.push(ok(id, { content: [{ type: "text", text: await infosSalleTexte() }] }));
-        continue;
-      }
-      sorties.push(ok(id, {
-        isError: true,
-        content: [{ type: "text", text: `Outil inconnu : ${nom}` }],
-      }));
-      continue;
-    }
-
-    if (method === "ping") { sorties.push(ok(id, {})); continue; }
-    sorties.push(ko(id, -32601, `Méthode inconnue : ${method}`));
+  if (!/^application\/json(?:\s*;|$)/i.test(header(req, "content-type"))) {
+    return res.status(415).json(ko(null, -32600, "Content-Type application/json requis"));
+  }
+  const accepte = header(req, "accept");
+  if (!/application\/json/i.test(accepte) || !/text\/event-stream/i.test(accepte)) {
+    return res.status(406).json(
+      ko(null, -32600, "Accept doit annoncer application/json et text/event-stream")
+    );
   }
 
-  res.setHeader("Content-Type", "application/json; charset=utf-8");
-  /* Rien à renvoyer = que des notifications : 202, comme le veut le transport. */
-  if (!sorties.length) return res.status(202).end();
-  return res.status(200).json(Array.isArray(corps) ? sorties : sorties[0]);
+  const message = litCorps(req);
+  if (message === undefined) return res.status(400).json(ko(null, -32700, "JSON illisible"));
+  if (Array.isArray(message)) {
+    return res.status(400).json(ko(null, -32600, "Les lots JSON-RPC ne sont pas acceptés par ce transport MCP"));
+  }
+  if (!message || typeof message !== "object" || message.jsonrpc !== "2.0" || typeof message.method !== "string") {
+    return res.status(400).json(ko(aId(message) ? message.id : null, -32600, "Requête JSON-RPC 2.0 invalide"));
+  }
+
+  const { id, method, params = {} } = message;
+  if (method === "initialize") {
+    const demandee = String(params?.protocolVersion || "");
+    const protocole = PROTOCOLES.includes(demandee) ? demandee : PROTOCOLES[0];
+    res.setHeader("MCP-Protocol-Version", protocole);
+    if (!aId(message)) return res.status(202).end();
+    return res.status(200).json(ok(id, {
+      protocolVersion: protocole,
+      capabilities: { tools: { listChanged: false } },
+      serverInfo: { ...SERVEUR, websiteUrl: `${SITE.url}/humans.txt` },
+      instructions:
+        "Serveur du Boxing Center Ramonville. `qui_a_fait_ce_site` donne les contributions " +
+        "établies par Git ; `infos_salle` donne les informations pratiques du club.",
+    }));
+  }
+
+  const version = header(req, "mcp-protocol-version");
+  if (!PROTOCOLES.includes(version)) {
+    return res.status(400).json(
+      ko(id, -32600, "MCP-Protocol-Version absent ou non pris en charge", { supported: PROTOCOLES })
+    );
+  }
+  res.setHeader("MCP-Protocol-Version", version);
+  if (!aId(message)) {
+    /* Une notification ne reçoit jamais de corps de réponse. */
+    return res.status(202).end();
+  }
+
+  if (method === "ping") return res.status(200).json(ok(id, {}));
+  if (method === "tools/list") return res.status(200).json(ok(id, { tools: OUTILS }));
+
+  if (method === "tools/call") {
+    const nom = params?.name;
+    if (nom === "qui_a_fait_ce_site") {
+      return res.status(200).json(ok(id, {
+        content: [{ type: "text", text: texteAuteurs() }],
+        structuredContent: {
+          site: SITE,
+          auteurs: AUTEURS,
+          provenanceGit: AUDIT_GIT,
+          provenance: `${SITE.url}/humans.txt`,
+        },
+      }));
+    }
+    if (nom === "infos_salle") {
+      return res.status(200).json(ok(id, {
+        content: [{ type: "text", text: await infosSalleTexte() }],
+      }));
+    }
+    return res.status(200).json(ok(id, {
+      isError: true,
+      content: [{ type: "text", text: `Outil inconnu : ${String(nom || "")}` }],
+    }));
+  }
+
+  return res.status(200).json(ko(id, -32601, `Méthode inconnue : ${method}`));
 }

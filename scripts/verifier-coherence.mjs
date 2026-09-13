@@ -129,8 +129,8 @@ if (!essai) faute("tarif introuvable", "aucune carte « essai » dans TARIFS");
 if (!rentree) faute("tarif introuvable", "aucune carte « rentrée » dans TARIFS");
 if (essai && rentree && essai.price === rentree.price)
   faute("prix confondus", `l'essai et la rentrée affichent le même prix (${essai.price})`);
-if (rentree && PROMOS?.duo?.price && rentree.price !== PROMOS.duo.price)
-  faute("prix divergent", `TARIFS dit ${rentree.price} pour la rentrée, PROMOS.duo dit ${PROMOS.duo.price}`);
+if (rentree && PROMOS?.rentree?.price && rentree.price !== PROMOS.rentree.price)
+  faute("prix divergent", `TARIFS dit ${rentree.price} pour la rentrée, PROMOS.rentree dit ${PROMOS.rentree.price}`);
 if (saison && PROMOS?.saisonOffre?.price && saison.price !== PROMOS.saisonOffre.price)
   faute("prix divergent", `TARIFS dit ${saison.price} pour la saison, PROMOS.saisonOffre dit ${PROMOS.saisonOffre.price}`);
 

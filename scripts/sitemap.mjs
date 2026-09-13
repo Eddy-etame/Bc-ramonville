@@ -24,8 +24,8 @@
    L'état est versionné avec le dépôt : c'est lui qui porte la mémoire des
    dates, pas le XML, et pas l'horloge de la machine de build.
 
-   Usage : appelé par `npm run build`, après astro build et minify (il doit
-   voir le HTML définitif). Écrit dist/sitemap.xml.
+   Usage : appelé par `npm run build`, après minify ET garde-auteurs (il doit
+   voir le HTML définitif, attribution comprise). Écrit dist/sitemap.xml.
    ===================================================================== */
 import { readFile, writeFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
@@ -62,7 +62,7 @@ const I = {
   hero:      ["/assets/img/ram/hero.webp", `L'octogone de 7 m et le grand ring — ${CLUB}`, "Le plateau de Ramonville-Saint-Agne : un octogone de 7 mètres et un grand ring, en plein air, couverts."],
   heroLarge: ["/assets/img/ram/hero-1200.webp", `Le plateau sous la charpente — ${CLUB}`, "Les 300 m² d'entraînement en plein air du club de Ramonville, sous charpente."],
   plateau:   ["/assets/img/ram/plateau.webp", `Le plateau : octogone, ring et tatamis — ${CLUB}`, "L'aire d'entraînement du Boxing Center Ramonville, 33 rue des Ormes, au terminus du métro B."],
-  octogone:  ["/assets/img/ram/octogone.webp", `Cours de MMA dans l'octogone — ${CLUB}`, "Cours de Cours de MMA dans l'octogoneètres du club de Ramonville-Saint-Agne."],
+  octogone:  ["/assets/img/ram/octogone.webp", `Cours de MMA dans l'octogone — ${CLUB}`, "Cours de MMA dans l’octogone de 7 mètres du club de Ramonville-Saint-Agne."],
   anglaise:  ["/assets/img/ram/anglaise.webp", `Boxe anglaise sur le grand ring — ${CLUB}`, "Cours de boxe anglaise sur le grand ring de Ramonville, débutants acceptés."],
   pieds:     ["/assets/img/ram/pieds-poings.webp", `Boxe pieds-poings — ${CLUB}`, "Cours de boxe pieds-poings au Boxing Center Ramonville : thaï, kick, savate."],
   grappling: ["/assets/img/ram/grappling.webp", `Grappling au sol — ${CLUB}`, "Séance de grappling sur les tatamis du club de Ramonville-Saint-Agne."],

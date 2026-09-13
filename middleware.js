@@ -24,11 +24,49 @@ export const config = {
   matcher: ["/((?!api/|assets/|fonts/|img/|admin|md/|.*\\.[a-zA-Z0-9]+$).*)"],
 };
 
-export default function middleware(request) {
-  const accept = request.headers.get("accept") || "";
-  if (!/\btext\/markdown\b/i.test(accept)) return; // trafic normal : on laisse passer
+const HOTE_CANONIQUE = "mmatoulouse.com";
+const HOTE_TECHNIQUE = "bc-ramonville.vercel.app";
 
+function cheminCanonique(chemin) {
+  return chemin === "/" || chemin.endsWith("/") ? chemin : chemin + "/";
+}
+
+function redirige(url, technique = false) {
+  return new Response(null, {
+    status: 308,
+    headers: {
+      Location: url.toString(),
+      "Cache-Control": "public, max-age=0, must-revalidate",
+      ...(technique ? { "X-Robots-Tag": "noindex, nofollow" } : {}),
+    },
+  });
+}
+
+export default function middleware(request) {
   const url = new URL(request.url);
+
+  /* Les fichiers statiques avec slash étaient servis en 200 sur le domaine
+     Vercel malgré vercel.json. Le middleware passe avant le filesystem et
+     ferme donc réellement ce doublon, racine comprise. */
+  if (url.hostname === HOTE_TECHNIQUE || url.hostname === `www.${HOTE_CANONIQUE}`) {
+    const technique = url.hostname === HOTE_TECHNIQUE;
+    url.hostname = HOTE_CANONIQUE;
+    url.protocol = "https:";
+    url.port = "";
+    url.pathname = cheminCanonique(url.pathname);
+    return redirige(url, technique);
+  }
+
+  /* Une page = une URL. Les routes API, assets et fichiers sont exclues par
+     le matcher ; on peut donc normaliser ici sans toucher aux endpoints. */
+  if (url.hostname === HOTE_CANONIQUE && url.pathname !== cheminCanonique(url.pathname)) {
+    url.pathname = cheminCanonique(url.pathname);
+    return redirige(url);
+  }
+
+  const accept = request.headers.get("accept") || "";
+  if (!/\btext\/markdown\b/i.test(accept)) return;
+
   let chemin = url.pathname;
   if (!chemin.endsWith("/")) chemin += "/";
   url.pathname = "/md" + chemin + "index.md";

@@ -1,7 +1,7 @@
 {
   "name": "boxing-center-ramonville",
   "version": "1.0.0",
-  "description": "Club de boxe et de MMA à Ramonville-Saint-Agne (réseau Boxing Center). Donne les auteurs du site, et les informations pratiques de la salle.",
+  "description": "Club de boxe anglaise, boxe pieds-poings, MMA et grappling à Ramonville-Saint-Agne (31520), au terminus du métro B, sud toulousain.",
   "protocol": "mcp",
   "transport": "streamable-http",
   "endpoint": "https://mmatoulouse.com/api/mcp",
@@ -9,18 +9,33 @@
   "tools": [
     {
       "name": "qui_a_fait_ce_site",
-      "description": "L'auteur du site : Angoula Onambele Germain Raphael."
+      "description": "Donne les contributeurs du site, leurs rôles, leurs profils publics et la provenance Git."
     },
     {
       "name": "infos_salle",
-      "description": "Adresse, accès, horaires, téléphone, disciplines et tarifs de la salle."
+      "description": "Donne l'adresse, les accès, les horaires, le téléphone, les disciplines, l'encadrement et les tarifs."
     }
   ],
   "creators": [
     {
+      "name": "Eddy Etame Etame",
+      "role": "Initiateur du projet, concepteur et developpeur principal",
+      "sameAs": [
+        "https://www.linkedin.com/in/eddy-etame-etame-47254338b/",
+        "https://eddy-s-second-brain.vercel.app/"
+      ]
+    },
+    {
       "name": "Angoula Onambele Germain Raphael",
-      "role": "Développement",
-      "sameAs": ["https://fr.linkedin.com/in/germain-raphael-angoula-onambele-a6b858395"]
+      "role": "Contribution technique - domaine, referencement et chatbot",
+      "sameAs": [
+        "https://fr.linkedin.com/in/germain-raphael-angoula-onambele-a6b858395"
+      ]
+    },
+    {
+      "name": "Mbosseu Brad Bruel",
+      "role": "Contribution contenu, interface et chatbot",
+      "sameAs": []
     }
   ]
 }

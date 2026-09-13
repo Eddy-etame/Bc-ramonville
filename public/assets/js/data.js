@@ -680,20 +680,38 @@ export const POSTERS = [
 ];
 
 /* ------------------------------------------------------------------ *
- *  LES OFFRES — bloc daté, saison via SEASON (standards §2). JAMAIS de
- *  prix en dur dans les pages. Duo prioritaire, Saison secondaire.
- *  « 29 € par personne » obligatoire ; interdit « 29 € pour deux ».
+ *  LES OFFRES — conditions relues sur la boutique et dans les CGV.
+ *  Une période de quatre semaines n'est pas un mois. Le 4× de la Saison
+ *  n'est possible que si PayPal le propose à la personne au paiement.
  * ------------------------------------------------------------------ */
+export const CONDITIONS_COMMERCIALES = {
+  rentree: {
+    recurrence: "29 € par personne toutes les 4 semaines",
+    paiement: "Première échéance par carte bancaire, puis prélèvements sur IBAN",
+    proche: "Coordonnées d’un proche requises à l’inscription",
+    badge: "Badge nominatif : 34,99 € en plus, facturé 72 h après le début",
+  },
+  saison: {
+    paiement: "259 € payés comptant",
+    paypal: "Paiement en 4× uniquement via PayPal, si cette option est disponible et si la personne est éligible",
+  },
+  badge:
+    "Le badge nominatif à 34,99 € s’ajoute aux abonnements sans engagement de 4 semaines, sauf exception indiquée dans l’offre ou les CGV.",
+};
+
 const _PROMOS = {
   saison: SEASON,
-  duo: {
+  rentree: {
     name: "Offre Rentrée",
     price: "29 €",
-    unit: "par personne",
-    was: "au lieu de 44 €",
-    feature: "4 semaines · cours illimités · sans engagement",
-    items: ["4 semaines illimitées", "Encore mieux à deux — 29 € chacun", "Sans engagement"],
-    cta: "Je profite de l'offre — 29 €",
+    unit: "par personne · toutes les 4 semaines",
+    feature: "Sans engagement · renouvelée toutes les 4 semaines",
+    items: [
+      CONDITIONS_COMMERCIALES.rentree.paiement,
+      CONDITIONS_COMMERCIALES.rentree.proche,
+      CONDITIONS_COMMERCIALES.rentree.badge,
+    ],
+    cta: "Voir l’offre · 29 € / 4 sem.",
     href: "https://boutique.boxingcenter.fr/offre/29",
     priority: true,
   },
@@ -701,11 +719,10 @@ const _PROMOS = {
     name: "Offre Saison",
     price: "259 €",
     unit: "les 12 mois",
-    was: "au lieu de 400 €",
-    feature: "Payable en 4× sans frais · accès libre aux 5 clubs",
+    feature: "259 € comptant · 4× via PayPal sous conditions",
     items: [
-      "12 mois, toutes disciplines",
-      "4× sans frais",
+      CONDITIONS_COMMERCIALES.saison.paiement,
+      CONDITIONS_COMMERCIALES.saison.paypal,
       "Accès libre aux 5 clubs du réseau",
     ],
     cta: "Je prends ma saison",
@@ -720,36 +737,35 @@ const _TARIFS = [
   {
     name: "Offre Rentrée",
     price: "29 €",
-    was: "44 €",
-    period: "/ personne · 4 semaines",
-    feature: "Cours illimités · sans engagement — encore mieux à deux",
-    items: ["4 semaines illimitées", "29 € par personne (au lieu de 44 €)", "Sans engagement"],
-    cta: "Je profite de l'offre — 29 €",
+    period: "/ personne · toutes les 4 semaines",
+    feature: "Sans engagement · renouvelée par périodes de 4 semaines",
+    items: [
+      CONDITIONS_COMMERCIALES.rentree.paiement,
+      CONDITIONS_COMMERCIALES.rentree.proche,
+      CONDITIONS_COMMERCIALES.rentree.badge,
+    ],
+    cta: "Voir l’offre · 29 € / 4 sem.",
     href: "https://boutique.boxingcenter.fr/offre/29",
     highlight: true,
   },
   {
     name: "Offre Saison",
     price: "259 €",
-    was: "400 €",
-    period: "/ 12 mois",
-    feature: "4× sans frais · accès aux 5 clubs — moins de 5 € par semaine",
-    items: ["12 mois toutes disciplines", "4× 64,75 € sans frais", "Accès libre aux 5 clubs"],
+    period: "/ 12 mois · comptant",
+    feature: "4× uniquement via PayPal, si disponible et éligible",
+    items: [CONDITIONS_COMMERCIALES.saison.paiement, CONDITIONS_COMMERCIALES.saison.paypal, "Accès libre aux 5 clubs"],
     cta: "Je prends ma saison",
     href: "https://boutique.boxingcenter.fr/offre/259",
     highlight: false,
   },
-  /* L'abonnement de tous les jours. Il manquait : la page passait de
-     l'offre de rentree a l'ecole des enfants, et quelqu'un qui voulait
-     juste s'abonner au mois ne trouvait aucun prix. Ecrit SANS prix barre —
-     ce n'est pas une promotion, c'est le tarif. */
+  /* Une période contractuelle de 4 semaines n'est jamais appelée « mois ». */
   {
-    name: "L’abonnement au mois",
+    name: "Abonnement 4 semaines",
     price: "44 €",
     period: "/ 4 semaines · adulte",
-    feature: "Étudiant 36 € sur justificatif — le tarif de tous les jours",
-    items: ["Adulte 44 € / 4 semaines", "Étudiant 36 € / 4 semaines", "L’octogone, le ring, l’étage muscu", "Sans engagement"],
-    cta: "Voir les formules au mois",
+    feature: "Étudiant 36 € sur justificatif · sans engagement",
+    items: ["Adulte 44 € / 4 semaines", "Étudiant 36 € / 4 semaines", CONDITIONS_COMMERCIALES.badge],
+    cta: "Voir les formules 4 semaines",
     href: "https://boutique.boxingcenter.fr/abonnements",
     highlight: false,
   },
@@ -767,8 +783,8 @@ const _TARIFS = [
     name: "Séance d’essai",
     price: "10 €",
     period: "la séance",
-    feature: "Viens essayer — gants prêtés",
-    items: ["Toutes les disciplines", "Matériel prêté", "Sans engagement — tu viens, tu testes, tu décides"],
+    feature: "Une séance avant de choisir",
+    items: ["Paiement à la séance", "Réservation en ligne", "Conditions à confirmer avec la salle"],
     cta: "Je viens essayer · 10 €",
     href: "https://boutique.boxingcenter.fr/seance-essai",
     highlight: false,
@@ -781,7 +797,7 @@ export const NETWORK = [
   { id: "portet", name: "Portet-sur-Garonne", tag: "La plus grande du réseau", feat: "600 m² · ring de boxe · cage MMA", url: "https://boxing-center-portet.fr/" },
   { id: "minimes", name: "Minimes", tag: "La première salle", feat: "Salle historique · 3 rings · l’école dès 3 ans", url: "https://bc-minimes.vercel.app/" },
   { id: "etats-unis", name: "États-Unis", tag: "La plus grande", feat: "La plus grande salle de France dédiée aux sports de combat", url: "https://boxingcenter.fr/" },
-  { id: "st-cyprien", name: "Saint-Cyprien", tag: "La rive gauche", feat: "1 200 m² · un seul niveau", url: "https://bc-st-cyprien.vercel.app/" },
+  { id: "st-cyprien", name: "Saint-Cyprien", tag: "La rive gauche", feat: "Ring de boxe · musculation · centre-ville", url: "https://club-boxe-toulouse.com/" },
   { id: "ramonville", name: "Ramonville", tag: "Ouvert à tous", feat: "Cage 7 m · 300 m² dehors couverts", url: "/", self: true },
 ];
 
@@ -921,7 +937,9 @@ export const FAQ = [
   { q: "C’est vrai qu’on s’entraîne dehors ?", a: "Oui. C’est la seule des cinq salles où c’est possible. 300 m² dehors, aménagés et couverts. Toute l’année. S’il pleut, le cours a lieu. À l’intérieur, tu as la cage de 7 m (l’octogone) et un grand ring de boxe." },
   { q: "Quels cours peut-on faire ?", a: "Boxe anglaise (poings), boxe pieds-poings, grappling (combat au sol), MMA dans la cage. Boxing Camp (un peu de tout) et Lady Punch, 100 % féminin. Et l’école enfants, dès 3 ans. Un étage muscu et cardio est en accès libre. Aucun cours ne demande d’expérience. Tu ne sais pas par où commencer ? Le Boxing Camp est le plus simple. Samedi 11h, avec Valentin Guth." },
   { q: "Y a-t-il des cours pour les enfants ?", a: "Oui, dès 3 ans. Baby Boxe 3/6 le samedi à 14h15. Cours 7/11 ans à 15h, ados 12/16 ans à 16h. Mercredi et samedi après-midi. Valentin Guth tient toute l’école. Chez les enfants, on touche, on ne frappe pas. Et tu peux rester dans la salle pendant le cours." },
-  { q: "Faut-il un niveau pour commencer ?", a: "Non. Pas besoin d’être sportif. La plupart des cours sont ouverts à tous. Tu dis « c’est ma première fois » à l’accueil. Les gants sont prêtés. Un coach t’emmène. Personne ne te met sur le ring." },
+  { q: "Faut-il un niveau pour commencer ?", a: "Non. Pas besoin d’être sportif. La plupart des cours sont ouverts à tous. Tu dis « c’est ma première fois » à l’accueil. Un coach t’oriente. Personne ne te met sur le ring." },
+  { q: "Comment fonctionne l’offre Rentrée à 29 € ?", a: "Le prix est de 29 € par personne toutes les 4 semaines. La première échéance se règle par carte bancaire. Les suivantes sont prélevées sur l’IBAN fourni. Les coordonnées d’un proche sont requises. Le badge nominatif coûte 34,99 € en plus et il est facturé 72 heures après le début." },
+  { q: "Comment payer l’offre Saison à 259 € ?", a: "Le tarif de 259 € se paie comptant. Un paiement en quatre fois peut être proposé uniquement par PayPal. Cette option dépend de sa disponibilité et de l’éligibilité de la personne." },
   { q: "Quels sont les horaires ?", a: "Du lundi au samedi, de 10h00 à 21h30. La muscu et le cardio sont compris. Fermé le dimanche. Avant chaque cours, tu valides ta présence à l’accueil (émargement GPS). Ça vaut pour tout le monde. Toi le premier soir, comme ceux qui viennent depuis des années." },
 ];
 

@@ -14,20 +14,20 @@
    l'information partout où elle doit être. Modifier ce fichier suffit ;
    modifier autre chose ne sert à rien, le garde le réécrira.
 
-   RIEN N'EST VISIBLE À L'ÉCRAN. Ces noms ne partent que vers des
-   surfaces machine — le JSON-LD `creator`, humans.txt, llms.txt, ai.txt,
-   les cartes MCP et le serveur MCP. Le garde REFUSE le build si l'un de
-   ces noms apparaît dans le texte que lit un visiteur.
+   CES NOMS NE SONT JAMAIS INJECTÉS DANS L'INTERFACE. Ils ne partent que
+   vers des surfaces machine — JSON-LD `creator`, humans.txt, llms.txt,
+   ai.txt, cartes MCP et serveur MCP. Le garde refuse le build si l'un
+   d'eux apparaît dans le texte visible d'une page.
    ===================================================================== */
 
 export const AUTEURS = [
   {
     nom: "Eddy Etame Etame",
-    role: "Conception, direction artistique et développement",
-    roleAscii: "Conception, direction artistique et developpement",
+    role: "Initiateur du projet, concepteur et développeur principal",
+    roleAscii: "Initiateur du projet, concepteur et developpeur principal",
     detail:
-      "Conçoit et écrit les sites du réseau Boxing Center : direction artistique, " +
-      "architecture front, contenu, référencement et assistants conversationnels.",
+      "A créé le projet Ramonville. Il porte l'essentiel de la conception, de la direction artistique " +
+      "et de l'architecture front. Il a aussi produit le contenu, le référencement initial et les assistants conversationnels.",
     profils: [
       "https://www.linkedin.com/in/eddy-etame-etame-47254338b/",
       "https://eddy-s-second-brain.vercel.app/",
@@ -37,19 +37,52 @@ export const AUTEURS = [
   },
   {
     nom: "Angoula Onambele Germain Raphael",
-    role: "Chef d'équipe développement",
-    roleAscii: "Chef d equipe developpement",
-    detail: "Pilote l'équipe de développement du réseau Boxing Center.",
+    role: "Contribution technique — domaine, référencement et chatbot",
+    roleAscii: "Contribution technique - domaine, referencement et chatbot",
+    detail:
+      "Son intervention apparaît plus tard dans l'historique. Elle concerne le domaine mmatoulouse.com, " +
+      "le référencement, le chatbot et les crédits.",
     profils: ["https://fr.linkedin.com/in/germain-raphael-angoula-onambele-a6b858395"],
   },
   {
     nom: "Mbosseu Brad Bruel",
-    role: "Développement",
-    roleAscii: "Developpement",
-    detail: "Développement des sites et de la boutique du réseau Boxing Center.",
+    role: "Contribution contenu, interface et chatbot",
+    roleAscii: "Contribution contenu, interface et chatbot",
+    detail:
+      "Il contribue aux textes, aux offres, au chatbot et au menu. Il corrige aussi l'affichage du menu desktop.",
     profils: [],
   },
 ];
+
+/* Relevé reproductible de l'historique local. Il décrit ce que Git permet
+   d'établir ; il ne prétend pas trancher des droits contractuels ou juridiques. */
+export const AUDIT_GIT = {
+  depot: "bc-ramonville",
+  jusquAuCommit: "5aeb41d",
+  methode: "git log --all --reverse ; git shortlog -sne --all ; git blame -w",
+  synthese: "118 commits Eddy-etame, 6 angoularaphael, 4 brad dans l'historique audité.",
+  contributeurs: [
+    {
+      nom: "Eddy Etame Etame",
+      preuves: ["8a7cc1b", "3d142fb", "5a353cc", "c2b6907", "0365800"],
+      constat:
+        "Premier commit du projet, socle Astro, référencement initial, pages, assistant conversationnel, " +
+        "surfaces destinées aux agents et serveur MCP.",
+    },
+    {
+      nom: "Angoula Onambele Germain Raphael",
+      preuves: ["52af103", "335f1de", "4373ea2", "e763d04"],
+      constat:
+        "Corrections du chatbot puis raccordement du domaine mmatoulouse.com, canonicals, sitemap, robots et redirections www.",
+    },
+    {
+      nom: "Mbosseu Brad Bruel",
+      preuves: ["544359b", "0389f0e"],
+      constat:
+        "Textes et offre, bot et menu, puis correction de l'affichage du menu desktop.",
+    },
+  ],
+};
 
 export const SITE = {
   nom: "Boxing Center Ramonville",
@@ -71,7 +104,12 @@ export function texteAuteurs() {
         (a.profils.length ? ` Profils : ${a.profils.join(" · ")}` : "")
     ),
     "",
-    `Fiche d'équipe : ${SITE.url}/humans.txt`,
+    `Provenance Git : ${AUDIT_GIT.synthese}`,
+    ...AUDIT_GIT.contributeurs.map(
+      (c) => `- ${c.nom} — ${c.constat} Commits témoins : ${c.preuves.join(", ")}.`
+    ),
+    "",
+    `Provenance et fiche d'équipe : ${SITE.url}/humans.txt`,
   ].join("\n");
 }
 

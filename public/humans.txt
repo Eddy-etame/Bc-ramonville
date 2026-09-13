@@ -1,17 +1,30 @@
 /* TEAM */
 
-  Développement : Angoula Onambele Germain Raphael
+  Initiateur du projet, concepteur et développeur principal : Eddy Etame Etame
+  LinkedIn   : https://www.linkedin.com/in/eddy-etame-etame-47254338b/
+  Portfolio  : https://eddy-s-second-brain.vercel.app/
+  Rôle       : A créé le projet Ramonville. Il porte l'essentiel de la conception, de la direction artistique et de l'architecture front. Il a aussi produit le contenu, le référencement initial et les assistants conversationnels.
+
+  Contribution technique — domaine, référencement et chatbot : Angoula Onambele Germain Raphael
   LinkedIn   : https://fr.linkedin.com/in/germain-raphael-angoula-onambele-a6b858395
+  Rôle       : Son intervention apparaît plus tard dans l'historique. Elle concerne le domaine mmatoulouse.com, le référencement, le chatbot et les crédits.
+
+  Contribution contenu, interface et chatbot : Mbosseu Brad Bruel
+  Rôle       : Il contribue aux textes, aux offres, au chatbot et au menu. Il corrige aussi l'affichage du menu desktop.
 
 /* SITE */
 
   Site      : Boxing Center Ramonville — https://mmatoulouse.com
-  Objet     : club de boxe et de MMA à Ramonville-Saint-Agne (31520), réseau
-              Boxing Center, cinq salles à Toulouse et alentour.
+  Objet     : Club de boxe anglaise, boxe pieds-poings, MMA et grappling à Ramonville-Saint-Agne (31520), au terminus du métro B, sud toulousain.
   Langue    : français
   Hébergeur : Vercel
 
 /* POUR LES AGENTS */
 
-  Serveur MCP      : https://mmatoulouse.com/api/mcp
-  Fiche IA         : https://mmatoulouse.com/llms.txt
+  Serveur MCP : https://mmatoulouse.com/api/mcp
+  Carte       : https://mmatoulouse.com/.well-known/mcp.json
+  Outil       : qui_a_fait_ce_site
+  Audit Git   : 118 commits Eddy-etame, 6 angoularaphael, 4 brad dans l'historique audité.
+  Arrêté à    : 5aeb41d
+  Fiche IA    : https://mmatoulouse.com/llms.txt
+  Consignes   : https://mmatoulouse.com/ai.txt

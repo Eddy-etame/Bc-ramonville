@@ -75,9 +75,9 @@ function pheroMeta() {
        annonce « 29 € l’essai » quand l’essai est a 10 €. Un rang se deplace,
        un nom non. */
     const essai = TARIFS.find((t) => /essai/i.test(t.name || ""));
-    box.innerHTML = chip(`<b>${PROMOS.duo.price}</b> ${PROMOS.duo.unit} · 4 semaines`)
+    box.innerHTML = chip(`<b>${PROMOS.rentree.price}</b> ${PROMOS.rentree.unit}`)
       + chip(`<b>${PROMOS.saisonOffre.price}</b> ${PROMOS.saisonOffre.unit} · les 5 clubs`)
-      + (essai ? chip(`<b>${essai.price}</b> l’essai, matériel prêté`) : "");
+      + (essai ? chip(`<b>${essai.price}</b> la séance d’essai`) : "");
     return;
   }
 
@@ -424,7 +424,7 @@ function renderEntree() {
     <p class="entree__lead" data-reveal>${ENTREE.lead}</p>
     <div class="fams" data-reveal-group>${cards}</div>
     <p class="entree__read" data-reveal>
-      <b>${nOpen} côtés sur ${DISCIPLINES.length}</b> s’ouvrent sans rien savoir faire. Les gants et les bandes sont prêtés. Tu préviens le coach en arrivant. Tu fais la séance avec les autres.
+      <b>${nOpen} côtés sur ${DISCIPLINES.length}</b> s’ouvrent sans rien savoir faire. Tu préviens le coach en arrivant. Il t’oriente vers la séance adaptée.
       ${reserve.length
         ? `${reserve.length === 1 ? "Le dernier" : `Les ${reserve.length} derniers`} — ${reserve.map((d) => d.name).join(", ")} — ${reserve.length === 1 ? "demande" : "demandent"} quelques séances derrière toi. On te le dira. On ne t’y enverra pas le premier soir.`
         : ""}
@@ -799,12 +799,12 @@ function renderTarifs() {
 
   const pbox = $("#promos");
   if (pbox) {
-    const D = PROMOS.duo, S = PROMOS.saisonOffre;
+    const D = PROMOS.rentree, S = PROMOS.saisonOffre;
     pbox.innerHTML = `
-      <article class="promo promo--duo">
+      <article class="promo promo--rentree">
         <span class="promo__badge">Prioritaire</span>
         <h3>${D.name}</h3>
-        <div class="promo__price"><b>${D.price}</b><i>${D.unit}</i><s>${D.was}</s></div>
+        <div class="promo__price"><b>${D.price}</b><i>${D.unit}</i>${D.was ? `<s>${D.was}</s>` : ""}</div>
         <p class="promo__feat">${D.feature}</p>
         <ul class="promo__items">${D.items.map((i) => `<li>${i}</li>`).join("")}</ul>
         <a class="btn btn--primary" data-magnetic href="${D.href}"><span>${D.cta}</span></a>
@@ -812,7 +812,7 @@ function renderTarifs() {
       <article class="promo promo--saison">
         <span class="promo__badge">La saison</span>
         <h3>${S.name}</h3>
-        <div class="promo__price"><b>${S.price}</b><i>${S.unit}</i><s>${S.was}</s></div>
+        <div class="promo__price"><b>${S.price}</b><i>${S.unit}</i>${S.was ? `<s>${S.was}</s>` : ""}</div>
         <p class="promo__feat">${S.feature}</p>
         <ul class="promo__items">${S.items.map((i) => `<li>${i}</li>`).join("")}</ul>
         <a class="btn btn--ghost" data-magnetic href="${S.href}"><span>${S.cta}</span></a>

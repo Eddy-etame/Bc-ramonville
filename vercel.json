@@ -32,6 +32,12 @@
       "has": [{ "type": "host", "value": "bc-ramonville.vercel.app" }],
       "destination": "https://mmatoulouse.com/:path*",
       "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [{ "type": "host", "value": "bc-ramonville.vercel.app" }],
+      "destination": "https://mmatoulouse.com/",
+      "permanent": true
     }
   ],
   "headers": [
@@ -78,15 +84,6 @@
         {
           "key": "Cache-Control",
           "value": "no-store"
-        }
-      ]
-    },
-    {
-      "source": "/api/mcp",
-      "headers": [
-        {
-          "key": "X-Robots-Tag",
-          "value": "all"
         }
       ]
     },

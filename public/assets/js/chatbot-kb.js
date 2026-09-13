@@ -38,12 +38,12 @@ export const QUICKS = [
   {
     label: "Ta 1re fois",
     q: "Comment se passe la séance d’essai ?",
-    a: "Tu dis à l’accueil que c’est ta première fois, un coach te prête les gants et te montre le plateau. Échauffement, technique, sac — à ton rythme, et personne ne monte sur le ring sans en avoir envie. 10 € la séance, toutes disciplines, sans engagement. Le déroulé complet est sur la page « Ta première séance ». [boutons: premiere, essai]",
+    a: "Tu dis à l’accueil que c’est ta première fois. Un coach t’oriente, puis tu suis la séance à ton rythme. Personne ne te met sur le ring sans ton accord. La séance d’essai coûte 10 € ; confirme le matériel requis avec la salle. [boutons: essai, contact]",
   },
   {
     label: "Tarifs",
     q: "Quels sont les tarifs ?",
-    a: "L’offre Rentrée : 29 € par personne pour 4 semaines illimitées, sans engagement (au lieu de 44 €). L’offre Saison : 259 € les 12 mois en 4× sans frais, accès libre aux 5 clubs. L’école enfants : 295 €/an t-shirt inclus, baby 250 €. Et l’essai à 10 € pour tester. [boutons: offre, tarifs]",
+    a: "L’offre Rentrée coûte 29 € par personne toutes les 4 semaines, sans engagement. La première échéance se paie par carte, puis les suivantes sur IBAN ; les coordonnées d’un proche sont requises. Le badge coûte 34,99 € en plus et il est facturé 72 h après le début. La Saison coûte 259 € comptant ; le 4× est uniquement proposé par PayPal, selon disponibilité et éligibilité. [boutons: offre, saison, tarifs]",
   },
   {
     label: "Horaires",
