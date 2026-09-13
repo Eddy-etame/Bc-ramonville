@@ -143,7 +143,8 @@ const PAGES = [
   /* Les deux pages de confiance : celles qu'un agent verifie avant de
      recommander un commerce. Poids faible, elles ne concurrencent rien. */
   { chemin: "about/", priorite: "0.3", freq: "yearly", imgs: [] },
-  { chemin: "privacy/", priorite: "0.3", freq: "yearly", imgs: [] },
+  /* privacy/ n’y est plus : page juridique en noindex depuis le 13/09 — une URL
+     hors index dans le plan du site envoie à Google deux ordres contraires. */
 ];
 
 const aujourdhui = new Date().toISOString().slice(0, 10);
