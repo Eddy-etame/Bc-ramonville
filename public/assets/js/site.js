@@ -10,6 +10,7 @@
    Aucun chrome copié de Saint-Cyprien.
    ===================================================================== */
 import { NAV, LINKS, SALLE, SEASON_LABEL, NETWORK } from "./data.js?v=22";
+import { PAGES_DISCIPLINES } from "./disciplines-liens.js?v=1";
 
 import { initPlaces } from "./places.js?v=19";
 /* --------------------------- LE MAILLAGE --------------------------- *
@@ -198,7 +199,7 @@ function mountNav() {
 
 /* --------------------- FOOTER — la fiche de terrain ---------------- */
 function mountFooter() {
-  const cols = [{ h: "La salle", links: NAV.slice(1, 6) }];
+  const cols = [{ h: "La salle", links: NAV.slice(1, 6) }, { h: "Les disciplines", links: PAGES_DISCIPLINES.map((p) => ({ href: p.href, label: p.nom })) }];
   const fields = [
     { k: "Établissement", v: "Boxing Center — Ramonville", wide: true },
     { k: "Extérieur", v: "300 m² couverts · cage de 7 m" },

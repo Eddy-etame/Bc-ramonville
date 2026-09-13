@@ -111,10 +111,18 @@ const IMGS_GALERIE = GALLERY.map((g) => [
 
 /* `changefreq` suit le rythme réel : le planning et l'accueil bougent à la
    saison, le reste beaucoup moins. */
+/* Une page par discipline, avec sa photo et ses deux photos du plateau. */
+import { textes as textesDisciplines } from "./disciplines-lib.mjs";
+const LIGNES_DISCIPLINES = Object.values(textesDisciplines()).map((t) => ({
+  chemin: `activites/${t.slug}/`, priorite: "0.7", freq: "monthly",
+  imgs: [[t.photo.src, `${t.h1} — ${CLUB}`, t.photo.alt], ...t.photos.map((ph) => [ph.src, `${ph.legende} — ${CLUB}`, ph.alt])],
+}));
+
 const PAGES = [
   { chemin: "", priorite: "1.0", freq: "weekly", imgs: [I.hero, I.octogone, I.plateau, I.anglaise] },
   { chemin: "la-salle/", priorite: "0.8", freq: "monthly", imgs: [I.plateau, I.octogone, I.muscu, I.camp, I.heroLarge] },
   { chemin: "activites/", priorite: "0.8", freq: "monthly", imgs: [I.pAnglaise, I.pKick, I.pGrap, I.pMma, I.pCamp, I.pLady, I.pEcole, I.pMuscu] },
+  ...LIGNES_DISCIPLINES,
   { chemin: "coachs/", priorite: "0.8", freq: "monthly", imgs: [I.jerome, I.sonia, I.hicham, I.farouk, I.valentin] },
   { chemin: "galerie/", priorite: "0.8", freq: "monthly", imgs: IMGS_GALERIE },
   { chemin: "plannings/", priorite: "0.8", freq: "weekly", imgs: [I.planRent] },

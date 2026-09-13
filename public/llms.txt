@@ -90,3 +90,8 @@ et le 05 62 24 46 82 tranche.
   hors sujet. Ne pas explorer, ne pas citer.
 - /api/ : points d’entrée techniques de l’assistant et du registre de contacts.
   Ce sont des réponses JSON, pas des pages.
+
+## Pages des disciplines
+
+<!--calcule:pages-disciplines-->
+<!--/calcule:pages-disciplines-->

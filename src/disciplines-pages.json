@@ -1,0 +1,285 @@
+{
+  "_note": "Pages de discipline : /activites/<slug>/. Écrites à la construction par scripts/generer-disciplines.mjs, juste après content.mjs. Les faits (créneaux, coachs, niveau, photo de la fiche) viennent de data.js ; ce fichier porte le texte long de chaque page, rangé par clé de discipline. {jours} est remplacé par les jours du planning. Jamais de parking, jamais de prix d'essai : ce sont deux règles de la maison.",
+  "pages": {
+    "anglaise": {
+      "slug": "boxe-anglaise",
+      "titre": "Boxe anglaise à Ramonville-Saint-Agne | Boxing Center",
+      "description": "Cours de boxe anglaise à Ramonville-Saint-Agne, au terminus du métro B : le midi avec Hicham, le soir avec Farouk. Débutants et confirmés, même cours.",
+      "h1": "Boxe anglaise",
+      "eyebrow": "Discipline · Poings seulement",
+      "lead": "Les poings, la garde, les déplacements. Sur le grand ring de Ramonville, le midi avec Hicham, le soir avec Farouk. Tu débutes ? Le coach te donne un exercice à ton niveau, dans le même cours que les autres.",
+      "photo": { "src": "/assets/img/ram/photos/boxe-anglaise-en-binome-boxing-center-ramonville.webp", "alt": "Deux boxeurs en binôme pendant un cours de boxe anglaise au Boxing Center Ramonville" },
+      "photos": [
+        { "src": "/assets/img/ram/photos/cours-de-boxe-anglaise-sur-le-ring-boxing-center-ramonville.webp", "alt": "Cours de boxe anglaise sur le grand ring du Boxing Center Ramonville", "legende": "Le grand ring" },
+        { "src": "/assets/img/ram/photos/coach-aux-pattes-d-ours-direct-boxing-center-ramonville.webp", "alt": "Un coach tient les pattes d’ours pour un direct au Boxing Center Ramonville", "legende": "Le direct, aux pattes d’ours" }
+      ],
+      "travailTitre": "Les poings, et le reste.",
+      "travail": [
+        { "titre": "Se protéger", "texte": "La garde d’abord : les mains hautes, le menton rentré. C’est la première chose que le coach regarde." },
+        { "titre": "Bouger", "texte": "Avancer, reculer, tourner. En boxe anglaise, les jambes décident de la distance, et la distance décide de tout." },
+        { "titre": "Frapper juste", "texte": "Jab, direct, crochet, uppercut. Un coup à la fois, au sac puis aux pattes d’ours, jusqu’à ce qu’il parte tout seul." },
+        { "titre": "Tenir le round", "texte": "Corde, sac, gainage. Le souffle vient au fil des séances, et le round paraît moins long." }
+      ],
+      "pourQui": [
+        { "tag": "Le midi", "titre": "Tu n’as pas tes soirs", "texte": "Hicham tient les cours du mardi et du vendredi à 12h40. Tu arrives sur ta pause, tu boxes, tu repars." },
+        { "tag": "Le soir", "titre": "Tu viens après le travail", "texte": "Farouk tient l’anglaise loisirs du lundi et du vendredi, et le cours du mercredi soir. Chacun avance à son rythme." },
+        { "tag": "Plus tard", "titre": "Tu veux aller plus loin", "texte": "Le même coach t’accompagne quand tu veux passer un cap. Tu n’as pas à changer de salle pour progresser." }
+      ],
+      "coachs": ["Hicham", "Farouk"],
+      "faq": [
+        { "q": "Je n’ai jamais boxé, je peux venir ?", "r": "Oui. Le cours est le même pour tout le monde, et le coach te donne un exercice à ton niveau. Tu dis « c’est ma première fois » à l’accueil." },
+        { "q": "Midi ou soir, qu’est-ce qui change ?", "r": "Le midi, le cours tient dans une pause. Le soir, il prend plus de temps : le mercredi, il dure de 18h45 à 20h15." },
+        { "q": "Où a lieu le cours ?", "r": "Sur le grand ring du plateau, au 33 rue des Ormes, à Ramonville-Saint-Agne. La salle est au pied du terminus du métro B." },
+        { "q": "Qu’est-ce que j’apporte ?", "r": "Une tenue de sport, une bouteille d’eau et une serviette. Pour les gants, demande à l’accueil : on te dit comment faire pour la première séance." },
+        { "q": "Quels jours ont lieu les cours ?", "r": "Au planning de la rentrée : {jours}. Les horaires exacts sont plus haut sur cette page." }
+      ],
+      "voisines": ["pieds-poings", "boxing-camp", "lady-punch"],
+      "og": { "sur": "BOXE ANGLAISE · LE GRAND RING", "titre": "La boxe anglaise, midi et soir.", "faits": ["Hicham le midi", "Farouk le soir", "Débutants acceptés"] }
+    },
+    "pieds-poings": {
+      "slug": "boxe-pieds-poings",
+      "titre": "Boxe pieds-poings et kick à Ramonville | Boxing Center",
+      "description": "Boxe pieds-poings à Ramonville-Saint-Agne avec Sonia : poings, pieds et genoux, tous niveaux, au terminus du métro B. La première fois, au sac.",
+      "h1": "Boxe pieds-poings",
+      "eyebrow": "Discipline · Poings et pieds",
+      "lead": "On frappe avec les poings, les pieds et les genoux. Sonia t’apprend le geste avant de te demander d’aller plus vite. La première fois, tu travailles sur les sacs, sans personne en face.",
+      "photo": { "src": "/assets/img/ram/photos/kick-boxing-coup-de-pied-haut-boxing-center-ramonville.webp", "alt": "Coup de pied haut au bouclier pendant le cours de boxe pieds-poings du Boxing Center Ramonville" },
+      "photos": [
+        { "src": "/assets/img/ram/photos/sparring-pieds-poings-sur-tatami-boxing-center-ramonville.webp", "alt": "Opposition encadrée de pieds-poings sur le tatami du Boxing Center Ramonville", "legende": "L’opposition, sur le tatami" },
+        { "src": "/assets/img/ram/photos/boxe-pieds-poings-noir-et-blanc-boxing-center-ramonville.webp", "alt": "Cours de boxe pieds-poings au Boxing Center Ramonville, en noir et blanc", "legende": "Pieds-poings, au sac" }
+      ],
+      "travailTitre": "Les jambes en plus.",
+      "travail": [
+        { "titre": "La garde qui tient", "texte": "Quand la jambe part, les mains restent en place. C’est le premier réflexe du pieds-poings." },
+        { "titre": "Les coups de pied", "texte": "Bas d’abord, puis au corps, puis plus haut. La hauteur vient avec la souplesse, et la souplesse avec les séances." },
+        { "titre": "Les genoux", "texte": "Au corps à corps, le genou entre en jeu. On l’apprend au sac, en contrôle." },
+        { "titre": "Les enchaînements", "texte": "Un poing pour ouvrir, une jambe pour finir. Les combinaisons se répètent jusqu’à partir sans y penser." }
+      ],
+      "pourQui": [
+        { "tag": "Tous niveaux", "titre": "Tu débutes", "texte": "Tous les niveaux sont les bienvenus. La première séance se passe au sac, personne en face de toi." },
+        { "tag": "Après l’anglaise", "titre": "Tu as déjà les poings", "texte": "Tu gardes ta boxe, et tu ajoutes les jambes : la distance s’allonge, le travail devient complet." },
+        { "tag": "Après le Lady Punch", "titre": "Tu enchaînes le lundi et le vendredi", "texte": "Le Lady Punch finit à 18h40, le pieds-poings commence à 18h40. Beaucoup enchaînent les deux." }
+      ],
+      "coachs": ["Sonia"],
+      "faq": [
+        { "q": "Il faut être souple ?", "r": "La souplesse vient avec les séances. Les premiers coups de pied visent bas, et chaque cours finit par des étirements." },
+        { "q": "Pieds-poings, kick-boxing, boxe thaï : c’est pareil ?", "r": "Ce sont des boxes proches. Le cours de Ramonville s’appelle Boxe Pieds-Poings : poings, pieds et genoux. Sonia vient de la boxe thaï et du kickboxing." },
+        { "q": "Qui tient le cours du jeudi midi ?", "r": "Le créneau du jeudi à 12h40 est au planning, et son coach est à confirmer. Les cours du lundi et du vendredi soir sont tenus par Sonia." },
+        { "q": "Je vais devoir combattre ?", "r": "L’opposition vient plus tard, et seulement si tu la veux. La première séance se passe sur les sacs." },
+        { "q": "Quels jours ont lieu les cours ?", "r": "Au planning de la rentrée : {jours}. Les horaires exacts sont plus haut sur cette page." }
+      ],
+      "voisines": ["anglaise", "lady-punch", "asso-mma"],
+      "og": { "sur": "BOXE PIEDS-POINGS · AVEC SONIA", "titre": "Les poings, les pieds, les genoux.", "faits": ["Tous niveaux", "Au sac d’abord", "Métro B"] }
+    },
+    "grappling": {
+      "slug": "grappling",
+      "titre": "Grappling à Ramonville, dans la cage de 7 m | Boxing Center",
+      "description": "Grappling à Ramonville-Saint-Agne : le combat au sol, sans coups, dans l’octogone de 7 m, avec Jérôme, ancien combattant de MMA. Tous niveaux.",
+      "h1": "Grappling",
+      "eyebrow": "Discipline · Le combat au sol",
+      "lead": "Le combat au sol, sans un seul coup. On apprend à tenir, à se dégager, à respirer. Jérôme tient le cours le mardi soir, dans la cage de 7 m : c’est souvent le plus simple pour découvrir l’octogone.",
+      "photo": { "src": "/assets/img/ram/photos/jiu-jitsu-bresilien-au-sol-boxing-center-ramonville.webp", "alt": "Contrôle au sol pendant le cours de grappling du Boxing Center Ramonville" },
+      "photos": [
+        { "src": "/assets/img/ram/photos/grappling-au-sol-dans-l-octogone-boxing-center-ramonville.webp", "alt": "Grappling au sol dans l’octogone de 7 mètres du Boxing Center Ramonville", "legende": "Au sol, dans l’octogone" },
+        { "src": "/assets/img/ram/photos/cours-de-grappling-vue-du-dessus-boxing-center-ramonville.webp", "alt": "Plusieurs binômes pendant le cours de grappling, vus du dessus, au Boxing Center Ramonville", "legende": "Le cours, vu du dessus" }
+      ],
+      "travailTitre": "Tenir, sortir, respirer.",
+      "travail": [
+        { "titre": "Tenir une position", "texte": "Au-dessus ou en dessous, chaque position a ses repères. On apprend d’abord à les garder." },
+        { "titre": "Se dégager", "texte": "Sortir d’en dessous, se relever contre le grillage : ce qu’on apprend ici sert aussi en MMA." },
+        { "titre": "Respirer", "texte": "Au sol, celui qui garde son souffle garde la tête froide. C’est l’une des premières choses que Jérôme travaille." },
+        { "titre": "Soumettre", "texte": "Clés et étranglements, lentement, en contrôle. On tape pour abandonner, et le partenaire lâche aussitôt." }
+      ],
+      "pourQui": [
+        { "tag": "Sans coups", "titre": "Tu veux combattre sans recevoir de coups", "texte": "Le grappling se pratique sans frappe, du début à la fin." },
+        { "tag": "Avant le MMA", "titre": "Tu veux découvrir la cage", "texte": "Le cours a lieu dans l’octogone de 7 m. Le MMA tous niveaux suit, juste après, le mardi." },
+        { "tag": "Tous niveaux", "titre": "Tu arrives sans rien savoir", "texte": "Jérôme explique debout comme au sol. Tu repars en ayant compris, et en ayant progressé." }
+      ],
+      "coachs": ["Jérôme"],
+      "faq": [
+        { "q": "C’est dangereux ?", "r": "La règle protège tout le monde : on tape, le partenaire lâche. Les clés s’apprennent lentement, en contrôle." },
+        { "q": "Que faut-il porter ?", "r": "Une tenue de sport près du corps, sans fermeture éclair ni bijou. Pour la suite, le coach te conseille." },
+        { "q": "Quelle différence avec le MMA ?", "r": "Le grappling reste au sol et exclut les coups. Le MMA ajoute la boxe debout. Les deux ont lieu dans l’octogone de 7 m, avec Jérôme." },
+        { "q": "Qui est Jérôme ?", "r": "Le coach principal de la salle. Ancien combattant de MMA, il a combattu aux États-Unis et au Canada." },
+        { "q": "Quand a lieu le cours ?", "r": "Au planning de la rentrée : {jours}. L’horaire exact est plus haut sur cette page." }
+      ],
+      "voisines": ["asso-mma", "boxing-camp", "pieds-poings"],
+      "og": { "sur": "GRAPPLING · L’OCTOGONE DE 7 M", "titre": "Le combat au sol, sans coups.", "faits": ["Avec Jérôme", "Tous niveaux", "Dans la cage"] }
+    },
+    "asso-mma": {
+      "slug": "mma",
+      "titre": "MMA à Ramonville, octogone de 7 m | Boxing Center",
+      "description": "MMA tous niveaux, débutants acceptés, à Ramonville-Saint-Agne : boxe et combat au sol dans l’octogone de 7 m, avec Jérôme, ancien combattant de MMA.",
+      "h1": "MMA tous niveaux",
+      "eyebrow": "Discipline · Debout et au sol",
+      "lead": "Le MMA mélange la boxe et le combat au sol, dans la cage de 7 m. Jérôme a combattu aux États-Unis et au Canada. Les débutants sont les bienvenus, et personne ne te met dans la cage si tu ne le demandes pas.",
+      "photo": { "src": "/assets/img/ram/photos/cours-de-mma-groupe-debout-boxing-center-ramonville.webp", "alt": "Le groupe debout dans l’octogone de 7 mètres pendant un cours de MMA au Boxing Center Ramonville" },
+      "photos": [
+        { "src": "/assets/img/ram/photos/mma-entrainement-dans-l-octogone-boxing-center-ramonville.webp", "alt": "Entraînement de MMA dans l’octogone du Boxing Center Ramonville", "legende": "L’entraînement, dans l’octogone" },
+        { "src": "/assets/img/ram/photos/octogone-7-metres-vide-boxing-center-ramonville.webp", "alt": "L’octogone de 7 mètres du Boxing Center Ramonville, avant le cours", "legende": "L’octogone de 7 m" }
+      ],
+      "travailTitre": "Debout, au contact, au sol.",
+      "travail": [
+        { "titre": "Debout", "texte": "La boxe et les coups de pied, avec la garde et les appuis appris en anglaise et en pieds-poings." },
+        { "titre": "Au contact", "texte": "Saisir, projeter, empêcher la projection : c’est là que le combat change de hauteur." },
+        { "titre": "Au sol", "texte": "Contrôler, se relever, soumettre. Le grappling du mardi prépare exactement ce travail." },
+        { "titre": "La cage", "texte": "Le grillage fait partie du combat : on s’y adosse, on s’y relève. L’octogone de Ramonville fait 7 m." }
+      ],
+      "pourQui": [
+        { "tag": "Débutants acceptés", "titre": "Tu n’as jamais fait de MMA", "texte": "Le cours est ouvert à tous les niveaux. Le contact vient par étapes, et c’est toi qui décides d’entrer dans la cage." },
+        { "tag": "En douceur", "titre": "Tu préfères commencer au sol", "texte": "Commence par le grappling du mardi, juste avant. Tu découvres la cage sans recevoir de coups." },
+        { "tag": "Déjà boxeur", "titre": "Tu viens d’une autre boxe", "texte": "Tes poings et tes jambes servent dès le premier cours, et tu ajoutes le travail au sol." }
+      ],
+      "coachs": ["Jérôme"],
+      "faq": [
+        { "q": "Le MMA, c’est pour les débutants ?", "r": "Oui, le cours s’appelle MMA tous niveaux, débutants acceptés. Personne ne te met dans la cage si tu ne le demandes pas." },
+        { "q": "Par où commencer si j’ai peur des coups ?", "r": "Par le grappling : le combat au sol, sans frappe, le mardi juste avant le MMA." },
+        { "q": "Où a lieu le cours ?", "r": "Dans l’octogone de 7 m du plateau, au 33 rue des Ormes à Ramonville-Saint-Agne, au pied du terminus du métro B." },
+        { "q": "Qui encadre le MMA ?", "r": "Jérôme, le coach principal de la salle, ancien combattant de MMA aux États-Unis et au Canada." },
+        { "q": "Quels jours ont lieu les cours ?", "r": "Au planning de la rentrée : {jours}. Les horaires exacts sont plus haut sur cette page." }
+      ],
+      "voisines": ["grappling", "pieds-poings", "boxing-camp"],
+      "og": { "sur": "MMA TOUS NIVEAUX · L’OCTOGONE", "titre": "La cage de 7 m, débutants acceptés.", "faits": ["Avec Jérôme", "Mardi & jeudi", "Métro B"] }
+    },
+    "boxing-camp": {
+      "slug": "boxing-camp",
+      "titre": "Boxing Camp à Ramonville-Saint-Agne | Boxing Center",
+      "description": "Boxing Camp à Ramonville-Saint-Agne : un peu de technique, beaucoup de sacs, du cardio. Quatre créneaux par semaine, le midi, le soir et le samedi.",
+      "h1": "Boxing Camp",
+      "eyebrow": "Discipline · Un peu de tout",
+      "lead": "Un peu de technique, un peu de cardio, beaucoup de sacs. Tu frappes, tu souffles, tu recommences. Tu ne sais pas par où commencer ? Commence ici : en une séance, tu as tout vu.",
+      "photo": { "src": "/assets/img/ram/photos/boxing-camp-circuit-de-renforcement-boxing-center-ramonville.webp", "alt": "Circuit de renforcement pendant le Boxing Camp du Boxing Center Ramonville" },
+      "photos": [
+        { "src": "/assets/img/ram/photos/sacs-de-frappe-entrainement-boxing-center-ramonville.webp", "alt": "Entraînement aux sacs de frappe au Boxing Center Ramonville", "legende": "La ligne de sacs" },
+        { "src": "/assets/img/ram/photos/renforcement-squat-au-poids-du-corps-boxing-center-ramonville.webp", "alt": "Renforcement au poids du corps pendant un cours au Boxing Center Ramonville", "legende": "Le renforcement" }
+      ],
+      "travailTitre": "Tout, en une séance.",
+      "travail": [
+        { "titre": "La technique", "texte": "Quelques coups de boxe, montrés puis répétés, pour frapper juste." },
+        { "titre": "Les sacs", "texte": "Des séries au sac, chronométrées. C’est là que la séance se dépense." },
+        { "titre": "Le cardio", "texte": "Corde, déplacements, circuits : le souffle monte vite, et il revient plus vite de semaine en semaine." },
+        { "titre": "Le renforcement", "texte": "Gainage, poids du corps : le travail qui fait tenir le reste." }
+      ],
+      "pourQui": [
+        { "tag": "Premier cours", "titre": "Tu ne sais pas par où commencer", "texte": "Le Boxing Camp montre un peu de chaque boxe. En une séance, tu sais ce qui te plaît." },
+        { "tag": "Midi, soir, samedi", "titre": "Ton emploi du temps bouge", "texte": "Quatre créneaux par semaine, avec quatre coachs différents : il y en a toujours un qui tombe bien." },
+        { "tag": "La forme", "titre": "Tu viens pour te dépenser", "texte": "Beaucoup de sacs, du cardio, du renforcement : la séance se travaille au sac et en circuit." }
+      ],
+      "coachs": ["Sonia", "Hicham", "Jérôme", "Valentin Guth"],
+      "faq": [
+        { "q": "C’est pour qui ?", "r": "Pour tout le monde. Tous les niveaux sont les bienvenus, et c’est le cours conseillé si tu hésites entre les disciplines." },
+        { "q": "Comment se passe une séance ?", "r": "Un peu de technique, puis des séries au sac, du cardio et du renforcement. Tu frappes, tu souffles, tu recommences." },
+        { "q": "Pourquoi quatre coachs ?", "r": "Chaque créneau a son coach : Sonia, Hicham, Jérôme et Valentin Guth. Chacun apporte sa boxe, dans le même format." },
+        { "q": "Qu’est-ce que j’apporte ?", "r": "Une tenue de sport, une bouteille d’eau et une serviette. Pour les gants, demande à l’accueil." },
+        { "q": "Quand ont lieu les séances ?", "r": "Au planning de la rentrée : {jours}. Les horaires exacts sont plus haut sur cette page." }
+      ],
+      "voisines": ["anglaise", "pieds-poings", "acces-libre"],
+      "og": { "sur": "BOXING CAMP · UN PEU DE TOUT", "titre": "Tu hésites ? Commence ici.", "faits": ["4 créneaux", "Tous niveaux", "Midi, soir, samedi"] }
+    },
+    "lady-punch": {
+      "slug": "lady-punch",
+      "titre": "Lady Punch, boxe 100 % femmes à Ramonville | Boxing Center",
+      "description": "Lady Punch à Ramonville-Saint-Agne : de la vraie boxe entre femmes, avec Sonia, sans prérequis. Le lundi et le vendredi, avant le cours de pieds-poings.",
+      "h1": "Lady Punch",
+      "eyebrow": "Discipline · 100 % féminin",
+      "lead": "Entre femmes, de la vraie boxe : se protéger, enchaîner, transpirer. Beaucoup mettent les gants pour la première fois ici, avec Sonia, et personne n’attend de toi que tu aies déjà boxé.",
+      "photo": { "src": "/assets/img/ram/photos/lady-punch-boxe-100-pour-cent-feminin-boxing-center-ramonville.webp", "alt": "Une pratiquante du cours Lady Punch au Boxing Center Ramonville, enchaînement aux gants" },
+      "photos": [
+        { "src": "/assets/img/ram/photos/boxing-lady-renforcement-boxing-center-ramonville.webp", "alt": "Renforcement pendant le cours Lady Punch du Boxing Center Ramonville", "legende": "Le renforcement" },
+        { "src": "/assets/img/ram/photos/direct-aux-pattes-d-ours-boxing-center-ramonville.webp", "alt": "Un direct aux pattes d’ours pendant un cours au Boxing Center Ramonville", "legende": "Le direct, aux pattes d’ours" }
+      ],
+      "travailTitre": "De la vraie boxe, entre femmes.",
+      "travail": [
+        { "titre": "Se protéger", "texte": "La garde, les mains hautes, le menton rentré : la base, apprise pour de vrai." },
+        { "titre": "Enchaîner", "texte": "Deux coups, puis trois, puis une esquive. Les combinaisons viennent vite." },
+        { "titre": "Transpirer", "texte": "Corde, sac, gainage : quarante minutes qui comptent." },
+        { "titre": "Continuer", "texte": "Juste après, le cours de pieds-poings commence. Tu peux enchaîner, ou rentrer." }
+      ],
+      "pourQui": [
+        { "tag": "Zéro prérequis", "titre": "Tu n’as jamais mis de gants", "texte": "C’est pile le public du Lady Punch. Sonia adapte le rythme, et tu n’as rien à prouver." },
+        { "tag": "Entre femmes", "titre": "Tu préfères commencer entre femmes", "texte": "Le cours est 100 % féminin, du premier au dernier round." },
+        { "tag": "Et après", "titre": "Tu veux ajouter les jambes", "texte": "Le pieds-poings commence juste après, le lundi et le vendredi. Beaucoup enchaînent les deux." }
+      ],
+      "coachs": ["Sonia"],
+      "faq": [
+        { "q": "Le cours est réservé aux femmes ?", "r": "Oui, le Lady Punch est 100 % féminin. Les autres cours de la salle sont mixtes." },
+        { "q": "Il faut un niveau ?", "r": "Zéro prérequis. Beaucoup mettent les gants pour la première fois ici." },
+        { "q": "Combien de temps dure le cours ?", "r": "Quarante minutes, de 18h00 à 18h40." },
+        { "q": "C’est de la vraie boxe ?", "r": "Oui : se protéger, enchaîner, transpirer. La technique est la même que dans les cours mixtes." },
+        { "q": "Quels jours a lieu le cours ?", "r": "Au planning de la rentrée : {jours}." }
+      ],
+      "voisines": ["pieds-poings", "anglaise", "boxing-camp"],
+      "og": { "sur": "LADY PUNCH · 100 % FÉMININ", "titre": "De la vraie boxe, entre femmes.", "faits": ["Avec Sonia", "Zéro prérequis", "Lun. & ven. 18h"] }
+    },
+    "ecole": {
+      "slug": "ecole-enfants",
+      "titre": "École de boxe enfants dès 3 ans à Ramonville | Boxing Center",
+      "description": "École de boxe enfants à Ramonville-Saint-Agne : Baby Boxe dès 3 ans, 7/11 et 12/16 ans, avec Valentin Guth, boxeur pro. On touche, on ne frappe pas.",
+      "h1": "École de boxe enfants",
+      "eyebrow": "Discipline · Dès 3 ans",
+      "lead": "Dès 3 ans jusqu’aux ados. On touche, on ne frappe pas. On bouge, on se concentre, on apprend le respect. Valentin Guth, boxeur professionnel, tient toute l’école, et les parents peuvent rester.",
+      "photo": { "src": "/assets/img/ram/photos/ecole-enfants-medaille-boxing-center-ramonville.webp", "alt": "Deux élèves de l’école enfants du Boxing Center Ramonville, médailles au cou, en tenue du club" },
+      "photos": [
+        { "src": "/assets/img/ram/photos/cours-de-renforcement-vue-plongeante-boxing-center-ramonville.webp", "alt": "Cours de boxe éducative pour enfants au Boxing Center Ramonville, vue plongeante", "legende": "Un cours de l’école, vu d’en haut" },
+        { "src": "/assets/img/ram/photos/ring-de-boxe-avant-le-cours-boxing-center-ramonville.webp", "alt": "Le ring de boxe du Boxing Center Ramonville avant le cours", "legende": "Le ring, avant le cours" }
+      ],
+      "travailTitre": "Toucher, sans frapper.",
+      "travail": [
+        { "titre": "Bouger", "texte": "Courir, esquiver, changer de direction : la Baby Boxe commence par le mouvement." },
+        { "titre": "Se concentrer", "texte": "Écouter la consigne, attendre son tour, s’arrêter au signal : la règle passe avant le geste." },
+        { "titre": "Le respect", "texte": "On salue son partenaire, on touche sans frapper. Valentin le rappelle à chaque cours." },
+        { "titre": "Progresser", "texte": "De la Baby Boxe aux 12/16 ans, chaque groupe va un peu plus loin dans la technique." }
+      ],
+      "pourQui": [
+        { "tag": "3/6 ans", "titre": "La Baby Boxe", "texte": "Le samedi après-midi, pour découvrir la boxe par le jeu." },
+        { "tag": "7/11 ans", "titre": "Les enfants", "texte": "Le mercredi et le samedi après-midi : le geste, la règle, le respect du partenaire." },
+        { "tag": "12/16 ans", "titre": "Les ados", "texte": "Le mercredi et le samedi, une heure plus tard : plus d’intensité, les mêmes règles." }
+      ],
+      "coachs": ["Valentin Guth"],
+      "faq": [
+        { "q": "À partir de quel âge ?", "r": "Dès 3 ans, avec la Baby Boxe du samedi. Puis les groupes 7/11 ans et 12/16 ans, le mercredi et le samedi." },
+        { "q": "Mon enfant va-t-il prendre des coups ?", "r": "La règle est simple : on touche, on ne frappe pas. Valentin la tient à chaque cours." },
+        { "q": "Je peux rester pendant le cours ?", "r": "Oui. La salle reste ouverte : tu peux t’asseoir et regarder." },
+        { "q": "Qui est Valentin Guth ?", "r": "Un boxeur professionnel, à qui la salle confie toute l’école. Il tient aussi le Boxing Camp des adultes du samedi." },
+        { "q": "Quels horaires ?", "r": "Au planning de la rentrée : {jours}. Les horaires par groupe sont plus haut sur cette page." }
+      ],
+      "voisines": ["boxing-camp", "anglaise", "lady-punch"],
+      "og": { "sur": "ÉCOLE ENFANTS · DÈS 3 ANS", "titre": "On touche, on ne frappe pas.", "faits": ["Baby Boxe 3/6", "7/11 · 12/16", "Valentin Guth"] }
+    },
+    "acces-libre": {
+      "slug": "acces-libre",
+      "titre": "Muscu et cardio en accès libre à Ramonville | Boxing Center",
+      "description": "Accès libre à Ramonville-Saint-Agne : muscu, cardio, sacs et espaces dehors, du lundi au samedi de 10h à 21h30. Compris dans l’abonnement, sans réservation.",
+      "h1": "Accès libre",
+      "eyebrow": "Discipline · Muscu · cardio",
+      "lead": "La muscu, le cardio, les sacs, et les espaces libres, dedans comme dehors. C’est compris dans l’abonnement, sans réservation : tu viens entre 10h et 21h30, du lundi au samedi, même les semaines où aucun cours ne t’arrange.",
+      "photo": { "src": "/assets/img/ram/photos/etage-musculation-sous-la-charpente-boxing-center-ramonville.webp", "alt": "L’étage musculation du Boxing Center Ramonville, sous la charpente métallique" },
+      "photos": [
+        { "src": "/assets/img/ram/photos/espace-cardio-velo-et-tapis-boxing-center-ramonville.webp", "alt": "L’espace cardio du Boxing Center Ramonville, vélos et tapis", "legende": "L’espace cardio" },
+        { "src": "/assets/img/ram/photos/salle-de-musculation-machines-boxing-center-ramonville.webp", "alt": "Les machines de musculation de l’étage du Boxing Center Ramonville", "legende": "Les machines de l’étage" }
+      ],
+      "travailTitre": "À ton rythme.",
+      "travail": [
+        { "titre": "La muscu", "texte": "L’étage, sous la charpente : bancs, machines guidées, poulies." },
+        { "titre": "Le cardio", "texte": "Vélos et tapis, pour chauffer avant un cours ou travailler le souffle seul." },
+        { "titre": "Les sacs", "texte": "Les sacs de frappe restent là entre les cours, pour revoir un enchaînement." },
+        { "titre": "Dehors", "texte": "Les 300 m² couverts du plateau : s’échauffer, s’étirer, souffler, à l’air libre." }
+      ],
+      "pourQui": [
+        { "tag": "Semaines chargées", "titre": "Aucun cours ne t’arrange", "texte": "Tu viens quand tu peux, entre 10h et 21h30, du lundi au samedi." },
+        { "tag": "En plus des cours", "titre": "Tu veux compléter ta boxe", "texte": "Avant ou après ton cours, la muscu et le cardio sont là, compris dans l’abonnement." },
+        { "tag": "En autonomie", "titre": "Tu t’entraînes seul", "texte": "L’accès libre suit l’ouverture de la salle : tu viens, tu t’entraînes, tu repars." }
+      ],
+      "coachs": [],
+      "faq": [
+        { "q": "C’est compris dans l’abonnement ?", "r": "Oui, la muscu et le cardio sont compris." },
+        { "q": "Faut-il réserver ?", "r": "Tu viens quand tu veux, pendant les heures d’ouverture." },
+        { "q": "Quels sont les horaires ?", "r": "Du lundi au samedi, de 10h00 à 21h30. Fermé le dimanche." },
+        { "q": "Il y a un coach ?", "r": "L’accès libre se pratique en autonomie. Les coachs sont là pour les cours du planning." },
+        { "q": "Où est l’espace musculation ?", "r": "À l’étage, sous la charpente, au 33 rue des Ormes à Ramonville-Saint-Agne, au pied du terminus du métro B." }
+      ],
+      "voisines": ["boxing-camp", "anglaise", "asso-mma"],
+      "og": { "sur": "ACCÈS LIBRE · MUSCU ET CARDIO", "titre": "Dedans comme dehors, à ton rythme.", "faits": ["Lun. – sam.", "10h – 21h30", "Compris"] }
+    }
+  }
+}

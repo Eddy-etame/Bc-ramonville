@@ -40,6 +40,9 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const url = (f) => pathToFileURL(join(ROOT, "public", "assets", "js", f)).href;
 const { COACHES, SCHEDULE, DAYS, DISCIPLINES, TARIFS, REVIEWS } = await import(url("data.js"));
+/* Chaque fiche cuite mène à la page de sa discipline quand elle existe. */
+import { textes as textesDisciplines, lienDe } from "./disciplines-lib.mjs";
+const TXD = textesDisciplines();
 
 const e = (s = "") =>
   String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -84,7 +87,7 @@ const grid =
 /* /activites — les disciplines, une par une */
 const discs = DISCIPLINES.map(
   (d) =>
-    `<article><h3>${e(d.name)}</h3><p><b>${e(d.tag || "")}</b>${
+    `<article><h3>${lienDe(d.key, TXD) ? `<a href="${lienDe(d.key, TXD)}">${e(d.name)}</a>` : e(d.name)}</h3><p><b>${e(d.tag || "")}</b>${
       d.coach ? ` · encadré par ${e(d.coach)}` : ""
     }</p>${d.desc ? `<p>${e(d.desc)}</p>` : ""}<p>${e(d.jours || "")}${
       d.niveau ? ` · ${e(d.niveau)}` : ""

@@ -72,6 +72,13 @@ mesures officielles disponibles : les 300 m² et l’octogone de 7 m.
 - Accès libre — en autonomie — 10h00 à 21h30, six jours sur sept
 <!--/calcule:disciplines-->
 
+## Pages des disciplines
+
+Une page par discipline : ses créneaux, ses coachs, ses questions fréquentes.
+
+<!--calcule:pages-disciplines-->
+<!--/calcule:pages-disciplines-->
+
 ### Poids de chaque famille dans la semaine (page Activités)
 
 <!--calcule:familles-->

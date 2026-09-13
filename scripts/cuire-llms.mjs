@@ -127,12 +127,23 @@ function sectionCoachs() {
 
 /* --------------------------------------------------------- le remplacement */
 
+import { textes as textesDisciplines, lienDe, BASE as BASE_D } from "./disciplines-lib.mjs";
+function sectionPagesDisciplines() {
+  const TX = textesDisciplines();
+  return DISCIPLINES.filter((d) => TX[d.key]).map((d) => {
+    const slots = SCHEDULE.filter((s) => s.disc === d.key).sort(parJour);
+    const jours = [...new Set(slots.map((s) => JOUR[s.day]))];
+    return `- ${d.name} : ${BASE_D}${lienDe(d.key, TX)} — ${jours.length ? liste(jours) : d.jours}`;
+  }).join("\n");
+}
+
 const SECTIONS = [
   ["disciplines", sectionDisciplines],
   ["familles", sectionFamilles],
   ["planning", sectionPlanning],
   ["rythme", sectionRythme],
   ["coachs", sectionCoachs],
+  ["pages-disciplines", sectionPagesDisciplines],
 ];
 
 function cuire(txt) {

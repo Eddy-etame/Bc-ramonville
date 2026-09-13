@@ -1,42 +1,74 @@
 {
   "/": {
-    "empreinte": "44cddaa2f6cf08f7",
-    "lastmod": "2026-09-03"
+    "empreinte": "0b29a7d668731841",
+    "lastmod": "2026-09-13"
   },
   "la-salle/": {
-    "empreinte": "fe55d31e3c86ff05",
-    "lastmod": "2026-09-03"
+    "empreinte": "6900753a902c5a14",
+    "lastmod": "2026-09-13"
   },
   "activites/": {
-    "empreinte": "a3b86ae1351e2311",
-    "lastmod": "2026-09-03"
+    "empreinte": "52f679735dc33141",
+    "lastmod": "2026-09-13"
+  },
+  "activites/boxe-anglaise/": {
+    "empreinte": "9b76294cdafb57d2",
+    "lastmod": "2026-09-13"
+  },
+  "activites/boxe-pieds-poings/": {
+    "empreinte": "b06ce5bc5a65403b",
+    "lastmod": "2026-09-13"
+  },
+  "activites/grappling/": {
+    "empreinte": "4a3e87bf3050bd59",
+    "lastmod": "2026-09-13"
+  },
+  "activites/mma/": {
+    "empreinte": "ee6991449ff11a83",
+    "lastmod": "2026-09-13"
+  },
+  "activites/boxing-camp/": {
+    "empreinte": "8a60266cef616298",
+    "lastmod": "2026-09-13"
+  },
+  "activites/lady-punch/": {
+    "empreinte": "0b599d8fd977af52",
+    "lastmod": "2026-09-13"
+  },
+  "activites/ecole-enfants/": {
+    "empreinte": "0b1c7661461eeb41",
+    "lastmod": "2026-09-13"
+  },
+  "activites/acces-libre/": {
+    "empreinte": "3058cfedf7e11d9d",
+    "lastmod": "2026-09-13"
   },
   "coachs/": {
-    "empreinte": "ea38f92a91098585",
-    "lastmod": "2026-09-03"
+    "empreinte": "f05b5cf054808ab1",
+    "lastmod": "2026-09-13"
   },
   "galerie/": {
-    "empreinte": "df55bf34fe830c00",
-    "lastmod": "2026-09-03"
+    "empreinte": "8a53540f4c64c2ee",
+    "lastmod": "2026-09-13"
   },
   "plannings/": {
-    "empreinte": "63d827409ae35b75",
-    "lastmod": "2026-09-03"
+    "empreinte": "8c9811c3f3659c95",
+    "lastmod": "2026-09-13"
   },
   "tarifs/": {
-    "empreinte": "e80263f30c83e1c7",
-    "lastmod": "2026-09-03"
+    "empreinte": "c8d844c81f3d010a",
+    "lastmod": "2026-09-13"
   },
   "contact/": {
-    "empreinte": "3ef79300dc707b95",
-    "lastmod": "2026-09-03"
+    "empreinte": "7a4b9c60ffe4c416",
+    "lastmod": "2026-09-13"
   },
   "about/": {
-    "empreinte": "39b30b3f0ba67412",
-    "lastmod": "2026-09-03"
+    "empreinte": "7b9a91ac3e7c954b",
+    "lastmod": "2026-09-13"
   },
   "privacy/": {
-    "empreinte": "7040511b547aef69",
-    "lastmod": "2026-09-03"
+    "empreinte": "2e6144787968c4c6",
+    "lastmod": "2026-09-13"
   }
 }

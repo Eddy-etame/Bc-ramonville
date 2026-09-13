@@ -11,6 +11,7 @@ import {
   GALLERY, PHOTO_CREDIT, FAQ, LINKS, DEHORS, GRID_LEGEND, COACHES, ARPENT,
   ENTREE, CARNET,
 } from "./data.js?v=22";
+import { lienDiscipline } from "./disciplines-liens.js?v=1";
 
 const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const $ = (s, r = document) => r.querySelector(s);
@@ -346,7 +347,7 @@ function renderDiscs() {
            </div>`}
       <div class="disc__body">
         <span class="disc__tag">${d.tag}</span>
-        <h2>${d.name}</h2>
+        <h2>${lienDiscipline(d.key) ? `<a href="${lienDiscipline(d.key)}">${d.name}</a>` : d.name}</h2>
         <p>${d.desc}</p>
         <div class="disc__facts">
           <div class="disc__fact"><b>Créneaux</b><span>${d.jours}</span></div>
@@ -355,6 +356,7 @@ function renderDiscs() {
         <div class="disc__cta">
           <a class="btn btn--primary" data-magnetic href="${LINKS.rentree}"><span>Quatre semaines · 29 €</span></a>
           <a class="btn btn--ghost" data-magnetic href="/plannings/"><span>Voir le planning</span></a>
+          ${lienDiscipline(d.key) ? `<a class="btn btn--ghost" data-magnetic href="${lienDiscipline(d.key)}"><span>La page ${d.name}</span></a>` : ""}
         </div>
       </div>
     </section>`).join("");

@@ -65,6 +65,14 @@ const lien = (href, label, titre) =>
    Même filtre que site.js — même liste, même ordre, mêmes libellés. */
 const soeurs = (NETWORK || []).filter((s) => !s.self);
 
+/* Les pages de discipline, écrites en dur elles aussi : un robot qui
+   n'exécute pas le JavaScript doit pouvoir y descendre depuis chaque page. */
+import { donnees as donneesDisciplines, textes as textesDisciplines, lienDe } from "./disciplines-lib.mjs";
+const { DISCIPLINES: DISC_M } = await donneesDisciplines();
+const TXM = textesDisciplines();
+const LIENS_DISCIPLINES = DISC_M.filter((d) => TXM[d.key])
+  .map((d) => `<a href="${attr(lienDe(d.key, TXM))}">${attr(d.name)}</a>`).join("");
+
 const MAILLAGE =
   `<footer class="footer"><div class="wrap"><div class="footer__links">` +
   `<div class="footer__col"><h4>Le réseau</h4>` +
@@ -74,6 +82,7 @@ const MAILLAGE =
   `<div class="footer__col"><h4>Les salles sœurs</h4>` +
   soeurs.map((s) => lien(s.url, s.name, `${s.name} — ${s.feat}`)).join("") +
   `</div>` +
+  `<div class="footer__col"><h4>Les disciplines</h4>` + LIENS_DISCIPLINES + `</div>` +
   `<div class="footer__col"><h4>Le site</h4>` +
   `<a href="/about/">À propos</a>` +
   `<a href="/privacy/">Confidentialité</a>` +

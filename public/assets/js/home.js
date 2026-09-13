@@ -7,6 +7,7 @@
    température) — carnet de terrain. L’octogone est monté par octagon.js.
    ===================================================================== */
 import { STATS, DISCIPLINES, COACHES, SALLE } from "./data.js?v=22";
+import { lienDiscipline } from "./disciplines-liens.js?v=1";
 import "./octagon.js?v=20"; // effet de bord : auto-monte l’octogone interactif du hero (#octa)
 
 const gsap = window.gsap;
@@ -72,7 +73,7 @@ function renderStaff() {
 function renderOctaLegend() {
   const box = $("#octa-legend"); if (!box) return;
   box.innerHTML = [...DISCIPLINES].sort((a, b) => a.edge - b.edge).map(
-    (d, i) => `<a class="oleg" href="/activites/#${d.key}">
+    (d, i) => `<a class="oleg" href="${lienDiscipline(d.key) || `/activites/#${d.key}`}">
       <span class="oleg__n">${String(i + 1).padStart(2, "0")}</span>
       <span class="oleg__name">${d.name}</span>
       <span class="oleg__tag">${d.tag}</span>
@@ -87,13 +88,16 @@ function renderOctaLegend() {
   const vue = document.querySelector("#octa-vue img");
   if (vue) {
     const parDefaut = vue.getAttribute("src");
+    const altParDefaut = vue.getAttribute("alt") || "";
     const petite = (u) => u.replace(/(-boxing-center-ramonville)\.webp$/, "$1-800.webp");
     const montrer = (d) => {
       const u = d && d.img ? petite(d.img) : parDefaut;
       if (vue.getAttribute("src") === u) return;
       vue.style.opacity = "0";
       const suivant = new Image();
-      suivant.onload = () => { vue.src = u; vue.style.opacity = ""; };
+      /* Le texte alternatif suit la photo : Google Images lit ce que la fenêtre montre. */
+      const alt = d ? (d.imgAlt || `${d.name} au Boxing Center Ramonville`) : altParDefaut;
+      suivant.onload = () => { vue.src = u; vue.alt = alt; vue.style.opacity = ""; };
       suivant.src = u;
     };
     const fiches = [...DISCIPLINES].sort((a, b) => a.edge - b.edge);

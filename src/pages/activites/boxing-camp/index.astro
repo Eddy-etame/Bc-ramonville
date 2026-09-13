@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Boxing Camp à Ramonville-Saint-Agne | Boxing Center</title>
+  <meta name="description" content="Boxing Camp à Ramonville-Saint-Agne : un peu de technique, beaucoup de sacs, du cardio. Quatre créneaux par semaine, le midi, le soir et le samedi." />
+
+  <!-- Préconnexions — avant toute feuille de style -->
+  <link rel="preconnect" href="https://api.open-meteo.com" crossorigin />
+
+  <!-- Polices AUTO-HÉBERGÉES — mêmes familles/graisses que l’original Google Fonts -->
+  <link rel="preload" href="/fonts/chakrapetch-700-latin.woff2?v=19" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/manrope-var-latin.woff2?v=19" as="font" type="font/woff2" crossorigin />
+  <!-- JetBrains Mono manquait à l’appel, et c’est LUI qui décalait la page.
+       Les libellés mono sont partout au-dessus de la ligne de flottaison —
+       fil d’ariane, sur-titres, boutons, les chips du hero. La police
+       arrivait après le premier rendu : tout ce petit monde changeait de
+       largeur d’un coup et poussait la première section vers le bas
+       (0,621 de décalage mesuré sur /tarifs/). Elle était de toute façon
+       téléchargée sur les huit pages : la précharger ne coûte pas un octet
+       ni une requête de plus, elle arrive seulement à l’heure. -->
+  <link rel="preload" href="/fonts/jetbrainsmono-var-latin.woff2?v=19" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=19" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=23" />
+  <link rel="stylesheet" href="/assets/css/discipline.css?v=1" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="author" content="Boxing Center Ramonville" />
+  <meta name="geo.region" content="FR-31" />
+  <meta name="geo.placename" content="Ramonville-Saint-Agne — Toulouse" />
+  <meta name="geo.position" content="43.546;1.474" />
+  <meta name="ICBM" content="43.546, 1.474" />
+  <link rel="canonical" href="https://mmatoulouse.com/activites/boxing-camp/" />
+  <meta name="theme-color" content="#070a12" />
+  <link rel="icon" href="/favicon-16.png?i=3" type="image/png" sizes="16x16" />
+  <link rel="icon" href="/favicon.png?i=3" type="image/png" sizes="32x32" />
+  <link rel="icon" href="/favicon-48.png?i=3" type="image/png" sizes="48x48" />
+  <link rel="icon" href="/favicon-96.png?i=3" type="image/png" sizes="96x96" />
+  <link rel="shortcut icon" href="/favicon.png?i=3" />
+  <link rel="icon" href="/favicon-192.png?i=3" type="image/png" sizes="192x192" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png?i=3" sizes="180x180" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:site_name" content="Boxing Center Ramonville" />
+  <meta property="og:title" content="Boxing Camp à Ramonville-Saint-Agne | Boxing Center" />
+  <meta property="og:description" content="Boxing Camp à Ramonville-Saint-Agne : un peu de technique, beaucoup de sacs, du cardio. Quatre créneaux par semaine, le midi, le soir et le samedi." />
+  <meta property="og:url" content="https://mmatoulouse.com/activites/boxing-camp/" />
+  <meta property="og:image" content="https://mmatoulouse.com/assets/img/ram/og/disciplines/boxing-camp.jpg?v=1" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:alt" content="Circuit de renforcement pendant le Boxing Camp du Boxing Center Ramonville" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Boxing Camp à Ramonville-Saint-Agne | Boxing Center" />
+  <meta name="twitter:description" content="Boxing Camp à Ramonville-Saint-Agne : un peu de technique, beaucoup de sacs, du cardio. Quatre créneaux par semaine, le midi, le soir et le samedi." />
+  <meta name="twitter:image" content="https://mmatoulouse.com/assets/img/ram/og/disciplines/boxing-camp.jpg?v=1" />
+  <meta name="twitter:image:alt" content="Circuit de renforcement pendant le Boxing Camp du Boxing Center Ramonville" />
+
+
+  <!-- Référencement local — graphe unifié (salle, réseau, site, page) -->
+
+  <script is:inline>
+    document.documentElement.classList.add('fx');
+  </script>
+  <!-- LES TROIS LIBS SONT MAINTENANT CHEZ NOUS (/assets/vendor/).
+       Elles arrivaient de cdn.jsdelivr.net : un second domaine à résoudre, une
+       seconde poignée de main TLS, avant la moindre ligne d’animation — et ça
+       sur les huit pages. Mesure brotli en main, le CDN les servait gzippées
+       (51,2 ko) ; servies d’ici elles pèsent 43,3 ko, se mettent en cache un an
+       comme tout /assets/, et surtout script-src a pu se refermer sur 'self'
+       dans vercel.json. `defer` inchangé : elles ne retiennent pas le rendu et
+       s’exécutent dans l’ordre du document, donc avant les modules du pied. -->
+  <script is:inline defer src="/assets/vendor/gsap.min.js?v=19"></script>
+  <script is:inline defer src="/assets/vendor/ScrollTrigger.min.js?v=19"></script>
+  <script is:inline defer src="/assets/vendor/lenis.min.js?v=19"></script>
+  <script is:inline type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://mmatoulouse.com/activites/boxing-camp/#webpage","url":"https://mmatoulouse.com/activites/boxing-camp/","name":"Boxing Camp à Ramonville-Saint-Agne | Boxing Center","description":"Boxing Camp à Ramonville-Saint-Agne : un peu de technique, beaucoup de sacs, du cardio. Quatre créneaux par semaine, le midi, le soir et le samedi.","inLanguage":"fr-FR","isPartOf":{"@id":"https://mmatoulouse.com/#website"},"about":{"@id":"https://mmatoulouse.com/activites/boxing-camp/#service"},"breadcrumb":{"@id":"https://mmatoulouse.com/activites/boxing-camp/#breadcrumb"},"primaryImageOfPage":{"@type":"ImageObject","url":"https://mmatoulouse.com/assets/img/ram/og/disciplines/boxing-camp.jpg","width":1200,"height":630}},{"@type":"BreadcrumbList","@id":"https://mmatoulouse.com/activites/boxing-camp/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://mmatoulouse.com/"},{"@type":"ListItem","position":2,"name":"Activités","item":"https://mmatoulouse.com/activites/"},{"@type":"ListItem","position":3,"name":"Boxing Camp","item":"https://mmatoulouse.com/activites/boxing-camp/"}]},{"@type":"Service","@id":"https://mmatoulouse.com/activites/boxing-camp/#service","name":"Boxing Camp à Ramonville-Saint-Agne","serviceType":"Boxing Camp","description":"Boxing Camp à Ramonville-Saint-Agne : un peu de technique, beaucoup de sacs, du cardio. Quatre créneaux par semaine, le midi, le soir et le samedi.","url":"https://mmatoulouse.com/activites/boxing-camp/","image":"https://mmatoulouse.com/assets/img/ram/photos/boxing-camp-circuit-de-renforcement-boxing-center-ramonville.webp","provider":{"@id":"https://mmatoulouse.com/#salle"},"areaServed":[{"@type":"City","name":"Ramonville-Saint-Agne"},{"@type":"City","name":"Toulouse"},{"@type":"AdministrativeArea","name":"Haute-Garonne"}],"hoursAvailable":[{"@type":"OpeningHoursSpecification","dayOfWeek":"https://schema.org/Monday","opens":"12:40","description":"Boxing Camp · Sonia"},{"@type":"OpeningHoursSpecification","dayOfWeek":"https://schema.org/Wednesday","opens":"12:40","description":"Boxing Camp · Hicham"},{"@type":"OpeningHoursSpecification","dayOfWeek":"https://schema.org/Thursday","opens":"18:40","description":"Boxing Camp · Jérôme"},{"@type":"OpeningHoursSpecification","dayOfWeek":"https://schema.org/Saturday","opens":"11:00","description":"Boxing Camp · Valentin G"}],"offers":{"@type":"Offer","name":"Offre Rentrée","price":"29","priceCurrency":"EUR","url":"https://boutique.boxingcenter.fr/offre/29","description":"29 € / personne · toutes les 4 semaines"}},{"@type":"FAQPage","@id":"https://mmatoulouse.com/activites/boxing-camp/#faq","mainEntity":[{"@type":"Question","name":"C’est pour qui ?","acceptedAnswer":{"@type":"Answer","text":"Pour tout le monde. Tous les niveaux sont les bienvenus, et c’est le cours conseillé si tu hésites entre les disciplines."}},{"@type":"Question","name":"Comment se passe une séance ?","acceptedAnswer":{"@type":"Answer","text":"Un peu de technique, puis des séries au sac, du cardio et du renforcement. Tu frappes, tu souffles, tu recommences."}},{"@type":"Question","name":"Pourquoi quatre coachs ?","acceptedAnswer":{"@type":"Answer","text":"Chaque créneau a son coach : Sonia, Hicham, Jérôme et Valentin Guth. Chacun apporte sa boxe, dans le même format."}},{"@type":"Question","name":"Qu’est-ce que j’apporte ?","acceptedAnswer":{"@type":"Answer","text":"Une tenue de sport, une bouteille d’eau et une serviette. Pour les gants, demande à l’accueil."}},{"@type":"Question","name":"Quand ont lieu les séances ?","acceptedAnswer":{"@type":"Answer","text":"Au planning de la rentrée : le lundi, le mercredi, le jeudi et le samedi. Les horaires exacts sont plus haut sur cette page."}}]}]}</script>
+</head>
+
+<body data-page="discipline" data-discipline="boxing-camp">
+  <a class="sr-only" href="#main">Aller au contenu</a>
+  <div id="nav"></div>
+  <div id="drawer"></div>
+
+  <main id="main">
+
+    <header class="phero dp-hero" aria-label="Boxing Camp à Ramonville">
+      <div class="sky" aria-hidden="true"><canvas class="sky__stars"></canvas><div class="sky__haze"></div><div class="sky__moon"></div></div>
+      <div class="wrap dp-hero__grille">
+        <div class="dp-hero__texte">
+          <nav class="breadcrumb" aria-label="Fil d’ariane"><a href="/">Accueil</a> / <a href="/activites/">Activités</a> / <span>Boxing Camp</span></nav>
+          <span class="eyebrow dp-eyebrow">Discipline · Un peu de tout</span>
+          <h1 class="display phero__title phero__title--long"><span class="reveal-mask"><span>Boxing Camp</span></span><span class="reveal-mask"><span class="tint">à Ramonville.</span></span></h1>
+          <p class="phero__lead">Un peu de technique, un peu de cardio, beaucoup de sacs. Tu frappes, tu souffles, tu recommences. Tu ne sais pas par où commencer ? Commence ici : en une séance, tu as tout vu.</p>
+          <div class="phero__meta"><span>Tous niveaux</span><span>Sonia · Hicham · Jérôme · Valentin Guth</span><span>Métro B · terminus Ramonville</span></div>
+          <div class="dp-actions">
+            <a class="btn btn--primary" href="https://boutique.boxingcenter.fr/offre/29"><span>Quatre semaines · 29 €</span></a>
+            <a class="btn btn--ghost" href="/plannings/"><span>Voir le planning</span></a>
+          </div>
+        </div>
+        <figure class="dp-photo"><img src="/assets/img/ram/photos/boxing-camp-circuit-de-renforcement-boxing-center-ramonville.webp" srcset="/assets/img/ram/photos/boxing-camp-circuit-de-renforcement-boxing-center-ramonville-800.webp 800w, /assets/img/ram/photos/boxing-camp-circuit-de-renforcement-boxing-center-ramonville.webp 1600w" sizes="(max-width: 900px) 100vw, 42vw" width="1600" height="895" alt="Circuit de renforcement pendant le Boxing Camp du Boxing Center Ramonville" loading="eager" fetchpriority="high" decoding="async" /></figure>
+      </div>
+    </header>
+
+    <section class="section" aria-labelledby="t-travail">
+      <div class="wrap">
+        <div class="shead" data-reveal><span class="eyebrow">Ce que tu travailles</span><h2 class="display" id="t-travail">Tout, en une séance.</h2></div>
+        <div class="dp-grille dp-grille--4" data-reveal-group>
+          <article class="dp-carte"><span class="dp-num">01</span><h3>La technique</h3><p>Quelques coups de boxe, montrés puis répétés, pour frapper juste.</p></article>
+          <article class="dp-carte"><span class="dp-num">02</span><h3>Les sacs</h3><p>Des séries au sac, chronométrées. C’est là que la séance se dépense.</p></article>
+          <article class="dp-carte"><span class="dp-num">03</span><h3>Le cardio</h3><p>Corde, déplacements, circuits : le souffle monte vite, et il revient plus vite de semaine en semaine.</p></article>
+          <article class="dp-carte"><span class="dp-num">04</span><h3>Le renforcement</h3><p>Gainage, poids du corps : le travail qui fait tenir le reste.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section dp-bande" aria-labelledby="t-pourqui">
+      <div class="wrap">
+        <div class="shead" data-reveal><span class="eyebrow">Pour qui</span><h2 class="display" id="t-pourqui">Ton point de départ.</h2></div>
+        <div class="dp-grille dp-grille--3" data-reveal-group>
+          <article class="dp-carte"><span class="dp-tag">Premier cours</span><h3>Tu ne sais pas par où commencer</h3><p>Le Boxing Camp montre un peu de chaque boxe. En une séance, tu sais ce qui te plaît.</p></article>
+          <article class="dp-carte"><span class="dp-tag">Midi, soir, samedi</span><h3>Ton emploi du temps bouge</h3><p>Quatre créneaux par semaine, avec quatre coachs différents : il y en a toujours un qui tombe bien.</p></article>
+          <article class="dp-carte"><span class="dp-tag">La forme</span><h3>Tu viens pour te dépenser</h3><p>Beaucoup de sacs, du cardio, du renforcement : la séance se travaille au sac et en circuit.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="t-creneaux">
+      <div class="wrap">
+        <div class="shead" data-reveal><span class="eyebrow">Les créneaux</span><h2 class="display" id="t-creneaux">Quand venir.</h2><p class="muted">Le planning de la rentrée, tel que la salle le publie. Avant chaque cours, tu valides ta présence à l’accueil.</p></div>
+        <ol class="dp-creneaux" data-reveal-group><li class="dp-jour"><h3>Lundi</h3><ul><li><span class="dp-heure">12h40</span><span class="dp-cours">Boxing Camp</span><span class="dp-coach">Sonia</span></li></ul></li><li class="dp-jour"><h3>Mercredi</h3><ul><li><span class="dp-heure">12h40</span><span class="dp-cours">Boxing Camp</span><span class="dp-coach">Hicham</span></li></ul></li><li class="dp-jour"><h3>Jeudi</h3><ul><li><span class="dp-heure">18h40</span><span class="dp-cours">Boxing Camp</span><span class="dp-coach">Jérôme</span></li></ul></li><li class="dp-jour"><h3>Samedi</h3><ul><li><span class="dp-heure">11h00</span><span class="dp-cours">Boxing Camp</span><span class="dp-coach">Valentin G</span></li></ul></li></ol>
+        <p class="dp-lien"><a href="/plannings/">Tout le planning de la salle →</a></p>
+      </div>
+    </section>
+
+    <section class="section dp-bande" aria-labelledby="t-coachs">
+      <div class="wrap">
+        <div class="shead" data-reveal><span class="eyebrow">Qui encadre</span><h2 class="display" id="t-coachs">Tes coachs.</h2></div>
+        <div class="dp-coachs" data-reveal-group>
+          <article class="dp-coach"><img src="/assets/img/ram/coach-jerome.webp" width="1086" height="992" alt="Jérôme, coach au Boxing Center Ramonville : MMA · Grappling · Forme physique" loading="lazy" decoding="async" /><div><h3>Jérôme</h3><p class="dp-role">MMA · Grappling · Forme physique</p><p>Ancien combattant de MMA. Il a combattu aux États-Unis et au Canada. La cage impressionne, alors son grappling est ouvert à tous. Tu peux arriver sans rien savoir. Il t’explique, debout comme au sol. Tu repars en ayant compris. Et en ayant progressé.</p></div></article>
+          <article class="dp-coach"><img src="/assets/img/ram/coach-sonia.webp" width="1086" height="941" alt="Sonia, coach au Boxing Center Ramonville : Boxe thaï · Kickboxing · Boxing Lady" loading="lazy" decoding="async" /><div><h3>Sonia</h3><p class="dp-role">Boxe thaï · Kickboxing · Boxing Lady</p><p>Le pieds-poings, le Boxing Camp, et le Lady Punch. Jamais mis un gant ? C’est pile le public du Lady Punch. Entre femmes, aucun prérequis. Elle adapte le rythme. Tu n’as rien à prouver.</p></div></article>
+          <article class="dp-coach"><img src="/assets/img/ram/coach-hicham.webp" width="1086" height="879" alt="Hicham, coach au Boxing Center Ramonville : Boxe anglaise · les trois midis" loading="lazy" decoding="async" /><div><h3>Hicham</h3><p class="dp-role">Boxe anglaise · les trois midis</p><p>La boxe anglaise et le Boxing Camp, en journée. Idéal si tu n’as pas tes soirs. Tu arrives sur ta pause. Tu apprends le geste, tu bouges, tu repars. Les épaules chauffent encore.</p></div></article>
+          <article class="dp-coach"><img src="/assets/img/ram/coach-valentin.webp" width="1086" height="928" alt="Valentin Guth, coach au Boxing Center Ramonville : Boxe loisirs · cours enfants" loading="lazy" decoding="async" /><div><h3>Valentin Guth</h3><p class="dp-role">Boxe loisirs · cours enfants</p><p>Boxeur professionnel. La salle lui confie toute l’école. Baby Boxe dès 3 ans, puis 7/11 et ados 12/16. Règle simple : on touche, on ne frappe pas. Tu n’as pas à déposer ton enfant et repartir. La salle reste ouverte. Tu peux t’asseoir et regarder. Le Boxing Camp des adultes, c’est lui aussi.</p></div></article>
+        </div>
+        <p class="dp-lien"><a href="/coachs/">Toute l’équipe →</a></p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="t-images">
+      <div class="wrap">
+        <div class="shead" data-reveal><span class="eyebrow">En images</span><h2 class="display" id="t-images">Sur le plateau.</h2></div>
+        <div class="dp-galerie" data-reveal-group>
+          <figure><img src="/assets/img/ram/photos/sacs-de-frappe-entrainement-boxing-center-ramonville.webp" srcset="/assets/img/ram/photos/sacs-de-frappe-entrainement-boxing-center-ramonville-800.webp 800w, /assets/img/ram/photos/sacs-de-frappe-entrainement-boxing-center-ramonville.webp 1600w" sizes="(max-width: 700px) 100vw, 50vw" width="1600" height="1065" alt="Entraînement aux sacs de frappe au Boxing Center Ramonville" loading="lazy" decoding="async" /><figcaption>La ligne de sacs</figcaption></figure>
+          <figure><img src="/assets/img/ram/photos/renforcement-squat-au-poids-du-corps-boxing-center-ramonville.webp" srcset="/assets/img/ram/photos/renforcement-squat-au-poids-du-corps-boxing-center-ramonville-800.webp 800w, /assets/img/ram/photos/renforcement-squat-au-poids-du-corps-boxing-center-ramonville.webp 1600w" sizes="(max-width: 700px) 100vw, 50vw" width="1600" height="1067" alt="Renforcement au poids du corps pendant un cours au Boxing Center Ramonville" loading="lazy" decoding="async" /><figcaption>Le renforcement</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section dp-bande" aria-labelledby="t-infos">
+      <div class="wrap">
+        <div class="shead" data-reveal><span class="eyebrow">Infos pratiques</span><h2 class="display" id="t-infos">L’essentiel.</h2></div>
+        <dl class="dp-infos" data-reveal>
+          <div><dt>Adresse</dt><dd>Boxing Center Ramonville, 33 rue des Ormes, 31520 Ramonville-Saint-Agne</dd></div>
+          <div><dt>Métro</dt><dd>Ligne B, terminus Ramonville : la salle est au pied de la station.</dd></div>
+          <div><dt>Bus</dt><dd>Arrêt Ramonville Sud, au pied de la salle.</dd></div>
+          <div><dt>Voiture</dt><dd>Rocade, sortie Ramonville.</dd></div>
+          <div><dt>Ouverture</dt><dd>Lun – Sam · 10h00 – 21h30</dd></div>
+          <div><dt>Pour commencer</dt><dd>Offre Rentrée : 29 € / personne · toutes les 4 semaines. <a href="/tarifs/">Toutes les formules →</a></dd></div>
+          <div><dt>Téléphone</dt><dd><a href="tel:+33562244682">05 62 24 46 82</a></dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="t-faq">
+      <div class="wrap">
+        <div class="shead" data-reveal><span class="eyebrow">Questions</span><h2 class="display" id="t-faq">Ce qu’on nous demande.</h2></div>
+        <div class="dp-faq">
+          <details><summary>C’est pour qui ?</summary><p>Pour tout le monde. Tous les niveaux sont les bienvenus, et c’est le cours conseillé si tu hésites entre les disciplines.</p></details>
+          <details><summary>Comment se passe une séance ?</summary><p>Un peu de technique, puis des séries au sac, du cardio et du renforcement. Tu frappes, tu souffles, tu recommences.</p></details>
+          <details><summary>Pourquoi quatre coachs ?</summary><p>Chaque créneau a son coach : Sonia, Hicham, Jérôme et Valentin Guth. Chacun apporte sa boxe, dans le même format.</p></details>
+          <details><summary>Qu’est-ce que j’apporte ?</summary><p>Une tenue de sport, une bouteille d’eau et une serviette. Pour les gants, demande à l’accueil.</p></details>
+          <details><summary>Quand ont lieu les séances ?</summary><p>Au planning de la rentrée : le lundi, le mercredi, le jeudi et le samedi. Les horaires exacts sont plus haut sur cette page.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section dp-bande" aria-labelledby="t-voisines">
+      <div class="wrap">
+        <div class="shead" data-reveal><span class="eyebrow">Les autres disciplines</span><h2 class="display" id="t-voisines">Et aussi, au plateau.</h2></div>
+        <div class="dp-grille dp-grille--3" data-reveal-group>
+          <a class="dp-carte dp-carte--lien" href="/activites/boxe-anglaise/"><span class="dp-tag">Poings seulement</span><h3>Boxe Anglaise</h3><p>La boxe avec les poings. On apprend à se protéger, à bouger, à frapper le sac. Le midi, ça tient dans une pause. Le soir, le cours prend plus de temps. Même cours pour tout le monde. Tu débutes ? Le coach te donne un exercice à ton niveau.</p><span class="dp-go">Voir la discipline <span aria-hidden="true">→</span></span></a>
+          <a class="dp-carte dp-carte--lien" href="/activites/boxe-pieds-poings/"><span class="dp-tag">Poings et pieds</span><h3>Boxe Pieds-Poings</h3><p>On frappe avec les poings, les pieds et les genoux. Tous les niveaux sont les bienvenus. On t’apprend le geste avant de te demander d’aller plus vite. La première fois, tu travailles sur les sacs. Personne en face de toi.</p><span class="dp-go">Voir la discipline <span aria-hidden="true">→</span></span></a>
+          <a class="dp-carte dp-carte--lien" href="/activites/acces-libre/"><span class="dp-tag">Muscu · cardio</span><h3>Accès libre</h3><p>La muscu, le cardio, les sacs, et les espaces libres — dedans comme dehors. C’est compris dans l’abonnement. Pas besoin de réserver. Tu viens entre 10h et 21h30, du lundi au samedi. Même les semaines où aucun cours ne t’arrange.</p><span class="dp-go">Voir la discipline <span aria-hidden="true">→</span></span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="t-fin">
+      <div class="wrap dp-fin" data-reveal>
+        <h2 class="display" id="t-fin">Tu dis « c’est ma première fois ». <span class="tint">On s’occupe du reste.</span></h2>
+        <div class="dp-actions">
+          <a class="btn btn--primary" href="https://boutique.boxingcenter.fr/offre/29"><span>Quatre semaines · 29 €</span></a>
+          <a class="btn btn--ghost" href="/activites/"><span>Toutes les activités</span></a>
+          <a class="btn btn--ghost" href="/contact/"><span>Nous écrire</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="footer"></div>
+
+  <a class="chatbot" href="tel:+33562244682" aria-label="Une question ? Appelle la salle Boxing Center Ramonville">
+    <span class="chatbot__icon" aria-hidden="true"><svg width="36" height="36" viewBox="0 0 24 24" fill="none"><mask id="bc-m-ramonville" maskUnits="userSpaceOnUse"><rect width="24" height="24" fill="#fff"/><path d="M7.4 8.9 11.0 9.9 11.0 11.7 7.4 10.7Z" fill="#000"/><path d="M16.6 8.9 13.0 9.9 13.0 11.7 16.6 10.7Z" fill="#000"/><rect x="10.1" y="14.8" width="3.8" height="1.4" rx=".65" fill="#000"/></mask><path d="M4.4 12.9a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Z" fill="currentColor"/><path d="M19.6 12.9a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Z" fill="currentColor"/><path d="M8.1 1.2h7.8l4.5 4.5v8.4l-2.7 2.7.9 3.4a.55.55 0 0 1-.8.63L14 18.6H8.1L3.6 14.1V5.7Z" fill="currentColor" mask="url(#bc-m-ramonville)"/></svg></span>
+    <span class="chatbot__label">Une question&nbsp;? Appelle la salle</span>
+  </a>
+
+  <!-- ===================== L’ASSISTANT, À LA DEMANDE =====================
+       L’assistant ne coûte plus rien tant qu’on ne lui parle pas. Il pesait
+       17,5 ko de module + 7,6 ko de feuille BLOQUANT LE RENDU, sur les huit
+       pages, pour un panneau que la plupart des visiteurs n’ouvriront jamais.
+       Rien n’est retiré à l’écran : la pastille est peinte par base.css comme
+       avant, et chatbot.css ne décrit que le panneau — qui n’existe pas encore.
+       On charge au premier signe d’intention (survol, doigt, tabulation), donc
+       avant le clic dans la quasi-totalité des cas ; le clic reste le filet.
+       Sans JavaScript, la pastille est toujours le lien tel: d’origine. -->
+  <script is:inline>
+    (function () {
+      var pastille = document.querySelector("a.chatbot");
+      if (!pastille) return;
+      var venue = null;
+      function venir() {
+        if (venue) return venue;
+        var f = document.createElement("link");
+        f.rel = "stylesheet"; f.href = "/assets/css/chatbot.css?v=19";
+        document.head.appendChild(f);
+        venue = import("/assets/js/chatbot.js?v=19").catch(function () { venue = null; });
+        return venue;
+      }
+      ["pointerenter", "touchstart", "focus"].forEach(function (e) {
+        pastille.addEventListener(e, venir, { once: true, passive: true });
+      });
+      pastille.addEventListener("click", function (e) {
+        /* aria-expanded n’est posé que par chatbot.js : sa présence signifie
+           que le vrai widget a pris la main et gère déjà ce clic. */
+        if (pastille.hasAttribute("aria-expanded")) return;
+        e.preventDefault();
+        var p = venir();
+        if (p) p.then(function () { pastille.click(); });
+        else window.location.href = pastille.href;   // le module n’est pas venu : on appelle la salle
+      });
+    })();
+  </script>
+  <script is:inline type="module" src="/assets/js/site.js?v=23"></script>
+  <script is:inline type="module" src="/assets/js/sky.js?v=19"></script>
+  <script is:inline type="module" src="/assets/js/page.js?v=23"></script>
+</body>
+</html>
