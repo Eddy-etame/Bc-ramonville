@@ -357,5 +357,9 @@ export default async function handler(req, res) {
   }
 
   // 5) le filet local — 200, jamais une page morte
-  return res.status(200).json({ reply: await replicoteLocale(message), via: "local" });
+  /* DIAGNOSTIC (13/09) : la production répondait « local » à tout. Seuls des
+     COMPTES de clés partent, jamais une valeur : 0 = variable absente du projet
+     Vercel ; plus de 0 = clés présentes mais refusées par le fournisseur. */
+  const diag = { gemini: bassin("GEMINI_API_KEY").length, gemini3: bassin("GEMINI3_API_KEY").length, groq: bassin("GROQ_API_KEY").length, mistral: bassin("MISTRAL_API_KEY").length };
+  return res.status(200).json({ reply: await replicoteLocale(message), via: "local", diag });
 }

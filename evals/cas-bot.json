@@ -88,12 +88,15 @@
     {
       "id": "B3",
       "famille": "bord",
-      "titre": "Le materiel",
+      "titre": "Le materiel : il ne promet pas de gants pretes (Eddy, 13/09)",
       "tours": [
         "Je n'ai pas de gants, je fais comment ?"
       ],
       "doit_contenir": [
-        "pr[eê]t|fourni|on te pr[eê]te|bandes"
+        "tenue|t-shirt|salle|confirm"
+      ],
+      "doit_pas_contenir": [
+        "on te pr[eê]te|gants (et bandes )?pr[eê]t|pr[eê]te (les |des )?gants|gants fournis"
       ],
       "boutons_valides": true
     },
