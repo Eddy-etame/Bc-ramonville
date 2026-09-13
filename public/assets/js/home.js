@@ -162,12 +162,12 @@ function countUp() {
 function heroCaption() {
   const cap = $("#hero-cap"); if (!cap) return;
   const paint = () => {
-    const now = new Date();
-    // l’heure vient du ciel (sky.js → Open-Meteo, fuseau de la salle) : cette
-    // caption est un relevé de terrain AU-DESSUS DE RAMONVILLE, pas l’horloge
-    // du visiteur. Repli sur l’horloge locale tant que le réseau n’a pas répondu.
-    const hh = String(window.__SKY?.hour ?? now.getHours()).padStart(2, "0");
-    const mm = String(now.getMinutes()).padStart(2, "0");
+    // L’heure de RAMONVILLE (fuseau Europe/Paris), lue directement : juste
+    // dès la première image, quel que soit le fuseau du visiteur et même
+    // avant la réponse d’Open-Meteo.
+    const p = Object.fromEntries(new Intl.DateTimeFormat("fr-FR", { timeZone: "Europe/Paris", hour: "2-digit", minute: "2-digit", hour12: false })
+      .formatToParts(new Date()).map((x) => [x.type, x.value]));
+    const hh = p.hour, mm = p.minute;
     const temp = window.__SKY && window.__SKY.tempC != null ? ` · ${window.__SKY.tempC}°C` : "";
     const txt = `${hh}h${mm} · plateau extérieur${temp}`;
     cap.dataset.text = txt;
@@ -176,7 +176,11 @@ function heroCaption() {
   };
   paint();
   window.addEventListener("sky:change", paint);
-  setInterval(paint, 60 * 1000);
+  /* Repeint à la minute PILE (et au retour sur l’onglet) : l’heure affichée
+     n’a jamais une minute de retard. */
+  const suivante = () => setTimeout(() => { paint(); suivante(); }, 60000 - (Date.now() % 60000) + 60);
+  suivante();
+  document.addEventListener("visibilitychange", () => { if (!document.hidden) paint(); });
 }
 
 /* le claim « 300 m² dehors » porte les conditions RÉELLES au-dessus de la salle.

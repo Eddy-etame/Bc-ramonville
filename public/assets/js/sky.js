@@ -252,6 +252,10 @@ function boot() {
   // le starfield démarre tout de suite (fallback), la météo l’ajuste après
   mountSkies(document);
   fetchWeather();
+  /* La température reste vraie : relevée toutes les 10 minutes, et au retour
+     sur l’onglet. Chaque relevé repeint la caption (événement sky:change). */
+  setInterval(fetchWeather, 10 * 60 * 1000);
+  document.addEventListener("visibilitychange", () => { if (!document.hidden) fetchWeather(); });
 }
 if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
 else boot();

@@ -467,7 +467,8 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
     linear-gradient(180deg, var(--sky-top) 0%, var(--sky-mid) 52%, var(--sky-low) 100%); }
 .sky__stars { position: absolute; inset: 0; width: 100%; height: 100%; opacity: .9; }  /* canvas 2D (sky.js) */
 .sky__haze { position: absolute; inset: 0; background: var(--sky-haze); opacity: .0; transition: opacity 1.2s var(--ease); }
-.sky__moon { position: absolute; top: clamp(2rem,9vh,6rem); right: clamp(2rem,10vw,8rem); width: clamp(38px,6vw,68px); aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle at 38% 34%, #fff, color-mix(in srgb,var(--accent) 40%, #eef) 70%, transparent 74%); box-shadow: var(--glow); opacity: .0; transition: opacity 1.5s var(--ease); }
+/* La lune descend sous la barre : à 9vh, elle touchait le bouton de l’en-tête (Eddy, 13/09). */
+.sky__moon { position: absolute; top: clamp(5.75rem,12vh,7.5rem); right: clamp(2rem,10vw,8rem); width: clamp(38px,6vw,68px); aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle at 38% 34%, #fff, color-mix(in srgb,var(--accent) 40%, #eef) 70%, transparent 74%); box-shadow: var(--glow); opacity: .0; transition: opacity 1.5s var(--ease); }
 
 /* — moments du jour (data-daypart) — la nuit domine, l'horizon change — */
 :root[data-daypart="nuit"]      { --sky-top:#04060e; --sky-mid:#080e22; --sky-low:#111633; }
@@ -496,7 +497,8 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
   /* plus haut et plus petit qu'une lune : un soleil d'août est un point dur,
      pas un disque contemplatif. */
   width: clamp(26px,4vw,44px);
-  top: clamp(1.4rem,7vh,4.5rem);
+  /* sous la barre, comme la lune : à 7vh, le soleil touchait le bouton de l’en-tête */
+  top: clamp(5.75rem,12vh,7.5rem);
   background: radial-gradient(circle at 50% 50%, #fff 34%, #fdf3d8 58%, color-mix(in srgb,#ffe9b0 60%, transparent) 72%, transparent 76%);
   box-shadow: 0 0 clamp(30px,7vw,90px) color-mix(in srgb,#ffe6a8 42%, transparent),
               0 0 clamp(90px,20vw,260px) color-mix(in srgb,#ffd98a 20%, transparent);
@@ -510,6 +512,8 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
   opacity: .62;
 }
 :root[data-daypart="jour"][data-sky="voile"] .sky__moon { opacity: .5; }
+/* Téléphone : l’astre se glisse entre la barre et le surtitre (à 5,75rem, il tombait sur « sud toulousain »). */
+@media (max-width: 600px) { .sky__moon, :root[data-daypart="jour"] .sky__moon { top: 4.15rem; } }
 /* les étoiles n'ont rien à faire dans un ciel de midi. */
 :root[data-daypart="jour"] .sky__stars { opacity: .12; }
 
@@ -614,7 +618,7 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
    hover:hover ET ont un doigt — ils héritaient de `touch-action:none`, donc
    d'une zone morte de défilement en plein milieu du hero. La rotation est une
    intention HORIZONTALE : pan-y est le bon défaut partout. */
-.octa { position: relative; display: block; touch-action: pan-y; }
+.octa { position: relative; display: block; touch-action: pan-y; container-type: inline-size; }
 /* `overflow: hidden` ET PAS `visible` — c'est ici que se joue « il sort
    littéralement de la page ». Le cadre est maintenant MESURÉ par octagon.js
    (viewBox recalculé sur la boîte peinte, centré sur le centre géométrique) :
@@ -667,10 +671,11 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
    (--void à 74 % + flou) pour ne jamais dépendre de ce qui passe derrière
    lui — le nom est du corps, il se lit comme du corps : #e8ebf4 sur la
    plaque ≈ 14:1. C'est un vrai lien vers la fiche de la discipline. */
-.octa__now { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); z-index: 2; display: flex; flex-direction: column; align-items: center; gap: .35rem; max-width: 62%; padding: .7rem 1rem; text-align: center; background: color-mix(in srgb, var(--void) 74%, transparent); border: 1px solid var(--accent-line); border-radius: var(--radius); backdrop-filter: blur(6px); transition: border-color .3s; }
+.octa__now { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); z-index: 2; display: flex; flex-direction: column; align-items: center; gap: .35rem; max-width: 46%; padding: clamp(.35rem, 2.2cqi, .8rem) clamp(.5rem, 3.2cqi, 1.1rem); text-align: center; background: color-mix(in srgb, var(--void) 74%, transparent); border: 1px solid var(--accent-line); border-radius: var(--radius); backdrop-filter: blur(6px); transition: border-color .3s; }
 .octa__now:hover { border-color: var(--accent); }
-.octa__now-tag { font: 600 var(--step--2)/1 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
-.octa__now-name { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; letter-spacing: -.01em; line-height: 1.05; font-size: clamp(.95rem, .8rem + .9vw, 1.35rem); color: var(--ink); }
+.octa__now-tag { font: 600 clamp(.5rem, 1.9cqi, .7rem)/1.1 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
+.octa__now-name { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; letter-spacing: -.01em; line-height: 1.05; font-size: clamp(.8rem, 4.4cqi, 1.7rem); color: var(--ink); }
+/* Le cartouche suit la taille de l’octogone (unités de conteneur) : il ne couvre plus le dessin sur un petit écran. */
 @media (hover: none){ .octa__now { min-height: 44px; justify-content: center; } }
 
 /* ================= LE CADRE VIVANT & LE RELEVÉ DU DEHORS ========= *
