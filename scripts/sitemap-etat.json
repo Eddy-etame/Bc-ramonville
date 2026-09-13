@@ -1,74 +1,94 @@
 {
   "/": {
-    "empreinte": "74690956ccf1b6b2",
+    "empreinte": "edeec58c78a711cc",
     "lastmod": "2026-09-13"
   },
   "la-salle/": {
-    "empreinte": "f9dcc28c11d17f72",
+    "empreinte": "4e050d9bb1a0a475",
     "lastmod": "2026-09-13"
   },
   "activites/": {
-    "empreinte": "4fbac0d4ea4610bf",
+    "empreinte": "a0191f7b8f2bb7c6",
     "lastmod": "2026-09-13"
   },
   "activites/boxe-anglaise/": {
-    "empreinte": "a4a210e75a03e716",
+    "empreinte": "e48110c0ad184cd7",
     "lastmod": "2026-09-13"
   },
   "activites/boxe-pieds-poings/": {
-    "empreinte": "a38f41a820eeefe6",
+    "empreinte": "9b3730835848be06",
     "lastmod": "2026-09-13"
   },
   "activites/grappling/": {
-    "empreinte": "d034e8cb5f190ede",
+    "empreinte": "ab6351be6e9e45d1",
     "lastmod": "2026-09-13"
   },
   "activites/mma/": {
-    "empreinte": "b841b400decd2919",
+    "empreinte": "e1d7590ba2edd28c",
     "lastmod": "2026-09-13"
   },
   "activites/boxing-camp/": {
-    "empreinte": "4f40438cb4361bfb",
+    "empreinte": "4e62ce9d0c60e9c1",
     "lastmod": "2026-09-13"
   },
   "activites/lady-punch/": {
-    "empreinte": "2acd1db689d40755",
+    "empreinte": "5d9fa7df2c82c9eb",
     "lastmod": "2026-09-13"
   },
   "activites/ecole-enfants/": {
-    "empreinte": "a2961ecdf476f000",
+    "empreinte": "0bda582e0183c5f7",
     "lastmod": "2026-09-13"
   },
   "activites/acces-libre/": {
-    "empreinte": "75b714fe420bfd4d",
+    "empreinte": "0c7f901ecb53b971",
     "lastmod": "2026-09-13"
   },
   "coachs/": {
-    "empreinte": "8bdfc1ecb0139ccd",
+    "empreinte": "8bb9d8b7672faa9d",
+    "lastmod": "2026-09-13"
+  },
+  "coachs/jerome/": {
+    "empreinte": "5f11b94d4bd18d2a",
+    "lastmod": "2026-09-13"
+  },
+  "coachs/sonia/": {
+    "empreinte": "ee84031f18df0e14",
+    "lastmod": "2026-09-13"
+  },
+  "coachs/hicham/": {
+    "empreinte": "e4f0c37d4ace50cd",
+    "lastmod": "2026-09-13"
+  },
+  "coachs/farouk/": {
+    "empreinte": "03c0bbd0d9728777",
+    "lastmod": "2026-09-13"
+  },
+  "coachs/valentin-guth/": {
+    "empreinte": "c23b378a64c6cb10",
     "lastmod": "2026-09-13"
   },
   "galerie/": {
-    "empreinte": "831ba336d39a3cfa",
+    "empreinte": "65c45a092b8e2e34",
     "lastmod": "2026-09-13"
   },
   "plannings/": {
-    "empreinte": "95a9d56691b4112e",
+    "empreinte": "c60cbbd8cff8f708",
     "lastmod": "2026-09-13"
   },
   "tarifs/": {
-    "empreinte": "11f18dc8e807ced8",
+    "empreinte": "bce289111ba559b1",
     "lastmod": "2026-09-13"
   },
   "contact/": {
-    "empreinte": "5fe67c39a9a74d51",
+    "empreinte": "06a74ee614f2f4ca",
     "lastmod": "2026-09-13"
   },
   "about/": {
-    "empreinte": "eea59f7bd16b206a",
+    "empreinte": "dd4c8d727784597c",
     "lastmod": "2026-09-13"
   },
   "privacy/": {
-    "empreinte": "f1dd3541fb62458c",
+    "empreinte": "dad96e8b278c8218",
     "lastmod": "2026-09-13"
   }
 }

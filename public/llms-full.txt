@@ -79,6 +79,13 @@ Une page par discipline : ses créneaux, ses coachs, ses questions fréquentes.
 <!--calcule:pages-disciplines-->
 <!--/calcule:pages-disciplines-->
 
+## Pages des coachs
+
+Une page par coach : son parcours, ses diplômes, ses disciplines, ses questions fréquentes.
+
+<!--calcule:pages-coachs-->
+<!--/calcule:pages-coachs-->
+
 ### Poids de chaque famille dans la semaine (page Activités)
 
 <!--calcule:familles-->

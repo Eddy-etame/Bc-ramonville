@@ -1,0 +1,223 @@
+{
+  "_lisezmoi": "Le texte long des pages /coachs/<slug>/, clé = nom exact du coach dans data.js (COACHES). Rien d'inventé : les faits viennent de data.js et, pour Sonia et Valentin Guth, de leurs fiches sur boxingcenter.fr (relevées le 13/09/2026). Chaque fait est dit une fois sur la page visible (règle d'Eddy : jamais le même texte deux fois) ; la FAQ, repliée, le reformule pour les moteurs de réponse. Les créneaux nominatifs restent internes. Écrit dans les pages par scripts/generer-coachs.mjs.",
+  "pages": {
+    "Jérôme": {
+      "slug": "jerome",
+      "titre": "Jérôme, coach MMA et grappling à Ramonville | Boxing Center",
+      "description": "Jérôme, coach principal à Ramonville : ancien combattant de MMA aux États-Unis et au Canada, il enseigne le MMA et le grappling à tous les niveaux.",
+      "poste": "Coach principal, MMA et grappling",
+      "h1": "Jérôme,",
+      "h1Tint": "coach MMA et grappling.",
+      "eyebrow": "Coach principal · MMA · Grappling",
+      "lead": "Ancien combattant de MMA, Jérôme a combattu aux États-Unis et au Canada. Au Boxing Center Ramonville, il tient le MMA et le grappling, et il les ouvre à tous : tu arrives sans rien savoir, il t’explique le geste, debout comme au sol.",
+      "tarif": "Offre Rentrée",
+      "diplomes": [],
+      "faits": [
+        ["USA · Canada", "les pays où il a combattu"],
+        ["Octogone 7 m", "la cage où il enseigne"],
+        ["Tous niveaux", "MMA tous niveaux, débutants acceptés"]
+      ],
+      "sections": [
+        {
+          "eyebrow": "Son parcours",
+          "titre": "Un combattant, devenu coach.",
+          "textes": [
+            "Jérôme vient du combat : il connaît la cage de l’intérieur. La distance, l’entrée au corps-à-corps, le travail au sol, la gestion de l’effort, il les a vécus avant de les enseigner.",
+            "Au Boxing Center Ramonville, il est le coach principal. Il encadre le MMA dans l’octogone de 7 m, et le grappling : la lutte au sol, sans frappe, qui prépare au MMA."
+          ]
+        },
+        {
+          "eyebrow": "Sa méthode",
+          "titre": "Il explique, tu répètes, tu comprends.",
+          "textes": [
+            "La cage impressionne : c’est pour ça que son grappling est ouvert à tous. Il t’explique le geste, puis tu le répètes, et chacun avance à son rythme.",
+            "Son cadre tient en trois mots : respect, confiance, et un peu de dépassement."
+          ]
+        }
+      ],
+      "faq": [
+        { "q": "Faut-il avoir déjà combattu pour suivre les cours de Jérôme ?", "r": "Tu peux commencer sans aucune expérience : le MMA est ouvert à tous les niveaux, débutants acceptés. Le grappling est la porte d’entrée la plus douce, on y apprend le sol sans frappe." },
+        { "q": "Quelles disciplines Jérôme enseigne-t-il à Ramonville ?", "r": "Le MMA, dans l’octogone de 7 m du club, le grappling et la forme physique." },
+        { "q": "Quel est le parcours de Jérôme ?", "r": "Il vient du MMA de compétition : ses combats, il les a livrés aux États-Unis et au Canada. Aujourd’hui, il est le coach principal du Boxing Center Ramonville." }
+      ],
+      "og": { "sur": "Coach principal", "titre": "Jérôme", "faits": ["MMA · Grappling", "Combats aux États-Unis et au Canada", "Débutants acceptés"] }
+    },
+    "Sonia": {
+      "slug": "sonia",
+      "elle": true,
+      "titre": "Sonia, coach boxe thaï à Ramonville | Boxing Center",
+      "description": "Sonia, coach diplômée BPJEPS Sports de contact, pratique la boxe thaï et entraîne en pieds-poings depuis près de dix ans. Lady Punch, Boxing Camp, kickboxing.",
+      "poste": "Coach de boxe thaï, kickboxing et Lady Punch",
+      "h1": "Sonia,",
+      "h1Tint": "coach pieds-poings.",
+      "eyebrow": "Boxe thaï · Kickboxing · Lady Punch",
+      "lead": "Diplômée du BPJEPS Sports de contact, Sonia pratique la boxe thaï depuis de nombreuses années et entraîne en pieds-poings depuis près de dix ans. À Ramonville, elle tient le pieds-poings, le Boxing Camp et le Lady Punch, le cours entre femmes.",
+      "tarif": "Offre Rentrée",
+      "diplomes": ["BPJEPS mention Sports de contact"],
+      "faits": [
+        ["Près de 10 ans", "d’enseignement en pieds-poings"],
+        ["Toute la semaine", "présente sur le plateau"],
+        ["100 % femmes", "le Lady Punch, sans prérequis"]
+      ],
+      "sections": [
+        {
+          "eyebrow": "Son parcours",
+          "titre": "Une coach formée pour encadrer le combat.",
+          "textes": [
+            "Son BPJEPS mention Sports de contact est le diplôme d’État qui forme à préparer, encadrer, sécuriser et adapter une séance de sports de combat : c’est la base de chacun de ses cours, du premier Lady Punch au Boxing Camp.",
+            "Au Boxing Center Ramonville, on la trouve sur toute la semaine : boxe thaï, kickboxing, Boxing Camp et Lady Punch."
+          ]
+        },
+        {
+          "eyebrow": "Le Lady Punch",
+          "titre": "Un vrai cours de boxe, pensé pour les femmes.",
+          "textes": [
+            "Au Lady Punch, on travaille le cardio, le renforcement, la coordination, les déplacements et la technique pieds-poings. Même une séance orientée forme garde une vraie base technique : tu apprends les bons gestes, et la logique de la boxe pieds-poings se construit séance après séance.",
+            "Tu n’as jamais mis un gant ? C’est exactement le public du cours. Chacune avance à son rythme, sans pression, dans une ambiance dynamique."
+          ]
+        },
+        {
+          "eyebrow": "Sa méthode",
+          "titre": "Le geste, simplement.",
+          "textes": [
+            "Elle t’apprend le geste simplement, avec des cours variés et adaptés à ton niveau. Bonne ambiance, et tu progresses : c’est sa façon de faire, du premier cours au Boxing Camp."
+          ]
+        }
+      ],
+      "faq": [
+        { "q": "Le Lady Punch est-il un cours de fitness ?", "r": "C’est un vrai cours de boxe pieds-poings, encadré par une coach diplômée du BPJEPS Sports de contact. Le cardio et le renforcement en font partie, la technique aussi." },
+        { "q": "Quels diplômes a Sonia ?", "r": "Le BPJEPS mention Sports de contact, le diplôme d’État des sports de combat. Elle compte près de dix ans d’enseignement en boxe pieds-poings." },
+        { "q": "Peut-on débuter avec Sonia sans jamais avoir boxé ?", "r": "Oui : c’est le public du Lady Punch, entre femmes et sans prérequis. En boxe thaï et en kickboxing aussi, elle adapte le rythme à ton niveau." }
+      ],
+      "og": { "sur": "Coach · Pieds-poings", "titre": "Sonia", "faits": ["BPJEPS Sports de contact", "Près de 10 ans d’enseignement", "Lady Punch · Boxe thaï"] }
+    },
+    "Hicham": {
+      "slug": "hicham",
+      "titre": "Hicham, coach de boxe anglaise à Ramonville | Boxing Center",
+      "description": "Hicham, coach diplômé du BPJEPS AF à Ramonville : boxe anglaise et Boxing Camp sur les trois midis de la semaine, pour s’entraîner sur ta pause.",
+      "poste": "Coach de boxe anglaise et de Boxing Camp, en journée",
+      "h1": "Hicham,",
+      "h1Tint": "la boxe anglaise du midi.",
+      "eyebrow": "Boxe anglaise · Boxing Camp · les midis",
+      "lead": "Hicham tient la boxe anglaise et le Boxing Camp en journée, sur les trois midis de la semaine. C’est le créneau de ceux qui n’ont pas leurs soirs : tu arrives sur ta pause, tu apprends le geste, tu bouges, tu repars.",
+      "tarif": "Offre Rentrée",
+      "diplomes": ["BPJEPS AF (Activités de la forme)"],
+      "faits": [
+        ["BPJEPS AF", "son diplôme d’État"],
+        ["3 midis", "par semaine, en journée"],
+        ["Tous niveaux", "chacun avance à son rythme"]
+      ],
+      "sections": [
+        {
+          "eyebrow": "Son rôle au club",
+          "titre": "Technique et condition, ensemble.",
+          "textes": [
+            "Diplômé du BPJEPS AF, mention Activités de la forme, Hicham construit des séances où la technique et la condition physique avancent ensemble.",
+            "À côté de la boxe anglaise, il tient le Boxing Camp : l’entraînement des boxeurs de haut niveau, fractionné, corde à sauter et shadow-boxing, mis à la portée de tous. Les épaules chauffent encore quand tu retournes au travail."
+          ]
+        },
+        {
+          "eyebrow": "Sa méthode",
+          "titre": "Le geste d’abord, puis le souffle.",
+          "textes": [
+            "Il t’apprend la technique pas à pas. Simple, clair, et ça avance : apprendre, bouger, progresser."
+          ]
+        }
+      ],
+      "faq": [
+        { "q": "Quand Hicham donne-t-il ses cours ?", "r": "En journée, sur les trois midis de la semaine : boxe anglaise et Boxing Camp. Les horaires exacts sont sur le planning du club." },
+        { "q": "Peut-on débuter la boxe anglaise avec Hicham ?", "r": "Oui. Il commence par le geste, puis le souffle : chacun avance à son rythme." },
+        { "q": "Quel diplôme a Hicham ?", "r": "Le BPJEPS AF, mention Activités de la forme." }
+      ],
+      "og": { "sur": "Coach · Les midis", "titre": "Hicham", "faits": ["Boxe anglaise · Boxing Camp", "BPJEPS Activités de la forme", "Trois midis par semaine"] }
+    },
+    "Farouk": {
+      "slug": "farouk",
+      "titre": "Farouk, coach de boxe anglaise le soir | Boxing Center",
+      "description": "Farouk, coach titulaire d’une licence STAPS, tient la boxe anglaise du soir au Boxing Center Ramonville : cours loisirs et confirmés, chacun à son rythme.",
+      "poste": "Coach de boxe anglaise, loisirs et confirmés",
+      "h1": "Farouk,",
+      "h1Tint": "la boxe anglaise du soir.",
+      "eyebrow": "Boxe anglaise · loisirs et confirmés · les soirs",
+      "lead": "Du premier cours au niveau confirmé, c’est lui qui encadre les soirées de boxe anglaise au Boxing Center Ramonville.",
+      "tarif": "Offre Rentrée",
+      "diplomes": ["Licence STAPS"],
+      "faits": [
+        ["Licence STAPS", "sa formation"],
+        ["2 niveaux", "loisirs et confirmés, un même coach"],
+        ["Le soir", "après le travail"]
+      ],
+      "sections": [
+        {
+          "eyebrow": "Son rôle au club",
+          "titre": "Deux niveaux, un même coach.",
+          "textes": [
+            "Titulaire d’une licence STAPS, Farouk encadre la boxe anglaise en deux niveaux : loisirs et confirmés.",
+            "Tu hésites sur ton niveau ? Le cours loisirs est fait pour commencer. Et le jour où tu veux aller plus loin, tu gardes le même coach : il connaît déjà ta boxe."
+          ]
+        },
+        {
+          "eyebrow": "Sa méthode",
+          "titre": "Exigeant, et bienveillant.",
+          "textes": [
+            "Il t’apprend la boxe simplement, et chacun avance à son rythme. Apprendre, progresser, prendre confiance : c’est l’ordre des choses avec lui."
+          ]
+        }
+      ],
+      "faq": [
+        { "q": "Quel niveau faut-il pour suivre les cours de Farouk ?", "r": "Aucun pour commencer : le cours loisirs accueille les débutants. Le cours confirmés prend le relais quand tu veux aller plus loin." },
+        { "q": "Quand Farouk donne-t-il ses cours ?", "r": "Le soir, en boxe anglaise loisirs et confirmés. Les horaires exacts sont sur le planning du club." },
+        { "q": "Quelle est la formation de Farouk ?", "r": "Il est titulaire d’une licence STAPS, la filière universitaire des sciences et techniques des activités physiques et sportives." }
+      ],
+      "og": { "sur": "Coach · Les soirs", "titre": "Farouk", "faits": ["Boxe anglaise", "Loisirs et confirmés", "Licence STAPS"] }
+    },
+    "Valentin Guth": {
+      "slug": "valentin-guth",
+      "titre": "Valentin Guth, boxeur pro et coach à Ramonville",
+      "description": "Valentin Guth, boxeur professionnel classé 3e français en super-coqs, coach BPJEPS : il tient l’école de boxe de Ramonville, dès 3 ans, et le Boxing Camp.",
+      "poste": "Boxeur professionnel, coach de l’école de boxe",
+      "h1": "Valentin Guth,",
+      "h1Tint": "boxeur pro et coach.",
+      "eyebrow": "L’école · Boxe loisirs · Cours enfants",
+      "lead": "Il boxe chez les professionnels, et il enseigne. Formé comme boxeur au Boxing Center, Valentin Guth y est devenu coach : à Ramonville, la salle lui confie l’école de boxe, et le Boxing Camp des adultes.",
+      "tarif": "École enfants",
+      "diplomes": ["BPJEPS mention Boxe", "BPJEPS mention Sports de contact"],
+      "faits": [
+        ["46", "combats amateurs"],
+        ["5", "combats pros, une seule défaite"],
+        ["3e", "français chez les super-coqs"]
+      ],
+      "sections": [
+        {
+          "eyebrow": "Son parcours",
+          "titre": "Formé au club, passé pro.",
+          "textes": [
+            "Il a suivi tout le chemin du club : l’apprentissage, les combats amateurs, puis le passage chez les professionnels, où son bilan compte 3 victoires, 1 nul et 1 défaite.",
+            "Il a ensuite passé ses diplômes d’entraîneur, le BPJEPS mention Boxe et le BPJEPS mention Sports de contact. Il boxe encore : ses élèves peuvent aller le voir combattre le week-end."
+          ]
+        },
+        {
+          "eyebrow": "L’école de boxe",
+          "titre": "Dès 3 ans, avec un boxeur pro.",
+          "textes": [
+            "La Baby Boxe dès 3 ans, puis la boxe éducative des 7/11 ans et des ados 12/16 ans. La règle est simple : on touche, on ne frappe pas.",
+            "Tu n’as pas à déposer ton enfant et repartir : la salle reste ouverte, tu peux t’asseoir et regarder. Il explique, les enfants comprennent ; on commence doucement, on progresse."
+          ]
+        },
+        {
+          "eyebrow": "Pour les adultes",
+          "titre": "La boxe du ring, pour tous.",
+          "textes": [
+            "Ses cours de boxe loisirs suivent la même logique : une progression construite sur les bases de la boxe de haut niveau, sans aucune obligation de combattre."
+          ]
+        }
+      ],
+      "faq": [
+        { "q": "Valentin Guth est-il vraiment boxeur professionnel ?", "r": "Oui, en activité : 5 combats professionnels pour 3 victoires, 1 nul et 1 défaite, après 46 combats amateurs. Il est classé 3e français chez les super-coqs." },
+        { "q": "À partir de quel âge mon enfant peut-il suivre ses cours ?", "r": "Dès 3 ans avec la Baby Boxe. Viennent ensuite la boxe éducative des 7/11 ans et le cours des ados 12/16 ans." },
+        { "q": "Quels diplômes a Valentin Guth ?", "r": "Le BPJEPS mention Boxe et le BPJEPS mention Sports de contact." }
+      ],
+      "og": { "sur": "L’école de boxe", "titre": "Valentin Guth", "faits": ["Boxeur pro · 3e français super-coqs", "46 combats amateurs", "Baby Boxe dès 3 ans"] }
+    }
+  }
+}

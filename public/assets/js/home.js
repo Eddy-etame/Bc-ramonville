@@ -7,6 +7,7 @@
    température) — carnet de terrain. L’octogone est monté par octagon.js.
    ===================================================================== */
 import { STATS, DISCIPLINES, COACHES, SALLE } from "./data.js?v=23";
+import { lienCoach } from "./coachs-liens.js?v=1";
 import { lienDiscipline } from "./disciplines-liens.js?v=1";
 import "./octagon.js?v=20"; // effet de bord : auto-monte l’octogone interactif du hero (#octa)
 
@@ -55,15 +56,19 @@ function renderStaff() {
   const box = $("#staff"); if (!box) return;
   box.innerHTML = COACHES.map((c) => {
     const face = c.img
-      ? `<div class="media staff__face"${c.ratio ? ` style="aspect-ratio:${c.ratio}"` : ""} data-img="${c.img}" data-srcset="${c.img.replace(/\.webp$/, "-320.webp")} 320w, ${c.img} 1086w" data-sizes="(max-width: 700px) 160px, 240px" data-label="" data-alt="Visuel officiel 2026/2027 de ${c.name}, coach au Boxing Center Ramonville — ${c.role}"></div>`
+      ? `<div class="media staff__face"${c.ratio ? ` style="aspect-ratio:${c.ratio}"` : ""} data-img="${c.img}" data-srcset="${c.img.replace(/\.webp$/, "-320.webp")} 320w, ${c.img} 1086w" data-sizes="${c.pillar ? "(max-width: 760px) 92vw, 460px" : "(max-width: 700px) 160px, 240px"}" data-label="" data-alt="Visuel officiel 2026/2027 de ${c.name}, coach au Boxing Center Ramonville — ${c.role}"></div>`
       : `<div class="staff__face staff__face--tile" aria-hidden="true"><span>${c.name.split(" ").map((w) => w[0]).join("")}</span></div>`;
-    return `<a class="staff__card ${c.pillar ? "is-pillar" : ""}" href="/coachs/">
+    /* Chaque carte mène à la page du coach. Le coach principal prend toute
+       la rangée et porte son texte ; les autres restent des vignettes. */
+    return `<a class="staff__card ${c.pillar ? "is-pillar" : ""}" href="${lienCoach(c.name) || "/coachs/"}">
       ${face}
       <div class="staff__meta">
         <b>${c.name}</b>
         <span class="mono">${c.role}</span>
         <i>${c.tag}</i>
+        ${c.pillar && c.note ? `<p class="staff__note">${c.note}</p>` : ""}
         ${c.devise ? `<em class="staff__devise">${c.devise}</em>` : ""}
+        <span class="staff__go">${c.pillar ? `Le parcours de ${c.name}` : "Voir sa page"} <span aria-hidden="true">→</span></span>
       </div>
     </a>`;
   }).join("");

@@ -118,12 +118,20 @@ const LIGNES_DISCIPLINES = Object.values(textesDisciplines()).map((t) => ({
   imgs: [[t.photo.src, `${t.h1} — ${CLUB}`, t.photo.alt], ...t.photos.map((ph) => [ph.src, `${ph.legende} — ${CLUB}`, ph.alt])],
 }));
 
+/* Une page par coach, avec son portrait officiel. */
+const TCOACHS = JSON.parse(await readFile(join(ROOT, "src", "coachs-pages.json"), "utf8")).pages;
+const IMG_COACH = { jerome: I.jerome, sonia: I.sonia, hicham: I.hicham, farouk: I.farouk, "valentin-guth": I.valentin };
+const LIGNES_COACHS = Object.values(TCOACHS).map((t) => ({
+  chemin: `coachs/${t.slug}/`, priorite: "0.6", freq: "monthly", imgs: IMG_COACH[t.slug] ? [IMG_COACH[t.slug]] : [],
+}));
+
 const PAGES = [
   { chemin: "", priorite: "1.0", freq: "weekly", imgs: [I.hero, I.octogone, I.plateau, I.anglaise] },
   { chemin: "la-salle/", priorite: "0.8", freq: "monthly", imgs: [I.plateau, I.octogone, I.muscu, I.camp, I.heroLarge] },
   { chemin: "activites/", priorite: "0.8", freq: "monthly", imgs: [I.pAnglaise, I.pKick, I.pGrap, I.pMma, I.pCamp, I.pLady, I.pEcole, I.pMuscu] },
   ...LIGNES_DISCIPLINES,
   { chemin: "coachs/", priorite: "0.8", freq: "monthly", imgs: [I.jerome, I.sonia, I.hicham, I.farouk, I.valentin] },
+  ...LIGNES_COACHS,
   { chemin: "galerie/", priorite: "0.8", freq: "monthly", imgs: IMGS_GALERIE },
   { chemin: "plannings/", priorite: "0.8", freq: "weekly", imgs: [I.planRent] },
   { chemin: "tarifs/", priorite: "0.8", freq: "monthly", imgs: [I.camp, I.plateau] },

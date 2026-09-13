@@ -49,13 +49,15 @@ const e = (s = "") =>
 const ul = (xs) => (xs && xs.length ? `<ul>${xs.map((x) => `<li>${e(x)}</li>`).join("")}</ul>` : "");
 
 /* /coachs — qui encadre, et sur quels créneaux on le trouve */
+/* Chaque fiche mène à la page du coach. Pas de créneaux nominatifs : le
+   planning des coachs reste interne ; la version hydratée de /coachs/ ne
+   les montre pas, la version cuite ne les publie plus non plus. */
+const TC = JSON.parse(await readFile(join(ROOT, "src", "coachs-pages.json"), "utf8")).pages;
 const coachroster = COACHES.map((c) => {
-  const slots = SCHEDULE.filter((s) => s.coach === c.name);
-  return `<article><h3>${e(c.name)}</h3><p><b>${e(c.role || "")}</b>${
+  const page = TC[c.name] ? `/coachs/${TC[c.name].slug}/` : "";
+  return `<article><h3>${page ? `<a href="${page}">${e(c.name)}</a>` : e(c.name)}</h3><p><b>${e(c.role || "")}</b>${
     c.tag ? ` · ${e(c.tag)}` : ""
-  }</p>${c.note ? `<p>${e(c.note)}</p>` : ""}${ul(
-    slots.map((s) => `${s.day} ${s.start} — ${s.cours}`)
-  )}</article>`;
+  }</p>${c.note ? `<p>${e(c.note)}</p>` : ""}${page ? `<p><a href="${page}">La page de ${e(c.name)}</a></p>` : ""}</article>`;
 }).join("");
 
 /* Le poster ecrit « Valentin G » ; c'est la cle qui relie un creneau a

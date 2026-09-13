@@ -137,6 +137,13 @@ function sectionPagesDisciplines() {
   }).join("\n");
 }
 
+/* Une page par coach : son parcours, ses diplômes, ses disciplines, ses questions. */
+const TCOACHS = JSON.parse(await readFile(join(ROOT, "src", "coachs-pages.json"), "utf8")).pages;
+function sectionPagesCoachs() {
+  return COACHES.filter((c) => TCOACHS[c.name])
+    .map((c) => `- ${c.name} — ${TCOACHS[c.name].poste} : https://mmatoulouse.com/coachs/${TCOACHS[c.name].slug}/`).join("\n");
+}
+
 const SECTIONS = [
   ["disciplines", sectionDisciplines],
   ["familles", sectionFamilles],
@@ -144,6 +151,7 @@ const SECTIONS = [
   ["rythme", sectionRythme],
   ["coachs", sectionCoachs],
   ["pages-disciplines", sectionPagesDisciplines],
+  ["pages-coachs", sectionPagesCoachs],
 ];
 
 function cuire(txt) {

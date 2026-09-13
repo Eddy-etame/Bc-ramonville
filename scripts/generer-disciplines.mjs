@@ -22,6 +22,7 @@ import { ROOT, BASE, donnees, textes, creneaux, joursEnMots, remplir, lienDe, JO
 
 const { DISCIPLINES, SCHEDULE, COACHES, SALLE, LINKS, TARIFS } = await donnees();
 const T = textes();
+const TC = JSON.parse(readFileSync(join(ROOT, "src", "coachs-pages.json"), "utf8")).pages;
 const GABARIT = readFileSync(join(ROOT, "src", "pages", "activites", "index.astro"), "utf8");
 const PUBLIC = join(ROOT, "public");
 
@@ -45,7 +46,7 @@ async function img(src, alt, sizes, { eager = false } = {}) {
    feuille propre ; on y pose celles de la discipline. */
 const TETE = GABARIT.slice(GABARIT.indexOf("<!doctype html>"), GABARIT.indexOf("</head>"))
   .replace(/\s*<script is:inline type="application\/ld\+json">[\s\S]*?<\/script>/g, "")
-  .replace(/<link rel="stylesheet" href="\/assets\/css\/activites\.css[^"]*" \/>/, '<link rel="stylesheet" href="/assets/css/discipline.css?v=2" />');
+  .replace(/<link rel="stylesheet" href="\/assets\/css\/activites\.css[^"]*" \/>/, '<link rel="stylesheet" href="/assets/css/discipline.css?v=3" />');
 const i0 = GABARIT.indexOf('<div id="footer"></div>');
 const iPage = GABARIT.indexOf("/assets/js/page.js", i0);
 const PIED = GABARIT.slice(i0, GABARIT.indexOf("</script>", iPage) + "</script>".length);
@@ -188,7 +189,7 @@ async function corps(p, d, liste) {
       <div class="wrap">
         <div class="shead" data-reveal><span class="eyebrow">Qui encadre</span><h2 class="display" id="t-coachs">${coachs.length > 1 ? "Tes coachs." : "Ton coach."}</h2></div>
         <div class="dp-coachs" data-reveal-group>
-          ${(await Promise.all(coachs.map(async (c) => `<article class="dp-coach">${await img(c.img, `${c.name}, coach au Boxing Center Ramonville : ${c.role}`, "(max-width: 700px) 40vw, 180px")}<div><h3>${e(c.name)}</h3><p class="dp-role">${e(c.role)}</p><p>${e(c.note)}</p></div></article>`))).join("\n          ")}
+          ${(await Promise.all(coachs.map(async (c) => `<article class="dp-coach">${await img(c.img, `${c.name}, coach au Boxing Center Ramonville : ${c.role}`, "(max-width: 700px) 40vw, 180px")}<div><h3>${TC[c.name] ? `<a href="/coachs/${TC[c.name].slug}/">${e(c.name)}</a>` : e(c.name)}</h3><p class="dp-role">${e(c.role)}</p><p>${e(c.note)}</p></div></article>`))).join("\n          ")}
         </div>
         <p class="dp-lien"><a href="/coachs/">Toute l’équipe →</a></p>
       </div>

@@ -24,7 +24,7 @@
   <link rel="preload" as="image" href="/assets/img/ram/coach-sonia.webp" fetchpriority="high" />
   <link rel="stylesheet" href="/assets/css/fonts.css?v=19" />
   <link rel="stylesheet" href="/assets/css/base.css?v=23" />
-  <link rel="stylesheet" href="/assets/css/coachs.css?v=19" />
+  <link rel="stylesheet" href="/assets/css/coachs.css?v=20" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="author" content="Boxing Center Ramonville" />
   <meta name="geo.region" content="FR-31" />
@@ -382,6 +382,7 @@
       {
         "@type": "Person",
         "@id": "https://mmatoulouse.com/coachs/#sonia",
+        "url": "https://mmatoulouse.com/coachs/sonia/",
         "name": "Sonia",
         "jobTitle": "Coach — boxe thaï, kickboxing, préparation physique, Boxing Lady",
         "worksFor": {
@@ -392,6 +393,7 @@
       {
         "@type": "Person",
         "@id": "https://mmatoulouse.com/coachs/#jerome",
+        "url": "https://mmatoulouse.com/coachs/jerome/",
         "name": "Jérôme",
         "jobTitle": "Head coach — MMA, grappling, préparation physique",
         "worksFor": {
@@ -402,6 +404,7 @@
       {
         "@type": "Person",
         "@id": "https://mmatoulouse.com/coachs/#hicham",
+        "url": "https://mmatoulouse.com/coachs/hicham/",
         "name": "Hicham",
         "jobTitle": "Coach — boxe anglaise, préparation physique",
         "worksFor": {
@@ -412,6 +415,7 @@
       {
         "@type": "Person",
         "@id": "https://mmatoulouse.com/coachs/#farouk",
+        "url": "https://mmatoulouse.com/coachs/farouk/",
         "name": "Farouk",
         "jobTitle": "Coach — boxe anglaise loisirs et compétiteurs",
         "worksFor": {
@@ -422,9 +426,10 @@
       {
         "@type": "Person",
         "@id": "https://mmatoulouse.com/coachs/#valentin-guth",
+        "url": "https://mmatoulouse.com/coachs/valentin-guth/",
         "name": "Valentin Guth",
         "jobTitle": "Coach — boxe loisirs, boxe éducative, école enfants",
-        "description": "Boxeur professionnel : 3 victoires, 1 défaite, 1 nul. 2ᵉ français chez les super-coqs.",
+        "description": "Boxeur professionnel : 3 victoires, 1 défaite, 1 nul. 3ᵉ français chez les super-coqs.",
         "worksFor": {
           "@id": "https://mmatoulouse.com/#salle"
         },
@@ -567,6 +572,7 @@
        nominatifs — le planning de chaque coach reste interne. -->
   <script is:inline type="module">
     import { COACHES } from "/assets/js/data.js?v=23";
+    import { lienCoach } from "/assets/js/coachs-liens.js?v=1";
     const box = document.getElementById("coachroster");
     if (box && COACHES) {
       box.innerHTML = COACHES.map((c) => {
@@ -581,7 +587,7 @@
           ${face}
           <div class="coach__body">
             <span class="coach__tag">${c.tag}</span>
-            <h3>${c.name}</h3>
+            <h3>${lienCoach(c.name) ? `<a href="${lienCoach(c.name)}">${c.name}</a>` : c.name}</h3>
             <span class="coach__role">${c.role}</span>
             ${c.disciplines?.length ? `<ul class="coach__disc">${c.disciplines.map((d) => `<li>${d}</li>`).join("")}</ul>` : ""}
             <p>${c.note}</p>
@@ -592,6 +598,7 @@
               ${c.formation?.length ? `<div class="coach__bloc"><span class="coach__k">Formation</span><ul class="coach__inline">${c.formation.map((f) => `<li>${f}</li>`).join("")}</ul></div>` : ""}
             </div>
             ${c.devise ? `<blockquote class="coach__devise">${c.devise}</blockquote>` : ""}
+            ${lienCoach(c.name) ? `<a class="coach__page" href="${lienCoach(c.name)}">La page de ${c.name} <span aria-hidden="true">→</span></a>` : ""}
           </div>
         </article>`;
       }).join("");

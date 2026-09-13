@@ -131,6 +131,24 @@
 .staff__meta .mono { color: var(--muted); font-size: .64rem; letter-spacing: .04em; }
 .staff__meta i { font-style: normal; font: 600 .6rem/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--accent); }
 
+/* LE COACH PRINCIPAL, À L'HORIZONTALE — Eddy, 13/09 : jamais un coach seul en
+   bas de la bande. Cinq cartes dans quatre colonnes laissaient la cinquième
+   seule sur sa rangée. Jérôme prend toute la rangée, portrait entier et son
+   texte ; les quatre autres tombent juste, en 4 colonnes comme en 2. */
+.staff__card.is-pillar { grid-column: 1 / -1; }
+@media (min-width: 760px) {
+  .staff__card.is-pillar { display: grid; grid-template-columns: minmax(280px, 40%) minmax(0, 1fr); gap: clamp(1.2rem, 3vw, 2.8rem); align-items: center; padding: .9rem; }
+  .staff__card.is-pillar .staff__meta { gap: .55rem; padding: .6rem clamp(.4rem, 2vw, 1.6rem) .6rem 0; }
+  .staff__card.is-pillar .staff__meta b { font-size: clamp(2.2rem, 1.2rem + 3vw, 3.8rem); line-height: 1; }
+  .staff__card.is-pillar .staff__meta .mono { font-size: .8rem; }
+}
+.staff__note { color: var(--ink-soft); font-size: 1rem; line-height: 1.6; max-width: 56ch; margin: .5rem 0 0; }
+.staff__go { margin-top: auto; padding-top: .5rem; font: 600 .6rem/1 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+.staff__card.is-pillar .staff__go { font-size: .72rem; margin-top: .4rem; }
+.staff__plus { margin-top: 1.4rem; font: 600 .72rem/1 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; }
+.staff__plus a { color: var(--accent); text-decoration: none; }
+.staff__plus a:hover { text-decoration: underline; text-underline-offset: .3em; }
+
 /* ==================== LA CARTE ESSAI 10€ ======================== */
 .essai { position: relative; overflow: hidden; background: var(--void); border-block: 1px solid var(--line); }
 .essai .wrap { position: relative; z-index: 1; padding-block: var(--sec); }

@@ -98,3 +98,23 @@
 .dp-carte--hot { background: color-mix(in srgb, var(--accent) 10%, var(--paper)); }
 .dp-prix { font: 700 clamp(1.9rem, 1.4rem + 1.6vw, 2.6rem) / 1 var(--f-display); letter-spacing: -0.02em; color: var(--ink); }
 .dp-prix small { font: 600 0.68rem / 1.3 var(--f-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+
+/* Le nom du coach mène à sa page. */
+.dp-coach h3 a { color: inherit; text-decoration: none; }
+.dp-coach h3 a:hover { color: var(--accent); }
+
+/* ── Les pages de coach (/coachs/<slug>/) — même plateau que les disciplines ── */
+.cp-hero .phero__title .tint { white-space: normal; }
+.cp-photo img { object-position: 50% 28%; }
+.cp-faits { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); gap: 1px; margin: 0;
+  background: var(--line); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+.cp-fait { display: flex; flex-direction: column-reverse; justify-content: flex-end; gap: .6rem; padding: clamp(1.4rem, 3vw, 2.2rem); background: var(--paper); }
+.cp-fait dd { margin: 0; font: 700 clamp(2rem, 1.2rem + 3vw, 3.4rem) / 1 var(--f-display); letter-spacing: -.02em; color: var(--ink); text-transform: uppercase; }
+.cp-fait dt { font: 600 .72rem / 1.35 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+.cp-texte { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(1.4rem, 4vw, 4rem); align-items: start; }
+@media (max-width: 860px) { .cp-texte { grid-template-columns: minmax(0, 1fr); } }
+.cp-paras { display: grid; gap: 1rem; max-width: 64ch; color: var(--ink-soft); font-size: 1.05rem; line-height: 1.65; }
+.cp-devise { margin: 2rem 0 0; padding-left: 1.2rem; border-left: 2px solid var(--accent); max-width: 34ch; }
+.cp-devise p { font: 700 clamp(1.4rem, 1rem + 1.6vw, 2.2rem) / 1.15 var(--f-display); text-transform: uppercase; color: var(--ink); }
+.cp-devise cite { display: block; margin-top: .6rem; font: 600 .7rem / 1 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; font-style: normal; color: var(--accent); }
+.cp-autre img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 28%; border-radius: var(--radius); margin-bottom: .4rem; }
