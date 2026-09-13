@@ -48,6 +48,10 @@
 @media (max-width: 979px){
   .hero__octa .octa { width: min(100vw, 600px); margin-inline: calc((100% - min(100vw, 600px)) / 2); }
   .hero__octa .octa__now { position: relative; left: auto; top: auto; transform: none; margin: .4rem auto 0; max-width: 88%; }
+  /* Eddy, 13/09 : « Il tourne · 8 côtés » passait SOUS la carte de la discipline
+     (le libellé était épinglé 1,8 rem sous le dessin, la carte est venue s’y
+     glisser). Il reprend sa place dans le fil : dessin, carte, puis libellé. */
+  .hero__octa .octa__hint { position: static; transform: none; display: block; margin: .9rem auto 0; }
 }
 /* centrée sous l’octogone, dans l’axe de « il tourne » (elle collait au bord gauche).
    Marges automatiques, pas de transform : le mouvement du hero garde la main sur transform. */
