@@ -119,7 +119,7 @@ function mountNav() {
            sous ce seuil, le menu (.menu__ext) et le pied de page les portent. -->
       <div class="nav__right">
         <div class="nav__ext">${lienExt(LINKS.groupe, "Le groupe", "Boxing Center — le site du groupe")}${lienExt(LINKS.boutique, "Boutique", "La boutique Boxing Center")}</div>
-        <a class="btn btn--primary nav__cta" data-magnetic href="${LINKS.promos}" aria-label="Offres spéciales : l’année complète à 259 € au lieu de 400 €, ou 29 € par personne pour 4 semaines au lieu de 44 €"><span class="alt" data-alterne><span class="alt__face is-on"><span class="nav__mot">L’année · </span><s class="ancien">400&nbsp;€</s> 259 €</span><span class="alt__face" aria-hidden="true"><span class="nav__mot">Offre · </span><s class="ancien">44&nbsp;€</s> 29 € / 4 sem.</span></span></a>
+        <a class="btn btn--primary nav__cta" data-magnetic href="${LINKS.promos}" aria-label="Offres spéciales : l’année complète à 259 € au lieu de 400 €, ou 29 € par personne pour 4 semaines au lieu de 44 €"><span class="alt" data-alterne><span class="alt__face is-on"><span class="nav__mot">L’année · </span><s class="ancien">400&nbsp;€</s> <span class="nav__an-prix">259 €</span></span><span class="alt__face" aria-hidden="true"><span class="nav__mot">Offre · </span><s class="ancien">44&nbsp;€</s> 29 € / 4 sem.</span></span></a>
         <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
     </nav>`;
@@ -322,6 +322,18 @@ function scramble(el, opts = {}) {
    que le navigateur l’a montré — le pire des deux mondes. */
 const premierEcran = (el) => !!(el.closest && el.closest(".hero, .phero"));
 
+/* RÉARMEMENT PAR LE BAS (Eddy, 13/09 : « when I go up and I come back down,
+   the animation should happen again ») — la règle des satellites. L'entrée
+   est remise à zéro quand l'élément est ressorti PAR LE BAS de l'écran,
+   jamais sous les yeux, et se rejoue en redescendant. Pas si le moteur est
+   mort (reveal._mort) : on ne recacherait pas un texte qu'aucune animation
+   ne viendrait rendre. */
+function rejouer(tw, trigger) {
+  if (!ScrollTrigger || !tw) return tw;
+  ScrollTrigger.create({ trigger, start: "top bottom", onLeaveBack: () => { if (!reveal._mort) tw.pause(0); } });
+  return tw;
+}
+
 function reveal(scope = document) {
   /* Un seul verrou pour les deux cas — mouvement refusé par l’utilisateur, ou
      moteur d’animation absent. Avant, seul `reduce` était traité, et l’absence
@@ -332,19 +344,19 @@ function reveal(scope = document) {
     if (m.dataset.revBound || !kids.length) return; m.dataset.revBound = "1";
     if (premierEcran(m)) return;
     gsap.set(kids, { yPercent: 112, opacity: 0 });
-    gsap.to(kids, { yPercent: 0, opacity: 1, duration: 0.6, ease: "power2.out", stagger: 0.05, scrollTrigger: { trigger: m, start: "top 90%" } });
+    rejouer(gsap.to(kids, { yPercent: 0, opacity: 1, duration: 0.6, ease: "power2.out", stagger: 0.05, scrollTrigger: { trigger: m, start: "top 90%" } }), m);
   });
   scope.querySelectorAll("[data-reveal]").forEach((el) => {
     if (el.dataset.revBound) return; el.dataset.revBound = "1";
     if (premierEcran(el)) return;
-    gsap.to(el, { opacity: 1, y: 0, duration: 0.55, ease: "power2.out", scrollTrigger: { trigger: el, start: "top 92%" } });
+    rejouer(gsap.to(el, { opacity: 1, y: 0, duration: 0.55, ease: "power2.out", scrollTrigger: { trigger: el, start: "top 92%" } }), el);
   });
   scope.querySelectorAll("[data-reveal-group]").forEach((g) => {
     const kids = [...g.children];
     if (g.dataset.revBound || !kids.length) return; g.dataset.revBound = "1";
     if (premierEcran(g)) return;
     gsap.set(kids, { opacity: 0, y: 12 });
-    gsap.to(kids, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out", stagger: 0.04, scrollTrigger: { trigger: g, start: "top 88%" } });
+    rejouer(gsap.to(kids, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out", stagger: 0.04, scrollTrigger: { trigger: g, start: "top 88%" } }), g);
   });
 
   /* Dead-man net (loi de lisibilité) : si le ticker gèle, tout redevient
@@ -354,6 +366,7 @@ function reveal(scope = document) {
     const f0 = gsap.ticker.frame;
     setTimeout(() => {
       if (gsap.ticker.frame !== f0) return;
+      reveal._mort = true;   // plus de réarmement : rien ne rejouerait l'entrée
       document.documentElement.classList.remove("fx");
       document.querySelectorAll(".reveal-mask > span, [data-reveal], [data-reveal-group] > *").forEach((el) => {
         el.style.opacity = "1"; el.style.transform = "none";

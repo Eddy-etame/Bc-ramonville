@@ -1087,6 +1087,8 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
 .alt > .alt__face { grid-area: 1 / 1; }
 .alt > .alt__face:not(.is-on) { visibility: hidden; }
 .offre__detail.alt { display: grid; }
+/* dans un bouton, la face la plus courte se centre au lieu de coller à gauche */
+.btn .alt { justify-items: center; text-align: center; }
 .plaque__faces.alt { display: grid; justify-items: center; }
 .plaque__face { display: grid; gap: .1rem; justify-items: center; }
 .alt.is-passage > .alt__face.is-sort { visibility: visible; animation: altSort .9s cubic-bezier(.7,0,.3,1) forwards; }
@@ -1150,6 +1152,9 @@ s.ancien { text-decoration: line-through; text-decoration-thickness: .12em; opac
   /* le bouton de la barre garde ses deux prix mais laisse tomber le mot :
      avec l’ancien prix, « L’année · » poussait le menu hors de l’écran */
   .nav__mot { display: none; }
+  /* …et la face 259 € reprend son unité, comme la face 29 € (« / 4 sem. ») :
+     sans elle, la plus courte des deux flottait dans un bouton à moitié vide */
+  .nav__an-prix::after { content: "\00a0/ an"; }
   .plaque__barre { font-size: .8rem; opacity: .74; text-decoration-thickness: 2px; }
   .flotte .plaque__barre { margin: 0; font-size: .76rem; opacity: .78; }
 }
