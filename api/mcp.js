@@ -67,7 +67,7 @@ async function infosSalleTexte() {
     const { infosSalle } = await import("./_lib/salle.js");
     return await infosSalle();
   } catch {
-    return `${SITE.nom} — 33 rue des Ormes, 31520 Ramonville-Saint-Agne. Terminus du métro B. Du lundi au samedi, 10h00–21h30. 05 62 24 46 82.`;
+    return `${SITE.nom} — 33 rue des Ormes, 31520 Ramonville-Saint-Agne. Terminus du métro B. Du lundi au samedi, 10h00–21h30. 09 39 03 67 48.`;
   }
 }
 

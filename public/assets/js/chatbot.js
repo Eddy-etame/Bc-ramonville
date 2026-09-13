@@ -18,8 +18,8 @@
    d’ouverture est purement décorative (prefers-reduced-motion respecté
    côté CSS — rien ici ne dépend d’une transition pour être lisible).
    ===================================================================== */
-import { QUICKS, fallbackAnswer } from "./chatbot-kb.js?v=19";
-import { SALLE, NETWORK } from "./data.js?v=24";
+import { QUICKS, fallbackAnswer } from "./chatbot-kb.js?v=20";
+import { SALLE, NETWORK } from "./data.js?v=25";
 
 /* --------------------------- LES MOTIFS ---------------------------- */
 const EMAIL_RE = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/i;
@@ -121,7 +121,7 @@ const ACTIONS = {
   coachs:      { label: "Rencontrer les coachs", href: "/coachs/" },
   galerie:     { label: "Voir la galerie", href: "/galerie/" },
   contact:     { label: "Adresse & contact", href: "/contact/" },
-  appeler:     { label: "Appeler la salle", href: "tel:+33562244682" },
+  appeler:     { label: "Appeler la salle", href: "tel:+33939036748" },
   rappel:      { label: "Être rappelé par un coach", act: "rappel" },
 };
 /* L’adresse NUE d’une action, signature retirée : c’est elle qui sert à

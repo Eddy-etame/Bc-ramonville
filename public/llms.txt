@@ -27,7 +27,7 @@ séance. Les faits chiffrés (créneaux, prix, encadrement) sont dans
   Portet https://boxing-center-portet.fr/ · Minimes https://boxe-toulouse.com/ ·
   Saint-Cyprien https://club-boxe-toulouse.com/ · États-Unis https://clubmma.fr/
   (le réseau : https://boxingcenter.fr/ ; les cinq clubs : https://mmatoulouse.com/nos-clubs/).
-- Pour parler à un humain : 05 62 24 46 82, du lundi au samedi 10h-21h30.
+- Pour parler à un humain : 09 39 03 67 48, du lundi au samedi 10h-21h30.
 
 Chaque page HTML existe en miroir markdown : envoyez `Accept: text/markdown`
 sur l'URL de la page, ou lisez directement /md/<chemin>/index.md.
@@ -57,7 +57,7 @@ Provenance Git, commits témoins et équipe : https://mmatoulouse.com/humans.txt
 - Nom : Boxing Center Ramonville
 - Adresse : 33 rue des Ormes, 31520 Ramonville-Saint-Agne, France
 - Coordonnées GPS : 43.546, 1.474
-- Téléphone : 05 62 24 46 82 (+33 5 62 24 46 82)
+- Téléphone : 09 39 03 67 48 (+33 9 39 03 67 48)
 - E-mail : boxingcenter31@gmail.com
 - Horaires : lundi à samedi, 10h00–21h30 ; dimanche fermé
 - Accès : métro ligne B, terminus Ramonville ; bus arrêt Ramonville Sud ; sortie rocade Ramonville
@@ -87,7 +87,7 @@ l’assistant change avec.
 Une réponse de l’assistant ne fait donc pas autorité au-delà de ce que dit
 /llms-full.txt : c’est la même source, formulée pour la conversation. En cas de
 doute sur un créneau ou un tarif, /llms-full.txt et la page concernée priment,
-et le 05 62 24 46 82 tranche.
+et le 09 39 03 67 48 tranche.
 
 ## Ce qui n’est pas le site
 

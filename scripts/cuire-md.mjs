@@ -89,7 +89,7 @@ function versMd(html, url) {
   }
 
   lignes.push("", "---", "",
-    "Boxing Center Ramonville · 33 rue des Ormes, 31520 Ramonville-Saint-Agne · 05 62 24 46 82",
+    "Boxing Center Ramonville · 33 rue des Ormes, 31520 Ramonville-Saint-Agne · 09 39 03 67 48",
     "",
     /* Même source que le JSON-LD non rendu et le MCP. */
     CREDITS_MD,

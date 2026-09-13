@@ -1075,3 +1075,62 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
    elle est à côté, pas dessous, et l’ordre naturel est le bon. */
 @media (max-width: 819px) {
   .essai__grid .plaque { order: -1; justify-self: stretch; }
+}
+
+/* ===================== LES DEUX OFFRES, EN ALTERNANCE =====================
+   Eddy, 13/09 : 259 € d'abord, puis 29 €, et ainsi de suite (offres.js).
+   Les deux faces occupent la même case : la plus large donne la taille,
+   rien ne saute. LE PASSAGE SECRET : la face sortante se referme sur une
+   fente de lumière au milieu, la face entrante s'ouvre de la fente vers
+   les bords — une porte dérobée, pas un fondu. */
+.alt { display: inline-grid; position: relative; }
+.alt > .alt__face { grid-area: 1 / 1; }
+.alt > .alt__face:not(.is-on) { visibility: hidden; }
+.offre__detail.alt { display: grid; }
+.plaque__faces.alt { display: grid; justify-items: center; }
+.plaque__face { display: grid; gap: .1rem; justify-items: center; }
+.alt.is-passage > .alt__face.is-sort { visibility: visible; animation: altSort .9s cubic-bezier(.7,0,.3,1) forwards; }
+.alt.is-passage > .alt__face.is-entre { animation: altEntre .9s cubic-bezier(.7,0,.3,1) forwards; }
+.alt.is-passage::after { content: ""; position: absolute; top: 6%; bottom: 6%; left: 50%; width: 2px; pointer-events: none;
+  background: linear-gradient(180deg, transparent, currentColor 28%, currentColor 72%, transparent);
+  box-shadow: 0 0 12px currentColor, 0 0 26px currentColor; opacity: 0; transform: translateX(-50%) scaleY(0);
+  animation: altFente .9s cubic-bezier(.7,0,.3,1) forwards; }
+@keyframes altSort { 0% { clip-path: inset(0 0 0 0); opacity: 1; } 50% { clip-path: inset(0 50% 0 50%); opacity: 1; } 100% { clip-path: inset(0 50% 0 50%); opacity: 0; } }
+@keyframes altEntre { 0%, 42% { clip-path: inset(0 50% 0 50%); opacity: 0; transform: scale(.97); } 48% { opacity: 1; } 100% { clip-path: inset(0 0 0 0); opacity: 1; transform: none; } }
+@keyframes altFente { 0% { opacity: 0; transform: translateX(-50%) scaleY(0); } 34%, 58% { opacity: .95; transform: translateX(-50%) scaleY(1); } 100% { opacity: 0; transform: translateX(-50%) scaleY(1); } }
+@media (prefers-reduced-motion: reduce) { .alt.is-passage > .alt__face, .alt.is-passage::after { animation: none; } }
+
+/* ===================== LA CARTE QUI RESTE (Eddy, 13/09) =====================
+   Toujours à l'écran, en bas à gauche, sur toutes les pages : la plaque en
+   format de poche, 259 € d'abord puis 29 €, vers les offres spéciales.
+   Elle s'efface quand une grande plaque est déjà à l'écran (offres.js) et
+   quand le menu est ouvert. */
+.flotte { position: fixed; left: clamp(.7rem, 2vw, 1.4rem); bottom: clamp(.7rem, 2vw, 1.4rem); z-index: 7980;
+  width: clamp(150px, 14vw, 186px); padding: .95rem .8rem .8rem; --coin: 11px;
+  transition: opacity .35s, transform .35s cubic-bezier(.2,.7,.3,1), filter .35s, box-shadow .35s; }
+.flotte::before { inset: 8px; }
+.flotte .plaque__sur { font-size: .54rem; letter-spacing: .18em; }
+.flotte .plaque__prix { margin: .3rem 0 .05rem; }
+.flotte .plaque__prix b { font-size: clamp(2.2rem, 3.6vw, 2.8rem); }
+.flotte .plaque__prix i { font-size: 1rem; }
+.flotte .plaque__unit { font-size: .58rem; }
+.flotte .plaque__go { margin-top: .5rem; font-size: .72rem; }
+.flotte.is-cachee { opacity: 0; transform: translateY(14px); pointer-events: none; }
+.is-menu-open .flotte { opacity: 0; pointer-events: none; }
+/* Sur téléphone, une plaque BASSE : l’offre, le prix, la flèche. Carrée,
+   elle couvrait le plateau de l’octogone ; en bandeau elle tient dans le
+   coin et le prix reste lisible d’un coup d’œil. */
+@media (max-width: 600px) {
+  .flotte { width: auto; display: flex; align-items: center; gap: .6rem; padding: .5rem .8rem .5rem .9rem; --coin: 8px; }
+  .flotte::before { inset: 5px; }
+  .flotte .plaque__faces.alt { justify-items: start; }
+  .flotte .plaque__face { grid-auto-flow: column; align-items: center; gap: .5rem; justify-items: start; }
+  .flotte .plaque__sur { font-size: .5rem; letter-spacing: .14em; line-height: 1.2; max-width: 8ch; text-align: left; }
+  .flotte .plaque__prix { margin: 0; }
+  .flotte .plaque__prix b { font-size: 1.6rem; }
+  .flotte .plaque__prix i { font-size: .8rem; }
+  .flotte .plaque__unit { display: none; }
+  .flotte .plaque__go { margin: 0; font-size: 0; }
+  .flotte .plaque__go i { font-size: 1.05rem; }
+}
+@media (prefers-reduced-motion: reduce) { .flotte { transition: none; } }

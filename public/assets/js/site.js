@@ -9,10 +9,11 @@
    figé, il n’y a plus rien à basculer.
    Aucun chrome copié de Saint-Cyprien.
    ===================================================================== */
-import { NAV, LINKS, SALLE, SEASON_LABEL, NETWORK } from "./data.js?v=24";
+import { NAV, LINKS, SALLE, SEASON_LABEL, NETWORK } from "./data.js?v=25";
 import { PAGES_DISCIPLINES } from "./disciplines-liens.js?v=1";
 
 import { initPlaces } from "./places.js?v=19";
+import { demarrerOffres } from "./offres.js?v=1";
 /* --------------------------- LE MAILLAGE --------------------------- *
    Les liens sortants vers le réseau propriétaire : le site du groupe, la
    boutique, et les quatre salles sœurs. Ils sont présents sur CHAQUE
@@ -118,7 +119,7 @@ function mountNav() {
            sous ce seuil, le menu (.menu__ext) et le pied de page les portent. -->
       <div class="nav__right">
         <div class="nav__ext">${lienExt(LINKS.groupe, "Le groupe", "Boxing Center — le site du groupe")}${lienExt(LINKS.boutique, "Boutique", "La boutique Boxing Center")}</div>
-        <a class="btn btn--primary nav__cta" data-magnetic href="${LINKS.rentree}"><span>Offre · 29 € / 4 sem.</span></a>
+        <a class="btn btn--primary nav__cta" data-magnetic href="${LINKS.promos}" aria-label="Offres spéciales : l’année complète à 259 €, ou 29 € par personne pour 4 semaines"><span class="alt" data-alterne><span class="alt__face is-on">L’année · 259 €</span><span class="alt__face" aria-hidden="true">Offre · 29 € / 4 sem.</span></span></a>
         <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
     </nav>`;
@@ -140,7 +141,7 @@ function mountNav() {
       </div>
       <nav class="menu__nav">${menuLinks}</nav>
       <div class="menu__foot">
-        <a class="btn btn--primary" data-magnetic href="${LINKS.rentree}"><span>Voir l’offre · 29 € / 4 sem.</span></a>
+        <a class="btn btn--primary" data-magnetic href="${LINKS.promos}" aria-label="Offres spéciales : l’année complète à 259 €, ou 29 € par personne pour 4 semaines"><span class="alt" data-alterne><span class="alt__face is-on">L’année complète · 259 €</span><span class="alt__face" aria-hidden="true">Voir l’offre · 29 € / 4 sem.</span></span></a>
         <div class="menu__ext">
           ${lienExt(LINKS.groupe, "Le site officiel — boxingcenter.fr")}
           ${lienExt(LINKS.boutique, "La boutique — box-plus")}
@@ -215,7 +216,7 @@ function mountFooter() {
             <span class="eyebrow">La salle t’attend</span>
             <h2 class="display footer__cut" aria-label="La seule salle du réseau où on s’entraîne dehors.">La seule salle du réseau<br><span class="tint">où on s’entraîne dehors.</span></h2>
           </div>
-          <a class="btn btn--primary" data-magnetic href="${LINKS.rentree}"><span>Voir l’offre · 29 € / 4 sem.</span></a>
+          <a class="btn btn--primary" data-magnetic href="${LINKS.promos}" aria-label="Offres spéciales : l’année complète à 259 €, ou 29 € par personne pour 4 semaines"><span class="alt" data-alterne><span class="alt__face is-on">L’année complète · 259 €</span><span class="alt__face" aria-hidden="true">Voir l’offre · 29 € / 4 sem.</span></span></a>
         </div>
         <div class="fiche" aria-label="Fiche de la salle">
           ${fields.map((f) => `<div class="fiche__cell${f.wide ? " fiche__cell--wide" : ""}"><span class="fk">${f.k}</span><span class="fv">${f.v}</span></div>`).join("")}
@@ -445,6 +446,8 @@ window.BC = {
 };
 mountNav();
 mountFooter();
+/* les deux offres en alternance et la carte qui reste (offres.js) */
+demarrerOffres();
 labelSplitHeadings();
 initSmooth();
 hydrateMedia(document);

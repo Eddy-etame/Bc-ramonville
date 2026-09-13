@@ -97,5 +97,5 @@ const RULES = [
 
 export function fallbackAnswer(msg) {
   for (const [re, i] of RULES) if (re.test(msg)) return QUICKS[i].a;
-  return "Je peux te répondre sur le plateau extérieur, l’octogone, les créneaux, les tarifs ou l’école enfants. Pose ta question — ou appelle la salle au 05 62 24 46 82.";
+  return "Je peux te répondre sur le plateau extérieur, l’octogone, les créneaux, les tarifs ou l’école enfants. Pose ta question — ou appelle la salle au 09 39 03 67 48.";
 }

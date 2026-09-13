@@ -92,7 +92,7 @@ async function entrer() {
 /* ------------------------- CHARGEMENT DES DONNÉES ----------------- */
 async function chargerBase() {
   try {
-    app.base = await import("/assets/js/data.js?v=24");
+    app.base = await import("/assets/js/data.js?v=25");
   } catch {
     app.base = null;
   }
@@ -399,7 +399,7 @@ function vueSalle() {
       <div class="carte__tete"><h3>Joindre la salle</h3></div>
       <div class="grille2">
         <div class="champ"><label for="f-tel">Téléphone (affiché)</label><input id="f-tel" type="text" value="${echappe(s.phone)}" /></div>
-        <div class="champ"><label for="f-telh">Téléphone (pour appeler)</label><input id="f-telh" type="text" value="${echappe(s.phoneHref)}" /><span class="aide">Format international, sans espace : +33562244682</span></div>
+        <div class="champ"><label for="f-telh">Téléphone (pour appeler)</label><input id="f-telh" type="text" value="${echappe(s.phoneHref)}" /><span class="aide">Format international, sans espace : +33939036748</span></div>
         <div class="champ"><label for="f-mail">Email</label><input id="f-mail" type="text" value="${echappe(s.email)}" /></div>
         <div class="champ"><label for="f-heures">Horaires (affichés)</label><input id="f-heures" type="text" value="${echappe(s.hours)}" /><span class="aide">Ex. Lun – Sam · 10h00 – 21h30</span></div>
       </div>

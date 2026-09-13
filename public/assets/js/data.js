@@ -65,8 +65,8 @@ const _SALLE = {
     "Arrêt Ramonville Sud — Le bus s’arrête au pied de la salle. Pas à trois rues de là",
     "Rocade, sortie Ramonville — Parking gratuit. Rien à payer, rien à chercher avant le cours",
   ],
-  phone: "05 62 24 46 82",
-  phoneHref: "+33562244682",
+  phone: "09 39 03 67 48",
+  phoneHref: "+33939036748",
   email: "boxingcenter31@gmail.com",
   hours: "Lun – Sam · 10h00 – 21h30",
   hoursData: [

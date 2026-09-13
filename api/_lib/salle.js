@@ -22,7 +22,7 @@ import { join } from "path";
    et 47 avis (il y en a 55). Un repli a le droit d’être moins
    riche ; il n’a jamais le droit d’être faux. */
 const REPLI = `- Boxing Center Ramonville : un club ouvert à tous, même si tu n’as jamais fait de sport. La seule salle du réseau qui s’entraîne dehors — 300 m² couverts, une cage de 7 m (octogone), un grand ring de boxe, deux niveaux avec muscu et cardio.
-- Adresse : 33 rue des Ormes, 31520 Ramonville-Saint-Agne. Téléphone : 05 62 24 46 82. Email : boxingcenter31@gmail.com.
+- Adresse : 33 rue des Ormes, 31520 Ramonville-Saint-Agne. Téléphone : 09 39 03 67 48. Email : boxingcenter31@gmail.com.
 - Accès : métro ligne B, terminus Ramonville, à proximité ; bus arrêt Ramonville Sud ; sortie rocade Ramonville.
 - Horaires : du lundi au samedi, 10h00 – 21h30. Fermé le dimanche. Accès libre muscu/cardio inclus.
 - Avant chaque cours : valider sa présence à l’accueil (émargement GPS).

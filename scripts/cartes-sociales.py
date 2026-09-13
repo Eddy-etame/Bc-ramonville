@@ -204,8 +204,8 @@ CARTES = [
      "33 rue des Ormes, Ramonville.",
      # « Parking gratuit » etait INVENTE — la base du reseau interdit
      # explicitement d'affirmer qu'une salle a un parking. Et le numero
-     # etait celui de PORTET : celui de Ramonville est le 05 62 24 46 82.
-     ["Terminus métro B", "Lun. – sam. 10h–21h30", "05 62 24 46 82"]),
+     # etait celui de PORTET : celui de Ramonville est le 09 39 03 67 48.
+     ["Terminus métro B", "Lun. – sam. 10h–21h30", "09 39 03 67 48"]),
 
     ("galerie", "photos/octogone-vu-du-grillage-boxing-center-ramonville.webp",
      "LE CARNET",

@@ -27,7 +27,7 @@ network: 5 salles Boxing Center a Toulouse et son agglomeration
 - Ne pas confondre avec un autre club de boxe toulousain
 
 # Contact
-phone: 05 62 24 46 82
+phone: 09 39 03 67 48
 email: boxingcenter31@gmail.com
 address: 33 rue des Ormes, 31520 Ramonville-Saint-Agne
 

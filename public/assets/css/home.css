@@ -49,8 +49,10 @@
   .hero__octa .octa { width: min(100vw, 600px); margin-inline: calc((100% - min(100vw, 600px)) / 2); }
   .hero__octa .octa__now { position: relative; left: auto; top: auto; transform: none; margin: .4rem auto 0; max-width: 88%; }
 }
-.hero__cap { position: absolute; left: 0; bottom: -.4rem; font: 600 var(--step--2)/1 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); background: color-mix(in srgb, var(--void) 60%, transparent); padding: .5em .8em; border: 1px solid var(--line); border-radius: var(--radius); }
-@media (max-width: 979px){ .hero__octa { margin-top: 1.5rem; } .hero__cap { position: static; display: inline-block; margin-top: 2.4rem; } }
+/* centrée sous l’octogone, dans l’axe de « il tourne » (elle collait au bord gauche).
+   Marges automatiques, pas de transform : le mouvement du hero garde la main sur transform. */
+.hero__cap { position: absolute; left: 0; right: 0; margin-inline: auto; width: max-content; max-width: 100%; text-align: center; bottom: -.4rem; font: 600 var(--step--2)/1 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); background: color-mix(in srgb, var(--void) 60%, transparent); padding: .5em .8em; border: 1px solid var(--line); border-radius: var(--radius); }
+@media (max-width: 979px){ .hero__octa { margin-top: 1.5rem; } .hero__cap { position: static; display: inline-block; justify-self: center; margin-top: 2.4rem; } }
 
 /* stats — bande fondue dans le bas du hero */
 .hero__stats { position: relative; z-index: 2; display: grid; grid-template-columns: repeat(2,1fr); gap: 1px; background: var(--line-soft); border: 1px solid var(--line); overflow: hidden; margin-top: clamp(2.2rem,5vh,3.4rem); }

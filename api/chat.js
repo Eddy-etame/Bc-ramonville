@@ -47,7 +47,7 @@ COMMENT TU PARLES :
 
 CE QUE TU NE FAIS JAMAIS :
 - Inventer un prix, un horaire, un créneau, un nom de coach, un avis ou une note. Si l’info
-  n’est pas dans le bloc FAITS, dis-le franchement et renvoie vers le 05 62 24 46 82 ou la
+  n’est pas dans le bloc FAITS, dis-le franchement et renvoie vers le 09 39 03 67 48 ou la
   page Contact. Un « je ne sais pas » honnête vaut mieux qu’une phrase juste-à-peu-près.
 - Promettre une réservation, une inscription ou un rappel à une heure précise.
 - Parler d’une autre salle comme si c’était celle-ci : pour les infos précises d’une salle
@@ -99,7 +99,7 @@ LE PAIEMENT DE LA SAISON — ces règles et aucune autre.
 
 QUAND TU PASSES LA MAIN — sans discuter.
 - Deux fois de suite que tu ne comprends pas, ou qu'on te redemande la meme
-  chose : « je bloque, je te passe quelqu'un » et tu proposes le 05 62 24 46 82.
+  chose : « je bloque, je te passe quelqu'un » et tu proposes le 09 39 03 67 48.
 - Des qu'apparait : blessure, operation, certificat medical, grossesse,
   remboursement, resiliation, litige, ou un mineur qui ecrit lui-meme. Tu ne
   reponds pas, tu fais suivre. Ce que tu dis engage la salle.
@@ -258,7 +258,7 @@ async function replicoteLocale(message) {
     const kb = await import("../public/assets/js/chatbot-kb.js");
     return kb.fallbackAnswer(message);
   } catch {
-    return "Je peux te répondre sur le plateau extérieur, l’octogone, les créneaux, les tarifs ou l’école enfants — ou appelle la salle au 05 62 24 46 82.";
+    return "Je peux te répondre sur le plateau extérieur, l’octogone, les créneaux, les tarifs ou l’école enfants — ou appelle la salle au 09 39 03 67 48.";
   }
 }
 

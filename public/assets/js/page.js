@@ -10,7 +10,7 @@ import {
   DAYS, SCHEDULE, FAMILLES, POSTERS, TARIFS, PROMOS, REVIEWS,
   GALLERY, PHOTO_CREDIT, FAQ, LINKS, DEHORS, GRID_LEGEND, COACHES, ARPENT,
   ENTREE, CARNET,
-} from "./data.js?v=24";
+} from "./data.js?v=25";
 import { lienDiscipline } from "./disciplines-liens.js?v=1";
 
 const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -388,7 +388,7 @@ function renderDiscs() {
           <div class="disc__fact"><b>Niveau</b><span>${d.niveau}</span></div>
         </div>
         <div class="disc__cta">
-          <a class="btn btn--primary" data-magnetic href="${LINKS.rentree}"><span>Quatre semaines · 29 €</span></a>
+          <a class="btn btn--primary" data-magnetic href="${LINKS.promos}" aria-label="Offres spéciales : l’année complète à 259 €, ou 29 € par personne pour 4 semaines"><span class="alt" data-alterne><span class="alt__face is-on">L’année complète · 259 €</span><span class="alt__face" aria-hidden="true">Quatre semaines · 29 €</span></span></a>
           <a class="btn btn--ghost" data-magnetic href="/plannings/"><span>Voir le planning</span></a>
           ${lienDiscipline(d.key) ? `<a class="btn btn--ghost" data-magnetic href="${lienDiscipline(d.key)}"><span>La page ${d.name}</span></a>` : ""}
         </div>
