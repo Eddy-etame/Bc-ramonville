@@ -19,7 +19,7 @@
    côté CSS — rien ici ne dépend d’une transition pour être lisible).
    ===================================================================== */
 import { QUICKS, fallbackAnswer } from "./chatbot-kb.js?v=19";
-import { SALLE, NETWORK } from "./data.js?v=19";
+import { SALLE, NETWORK } from "./data.js?v=23";
 
 /* --------------------------- LES MOTIFS ---------------------------- */
 const EMAIL_RE = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/i;
@@ -110,7 +110,7 @@ const ACTIONS = {
   offre:       { label: "Voir l’offre · 29 €/4 sem.", href: boutique("https://boutique.boxingcenter.fr/offre/29") },
   saison:      { label: "Voir la Saison · 259 € comptant", href: boutique("https://boutique.boxingcenter.fr/offre/259") },
   essai:       { label: "Je viens essayer · 10€", href: boutique("https://boutique.boxingcenter.fr/seance-essai") },
-  enfants:     { label: "J’inscris mon enfant", href: boutique("https://boutique.boxingcenter.fr/abonnements") },
+  enfants:     { label: "J’inscris mon enfant", href: boutique("https://boutique.boxingcenter.fr/abonnements#enfants") },
   abonnements: { label: "Voir les abonnements", href: boutique("https://boutique.boxingcenter.fr/abonnements") },
   boutique:    { label: "La boutique du club", href: boutique("https://boutique.boxingcenter.fr/") },
   premiere:    { label: "Comment se passe la 1re séance", href: "/premiere-seance/" },

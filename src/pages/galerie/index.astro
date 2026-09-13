@@ -644,7 +644,7 @@
   <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo agrandie">
     <button class="lightbox__close" id="lb-close" type="button">Fermer <span aria-hidden="true">✕</span></button>
     <div class="lightbox__frame">
-      <img id="lb-img" alt="" width="1600" height="1067" decoding="async" loading="lazy" />
+      <img id="lb-img" alt="Photo de la galerie, en grand" width="1600" height="1067" decoding="async" loading="lazy" />
       <div class="lightbox__cap" id="lb-cap"></div>
     </div>
   </div>
@@ -675,7 +675,7 @@
         var f = document.createElement("link");
         f.rel = "stylesheet"; f.href = "/assets/css/chatbot.css?v=19";
         document.head.appendChild(f);
-        venue = import("/assets/js/chatbot.js?v=19").catch(function () { venue = null; });
+        venue = import("/assets/js/chatbot.js?v=20").catch(function () { venue = null; });
         return venue;
       }
       ["pointerenter", "touchstart", "focus"].forEach(function (e) {
@@ -694,14 +694,14 @@
   </script>
   <script is:inline type="module" src="/assets/js/site.js?v=23"></script>
   <script is:inline type="module" src="/assets/js/sky.js?v=19"></script>
-  <script is:inline type="module" src="/assets/js/page.js?v=23"></script>
+  <script is:inline type="module" src="/assets/js/page.js?v=24"></script>
 
   <!-- Enrichissement PROPRE à la page : la bande de conditions au-dessus du
        plateau (ciel réel), le sommaire du carnet et la visionneuse plein
        cadre. page.js a déjà rendu #gallery (légendes par zone + scramble),
        #carnet-usage, #carnet-methode et #carnet-renvoi. -->
   <script is:inline type="module">
-    import { GALLERY } from "/assets/js/data.js?v=22";
+    import { GALLERY } from "/assets/js/data.js?v=23";
     const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
     const root = document.documentElement;
 

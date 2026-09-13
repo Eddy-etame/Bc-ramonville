@@ -97,7 +97,7 @@ export const LINKS = {
   essai: "https://boutique.boxingcenter.fr/seance-essai",
   abos: "https://boutique.boxingcenter.fr/abonnements",
   promos: "https://boutique.boxingcenter.fr/offres-speciales",
-  enfants: "https://boutique.boxingcenter.fr/abonnements",
+  enfants: "https://boutique.boxingcenter.fr/abonnements#enfants",
   coachings: "https://boutique.boxingcenter.fr/coachings",
   boutique: "https://boutique.boxingcenter.fr/",   // la BOUTIQUE, pas un rayon (parité Minimes/St-Cyprien)
   groupe: "https://boxingcenter.fr/",
@@ -766,7 +766,7 @@ const _TARIFS = [
     feature: "Étudiant 36 € sur justificatif · sans engagement",
     items: ["Adulte 44 € / 4 semaines", "Étudiant 36 € / 4 semaines", CONDITIONS_COMMERCIALES.badge],
     cta: "Voir les formules 4 semaines",
-    href: "https://boutique.boxingcenter.fr/abonnements",
+    href: "https://boutique.boxingcenter.fr/abonnements#prelevement",
     highlight: false,
   },
   {
@@ -776,7 +776,7 @@ const _TARIFS = [
     feature: "Baby Boxe 250 € · dès 3 ans, mercredi & samedi",
     items: ["Baby Boxe 3/6 ans : 250 €/an", "Éducative 7/11 & ados 12/16 : 295 €/an", "Encadrée par Valentin Guth"],
     cta: "Inscrire mon enfant",
-    href: "https://boutique.boxingcenter.fr/abonnements",
+    href: "https://boutique.boxingcenter.fr/abonnements#enfants",
     highlight: false,
   },
   {

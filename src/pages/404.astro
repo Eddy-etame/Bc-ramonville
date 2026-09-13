@@ -23,7 +23,7 @@
   <link rel="preload" href="/fonts/jetbrainsmono-var-latin.woff2?v=19" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="/assets/css/fonts.css?v=19" />
   <link rel="stylesheet" href="/assets/css/base.css?v=23" />
-  <link rel="stylesheet" href="/assets/css/page.css?v=19" />
+  <link rel="stylesheet" href="/assets/css/page.css?v=20" />
 
   <meta name="theme-color" content="#070a12" />
   <link rel="icon" href="/favicon-16.png?i=3" type="image/png" sizes="16x16" />
@@ -154,7 +154,7 @@
         var f = document.createElement("link");
         f.rel = "stylesheet"; f.href = "/assets/css/chatbot.css?v=19";
         document.head.appendChild(f);
-        venue = import("/assets/js/chatbot.js?v=19").catch(function () { venue = null; });
+        venue = import("/assets/js/chatbot.js?v=20").catch(function () { venue = null; });
         return venue;
       }
       ["pointerenter", "touchstart", "focus"].forEach(function (e) {
@@ -177,7 +177,7 @@
   <!-- Les huit côtés, depuis la source de vérité — un 404 qui renvoie
        quelque part vaut mieux qu’un 404 qui s’excuse. -->
   <script is:inline type="module">
-    import { DISCIPLINES } from "/assets/js/data.js?v=22";
+    import { DISCIPLINES } from "/assets/js/data.js?v=23";
     const box = document.getElementById("e404-edges");
     if (box && DISCIPLINES) {
       box.innerHTML = [...DISCIPLINES].sort((a, b) => a.edge - b.edge).map((d) =>

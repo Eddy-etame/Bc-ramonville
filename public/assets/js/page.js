@@ -10,10 +10,14 @@ import {
   DAYS, SCHEDULE, FAMILLES, POSTERS, TARIFS, PROMOS, REVIEWS,
   GALLERY, PHOTO_CREDIT, FAQ, LINKS, DEHORS, GRID_LEGEND, COACHES, ARPENT,
   ENTREE, CARNET,
-} from "./data.js?v=22";
+} from "./data.js?v=23";
 import { lienDiscipline } from "./disciplines-liens.js?v=1";
 
 const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* L'ancre d'une formule sur /tarifs/ : « École enfants » → tarif-ecole-enfants.
+   Même règle dans scripts/cuire-pages.mjs et scripts/generer-disciplines.mjs. */
+const ancreTarif = (nom) => "tarif-" + String(nom || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
 const $ = (s, r = document) => r.querySelector(s);
 const page = document.body.dataset.page;
 
@@ -788,9 +792,27 @@ function renderRythme() {
 }
 
 /* ------------------------------ TARIFS --------------------------- */
+/* Un lien vers une formule (/tarifs/#tarif-ecole-enfants) arrive sur SA
+   carte. La grille vient d'être réécrite : le navigateur, lui, a visé
+   l'ancienne, et Lenis garde en cache une hauteur de page périmée. */
+function viserFormule() {
+  let id = "";
+  try { id = decodeURIComponent(location.hash.slice(1)); } catch {}
+  if (!id.startsWith("tarif-")) return;
+  const aller = () => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const offset = -Math.round(Math.min(150, Math.max(96, innerHeight * 0.16)));
+    const lenis = window.BC?.lenis;
+    if (lenis) { lenis.resize?.(); lenis.scrollTo(el, { offset, duration: 1.1, force: true }); }
+    else window.scrollTo({ top: el.getBoundingClientRect().top + scrollY + offset, behavior: reduce ? "auto" : "smooth" });
+  };
+  setTimeout(() => requestAnimationFrame(aller), 350);
+}
+
 function renderTarifs() {
   const box = $("#tarifs"); if (box) box.innerHTML = TARIFS.map((t) => `
-    <article class="tarif ${t.highlight ? "tarif--hot" : ""}">
+    <article class="tarif ${t.highlight ? "tarif--hot" : ""}" id="${ancreTarif(t.name)}">
       ${t.highlight ? '<span class="tarif__badge">Le + malin</span>' : ""}
       <h3 class="tarif__name">${t.name}</h3>
       <div class="tarif__price">${t.was ? `<s class="tarif__was">${t.was}</s> ` : ""}${t.price}<small> ${t.period}</small></div>
@@ -798,6 +820,7 @@ function renderTarifs() {
       <ul class="tarif__items">${t.items.map((i) => `<li>${i}</li>`).join("")}</ul>
       <a class="btn ${t.highlight ? "" : "btn--primary"}" data-magnetic href="${t.href}"><span>${t.cta}</span></a>
     </article>`).join("");
+  viserFormule();
 
   const pbox = $("#promos");
   if (pbox) {

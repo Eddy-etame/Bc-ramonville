@@ -23,7 +23,7 @@
   <link rel="preload" href="/fonts/jetbrainsmono-var-latin.woff2?v=19" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="/assets/css/fonts.css?v=19" />
   <link rel="stylesheet" href="/assets/css/base.css?v=23" />
-  <link rel="stylesheet" href="/assets/css/page.css?v=19" />
+  <link rel="stylesheet" href="/assets/css/page.css?v=20" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="author" content="Boxing Center Ramonville" />
   <meta name="geo.region" content="FR-31" />
@@ -516,7 +516,7 @@
         var f = document.createElement("link");
         f.rel = "stylesheet"; f.href = "/assets/css/chatbot.css?v=19";
         document.head.appendChild(f);
-        venue = import("/assets/js/chatbot.js?v=19").catch(function () { venue = null; });
+        venue = import("/assets/js/chatbot.js?v=20").catch(function () { venue = null; });
         return venue;
       }
       ["pointerenter", "touchstart", "focus"].forEach(function (e) {
@@ -535,6 +535,6 @@
   </script>
   <script is:inline type="module" src="/assets/js/site.js?v=23"></script>
   <script is:inline type="module" src="/assets/js/sky.js?v=19"></script>
-  <script is:inline type="module" src="/assets/js/page.js?v=23"></script>
+  <script is:inline type="module" src="/assets/js/page.js?v=24"></script>
 </body>
 </html>

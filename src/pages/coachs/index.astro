@@ -542,7 +542,7 @@
         var f = document.createElement("link");
         f.rel = "stylesheet"; f.href = "/assets/css/chatbot.css?v=19";
         document.head.appendChild(f);
-        venue = import("/assets/js/chatbot.js?v=19").catch(function () { venue = null; });
+        venue = import("/assets/js/chatbot.js?v=20").catch(function () { venue = null; });
         return venue;
       }
       ["pointerenter", "touchstart", "focus"].forEach(function (e) {
@@ -561,12 +561,12 @@
   </script>
   <script is:inline type="module" src="/assets/js/site.js?v=23"></script>
   <script is:inline type="module" src="/assets/js/sky.js?v=19"></script>
-  <script is:inline type="module" src="/assets/js/page.js?v=23"></script>
+  <script is:inline type="module" src="/assets/js/page.js?v=24"></script>
 
   <!-- Rendu du roster : portraits, rôles, disciplines. Pas de créneaux
        nominatifs — le planning de chaque coach reste interne. -->
   <script is:inline type="module">
-    import { COACHES } from "/assets/js/data.js?v=22";
+    import { COACHES } from "/assets/js/data.js?v=23";
     const box = document.getElementById("coachroster");
     if (box && COACHES) {
       box.innerHTML = COACHES.map((c) => {

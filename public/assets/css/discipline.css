@@ -91,3 +91,10 @@
   .dp-hero .phero__title .tint { white-space: normal; }
 }
 @media (prefers-reduced-motion: reduce) { .dp-carte--lien { transition: none; } }
+
+/* Les formules de la discipline — chaque carte mène à SA formule sur /tarifs/. */
+.dp-tarifs .dp-carte { gap: 0.7rem; }
+.dp-tarifs--seul { max-width: 520px; }
+.dp-carte--hot { background: color-mix(in srgb, var(--accent) 10%, var(--paper)); }
+.dp-prix { font: 700 clamp(1.9rem, 1.4rem + 1.6vw, 2.6rem) / 1 var(--f-display); letter-spacing: -0.02em; color: var(--ink); }
+.dp-prix small { font: 600 0.68rem / 1.3 var(--f-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }

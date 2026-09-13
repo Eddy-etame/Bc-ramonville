@@ -9,7 +9,7 @@
    figé, il n’y a plus rien à basculer.
    Aucun chrome copié de Saint-Cyprien.
    ===================================================================== */
-import { NAV, LINKS, SALLE, SEASON_LABEL, NETWORK } from "./data.js?v=22";
+import { NAV, LINKS, SALLE, SEASON_LABEL, NETWORK } from "./data.js?v=23";
 import { PAGES_DISCIPLINES } from "./disciplines-liens.js?v=1";
 
 import { initPlaces } from "./places.js?v=19";

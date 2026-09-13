@@ -581,7 +581,7 @@
         var f = document.createElement("link");
         f.rel = "stylesheet"; f.href = "/assets/css/chatbot.css?v=19";
         document.head.appendChild(f);
-        venue = import("/assets/js/chatbot.js?v=19").catch(function () { venue = null; });
+        venue = import("/assets/js/chatbot.js?v=20").catch(function () { venue = null; });
         return venue;
       }
       ["pointerenter", "touchstart", "focus"].forEach(function (e) {
@@ -600,12 +600,12 @@
   </script>
   <script is:inline type="module" src="/assets/js/site.js?v=23"></script>
   <script is:inline type="module" src="/assets/js/sky.js?v=19"></script>
-  <script is:inline type="module" src="/assets/js/page.js?v=23"></script>
+  <script is:inline type="module" src="/assets/js/page.js?v=24"></script>
 
   <!-- Enrichissement PROPRE à la page : le rail de chiffres (STATS) qui
        s’incrémente. page.js rend déjà #stations / #values / #network. -->
   <script is:inline type="module">
-    import { STATS } from "/assets/js/data.js?v=22";
+    import { STATS } from "/assets/js/data.js?v=23";
     const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
     const rail = document.getElementById("prail");
     if (rail && STATS) {

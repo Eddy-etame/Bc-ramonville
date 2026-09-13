@@ -588,7 +588,7 @@
         var f = document.createElement("link");
         f.rel = "stylesheet"; f.href = "/assets/css/chatbot.css?v=19";
         document.head.appendChild(f);
-        venue = import("/assets/js/chatbot.js?v=19").catch(function () { venue = null; });
+        venue = import("/assets/js/chatbot.js?v=20").catch(function () { venue = null; });
         return venue;
       }
       ["pointerenter", "touchstart", "focus"].forEach(function (e) {
@@ -607,12 +607,12 @@
   </script>
   <script is:inline type="module" src="/assets/js/site.js?v=23"></script>
   <script is:inline type="module" src="/assets/js/sky.js?v=19"></script>
-  <script is:inline type="module" src="/assets/js/page.js?v=23"></script>
+  <script is:inline type="module" src="/assets/js/page.js?v=24"></script>
 
   <!-- Enrichissement PROPRE à la page : le sommaire des 8 côtés + scrollspy.
        page.js a déjà rendu #famfilter et #discs (les fiches ancrées #<key>). -->
   <script is:inline type="module">
-    import { DISCIPLINES } from "/assets/js/data.js?v=22";
+    import { DISCIPLINES } from "/assets/js/data.js?v=23";
     const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
     const idx = document.getElementById("dindex");
     if (idx && DISCIPLINES) {

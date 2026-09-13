@@ -158,6 +158,10 @@
 .tarif { border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(1.4rem,2.6vw,2rem); display: flex; flex-direction: column; gap: .9rem; position: relative; background: var(--paper-2); transition: transform .35s var(--ease-spring), box-shadow .35s, border-color .3s; }
 .tarif:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-color: var(--accent-line); }
 .tarif--hot { background: var(--accent); border-color: var(--accent); box-shadow: var(--glow); }
+/* Une formule se vise : /tarifs/#tarif-ecole-enfants arrive sur SA carte, et la carte le montre. */
+.tarif { scroll-margin-top: clamp(96px, 16vh, 150px); }
+.tarif:target { border-color: var(--accent); animation: tarifVise 1.4s ease-out .35s 2; }
+@keyframes tarifVise { 0% { box-shadow: 0 0 0 0 var(--accent-line, var(--accent)); } 60% { box-shadow: 0 0 0 14px transparent; } 100% { box-shadow: 0 0 0 0 transparent; } }
 .tarif--hot .tarif__name, .tarif--hot .tarif__price { color: var(--void); }
 .tarif--hot .tarif__feature { color: color-mix(in srgb,var(--void) 92%, #fff); }  /* ~7:1+ sur l'accent — la carte de conversion doit se lire */
 .tarif--hot .tarif__items li { color: color-mix(in srgb,var(--void) 88%, #fff); }
