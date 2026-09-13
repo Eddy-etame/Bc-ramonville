@@ -160,10 +160,6 @@ export function mountOctagon(host) {
   });
 
   host.classList.add("octa");
-  /* VARIANTE À COMPARER (Eddy, 13/09) : ?octa=centre pose la discipline AU
-     CENTRE, dans une plaque octogonale qui couvre le moyeu, l’aiguille et la
-     cage tournant autour. Sans le paramètre : la carte sous le dessin. */
-  try { if (new URLSearchParams(location.search).get("octa") === "centre") host.classList.add("octa--centre"); } catch (_) {}
   host.appendChild(svg);
 
   /* ---------------- LE CARTOUCHE — la discipline du moment --------------
@@ -239,10 +235,7 @@ export function mountOctagon(host) {
     }
     vbCote = cote;
     const demi = cote / 2;
-    svg.setAttribute("viewBox", `${(CX - demi).toFixed(1)} ${(CY - demi).toFixed(1)} ${cote.toFixed(1)} ${cote.toFixed(1)}`);
-    // le moyeu, en vrais pixels : la plaque « au centre » le couvre exactement, même quand il tourne (+4 %)
-    host.style.setProperty("--octa-hub", ((2 * RIN * w / cote) * 1.04).toFixed(1) + "px");
-    // cible tactile réelle : 44 px à l’écran, quelle que soit l’échelle finale
+    svg.setAttribute("viewBox", `${(CX - demi).toFixed(1)} ${(CY - demi).toFixed(1)} ${cote.toFixed(1)} ${cote.toFixed(1)}`);    // cible tactile réelle : 44 px à l’écran, quelle que soit l’échelle finale
     const hitU = (HIT_PX / (w / cote)).toFixed(1);
     svg.querySelectorAll(".octa__edge").forEach((e) => { e.style.strokeWidth = hitU; });
   };

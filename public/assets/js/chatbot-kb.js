@@ -47,7 +47,7 @@ export const QUICKS = [
   {
     label: "Tarifs",
     q: "Quels sont les tarifs ?",
-    a: "L’offre Rentrée coûte 29 € par personne toutes les 4 semaines, sans engagement. La première échéance se paie par carte, puis les suivantes sur IBAN ; les coordonnées d’un proche sont requises. Le badge coûte 34,99 € en plus et il est facturé 72 h après le début. La Saison coûte 259 € comptant ; le 4× est uniquement proposé par PayPal, selon disponibilité et éligibilité. [boutons: offre, saison, tarifs]",
+    a: "La Saison — l’année complète — coûte 259 € comptant au lieu de 400 € : 12 mois, accès aux 5 clubs ; le 4× est uniquement proposé par PayPal, selon disponibilité et éligibilité. Sans engagement, l’offre Rentrée coûte 29 € par personne toutes les 4 semaines au lieu de 44 € : la première échéance se paie par carte, puis les suivantes sur IBAN ; les coordonnées d’un proche sont requises ; le badge coûte 34,99 € en plus, facturé 72 h après le début. [boutons: saison, offre, tarifs]",
   },
   {
     label: "Horaires",
@@ -82,7 +82,7 @@ export const QUICKS = [
   {
     /* 13/09 : les boutons du site mènent tous à la page « offres spéciales ». */
     q: "Quelles sont les offres spéciales ?",
-    a: "Deux offres en ce moment. L’année complète à 259 € comptant : 12 mois, accès aux 5 clubs. Et l’offre de rentrée à 29 € par personne toutes les 4 semaines, sans engagement (badge 34,99 € en plus). Les deux sont sur la page des offres spéciales de la boutique. [boutons: promos, tarifs]",
+    a: "Deux offres en ce moment. L’année complète à 259 € comptant au lieu de 400 € : 12 mois, accès aux 5 clubs. Et l’offre de rentrée à 29 € par personne toutes les 4 semaines au lieu de 44 €, sans engagement (badge 34,99 € en plus). Les deux sont sur la page des offres spéciales de la boutique. [boutons: promos, tarifs]",
   },
 ];
 

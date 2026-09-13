@@ -678,28 +678,6 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
    plaque ≈ 14:1. C'est un vrai lien vers la fiche de la discipline. */
 .octa__now { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); z-index: 2; display: flex; flex-direction: column; align-items: center; gap: .35rem; max-width: 46%; padding: clamp(.35rem, 2.2cqi, .8rem) clamp(.5rem, 3.2cqi, 1.1rem); text-align: center; background: color-mix(in srgb, var(--void) 74%, transparent); border: 1px solid var(--accent-line); border-radius: var(--radius); backdrop-filter: blur(6px); transition: border-color .3s; }
 .octa__now:hover { border-color: var(--accent); }
-/* VARIANTE « AU CENTRE » (?octa=centre, Eddy 13/09) — la discipline dans une
-   plaque OCTOGONALE posée sur le moyeu : la cage et l’aiguille tournent autour,
-   la pointe de l’aiguille dépasse. Taille = le moyeu mesuré (--octa-hub,
-   octagon.js). Le liseré est une seconde couche : une bordure serait coupée
-   aux angles par le clip-path. Spécificité 0,3,0 : elle passe devant la carte
-   « sous le dessin » du téléphone (home.css). */
-.octa.octa--centre .octa__now {
-  /* top: 50cqi = le centre du DESSIN (carré, aussi large que l’hôte), pas celui
-     de l’hôte, qui porte aussi « Il tourne » dessous sur téléphone */
-  position: absolute; left: 50%; top: 50cqi; transform: translate(-50%, -50%); margin: 0;
-  width: var(--octa-hub, 42%); max-width: none; aspect-ratio: 1; padding: 0 10%;
-  justify-content: center; gap: .3rem; border: 0; border-radius: 0; backdrop-filter: none; isolation: isolate;
-  background: var(--accent-line);
-  clip-path: polygon(29.3% 0, 70.7% 0, 100% 29.3%, 100% 70.7%, 70.7% 100%, 29.3% 100%, 0 70.7%, 0 29.3%);
-  transition: background .3s;
-}
-.octa.octa--centre .octa__now::before {
-  content: ""; position: absolute; inset: 1.5px; z-index: -1;
-  clip-path: polygon(29.3% 0, 70.7% 0, 100% 29.3%, 100% 70.7%, 70.7% 100%, 29.3% 100%, 0 70.7%, 0 29.3%);
-  background: color-mix(in srgb, var(--void) 90%, transparent);
-}
-.octa.octa--centre .octa__now:hover { background: var(--accent); }
 .octa__now-tag { font: 600 clamp(.5rem, 1.9cqi, .7rem)/1.1 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
 .octa__now-name { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; letter-spacing: -.01em; line-height: 1.05; font-size: clamp(.8rem, 4.4cqi, 1.7rem); color: var(--ink); }
 /* Le cartouche suit la taille de l’octogone (unités de conteneur) : il ne couvre plus le dessin sur un petit écran. */

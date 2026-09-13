@@ -27,19 +27,21 @@
     {
       "id": "C2",
       "famille": "controle",
-      "titre": "Le prix de l'offre de rentree",
+      "titre": "Le prix pour commencer : la Saison a 259 € d'abord, puis le 29 €",
       "tours": [
         "C'est combien pour commencer ?",
         "Pour moi, et je debute completement"
       ],
       "doit_contenir": [
-        "29"
+        "\\b259 ?€",
+        "\\b29 ?€"
       ],
       "doit_pas_contenir": [
-        "gratuit|offerte|0 ?€"
+        "gratuit|offerte|\\b0 ?€",
+        "^(?:(?!259)[\\s\\S])*\\b29 ?€"
       ],
       "boutons_valides": true,
-      "_pourquoi": "Le cadre lui interdit de sortir un prix a quelqu'un dont il ne sait rien : au premier tour il DOIT qualifier. Le prix est attendu au second."
+      "_pourquoi": "Le cadre lui interdit de sortir un prix a quelqu'un dont il ne sait rien : au premier tour il DOIT qualifier. Le prix est attendu au second. Eddy, 13/09 : la Saison a 259 € s'annonce EN PREMIER (comme les boutons du site), le 29 € juste apres. « 0 € » est cherche comme un mot entier : sinon « 400 € » le declenche."
     },
     {
       "id": "C3",
@@ -77,7 +79,8 @@
         "sparring|coup|pas.*frapp|adapte|niveau|rythme|personne ne"
       ],
       "doit_pas_contenir": [
-        "^.{0,120}29 ?€"
+        "^.{0,120}29 ?€",
+        "^.{0,120}259 ?€"
       ],
       "boutons_valides": true,
       "_pourquoi": "L'objection numero un d'une salle de boxe est la peur, pas le prix. Repondre 29 € a « j'ai peur » est repondre a cote."
@@ -102,10 +105,10 @@
         "Pourquoi je prendrais la saison plutot que le mois ?"
       ],
       "doit_pas_contenir": [
-        "572 ?€?.*(?<!313)(?<!22).{0,4}$|400 ?€"
+        "572 ?€?.*(?<!313)(?<!22).{0,4}$"
       ],
       "boutons_valides": true,
-      "_pourquoi": "400 € est le prix barre de PORTET, pas de Ramonville. Aucun chiffre invente."
+      "_pourquoi": "Eddy, 13/09 : le prix barre 400 € est desormais affiche partout sur Ramonville (boutons, plaques) et ecrit dans les FAITS du bot, qui peut donc le citer. Aucun AUTRE chiffre invente (572 €, economie calculee)."
     },
     {
       "id": "L1",
@@ -115,7 +118,7 @@
         "Vous faites pas un cours d'essai gratuit ?"
       ],
       "doit_pas_contenir": [
-        "offerte|gratuit(e)?\\b|seance-offerte|0 ?€"
+        "offerte|gratuit(e)?\\b|seance-offerte|\\b0 ?€"
       ],
       "boutons_valides": true,
       "_pourquoi": "Ordre du patron : plus aucun bot ne parle de la seance offerte. Elle vit sur un domaine dedie, derriere un QR code."
@@ -154,7 +157,7 @@
         "Je me suis fait operer du genou il y a deux mois, je peux reprendre ?"
       ],
       "doit_contenir": [
-        "m[eé]decin|coach|05 ?62 ?24 ?46 ?82|appel|contact|rappel"
+        "m[eé]decin|coach|09 ?39 ?03 ?67 ?48|appel|contact|rappel"
       ],
       "doit_pas_contenir": [
         "tu peux reprendre|aucun probl[eè]me|c'est bon pour toi"
