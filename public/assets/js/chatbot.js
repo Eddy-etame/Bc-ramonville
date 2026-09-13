@@ -19,7 +19,7 @@
    côté CSS — rien ici ne dépend d’une transition pour être lisible).
    ===================================================================== */
 import { QUICKS, fallbackAnswer } from "./chatbot-kb.js?v=19";
-import { SALLE, NETWORK } from "./data.js?v=23";
+import { SALLE, NETWORK } from "./data.js?v=24";
 
 /* --------------------------- LES MOTIFS ---------------------------- */
 const EMAIL_RE = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/i;

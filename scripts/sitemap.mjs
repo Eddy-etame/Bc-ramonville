@@ -136,6 +136,7 @@ const PAGES = [
   { chemin: "plannings/", priorite: "0.8", freq: "weekly", imgs: [I.planRent] },
   { chemin: "tarifs/", priorite: "0.8", freq: "monthly", imgs: [I.camp, I.plateau] },
   { chemin: "contact/", priorite: "0.8", freq: "monthly", imgs: [I.plateau] },
+  { chemin: "nos-clubs/", priorite: "0.6", freq: "monthly", imgs: [] },
   /* Les fiches destinees aux IA. Un robot ne les decouvre autrement que par
      robots.txt : les declarer ici les met au meme rang que les pages.
      `fichier: true` : ce ne sont pas des dossiers avec un index.html. */

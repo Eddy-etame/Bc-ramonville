@@ -22,7 +22,7 @@
        ni une requête de plus, elle arrive seulement à l’heure. -->
   <link rel="preload" href="/fonts/jetbrainsmono-var-latin.woff2?v=19" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="/assets/css/fonts.css?v=19" />
-  <link rel="stylesheet" href="/assets/css/base.css?v=24" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=25" />
   <link rel="stylesheet" href="/assets/css/activites.css?v=19" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="author" content="Boxing Center Ramonville" />
@@ -83,15 +83,18 @@
           },
           {
             "@type": "SportsActivityLocation",
-            "name": "Boxing Center Minimes"
+            "name": "Boxing Center Minimes",
+            "url": "https://boxe-toulouse.com/"
           },
           {
             "@type": "SportsActivityLocation",
-            "name": "Boxing Center États-Unis"
+            "name": "Boxing Center États-Unis",
+            "url": "https://clubmma.fr/"
           },
           {
             "@type": "SportsActivityLocation",
-            "name": "Boxing Center Saint-Cyprien"
+            "name": "Boxing Center Saint-Cyprien",
+            "url": "https://club-boxe-toulouse.com/"
           }
         ]
       },
@@ -605,14 +608,14 @@
       });
     })();
   </script>
-  <script is:inline type="module" src="/assets/js/site.js?v=24"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=25"></script>
   <script is:inline type="module" src="/assets/js/sky.js?v=20"></script>
-  <script is:inline type="module" src="/assets/js/page.js?v=24"></script>
+  <script is:inline type="module" src="/assets/js/page.js?v=25"></script>
 
   <!-- Enrichissement PROPRE à la page : le sommaire des 8 côtés + scrollspy.
        page.js a déjà rendu #famfilter et #discs (les fiches ancrées #<key>). -->
   <script is:inline type="module">
-    import { DISCIPLINES } from "/assets/js/data.js?v=23";
+    import { DISCIPLINES } from "/assets/js/data.js?v=24";
     const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
     const idx = document.getElementById("dindex");
     if (idx && DISCIPLINES) {

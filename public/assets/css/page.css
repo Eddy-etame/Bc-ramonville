@@ -52,7 +52,9 @@
      tableau ; svh tient compte de la barre d'adresse.
    · overscroll-behavior:contain — sans lui, un balayage sur cette zone
      faisait défiler le tableau ET la page. */
-.gridwrap { border: 1px solid var(--line); border-radius: var(--radius); overflow-x: auto; max-height: min(55svh, 520px); overscroll-behavior: contain; background: var(--paper-2); }
+.gridwrap { border: 1px solid var(--line); border-radius: var(--radius); overflow-x: auto; max-height: min(55svh, 520px); overscroll-behavior-x: contain; overscroll-behavior-y: auto; background: var(--paper-2); }
+/* au doigt, le tableau garde son balayage à lui ; à la molette, la page reprend au bord du tableau */
+@media (pointer: coarse) { .gridwrap { overscroll-behavior: contain; } }
 .grid { width: 100%; min-width: 720px; border-collapse: separate; border-spacing: 0; }
 .grid th, .grid td { border-bottom: 1px solid var(--line-soft); border-right: 1px solid var(--line-soft); padding: .6rem .7rem; text-align: left; vertical-align: top; }
 /* fond OPAQUE obligatoire : le corps défile dessous */
@@ -78,6 +80,14 @@
    la grille n'en signalait que deux. */
 .slot[data-fam="enfant"] { border-left: 2px solid var(--accent-line); }
 .grid td.empty { color: var(--muted); opacity: .4; font: 600 1.1rem/1 var(--f-mono); text-align: center; }
+/* MAINTENANT — le jour, le cours en cours, le suivant (page.js → marquerMaintenant) */
+.grid thead th.is-today { background: var(--accent); color: var(--void); }
+.slot.is-now { background: color-mix(in srgb, var(--accent) 24%, var(--paper-3)); border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent), 0 0 18px color-mix(in srgb, var(--accent) 40%, transparent); }
+.slot.is-dim.is-now b { color: var(--ink); font-weight: 600; }
+.slot.is-now::after, .slot.is-next::after { display: block; margin-top: .35rem; font: 600 var(--step--2)/1 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; }
+.slot.is-now::after { content: "En cours"; color: var(--accent); }
+.slot.is-next { border-style: dashed; border-color: var(--accent-line); }
+.slot.is-next::after { content: "À suivre"; color: var(--muted); }
 
 /* ---- LA LÉGENDE — la signalétique de la grille, enfin écrite ---- */
 .grid__legend { display: flex; flex-wrap: wrap; gap: .6rem 1.4rem; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--line-soft); }

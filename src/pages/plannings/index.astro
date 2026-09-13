@@ -22,8 +22,8 @@
        ni une requête de plus, elle arrive seulement à l’heure. -->
   <link rel="preload" href="/fonts/jetbrainsmono-var-latin.woff2?v=19" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="/assets/css/fonts.css?v=19" />
-  <link rel="stylesheet" href="/assets/css/base.css?v=24" />
-  <link rel="stylesheet" href="/assets/css/page.css?v=20" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=25" />
+  <link rel="stylesheet" href="/assets/css/page.css?v=21" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="author" content="Boxing Center Ramonville" />
   <meta name="geo.region" content="FR-31" />
@@ -91,15 +91,18 @@
           },
           {
             "@type": "SportsActivityLocation",
-            "name": "Boxing Center Minimes"
+            "name": "Boxing Center Minimes",
+            "url": "https://boxe-toulouse.com/"
           },
           {
             "@type": "SportsActivityLocation",
-            "name": "Boxing Center États-Unis"
+            "name": "Boxing Center États-Unis",
+            "url": "https://clubmma.fr/"
           },
           {
             "@type": "SportsActivityLocation",
-            "name": "Boxing Center Saint-Cyprien"
+            "name": "Boxing Center Saint-Cyprien",
+            "url": "https://club-boxe-toulouse.com/"
           }
         ]
       },
@@ -417,6 +420,8 @@
       <div class="wrap">
         <nav class="breadcrumb" aria-label="Fil d’ariane"><a href="/">Accueil</a> / <span>Planning</span></nav>
         <h1 class="display phero__title"><span class="reveal-mask"><span>Planning des cours</span></span><span class="reveal-mask"><span class="tint">à Ramonville.</span></span></h1>
+        <!-- l’heure de Paris et le cours du moment (page.js → pheroMeta) -->
+        <div class="phero__meta" id="phero-meta" aria-live="polite"></div>
       </div>
     </header>
 
@@ -434,7 +439,8 @@
         <p class="plan__note" id="plan-note">C’est la grille affichée en salle, recopiée ici. Clique un cours, tu tombes sur sa fiche. Une seule formalité : l’émargement GPS. Tu valides ta présence à l’accueil avant chaque cours. Et tu montes.</p>
         <div class="famfilter" id="plan-filter" role="group" aria-label="Filtrer par famille"></div>
         <p class="gridwrap__hint" aria-hidden="true">Fais glisser la grille →</p>
-        <div class="gridwrap">
+        <!-- data-lenis-prevent : la molette fait défiler la grille (Lenis l’avalait). -->
+        <div class="gridwrap" data-lenis-prevent>
           <table class="grid" id="grid" aria-label="Grille des cours de la semaine"></table>
         </div>
         <!-- la signalétique de la grille, enfin écrite (page.js → GRID_LEGEND) -->
@@ -533,8 +539,8 @@
       });
     })();
   </script>
-  <script is:inline type="module" src="/assets/js/site.js?v=24"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=25"></script>
   <script is:inline type="module" src="/assets/js/sky.js?v=20"></script>
-  <script is:inline type="module" src="/assets/js/page.js?v=24"></script>
+  <script is:inline type="module" src="/assets/js/page.js?v=25"></script>
 </body>
 </html>

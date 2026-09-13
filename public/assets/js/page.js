@@ -10,7 +10,7 @@ import {
   DAYS, SCHEDULE, FAMILLES, POSTERS, TARIFS, PROMOS, REVIEWS,
   GALLERY, PHOTO_CREDIT, FAQ, LINKS, DEHORS, GRID_LEGEND, COACHES, ARPENT,
   ENTREE, CARNET,
-} from "./data.js?v=23";
+} from "./data.js?v=24";
 import { lienDiscipline } from "./disciplines-liens.js?v=1";
 
 const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -33,18 +33,41 @@ const page = document.body.dataset.page;
 const two = (n) => String(n).padStart(2, "0");
 const toMin = (t) => { const m = /^(\d{1,2})h(\d{2})$/.exec(t); return m ? +m[1] * 60 + +m[2] : 0; };
 
-/* /plannings/ — ce qui se passe MAINTENANT, lu de SCHEDULE + l’heure réelle
-   de la salle (window.__SKY.now, fuseau Ramonville, pas celui du visiteur). */
+/* /plannings/ — ce qui se passe MAINTENANT, à l’heure de PARIS (fuseau de la
+   salle, lu par Intl : juste dès la première image, quel que soit le fuseau du
+   visiteur et sans attendre le réseau). La fin d’un cours : le « jusqu’à » de
+   son nom, sinon 60 min (la durée type, faute d’heure de fin au planning). */
+const TZ = "Europe/Paris";
+const PARTS = new Intl.DateTimeFormat("en-GB", { timeZone: TZ, weekday: "short", hour: "2-digit", minute: "2-digit", hourCycle: "h23" });
+const HEURE = new Intl.DateTimeFormat("fr-FR", { timeZone: TZ, hour: "2-digit", minute: "2-digit", hourCycle: "h23" });
+const DOW = { Mon: "Lun", Tue: "Mar", Wed: "Mer", Thu: "Jeu", Fri: "Ven", Sat: "Sam" };
+const OUVRE = 600, FERME = 1290; // 10h00 – 21h30, du lundi au samedi
+function parisNow(d = new Date()) {
+  const p = Object.fromEntries(PARTS.formatToParts(d).map((x) => [x.type, x.value]));
+  return { day: DOW[p.weekday] || null, mins: (+p.hour % 24) * 60 + +p.minute, texte: HEURE.format(d).replace(":", "h") };
+}
+const finDe = (s) => { const m = /jusqu.à (\d{1,2}h\d{2})/.exec(s.cours); return toMin(s.end || (m && m[1]) || "") || toMin(s.start) + 60; };
 function planningNow() {
-  const now = (window.__SKY?.now?.() || new Date());
-  const day = DAYS[now.getDay() - 1];           // getDay: 0=dim … 6=sam ; DAYS[0]="Lun"
-  if (!day) return { closed: true };            // dimanche : fermé, et on le dit
-  const mins = now.getHours() * 60 + now.getMinutes();
-  const today = SCHEDULE.filter((s) => s.day === day).sort((a, b) => toMin(a.start) - toMin(b.start));
-  // « en ce moment » = commencé depuis moins de 60 min (durée type d’un cours)
-  const live = today.find((s) => mins >= toMin(s.start) && mins < toMin(s.start) + 60);
-  const next = today.find((s) => toMin(s.start) > mins);
-  return { day, live, next, count: today.length };
+  const n = parisNow();
+  if (!n.day) return { ...n, closed: true, live: [] };
+  const today = SCHEDULE.filter((s) => s.day === n.day).sort((a, b) => toMin(a.start) - toMin(b.start));
+  return { ...n, live: today.filter((s) => n.mins >= toMin(s.start) && n.mins < finDe(s)), next: today.find((s) => toMin(s.start) > n.mins), count: today.length };
+}
+/* Le jour, le cours en cours, le suivant : posés sur la grille à chaque
+   reconstruction (filtre, onglet) et à chaque tic de l’horloge. */
+function marquerMaintenant() {
+  const grid = $("#grid"); if (!grid) return;
+  const p = planningNow();
+  grid.querySelectorAll(".is-now,.is-next,.is-today").forEach((el) => { el.classList.remove("is-now", "is-next", "is-today"); el.removeAttribute("aria-current"); });
+  if (p.closed) return;
+  const th = grid.querySelector(`thead th[data-day="${p.day}"]`);
+  th?.classList.add("is-today");
+  const at = (s) => grid.querySelector(`.slot[data-day="${s.day}"][data-start="${s.start}"]`);
+  p.live.forEach((s) => { const el = at(s); if (el) { el.classList.add("is-now"); el.setAttribute("aria-current", "time"); } });
+  if (p.next) SCHEDULE.filter((s) => s.day === p.day && s.start === p.next.start).forEach((s) => at(s)?.classList.add("is-next"));
+  /* Sur téléphone, la grille (720 px) n’affiche que deux jours : on l’ouvre sur AUJOURD’HUI, une fois. */
+  const wrap = grid.closest(".gridwrap");
+  if (th && wrap && !wrap.dataset.cale && wrap.scrollWidth > wrap.clientWidth) { wrap.scrollLeft = Math.max(0, th.offsetLeft - 64); wrap.dataset.cale = "1"; }
 }
 
 function pheroMeta() {
@@ -60,17 +83,24 @@ function pheroMeta() {
   if (page === "plannings") {
     const paint = () => {
       const p = planningNow();
-      if (p.closed) { box.innerHTML = chip("Dimanche — <b>la salle est fermée</b>") + chip("Lun–sam · 10h–21h30"); return; }
-      const head = p.live
-        ? chip(`En ce moment — <b>${p.live.cours}</b>`)
-        : p.next
-          ? chip(`Prochain cours — <b>${p.next.cours}</b> à ${p.next.start}`)
-          : chip("Plus de cours aujourd’hui — <b>accès libre</b> jusqu’à 21h30");
-      box.innerHTML = head + chip(`${p.count} cours aujourd’hui`) + chip(`${SCHEDULE.length} sur la semaine`);
+      const out = [chip(`Il est <b>${p.texte}</b> à Ramonville`)];
+      if (p.closed) out.push(chip("Dimanche — <b>la salle est fermée</b>"), chip("Lun–sam · 10h–21h30"));
+      else {
+        if (p.mins >= FERME) out.push(chip(`La salle est fermée — réouverture <b>${p.day === "Sam" ? "lundi" : "demain"} à 10h00</b>`));
+        else if (p.live.length) out.push(chip(`En ce moment — <b>${p.live.map((s) => s.cours).join(" · ")}</b>`));
+        else if (p.next) out.push(chip(`À suivre — <b>${p.next.cours}</b> à ${p.next.start}`));
+        else out.push(chip("Plus de cours aujourd’hui — <b>accès libre</b> jusqu’à 21h30"));
+        if (p.mins < OUVRE) out.push(chip("La salle ouvre à <b>10h00</b>"));
+        out.push(chip(`${p.count} cours aujourd’hui`));
+      }
+      box.innerHTML = out.join("");
+      marquerMaintenant();
     };
     paint();
-    window.addEventListener("sky:change", paint);   // l’heure de la salle vient d’arriver
-    setInterval(paint, 60 * 1000);
+    /* toutes les 30 s, calé sur l’horloge, et au retour sur l’onglet */
+    const suivante = () => setTimeout(() => { paint(); suivante(); }, 30000 - (Date.now() % 30000) + 50);
+    suivante();
+    document.addEventListener("visibilitychange", () => { if (!document.hidden) paint(); });
     return;
   }
 
@@ -636,19 +666,20 @@ function renderPlanning() {
   /* La rentrée : 23 cours sur 6 jours — une grille est le bon outil. */
   const buildGrid = () => {
     const times = [...new Set(SCHEDULE.map((s) => s.start))].sort();
-    const head = `<thead><tr><th>Heure</th>${DAYS.map((d) => `<th>${d}</th>`).join("")}</tr></thead>`;
+    const head = `<thead><tr><th>Heure</th>${DAYS.map((d) => `<th data-day="${d}">${d}</th>`).join("")}</tr></thead>`;
     const body = times.map((t) => {
       const cells = DAYS.map((day) => {
         const slots = SCHEDULE.filter((s) => s.start === t && s.day === day);
         if (!slots.length) return `<td class="empty" aria-hidden="true">·</td>`;
         return `<td>${slots.map((s) => `
-          <a class="slot ${fam !== "all" && s.fam !== fam ? "is-dim" : ""}" data-fam="${s.fam}" href="/activites/#${s.disc}">
+          <a class="slot ${fam !== "all" && s.fam !== fam ? "is-dim" : ""}" data-fam="${s.fam}" data-day="${s.day}" data-start="${s.start}" href="/activites/#${s.disc}">
             <b>${s.cours}</b>
           </a>`).join("")}</td>`;
       }).join("");
       return `<tr><td class="time">${t}</td>${cells}</tr>`;
     }).join("");
     grid.innerHTML = head + `<tbody>${body}</tbody>`;
+    marquerMaintenant();
   };
 
   /* L’ÉTÉ N’EST PAS UNE GRILLE. Deux cours, tous les deux le lundi : dans un

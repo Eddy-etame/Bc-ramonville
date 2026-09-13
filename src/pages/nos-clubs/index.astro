@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nos clubs : les 5 salles Boxing Center | Ramonville</title>
+  <meta name="description" content="Les 5 clubs Boxing Center autour de Toulouse : Ramonville, Portet-sur-Garonne, Minimes, Saint-Cyprien et États-Unis. L’offre Saison ouvre les cinq." />
+
+  <!-- Préconnexions — avant toute feuille de style -->
+  <link rel="preconnect" href="https://api.open-meteo.com" crossorigin />
+
+  <!-- Polices AUTO-HÉBERGÉES — mêmes familles/graisses que l’original Google Fonts -->
+  <link rel="preload" href="/fonts/chakrapetch-700-latin.woff2?v=19" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/manrope-var-latin.woff2?v=19" as="font" type="font/woff2" crossorigin />
+  <!-- JetBrains Mono manquait à l’appel, et c’est LUI qui décalait la page.
+       Les libellés mono sont partout au-dessus de la ligne de flottaison —
+       fil d’ariane, sur-titres, boutons, les chips du hero. La police
+       arrivait après le premier rendu : tout ce petit monde changeait de
+       largeur d’un coup et poussait la première section vers le bas
+       (0,621 de décalage mesuré sur /tarifs/). Elle était de toute façon
+       téléchargée sur les huit pages : la précharger ne coûte pas un octet
+       ni une requête de plus, elle arrive seulement à l’heure. -->
+  <link rel="preload" href="/fonts/jetbrainsmono-var-latin.woff2?v=19" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=19" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=25" />
+  <link rel="stylesheet" href="/assets/css/la-salle.css?v=20" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="author" content="Boxing Center Ramonville" />
+  <meta name="geo.region" content="FR-31" />
+  <meta name="geo.placename" content="Ramonville-Saint-Agne — Toulouse" />
+  <meta name="geo.position" content="43.546;1.474" />
+  <meta name="ICBM" content="43.546, 1.474" />
+  <link rel="canonical" href="https://mmatoulouse.com/nos-clubs/" />
+  <meta name="theme-color" content="#070a12" />
+  <link rel="icon" href="/favicon-16.png?i=3" type="image/png" sizes="16x16" />
+  <link rel="icon" href="/favicon.png?i=3" type="image/png" sizes="32x32" />
+  <link rel="icon" href="/favicon-48.png?i=3" type="image/png" sizes="48x48" />
+  <link rel="icon" href="/favicon-96.png?i=3" type="image/png" sizes="96x96" />
+  <link rel="shortcut icon" href="/favicon.png?i=3" />
+  <link rel="icon" href="/favicon-192.png?i=3" type="image/png" sizes="192x192" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png?i=3" sizes="180x180" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:site_name" content="Boxing Center Ramonville" />
+  <meta property="og:title" content="Nos clubs : les 5 salles Boxing Center | Ramonville" />
+  <meta property="og:description" content="Les 5 clubs Boxing Center autour de Toulouse : Ramonville, Portet-sur-Garonne, Minimes, Saint-Cyprien et États-Unis. L’offre Saison ouvre les cinq." />
+  <meta property="og:url" content="https://mmatoulouse.com/nos-clubs/" />
+  <meta property="og:image" content="https://mmatoulouse.com/assets/img/ram/og/nos-clubs.jpg?v=1" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:alt" content="Les cinq clubs Boxing Center autour de Toulouse" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Nos clubs : les 5 salles Boxing Center | Ramonville" />
+  <meta name="twitter:description" content="Les 5 clubs Boxing Center autour de Toulouse : Ramonville, Portet-sur-Garonne, Minimes, Saint-Cyprien et États-Unis. L’offre Saison ouvre les cinq." />
+  <meta name="twitter:image" content="https://mmatoulouse.com/assets/img/ram/og/nos-clubs.jpg?v=1" />
+  <meta name="twitter:image:alt" content="Les cinq clubs Boxing Center autour de Toulouse" />
+
+
+  <!-- Référencement local — graphe unifié (salle, réseau, site, page) -->
+
+  <script is:inline>
+    document.documentElement.classList.add('fx');
+  </script>
+  <!-- LES TROIS LIBS SONT MAINTENANT CHEZ NOUS (/assets/vendor/).
+       Elles arrivaient de cdn.jsdelivr.net : un second domaine à résoudre, une
+       seconde poignée de main TLS, avant la moindre ligne d’animation — et ça
+       sur les huit pages. Mesure brotli en main, le CDN les servait gzippées
+       (51,2 ko) ; servies d’ici elles pèsent 43,3 ko, se mettent en cache un an
+       comme tout /assets/, et surtout script-src a pu se refermer sur 'self'
+       dans vercel.json. `defer` inchangé : elles ne retiennent pas le rendu et
+       s’exécutent dans l’ordre du document, donc avant les modules du pied. -->
+  <script is:inline defer src="/assets/vendor/gsap.min.js?v=19"></script>
+  <script is:inline defer src="/assets/vendor/ScrollTrigger.min.js?v=19"></script>
+  <script is:inline defer src="/assets/vendor/lenis.min.js?v=19"></script>
+  <script is:inline type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://mmatoulouse.com/nos-clubs/#webpage","url":"https://mmatoulouse.com/nos-clubs/","name":"Nos clubs : les 5 salles Boxing Center | Ramonville","description":"Les 5 clubs Boxing Center autour de Toulouse : Ramonville, Portet-sur-Garonne, Minimes, Saint-Cyprien et États-Unis. L’offre Saison ouvre les cinq.","inLanguage":"fr-FR","isPartOf":{"@id":"https://mmatoulouse.com/#website"},"breadcrumb":{"@id":"https://mmatoulouse.com/nos-clubs/#breadcrumb"},"mainEntity":{"@id":"https://mmatoulouse.com/nos-clubs/#reseau"},"primaryImageOfPage":{"@type":"ImageObject","url":"https://mmatoulouse.com/assets/img/ram/og/nos-clubs.jpg","width":1200,"height":630}},{"@type":"BreadcrumbList","@id":"https://mmatoulouse.com/nos-clubs/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://mmatoulouse.com/"},{"@type":"ListItem","position":2,"name":"Nos clubs","item":"https://mmatoulouse.com/nos-clubs/"}]},{"@type":"ItemList","@id":"https://mmatoulouse.com/nos-clubs/#reseau","name":"Les 5 clubs Boxing Center autour de Toulouse","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"SportsActivityLocation","name":"Boxing Center Ramonville","url":"https://mmatoulouse.com/","address":"33 rue des Ormes, 31520 Ramonville-Saint-Agne"}},{"@type":"ListItem","position":2,"item":{"@type":"SportsActivityLocation","name":"Boxing Center Portet-sur-Garonne","url":"https://boxing-center-portet.fr/","address":"61 route d’Espagne, 31120 Portet-sur-Garonne"}},{"@type":"ListItem","position":3,"item":{"@type":"SportsActivityLocation","name":"Boxing Center Minimes","url":"https://boxe-toulouse.com/","address":"12 rue de Fenouillet, 31200 Toulouse"}},{"@type":"ListItem","position":4,"item":{"@type":"SportsActivityLocation","name":"Boxing Center États-Unis","url":"https://clubmma.fr/","address":"388 avenue des États-Unis, 31200 Toulouse"}},{"@type":"ListItem","position":5,"item":{"@type":"SportsActivityLocation","name":"Boxing Center Saint-Cyprien","url":"https://club-boxe-toulouse.com/","address":"11 rue Sainte-Lucie, 31300 Toulouse"}}]}]}</script>
+</head>
+
+<body data-page="nos-clubs">
+  <a class="sr-only" href="#main">Aller au contenu</a>
+  <div id="nav"></div>
+  <div id="drawer"></div>
+
+  <main id="main">
+    <header class="phero" aria-label="Nos clubs">
+      <div class="sky" aria-hidden="true"><canvas class="sky__stars"></canvas><div class="sky__haze"></div><div class="sky__moon"></div></div>
+      <div class="wrap">
+        <nav class="breadcrumb" aria-label="Fil d’ariane"><a href="/">Accueil</a> / <span>Nos clubs</span></nav>
+        <h1 class="display phero__title"><span class="reveal-mask"><span>Nos clubs</span></span><span class="reveal-mask"><span class="tint">autour de Toulouse.</span></span></h1>
+      </div>
+    </header>
+
+    <section class="section" aria-labelledby="t-reseau">
+      <div class="wrap">
+        <div class="shead" data-reveal><span class="eyebrow">Le réseau Boxing Center</span><h2 class="display" id="t-reseau">Cinq clubs, un seul abonnement.</h2></div>
+        <p class="reseau__lead" data-reveal>L’offre Saison donne l’accès libre aux cinq clubs du réseau : tu t’entraînes à Ramonville, et tu peux pousser la porte des quatre autres.</p>
+        <div class="network network--cinq" data-reveal-group>
+          <article class="net net--ici" data-reveal><span class="net__tag">Vous êtes ici</span><h3>Boxing Center Ramonville</h3><p>Cage 7 m · 300 m² dehors couverts</p><p class="net__adr">33 rue des Ormes, 31520 Ramonville-Saint-Agne</p></article>
+          <a class="net" href="https://boxing-center-portet.fr/" target="_blank" rel="noopener" data-reveal><span class="net__tag">Toulouse sud</span><h3>Boxing Center Portet-sur-Garonne</h3><p>600 m² · ring de boxe · cage MMA</p><p class="net__adr">61 route d’Espagne, 31120 Portet-sur-Garonne</p><span class="net__go">Voir le site du club</span></a>
+          <a class="net" href="https://boxe-toulouse.com/" target="_blank" rel="noopener" data-reveal><span class="net__tag">La première salle</span><h3>Boxing Center Minimes</h3><p>Salle historique · 3 rings · l’école dès 3 ans</p><p class="net__adr">12 rue de Fenouillet, 31200 Toulouse</p><span class="net__go">Voir le site du club</span></a>
+          <a class="net" href="https://clubmma.fr/" target="_blank" rel="noopener" data-reveal><span class="net__tag">La plus grande</span><h3>Boxing Center États-Unis</h3><p>La plus grande salle de France dédiée aux sports de combat</p><p class="net__adr">388 avenue des États-Unis, 31200 Toulouse</p><span class="net__go">Voir le site du club</span></a>
+          <a class="net" href="https://club-boxe-toulouse.com/" target="_blank" rel="noopener" data-reveal><span class="net__tag">La rive gauche</span><h3>Boxing Center Saint-Cyprien</h3><p>Ring de boxe · musculation · centre-ville</p><p class="net__adr">11 rue Sainte-Lucie, 31300 Toulouse</p><span class="net__go">Voir le site du club</span></a>
+        </div>
+        <div class="reseau__cta" data-reveal>
+          <a class="btn btn--primary" href="/tarifs/#tarif-offre-saison"><span>Voir l’Offre Saison</span></a>
+          <a class="btn btn--ghost" href="https://boxingcenter.fr/" target="_blank" rel="noopener"><span>Le site du groupe ↗</span></a>
+          <a class="btn btn--ghost" href="https://boutique.boxingcenter.fr/" target="_blank" rel="noopener"><span>La boutique ↗</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="footer"></div>
+
+  <a class="chatbot" href="tel:+33562244682" aria-label="Une question ? Appelle la salle Boxing Center Ramonville">
+    <span class="chatbot__icon" aria-hidden="true"><svg width="36" height="36" viewBox="0 0 24 24" fill="none"><mask id="bc-m-ramonville" maskUnits="userSpaceOnUse"><rect width="24" height="24" fill="#fff"/><path d="M7.4 8.9 11.0 9.9 11.0 11.7 7.4 10.7Z" fill="#000"/><path d="M16.6 8.9 13.0 9.9 13.0 11.7 16.6 10.7Z" fill="#000"/><rect x="10.1" y="14.8" width="3.8" height="1.4" rx=".65" fill="#000"/></mask><path d="M4.4 12.9a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Z" fill="currentColor"/><path d="M19.6 12.9a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Z" fill="currentColor"/><path d="M8.1 1.2h7.8l4.5 4.5v8.4l-2.7 2.7.9 3.4a.55.55 0 0 1-.8.63L14 18.6H8.1L3.6 14.1V5.7Z" fill="currentColor" mask="url(#bc-m-ramonville)"/></svg></span>
+    <span class="chatbot__label">Une question&nbsp;? Appelle la salle</span>
+  </a>
+
+  <!-- ===================== L’ASSISTANT, À LA DEMANDE =====================
+       L’assistant ne coûte plus rien tant qu’on ne lui parle pas. Il pesait
+       17,5 ko de module + 7,6 ko de feuille BLOQUANT LE RENDU, sur les huit
+       pages, pour un panneau que la plupart des visiteurs n’ouvriront jamais.
+       Rien n’est retiré à l’écran : la pastille est peinte par base.css comme
+       avant, et chatbot.css ne décrit que le panneau — qui n’existe pas encore.
+       On charge au premier signe d’intention (survol, doigt, tabulation), donc
+       avant le clic dans la quasi-totalité des cas ; le clic reste le filet.
+       Sans JavaScript, la pastille est toujours le lien tel: d’origine. -->
+  <script is:inline>
+    (function () {
+      var pastille = document.querySelector("a.chatbot");
+      if (!pastille) return;
+      var venue = null;
+      function venir() {
+        if (venue) return venue;
+        var f = document.createElement("link");
+        f.rel = "stylesheet"; f.href = "/assets/css/chatbot.css?v=19";
+        document.head.appendChild(f);
+        venue = import("/assets/js/chatbot.js?v=20").catch(function () { venue = null; });
+        return venue;
+      }
+      ["pointerenter", "touchstart", "focus"].forEach(function (e) {
+        pastille.addEventListener(e, venir, { once: true, passive: true });
+      });
+      pastille.addEventListener("click", function (e) {
+        /* aria-expanded n’est posé que par chatbot.js : sa présence signifie
+           que le vrai widget a pris la main et gère déjà ce clic. */
+        if (pastille.hasAttribute("aria-expanded")) return;
+        e.preventDefault();
+        var p = venir();
+        if (p) p.then(function () { pastille.click(); });
+        else window.location.href = pastille.href;   // le module n’est pas venu : on appelle la salle
+      });
+    })();
+  </script>
+  <script is:inline type="module" src="/assets/js/site.js?v=25"></script>
+  <script is:inline type="module" src="/assets/js/sky.js?v=20"></script>
+  <script is:inline type="module" src="/assets/js/page.js?v=25"></script>
+</body>
+</html>

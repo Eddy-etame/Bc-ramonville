@@ -9,7 +9,7 @@
    figé, il n’y a plus rien à basculer.
    Aucun chrome copié de Saint-Cyprien.
    ===================================================================== */
-import { NAV, LINKS, SALLE, SEASON_LABEL, NETWORK } from "./data.js?v=23";
+import { NAV, LINKS, SALLE, SEASON_LABEL, NETWORK } from "./data.js?v=24";
 import { PAGES_DISCIPLINES } from "./disciplines-liens.js?v=1";
 
 import { initPlaces } from "./places.js?v=19";
@@ -113,14 +113,11 @@ function mountNav() {
         <span class="nav__salle">Ramonville</span>
       </a>
       <div class="nav__links">${links}</div>
-      <!-- LE GROUPE ↗ ET BOUTIQUE ↗ NE SONT PLUS DANS LA BARRE — ils n’ont
-           PAS quitté le site. Ils vivent dans le menu (.menu__ext, juste en
-           dessous) ET dans le pied de page, qui est écrit EN DUR dans le HTML
-           livré par scripts/maillage.mjs : le maillage de marque reste donc
-           lisible par un robot qui n’exécute pas une ligne de JavaScript,
-           exactement comme avant. Ce qui change, c’est qu’ils ne se battent
-           plus avec huit entrées de menu pour trois centimètres de barre. -->
+      <!-- LE GROUPE ↗ ET BOUTIQUE ↗, DANS LA BARRE (Eddy, 13/09 : « comme les autres
+           sites »). Affichés à partir de 1480 px, comme Minimes et Saint-Cyprien :
+           sous ce seuil, le menu (.menu__ext) et le pied de page les portent. -->
       <div class="nav__right">
+        <div class="nav__ext">${lienExt(LINKS.groupe, "Le groupe", "Boxing Center — le site du groupe")}${lienExt(LINKS.boutique, "Boutique", "La boutique Boxing Center")}</div>
         <a class="btn btn--primary nav__cta" data-magnetic href="${LINKS.rentree}"><span>Offre · 29 € / 4 sem.</span></a>
         <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
@@ -235,6 +232,7 @@ function mountFooter() {
           <div class="footer__col">
             <h4>Les salles sœurs</h4>
             ${SOEURS.map((s) => lienExt(s.url, s.name, `${s.name} — ${s.feat}`)).join("")}
+            <a href="/nos-clubs/">Nos 5 clubs</a>
           </div>
         </div>
         <!-- Le maillage inter-salles, en clair : le réseau existait en

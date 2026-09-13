@@ -81,6 +81,7 @@ const MAILLAGE =
   `</div>` +
   `<div class="footer__col"><h4>Les salles sœurs</h4>` +
   soeurs.map((s) => lien(s.url, s.name, `${s.name} — ${s.feat}`)).join("") +
+  `<a href="/nos-clubs/">Nos 5 clubs</a>` +
   `</div>` +
   `<div class="footer__col"><h4>Les disciplines</h4>` + LIENS_DISCIPLINES + `</div>` +
   `<div class="footer__col"><h4>Le site</h4>` +
@@ -104,6 +105,8 @@ const MAILLAGE =
 const NAVIGATION =
   `<nav class="nav__statique" aria-label="Navigation du site"><div class="wrap">` +
   (NAV || []).map((n) => `<a href="${attr(n.href)}">${attr(n.label)}</a>`).join("") +
+  lien(LINKS.groupe, "Le groupe", "Boxing Center — le site du groupe") +
+  lien(LINKS.boutique, "Boutique", "La boutique Boxing Center") +
   `</div></nav>`;
 
 const CIBLE_NAV = '<div id="nav"></div>';

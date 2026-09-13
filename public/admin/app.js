@@ -92,7 +92,7 @@ async function entrer() {
 /* ------------------------- CHARGEMENT DES DONNÉES ----------------- */
 async function chargerBase() {
   try {
-    app.base = await import("/assets/js/data.js?v=23");
+    app.base = await import("/assets/js/data.js?v=24");
   } catch {
     app.base = null;
   }

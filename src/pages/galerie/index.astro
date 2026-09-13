@@ -29,7 +29,7 @@
        double le poids. Le 1 920 reste chargé — au clic, par la visionneuse. -->
   <link rel="preload" as="image" href="/assets/img/ram/hero-1200.webp" fetchpriority="high" />
   <link rel="stylesheet" href="/assets/css/fonts.css?v=19" />
-  <link rel="stylesheet" href="/assets/css/base.css?v=24" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=25" />
   <link rel="stylesheet" href="/assets/css/galerie.css?v=20" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="author" content="Boxing Center Ramonville" />
@@ -90,15 +90,18 @@
           },
           {
             "@type": "SportsActivityLocation",
-            "name": "Boxing Center Minimes"
+            "name": "Boxing Center Minimes",
+            "url": "https://boxe-toulouse.com/"
           },
           {
             "@type": "SportsActivityLocation",
-            "name": "Boxing Center États-Unis"
+            "name": "Boxing Center États-Unis",
+            "url": "https://clubmma.fr/"
           },
           {
             "@type": "SportsActivityLocation",
-            "name": "Boxing Center Saint-Cyprien"
+            "name": "Boxing Center Saint-Cyprien",
+            "url": "https://club-boxe-toulouse.com/"
           }
         ]
       },
@@ -692,16 +695,16 @@
       });
     })();
   </script>
-  <script is:inline type="module" src="/assets/js/site.js?v=24"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=25"></script>
   <script is:inline type="module" src="/assets/js/sky.js?v=20"></script>
-  <script is:inline type="module" src="/assets/js/page.js?v=24"></script>
+  <script is:inline type="module" src="/assets/js/page.js?v=25"></script>
 
   <!-- Enrichissement PROPRE à la page : la bande de conditions au-dessus du
        plateau (ciel réel), le sommaire du carnet et la visionneuse plein
        cadre. page.js a déjà rendu #gallery (légendes par zone + scramble),
        #carnet-usage, #carnet-methode et #carnet-renvoi. -->
   <script is:inline type="module">
-    import { GALLERY } from "/assets/js/data.js?v=23";
+    import { GALLERY } from "/assets/js/data.js?v=24";
     const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
     const root = document.documentElement;
 

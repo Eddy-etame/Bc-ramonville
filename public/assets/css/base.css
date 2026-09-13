@@ -293,6 +293,11 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
    à la navigation de la salle. Le picto de lien externe reste ici : il
    prévient qu'on change de site, c'est une politesse pas une décoration. */
 .ext { flex: 0 0 auto; opacity: .75; }
+/* Le groupe ↗ et Boutique ↗ dans la barre, à partir de 1480 px (place mesurée : 406 px libres). */
+.nav__ext { display: none; align-items: center; gap: 1.1rem; margin-right: .2rem; }
+.nav__ext a { display: inline-flex; align-items: center; gap: .35ch; min-height: 44px; font: 600 var(--step--1)/1 var(--f-mono); letter-spacing: .04em; text-transform: uppercase; white-space: nowrap; color: var(--ink-soft); transition: color .3s; }
+.nav__ext a:hover { color: var(--accent); }
+@media (min-width: 1480px){ .nav__ext { display: flex; } }
 
 .menu__ext { display: flex; gap: 1.4rem; flex-wrap: wrap; }
 .menu__ext a { display: inline-flex; align-items: center; gap: .35ch; }

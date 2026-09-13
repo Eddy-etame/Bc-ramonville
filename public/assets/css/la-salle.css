@@ -144,3 +144,16 @@
   .net.is-inview, .station.is-inview, .value.is-inview, .floor.is-inview { transform: translateY(-4px); border-color: var(--accent-line); }
 }
 @media (max-width: 820px) { .station__media { min-height: 200px; } .practical { grid-template-columns: 1fr; } }
+
+/* « Nos clubs » : Ramonville (ici) sur toute la rangée, les quatre autres en rangée pleine. */
+.network--cinq { grid-template-columns: 1fr; }
+@media (min-width: 680px){ .network--cinq { grid-template-columns: repeat(2,1fr); } }
+@media (min-width: 1000px){ .network--cinq { grid-template-columns: repeat(4,1fr); } }
+.network--cinq > .net--ici { grid-column: 1 / -1; }
+.net--ici { border-color: var(--accent-line); background: color-mix(in srgb, var(--accent) 8%, var(--paper-2)); }
+.net--ici::after { content: none; }
+.net--ici:hover { transform: none; }
+.net__adr { font: 500 var(--step--2)/1.4 var(--f-mono); letter-spacing: .03em; color: var(--ink-soft); }
+.net__go { font: 600 var(--step--2)/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-top: .4rem; }
+.reseau__lead { max-width: 62ch; color: var(--ink-soft); margin: 0 0 clamp(1.4rem,3vw,2rem); }
+.reseau__cta { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: clamp(1.6rem,3vw,2.4rem); }
