@@ -99,7 +99,7 @@ const RULES = [
   [/enfant|gamin|b[ée]b[ée]|baby|\bados?\b|fils|fille|[ée]cole|[ée]ducative/i, 8],   // l’âge seul est traité par reponseAge (≤ 16 ans) : « j’ai 25 ans » n’est pas un enfant
   [/promo|offres? sp[ée]ciale|bon plan|r[ée]duc/i, 11],
   [/octogone|cage|mma|grappling|sol|soumission/i, 2],
-  [/essai|d[ée]couvr|tester|premi[èe]re|essayer|10\s?€|d[ée]but/i, 3],
+  [/essai|d[ée]couvr|tester|premi[èe]re|essayer|10\s?€/i, 3],   // pas « débute » : cette réponse donne l’essai à 10 €, la dernière carte — un débutant n’y va pas d’entrée
   [/tarif|prix|co[ûu]te|combien|abonn|duo|saison|mensuel|annuel/i, 4],
   [/horaire|ouvert|ferm|heure|dimanche|[ée]margement/i, 5],
   [/adresse|o[ùu]\b|situ|acc[èe]s|m[ée]tro|bus|parking|venir|plan|rue|rocade/i, 6],
