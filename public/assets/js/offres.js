@@ -116,7 +116,20 @@ function monterFlotte() {
     return false;
   };
   let image = 0;
-  const maj = () => { image = 0; a.classList.toggle("is-avant", avant()); };
+  /* SUR ORDINATEUR, ELLE S’ÉCARTE DE CE QUI SE CLIQUE (17/09) : posée sur une
+     ligne de FAQ, un champ de formulaire ou la grille du planning, elle en
+     couvrait le début (vu à 1440 px). Jamais devant du simple texte : elle
+     reste la carte qui ne part pas. La boîte testée est celle de la mise en
+     page (offset…), pas celle du rendu : l’état caché décale la carte de
+     14 px, et tester ce rectangle-là la ferait clignoter à la frontière. */
+  const CLIQUABLE = "summary, details, form, input, textarea, select, .gridwrap";
+  const couvre = () => {
+    if (!bureau.matches) return false;
+    const x0 = a.offsetLeft, y0 = a.offsetTop, w = a.offsetWidth, h = a.offsetHeight;
+    const pts = [[x0 + w / 2, y0 + h / 2], [x0 + w - 6, y0 + 6], [x0 + w - 6, y0 + h - 6]];
+    return pts.some(([x, y]) => document.elementsFromPoint(x, y).some((el) => el !== a && !a.contains(el) && el.closest(CLIQUABLE)));
+  };
+  const maj = () => { image = 0; a.classList.toggle("is-avant", avant() || couvre()); };
   const planifier = () => { if (!image) image = requestAnimationFrame(maj); };
   a.classList.toggle("is-avant", avant());   // posée AVANT l’insertion : aucun éclair au chargement
   document.body.appendChild(a);

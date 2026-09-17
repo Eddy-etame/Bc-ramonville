@@ -197,7 +197,7 @@ function mountNav() {
 
 /* --------------------- FOOTER — la fiche de terrain ---------------- */
 function mountFooter() {
-  const cols = [{ h: "La salle", links: NAV.slice(1, 6) }, { h: "Les disciplines", links: PAGES_DISCIPLINES.map((p) => ({ href: p.href, label: p.nom })) }];
+  const cols = [{ h: "La salle", links: [...NAV.slice(1, 6), { href: "/club-de-boxe-ramonville/", label: "Le club, son histoire" }] }, { h: "Les disciplines", links: PAGES_DISCIPLINES.map((p) => ({ href: p.href, label: p.nom })) }];
   const fields = [
     { k: "Établissement", v: "Boxing Center — Ramonville", wide: true },
     { k: "Extérieur", v: "300 m² couverts · cage de 7 m" },

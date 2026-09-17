@@ -53,7 +53,7 @@ const nomDe = (n) => `Boxing Center ${n.name}`;
 const siteDe = (n) => (n.self ? `${BASE}/` : n.url);
 
 const carte = (n) => n.self
-  ? `<article class="net net--ici" data-reveal><span class="net__tag">Vous êtes ici</span><h3>${e(nomDe(n))}</h3><p>${e(n.feat)}</p><p class="net__adr">${e(n.adresse || "")}</p></article>`
+  ? `<article class="net net--ici" data-reveal><span class="net__tag">Vous êtes ici</span><h3>${e(nomDe(n))}</h3><p>${e(n.feat)}</p><p class="net__adr">${e(n.adresse || "")}</p><a class="net__go" href="/club-de-boxe-ramonville/">L’histoire du club</a></article>`
   : `<a class="net" href="${e(n.url)}" target="_blank" rel="noopener" data-reveal><span class="net__tag">${e(n.tag)}</span><h3>${e(nomDe(n))}</h3><p>${e(n.feat)}</p><p class="net__adr">${e(n.adresse || "")}</p><span class="net__go">Voir le site du club</span></a>`;
 
 const ld = {

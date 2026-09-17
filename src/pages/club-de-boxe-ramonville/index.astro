@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Club de boxe à Ramonville : le Boxing Center depuis 2019</title>
+  <meta name="description" content="Le club de boxe de Ramonville-Saint-Agne, ouvert en septembre 2019 au terminus du métro B : le plateau dehors, l’octogone de 7 m, huit disciplines, cinq coachs. Son histoire, ses cours, ses tarifs." />
+
+  <!-- Préconnexions — avant toute feuille de style -->
+  <link rel="preconnect" href="https://api.open-meteo.com" crossorigin />
+
+  <!-- Polices AUTO-HÉBERGÉES — mêmes familles/graisses que l’original Google Fonts -->
+  <link rel="preload" href="/fonts/chakrapetch-700-latin.woff2?v=19" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/manrope-var-latin.woff2?v=19" as="font" type="font/woff2" crossorigin />
+  <!-- JetBrains Mono manquait à l’appel, et c’est LUI qui décalait la page.
+       Les libellés mono sont partout au-dessus de la ligne de flottaison —
+       fil d’ariane, sur-titres, boutons, les chips du hero. La police
+       arrivait après le premier rendu : tout ce petit monde changeait de
+       largeur d’un coup et poussait la première section vers le bas
+       (0,621 de décalage mesuré sur /tarifs/). Elle était de toute façon
+       téléchargée sur les huit pages : la précharger ne coûte pas un octet
+       ni une requête de plus, elle arrive seulement à l’heure. -->
+  <link rel="preload" href="/fonts/jetbrainsmono-var-latin.woff2?v=19" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=19" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=26" />
+  <link rel="stylesheet" href="/assets/css/discipline.css?v=3" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="author" content="Boxing Center Ramonville" />
+  <meta name="geo.region" content="FR-31" />
+  <meta name="geo.placename" content="Ramonville-Saint-Agne — Toulouse" />
+  <meta name="geo.position" content="43.546;1.474" />
+  <meta name="ICBM" content="43.546, 1.474" />
+  <link rel="canonical" href="https://mmatoulouse.com/club-de-boxe-ramonville/" />
+  <meta name="theme-color" content="#070a12" />
+  <link rel="icon" href="/favicon-16.png?i=3" type="image/png" sizes="16x16" />
+  <link rel="icon" href="/favicon.png?i=3" type="image/png" sizes="32x32" />
+  <link rel="icon" href="/favicon-48.png?i=3" type="image/png" sizes="48x48" />
+  <link rel="icon" href="/favicon-96.png?i=3" type="image/png" sizes="96x96" />
+  <link rel="shortcut icon" href="/favicon.png?i=3" />
+  <link rel="icon" href="/favicon-192.png?i=3" type="image/png" sizes="192x192" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png?i=3" sizes="180x180" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta property="og:type" content="article" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:site_name" content="Boxing Center Ramonville" />
+  <meta property="og:title" content="Club de boxe à Ramonville : le Boxing Center depuis 2019" />
+  <meta property="og:description" content="Le club de boxe de Ramonville-Saint-Agne, ouvert en septembre 2019 au terminus du métro B : le plateau dehors, l’octogone de 7 m, huit disciplines, cinq coachs. Son histoire, ses cours, ses tarifs." />
+  <meta property="og:url" content="https://mmatoulouse.com/club-de-boxe-ramonville/" />
+  <meta property="og:image" content="https://mmatoulouse.com/assets/img/ram/og/club-de-boxe-ramonville.jpg?v=1" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:alt" content="Le ring et la fresque murale du club de boxe de Ramonville" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Club de boxe à Ramonville : le Boxing Center depuis 2019" />
+  <meta name="twitter:description" content="Le club de boxe de Ramonville-Saint-Agne, ouvert en septembre 2019 au terminus du métro B : le plateau dehors, l’octogone de 7 m, huit disciplines, cinq coachs. Son histoire, ses cours, ses tarifs." />
+  <meta name="twitter:image" content="https://mmatoulouse.com/assets/img/ram/og/club-de-boxe-ramonville.jpg?v=1" />
+  <meta name="twitter:image:alt" content="Le ring et la fresque murale du club de boxe de Ramonville" />
+
+
+  <!-- Référencement local — graphe unifié (salle, réseau, site, page) -->
+
+  <script is:inline>
+    document.documentElement.classList.add('fx');
+  </script>
+  <!-- LES TROIS LIBS SONT MAINTENANT CHEZ NOUS (/assets/vendor/).
+       Elles arrivaient de cdn.jsdelivr.net : un second domaine à résoudre, une
+       seconde poignée de main TLS, avant la moindre ligne d’animation — et ça
+       sur les huit pages. Mesure brotli en main, le CDN les servait gzippées
+       (51,2 ko) ; servies d’ici elles pèsent 43,3 ko, se mettent en cache un an
+       comme tout /assets/, et surtout script-src a pu se refermer sur 'self'
+       dans vercel.json. `defer` inchangé : elles ne retiennent pas le rendu et
+       s’exécutent dans l’ordre du document, donc avant les modules du pied. -->
+  <script is:inline defer src="/assets/vendor/gsap.min.js?v=19"></script>
+  <script is:inline defer src="/assets/vendor/ScrollTrigger.min.js?v=19"></script>
+  <script is:inline defer src="/assets/vendor/lenis.min.js?v=19"></script>
+  <script is:inline type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://mmatoulouse.com/club-de-boxe-ramonville/#webpage","url":"https://mmatoulouse.com/club-de-boxe-ramonville/","name":"Club de boxe à Ramonville : le Boxing Center depuis 2019","description":"Le club de boxe de Ramonville-Saint-Agne, ouvert en septembre 2019 au terminus du métro B : le plateau dehors, l’octogone de 7 m, huit disciplines, cinq coachs. Son histoire, ses cours, ses tarifs.","inLanguage":"fr-FR","isPartOf":{"@id":"https://mmatoulouse.com/#website"},"about":{"@id":"https://mmatoulouse.com/#salle"},"mainEntity":{"@id":"https://mmatoulouse.com/#salle"},"breadcrumb":{"@id":"https://mmatoulouse.com/club-de-boxe-ramonville/#breadcrumb"},"primaryImageOfPage":{"@type":"ImageObject","url":"https://mmatoulouse.com/assets/img/ram/og/club-de-boxe-ramonville.jpg","width":1200,"height":630}},{"@type":"BreadcrumbList","@id":"https://mmatoulouse.com/club-de-boxe-ramonville/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://mmatoulouse.com/"},{"@type":"ListItem","position":2,"name":"Le club de boxe de Ramonville","item":"https://mmatoulouse.com/club-de-boxe-ramonville/"}]},{"@type":"FAQPage","@id":"https://mmatoulouse.com/club-de-boxe-ramonville/#faq","mainEntity":[{"@type":"Question","name":"Depuis quand le club de boxe de Ramonville existe-t-il ?","acceptedAnswer":{"@type":"Answer","text":"Boxing Center Ramonville a ouvert en septembre 2019, au 33 rue des Ormes, à Ramonville-Saint-Agne. C’est l’une des cinq salles du réseau Boxing Center autour de Toulouse."}},{"@type":"Question","name":"C’est un club de boxe ou un club de MMA ?","acceptedAnswer":{"@type":"Answer","text":"Les deux. La boxe anglaise a le grand ring, le MMA et le grappling ont l’octogone de 7 m, la boxe pieds-poings a le tatami. Le même abonnement ouvre tous les cours."}},{"@type":"Question","name":"Qu’est-ce qui le distingue des autres clubs de boxe ?","acceptedAnswer":{"@type":"Answer","text":"Le plateau est dehors : 300 m² couverts, où l’on s’entraîne toute l’année. Aucune autre salle du réseau ne le propose."}},{"@type":"Question","name":"Peut-on venir depuis Toulouse sans voiture ?","acceptedAnswer":{"@type":"Answer","text":"Oui. La salle est au pied du terminus Ramonville de la ligne B du métro, et le bus s’arrête à Ramonville Sud, juste devant."}},{"@type":"Question","name":"Faut-il déjà savoir boxer pour s’inscrire ?","acceptedAnswer":{"@type":"Answer","text":"Non. Sept cours sur huit n’ont aucun prérequis. Le premier soir, on dit « c’est ma première fois » à l’accueil et un coach oriente."}},{"@type":"Question","name":"Combien coûte l’inscription au club ?","acceptedAnswer":{"@type":"Answer","text":"L’année complète est à 259 € au lieu de 400 €, payée comptant, pour les cinq clubs. Sans engagement, l’offre de rentrée est à 29 € par personne toutes les 4 semaines, au lieu de 44 €. Le détail est sur la page des tarifs."}}]}]}</script>
+</head>
+
+<body data-page="club-de-boxe">
+  <a class="sr-only" href="#main">Aller au contenu</a>
+  <div id="nav"></div>
+  <div id="drawer"></div>
+
+  <main id="main">
+    <header class="phero" aria-label="Le club de boxe de Ramonville">
+      <div class="sky" aria-hidden="true"><canvas class="sky__stars"></canvas><div class="sky__haze"></div><div class="sky__moon"></div></div>
+      <div class="wrap">
+        <nav class="breadcrumb" aria-label="Fil d’ariane"><a href="/">Accueil</a> / <span>Le club</span></nav>
+        <h1 class="display phero__title"><span class="reveal-mask"><span>Le club de boxe</span></span><span class="reveal-mask"><span class="tint">de Ramonville.</span></span></h1>
+        <p class="phero__lead" data-reveal>Boxing Center Ramonville : un club de boxe et de MMA au terminus du métro B, ouvert depuis septembre 2019, où l’on s’entraîne dehors toute l’année.</p>
+      </div>
+    </header>
+
+    <section class="section" aria-labelledby="t-histoire">
+      <div class="wrap">
+        <div class="shead" data-reveal><span class="eyebrow">L’histoire</span><h2 class="display" id="t-histoire">Un club de boxe au sud de Toulouse.</h2></div>
+        <div class="dp-prose" data-reveal>
+          <p>Boxing Center Ramonville a ouvert ses portes en septembre 2019, au 33 rue des Ormes, à Ramonville-Saint-Agne. Le club appartient au réseau Boxing Center, cinq salles autour de Toulouse dont la salle phare est à Portet-sur-Garonne depuis 2016. À Ramonville, l’idée de départ n’a pas changé : un club de boxe ouvert à tout le monde, à celui qui n’a jamais fait de sport comme à celle qui prépare un combat.</p>
+          <p>Ce qui fait la différence tient en un mot : dehors. Le plateau d’entraînement est en extérieur — 300 m² aménagés et couverts, avec un octogone de 7 m pour le MMA et le grappling, un grand ring pour la boxe anglaise et un tatami pour la boxe pieds-poings. Un étage de musculation et de cardio complète la salle, en accès libre aux heures d’ouverture. <a href="/la-salle/">Le plateau en détail</a>, et <a href="/galerie/">les photos du club</a>.</p>
+          <p>Aujourd’hui, le club donne 22 cours par semaine, du lundi au samedi, tenus par cinq coachs. Il est affilié à la FFBoxe, à la FFKMDA, à la FMMAF.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section dp-bande" aria-labelledby="t-cours">
+      <div class="wrap">
+        <div class="shead" data-reveal><span class="eyebrow">Les cours</span><h2 class="display" id="t-cours">Huit disciplines, un seul club.</h2></div>
+        <div class="dp-grille dp-grille--3" data-reveal-group>
+          <a class="dp-carte dp-carte--lien" href="/activites/boxe-anglaise/"><span class="dp-tag">Poings seulement</span><h3>Boxe Anglaise</h3><p>Les poings, la garde, le déplacement, sur le grand ring du plateau.</p></a>
+          <a class="dp-carte dp-carte--lien" href="/activites/boxe-pieds-poings/"><span class="dp-tag">Poings et pieds</span><h3>Boxe Pieds-Poings</h3><p>Poings et jambes, sur le tatami du plateau, avec Sonia.</p></a>
+          <a class="dp-carte dp-carte--lien" href="/activites/grappling/"><span class="dp-tag">Le combat au sol</span><h3>Grappling</h3><p>Le combat au sol, sans un coup : la porte d’entrée vers la cage.</p></a>
+          <a class="dp-carte dp-carte--lien" href="/activites/mma/"><span class="dp-tag">Debout et au sol</span><h3>MMA tous niveaux</h3><p>Debout et au sol, dans l’octogone de 7 m, tous niveaux.</p></a>
+          <a class="dp-carte dp-carte--lien" href="/activites/boxing-camp/"><span class="dp-tag">Un peu de tout</span><h3>Boxing Camp</h3><p>Un peu de tout, beaucoup de cardio. Le cours pour démarrer.</p></a>
+          <a class="dp-carte dp-carte--lien" href="/activites/lady-punch/"><span class="dp-tag">100 % féminin</span><h3>Lady Punch</h3><p>La boxe entre femmes, 100 % féminin, zéro prérequis.</p></a>
+          <a class="dp-carte dp-carte--lien" href="/activites/ecole-enfants/"><span class="dp-tag">Dès 3 ans</span><h3>École enfants</h3><p>Dès 3 ans : Baby Boxe, puis 7/11 et 12/16. On touche, on ne frappe pas.</p></a>
+          <a class="dp-carte dp-carte--lien" href="/activites/acces-libre/"><span class="dp-tag">Muscu · cardio</span><h3>Accès libre</h3><p>L’étage muscu et cardio, compris dans l’abonnement, aux heures d’ouverture.</p></a>
+        </div>
+        <p class="dp-suite" data-reveal><a class="btn btn--ghost" data-magnetic href="/activites/"><span>Toutes les activités</span></a> <a class="btn btn--ghost" data-magnetic href="/plannings/"><span>Le planning de la semaine</span></a></p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="t-coachs">
+      <div class="wrap">
+        <div class="shead" data-reveal><span class="eyebrow">L’encadrement</span><h2 class="display" id="t-coachs">Cinq coachs, chacun sa discipline.</h2></div>
+        <div class="dp-grille dp-grille--3" data-reveal-group>
+          <a class="dp-carte dp-carte--lien" href="/coachs/jerome/"><span class="dp-tag">Coach principal</span><h3>Jérôme</h3><p>MMA · Grappling · Forme physique</p></a>
+          <a class="dp-carte dp-carte--lien" href="/coachs/sonia/"><span class="dp-tag">Présente toute la semaine</span><h3>Sonia</h3><p>Boxe thaï · Kickboxing · Boxing Lady</p></a>
+          <a class="dp-carte dp-carte--lien" href="/coachs/hicham/"><span class="dp-tag">Les midis</span><h3>Hicham</h3><p>Boxe anglaise · les trois midis</p></a>
+          <a class="dp-carte dp-carte--lien" href="/coachs/farouk/"><span class="dp-tag">Les soirs</span><h3>Farouk</h3><p>Boxe anglaise · les soirs</p></a>
+          <a class="dp-carte dp-carte--lien" href="/coachs/valentin-guth/"><span class="dp-tag">L’école</span><h3>Valentin Guth</h3><p>Boxe loisirs · cours enfants</p></a>
+        </div>
+        <p class="dp-suite" data-reveal><a class="btn btn--ghost" data-magnetic href="/coachs/"><span>L’équipe au complet</span></a></p>
+      </div>
+    </section>
+
+    <section class="section dp-bande" aria-labelledby="t-venir">
+      <div class="wrap">
+        <div class="shead" data-reveal><span class="eyebrow">Venir au club</span><h2 class="display" id="t-venir">Au terminus du métro B.</h2></div>
+        <div class="dp-prose" data-reveal>
+          <p>Le club est au 33 rue des Ormes, 31520 Ramonville-Saint-Agne. Ligne B : Terminus Ramonville. La salle est au pied de la station. Le soir, le métro repart d’ici. Arrêt Ramonville Sud : Le bus s’arrête au pied de la salle. Pas à trois rues de là. Par la rocade, sortie Ramonville.</p>
+          <p>Ouvert du lundi au samedi · 10h00 – 21h30, fermé le dimanche. Avant chaque cours, tu valides ta présence à l’accueil (émargement GPS). <a href="/contact/">Adresse, plan et contact</a> · <a href="/plannings/">les horaires de chaque cours</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="piege" aria-label="Les offres">
+      <div class="wrap">
+        <p class="amorce-ram" data-reveal>Un abonnement, les cinq clubs.</p>
+        <a class="plaque plaque--duo" data-reveal href="https://boutique.boxingcenter.fr/offres-speciales"
+           aria-label="Offres spéciales : l’année complète à 259 € au lieu de 400 €, ou l’offre de rentrée à 29 € par personne pour 4 semaines, au lieu de 44 €">
+          <span class="plaque__faces alt" data-alterne>
+            <span class="plaque__face alt__face is-on">
+              <span class="plaque__sur">L’année complète</span>
+              <span class="plaque__prix"><b>259</b><i>€</i></span>
+              <span class="plaque__unit">12 mois · les 5 clubs</span>
+              <span class="plaque__barre">au lieu de 400 €</span>
+            </span>
+            <span class="plaque__face alt__face" aria-hidden="true">
+              <span class="plaque__sur">Offre de rentrée</span>
+              <span class="plaque__prix"><b>29</b><i>€</i></span>
+              <span class="plaque__unit">par personne · 4 semaines</span>
+              <span class="plaque__barre">au lieu de 44 €</span>
+            </span>
+          </span>
+          <span class="plaque__go">Voir les offres spéciales <i aria-hidden="true">→</i></span>
+        </a>
+        <p class="dp-suite" data-reveal><a href="/tarifs/">Toutes les formules et leurs conditions</a></p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="t-reseau">
+      <div class="wrap">
+        <div class="shead" data-reveal><span class="eyebrow">Le réseau</span><h2 class="display" id="t-reseau">Un club parmi cinq.</h2></div>
+        <div class="dp-prose" data-reveal>
+          <p>Boxing Center Ramonville est l’une des cinq salles du réseau, avec <a href="https://boxing-center-portet.fr/" rel="noopener">Portet-sur-Garonne</a>, <a href="https://boxe-toulouse.com/" rel="noopener">Minimes</a>, <a href="https://clubmma.fr/" rel="noopener">États-Unis</a>, <a href="https://club-boxe-toulouse.com/" rel="noopener">Saint-Cyprien</a>. L’abonnement Saison ouvre les cinq. <a href="/nos-clubs/">Les cinq clubs, leurs adresses et leurs sites</a> · <a href="/about/">à propos de Boxing Center Ramonville</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="t-faq">
+      <div class="wrap">
+        <div class="shead" data-reveal><span class="eyebrow">Questions</span><h2 class="display" id="t-faq">Ce qu’on demande sur le club.</h2></div>
+        <div class="dp-faq">
+          <details><summary>Depuis quand le club de boxe de Ramonville existe-t-il ?</summary><p>Boxing Center Ramonville a ouvert en septembre 2019, au 33 rue des Ormes, à Ramonville-Saint-Agne. C’est l’une des cinq salles du réseau Boxing Center autour de Toulouse.</p></details>
+          <details><summary>C’est un club de boxe ou un club de MMA ?</summary><p>Les deux. La boxe anglaise a le grand ring, le MMA et le grappling ont l’octogone de 7 m, la boxe pieds-poings a le tatami. Le même abonnement ouvre tous les cours.</p></details>
+          <details><summary>Qu’est-ce qui le distingue des autres clubs de boxe ?</summary><p>Le plateau est dehors : 300 m² couverts, où l’on s’entraîne toute l’année. Aucune autre salle du réseau ne le propose.</p></details>
+          <details><summary>Peut-on venir depuis Toulouse sans voiture ?</summary><p>Oui. La salle est au pied du terminus Ramonville de la ligne B du métro, et le bus s’arrête à Ramonville Sud, juste devant.</p></details>
+          <details><summary>Faut-il déjà savoir boxer pour s’inscrire ?</summary><p>Non. Sept cours sur huit n’ont aucun prérequis. Le premier soir, on dit « c’est ma première fois » à l’accueil et un coach oriente.</p></details>
+          <details><summary>Combien coûte l’inscription au club ?</summary><p>L’année complète est à 259 € au lieu de 400 €, payée comptant, pour les cinq clubs. Sans engagement, l’offre de rentrée est à 29 € par personne toutes les 4 semaines, au lieu de 44 €. Le détail est sur la page des tarifs.</p></details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="footer"></div>
+
+  <a class="chatbot" href="tel:+33939036748" aria-label="Une question ? Appelle la salle Boxing Center Ramonville">
+    <span class="chatbot__icon" aria-hidden="true"><svg width="36" height="36" viewBox="0 0 24 24" fill="none"><mask id="bc-m-ramonville" maskUnits="userSpaceOnUse"><rect width="24" height="24" fill="#fff"/><path d="M7.4 8.9 11.0 9.9 11.0 11.7 7.4 10.7Z" fill="#000"/><path d="M16.6 8.9 13.0 9.9 13.0 11.7 16.6 10.7Z" fill="#000"/><rect x="10.1" y="14.8" width="3.8" height="1.4" rx=".65" fill="#000"/></mask><path d="M4.4 12.9a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Z" fill="currentColor"/><path d="M19.6 12.9a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Z" fill="currentColor"/><path d="M8.1 1.2h7.8l4.5 4.5v8.4l-2.7 2.7.9 3.4a.55.55 0 0 1-.8.63L14 18.6H8.1L3.6 14.1V5.7Z" fill="currentColor" mask="url(#bc-m-ramonville)"/></svg></span>
+    <span class="chatbot__label">Une question&nbsp;? Appelle la salle</span>
+  </a>
+
+  <!-- ===================== L’ASSISTANT, À LA DEMANDE =====================
+       L’assistant ne coûte plus rien tant qu’on ne lui parle pas. Il pesait
+       17,5 ko de module + 7,6 ko de feuille BLOQUANT LE RENDU, sur les huit
+       pages, pour un panneau que la plupart des visiteurs n’ouvriront jamais.
+       Rien n’est retiré à l’écran : la pastille est peinte par base.css comme
+       avant, et chatbot.css ne décrit que le panneau — qui n’existe pas encore.
+       On charge au premier signe d’intention (survol, doigt, tabulation), donc
+       avant le clic dans la quasi-totalité des cas ; le clic reste le filet.
+       Sans JavaScript, la pastille est toujours le lien tel: d’origine. -->
+  <script is:inline>
+    (function () {
+      var pastille = document.querySelector("a.chatbot");
+      if (!pastille) return;
+      var venue = null;
+      function venir() {
+        if (venue) return venue;
+        var f = document.createElement("link");
+        f.rel = "stylesheet"; f.href = "/assets/css/chatbot.css?v=19";
+        document.head.appendChild(f);
+        venue = import("/assets/js/chatbot.js?v=21").catch(function () { venue = null; });
+        return venue;
+      }
+      ["pointerenter", "touchstart", "focus"].forEach(function (e) {
+        pastille.addEventListener(e, venir, { once: true, passive: true });
+      });
+      pastille.addEventListener("click", function (e) {
+        /* aria-expanded n’est posé que par chatbot.js : sa présence signifie
+           que le vrai widget a pris la main et gère déjà ce clic. */
+        if (pastille.hasAttribute("aria-expanded")) return;
+        e.preventDefault();
+        var p = venir();
+        if (p) p.then(function () { pastille.click(); });
+        else window.location.href = pastille.href;   // le module n’est pas venu : on appelle la salle
+      });
+    })();
+  </script>
+  <script is:inline type="module" src="/assets/js/site.js?v=26"></script>
+  <script is:inline type="module" src="/assets/js/sky.js?v=20"></script>
+  <script is:inline type="module" src="/assets/js/page.js?v=25"></script>
+</body>
+</html>

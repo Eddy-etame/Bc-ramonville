@@ -57,7 +57,11 @@ const empreinte = h.digest("hex").slice(0, 8);
       (data.js est importé avec ?v= depuis les autres modules). */
 let fichiers = 0, remplacements = 0;
 parcourir(DIST, (p) => {
-  if (!/\.(html|js)$/i.test(p)) return;
+  /* ET DANS LE CSS (17/09) : fonts.css appelait ses polices en « ?v=11 » pendant
+     que le HTML les préchargeait en « ?v=<empreinte> » — deux adresses, donc
+     chaque police téléchargée DEUX fois sur chaque page (Chrome : « preloaded
+     but not used »). Même empreinte partout. */
+  if (!/\.(html|js|css)$/i.test(p)) return;
   const avant = fs.readFileSync(p, "utf8");
   const apres = avant.replace(/([?&]v=)[A-Za-z0-9._-]+/g, (_, pre) => `${pre}${empreinte}`);
   if (apres !== avant) {

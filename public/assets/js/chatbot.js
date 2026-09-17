@@ -497,7 +497,7 @@ export function initChatbot() {
           ? `Re-salut ${profil.prenom} ! Je suis toujours là — créneaux, octogone, tarifs, école enfants : demande.`
           : _accueilRamonville(),
         700,
-        resolveActions(["offre", "saison"])
+        resolveActions(["saison", "offre"])   /* 259 € d’abord, comme partout (Eddy, 13/09) */
       );
       /* on ne redemande JAMAIS un prénom déjà donné — c’est la première
          chose qui trahit un robot */
