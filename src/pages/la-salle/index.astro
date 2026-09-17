@@ -105,7 +105,10 @@
           "LocalBusiness"
         ],
         "@id": "https://mmatoulouse.com/#salle",
-        "knowsLanguage": ["fr-FR", "en"],
+        "knowsLanguage": [
+          "fr-FR",
+          "en"
+        ],
         "name": "Boxing Center Ramonville",
         "url": "https://mmatoulouse.com/",
         "telephone": "+33939036748",
@@ -380,6 +383,55 @@
             "item": "https://mmatoulouse.com/la-salle/"
           }
         ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://mmatoulouse.com/la-salle/#faq",
+        "isPartOf": {
+          "@id": "https://mmatoulouse.com/la-salle/#webpage"
+        },
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "On s’entraîne vraiment dehors ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Oui : le plateau fait 300 m² en extérieur, aménagés et couverts. On s’y entraîne toute l’année, et c’est la seule salle du réseau dans ce cas."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quelle taille fait l’octogone ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "7 mètres. Il sert au MMA et au grappling."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Y a-t-il un ring de boxe ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Oui, un grand ring, pour la boxe anglaise. La boxe pieds-poings se pratique sur le tatami du plateau."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Y a-t-il de quoi faire de la musculation ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Oui : un étage de musculation et de cardio, en accès libre aux heures d’ouverture."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Comment venir à la salle ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Par le métro : la salle est au pied du terminus Ramonville de la ligne B. Le bus s’arrête à Ramonville Sud, juste devant. L’adresse : 33 rue des Ormes, Ramonville-Saint-Agne."
+            }
+          }
+        ]
       }
     ]
   }
@@ -525,6 +577,21 @@
           <h2 class="display"><span class="reveal-mask"><span>Une saison, cinq salles.</span></span></h2>
         </div>
         <div class="network" id="network" data-reveal-group></div>
+      </div>
+    </section>
+
+    <!-- LA FAQ DE LA PAGE (17/09) : ses propres questions, écrites en dur — lisibles
+         sans JavaScript, et reprises dans le nœud FAQPage du JSON-LD. -->
+    <section class="section" aria-labelledby="t-faq">
+      <div class="wrap">
+        <div class="shead" data-reveal><span class="eyebrow">Questions</span><h2 class="display" id="t-faq">Les questions sur la salle.</h2></div>
+        <div class="faq" data-reveal>
+          <details><summary>On s’entraîne vraiment dehors ?</summary><p>Oui : le plateau fait 300 m² en extérieur, aménagés et couverts. On s’y entraîne toute l’année, et c’est la seule salle du réseau dans ce cas.</p></details>
+          <details><summary>Quelle taille fait l’octogone ?</summary><p>7 mètres. Il sert au MMA et au grappling.</p></details>
+          <details><summary>Y a-t-il un ring de boxe ?</summary><p>Oui, un grand ring, pour la boxe anglaise. La boxe pieds-poings se pratique sur le tatami du plateau.</p></details>
+          <details><summary>Y a-t-il de quoi faire de la musculation ?</summary><p>Oui : un étage de musculation et de cardio, en accès libre aux heures d’ouverture.</p></details>
+          <details><summary>Comment venir à la salle ?</summary><p>Par le métro : la salle est au pied du terminus Ramonville de la ligne B. Le bus s’arrête à Ramonville Sud, juste devant. L’adresse : 33 rue des Ormes, Ramonville-Saint-Agne.</p></details>
+        </div>
       </div>
     </section>
 

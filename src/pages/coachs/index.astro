@@ -106,7 +106,10 @@
           "LocalBusiness"
         ],
         "@id": "https://mmatoulouse.com/#salle",
-        "knowsLanguage": ["fr-FR", "en"],
+        "knowsLanguage": [
+          "fr-FR",
+          "en"
+        ],
         "name": "Boxing Center Ramonville",
         "url": "https://mmatoulouse.com/",
         "telephone": "+33939036748",
@@ -437,6 +440,55 @@
           "@id": "https://mmatoulouse.com/#salle"
         },
         "image": "https://mmatoulouse.com/assets/img/ram/coach-valentin.webp"
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://mmatoulouse.com/coachs/#faq",
+        "isPartOf": {
+          "@id": "https://mmatoulouse.com/coachs/#webpage"
+        },
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Combien de coachs encadrent les cours ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Cinq : Jérôme, Sonia, Hicham, Farouk et Valentin Guth. Chacun a sa page, avec son parcours et ses cours."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Qui est le coach principal ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Jérôme. Il tient le MMA et le grappling dans l’octogone ; il a combattu en MMA aux États-Unis et au Canada."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Qui s’occupe des enfants ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Valentin Guth, boxeur professionnel. Il tient toute l’école, de la Baby Boxe aux 12/16 ans."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Qui encadre le cours réservé aux femmes ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sonia. Elle tient le Lady Punch, 100 % féminin, et la boxe pieds-poings."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Qui donne la boxe anglaise ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Hicham le midi, Farouk le soir. Les créneaux de chacun sont sur la page du planning."
+            }
+          }
+        ]
       }
     ]
   }
@@ -487,6 +539,21 @@
             <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V5z"/><path d="m9 12 2 2 4-4"/></svg>
           </span>
           <p><b>Le visage que tu vois, tu le trouveras sur le plateau.</b> Ce sont les cinq coachs de la saison 2026/2027, tels qu’ils sont.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- LA FAQ DE LA PAGE (17/09) : ses propres questions, écrites en dur — lisibles
+         sans JavaScript, et reprises dans le nœud FAQPage du JSON-LD. -->
+    <section class="section" aria-labelledby="t-faq">
+      <div class="wrap">
+        <div class="shead" data-reveal><span class="eyebrow">Questions</span><h2 class="display" id="t-faq">Les questions sur les coachs.</h2></div>
+        <div class="faq" data-reveal>
+          <details><summary>Combien de coachs encadrent les cours ?</summary><p>Cinq : Jérôme, Sonia, Hicham, Farouk et Valentin Guth. Chacun a sa page, avec son parcours et ses cours.</p></details>
+          <details><summary>Qui est le coach principal ?</summary><p>Jérôme. Il tient le MMA et le grappling dans l’octogone ; il a combattu en MMA aux États-Unis et au Canada.</p></details>
+          <details><summary>Qui s’occupe des enfants ?</summary><p>Valentin Guth, boxeur professionnel. Il tient toute l’école, de la Baby Boxe aux 12/16 ans.</p></details>
+          <details><summary>Qui encadre le cours réservé aux femmes ?</summary><p>Sonia. Elle tient le Lady Punch, 100 % féminin, et la boxe pieds-poings.</p></details>
+          <details><summary>Qui donne la boxe anglaise ?</summary><p>Hicham le midi, Farouk le soir. Les créneaux de chacun sont sur la page du planning.</p></details>
         </div>
       </div>
     </section>

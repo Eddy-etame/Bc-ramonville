@@ -113,7 +113,10 @@
           "LocalBusiness"
         ],
         "@id": "https://mmatoulouse.com/#salle",
-        "knowsLanguage": ["fr-FR", "en"],
+        "knowsLanguage": [
+          "fr-FR",
+          "en"
+        ],
         "name": "Boxing Center Ramonville",
         "url": "https://mmatoulouse.com/",
         "telephone": "+33939036748",
@@ -388,6 +391,55 @@
             "item": "https://mmatoulouse.com/plannings/"
           }
         ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://mmatoulouse.com/plannings/#faq",
+        "isPartOf": {
+          "@id": "https://mmatoulouse.com/plannings/#webpage"
+        },
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Quels jours la salle est-elle ouverte ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Du lundi au samedi, de 10h00 à 21h30. Elle est fermée le dimanche. L’étage muscu et cardio suit les mêmes horaires."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Y a-t-il des cours le midi et le soir ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Oui, les deux. La grille ci-dessus donne l’heure de début de chaque cours, et le cours en train de se dérouler y est mis en avant."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quand ont lieu les cours pour les enfants ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Le mercredi et le samedi après-midi : la Baby Boxe dès 3 ans, puis les 7/11 ans et les 12/16 ans. Le filtre « Enfants » de la grille n’affiche qu’eux."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Faut-il faire quelque chose en arrivant ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Oui : avant chaque cours, tu valides ta présence à l’accueil. C’est un émargement, et il vaut pour tout le monde."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Peut-on suivre plusieurs cours dans la même semaine ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Oui. L’abonnement ouvre tous les cours de la semaine, autant que tu veux, et l’étage muscu et cardio en accès libre."
+            }
+          }
+        ]
       }
     ]
   }
@@ -464,6 +516,21 @@
           <h2 class="display"><span class="reveal-mask"><span>Les jours</span></span><span class="reveal-mask"><span class="tint">les plus chargés.</span></span></h2>
         </div>
         <div class="rythme" id="rythme"></div>
+      </div>
+    </section>
+
+    <!-- LA FAQ DE LA PAGE (17/09) : ses propres questions, écrites en dur — lisibles
+         sans JavaScript, et reprises dans le nœud FAQPage du JSON-LD. -->
+    <section class="section" aria-labelledby="t-faq">
+      <div class="wrap">
+        <div class="shead" data-reveal><span class="eyebrow">Questions</span><h2 class="display" id="t-faq">Les questions sur le planning.</h2></div>
+        <div class="faq" data-reveal>
+          <details><summary>Quels jours la salle est-elle ouverte ?</summary><p>Du lundi au samedi, de 10h00 à 21h30. Elle est fermée le dimanche. L’étage muscu et cardio suit les mêmes horaires.</p></details>
+          <details><summary>Y a-t-il des cours le midi et le soir ?</summary><p>Oui, les deux. La grille ci-dessus donne l’heure de début de chaque cours, et le cours en train de se dérouler y est mis en avant.</p></details>
+          <details><summary>Quand ont lieu les cours pour les enfants ?</summary><p>Le mercredi et le samedi après-midi : la Baby Boxe dès 3 ans, puis les 7/11 ans et les 12/16 ans. Le filtre « Enfants » de la grille n’affiche qu’eux.</p></details>
+          <details><summary>Faut-il faire quelque chose en arrivant ?</summary><p>Oui : avant chaque cours, tu valides ta présence à l’accueil. C’est un émargement, et il vaut pour tout le monde.</p></details>
+          <details><summary>Peut-on suivre plusieurs cours dans la même semaine ?</summary><p>Oui. L’abonnement ouvre tous les cours de la semaine, autant que tu veux, et l’étage muscu et cardio en accès libre.</p></details>
+        </div>
       </div>
     </section>
     <!-- LE PIÈGE. Même plaque que l’accueil (base.css), amorce propre à la

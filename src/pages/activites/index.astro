@@ -105,7 +105,10 @@
           "LocalBusiness"
         ],
         "@id": "https://mmatoulouse.com/#salle",
-        "knowsLanguage": ["fr-FR", "en"],
+        "knowsLanguage": [
+          "fr-FR",
+          "en"
+        ],
         "name": "Boxing Center Ramonville",
         "url": "https://mmatoulouse.com/",
         "telephone": "+33939036748",
@@ -471,6 +474,55 @@
             }
           }
         ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://mmatoulouse.com/activites/#faq",
+        "isPartOf": {
+          "@id": "https://mmatoulouse.com/activites/#webpage"
+        },
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Quel cours choisir pour débuter ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Le Boxing Camp : un peu de tout, aucun prérequis. Sept cours sur huit s’ouvrent sans expérience, et un coach t’oriente le premier soir."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quelle différence entre la boxe anglaise et la boxe pieds-poings ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "La boxe anglaise se pratique avec les poings seulement, sur le grand ring. La boxe pieds-poings ajoute les jambes, sur le tatami."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Le MMA est-il ouvert aux débutants ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Oui, le cours s’appelle MMA tous niveaux. Pour commencer sans frappe, le grappling — le combat au sol — est la bonne porte d’entrée."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Y a-t-il un cours réservé aux femmes ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Oui : le Lady Punch, 100 % féminin, sans prérequis."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "La musculation est-elle comprise ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Oui. L’étage muscu et cardio est en accès libre aux heures d’ouverture, avec le même abonnement que les cours."
+            }
+          }
+        ]
       }
     ]
   }
@@ -533,6 +585,21 @@
           <h2 class="display"><span class="reveal-mask"><span>Tu ne sais pas</span></span><span class="reveal-mask"><span class="tint">par où commencer ?</span></span></h2>
         </div>
         <div class="entree" id="entree"></div>
+      </div>
+    </section>
+
+    <!-- LA FAQ DE LA PAGE (17/09) : ses propres questions, écrites en dur — lisibles
+         sans JavaScript, et reprises dans le nœud FAQPage du JSON-LD. -->
+    <section class="section" aria-labelledby="t-faq">
+      <div class="wrap">
+        <div class="shead" data-reveal><span class="eyebrow">Questions</span><h2 class="display" id="t-faq">Les questions sur les cours.</h2></div>
+        <div class="faq" data-reveal>
+          <details><summary>Quel cours choisir pour débuter ?</summary><p>Le Boxing Camp : un peu de tout, aucun prérequis. Sept cours sur huit s’ouvrent sans expérience, et un coach t’oriente le premier soir.</p></details>
+          <details><summary>Quelle différence entre la boxe anglaise et la boxe pieds-poings ?</summary><p>La boxe anglaise se pratique avec les poings seulement, sur le grand ring. La boxe pieds-poings ajoute les jambes, sur le tatami.</p></details>
+          <details><summary>Le MMA est-il ouvert aux débutants ?</summary><p>Oui, le cours s’appelle MMA tous niveaux. Pour commencer sans frappe, le grappling — le combat au sol — est la bonne porte d’entrée.</p></details>
+          <details><summary>Y a-t-il un cours réservé aux femmes ?</summary><p>Oui : le Lady Punch, 100 % féminin, sans prérequis.</p></details>
+          <details><summary>La musculation est-elle comprise ?</summary><p>Oui. L’étage muscu et cardio est en accès libre aux heures d’ouverture, avec le même abonnement que les cours.</p></details>
+        </div>
       </div>
     </section>
     <!-- LE PIÈGE. Même plaque que l’accueil (base.css), amorce propre à la

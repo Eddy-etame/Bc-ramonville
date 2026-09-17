@@ -112,7 +112,10 @@ import { TARIFS, PROMOS } from "../../../public/assets/js/data.js";
           "LocalBusiness"
         ],
         "@id": "https://mmatoulouse.com/#salle",
-        "knowsLanguage": ["fr-FR", "en"],
+        "knowsLanguage": [
+          "fr-FR",
+          "en"
+        ],
         "name": "Boxing Center Ramonville",
         "url": "https://mmatoulouse.com/",
         "telephone": "+33939036748",
@@ -393,6 +396,63 @@ import { TARIFS, PROMOS } from "../../../public/assets/js/data.js";
             "position": 2,
             "name": "Tarifs",
             "item": "https://mmatoulouse.com/tarifs/"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://mmatoulouse.com/tarifs/#faq",
+        "isPartOf": {
+          "@id": "https://mmatoulouse.com/tarifs/#webpage"
+        },
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Comment paie-t-on la Saison à 259 € ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Le tarif de 259 € se paie comptant. Le paiement en quatre fois passe uniquement par PayPal. Il faut que l’option soit disponible et que PayPal te déclare éligible."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Comment fonctionne l’offre Rentrée à 29 € ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Le prix est de 29 € par personne toutes les quatre semaines. La première échéance se règle par carte bancaire. Les suivantes sont prélevées sur l’IBAN fourni. Les coordonnées d’un proche sont requises."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Le badge est-il compris ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Non. Pour l’offre Rentrée, le badge nominatif coûte 34,99 € en plus. Il est facturé 72 heures après le début. Les CGV prévoient ce badge sur les abonnements sans engagement de quatre semaines, sauf exception indiquée."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Le tarif étudiant, il faut quoi ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Un justificatif pour bénéficier des 36 € par période de quatre semaines. Le badge de 34,99 € s’ajoute aux abonnements sans engagement de quatre semaines, sauf exception indiquée dans l’offre ou les CGV."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "L’étage muscu/cardio se paie en plus ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Non, il est compris. Les espaces d’entraînement libres aussi. Ouvert du lundi au samedi, de 10h00 à 21h30. Sans créneau ni réservation. Les jours où aucun cours ne te va, tu viens quand même."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Je peux m’entraîner dans les autres salles ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Avec la saison, oui. Elle ouvre les cinq clubs du réseau. Portet, Minimes, États-Unis, Saint-Cyprien et ici. Un seul abonnement, cinq portes. Et une seule des cinq où l’entraînement se fait dehors."
+            }
           }
         ]
       }
