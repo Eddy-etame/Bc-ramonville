@@ -145,8 +145,9 @@ const PAGES = [
   /* Les deux pages de confiance : celles qu'un agent verifie avant de
      recommander un commerce. Poids faible, elles ne concurrencent rien. */
   { chemin: "about/", priorite: "0.3", freq: "yearly", imgs: [] },
-  /* privacy/ n’y est plus : page juridique en noindex depuis le 13/09 — une URL
-     hors index dans le plan du site envoie à Google deux ordres contraires. */
+  /* privacy/ revient (19/09) : Eddy — en production, une page se range dans
+     Google. Elle est donc en index ET dans le plan du site, les deux ensemble. */
+  { chemin: "privacy/", priorite: "0.3", freq: "yearly", imgs: [] },
 ];
 
 const aujourdhui = new Date().toISOString().slice(0, 10);
