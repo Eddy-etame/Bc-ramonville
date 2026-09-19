@@ -958,3 +958,15 @@ export const COACHES     = calque(_COACHES, "coaches");
 export const SCHEDULE    = calque(_SCHEDULE, "schedule");
 export const TARIFS      = calque(_TARIFS, "tarifs");
 export const PROMOS      = calque(_PROMOS, "promos");
+
+/* LES SITES DE PROXIMITÉ du réseau (Eddy, 19/09 : oui) — liés depuis le pied de page,
+   dans site.js ET dans le HTML cuit par maillage.mjs. Liens suivis. */
+export const PROCHES = [
+  { ville: "Colomiers", url: "https://www.boxingcenter-colomiers.fr/" },
+  { ville: "Muret", url: "https://www.boxingcenter-muret.fr/" },
+  { ville: "Cugnaux", url: "https://www.boxingcenter-cugnaux.fr/" },
+  { ville: "Tournefeuille", url: "https://www.boxingcenter-tournefeuille.fr/" },
+  { ville: "Labège", url: "https://www.boxingcenter-labege.fr/" },
+  { ville: "L’Union", url: "https://www.boxingcenter-lunion.fr/" },
+  { ville: "Castelginest", url: "https://www.boxingcenter-castelginest.fr/" },
+];

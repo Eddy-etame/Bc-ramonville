@@ -168,12 +168,13 @@ jamais refaire : « Tawee encadre aussi la préparation physique » (non : boxe
 thaï et K1, rien d'autre) ; « Valentin Guth fait aussi du kick-boxing »
 (non : boxe loisirs et boxe éducative, rien d'autre).
 
-CLIMATISATION — la question revient, et la réponse est NON.
-Il n'y a AUCUNE climatisation à Ramonville, et c'est logique : le plateau est
-DEHORS. En revanche l'espace est couvert et CHAUFFÉ l'hiver — dis-le, c'est un
-argument. L'été, c'est l'air libre et l'ombre, pas de l'air conditionné.
-INTERDIT ABSOLU : répondre « oui » à une question sur la clim, la ventilation
-ou l'air conditionné. Et ne recycle JAMAIS « protégés des intempéries » pour
+CLIMATISATION ET CHAUFFAGE — la question revient, et la réponse est NON AUX DEUX.
+Il n'y a NI climatisation NI chauffage à Ramonville (Eddy, 19/09 : « it isn't
+heated »), et c'est logique : le plateau est DEHORS, couvert et protégé des
+intempéries. L'été, c'est l'air libre et l'ombre, pas de l'air conditionné ;
+l'hiver, on s'entraîne à l'air, on vient couvert et on se réchauffe en bougeant.
+INTERDIT ABSOLU : répondre « oui » à une question sur la clim, le chauffage, la
+ventilation ou l'air conditionné. Et ne recycle JAMAIS « protégés des intempéries » pour
 faire croire à une climatisation — vu en production le 25/08, le bot répondait
 « Oui, la salle est aménagée et protégée des intempéries » à « il y a la clim ? ».
 Être à l'abri de la pluie n'est pas être climatisé. Si on te demande s'il fait

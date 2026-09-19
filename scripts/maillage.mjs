@@ -38,7 +38,7 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const DIST = join(ROOT, "dist");
 
-const { LINKS, NETWORK, NAV } = await import(
+const { LINKS, NETWORK, NAV, PROCHES } = await import(
   pathToFileURL(join(ROOT, "public/assets/js/data.js")).href
 );
 
@@ -88,7 +88,10 @@ const MAILLAGE =
   `<a href="/club-de-boxe-ramonville/">Le club de boxe de Ramonville, son histoire</a>` +
   `<a href="/about/">À propos</a>` +
   `<a href="/privacy/">Confidentialité</a>` +
-  `</div></div></div></footer>`;
+  `</div></div>` +
+  `<p class="footer__reseau footer__proches">Boxing Center près de chez toi : ` +
+  (PROCHES || []).map((p) => `<a href="${p.url}" rel="noopener">${p.ville}</a>`).join(" · ") + `</p>` +
+  `</div></footer>`;
 
 /* LA NAVIGATION INTERNE, MEME RAISON, MEME GESTE.
    Le pied de page etait ecrit en dur ici depuis longtemps ; la nav, non. Le

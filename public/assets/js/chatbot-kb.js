@@ -22,8 +22,8 @@ export const QUICKS = [
        « Oui, la salle est aménagée et protégée des intempéries. » Le bot n'a
        rien inventé : il a recyclé le fait le plus proche, faute d'en avoir un
        vrai. Un trou dans la base ne produit pas un « je ne sais pas », il
-       produit un oui. Et Ramonville n'est pas Portet : ici c'est couvert et
-       CHAUFFÉ — pas de clim parce qu'on est dehors, pas par négligence. */
+       produit un oui. Ici le plateau est dehors : couvert, NI climatisé NI
+       chauffé (confirmé par Eddy le 19/09). */
     q: "Il y a la clim ?",
     a: "Non, ni clim ni chauffage — aucune de nos salles n’en a. Ici le plateau est " +
        "dehors : il est couvert et protégé des intempéries, et l’été tu as l’air libre " +
@@ -91,7 +91,7 @@ const RULES = [
   /* EN TÊTE, et c'est voulu : « clim » tombait sinon sur la règle du dehors
      (/couvert|intempérie/), qui répond « oui, on est protégés » — la réponse
      exacte à une AUTRE question. */
-  [/clim|climatis|air.?conditionn|ventil|il fait (chaud|froid)|temp[ée]rature|canicule/i, 0],
+  [/clim|climatis|(?<![a-zà-ÿ])chauff|air.?conditionn|ventil|il fait (chaud|froid)|temp[ée]rature|canicule/i, 0],
   [/dehors|ext[ée]rieur|plein air|300|couvert|intemp[ée]rie|ciel/i, 1],
   /* 13/09 — LES ENFANTS REMONTENT. « mon fils, quels cours ? » tombait sur
      /cours/ (la liste adulte) et « combien pour ma fille » sur les tarifs

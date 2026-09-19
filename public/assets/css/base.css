@@ -303,6 +303,9 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
 .menu__ext a { display: inline-flex; align-items: center; gap: .35ch; }
 
 .footer__col a .ext { opacity: .6; }
+.footer__proches { margin-top: .6rem !important; max-width: none !important; }
+.footer__proches a { color: inherit; text-decoration: underline; text-underline-offset: .25em; text-decoration-thickness: 1px; transition: color .25s; }
+.footer__proches a:hover { color: var(--accent); }
 .footer__reseau { margin-top: clamp(1.4rem,3vw,2rem); font: 600 var(--step--2)/1.6 var(--f-mono); letter-spacing: .06em; color: var(--muted); max-width: 62ch; }
 /* Le bouton d'achat de l'en-tete etait masque sous 1240px, avec les neuf
    pastilles. Or sous ce seuil les pastilles sont deja remplacees par le

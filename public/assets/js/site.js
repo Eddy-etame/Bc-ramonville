@@ -9,7 +9,7 @@
    figé, il n’y a plus rien à basculer.
    Aucun chrome copié de Saint-Cyprien.
    ===================================================================== */
-import { NAV, LINKS, SALLE, SEASON_LABEL, NETWORK } from "./data.js?v=25";
+import { NAV, LINKS, SALLE, SEASON_LABEL, NETWORK, PROCHES } from "./data.js?v=25";
 import { PAGES_DISCIPLINES } from "./disciplines-liens.js?v=1";
 
 import { initPlaces } from "./places.js?v=19";
@@ -241,6 +241,7 @@ function mountFooter() {
              abonnement Saison ouvre les cinq clubs — autant que le
              visiteur (et le moteur) puissent y aller. -->
         <p class="footer__reseau">Cinq salles à Toulouse et alentour, un seul abonnement : l’Offre Saison donne l’accès libre aux ${(NETWORK || []).length} clubs du réseau.</p>
+        <p class="footer__reseau footer__proches">Boxing Center près de chez toi : ${(PROCHES || []).map((p) => `<a href="${p.url}" target="_blank" rel="noopener">${p.ville}</a>`).join(" · ")}</p>
         <div class="footer__bottom">
           <span>© ${new Date().getFullYear()} Boxing Center Ramonville. · <a href="/about/">À propos</a> · <a href="/privacy/">Confidentialité</a></span>
           <span class="footer__stamp">${SEASON_LABEL} · sous le ciel de Ramonville</span>
