@@ -19,12 +19,19 @@ import { mkdirSync, readFileSync, writeFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
 import sharp from "sharp";
 import { ROOT, BASE, donnees, textes, creneaux, joursEnMots, remplir, lienDe, JOUR, JOUR_SCHEMA } from "./disciplines-lib.mjs";
+import { pathToFileURL } from "node:url";
 
 const { DISCIPLINES, SCHEDULE, COACHES, SALLE, LINKS, TARIFS } = await donnees();
 const T = textes();
 const TC = JSON.parse(readFileSync(join(ROOT, "src", "coachs-pages.json"), "utf8")).pages;
 const GABARIT = readFileSync(join(ROOT, "src", "pages", "activites", "index.astro"), "utf8");
 const PUBLIC = join(ROOT, "public");
+/* La table des liens (écrite en fin de script) sert aussi ici : le rôle d'un
+   coach relie chaque discipline à sa page. Elle porte les coachs de chaque
+   page : « Boxe loisirs » mène à la page qui nomme ce coach-là. */
+const table = DISCIPLINES.filter((d) => T[d.key]).map((d) => ({ key: d.key, nom: d.name, href: lienDe(d.key, T), coachs: T[d.key].coachs || [] }));
+const { creerLiens } = await import(pathToFileURL(join(PUBLIC, "assets", "js", "role-liens.js")).href);
+const LIENS = creerLiens(table);
 
 const e = (s) => String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;")
   .replace(/\{/g, "&#123;").replace(/\}/g, "&#125;");
@@ -189,7 +196,7 @@ async function corps(p, d, liste) {
       <div class="wrap">
         <div class="shead" data-reveal><span class="eyebrow">Qui encadre</span><h2 class="display" id="t-coachs">${coachs.length > 1 ? "Tes coachs." : "Ton coach."}</h2></div>
         <div class="dp-coachs" data-reveal-group>
-          ${(await Promise.all(coachs.map(async (c) => `<article class="dp-coach">${await img(c.img, `${c.name}, coach au Boxing Center Ramonville : ${c.role}`, "(max-width: 700px) 40vw, 180px")}<div><h3>${TC[c.name] ? `<a href="/coachs/${TC[c.name].slug}/">${e(c.name)}</a>` : e(c.name)}</h3><p class="dp-role">${e(c.role)}</p><p>${e(c.note)}</p></div></article>`))).join("\n          ")}
+          ${(await Promise.all(coachs.map(async (c) => `<article class="dp-coach${TC[c.name] ? " carte-lien" : ""}">${await img(c.img, `${c.name}, coach au Boxing Center Ramonville : ${c.role}`, "(max-width: 700px) 40vw, 180px")}<div><h3>${TC[c.name] ? `<a class="carte-lien__tout" href="/coachs/${TC[c.name].slug}/">${e(c.name)}</a>` : e(c.name)}</h3><p class="dp-role">${LIENS.roleHtml(c.role, c.name, lienDe(d.key, T))}</p><p>${e(c.note)}</p></div></article>`))).join("\n          ")}
         </div>
         <p class="dp-lien"><a href="/coachs/">Toute l’équipe →</a></p>
       </div>
@@ -308,7 +315,6 @@ ${await corps(p, d, liste)}
 }
 
 /* La table que site.js et page.js lisent pour rendre les fiches cliquables. */
-const table = DISCIPLINES.filter((d) => T[d.key]).map((d) => ({ key: d.key, nom: d.name, href: lienDe(d.key, T) }));
 writeFileSync(join(PUBLIC, "assets", "js", "disciplines-liens.js"),
   `/* Écrit par scripts/generer-disciplines.mjs — ne pas modifier à la main. */\n` +
   `export const PAGES_DISCIPLINES = ${JSON.stringify(table, null, 2)};\n` +

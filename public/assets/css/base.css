@@ -1172,3 +1172,24 @@ s.ancien { text-decoration: line-through; text-decoration-thickness: .12em; opac
 .faq summary::after { content: "+"; font-family: var(--f-mono); color: var(--accent); font-size: 1.3rem; transition: transform .3s; }
 .faq details[open] summary::after { transform: rotate(45deg); }
 .faq p { padding: 0 1.3rem 1.2rem; color: var(--ink-soft); font-size: var(--step--1); line-height: 1.6; }
+
+/* ── Cartes coach : toute la carte mène à la page du coach, chaque discipline à la sienne (19/09) ──
+   Le lien du nom s'étire sur la carte (::after) ; les disciplines passent
+   au-dessus. Une ancre ne peut pas en contenir une autre : la carte est un
+   <article>. isolation: isolate garde l'empilement dans la carte. */
+.carte-lien { position: relative; isolation: isolate; cursor: pointer; }
+.carte-lien .carte-lien__tout { color: inherit; text-decoration: none; }
+.carte-lien .carte-lien__tout::after { content: ""; position: absolute; inset: 0; z-index: 1; }
+.carte-lien .role-lien, .carte-lien .carte-lien__dessus { position: relative; z-index: 2; }
+.carte-lien .carte-lien__tout:focus-visible { outline: none; }
+.carte-lien:has(.carte-lien__tout:focus-visible) { outline: 2px solid var(--accent); outline-offset: 3px; }
+.carte-lien:hover .carte-lien__tout { color: var(--accent); }
+.role-lien { color: inherit; text-decoration: underline; text-decoration-color: color-mix(in srgb, currentColor 38%, transparent);
+  text-decoration-thickness: 1px; text-underline-offset: .28em; transition: color .2s ease, text-decoration-color .2s ease; }
+.role-lien:hover, .role-lien:focus-visible { color: var(--accent); text-decoration-color: currentColor; }
+/* zone de doigt : le rôle est petit, ses liens gagnent de la hauteur sans bouger la ligne */
+@media (pointer: coarse) { .role-lien { display: inline-block; padding-block: .5em; margin-block: -.5em; } }
+/* dans une pastille, le lien occupe la pastille et ne se souligne pas : la pastille est le bouton */
+.phero__meta .role-lien, .coach__disc .role-lien { text-decoration: none; display: inline-flex; align-items: center; padding: 0; margin: 0; }
+.phero__meta span:has(.role-lien), .coach__disc li:has(.role-lien) { transition: border-color .2s ease, color .2s ease; }
+.phero__meta span:has(.role-lien:hover), .coach__disc li:has(.role-lien:hover) { border-color: var(--accent); color: var(--accent); }

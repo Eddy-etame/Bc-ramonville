@@ -17,6 +17,9 @@
 .roster { display: grid; gap: .9rem; grid-template-columns: 1fr; }
 @media (min-width: 640px){ .roster { grid-template-columns: repeat(2,1fr); } }
 @media (min-width: 1040px){ .roster { grid-template-columns: repeat(3,1fr); } }
+/* Le coach principal prend sa rangée ; quatre cartes derrière lui en trois colonnes laissaient la dernière seule
+   (mesuré 19/09 : 1 + 3 + 1 à 1440 px). À cinq coachs, on reste sur deux colonnes : 1 + 2 + 2. */
+@media (min-width: 1040px){ .roster:has(> .coach--pillar):has(> :last-child:nth-child(5)) { grid-template-columns: repeat(2,1fr); } }
 
 .coach { position: relative; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--paper-2); display: flex; flex-direction: column; transition: transform .4s var(--ease-spring), border-color .3s, box-shadow .35s; }
 .coach:hover { transform: translateY(-5px); border-color: var(--accent); box-shadow: var(--glow-soft); }

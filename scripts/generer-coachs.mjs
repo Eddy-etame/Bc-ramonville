@@ -19,6 +19,8 @@ import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import sharp from "sharp";
 import { ROOT, BASE, donnees, textes as textesDisciplines, lienDe } from "./disciplines-lib.mjs";
+import { pathToFileURL } from "node:url";
+const { roleHtml, pastilleHtml } = await import(pathToFileURL(join(ROOT, "public", "assets", "js", "role-liens.js")).href);
 
 const { DISCIPLINES, COACHES, SALLE, TARIFS } = await donnees();
 const TD = textesDisciplines();
@@ -123,7 +125,7 @@ async function corps(p, c, discs) {
           <span class="eyebrow dp-eyebrow">${e(p.eyebrow)}</span>
           <h1 class="display phero__title phero__title--long"><span class="reveal-mask"><span>${e(p.h1)}</span></span><span class="reveal-mask"><span class="tint">${e(p.h1Tint)}</span></span></h1>
           <p class="phero__lead">${e(p.lead)}</p>
-          <div class="phero__meta">${(c.disciplines || []).map((x) => `<span>${e(x)}</span>`).join("")}</div>
+          <div class="phero__meta">${(c.disciplines || []).map((x) => `<span>${pastilleHtml(x, c.name)}</span>`).join("")}</div>
           <div class="dp-actions">
             ${boutonTarif(tarif)}
             <a class="btn btn--ghost" href="/plannings/"><span>Voir le planning</span></a>
@@ -190,7 +192,7 @@ async function corps(p, c, discs) {
       <div class="wrap">
         <div class="shead" data-reveal><span class="eyebrow">L’équipe</span><h2 class="display" id="t-autres">Les autres coachs.</h2></div>
         <div class="dp-grille dp-grille--4 cp-autres" data-reveal-group>
-          ${(await Promise.all(autres.map(async (x) => `<a class="dp-carte dp-carte--lien cp-autre" href="/coachs/${slugDe(x.name)}/">${await portrait(x, `${x.name}, coach au Boxing Center Ramonville`, "(max-width: 700px) 90vw, 280px")}<span class="dp-tag">${e(x.tag)}</span><h3>${e(x.name)}</h3><p>${e(x.role)}</p><span class="dp-go">Voir sa page <span aria-hidden="true">→</span></span></a>`))).join("\n          ")}
+          ${(await Promise.all(autres.map(async (x) => `<article class="dp-carte dp-carte--lien cp-autre carte-lien">${await portrait(x, `${x.name}, coach au Boxing Center Ramonville`, "(max-width: 700px) 90vw, 280px")}<span class="dp-tag">${e(x.tag)}</span><h3><a class="carte-lien__tout" href="/coachs/${slugDe(x.name)}/">${e(x.name)}</a></h3><p>${roleHtml(x.role, x.name)}</p><span class="dp-go" aria-hidden="true">Voir sa page <span aria-hidden="true">→</span></span></article>`))).join("\n          ")}
         </div>
         <p class="dp-lien"><a href="/coachs/">Toute l’équipe →</a></p>
       </div>

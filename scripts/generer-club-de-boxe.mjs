@@ -27,6 +27,7 @@ const D = await donnees();
 const { SALLE, DISCIPLINES, COACHES, NETWORK, SCHEDULE } = D;
 const { PAGES_DISCIPLINES } = await import(pathToFileURL(join(ROOT, "public", "assets", "js", "disciplines-liens.js")).href);
 const { PAGES_COACHS } = await import(pathToFileURL(join(ROOT, "public", "assets", "js", "coachs-liens.js")).href);
+const { roleHtml } = await import(pathToFileURL(join(ROOT, "public", "assets", "js", "role-liens.js")).href);
 
 const GABARIT = readFileSync(join(ROOT, "src", "pages", "activites", "mma", "index.astro"), "utf8");
 const e = (s) => String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;")
@@ -81,7 +82,7 @@ const LIGNE = {
   "acces-libre": "L’étage muscu et cardio, compris dans l’abonnement, aux heures d’ouverture.",
 };
 const carteDisc = (d) => `<a class="dp-carte dp-carte--lien" href="${hrefDisc(d)}"><span class="dp-tag">${e(d.tag)}</span><h3>${e(d.name)}</h3><p>${e(LIGNE[d.key] || d.jours)}</p></a>`;
-const carteCoach = (c) => `<a class="dp-carte dp-carte--lien" href="${hrefCoach(c)}"><span class="dp-tag">${e(c.tag)}</span><h3>${e(c.name)}</h3><p>${e(c.role)}</p></a>`;
+const carteCoach = (c) => `<article class="dp-carte dp-carte--lien carte-lien"><span class="dp-tag">${e(c.tag)}</span><h3><a class="carte-lien__tout" href="${hrefCoach(c)}">${e(c.name)}</a></h3><p>${roleHtml(c.role, c.name)}</p></article>`;
 
 const ici = NETWORK.find((n) => n.self);
 const autres = NETWORK.filter((n) => !n.self);

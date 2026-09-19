@@ -53,9 +53,10 @@ const ul = (xs) => (xs && xs.length ? `<ul>${xs.map((x) => `<li>${e(x)}</li>`).j
    planning des coachs reste interne ; la version hydratée de /coachs/ ne
    les montre pas, la version cuite ne les publie plus non plus. */
 const TC = JSON.parse(await readFile(join(ROOT, "src", "coachs-pages.json"), "utf8")).pages;
+const { roleHtml } = await import(new URL("../public/assets/js/role-liens.js", import.meta.url).href);
 const coachroster = COACHES.map((c) => {
   const page = TC[c.name] ? `/coachs/${TC[c.name].slug}/` : "";
-  return `<article><h3>${page ? `<a href="${page}">${e(c.name)}</a>` : e(c.name)}</h3><p><b>${e(c.role || "")}</b>${
+  return `<article><h3>${page ? `<a href="${page}">${e(c.name)}</a>` : e(c.name)}</h3><p><b>${roleHtml(c.role || "", c.name)}</b>${
     c.tag ? ` · ${e(c.tag)}` : ""
   }</p>${c.note ? `<p>${e(c.note)}</p>` : ""}${page ? `<p><a href="${page}">La page de ${e(c.name)}</a></p>` : ""}</article>`;
 }).join("");

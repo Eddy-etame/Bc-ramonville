@@ -9,6 +9,7 @@
 import { STATS, DISCIPLINES, COACHES, SALLE } from "./data.js?v=25";
 import { lienCoach } from "./coachs-liens.js?v=1";
 import { lienDiscipline } from "./disciplines-liens.js?v=1";
+import { roleHtml } from "./role-liens.js?v=1";
 import "./octagon.js?v=20"; // effet de bord : auto-monte l’octogone interactif du hero (#octa)
 
 const gsap = window.gsap;
@@ -60,17 +61,17 @@ function renderStaff() {
       : `<div class="staff__face staff__face--tile" aria-hidden="true"><span>${c.name.split(" ").map((w) => w[0]).join("")}</span></div>`;
     /* Chaque carte mène à la page du coach. Le coach principal prend toute
        la rangée et porte son texte ; les autres restent des vignettes. */
-    return `<a class="staff__card ${c.pillar ? "is-pillar" : ""}" href="${lienCoach(c.name) || "/coachs/"}">
+    return `<article class="staff__card carte-lien ${c.pillar ? "is-pillar" : ""}">
       ${face}
       <div class="staff__meta">
-        <b>${c.name}</b>
-        <span class="mono">${c.role}</span>
+        <b><a class="carte-lien__tout" href="${lienCoach(c.name) || "/coachs/"}">${c.name}</a></b>
+        <span class="mono">${roleHtml(c.role, c.name)}</span>
         <i>${c.tag}</i>
         ${c.pillar && c.note ? `<p class="staff__note">${c.note}</p>` : ""}
         ${c.devise ? `<em class="staff__devise">${c.devise}</em>` : ""}
-        <span class="staff__go">${c.pillar ? `Le parcours de ${c.name}` : "Voir sa page"} <span aria-hidden="true">→</span></span>
+        <span class="staff__go" aria-hidden="true">${c.pillar ? `Le parcours de ${c.name}` : "Voir sa page"} <span aria-hidden="true">→</span></span>
       </div>
-    </a>`;
+    </article>`;
   }).join("");
 }
 

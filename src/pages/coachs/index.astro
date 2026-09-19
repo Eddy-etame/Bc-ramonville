@@ -653,6 +653,7 @@
   <script is:inline type="module">
     import { COACHES } from "/assets/js/data.js?v=25";
     import { lienCoach } from "/assets/js/coachs-liens.js?v=1";
+    import { roleHtml, pastilleHtml } from "/assets/js/role-liens.js?v=1";
     const box = document.getElementById("coachroster");
     if (box && COACHES) {
       box.innerHTML = COACHES.map((c) => {
@@ -663,13 +664,13 @@
                <span class="plaque__name">${c.name}</span>
                <span class="plaque__role">${c.tag}</span>
              </div>`;
-        return `<article class="coach ${c.pillar ? "coach--pillar" : ""}">
+        return `<article class="coach ${lienCoach(c.name) ? "carte-lien" : ""} ${c.pillar ? "coach--pillar" : ""}">
           ${face}
           <div class="coach__body">
             <span class="coach__tag">${c.tag}</span>
-            <h3>${lienCoach(c.name) ? `<a href="${lienCoach(c.name)}">${c.name}</a>` : c.name}</h3>
-            <span class="coach__role">${c.role}</span>
-            ${c.disciplines?.length ? `<ul class="coach__disc">${c.disciplines.map((d) => `<li>${d}</li>`).join("")}</ul>` : ""}
+            <h3>${lienCoach(c.name) ? `<a class="carte-lien__tout" href="${lienCoach(c.name)}">${c.name}</a>` : c.name}</h3>
+            <span class="coach__role">${roleHtml(c.role, c.name)}</span>
+            ${c.disciplines?.length ? `<ul class="coach__disc">${c.disciplines.map((d) => `<li>${pastilleHtml(d, c.name)}</li>`).join("")}</ul>` : ""}
             <p>${c.note}</p>
             ${c.parcours ? `<p class="coach__parcours"><span>Parcours</span>${c.parcours}</p>` : ""}
             ${c.approche?.length ? `<div class="coach__bloc"><span class="coach__k">Son approche</span><ul>${c.approche.map((a) => `<li>${a}</li>`).join("")}</ul></div>` : ""}
@@ -678,7 +679,7 @@
               ${c.formation?.length ? `<div class="coach__bloc"><span class="coach__k">Formation</span><ul class="coach__inline">${c.formation.map((f) => `<li>${f}</li>`).join("")}</ul></div>` : ""}
             </div>
             ${c.devise ? `<blockquote class="coach__devise">${c.devise}</blockquote>` : ""}
-            ${lienCoach(c.name) ? `<a class="coach__page" href="${lienCoach(c.name)}">La page de ${c.name} <span aria-hidden="true">→</span></a>` : ""}
+            ${lienCoach(c.name) ? `<a class="coach__page carte-lien__dessus" href="${lienCoach(c.name)}" tabindex="-1" aria-hidden="true">La page de ${c.name} <span aria-hidden="true">→</span></a>` : ""}
           </div>
         </article>`;
       }).join("");
