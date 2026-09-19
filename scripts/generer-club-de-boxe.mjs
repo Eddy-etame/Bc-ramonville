@@ -174,6 +174,7 @@ const html = `${tete}  <script is:inline type="application/ld+json">${JSON.strin
         <div class="dp-prose" data-reveal>
           <p>Le club est au ${e(SALLE.address.full)}. ${e(SALLE.access[0].replace(/ — /, " : "))}. ${e(SALLE.access[1].replace(/ — /, " : "))}. Par la rocade, sortie Ramonville.</p>
           <p>Ouvert ${e(SALLE.hours.replace("Lun – Sam", "du lundi au samedi"))}, fermé le dimanche. ${e(SALLE.note)} <a href="/contact/">Adresse, plan et contact</a> · <a href="/plannings/">les horaires de chaque cours</a>.</p>
+          <p>Tu pars de Labège ? Le trajet jusqu’au club est détaillé sur <a href="https://www.boxingcenter-labege.fr/">Boxing Center près de Labège</a>.</p>
         </div>
       </div>
     </section>
