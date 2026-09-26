@@ -159,7 +159,11 @@ let bouges = 0;
 for (const p of PAGES) {
   const f = p.fichier ? join(DIST, p.chemin) : join(DIST, p.chemin, "index.html");
   const html = await readFile(f, "utf8");
-  const empreinte = createHash("sha256").update(html).digest("hex").slice(0, 16);
+  /* L'empreinte porte sur le contenu de la page, pas sur le pied de page ni la
+     barre : un lien ajouté au pied de page ne re-date pas vingt-cinq pages qui
+     n'ont pas changé pour la personne qui les lit (vu le 26/09/2026). */
+  const corps = html.match(/<main[\s\S]*?<\/main>/)?.[0] ?? html;
+  const empreinte = createHash("sha256").update(corps).digest("hex").slice(0, 16);
   const ancien = etat[p.chemin || "/"];
   const change = !ancien || ancien.empreinte !== empreinte;
   const lastmod = change ? aujourdhui : ancien.lastmod;
