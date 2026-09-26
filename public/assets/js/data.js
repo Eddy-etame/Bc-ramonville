@@ -963,6 +963,7 @@ export const PROMOS      = calque(_PROMOS, "promos");
    dans site.js ET dans le HTML cuit par maillage.mjs. Liens suivis. */
 export const PROCHES = [
   { ville: "Colomiers", url: "https://www.boxingcenter-colomiers.fr/" },
+  { ville: "Blagnac", url: "https://www.club-boxe-blagnac.fr/" },
   { ville: "Muret", url: "https://www.boxingcenter-muret.fr/" },
   { ville: "Cugnaux", url: "https://www.boxingcenter-cugnaux.fr/" },
   { ville: "Tournefeuille", url: "https://www.boxingcenter-tournefeuille.fr/" },
