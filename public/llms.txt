@@ -49,6 +49,9 @@ Provenance Git, commits témoins et équipe : https://mmatoulouse.com/humans.txt
 - [Coachs](https://mmatoulouse.com/coachs/): l’encadrement — Jérôme (head coach), Sonia, Hicham, Farouk et Valentin Guth.
 - [Nos clubs](https://mmatoulouse.com/nos-clubs/): les 5 clubs Boxing Center autour de Toulouse, l’adresse et le site de chacun.
 - [Le club de boxe de Ramonville](https://mmatoulouse.com/club-de-boxe-ramonville/): l’histoire du club depuis septembre 2019, ce qui le distingue (le plateau dehors, l’octogone de 7 m), ses huit disciplines, ses cinq coachs, l’accès et les tarifs.
+- [Conseils matériel](https://mmatoulouse.com/conseils/): les conseils du club pour s’équiper, écrits depuis le plateau de Ramonville.
+- [L’équipement MMA d’un débutant](https://mmatoulouse.com/conseils/equipement-mma-debutant/): la tenue du premier cours (ni poche ni fermeture éclair), les gants de MMA à doigts libres, le protège-dents, la coquille, les protège-tibias, et l’ordre des achats.
+- [Boxer au féminin : le bon matériel](https://mmatoulouse.com/conseils/equipement-boxe-femme/): ce qui change pour une femme (compartiment du gant, brassière, cheveux attachés) et ce qui reste pareil, avec le Lady Punch.
 - [Galerie](https://mmatoulouse.com/galerie/): vraies photos du plateau — octogone, ring, sacs, étage muscu/cardio — plus le relevé du plateau extérieur, seule zone non photographiée.
 - [Planning](https://mmatoulouse.com/plannings/): la grille de la rentrée filtrable par famille (adultes, féminin, grappling & MMA, enfants), le rythme d’été, le poids de chaque jour de la semaine.
 - [Contact](https://mmatoulouse.com/contact/): adresse, les trois accès (métro, bus, rocade), horaires détaillés jour par jour, téléphone, e-mail, questions fréquentes.

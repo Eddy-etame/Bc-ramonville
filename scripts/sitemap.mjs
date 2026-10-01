@@ -125,6 +125,13 @@ const LIGNES_COACHS = Object.values(TCOACHS).map((t) => ({
   chemin: `coachs/${t.slug}/`, priorite: "0.6", freq: "monthly", imgs: IMG_COACH[t.slug] ? [IMG_COACH[t.slug]] : [],
 }));
 
+/* Les conseils du club : l'index et chaque article, avec sa photo. */
+const CONSEILS = JSON.parse(await readFile(join(ROOT, "src", "conseils-pages.json"), "utf8"));
+const LIGNES_CONSEILS = [
+  { chemin: "conseils/", priorite: "0.7", freq: "monthly", imgs: [] },
+  ...CONSEILS.articles.map((a) => ({ chemin: `conseils/${a.slug}/`, priorite: "0.7", freq: "monthly", imgs: [[a.photo.src, `${a.titre} — ${CLUB}`, a.photo.alt]] })),
+];
+
 const PAGES = [
   { chemin: "", priorite: "1.0", freq: "weekly", imgs: [I.hero, I.octogone, I.plateau, I.anglaise] },
   { chemin: "la-salle/", priorite: "0.8", freq: "monthly", imgs: [I.plateau, I.octogone, I.muscu, I.camp, I.heroLarge] },
@@ -139,6 +146,7 @@ const PAGES = [
   { chemin: "nos-clubs/", priorite: "0.6", freq: "monthly", imgs: [] },
   /* la page du club pour « club de boxe ramonville » : son histoire, et des liens vers tout le site */
   { chemin: "club-de-boxe-ramonville/", priorite: "0.8", freq: "monthly", imgs: [I.plateau, I.anglaise, I.octogone] },
+  ...LIGNES_CONSEILS,
   /* Les fiches destinees aux IA. Un robot ne les decouvre autrement que par
      robots.txt : les declarer ici les met au meme rang que les pages.
      `fichier: true` : ce ne sont pas des dossiers avec un index.html. */

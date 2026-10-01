@@ -127,3 +127,66 @@
 .dp-prose a:hover, .dp-suite > a:not(.btn):hover { color: #fff; }
 .dp-suite { margin-top: 1.6rem; display: flex; flex-wrap: wrap; gap: .8rem; align-items: center; justify-content: center; }
 .piege .dp-suite { margin-top: 1.2rem; }
+
+/* ── Les conseils du club (/conseils/, 1er/10) : un sommaire qui suit la
+   lecture, le texte en colonne, un tableau qui devient des fiches sur
+   téléphone, et la carte de l'autre conseil. ── */
+/* un titre de conseil peut passer à la ligne : rien ne se coupe sous le masque */
+.cs-hero .phero__title .tint { white-space: normal; }
+.cs-maj { margin-top: 1.2rem; font: 600 var(--step--1) / 1.3 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.cs-grille { display: grid; grid-template-columns: minmax(0, 240px) minmax(0, 1fr); gap: clamp(1.6rem, 5vw, 5rem); align-items: start; }
+.cs-sommaire { position: sticky; top: 6.5rem; display: grid; gap: 1rem; }
+.cs-sommaire ol { list-style: none; margin: 0; padding: 0; display: grid; counter-reset: etape; border-left: 1px solid var(--line); }
+.cs-sommaire li { counter-increment: etape; }
+.cs-sommaire a { display: block; padding: .55rem 0 .55rem 1rem; margin-left: -1px; border-left: 1px solid transparent; font: 600 var(--step--1) / 1.3 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color .2s, border-color .2s; }
+.cs-sommaire a::before { content: counter(etape, decimal-leading-zero) "  "; color: var(--accent); }
+.cs-sommaire a:hover, .cs-sommaire a:focus-visible { color: var(--ink); border-left-color: var(--accent); }
+.cs-article { display: grid; gap: clamp(2.2rem, 4vw, 3.4rem); }
+.cs-bloc { scroll-margin-top: 6.5rem; }
+.cs-bloc h2 { font: 700 clamp(1.6rem, 1.1rem + 1.8vw, 2.4rem) / 1.08 var(--f-display); text-transform: uppercase; letter-spacing: .01em; text-wrap: balance; }
+.cs-sur { font: 600 var(--step--1) / 1 var(--f-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--accent); }
+#tableau, #questions { scroll-margin-top: 5rem; }
+.cs-table { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper); }
+.cs-table table { width: 100%; border-collapse: collapse; min-width: 640px; }
+.cs-table th, .cs-table td { padding: 1rem 1.2rem; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line-soft, var(--line)); line-height: 1.5; }
+.cs-table thead th { font: 600 var(--step--1) / 1.2 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.cs-table tbody tr:last-child > * { border-bottom: 0; }
+.cs-table tbody th { font-weight: 700; color: var(--ink); }
+.cs-table td { color: var(--ink-soft); }
+.cs-note { margin-top: 1.2rem; color: var(--ink-soft); }
+.cs-cartes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.cs-carte { display: grid; grid-template-rows: auto 1fr; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--paper-2, var(--paper)); color: inherit; text-decoration: none; transition: border-color .25s; }
+.cs-carte:hover, .cs-carte:focus-visible { border-color: var(--accent); }
+.cs-carte:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.cs-carte__photo { margin: 0; aspect-ratio: 16 / 9; overflow: hidden; background: var(--void); }
+.cs-carte__photo img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--ease); }
+.cs-carte:hover .cs-carte__photo img { transform: scale(1.04); }
+.cs-carte__texte { display: grid; align-content: start; gap: .7rem; padding: clamp(1.2rem, 2.4vw, 2rem); }
+.cs-carte__texte h3 { font: 700 clamp(1.3rem, 1rem + 1.2vw, 1.9rem) / 1.1 var(--f-display); text-transform: uppercase; }
+.cs-carte__texte p { color: var(--ink-soft); }
+/* une seule carte : elle prend la rangée, photo à gauche, texte à droite — jamais une petite carte seule */
+.cs-cartes--large { grid-template-columns: minmax(0, 1fr); }
+.cs-cartes--large .cs-carte { grid-template-rows: none; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); }
+.cs-cartes--large .cs-carte__photo { aspect-ratio: auto; min-height: 260px; }
+.cs-cartes--large .cs-carte__texte { align-content: center; padding: clamp(1.6rem, 3.4vw, 3rem); }
+@media (max-width: 900px) {
+  .cs-grille { grid-template-columns: minmax(0, 1fr); }
+  .cs-sommaire { position: static; }
+  .cs-sommaire ol { grid-template-columns: repeat(2, minmax(0, 1fr)); border-left: 0; column-gap: 1rem; }
+  .cs-sommaire a { padding-left: 0; border-left: 0; }
+}
+@media (max-width: 760px) {
+  .cs-cartes { grid-template-columns: minmax(0, 1fr); }
+  .cs-cartes--large .cs-carte { grid-template-columns: minmax(0, 1fr); }
+  .cs-cartes--large .cs-carte__photo { aspect-ratio: 16 / 9; min-height: 0; }
+  /* le tableau devient une suite de fiches : rien ne défile de côté */
+  .cs-table { overflow-x: visible; }
+  .cs-table table { min-width: 0; }
+  .cs-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .cs-table tbody tr { display: block; padding: 1rem 1.2rem; border-bottom: 1px solid var(--line-soft, var(--line)); }
+  .cs-table tbody tr:last-child { border-bottom: 0; }
+  .cs-table tbody th, .cs-table tbody td { display: block; padding: .2rem 0; border: 0; }
+  .cs-table tbody td::before { content: attr(data-label) " · "; font: 600 var(--step--1) / 1.2 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+}
+@media (max-width: 480px) { .cs-sommaire ol { grid-template-columns: minmax(0, 1fr); } }
+@media (prefers-reduced-motion: reduce) { .cs-carte, .cs-carte__photo img, .cs-sommaire a { transition: none; } .cs-carte:hover .cs-carte__photo img { transform: none; } }
