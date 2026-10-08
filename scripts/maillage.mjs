@@ -86,6 +86,7 @@ const MAILLAGE =
   `<div class="footer__col"><h4>Les disciplines</h4>` + LIENS_DISCIPLINES + `</div>` +
   `<div class="footer__col"><h4>Le site</h4>` +
   `<a href="/club-de-boxe-ramonville/">Le club de boxe de Ramonville, son histoire</a>` +
+  `<a href="/visite-du-club/">La visite du club, pièce par pièce</a>` +
   `<a href="/conseils/">Conseils matériel</a>` +
   `<a href="/about/">À propos</a>` +
   `<a href="/privacy/">Confidentialité</a>` +

@@ -1026,3 +1026,34 @@ export const SEMAINE = ["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"].map((d) => ({
   d, long: _JOURS_LONG[d],
   cours: SCHEDULE.filter((s) => s.day === d).map((s) => ({ start: s.start.replace(/\s*\(.*\)$/, ""), cours: s.cours.replace(/\s*\(.*\)$/, ""), coach: s.coach, disc: s.disc })),
 }));
+
+/* La visite complète (/visite-du-club/) : chaque pièce renvoie vers les pages
+   où ce qu’on y fait est expliqué. L’accueil n’en montre que trois. */
+export const LIEU_LIENS = {
+  "le-plateau-cage-et-ring-vue-d-ensemble": [{ href: "/la-salle/", label: "La salle en détail" }, { href: "/activites/", label: "Tous les cours" }],
+  "la-cage-et-la-mezzanine": [{ href: "/activites/mma/", label: "MMA" }, { href: "/activites/grappling/", label: "Grappling" }],
+  "le-ring-sous-la-fresque": [{ href: "/activites/boxe-anglaise/", label: "Boxe anglaise" }, { href: "/coachs/", label: "Les coachs" }],
+  "les-sacs-sous-les-drapeaux": [{ href: "/activites/boxe-pieds-poings/", label: "Boxe pieds-poings" }, { href: "/activites/boxing-camp/", label: "Boxing Camp" }],
+  "le-rig-vu-de-la-mezzanine": [{ href: "/activites/acces-libre/", label: "L’accès libre" }, { href: "/tarifs/", label: "Les tarifs" }],
+  "le-couloir-des-affiches": [{ href: "/galerie/", label: "La galerie" }, { href: "/club-de-boxe-ramonville/", label: "L’histoire du club" }],
+  "l-accueil-du-club": [{ href: "/plannings/", label: "Le planning" }, { href: "/contact/", label: "Venir au club" }],
+};
+
+/* Toutes les portes du site, pour la fin de la visite. */
+export const PAGES_DU_SITE = [
+  { href: "/activites/", t: "Les cours", d: "Huit disciplines, du débutant au compétiteur." },
+  { href: "/activites/ecole-enfants/", t: "L’école enfants", d: "Dès 3 ans, le mercredi et le samedi." },
+  { href: "/activites/lady-punch/", t: "Lady Punch", d: "Le cours 100 % féminin." },
+  { href: "/activites/boxing-camp/", t: "Boxing Camp", d: "Un peu de tout, sans prérequis." },
+  { href: "/activites/mma/", t: "MMA", d: "Dans la cage de 7 m." },
+  { href: "/activites/acces-libre/", t: "Accès libre", d: "La salle et l’étage muscu, hors cours." },
+  { href: "/plannings/", t: "Le planning", d: "Tous les créneaux de la semaine." },
+  { href: "/coachs/", t: "Les coachs", d: "Qui encadre quoi." },
+  { href: "/tarifs/", t: "Les tarifs", d: "La Saison, l’offre Rentrée, l’école." },
+  { href: "/galerie/", t: "La galerie", d: "Le club en photos, cours après cours." },
+  { href: "/la-salle/", t: "La salle", d: "Le plateau, mesuré et expliqué." },
+  { href: "/club-de-boxe-ramonville/", t: "Le club", d: "Son histoire, ce qui le distingue." },
+  { href: "/conseils/", t: "Les conseils", d: "Bien s’équiper pour commencer." },
+  { href: "/nos-clubs/", t: "Les 5 clubs", d: "Le réseau Boxing Center à Toulouse." },
+  { href: "/contact/", t: "Contact", d: "Adresse, accès, horaires, questions." },
+];

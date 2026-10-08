@@ -543,7 +543,7 @@ const ACCES = SALLE.access.map((a) => { const [t, ...d] = a.split(" — "); retu
           <p class="muted">Avant de pousser la porte, fais le tour. Tout ce que tu vois ici est à Ramonville, au {SALLE.address.street}.</p>
         </div>
         <ol class="lieu__rail">
-          {LIEU.map((p, i) => (
+          {LIEU.slice(0, 3).map((p, i) => (
             <li class={`lieu__item${i === 0 ? " lieu__item--grand" : ""}`}>
               <figure class="lieu__fig">
                 <img src={`${img(p.f)}-800.webp`} srcset={`${img(p.f)}-800.webp 800w, ${img(p.f)}.webp 1600w`}
@@ -558,6 +558,7 @@ const ACCES = SALLE.access.map((a) => { const [t, ...d] = a.split(" — "); retu
             </li>
           ))}
         </ol>
+        <p class="staff__plus" data-reveal><a href="/visite-du-club/">Toute la visite, pièce par pièce — l’accueil, la muscu, le couloir des affiches <span aria-hidden="true">→</span></a></p>
       </div>
     </section>
 

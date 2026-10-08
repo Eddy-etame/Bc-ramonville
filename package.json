@@ -14,7 +14,8 @@
     "minify": "node scripts/minify.mjs",
     "sitemap": "node scripts/sitemap.mjs",
     "fonts": "python scripts/fonts.py",
-    "coherence": "node scripts/verifier-coherence.mjs"
+    "coherence": "node scripts/verifier-coherence.mjs",
+    "indexnow": "node scripts/indexnow.mjs"
   },
   "dependencies": {
     "astro": "^5.0.0",
@@ -24,5 +25,6 @@
   "devDependencies": {
     "esbuild": "^0.27.0",
     "sharp": "^0.34.0"
-  }
+  },
+  "indexnowSite": "https://mmatoulouse.com"
 }

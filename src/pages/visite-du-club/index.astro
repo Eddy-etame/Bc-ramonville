@@ -1,0 +1,124 @@
+---
+/* LA VISITE COMPLÈTE — demandée par Eddy le 08/10/2026 : l’accueil ne garde
+   que trois pièces, toute la visite vit ici, avec des liens vers chaque page
+   du site où ce qu’on fait dans la pièce est expliqué. */
+import { LIEU, LIEU_LIENS, PAGES_DU_SITE, SALLE } from "../../../public/assets/js/data.js";
+const img = (f) => `/assets/img/ram/photos/${f}-boxing-center-ramonville`;
+const URL = "https://mmatoulouse.com/visite-du-club/";
+const LD = JSON.stringify({
+  "@context": "https://schema.org",
+  "@graph": [
+    { "@type": "WebPage", "@id": URL + "#webpage", url: URL, name: "Visite du club de boxe de Ramonville, pièce par pièce", inLanguage: "fr-FR",
+      isPartOf: { "@id": "https://mmatoulouse.com/#website" }, about: { "@id": "https://mmatoulouse.com/#salle" }, breadcrumb: { "@id": URL + "#breadcrumb" } },
+    { "@type": "BreadcrumbList", "@id": URL + "#breadcrumb", itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Accueil", item: "https://mmatoulouse.com/" },
+      { "@type": "ListItem", position: 2, name: "La visite du club", item: URL } ] },
+    { "@type": "ImageGallery", "@id": URL + "#visite", name: "Le Boxing Center Ramonville pièce par pièce",
+      hasPart: LIEU.map((p) => ({ "@type": "ImageObject", contentUrl: `https://mmatoulouse.com${img(p.f)}.webp`, caption: p.alt, name: p.t })) },
+  ],
+});
+---
+<!doctype html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Visite du club de boxe de Ramonville, pièce par pièce</title>
+  <meta name="description" content="La visite du Boxing Center Ramonville en photos : l’octogone de 7 m, le ring, les sacs, la muscu, le couloir des affiches et l’accueil, avec les cours de chaque espace." />
+  <link rel="canonical" href="https://mmatoulouse.com/visite-du-club/" />
+  <!-- page juridique : hors index, comme sur Portet et les satellites ; les liens restent suivis -->
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Boxing Center Ramonville" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:title" content="Visite du club de boxe de Ramonville, pièce par pièce" />
+  <meta property="og:description" content="La visite du Boxing Center Ramonville en photos : l’octogone de 7 m, le ring, les sacs, la muscu, le couloir des affiches et l’accueil, avec les cours de chaque espace." />
+  <meta property="og:url" content="https://mmatoulouse.com/visite-du-club/" />
+  <meta property="og:image" content="https://mmatoulouse.com/assets/img/ram/photos/le-plateau-cage-et-ring-vue-d-ensemble-boxing-center-ramonville.webp" />
+  <meta property="og:image:width" content="1600" />
+  <meta property="og:image:height" content="1067" />
+  <meta property="og:image:type" content="image/webp" />
+  <meta property="og:image:alt" content="Le plateau du Boxing Center Ramonville : la cage, le ring et la mezzanine sous la charpente." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://mmatoulouse.com/assets/img/ram/photos/le-plateau-cage-et-ring-vue-d-ensemble-boxing-center-ramonville.webp" />
+  <link rel="preload" href="/fonts/chakrapetch-700-latin.woff2?v=19" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/manrope-var-latin.woff2?v=19" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/jetbrainsmono-var-latin.woff2?v=19" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=19" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=26" />
+  <link rel="stylesheet" href="/assets/css/page.css?v=21" />
+  <link rel="stylesheet" href="/assets/css/home.css?v=23" />
+  <meta name="theme-color" content="#070a12" />
+  <link rel="icon" href="/favicon-16.png?i=3" type="image/png" sizes="16x16" />
+  <link rel="icon" href="/favicon.png?i=3" type="image/png" sizes="32x32" />
+  <link rel="icon" href="/favicon-48.png?i=3" type="image/png" sizes="48x48" />
+  <link rel="icon" href="/favicon-96.png?i=3" type="image/png" sizes="96x96" />
+  <link rel="icon" href="/favicon-192.png?i=3" type="image/png" sizes="192x192" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png?i=3" sizes="180x180" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <style is:inline>
+    .fiche-page { background: var(--void); min-height: 100svh; padding: clamp(7rem,16vh,10rem) var(--gut) clamp(4rem,8vh,6rem); }
+    .fiche-page__inner { width: min(92vw, 760px); margin-inline: auto; }
+    .fiche-page h1 { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: clamp(1.9rem,5vw,3rem); color: var(--ink); line-height: 1.05; margin-bottom: 1.6rem; }
+    .fiche-page h2 { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: clamp(1.15rem,2.6vw,1.5rem); color: var(--accent); margin: 2.2rem 0 .7rem; }
+    .fiche-page p, .fiche-page li { color: var(--ink-soft); line-height: 1.65; max-width: 62ch; }
+    .fiche-page p + p { margin-top: .8rem; }
+    .fiche-page ul { margin: .6rem 0 0 1.1rem; display: grid; gap: .45rem; list-style: square; }
+    .fiche-page a { color: var(--accent-2); }
+    .fiche-page .eyebrow { margin-bottom: .9rem; }
+  </style>
+  <script is:inline defer src="/assets/vendor/gsap.min.js?v=19"></script>
+  <script is:inline defer src="/assets/vendor/ScrollTrigger.min.js?v=19"></script>
+  <script is:inline defer src="/assets/vendor/lenis.min.js?v=19"></script>
+  <!-- LES AUTEURS DU SITE, en donnees structurees.
+       schema.org `creator` sur le noeud WebSite : c'est le canal que Google et
+       les crawlers d'IA lisent pour attribuer un site. `sameAs` relie chaque
+       personne a ses profils publics, ce qui permet de la reconnaitre.
+       Servi dans le HTML statique — le credit precedent etait ecrit par
+       JavaScript et n'atteignait donc aucun robot d'IA. -->
+  <script is:inline type="application/ld+json" set:html={LD}></script>
+</head>
+<body data-page="visite">
+  <a class="sr-only" href="#main">Aller au contenu</a>
+  <div id="nav"></div>
+  <div id="drawer"></div>
+  <main class="fiche-page" id="main">
+    <div class="wrap">
+      <nav class="mono" aria-label="Fil d’Ariane" style="margin:clamp(6rem,12vw,8rem) 0 1rem"><a href="/">Accueil</a> / La visite du club</nav>
+      <span class="eyebrow">La visite</span>
+      <h1 class="display" style="font-size:clamp(2.3rem,1.4rem + 4vw,5rem);margin:1rem 0 1.2rem">Le club de boxe de Ramonville, <span class="tint">pièce par pièce.</span></h1>
+      <p class="muted" style="max-width:62ch;font-size:var(--step-0)">Sept pièces, en vraies photos, au {SALLE.address.full}. Pour chacune, ce qu’on y fait et la page qui l’explique.</p>
+      <ol class="lieu__rail visite__rail" style="margin-top:clamp(2rem,5vw,3rem)">
+        {LIEU.map((p, i) => (
+          <li class={`lieu__item${i === 0 ? " lieu__item--grand" : ""}`}>
+            <figure class="lieu__fig">
+              <img src={`${img(p.f)}-800.webp`} srcset={`${img(p.f)}-800.webp 800w, ${img(p.f)}.webp 1600w`}
+                   sizes={i === 0 ? "(min-width: 900px) 62vw, 88vw" : "(min-width: 900px) 30vw, 78vw"}
+                   alt={p.alt} width="1600" height="1067" loading={i < 3 ? "eager" : "lazy"} decoding="async" />
+            </figure>
+            <div class="lieu__txt">
+              <span class="lieu__n mono">{String(i + 1).padStart(2, "0")}</span>
+              <h2 style="font:700 var(--step-1)/1.05 var(--f-display);text-transform:uppercase">{p.t}</h2>
+              <p>{p.d}</p>
+              <p class="visite__liens mono">{(LIEU_LIENS[p.f] || []).map((l, k) => (<>{k > 0 ? " · " : ""}<a href={l.href}>{l.label} →</a></>))}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+      <section aria-labelledby="t-plus" style="margin:clamp(3rem,8vw,5rem) 0">
+        <span class="eyebrow">Aller plus loin</span>
+        <h2 id="t-plus" class="display" style="font-size:clamp(1.9rem,1.2rem + 3vw,3.6rem);margin:1rem 0 1.4rem">Tout le club, <span class="tint">page par page.</span></h2>
+        <div class="reseau-acc__grid">
+          {PAGES_DU_SITE.map((pg) => (<a class="soeur" href={pg.href}><b>{pg.t}</b><span>{pg.d}</span></a>))}
+        </div>
+      </section>
+      <div class="essai__cta" style="margin-bottom:clamp(3rem,8vw,5rem)">
+        <a class="btn btn--primary" href="https://boutique.boxingcenter.fr/offres-speciales"><span>Voir les offres spéciales</span></a>
+        <a class="btn btn--ghost" href={`tel:${SALLE.phoneHref}`}><span>{SALLE.phone}</span></a>
+      </div>
+    </div>
+  </main>
+  <div id="footer"></div>
+  <script is:inline type="module" src="/assets/js/site.js?v=26"></script>
+</body>
+</html>
