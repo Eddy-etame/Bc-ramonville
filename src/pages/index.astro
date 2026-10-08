@@ -4,8 +4,20 @@
    l’exécution, le build le lit ici. Le fichier est pur (aucun `window`,
    aucun `document` au chargement) — il s’importe donc des deux côtés sans
    rien casser. Si les 300 m² changent un jour, ils changent à un endroit. */
-import { STATS } from "../../public/assets/js/data.js";
+import { STATS, LIEU, HOME_FAQ, SEMAINE, REVIEWS, NETWORK, SALLE } from "../../public/assets/js/data.js";
 const nf = new Intl.NumberFormat("fr-FR");
+/* Les ajouts de l’accueil (08/10/2026) lisent les MÊMES faits que le reste
+   du site : la visite, la semaine, les questions, les avis, le réseau. */
+const FAQ_LD = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": "https://mmatoulouse.com/#faq",
+  mainEntity: HOME_FAQ.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+});
+const SOEURS = NETWORK.filter((n) => !n.self);
+const CAMP_SAMEDI = SEMAINE.find((j) => j.d === "Sam")?.cours.find((c) => c.disc === "boxing-camp");
+const img = (f) => `/assets/img/ram/photos/${f}-boxing-center-ramonville`;
+const ACCES = SALLE.access.map((a) => { const [t, ...d] = a.split(" — "); return { t, d: d.join(" — ") }; });
 ---
 <!doctype html>
 <html lang="fr" data-theme="dark">
@@ -224,7 +236,7 @@ const nf = new Intl.NumberFormat("fr-FR");
               "price": "259",
               "priceCurrency": "EUR",
               "url": "https://boutique.boxingcenter.fr/offre/259",
-              "description": "259 € comptant pour 12 mois. Paiement en 4× uniquement via PayPal, si l’option est disponible et la personne éligible. Accès libre aux 5 clubs."
+              "description": "259 € comptant pour 12 mois. Comptant ou en 4× sans frais, avec plusieurs options de paiement en 4× sur la boutique. Accès libre aux 5 clubs."
             }
           ]
         },
@@ -384,6 +396,10 @@ const nf = new Intl.NumberFormat("fr-FR");
   }
   </script>
 
+  <!-- Les questions d’ACCUEIL, en FAQPage : générées depuis HOME_FAQ (data.js),
+       le même tableau que la FAQ visible plus bas — jamais l’un sans l’autre. -->
+  <script is:inline type="application/ld+json" set:html={FAQ_LD}></script>
+
   <!-- LA COULEUR NE SE NÉGOCIE PLUS : l’argent de la marque est le seul état.
        Le no-flash lisait localStorage avant le premier paint pour restituer une
        bascule Acier/Cuivre qui vient d’être retirée de la barre — il ne restait
@@ -428,10 +444,10 @@ const nf = new Intl.NumberFormat("fr-FR");
             <span class="sr-only"> — club de boxe et de MMA au terminus du métro B. Cours tous niveaux dès 3 ans.</span>
           </h1>
           <div class="hero__cta" data-reveal>
-            <a class="btn btn--primary" data-magnetic href="https://boutique.boxingcenter.fr/offres-speciales" aria-label="Offres spéciales : l’année complète à 259 € au lieu de 400 €, ou 29 € par personne pour 4 semaines au lieu de 44 €"><span class="alt" data-alterne><span class="alt__face is-on">L’année complète · <s class="ancien">400&nbsp;€</s> 259 €</span><span class="alt__face" aria-hidden="true">Je profite de l'offre — <s class="ancien">44&nbsp;€</s> 29 €</span></span></a>
+            <a class="btn btn--primary" data-magnetic href="https://boutique.boxingcenter.fr/offres-speciales" aria-label="Offres spéciales : l’année complète à 259 € au lieu de 400 €, ou 29 € par personne toutes les 4 semaines au lieu de 44,99 €"><span class="alt" data-alterne><span class="alt__face is-on">L’année complète · <s class="ancien">400&nbsp;€</s> 259 €</span><span class="alt__face" aria-hidden="true">Je profite de l'offre — <s class="ancien">44,99&nbsp;€</s> 29 €</span></span></a>
             <a class="btn btn--ghost" data-magnetic href="#onav"><span>Voir les cours</span></a>
           </div>
-          <p data-reveal class="offre__detail alt" data-alterne><span class="alt__face is-on"><s class="ancien">400&nbsp;€</s> 259&nbsp;€ comptant · 12 mois · les 5 clubs</span><span class="alt__face" aria-hidden="true"><s class="ancien">44&nbsp;€</s> 29&nbsp;€ par personne · 4 semaines</span></p>
+          <p data-reveal class="offre__detail alt" data-alterne><span class="alt__face is-on"><s class="ancien">400&nbsp;€</s> 259&nbsp;€ comptant · 12 mois · les 5 clubs</span><span class="alt__face" aria-hidden="true"><s class="ancien">44,99&nbsp;€</s> 29&nbsp;€ par personne · toutes les 4 semaines</span></p>
         </div>
         <div class="hero__octa" data-reveal>
           <div id="octa" aria-hidden="false"></div>
@@ -513,6 +529,38 @@ const nf = new Intl.NumberFormat("fr-FR");
       </div>
     </section>
 
+    <!-- ===================== LE LIEU — la visite =====================
+         Le club n’était montré que par un schéma : l’octogone. Il l’est
+         maintenant pièce par pièce, en vraies photos du shooting d’octobre
+         2026. Chaque cadre s’ouvre en octogone quand il entre à l’écran
+         (animation liée au défilement, désactivée si l’utilisateur réduit
+         les animations) : la forme du club devient la fenêtre sur le club. -->
+    <section class="section lieu" id="lieu" aria-labelledby="t-lieu">
+      <div class="wrap">
+        <div class="shead" data-reveal>
+          <span class="eyebrow">Le lieu</span>
+          <h2 id="t-lieu" class="display"><span class="reveal-mask"><span>Le club,</span></span><span class="reveal-mask"><span class="tint">pièce par pièce.</span></span></h2>
+          <p class="muted">Avant de pousser la porte, fais le tour. Tout ce que tu vois ici est à Ramonville, au {SALLE.address.street}.</p>
+        </div>
+        <ol class="lieu__rail">
+          {LIEU.map((p, i) => (
+            <li class={`lieu__item${i === 0 ? " lieu__item--grand" : ""}`}>
+              <figure class="lieu__fig">
+                <img src={`${img(p.f)}-800.webp`} srcset={`${img(p.f)}-800.webp 800w, ${img(p.f)}.webp 1600w`}
+                     sizes={i === 0 ? "(min-width: 900px) 62vw, 88vw" : "(min-width: 900px) 30vw, 78vw"}
+                     alt={p.alt} width="1600" height="1067" loading="lazy" decoding="async" />
+              </figure>
+              <div class="lieu__txt">
+                <span class="lieu__n mono">{String(i + 1).padStart(2, "0")}</span>
+                <h3>{p.t}</h3>
+                <p>{p.d}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
     <!-- =============== L’OCTOGONE-NAV — 8 arêtes → disciplines ====== -->
     <section class="section onav" id="onav" aria-label="Les disciplines par l’octogone">
       <div class="wrap">
@@ -540,6 +588,62 @@ const nf = new Intl.NumberFormat("fr-FR");
       </div>
     </section>
 
+    <!-- ======================= LA SEMAINE ============================
+         Toute la semaine est écrite dans le HTML (les moteurs de réponse la
+         lisent sans JavaScript) ; home.js y marque aujourd’hui et le prochain
+         cours, à l’heure de Paris. Aucun « en cours » deviné : on ne connaît
+         pas la durée de chaque créneau, on annonce seulement le suivant. -->
+    <section class="section semaine" id="semaine" aria-labelledby="t-semaine">
+      <div class="wrap">
+        <div class="shead" data-reveal>
+          <span class="eyebrow">Au planning</span>
+          <h2 id="t-semaine" class="display"><span class="reveal-mask"><span>Cette semaine</span></span><span class="reveal-mask"><span class="tint">au club.</span></span></h2>
+          <p class="muted">Du lundi au samedi, de 10h00 à 21h30. Les cours ci-dessous sont encadrés ; entre deux, la salle, la cage et l’étage muscu restent ouverts.</p>
+        </div>
+        <p class="semaine__live mono" id="semaine-live" aria-live="polite" hidden></p>
+        <ol class="semaine__jours" data-reveal-group>
+          {SEMAINE.map((j) => (
+            <li class="semaine__jour" data-day={j.d}>
+              <h3 class="semaine__nom mono">{j.long}</h3>
+              <ul>
+                {j.cours.map((c) => (
+                  <li data-start={c.start} data-disc={c.disc}><time>{c.start}</time><span>{c.cours}</span><em>{c.coach.replace(" G", " Guth")}</em></li>
+                ))}
+              </ul>
+            </li>
+          ))}
+        </ol>
+        <p class="staff__plus" data-reveal><a href="/plannings/">Le planning complet, discipline par discipline <span aria-hidden="true">→</span></a></p>
+      </div>
+    </section>
+
+    <!-- =================== TA PREMIÈRE SÉANCE ======================= -->
+    <section class="section premiere" aria-labelledby="t-premiere">
+      <div class="wrap premiere__grid">
+        <figure class="premiere__fig" data-reveal>
+          <img src={`${img("premiere-seance-aux-paos")}-800.webp`} srcset={`${img("premiere-seance-aux-paos")}-800.webp 800w, ${img("premiere-seance-aux-paos")}.webp 1600w`}
+               sizes="(min-width: 900px) 44vw, 92vw" alt="Un coach tient les paos face à un débutant, sur le tatami du Boxing Center Ramonville"
+               width="1600" height="1067" loading="lazy" decoding="async" />
+        </figure>
+        <div>
+          <div data-reveal>
+            <span class="eyebrow">Ta première fois</span>
+            <h2 id="t-premiere" class="display" style="margin-top:1rem"><span class="reveal-mask"><span>Ta première séance,</span></span><span class="reveal-mask"><span class="tint">étape par étape.</span></span></h2>
+          </div>
+          <ol class="etapes" data-reveal-group>
+            <li><b>Tu viens en tenue de sport.</b> Pas besoin d’être sportif : la plupart des cours sont ouverts à tous.</li>
+            <li><b>Tu le dis à l’accueil.</b> « C’est ma première fois. » Un coach t’oriente vers le bon cours.</li>
+            <li><b>Tu valides ta présence.</b> Avant chaque cours, l’émargement GPS à l’accueil — toi le premier soir, comme ceux qui viennent depuis des années.</li>
+            <li><b>Tu avances à ton rythme.</b> Personne ne te met sur le ring. Le plus simple pour commencer : le Boxing Camp{CAMP_SAMEDI ? ` du samedi ${CAMP_SAMEDI.start}` : ""}.</li>
+          </ol>
+          <div class="essai__cta" data-reveal>
+            <a class="btn btn--primary" data-magnetic href="https://boutique.boxingcenter.fr/offres-speciales"><span>Voir les offres spéciales</span></a>
+            <a class="btn btn--ghost" data-magnetic href="#semaine"><span>Choisir mon cours</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ==================== LA BANDE STAFF ========================= -->
     <section class="section" aria-label="L’encadrement">
       <div class="wrap">
@@ -549,6 +653,42 @@ const nf = new Intl.NumberFormat("fr-FR");
         </div>
         <div class="staff" id="staff" data-reveal-group></div>
         <p class="staff__plus" data-reveal><a href="/coachs/">Toute l’équipe, coach par coach <span aria-hidden="true">→</span></a></p>
+      </div>
+    </section>
+
+    <!-- ======================== POUR QUI ============================
+         Quatre portes, sans photo : chacune des photos du site a déjà sa
+         page, et l’accueil n’en répète aucune. La porte est l’octogone. -->
+    <section class="section portes" aria-labelledby="t-portes">
+      <div class="wrap">
+        <div class="shead" data-reveal>
+          <span class="eyebrow">Pour qui</span>
+          <h2 id="t-portes" class="display"><span class="reveal-mask"><span>Pour qui ?</span></span><span class="reveal-mask"><span class="tint">Pour toi.</span></span></h2>
+        </div>
+        <div class="portes__grid" data-reveal-group>
+          <a class="porte" href="/activites/ecole-enfants/"><span class="porte__n mono">3 ans et plus</span><b>Les enfants</b><span>Baby Boxe 3/6 le samedi, puis les 7/11 et 12/16 ans le mercredi et le samedi. On touche, on ne frappe pas.</span><i aria-hidden="true">→</i></a>
+          <a class="porte" href="/activites/lady-punch/"><span class="porte__n mono">100 % féminin</span><b>Les femmes</b><span>Le Lady Punch, lundi et vendredi à 18h avec Sonia. Beaucoup y mettent un gant pour la première fois.</span><i aria-hidden="true">→</i></a>
+          <a class="porte" href="/activites/boxing-camp/"><span class="porte__n mono">Zéro prérequis</span><b>Les débutants</b><span>Le Boxing Camp : un peu de tout, à ton rythme. Personne ne te met sur le ring.</span><i aria-hidden="true">→</i></a>
+          <a class="porte" href="/activites/mma/"><span class="porte__n mono">Cage de 7 m</span><b>MMA et grappling</b><span>Grappling le mardi, MMA tous niveaux le mardi et le jeudi soir, avec Jérôme.</span><i aria-hidden="true">→</i></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================== ILS EN PARLENT ==========================
+         Des avis Google réels, mot pour mot. Ni note, ni nombre d’avis, ni
+         étoiles (ordre d’Eddy, 08/10/2026). -->
+    <section class="section avis" aria-labelledby="t-avis">
+      <div class="wrap">
+        <div class="shead" data-reveal>
+          <span class="eyebrow">Ils en parlent</span>
+          <h2 id="t-avis" class="display"><span class="reveal-mask"><span>Ce qu’en disent</span></span><span class="reveal-mask"><span class="tint">les adhérents.</span></span></h2>
+        </div>
+        <div class="avis__grid" data-reveal-group>
+          {REVIEWS.quotes.map((q) => (
+            <figure class="avis__item"><blockquote><p>« {q.text} »</p></blockquote><figcaption class="mono">{q.author} · Avis Google</figcaption></figure>
+          ))}
+        </div>
+        <p class="staff__plus" data-reveal><a href={REVIEWS.url} target="_blank" rel="noopener">Lire tous les avis sur Google <span aria-hidden="true">↗</span></a></p>
       </div>
     </section>
 
@@ -565,7 +705,7 @@ const nf = new Intl.NumberFormat("fr-FR");
                 <li>Sans engagement</li>
               </ul>
               <div class="essai__cta">
-                <a class="btn btn--primary" data-magnetic href="https://boutique.boxingcenter.fr/offres-speciales" aria-label="Offres spéciales : l’année complète à 259 € au lieu de 400 €, ou 29 € par personne pour 4 semaines au lieu de 44 €"><span class="alt" data-alterne><span class="alt__face is-on">L’année complète · <s class="ancien">400&nbsp;€</s> 259 €</span><span class="alt__face" aria-hidden="true">Je profite de l'offre — <s class="ancien">44&nbsp;€</s> 29 €</span></span></a>
+                <a class="btn btn--primary" data-magnetic href="https://boutique.boxingcenter.fr/offres-speciales" aria-label="Offres spéciales : l’année complète à 259 € au lieu de 400 €, ou 29 € par personne toutes les 4 semaines au lieu de 44,99 €"><span class="alt" data-alterne><span class="alt__face is-on">L’année complète · <s class="ancien">400&nbsp;€</s> 259 €</span><span class="alt__face" aria-hidden="true">Je profite de l'offre — <s class="ancien">44,99&nbsp;€</s> 29 €</span></span></a>
                 <a class="btn btn--ghost" data-magnetic href="/plannings/"><span>Voir le planning</span></a>
               </div>
             </div>
@@ -575,7 +715,7 @@ const nf = new Intl.NumberFormat("fr-FR");
                  comme l’octogone. Portet a son billet de papier ; dehors, un billet
                  prendrait la pluie. -->
             <a class="plaque plaque--duo" data-reveal href="https://boutique.boxingcenter.fr/offres-speciales"
-               aria-label="Offres spéciales : l’année complète à 259 € au lieu de 400 €, ou l’offre de rentrée à 29 € par personne pour 4 semaines, au lieu de 44 €">
+               aria-label="Offres spéciales : l’année complète à 259 € au lieu de 400 €, ou l’offre de rentrée à 29 € par personne toutes les 4 semaines, au lieu de 44,99 €">
               <span class="plaque__faces alt" data-alterne>
                 <span class="plaque__face alt__face is-on">
                   <span class="plaque__sur">L’année complète</span>
@@ -586,13 +726,75 @@ const nf = new Intl.NumberFormat("fr-FR");
                 <span class="plaque__face alt__face" aria-hidden="true">
                   <span class="plaque__sur">Offre de rentrée</span>
                   <span class="plaque__prix"><b>29</b><i>€</i></span>
-                  <span class="plaque__unit">par personne · 4 semaines</span>
-                  <span class="plaque__barre">au lieu de 44 €</span>
+                  <span class="plaque__unit">par personne · toutes les 4 semaines</span>
+                  <span class="plaque__barre">au lieu de 44,99 €</span>
                 </span>
               </span>
               <span class="plaque__go">Voir les offres spéciales <i aria-hidden="true">→</i></span>
             </a>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================== LE RÉSEAU ============================ -->
+    <section class="section reseau-acc" aria-labelledby="t-reseau">
+      <div class="wrap">
+        <div class="shead" data-reveal>
+          <span class="eyebrow">Le réseau</span>
+          <h2 id="t-reseau" class="display"><span class="reveal-mask"><span>Un abonnement,</span></span><span class="reveal-mask"><span class="tint">cinq clubs.</span></span></h2>
+          <p class="muted">Avec la Saison — 259 € les 12 mois au lieu de 400 € —, tu t’entraînes aussi dans les quatre autres Boxing Center de l’agglomération toulousaine.</p>
+        </div>
+        <div class="reseau-acc__grid" data-reveal-group>
+          {SOEURS.map((n) => (
+            <a class="soeur" href={n.url}><span class="soeur__tag mono">{n.tag}</span><b>Boxing Center {n.name}</b><span>{n.feat}</span><em>{n.adresse}</em></a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================== VENIR ============================== -->
+    <section class="section venir" aria-labelledby="t-venir">
+      <div class="wrap venir__grid">
+        <div data-reveal>
+          <span class="eyebrow">Venir au club</span>
+          <h2 id="t-venir" class="display" style="margin-top:1rem"><span class="reveal-mask"><span>{SALLE.address.street},</span></span><span class="reveal-mask"><span class="tint">Ramonville.</span></span></h2>
+          <p class="muted" style="margin-top:1rem">{SALLE.address.full} · du lundi au samedi, de 10h00 à 21h30 · fermé le dimanche.</p>
+          <div class="essai__cta">
+            <a class="btn btn--primary" data-magnetic href={SALLE.mapsLink} target="_blank" rel="noopener"><span>L’itinéraire</span></a>
+            <a class="btn btn--ghost" data-magnetic href={`tel:${SALLE.phoneHref}`}><span>{SALLE.phone}</span></a>
+          </div>
+        </div>
+        <ul class="venir__acces" data-reveal-group>
+          {ACCES.map((a) => (<li><b>{a.t}</b><span>{a.d}</span></li>))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- ======================== QUESTIONS ============================ -->
+    <section class="section questions" aria-labelledby="t-questions">
+      <div class="wrap">
+        <div class="shead" data-reveal>
+          <span class="eyebrow">Questions</span>
+          <h2 id="t-questions" class="display"><span class="reveal-mask"><span>Avant de venir,</span></span><span class="reveal-mask"><span class="tint">tes questions.</span></span></h2>
+        </div>
+        <div class="faq" data-reveal-group>
+          {HOME_FAQ.map((f) => (<details><summary>{f.q}</summary><p>{f.a}</p></details>))}
+        </div>
+        <p class="staff__plus" data-reveal><a href="/contact/">Accès, horaires, enfants : les autres réponses <span aria-hidden="true">→</span></a></p>
+      </div>
+    </section>
+
+    <!-- ===================== LES CONSEILS DU CLUB ===================== -->
+    <section class="section conseils-acc" aria-labelledby="t-conseils">
+      <div class="wrap">
+        <div class="shead" data-reveal>
+          <span class="eyebrow">Les conseils du club</span>
+          <h2 id="t-conseils" class="display"><span class="reveal-mask"><span>Bien s’équiper</span></span><span class="reveal-mask"><span class="tint">pour commencer.</span></span></h2>
+        </div>
+        <div class="reseau-acc__grid reseau-acc__grid--2" data-reveal-group>
+          <a class="soeur" href="/conseils/equipement-mma-debutant/"><span class="soeur__tag mono">MMA</span><b>Équipement MMA pour débuter : la liste, dans l’ordre</b><span>La tenue du premier cours, les gants à doigts libres, l’ordre des achats.</span></a>
+          <a class="soeur" href="/conseils/equipement-boxe-femme/"><span class="soeur__tag mono">Boxe au féminin</span><b>Boxe femme : quel équipement pour commencer ?</b><span>La brassière, les gants, la tenue : ce qui compte vraiment au début.</span></a>
         </div>
       </div>
     </section>
@@ -604,7 +806,7 @@ const nf = new Intl.NumberFormat("fr-FR");
         <h2 class="display"><span class="reveal-mask"><span>Viens essayer :</span></span></h2>
         <p class="places" data-places hidden></p>
         <div class="gong__cta" data-reveal>
-          <a class="btn btn--primary" data-magnetic href="https://boutique.boxingcenter.fr/offres-speciales" aria-label="Offres spéciales : l’année complète à 259 € au lieu de 400 €, ou 29 € par personne pour 4 semaines au lieu de 44 €"><span class="alt" data-alterne><span class="alt__face is-on">L’année complète · <s class="ancien">400&nbsp;€</s> 259 €</span><span class="alt__face" aria-hidden="true">Je profite de l'offre — <s class="ancien">44&nbsp;€</s> 29 €</span></span></a>
+          <a class="btn btn--primary" data-magnetic href="https://boutique.boxingcenter.fr/offres-speciales" aria-label="Offres spéciales : l’année complète à 259 € au lieu de 400 €, ou 29 € par personne toutes les 4 semaines au lieu de 44,99 €"><span class="alt" data-alterne><span class="alt__face is-on">L’année complète · <s class="ancien">400&nbsp;€</s> 259 €</span><span class="alt__face" aria-hidden="true">Je profite de l'offre — <s class="ancien">44,99&nbsp;€</s> 29 €</span></span></a>
           <a class="btn btn--ghost" data-magnetic href="tel:+33939036748"><span>09 39 03 67 48</span></a>
         </div>
       </div>

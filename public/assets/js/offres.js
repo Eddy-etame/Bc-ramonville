@@ -88,7 +88,7 @@ const FACES = `
       <span class="plaque__face alt__face" aria-hidden="true">
         <span class="plaque__sur">Offre de rentrée</span>
         <span class="plaque__prix"><b>29</b><i>€</i></span>
-        <span class="plaque__barre">44 €</span>
+        <span class="plaque__barre">44,99 €</span>
         <span class="plaque__unit">par personne · 4 sem.</span>
       </span>`;
 
@@ -97,7 +97,7 @@ function monterFlotte() {
   const a = document.createElement("a");
   a.className = "plaque flotte";
   a.href = PROMOS;
-  a.setAttribute("aria-label", "Offres spéciales : l’année complète à 259 € au lieu de 400 €, ou l’offre de rentrée à 29 € par personne pour 4 semaines au lieu de 44 €");
+  a.setAttribute("aria-label", "Offres spéciales : l’année complète à 259 € au lieu de 400 €, ou l’offre de rentrée à 29 € par personne toutes les 4 semaines au lieu de 44,99 €");
   a.innerHTML = `<span class="plaque__faces alt" data-alterne>${FACES}</span><span class="plaque__go">Offres spéciales <i aria-hidden="true">→</i></span>`;
 
   /* SUR ORDINATEUR, PAS DANS LE HERO (Eddy, 13/09). À l’accueil, la plaque

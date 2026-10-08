@@ -100,7 +100,7 @@ const FAQ = [
   ["Faut-il déjà savoir boxer pour s’inscrire ?",
    "Non. Sept cours sur huit n’ont aucun prérequis. Le premier soir, on dit « c’est ma première fois » à l’accueil et un coach oriente."],
   ["Combien coûte l’inscription au club ?",
-   "L’année complète est à 259 € au lieu de 400 €, payée comptant, pour les cinq clubs. Sans engagement, l’offre de rentrée est à 29 € par personne toutes les 4 semaines, au lieu de 44 €. Le détail est sur la page des tarifs."],
+   "L’année complète est à 259 € au lieu de 400 €, payée comptant, pour les cinq clubs. Sans engagement, l’offre de rentrée est à 29 € par personne toutes les 4 semaines, au lieu de 44,99 €. Le détail est sur la page des tarifs."],
 ];
 
 /* ── les données structurées ─────────────────────────────────────────── */
@@ -183,7 +183,7 @@ const html = `${tete}  <script is:inline type="application/ld+json">${JSON.strin
       <div class="wrap">
         <p class="amorce-ram" data-reveal>Un abonnement, les cinq clubs.</p>
         <a class="plaque plaque--duo" data-reveal href="https://boutique.boxingcenter.fr/offres-speciales"
-           aria-label="Offres spéciales : l’année complète à 259 € au lieu de 400 €, ou l’offre de rentrée à 29 € par personne pour 4 semaines, au lieu de 44 €">
+           aria-label="Offres spéciales : l’année complète à 259 € au lieu de 400 €, ou l’offre de rentrée à 29 € par personne toutes les 4 semaines, au lieu de 44,99 €">
           <span class="plaque__faces alt" data-alterne>
             <span class="plaque__face alt__face is-on">
               <span class="plaque__sur">L’année complète</span>
@@ -194,8 +194,8 @@ const html = `${tete}  <script is:inline type="application/ld+json">${JSON.strin
             <span class="plaque__face alt__face" aria-hidden="true">
               <span class="plaque__sur">Offre de rentrée</span>
               <span class="plaque__prix"><b>29</b><i>€</i></span>
-              <span class="plaque__unit">par personne · 4 semaines</span>
-              <span class="plaque__barre">au lieu de 44 €</span>
+              <span class="plaque__unit">par personne · toutes les 4 semaines</span>
+              <span class="plaque__barre">au lieu de 44,99 €</span>
             </span>
           </span>
           <span class="plaque__go">Voir les offres spéciales <i aria-hidden="true">→</i></span>

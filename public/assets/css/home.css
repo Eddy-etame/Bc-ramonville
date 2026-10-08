@@ -370,3 +370,106 @@
 
 
 }
+
+/* =====================================================================
+   L’ACCUEIL S’ÉTOFFE (08/10/2026) — la visite, la semaine, la première
+   séance, les portes, les avis, le réseau, l’accès, les questions et les
+   conseils. Même grammaire que le reste du site : coins coupés de la cage,
+   argent lunaire, mono pour les étiquettes. Rien n’est retiré au-dessus.
+   ===================================================================== */
+.lieu__rail { list-style: none; margin: 0; padding: 0; display: grid; gap: clamp(.9rem, 2vw, 1.4rem); grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.lieu__item { --coin: 16px; display: grid; gap: .8rem; align-content: start; }
+.lieu__item--grand { grid-column: span 2; grid-row: span 2; }
+.lieu__fig { margin: 0; position: relative; aspect-ratio: 3 / 2; overflow: hidden; background: var(--paper-2);
+  clip-path: polygon(var(--coin) 0, calc(100% - var(--coin)) 0, 100% var(--coin), 100% calc(100% - var(--coin)),
+    calc(100% - var(--coin)) 100%, var(--coin) 100%, 0 calc(100% - var(--coin)), 0 var(--coin)); }
+.lieu__fig img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.2s var(--ease-out); }
+.lieu__item:hover .lieu__fig img { transform: scale(1.04); }
+.lieu__txt { display: grid; gap: .3rem; }
+.lieu__n { color: var(--accent); }
+.lieu__txt h3 { font: 700 var(--step-1)/1.05 var(--f-display); text-transform: uppercase; letter-spacing: -.01em; }
+.lieu__txt p { color: var(--ink-soft); font-size: var(--step--1); line-height: 1.55; max-width: 46ch; }
+/* L’octogone s’ouvre sur la pièce : le cadre naît en octogone au centre et
+   s’élargit jusqu’aux coins coupés à mesure qu’il entre à l’écran. Lié au
+   défilement (aucun script) ; sans support, ou si les animations sont
+   réduites, le cadre est simplement là. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .lieu__fig { animation: lieu-ouvre linear both; animation-timeline: view(); animation-range: entry 0% cover 38%; }
+    .lieu__fig img { animation: lieu-recule linear both; animation-timeline: view(); animation-range: entry 0% cover 45%; }
+  }
+}
+@keyframes lieu-ouvre {
+  from { clip-path: polygon(41% 26%, 59% 26%, 70% 41%, 70% 59%, 59% 74%, 41% 74%, 30% 59%, 30% 41%); }
+  to { clip-path: polygon(var(--coin) 0, calc(100% - var(--coin)) 0, 100% var(--coin), 100% calc(100% - var(--coin)),
+    calc(100% - var(--coin)) 100%, var(--coin) 100%, 0 calc(100% - var(--coin)), 0 var(--coin)); }
+}
+@keyframes lieu-recule { from { transform: scale(1.18); } to { transform: scale(1); } }
+@media (max-width: 760px) {
+  /* Au téléphone, la visite devient un rail au pouce : même contenu, même
+     ordre, la pièce suivante dépasse pour inviter le geste. */
+  .lieu__rail { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 82%; overflow-x: auto;
+    scroll-snap-type: x mandatory; padding-bottom: .6rem; margin-inline: calc(var(--gut) * -1); padding-inline: var(--gut);
+    scrollbar-width: thin; }
+  .lieu__item, .lieu__item--grand { grid-column: auto; grid-row: auto; scroll-snap-align: start; }
+}
+
+.semaine__jours { list-style: none; margin: 0; padding: 0; display: grid; gap: .7rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 168px), 1fr)); }
+.semaine__jour { border: 1px solid var(--line); background: var(--paper-2); padding: 1rem 1rem 1.1rem; transition: border-color .3s, box-shadow .3s; }
+.semaine__nom { color: var(--muted); text-transform: uppercase; letter-spacing: .14em; margin-bottom: .7rem; }
+.semaine__jour ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .55rem; }
+.semaine__jour li { display: grid; grid-template-columns: auto 1fr; column-gap: .6rem; font-size: var(--step--1); line-height: 1.35; }
+.semaine__jour time { font: 600 var(--step--1)/1.35 var(--f-mono); color: var(--accent); }
+.semaine__jour em { grid-column: 2; font-style: normal; color: var(--muted); font-size: var(--step--2); }
+.semaine__jour.is-today { border-color: var(--accent-line); box-shadow: var(--glow-soft); }
+.semaine__jour.is-today .semaine__nom { color: var(--accent); }
+.semaine__jour.is-today .semaine__nom::after { content: " · aujourd’hui"; }
+.semaine__jour li.is-past { opacity: .45; }
+.semaine__jour li.is-next span { color: var(--ink); font-weight: 700; }
+.semaine__jour li.is-next time::before { content: "▸ "; }
+.semaine__live { margin: 0 0 1rem; color: var(--accent); letter-spacing: .06em; }
+
+.premiere__grid { display: grid; gap: clamp(1.6rem, 4vw, 3.2rem); align-items: center; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 900px) { .premiere__grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+.premiere__fig { --coin: 18px; margin: 0; aspect-ratio: 3 / 2; overflow: hidden;
+  clip-path: polygon(var(--coin) 0, calc(100% - var(--coin)) 0, 100% var(--coin), 100% calc(100% - var(--coin)),
+    calc(100% - var(--coin)) 100%, var(--coin) 100%, 0 calc(100% - var(--coin)), 0 var(--coin)); }
+.premiere__fig img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.etapes { list-style: none; margin: 1.4rem 0 0; padding: 0; counter-reset: etape; display: grid; gap: .9rem; }
+.etapes li { counter-increment: etape; position: relative; padding-left: 3.1rem; color: var(--ink-soft); line-height: 1.55; font-size: var(--step-0); }
+.etapes li b { color: var(--ink); }
+.etapes li::before { content: "0" counter(etape); position: absolute; left: 0; top: -.1rem; width: 2.2rem; height: 2.2rem; display: grid; place-items: center;
+  font: 700 .85rem/1 var(--f-mono); color: #0d1420; background: linear-gradient(135deg, var(--accent-2), var(--accent));
+  clip-path: polygon(30% 0, 70% 0, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0 70%, 0 30%); }
+
+.portes__grid { display: grid; gap: .8rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); }
+.porte, .soeur { --coin: 14px; position: relative; display: grid; gap: .45rem; align-content: start; padding: 1.3rem 1.3rem 1.4rem; text-decoration: none; color: var(--ink);
+  background: var(--paper-2); border: 1px solid var(--line);
+  clip-path: polygon(var(--coin) 0, calc(100% - var(--coin)) 0, 100% var(--coin), 100% calc(100% - var(--coin)),
+    calc(100% - var(--coin)) 100%, var(--coin) 100%, 0 calc(100% - var(--coin)), 0 var(--coin));
+  transition: background .3s, transform .4s var(--ease-out); }
+.porte:hover, .soeur:hover, .porte:focus-visible, .soeur:focus-visible { background: var(--paper-3); transform: translateY(-3px); }
+.porte__n, .soeur__tag { color: var(--accent); text-transform: uppercase; letter-spacing: .12em; font-size: var(--step--2); }
+.porte b, .soeur b { font: 700 var(--step-1)/1.05 var(--f-display); text-transform: uppercase; }
+.soeur b { font-size: clamp(1.05rem, .95rem + .5vw, 1.35rem); }
+.porte span:not(.porte__n), .soeur span:not(.soeur__tag) { color: var(--ink-soft); font-size: var(--step--1); line-height: 1.5; }
+.soeur em { font-style: normal; color: var(--muted); font-size: var(--step--2); margin-top: .2rem; }
+.porte i { font-style: normal; color: var(--accent); transition: transform .3s var(--ease-out); }
+.porte:hover i { transform: translateX(4px); }
+
+.avis__grid { display: grid; gap: .8rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); }
+.avis__item { margin: 0; padding: 1.4rem; border: 1px solid var(--line); background: var(--paper-2); display: grid; gap: .9rem; align-content: space-between; }
+.avis__item blockquote { margin: 0; }
+.avis__item p { color: var(--ink); font-size: var(--step-0); line-height: 1.55; }
+.avis__item figcaption { color: var(--muted); letter-spacing: .08em; text-transform: uppercase; font-size: var(--step--2); }
+
+.reseau-acc__grid { display: grid; gap: .8rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); }
+.reseau-acc__grid--2 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); }
+
+.venir__grid { display: grid; gap: clamp(1.6rem, 4vw, 3rem); grid-template-columns: minmax(0, 1fr); align-items: start; }
+@media (min-width: 900px) { .venir__grid { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); } }
+.venir__acces { list-style: none; margin: 0; padding: 0; display: grid; gap: .7rem; }
+.venir__acces li { display: grid; gap: .25rem; padding: 1rem 1.1rem; border-left: 2px solid var(--accent); background: var(--paper-2); }
+.venir__acces b { font: 700 var(--step-0)/1.2 var(--f-display); text-transform: uppercase; }
+.venir__acces span { color: var(--ink-soft); font-size: var(--step--1); line-height: 1.5; }
+.questions .faq { max-width: 86ch; }

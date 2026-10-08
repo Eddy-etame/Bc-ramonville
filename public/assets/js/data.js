@@ -683,7 +683,8 @@ export const POSTERS = [
 /* ------------------------------------------------------------------ *
  *  LES OFFRES — conditions relues sur la boutique et dans les CGV.
  *  Une période de quatre semaines n'est pas un mois. Le 4× de la Saison
- *  n'est possible que si PayPal le propose à la personne au paiement.
+ *  se règle comptant ou en 4× sans frais, avec plusieurs options de paiement
+ *  en quatre fois sur la boutique (Eddy, 08/10/2026).
  * ------------------------------------------------------------------ */
 export const CONDITIONS_COMMERCIALES = {
   rentree: {
@@ -693,8 +694,8 @@ export const CONDITIONS_COMMERCIALES = {
     badge: "Badge nominatif : 34,99 € en plus, facturé 72 h après le début",
   },
   saison: {
-    paiement: "259 € payés comptant",
-    paypal: "Paiement en 4× uniquement via PayPal, si cette option est disponible et si la personne est éligible",
+    paiement: "259 € au lieu de 400 €, payés comptant ou en 4× sans frais",
+    paypal: "Plusieurs options de paiement en 4× au choix sur la boutique",
   },
   badge:
     "Le badge nominatif à 34,99 € s’ajoute aux abonnements sans engagement de 4 semaines, sauf exception indiquée dans l’offre ou les CGV.",
@@ -720,7 +721,7 @@ const _PROMOS = {
     name: "Offre Saison",
     price: "259 €",
     unit: "les 12 mois",
-    feature: "259 € comptant · 4× via PayPal sous conditions",
+    feature: "259 € comptant ou 4× sans frais",
     items: [
       CONDITIONS_COMMERCIALES.saison.paiement,
       CONDITIONS_COMMERCIALES.saison.paypal,
@@ -753,7 +754,7 @@ const _TARIFS = [
     name: "Offre Saison",
     price: "259 €",
     period: "/ 12 mois · comptant",
-    feature: "4× uniquement via PayPal, si disponible et éligible",
+    feature: "Comptant ou 4× sans frais — plusieurs options de paiement",
     items: [CONDITIONS_COMMERCIALES.saison.paiement, CONDITIONS_COMMERCIALES.saison.paypal, "Accès libre aux 5 clubs"],
     cta: "Je prends ma saison",
     href: "https://boutique.boxingcenter.fr/offre/259",
@@ -762,10 +763,10 @@ const _TARIFS = [
   /* Une période contractuelle de 4 semaines n'est jamais appelée « mois ». */
   {
     name: "Abonnement 4 semaines",
-    price: "44 €",
+    price: "44,99 €",
     period: "/ 4 semaines · adulte",
-    feature: "Étudiant 36 € sur justificatif · sans engagement",
-    items: ["Adulte 44 € / 4 semaines", "Étudiant 36 € / 4 semaines", CONDITIONS_COMMERCIALES.badge],
+    feature: "Étudiant 36,99 € sur justificatif · sans engagement",
+    items: ["Adulte 44,99 € / 4 semaines", "Étudiant 36,99 € / 4 semaines", CONDITIONS_COMMERCIALES.badge],
     cta: "Voir les formules 4 semaines",
     href: "https://boutique.boxingcenter.fr/abonnements#prelevement",
     highlight: false,
@@ -802,12 +803,12 @@ export const NETWORK = [
   { id: "ramonville", name: "Ramonville", tag: "Ouvert à tous", feat: "Cage 7 m · 300 m² dehors couverts", url: "/", self: true, adresse: "33 rue des Ormes, 31520 Ramonville-Saint-Agne" },
 ];
 
-/* Avis Google réels (source : _reviews-2026-07-12.json — Ramonville 4,1/5,
-   55 avis). Verbatim, jamais édités, jamais inventés. */
+/* Avis Google réels (source : _reviews-2026-07-12.json). Verbatim, jamais
+   édités, jamais inventés. Ni note, ni nombre d’avis, ni étoiles : ordre
+   d’Eddy du 08/10/2026 (« no google rating »). */
 export const REVIEWS = {
-  rating: "4,1/5",
-  count: 55, // relevé Google Maps 2026-08-06
   sourceLabel: "Avis Google",
+  url: "https://www.google.com/maps/search/?api=1&query=Boxing+Center+Ramonville+33+rue+des+Ormes+31520+Ramonville-Saint-Agne",
   quotes: [
     { text: "Un grand merci à Sonia qui nous accompagne avec bienveillance. Je recommande la salle de Ramonville les yeux fermés !", author: "LEPICIER I.", stars: 5 },
     { text: "Super salle avec une très bonne ambiance. Les coachs sont très sympas et pédagogues. Je recommande !", author: "Camille L.", stars: 5 },
@@ -940,7 +941,7 @@ export const FAQ = [
   { q: "Y a-t-il des cours pour les enfants ?", a: "Oui, dès 3 ans. Baby Boxe 3/6 le samedi à 14h15. Cours 7/11 ans à 15h, ados 12/16 ans à 16h. Mercredi et samedi après-midi. Valentin Guth tient toute l’école. Chez les enfants, on touche, on ne frappe pas. Et tu peux rester dans la salle pendant le cours." },
   { q: "Faut-il un niveau pour commencer ?", a: "Non. Pas besoin d’être sportif. La plupart des cours sont ouverts à tous. Tu dis « c’est ma première fois » à l’accueil. Un coach t’oriente. Personne ne te met sur le ring." },
   { q: "Comment fonctionne l’offre Rentrée à 29 € ?", a: "Le prix est de 29 € par personne toutes les 4 semaines. La première échéance se règle par carte bancaire. Les suivantes sont prélevées sur l’IBAN fourni. Les coordonnées d’un proche sont requises. Le badge nominatif coûte 34,99 € en plus et il est facturé 72 heures après le début." },
-  { q: "Comment payer l’offre Saison à 259 € ?", a: "Le tarif de 259 € se paie comptant. Un paiement en quatre fois peut être proposé uniquement par PayPal. Cette option dépend de sa disponibilité et de l’éligibilité de la personne." },
+  { q: "Comment payer l’offre Saison à 259 € ?", a: "Comptant, ou en 4× sans frais : la boutique propose plusieurs options de paiement en quatre fois, tu choisis la tienne au moment de payer." },
   { q: "Quels sont les horaires ?", a: "Du lundi au samedi, de 10h00 à 21h30. La muscu et le cardio sont compris. Fermé le dimanche. Avant chaque cours, tu valides ta présence à l’accueil (émargement GPS). Ça vaut pour tout le monde. Toi le premier soir, comme ceux qui viennent depuis des années." },
 ];
 
@@ -971,3 +972,57 @@ export const PROCHES = [
   { ville: "L’Union", url: "https://www.boxingcenter-lunion.fr/" },
   { ville: "Castelginest", url: "https://www.boxingcenter-castelginest.fr/" },
 ];
+
+/* ------------------------------------------------------------------ *
+ *  L’ACCUEIL — ce que la page d’accueil ajoute (feu vert d’Eddy, 08/10/2026).
+ *  Rien n’est remplacé : la visite, le jour, la première séance, les portes,
+ *  les avis, le réseau, l’accès et les questions s’AJOUTENT aux sections
+ *  existantes. Chaque phrase sort d’un fait déjà écrit dans ce fichier ;
+ *  les horaires cités sont CALCULÉS depuis SCHEDULE — un créneau changé au
+ *  vestiaire change aussi les réponses.
+ * ------------------------------------------------------------------ */
+
+/* La visite du lieu — photos du shooting d’octobre 2026 (B.M Photographie,
+   crédit aux mentions légales). Une photo = une pièce = un fait. */
+export const LIEU = [
+  { f: "le-plateau-cage-et-ring-vue-d-ensemble", t: "Le plateau", d: "L’octogone de 7 m et le grand ring de boxe, au même niveau, sous la charpente.", alt: "Vue d’ensemble du plateau : la cage RINKAGE au centre, le ring à gauche, la charpente métallique au-dessus" },
+  { f: "la-cage-et-la-mezzanine", t: "L’octogone", d: "7 m de cage. Le MMA et le grappling s’y travaillent, du premier cours au sparring.", alt: "L’octogone de 7 m du Boxing Center Ramonville, la mezzanine en bois et les drapeaux au fond" },
+  { f: "le-ring-sous-la-fresque", t: "Le ring", d: "Un grand ring de boxe, sous la fresque Boxing Center. La boxe anglaise vit ici.", alt: "Le ring de boxe aux cordes bleues sous la grande fresque Boxing Center" },
+  { f: "les-sacs-sous-les-drapeaux", t: "Les sacs", d: "Une rangée de sacs suspendus à la charpente, sous les drapeaux des grandes nations de la boxe.", alt: "Les sacs de frappe suspendus sous les drapeaux, le ring et la cage en arrière-plan" },
+  { f: "le-rig-vu-de-la-mezzanine", t: "La muscu", d: "Le rig vu de la mezzanine. L’étage muscu et cardio est en accès libre, du lundi au samedi.", alt: "Le rig de musculation et ses disques vus depuis la mezzanine" },
+  { f: "le-couloir-des-affiches", t: "Le couloir", d: "Les affiches des combats légendaires, Duran contre Leonard en tête, au mur du couloir.", alt: "Le couloir du club et ses affiches de combats de légende, dont « The Super Fight » Duran contre Leonard" },
+  { f: "l-accueil-du-club", t: "L’accueil", d: "C’est ici que tu valides ta présence avant chaque cours (émargement GPS).", alt: "Le comptoir d’accueil du Boxing Center Ramonville, logo du club en façade" },
+];
+
+const _JOURS_LONG = { Lun: "lundi", Mar: "mardi", Mer: "mercredi", Jeu: "jeudi", Ven: "vendredi", Sam: "samedi" };
+const _creneaux = (disc) => SCHEDULE.filter((s) => s.disc === disc);
+const _liste = (rows) => {
+  const parts = rows.map((s) => `le ${_JOURS_LONG[s.day]} à ${s.start.replace(/\s*\(.*\)$/, "")}`);
+  return parts.length > 1 ? `${parts.slice(0, -1).join(", ")} et ${parts.at(-1)}` : parts[0] || "";
+};
+const _camp = _creneaux("boxing-camp");
+const _lady = _creneaux("lady-punch");
+
+/* Les questions d’ACCUEIL — distinctes de celles de /contact/ (FAQ) et de
+   /club-de-boxe-ramonville/ : deux pages ne se disputent jamais la même
+   réponse. Visibles sur l’accueil ET balisées en FAQPage, depuis ce tableau. */
+export const HOME_FAQ = [
+  { q: "Peut-on s’entraîner dans les autres Boxing Center avec un abonnement de Ramonville ?",
+    a: "Oui, avec la Saison : 259 € les 12 mois au lieu de 400 €, comptant ou en 4× sans frais, et l’accès libre aux 5 clubs du réseau — Ramonville, les Minimes, États-Unis, Saint-Cyprien et Portet-sur-Garonne." },
+  { q: "Peut-on venir s’entraîner en dehors des cours ?",
+    a: `Oui. Le club est ouvert ${SALLE.hours.replace("Lun – Sam · ", "du lundi au samedi, de ").replace(" – ", " à ")}, et l’étage muscu et cardio est en accès libre sur toute cette plage. Fermé le dimanche.` },
+  { q: "Quel cours choisir pour se remettre en forme ?",
+    a: `Le Boxing Camp : un peu de tout, sans prérequis — ${_liste(_camp)}. Pour un cours 100 % féminin, le Lady Punch, ${_liste(_lady)}, avec Sonia.` },
+  { q: "Les parents peuvent-ils rester pendant le cours de leur enfant ?",
+    a: "Oui, tu peux rester dans la salle pendant le cours. L’école commence dès 3 ans : Baby Boxe 3/6 le samedi à 14h15, puis les 7/11 ans et les 12/16 ans le mercredi et le samedi après-midi, avec Valentin Guth. Chez les enfants, on touche, on ne frappe pas." },
+  { q: "Qui sont les coachs du club ?",
+    a: "Jérôme, coach principal, pour le MMA, le grappling et la forme physique ; Sonia pour la boxe thaï, le kickboxing et le Lady Punch ; Hicham et Farouk pour la boxe anglaise, le midi et le soir ; Valentin Guth pour l’école enfants et le Boxing Camp du samedi." },
+];
+
+/* La semaine en une ligne par jour — cuite dans le HTML de l’accueil (les
+   robots et les moteurs de réponse la lisent sans JavaScript) ; home.js y
+   marque ensuite le jour, le cours en cours et le suivant, à l’heure de Paris. */
+export const SEMAINE = ["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"].map((d) => ({
+  d, long: _JOURS_LONG[d],
+  cours: SCHEDULE.filter((s) => s.day === d).map((s) => ({ start: s.start.replace(/\s*\(.*\)$/, ""), cours: s.cours.replace(/\s*\(.*\)$/, ""), coach: s.coach, disc: s.disc })),
+}));

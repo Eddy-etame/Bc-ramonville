@@ -113,9 +113,9 @@
       "h1": "MMA tous niveaux",
       "eyebrow": "Discipline · Debout et au sol",
       "lead": "Le MMA mélange la boxe et le combat au sol, dans la cage de 7 m. Jérôme a combattu aux États-Unis et au Canada. Les débutants sont les bienvenus, et personne ne te met dans la cage si tu ne le demandes pas.",
-      "photo": { "src": "/assets/img/ram/photos/cours-de-mma-groupe-debout-boxing-center-ramonville.webp", "alt": "Le groupe debout dans l’octogone de 7 mètres pendant un cours de MMA au Boxing Center Ramonville" },
+      "photo": { "src": "/assets/img/ram/photos/mma-percussions-en-binome-boxing-center-ramonville.webp", "alt": "Deux pratiquants travaillent les frappes en binôme pendant le cours de MMA au Boxing Center Ramonville" },
       "photos": [
-        { "src": "/assets/img/ram/photos/mma-entrainement-dans-l-octogone-boxing-center-ramonville.webp", "alt": "Entraînement de MMA dans l’octogone du Boxing Center Ramonville", "legende": "L’entraînement, dans l’octogone" },
+        { "src": "/assets/img/ram/photos/mma-entrainement-debout-en-groupe-boxing-center-ramonville.webp", "alt": "Le groupe du cours de MMA travaille la garde et les déplacements sur le tatami du Boxing Center Ramonville", "legende": "Le groupe, en mouvement" },
         { "src": "/assets/img/ram/photos/octogone-7-metres-vide-boxing-center-ramonville.webp", "alt": "L’octogone de 7 mètres du Boxing Center Ramonville, avant le cours", "legende": "L’octogone de 7 m" }
       ],
       "travailTitre": "Debout, au contact, au sol.",
@@ -148,10 +148,10 @@
       "h1": "Boxing Camp",
       "eyebrow": "Discipline · Un peu de tout",
       "lead": "Un peu de technique, un peu de cardio, beaucoup de sacs. Tu frappes, tu souffles, tu recommences. Tu ne sais pas par où commencer ? Commence ici : en une séance, tu as tout vu.",
-      "photo": { "src": "/assets/img/ram/photos/boxing-camp-circuit-de-renforcement-boxing-center-ramonville.webp", "alt": "Circuit de renforcement pendant le Boxing Camp du Boxing Center Ramonville" },
+      "photo": { "src": "/assets/img/ram/photos/boxing-camp-coup-de-pied-au-sac-boxing-center-ramonville.webp", "alt": "Un pratiquant enchaîne un coup de pied au sac lourd pendant le Boxing Camp du Boxing Center Ramonville" },
       "photos": [
-        { "src": "/assets/img/ram/photos/sacs-de-frappe-entrainement-boxing-center-ramonville.webp", "alt": "Entraînement aux sacs de frappe au Boxing Center Ramonville", "legende": "La ligne de sacs" },
-        { "src": "/assets/img/ram/photos/renforcement-squat-au-poids-du-corps-boxing-center-ramonville.webp", "alt": "Renforcement au poids du corps pendant un cours au Boxing Center Ramonville", "legende": "Le renforcement" }
+        { "src": "/assets/img/ram/photos/boxing-camp-circuit-cardio-boxing-center-ramonville.webp", "alt": "Circuit cardio du Boxing Camp avec échelle de rythme, haies et kettlebells au Boxing Center Ramonville", "legende": "Le circuit cardio" },
+        { "src": "/assets/img/ram/photos/boxing-camp-groupe-boxing-center-ramonville.webp", "alt": "Le groupe du Boxing Camp réuni devant la fresque du Boxing Center Ramonville", "legende": "Le groupe du cours" }
       ],
       "travailTitre": "Tout, en une séance.",
       "travail": [

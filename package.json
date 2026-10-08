@@ -10,6 +10,7 @@
     "content": "node scripts/content.mjs",
     "preview": "astro preview",
     "images": "node scripts/images.mjs",
+    "images:octobre-2026": "node scripts/photos-octobre-2026.mjs",
     "minify": "node scripts/minify.mjs",
     "sitemap": "node scripts/sitemap.mjs",
     "fonts": "python scripts/fonts.py",

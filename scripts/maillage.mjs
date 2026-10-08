@@ -89,6 +89,7 @@ const MAILLAGE =
   `<a href="/conseils/">Conseils matériel</a>` +
   `<a href="/about/">À propos</a>` +
   `<a href="/privacy/">Confidentialité</a>` +
+  `<a href="/mentions-legales/">Mentions légales</a>` +
   `</div></div>` +
   `<p class="footer__reseau footer__proches">Boxing Center près de chez toi : ` +
   (PROCHES || []).map((p) => `<a href="${p.url}" rel="noopener">${p.ville}</a>`).join(" · ") + `</p>` +

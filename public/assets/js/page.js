@@ -388,7 +388,7 @@ function renderDiscs() {
           <div class="disc__fact"><b>Niveau</b><span>${d.niveau}</span></div>
         </div>
         <div class="disc__cta">
-          <a class="btn btn--primary" data-magnetic href="${LINKS.promos}" aria-label="Offres spéciales : l’année complète à 259 € au lieu de 400 €, ou 29 € par personne pour 4 semaines au lieu de 44 €"><span class="alt" data-alterne><span class="alt__face is-on">L’année complète · <s class="ancien">400&nbsp;€</s> 259 €</span><span class="alt__face" aria-hidden="true">Quatre semaines · <s class="ancien">44&nbsp;€</s> 29 €</span></span></a>
+          <a class="btn btn--primary" data-magnetic href="${LINKS.promos}" aria-label="Offres spéciales : l’année complète à 259 € au lieu de 400 €, ou 29 € par personne toutes les 4 semaines au lieu de 44,99 €"><span class="alt" data-alterne><span class="alt__face is-on">L’année complète · <s class="ancien">400&nbsp;€</s> 259 €</span><span class="alt__face" aria-hidden="true">Quatre semaines · <s class="ancien">44,99&nbsp;€</s> 29 €</span></span></a>
           <a class="btn btn--ghost" data-magnetic href="/plannings/"><span>Voir le planning</span></a>
           ${lienDiscipline(d.key) ? `<a class="btn btn--ghost" data-magnetic href="${lienDiscipline(d.key)}"><span>La page ${d.name}</span></a>` : ""}
         </div>
@@ -885,12 +885,11 @@ function renderTarifs() {
   if (rbox && REVIEWS.quotes.length) {
     rbox.innerHTML = REVIEWS.quotes.map((q) => `
       <figure class="review">
-        <div class="review__stars" aria-label="${q.stars} étoiles sur 5">${"★".repeat(q.stars)}${"☆".repeat(5 - q.stars)}</div>
         <blockquote><p>« ${q.text} »</p></blockquote>
         <figcaption class="review__by">${q.author}</figcaption>
       </figure>`).join("");
     const rh = $("#reviews-head");
-    if (rh) rh.innerHTML = `<span class="reviews__rating">${REVIEWS.rating}</span><span class="reviews__count">${REVIEWS.count} ${REVIEWS.sourceLabel}</span>`;
+    if (rh) rh.innerHTML = `<a class="reviews__count" href="${REVIEWS.url}" target="_blank" rel="noopener">${REVIEWS.sourceLabel} · lire tous les avis ↗</a>`;
   }
 }
 
