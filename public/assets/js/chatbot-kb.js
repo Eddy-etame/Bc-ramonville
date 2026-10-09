@@ -102,7 +102,8 @@ const RULES = [
   [/essai|d[ée]couvr|tester|premi[èe]re|essayer|10\s?€/i, 3],   // pas « débute » : cette réponse donne l’essai à 10 €, la dernière carte — un débutant n’y va pas d’entrée
   [/tarif|prix|co[ûu]te|combien|abonn|duo|saison|mensuel|annuel/i, 4],
   [/horaire|ouvert|ferm|heure|dimanche|[ée]margement/i, 5],
-  [/adresse|o[ùu]\b|situ|acc[èe]s|m[ée]tro|bus|parking|venir|plan|rue|rocade/i, 6],
+  [/adresse|o[ùu](?![a-zà-ÿ])|situ|acc[èe]s|m[ée]tro|bus|parking|venir|plan|rue|rocade/i, 6],
+  [/\bqui (?:donne|fait|enseigne|anime|tient|encadre)\b/i, 9],
   [/discipline|cours|anglaise|pieds.?poings|camp|muscu|cardio|libre|boxe/i, 7],
   [/coach|entra[îi]neur|prof|encadr|[ée]quipe|sonia|j[ée]r[ôo]me|farouk|valentin/i, 9],
   [/lady|femme|f[ée]minin|meuf|entre filles/i, 10],

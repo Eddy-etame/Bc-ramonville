@@ -13,6 +13,7 @@
 import { allowCors, bodyOf, ipOf, rateLimit, clean } from "./_lib/util.js";
 import { infosSalle } from "./_lib/salle.js";
 import { contexteDuMoment } from "./_lib/moment.js";
+import { reponseDuPlanning } from "./_lib/repli-planning.js";
 
 const CADRE = `Tu es l’assistant du BOXING CENTER RAMONVILLE — la salle du réseau qui s’entraîne dehors, à Ramonville-Saint-Agne (sud toulousain).
 
@@ -42,7 +43,7 @@ FRAIS DE BADGE :
 - Ne promets ni prêt de matériel, ni accès à tous les cours, si le bloc FAITS ne le dit pas explicitement.
 
 COMMENT TU PARLES :
-- En FRANÇAIS, au tutoiement, voix de coach : direct, chaleureux, jamais commercial, jamais brochure.
+- Dans la langue du visiteur (français par défaut), au tutoiement en français, voix de coach : direct, chaleureux, jamais commercial, jamais brochure.
 - Court : 2 à 4 phrases. Pas de liste à puces sauf si on te demande un planning.
 - Registre documentaire, comme le site : on dit ce qui est mesuré, on n’enjolive pas.
 
@@ -190,10 +191,13 @@ FAITS (tout ce que tu sais, et rien d’autre) :
    posée en tête ET en fin de consigne, là où un modèle la respecte le mieux. */
 const LANGUE = "LANGUE — RÈGLE ABSOLUE : réponds TOUJOURS dans la langue du DERNIER message du visiteur. S’il écrit en anglais, toute ta réponse est en anglais (prix, horaires, conseils) et les libellés de boutons sont traduits : [boutons: saison:See the season]. S’il écrit en espagnol, en espagnol. Sinon, en français.";
 
+/* Règle d’Eddy (09/10/2026), commune aux trois sites. */
+const COACHS = "COACHS — tu ne cites un coach QUE si le visiteur demande qui encadre un cours, qui donne quoi, ou parle des coachs. Sinon, aucun prénom de coach dans ta réponse. Quand on te le demande, tu réponds avec le planning officiel — jamais un nom deviné.";
+
 export async function systemFor(context) {
   const c = clean(context, 300);
   /* les FAITS sont en cache ; le MOMENT est recalculé à chaque message */
-  const base = LANGUE + "\n\n" + CADRE + (await infosSalle()) + "\n\n" + (await contexteDuMoment()) + "\n\n" + LANGUE;
+  const base = LANGUE + "\n\n" + CADRE + (await infosSalle()) + "\n\n" + (await contexteDuMoment()) + "\n\n" + COACHS + "\n\n" + LANGUE;
   return c ? `${base}\n\nCONTEXTE VISITEUR (déjà connu — ne le redemande pas) : ${c}` : base;
 }
 
@@ -250,6 +254,7 @@ async function openaiLike(url, key, model, messages, system) {
          sur max_tokens : sans effort bas, une reponse un peu longue revient
          VIDE et le maillon parait mort alors que la cle est bonne. */
       ...(/gpt-oss/.test(model) ? { reasoning_effort: "low" } : {}),
+      ...(/qwen/.test(model) ? { reasoning_format: "hidden" } : {}),
       messages: [{ role: "system", content: system }, ...messages],
     }),
   });
@@ -258,6 +263,16 @@ async function openaiLike(url, key, model, messages, system) {
   const text = (j?.choices?.[0]?.message?.content || "").trim();
   if (!text) throw new Error("oai vide");
   return text;
+}
+
+/* Le filet sait l’heure et le planning : ce soir, demain, l’âge d’un enfant
+   (cf. _lib/repli-planning.js) ; le reste passe à la base locale. */
+async function repliDuPlanning(message) {
+  try {
+    const D = await import("../public/assets/js/data.js");
+    const planning = (D.SCHEDULE || []).map((s) => ({ day: s.day, start: s.start, cours: s.cours, enfant: s.fam === "enfant" }));
+    return reponseDuPlanning(message, { planning, prixEnfants: "Éducative 295 € l’année, Baby Boxe 250 € l’année" });
+  } catch { return null; }
 }
 
 /** Le filet : la base locale. Utile, ancrée, jamais vide. */
@@ -337,7 +352,10 @@ export default async function handler(req, res) {
      de 10 h 00 a 21 h 30 ». compound passe donc devant, mais il sait chercher
      sur le web — ce qu'on interdit ici — donc on garde gpt-oss derriere plutot
      que de tout miser sur lui. Changer d'avis = reordonner le .env. */
-  const qModels = (process.env.GROQ_MODEL || "groq/compound,openai/gpt-oss-120b")
+  /* 09/10/2026 : groq/compound (comme llama-3.3-70b-versatile) rend 404 avec
+     la clé du réseau. Groq gratuit = 8 000 jetons/min PAR MODÈLE, environ une
+     réponse par minute avec ce prompt : trois modèles = trois fois plus de relais. */
+  const qModels = (process.env.GROQ_MODEL || "openai/gpt-oss-120b,openai/gpt-oss-20b,qwen/qwen3.8-27b")
     .split(",").map((m) => m.trim()).filter(Boolean);
   for (const qModel of qModels) {
     for (const key of bassin("GROQ_API_KEY")) {
@@ -366,5 +384,5 @@ export default async function handler(req, res) {
      COMPTES de clés partent, jamais une valeur : 0 = variable absente du projet
      Vercel ; plus de 0 = clés présentes mais refusées par le fournisseur. */
   const diag = { gemini: bassin("GEMINI_API_KEY").length, gemini3: bassin("GEMINI3_API_KEY").length, groq: bassin("GROQ_API_KEY").length, mistral: bassin("MISTRAL_API_KEY").length };
-  return res.status(200).json({ reply: await replicoteLocale(message), via: "local", diag });
+  return res.status(200).json({ reply: (await repliDuPlanning(message)) || (await replicoteLocale(message)), via: "local", diag });
 }

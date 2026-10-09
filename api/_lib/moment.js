@@ -44,7 +44,24 @@ function coursDu(schedule, cle) {
     .sort((a, b) => a.debut - b.debut);
 }
 
-const ligne = (s) => `${hh(s.debut)} ${s.cours}${s.coach ? ` (${s.coach})` : ""}`;
+const ligne = (s) => `${hh(s.debut)} ${s.cours}`;
+
+/* Qui encadre quoi — À PART des lignes d’horaires : un prénom collé à chaque
+   créneau finit recopié dans des réponses qui ne le demandent pas. */
+function quiEncadre(planning) {
+  const parCours = new Map();
+  for (const s of planning) {
+    if (!s.coach) continue;
+    const cours = String(s.cours || "").replace(/\s*\(jusqu.?à[^)]*\)/i, "").trim();
+    const set = parCours.get(cours) || new Set();
+    String(s.coach).split(/\s*(?:,|&|\bet\b|\+)\s*/).filter(Boolean).forEach((c) => set.add(c));
+    parCours.set(cours, set);
+  }
+  if (!parCours.size) return "";
+  return "QUI ENCADRE QUOI — À NE CITER QUE SI LE VISITEUR DEMANDE qui encadre un cours, qui donne quoi, ou parle des coachs :\n"
+    + [...parCours].map(([c, set]) => `- ${c} : ${[...set].join(", ")}`).join("\n");
+}
+
 
 function tableEnfants(schedule, tarifs) {
   const ecole = (tarifs || []).find((t) => /enfant/i.test(t.name || ""));
@@ -57,7 +74,7 @@ function tableEnfants(schedule, tarifs) {
   };
   const groupes = new Map();
   for (const s of schedule.filter((x) => x.fam === "enfant")) {
-    const g = groupes.get(s.cours) || { cours: s.cours, coach: s.coach, creneaux: [] };
+    const g = groupes.get(s.cours) || { cours: s.cours, creneaux: [] };
     g.creneaux.push(`${NOMS[s.day]} ${s.start}`);
     groupes.set(s.cours, g);
   }
@@ -66,10 +83,10 @@ function tableEnfants(schedule, tarifs) {
     const age = /(\d+)\/(\d+)/.exec(g.cours);
     const tranche = age ? `${age[1]} à ${age[2]} ans` : g.cours;
     const prix = prixPour(g.cours);
-    return `- ${tranche} → ${g.cours} : ${g.creneaux.join(" et ")}${prix ? ` · ${prix}` : ""}${g.coach ? ` · coach ${g.coach}` : ""}.`;
+    return `- ${tranche} → ${g.cours} : ${g.creneaux.join(" et ")}${prix ? ` · ${prix}` : ""}.`;
   });
   if (!lignes.length) return "";
-  return `ÉCOLE ENFANTS — LA TABLE. Quand le visiteur donne l’âge de l’enfant, tu réponds DIRECTEMENT avec la bonne ligne (groupe, jour, heure, prix), sans reposer de question sur l’âge, et tu termines par [boutons: enfants, planning].
+  return `ÉCOLE ENFANTS — LA TABLE. Quand le visiteur donne l’âge de l’enfant, tu réponds DIRECTEMENT avec la bonne ligne (groupe, jour, heure, prix), sans reposer de question sur l’âge et sans nom de coach, et tu termines par [boutons: enfants, planning].
 ${lignes.join("\n")}
 - Le parent peut rester dans la salle pendant le cours. Chez les enfants, on touche, on ne frappe pas.
 - Un âge hors de ces tranches : tu le dis simplement et tu renvoies vers la salle (numéro de la fiche) pour le cours adapté — tu n’inventes aucun groupe.`;
@@ -93,6 +110,8 @@ export async function contexteDuMoment(now = new Date()) {
   if (suivant) L.push(`- Prochain cours aujourd’hui : ${ligne(suivant)}.`);
   else if (auj.length) L.push(`- Plus aucun cours aujourd’hui.`);
   L.push(auj.length ? `- Aujourd’hui (${NOMS[P.cle]}) : ${auj.map(ligne).join(", ")}.` : `- Aujourd’hui (${NOMS[P.cle]}) : aucun cours.`);
+  const soir = auj.filter((s) => s.debut >= 17 * 60);
+  L.push(soir.length ? `- Ce soir (à partir de 17h) : ${soir.map(ligne).join(", ")}.` : `- Ce soir : aucun cours.`);
 
   // le prochain jour avec des cours (demain, ou lundi si demain est dimanche)
   for (let k = 1; k <= 7; k++) {
@@ -106,6 +125,8 @@ export async function contexteDuMoment(now = new Date()) {
 
   const enfants = tableEnfants(schedule, D?.TARIFS);
   if (enfants) L.push("", enfants);
+  const qui = quiEncadre(schedule);
+  if (qui) L.push("", qui);
   L.push("", `BOUTONS — tu écris [boutons: clé, clé] avec UNIQUEMENT ces clés : ${BOUTONS_VALIDES.join(", ")}. « promos » ouvre la page des offres spéciales de la boutique (l’année complète à 259 € et l’offre de rentrée à 29 €). Toute autre clé est ignorée.`);
   return L.join("\n");
 }
