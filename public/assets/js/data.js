@@ -63,7 +63,7 @@ const _SALLE = {
   access: [
     "Ligne B — Terminus Ramonville. La salle est au pied de la station. Le soir, le métro repart d’ici",
     "Arrêt Ramonville Sud — Le bus s’arrête au pied de la salle. Pas à trois rues de là",
-    "Rocade, sortie Ramonville — Parking gratuit. Rien à payer, rien à chercher avant le cours",
+    "Rocade, sortie Ramonville — En voiture depuis Toulouse, c’est la sortie à prendre",
   ],
   phone: "09 39 03 67 48",
   phoneHref: "+33939036748",
@@ -935,7 +935,7 @@ export const CARNET = {
 };
 
 export const FAQ = [
-  { q: "Où se trouve Boxing Center Ramonville ?", a: "Au 33 rue des Ormes, 31520 Ramonville-Saint-Agne. C’est le sud de Toulouse. La salle est au pied du terminus du métro, ligne B, Ramonville. L’arrêt bus Ramonville Sud est là aussi. En voiture, c’est la sortie Ramonville de la rocade. Le parking est gratuit." },
+  { q: "Où se trouve Boxing Center Ramonville ?", a: "Au 33 rue des Ormes, 31520 Ramonville-Saint-Agne. C’est le sud de Toulouse. La salle est au pied du terminus du métro, ligne B, Ramonville. L’arrêt bus Ramonville Sud est là aussi. En voiture, c’est la sortie Ramonville de la rocade." },
   { q: "C’est vrai qu’on s’entraîne dehors ?", a: "Oui. C’est la seule des cinq salles où c’est possible. 300 m² dehors, aménagés et couverts. Toute l’année. S’il pleut, le cours a lieu. À l’intérieur, tu as la cage de 7 m (l’octogone) et un grand ring de boxe." },
   { q: "Quels cours peut-on faire ?", a: "Boxe anglaise (poings), boxe pieds-poings, grappling (combat au sol), MMA dans la cage. Boxing Camp (un peu de tout) et Lady Punch, 100 % féminin. Et l’école enfants, dès 3 ans. Un étage muscu et cardio est en accès libre. Aucun cours ne demande d’expérience. Tu ne sais pas par où commencer ? Le Boxing Camp est le plus simple. Samedi 11h, avec Valentin Guth." },
   { q: "Y a-t-il des cours pour les enfants ?", a: "Oui, dès 3 ans. Baby Boxe 3/6 le samedi à 14h15. Cours 7/11 ans à 15h, ados 12/16 ans à 16h. Mercredi et samedi après-midi. Valentin Guth tient toute l’école. Chez les enfants, on touche, on ne frappe pas. Et tu peux rester dans la salle pendant le cours." },

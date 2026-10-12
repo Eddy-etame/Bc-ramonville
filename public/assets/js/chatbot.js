@@ -474,7 +474,7 @@ export function initChatbot() {
       "/la-salle/": ["Salut 👋 Moi c’est Otto.", "300 m² dehors, couverts et chauffés, un octogone de 7 m et un grand ring. Tu veux venir voir avant de décider ?"],
       "/galerie/": ["Salut 👋 Moi c’est Otto.", "Vingt-quatre cadres, tous pris ici — aucune banque d’images. Il y a une discipline qui t’a accroché l’œil ?"],
       "/premiere-seance/": ["Salut 👋 Moi c’est Otto.", "Aucun niveau n’est demandé, et personne ne te met en face de quelqu’un le premier soir. Confirme le matériel requis avec la salle. C’est quoi qui te retient ?"],
-      "/contact/": ["Salut 👋 Moi c’est Otto.", "33 rue des Ormes, au terminus du métro B, parking gratuit. Tu veux passer quel jour ?"],
+      "/contact/": ["Salut 👋 Moi c’est Otto.", "33 rue des Ormes, au terminus du métro B. Tu veux passer quel jour ?"],
     };
   /** Le premier message, choisi selon la page — et rien de plus long. */
   function _accueilRamonville() {

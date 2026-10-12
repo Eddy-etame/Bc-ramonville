@@ -166,10 +166,12 @@ def couper(txt, police, taille, largeur, inter=0.0):
 # ------------------------------------------------------------------ les cartes
 # (fichier, photo source, sur-titre, titre, les trois faits qui vendent)
 CARTES = [
+    # 12/10/2026 : plus de note Google sur aucune carte (décision d'Eddy du 08/10), et l'offre de
+    # rentrée se compte par 4 semaines, pas par mois.
     ("accueil", "photos/plateau-ring-tatami-et-octogone-boxing-center-ramonville.webp",
      "RAMONVILLE-SAINT-AGNE · TERMINUS MÉTRO B",
      "L’octogone à ciel ouvert.",
-     ["Dès 29 €/mois", "4,3★ sur Google", "300 m² couverts"]),
+     ["Octogone de 7 m", "300 m² couverts", "Dès 3 ans"]),
 
     # Le titre annonce les 300 m2 couverts : l ancienne photo montrait l etage
     # de muscu, vide. On montre l espace couvert EN USAGE — tatami rouge et vert
@@ -197,7 +199,7 @@ CARTES = [
     ("tarifs", "photos/boxing-camp-circuit-de-renforcement-boxing-center-ramonville.webp",
      "LES TARIFS",
      "Ta place de rentrée à 29 €.",
-     ["29 €/mois", "Sans engagement", "Essai à 10 €"]),
+     ["29 € / 4 sem.", "Sans engagement", "Essai à 10 €"]),
 
     ("contact", "photos/octogone-7-metres-vide-boxing-center-ramonville.webp",
      "VENIR À LA SALLE",
