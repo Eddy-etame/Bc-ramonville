@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MMA à Toulouse sud-est : l’octogone de 7 m de Ramonville</title>
+  <meta name="description" content="Le MMA au sud-est de Toulouse : un octogone de 7 m à Ramonville-Saint-Agne, deux cours par semaine ouverts aux débutants, et les deux autres cages du réseau." />
+
+  <!-- Préconnexions — avant toute feuille de style -->
+  <link rel="preconnect" href="https://api.open-meteo.com" crossorigin />
+
+  <!-- Polices AUTO-HÉBERGÉES — mêmes familles/graisses que l’original Google Fonts -->
+  <link rel="preload" href="/fonts/chakrapetch-700-latin.woff2?v=19" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/manrope-var-latin.woff2?v=19" as="font" type="font/woff2" crossorigin />
+  <!-- JetBrains Mono manquait à l’appel, et c’est LUI qui décalait la page.
+       Les libellés mono sont partout au-dessus de la ligne de flottaison —
+       fil d’ariane, sur-titres, boutons, les chips du hero. La police
+       arrivait après le premier rendu : tout ce petit monde changeait de
+       largeur d’un coup et poussait la première section vers le bas
+       (0,621 de décalage mesuré sur /tarifs/). Elle était de toute façon
+       téléchargée sur les huit pages : la précharger ne coûte pas un octet
+       ni une requête de plus, elle arrive seulement à l’heure. -->
+  <link rel="preload" href="/fonts/jetbrainsmono-var-latin.woff2?v=19" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=19" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=26" />
+  <link rel="stylesheet" href="/assets/css/discipline.css?v=3" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="author" content="Boxing Center Ramonville" />
+  <meta name="geo.region" content="FR-31" />
+  <meta name="geo.placename" content="Ramonville-Saint-Agne — Toulouse" />
+  <meta name="geo.position" content="43.546;1.474" />
+  <meta name="ICBM" content="43.546, 1.474" />
+  <link rel="canonical" href="https://mmatoulouse.com/mma-toulouse/" />
+  <meta name="theme-color" content="#070a12" />
+  <link rel="icon" href="/favicon-16.png?i=3" type="image/png" sizes="16x16" />
+  <link rel="icon" href="/favicon.png?i=3" type="image/png" sizes="32x32" />
+  <link rel="icon" href="/favicon-48.png?i=3" type="image/png" sizes="48x48" />
+  <link rel="icon" href="/favicon-96.png?i=3" type="image/png" sizes="96x96" />
+  <link rel="shortcut icon" href="/favicon.png?i=3" />
+  <link rel="icon" href="/favicon-192.png?i=3" type="image/png" sizes="192x192" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png?i=3" sizes="180x180" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta property="og:type" content="article" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:site_name" content="Boxing Center Ramonville" />
+  <meta property="og:title" content="MMA à Toulouse sud-est : l’octogone de 7 m de Ramonville" />
+  <meta property="og:description" content="Le MMA au sud-est de Toulouse : un octogone de 7 m à Ramonville-Saint-Agne, deux cours par semaine ouverts aux débutants, et les deux autres cages du réseau." />
+  <meta property="og:url" content="https://mmatoulouse.com/mma-toulouse/" />
+  <meta property="og:image" content="https://mmatoulouse.com/assets/img/ram/og/mma-toulouse.jpg?v=1" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:alt" content="Un cours dans l’octogone de 7 m du Boxing Center Ramonville, vu de la mezzanine" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="MMA à Toulouse sud-est : l’octogone de 7 m de Ramonville" />
+  <meta name="twitter:description" content="Le MMA au sud-est de Toulouse : un octogone de 7 m à Ramonville-Saint-Agne, deux cours par semaine ouverts aux débutants, et les deux autres cages du réseau." />
+  <meta name="twitter:image" content="https://mmatoulouse.com/assets/img/ram/og/mma-toulouse.jpg?v=1" />
+  <meta name="twitter:image:alt" content="Un cours dans l’octogone de 7 m du Boxing Center Ramonville, vu de la mezzanine" />
+
+
+  <!-- Référencement local — graphe unifié (salle, réseau, site, page) -->
+
+  <script is:inline>
+    document.documentElement.classList.add('fx');
+  </script>
+  <!-- LES TROIS LIBS SONT MAINTENANT CHEZ NOUS (/assets/vendor/).
+       Elles arrivaient de cdn.jsdelivr.net : un second domaine à résoudre, une
+       seconde poignée de main TLS, avant la moindre ligne d’animation — et ça
+       sur les huit pages. Mesure brotli en main, le CDN les servait gzippées
+       (51,2 ko) ; servies d’ici elles pèsent 43,3 ko, se mettent en cache un an
+       comme tout /assets/, et surtout script-src a pu se refermer sur 'self'
+       dans vercel.json. `defer` inchangé : elles ne retiennent pas le rendu et
+       s’exécutent dans l’ordre du document, donc avant les modules du pied. -->
+  <script is:inline defer src="/assets/vendor/gsap.min.js?v=19"></script>
+  <script is:inline defer src="/assets/vendor/ScrollTrigger.min.js?v=19"></script>
+  <script is:inline defer src="/assets/vendor/lenis.min.js?v=19"></script>
+  <script is:inline type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://mmatoulouse.com/mma-toulouse/#webpage","url":"https://mmatoulouse.com/mma-toulouse/","name":"MMA à Toulouse sud-est : l’octogone de 7 m de Ramonville","description":"Le MMA au sud-est de Toulouse : un octogone de 7 m à Ramonville-Saint-Agne, deux cours par semaine ouverts aux débutants, et les deux autres cages du réseau.","inLanguage":"fr-FR","datePublished":"2026-10-12","dateModified":"2026-10-12","isPartOf":{"@id":"https://mmatoulouse.com/#website"},"about":{"@id":"https://mmatoulouse.com/#salle"},"breadcrumb":{"@id":"https://mmatoulouse.com/mma-toulouse/#breadcrumb"},"primaryImageOfPage":{"@type":"ImageObject","url":"https://mmatoulouse.com/assets/img/ram/og/mma-toulouse.jpg","width":1200,"height":630}},{"@type":"BreadcrumbList","@id":"https://mmatoulouse.com/mma-toulouse/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://mmatoulouse.com/"},{"@type":"ListItem","position":2,"name":"Le MMA au sud-est de Toulouse","item":"https://mmatoulouse.com/mma-toulouse/"}]},{"@type":"FAQPage","@id":"https://mmatoulouse.com/mma-toulouse/#faq","mainEntity":[{"@type":"Question","name":"Où faire du MMA à Toulouse ?","acceptedAnswer":{"@type":"Answer","text":"Le réseau Boxing Center a trois cages : à Toulouse même, avenue des États-Unis (388 avenue des États-Unis, 31200 Toulouse), à Portet-sur-Garonne (61 route d’Espagne, 31120 Portet-sur-Garonne) et à Ramonville-Saint-Agne (33 rue des Ormes, 31520 Ramonville-Saint-Agne), au sud-est. À Ramonville, le MMA tous niveaux a lieu le mardi et le jeudi à 19 h 45."}},{"@type":"Question","name":"Peut-on débuter le MMA sans jamais avoir combattu ?","acceptedAnswer":{"@type":"Answer","text":"Oui. Le cours de MMA est ouvert aux débutants, et le grappling du mardi à 18 h 40 fait découvrir la cage sans recevoir de coups."}},{"@type":"Question","name":"Faut-il viser la compétition pour s’inscrire ?","acceptedAnswer":{"@type":"Answer","text":"Non. Le cours est tous niveaux : on peut s’y entraîner des années sans jamais monter sur un combat."}},{"@type":"Question","name":"Quel matériel pour un premier cours de MMA ?","acceptedAnswer":{"@type":"Answer","text":"Une tenue ajustée, sans poche ni fermeture éclair, suffit le premier soir. Les gants à doigts libres et le protège-dents viennent ensuite ; la liste complète, dans l’ordre, est dans le conseil matériel du club."}},{"@type":"Question","name":"MMA ou grappling : par quoi commencer ?","acceptedAnswer":{"@type":"Answer","text":"Par le grappling si tu veux apprivoiser la cage sans coups, par le MMA si le travail debout t’attire tout de suite. Le même abonnement ouvre les deux."}},{"@type":"Question","name":"Le club est-il affilié à une fédération ?","acceptedAnswer":{"@type":"Answer","text":"Oui : à la FFBoxe, à la FFKMDA, à la FMMAF. La FMMAF est la fédération française de MMA."}}]}]}</script>
+</head>
+
+<body data-page="mma-toulouse">
+  <a class="sr-only" href="#main">Aller au contenu</a>
+  <div id="nav"></div>
+  <div id="drawer"></div>
+
+  <main id="main">
+    <header class="phero" aria-label="Le MMA au sud-est de Toulouse">
+      <div class="sky" aria-hidden="true"><canvas class="sky__stars"></canvas><div class="sky__haze"></div><div class="sky__moon"></div></div>
+      <div class="wrap">
+        <nav class="breadcrumb" aria-label="Fil d’ariane"><a href="/">Accueil</a> / <span>MMA Toulouse</span></nav>
+        <h1 class="display phero__title"><span class="reveal-mask"><span>Le MMA,</span></span><span class="reveal-mask"><span class="tint">au sud-est de Toulouse.</span></span></h1>
+        <p class="phero__lead" data-reveal>À Ramonville-Saint-Agne, à 8 km du Capitole, Boxing Center Ramonville fait du MMA le mardi et le jeudi soir dans un octogone de 7 m, débutants compris. Pour une première fois en douceur, le grappling du mardi ouvre la cage sans un seul coup.</p>
+        <p class="cs-maj" data-reveal>Publié le 12 octobre 2026</p>
+      </div>
+    </header>
+
+    <section class="section" aria-labelledby="t-cage">
+      <div class="wrap">
+        <div class="shead" data-reveal><span class="eyebrow">Dans la cage</span><h2 class="display" id="t-cage">Debout, au corps à corps, puis au sol.</h2></div>
+        <div class="dp-prose" data-reveal>
+          <p>Le MMA assemble trois manières de se battre : frapper debout, saisir au corps à corps, contrôler au sol. À Ramonville, le cours s’appelle « MMA tous niveaux » et se donne dans l’octogone de 7 m du plateau, sous la charpente. On y apprend d’abord à placer sa garde, à chuter sans se faire mal, à se relever, à tenir une position.</p>
+          <p>L’opposition n’est jamais une obligation : personne n’affronte un partenaire sans l’avoir demandé. Le cours est tous niveaux : on y vient pour apprendre, la compétition reste un choix personnel. <a href="/activites/mma/">Le cours de MMA en détail</a> · <a href="/activites/grappling/">le grappling</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section dp-bande" aria-labelledby="t-semaine">
+      <div class="wrap">
+        <div class="shead" data-reveal><span class="eyebrow">La semaine</span><h2 class="display" id="t-semaine">Trois rendez-vous par semaine autour de la cage.</h2></div>
+        <div class="dp-prose" data-reveal>
+          <div class="cs-table">
+            <table aria-label="Les cours de MMA et de grappling de Boxing Center Ramonville">
+              <thead><tr><th scope="col">Jour</th><th scope="col">Heure</th><th scope="col">Cours</th><th scope="col">Pour qui</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Mardi</th><td data-label="Heure">18 h 40</td><td data-label="Cours"><a href="/activites/grappling/">Grappling</a></td><td data-label="Pour qui">Le combat au sol, sans un seul coup. La porte d’entrée la plus douce.</td></tr>
+                <tr><th scope="row">Mardi</th><td data-label="Heure">19 h 45 – 21 h 15</td><td data-label="Cours"><a href="/activites/mma/">MMA tous niveaux</a></td><td data-label="Pour qui">Debout puis au sol, dans la cage. Débutants acceptés.</td></tr>
+                <tr><th scope="row">Jeudi</th><td data-label="Heure">19 h 45 – 21 h 15</td><td data-label="Cours"><a href="/activites/mma/">MMA tous niveaux</a></td><td data-label="Pour qui">Debout puis au sol, dans la cage. Débutants acceptés.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>La salle est ouverte du lundi au samedi de 10 h à 21 h 30 : en dehors des cours, l’étage de musculation et de cardio est en <a href="/activites/acces-libre/">accès libre</a>. <a href="/plannings/">Le planning complet de la semaine</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="t-coach">
+      <div class="wrap">
+        <div class="shead" data-reveal><span class="eyebrow">L’encadrement</span><h2 class="display" id="t-coach">Jérôme tient la cage.</h2></div>
+        <div class="dp-prose" data-reveal>
+          <p>Les trois créneaux de la cage sont tenus par Jérôme, coach principal du club, qui s’occupe aussi de la préparation physique. Son parcours de combattant est passé par les États-Unis et le Canada. <a href="/coachs/jerome/">Son parcours et ses cours</a> · <a href="/coachs/">toute l’équipe</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section dp-bande" aria-labelledby="t-debut">
+      <div class="wrap">
+        <div class="shead" data-reveal><span class="eyebrow">Commencer</span><h2 class="display" id="t-debut">Un premier soir de MMA, sans avoir jamais combattu.</h2></div>
+        <div class="dp-prose" data-reveal>
+          <ol>
+            <li><strong>Choisir sa porte d’entrée.</strong> Le grappling du mardi à 18 h 40 si tu préfères commencer au sol, le MMA du mardi à 19 h 45 si tu veux tout voir d’un coup.</li>
+            <li><strong>Le dire en arrivant.</strong> Un mot à l’accueil — « c’est ma première séance » — et le coach est prévenu.</li>
+            <li><strong>Valider sa présence.</strong> L’émargement se fait à l’accueil, géolocalisé, juste avant d’entrer dans la cage.</li>
+            <li><strong>S’équiper peu à peu.</strong> Le premier soir, une tenue ajustée sans poche ni zip ; ensuite, les gants à doigts libres et le protège-dents. <a href="/conseils/equipement-mma-debutant/">L’équipement MMA d’un débutant, dans l’ordre</a>.</li>
+          </ol>
+          <p>Les gants MMA « The Shell » de Metal Boxe se commandent sur <a href="https://boutique.boxingcenter.fr/materiel/produit/gants-mma-the-shell" rel="noopener">box-plus, la boutique des clubs Boxing Center</a>, et se retirent à l’accueil de Ramonville.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="t-cages">
+      <div class="wrap">
+        <div class="shead" data-reveal><span class="eyebrow">Le réseau</span><h2 class="display" id="t-cages">Trois cages Boxing Center autour de Toulouse.</h2></div>
+        <div class="dp-prose" data-reveal>
+          <p>Celle de Ramonville est au sud-est. La cage de <a href="https://clubmma.fr/" rel="noopener">Boxing Center États-Unis</a> est dans Toulouse même, au nord (388 avenue des États-Unis, 31200 Toulouse), et celle de <a href="https://boxing-center-portet.fr/activites/mma/" rel="noopener">Boxing Center Portet-sur-Garonne</a> au sud (61 route d’Espagne, 31120 Portet-sur-Garonne).</p>
+          <p>Le plus simple est de choisir la cage la plus proche de son trajet du soir : depuis Labège, Castanet-Tolosan, Saint-Orens ou le sud-est toulousain, c’est Ramonville ; depuis le nord de la ville, les États-Unis. L’abonnement Saison est valable dans les cinq salles du réseau. <a href="/nos-clubs/">Les cinq clubs et leurs adresses</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section dp-bande" aria-labelledby="t-venir">
+      <div class="wrap">
+        <div class="shead" data-reveal><span class="eyebrow">Venir</span><h2 class="display" id="t-venir">Où se trouve la cage.</h2></div>
+        <div class="dp-prose" data-reveal>
+          <p>33 rue des Ormes, 31520 Ramonville-Saint-Agne. En voiture, c’est la sortie Ramonville de la rocade. <a href="/contact/">Le plan, les transports et le téléphone</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="t-prix">
+      <div class="wrap">
+        <div class="shead" data-reveal><span class="eyebrow">Le prix</span><h2 class="display" id="t-prix">Pas de supplément pour la cage.</h2></div>
+        <div class="dp-prose" data-reveal>
+          <p>Le MMA n’est pas une option payée à part : l’abonnement du club ouvre tous les cours, la cage comme le ring. Pour essayer avant de s’engager, il existe une séance d’essai. <a href="/tarifs/">Les formules, leurs prix et leurs conditions</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section dp-bande" aria-labelledby="t-faq">
+      <div class="wrap">
+        <div class="shead" data-reveal><span class="eyebrow">Questions</span><h2 class="display" id="t-faq">Ce qu’on demande sur le MMA à Toulouse.</h2></div>
+        <div class="dp-faq">
+          <details><summary>Où faire du MMA à Toulouse ?</summary><p>Le réseau Boxing Center a trois cages : à Toulouse même, avenue des États-Unis (388 avenue des États-Unis, 31200 Toulouse), à Portet-sur-Garonne (61 route d’Espagne, 31120 Portet-sur-Garonne) et à Ramonville-Saint-Agne (33 rue des Ormes, 31520 Ramonville-Saint-Agne), au sud-est. À Ramonville, le MMA tous niveaux a lieu le mardi et le jeudi à 19 h 45.</p></details>
+          <details><summary>Peut-on débuter le MMA sans jamais avoir combattu ?</summary><p>Oui. Le cours de MMA est ouvert aux débutants, et le grappling du mardi à 18 h 40 fait découvrir la cage sans recevoir de coups.</p></details>
+          <details><summary>Faut-il viser la compétition pour s’inscrire ?</summary><p>Non. Le cours est tous niveaux : on peut s’y entraîner des années sans jamais monter sur un combat.</p></details>
+          <details><summary>Quel matériel pour un premier cours de MMA ?</summary><p>Une tenue ajustée, sans poche ni fermeture éclair, suffit le premier soir. Les gants à doigts libres et le protège-dents viennent ensuite ; la liste complète, dans l’ordre, est dans le conseil matériel du club.</p></details>
+          <details><summary>MMA ou grappling : par quoi commencer ?</summary><p>Par le grappling si tu veux apprivoiser la cage sans coups, par le MMA si le travail debout t’attire tout de suite. Le même abonnement ouvre les deux.</p></details>
+          <details><summary>Le club est-il affilié à une fédération ?</summary><p>Oui : à la FFBoxe, à la FFKMDA, à la FMMAF. La FMMAF est la fédération française de MMA.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="t-sources">
+      <div class="wrap">
+        <div class="shead" data-reveal><span class="eyebrow">Sources</span><h2 class="display" id="t-sources">D’où viennent ces informations.</h2></div>
+        <div class="dp-prose" data-reveal>
+          <ul>
+            <li>Créneaux et encadrement : <a href="/plannings/">le planning du club</a> (Saison 2026 — 2027).</li>
+            <li>Distance au Capitole : calculée à vol d’oiseau sur les coordonnées <a href="https://www.openstreetmap.org/#map=16/43.5366/1.4840" rel="noopener">OpenStreetMap</a> de la salle et du Capitole.</li>
+            <li>Fédération : <a href="https://www.fmmaf.fr/" rel="noopener">Fédération française de MMA (FMMAF)</a>.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="footer"></div>
+
+  <a class="chatbot" href="tel:+33939036748" aria-label="Une question ? Appelle la salle Boxing Center Ramonville">
+    <span class="chatbot__icon" aria-hidden="true"><svg width="36" height="36" viewBox="0 0 24 24" fill="none"><mask id="bc-m-ramonville" maskUnits="userSpaceOnUse"><rect width="24" height="24" fill="#fff"/><path d="M7.4 8.9 11.0 9.9 11.0 11.7 7.4 10.7Z" fill="#000"/><path d="M16.6 8.9 13.0 9.9 13.0 11.7 16.6 10.7Z" fill="#000"/><rect x="10.1" y="14.8" width="3.8" height="1.4" rx=".65" fill="#000"/></mask><path d="M4.4 12.9a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Z" fill="currentColor"/><path d="M19.6 12.9a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Z" fill="currentColor"/><path d="M8.1 1.2h7.8l4.5 4.5v8.4l-2.7 2.7.9 3.4a.55.55 0 0 1-.8.63L14 18.6H8.1L3.6 14.1V5.7Z" fill="currentColor" mask="url(#bc-m-ramonville)"/></svg></span>
+    <span class="chatbot__label">Une question&nbsp;? Appelle la salle</span>
+  </a>
+
+  <!-- ===================== L’ASSISTANT, À LA DEMANDE =====================
+       L’assistant ne coûte plus rien tant qu’on ne lui parle pas. Il pesait
+       17,5 ko de module + 7,6 ko de feuille BLOQUANT LE RENDU, sur les huit
+       pages, pour un panneau que la plupart des visiteurs n’ouvriront jamais.
+       Rien n’est retiré à l’écran : la pastille est peinte par base.css comme
+       avant, et chatbot.css ne décrit que le panneau — qui n’existe pas encore.
+       On charge au premier signe d’intention (survol, doigt, tabulation), donc
+       avant le clic dans la quasi-totalité des cas ; le clic reste le filet.
+       Sans JavaScript, la pastille est toujours le lien tel: d’origine. -->
+  <script is:inline>
+    (function () {
+      var pastille = document.querySelector("a.chatbot");
+      if (!pastille) return;
+      var venue = null;
+      function venir() {
+        if (venue) return venue;
+        var f = document.createElement("link");
+        f.rel = "stylesheet"; f.href = "/assets/css/chatbot.css?v=19";
+        document.head.appendChild(f);
+        venue = import("/assets/js/chatbot.js?v=21").catch(function () { venue = null; });
+        return venue;
+      }
+      ["pointerenter", "touchstart", "focus"].forEach(function (e) {
+        pastille.addEventListener(e, venir, { once: true, passive: true });
+      });
+      pastille.addEventListener("click", function (e) {
+        /* aria-expanded n’est posé que par chatbot.js : sa présence signifie
+           que le vrai widget a pris la main et gère déjà ce clic. */
+        if (pastille.hasAttribute("aria-expanded")) return;
+        e.preventDefault();
+        var p = venir();
+        if (p) p.then(function () { pastille.click(); });
+        else window.location.href = pastille.href;   // le module n’est pas venu : on appelle la salle
+      });
+    })();
+  </script>
+  <script is:inline type="module" src="/assets/js/site.js?v=26"></script>
+  <script is:inline type="module" src="/assets/js/sky.js?v=20"></script>
+  <script is:inline type="module" src="/assets/js/page.js?v=25"></script>
+</body>
+</html>

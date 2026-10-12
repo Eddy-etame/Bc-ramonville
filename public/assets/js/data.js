@@ -1053,6 +1053,7 @@ export const PAGES_DU_SITE = [
   { href: "/galerie/", t: "La galerie", d: "Le club en photos, cours après cours." },
   { href: "/la-salle/", t: "La salle", d: "Le plateau, mesuré et expliqué." },
   { href: "/club-de-boxe-ramonville/", t: "Le club", d: "Son histoire, ce qui le distingue." },
+  { href: "/mma-toulouse/", t: "MMA Toulouse", d: "La cage de 7 m, au sud-est de la ville." },
   { href: "/conseils/", t: "Les conseils", d: "Bien s’équiper pour commencer." },
   { href: "/nos-clubs/", t: "Les 5 clubs", d: "Le réseau Boxing Center à Toulouse." },
   { href: "/contact/", t: "Contact", d: "Adresse, accès, horaires, questions." },

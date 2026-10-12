@@ -154,7 +154,7 @@ const html = `${tete}  <script is:inline type="application/ld+json">${JSON.strin
         <div class="dp-grille dp-grille--3" data-reveal-group>
           ${DISCIPLINES.map(carteDisc).join("\n          ")}
         </div>
-        <p class="dp-suite" data-reveal><a class="btn btn--ghost" data-magnetic href="/activites/"><span>Toutes les activités</span></a> <a class="btn btn--ghost" data-magnetic href="/plannings/"><span>Le planning de la semaine</span></a></p>
+        <p class="dp-suite" data-reveal><a class="btn btn--ghost" data-magnetic href="/activites/"><span>Toutes les activités</span></a> <a class="btn btn--ghost" data-magnetic href="/plannings/"><span>Le planning de la semaine</span></a> <a class="btn btn--ghost" data-magnetic href="/mma-toulouse/"><span>Le MMA au sud-est de Toulouse</span></a></p>
       </div>
     </section>
 
