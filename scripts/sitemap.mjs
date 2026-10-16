@@ -167,6 +167,7 @@ const etat = existsSync(ETAT) ? JSON.parse(await readFile(ETAT, "utf8")) : {};
 const neuf = {};
 const lignes = [];
 let bouges = 0;
+let dates = 0;
 
 for (const p of PAGES) {
   const f = p.fichier ? join(DIST, p.chemin) : join(DIST, p.chemin, "index.html");
@@ -175,12 +176,26 @@ for (const p of PAGES) {
      barre : un lien ajouté au pied de page ne re-date pas vingt-cinq pages qui
      n'ont pas changé pour la personne qui les lit (vu le 26/09/2026). */
   const corps = html.match(/<main[\s\S]*?<\/main>/)?.[0] ?? html;
-  const empreinte = createHash("sha256").update(corps).digest("hex").slice(0, 16);
+  /* 16/10/2026 — le `dateModified` du JSON-LD est écrit ci-dessous à partir du
+     lastmod : il sort donc de l'empreinte, sinon chaque nouvelle date
+     changerait l'empreinte qui la décide. Les empreintes d'avant le 16/10
+     comptaient la date : on les reconnaît encore (`brute`), le temps d'une
+     migration, pour ne pas re-dater tout le site d'un coup. */
+  const sansDate = (t) => t.replace(/"dateModified":\s*"[^"]*"/g, '"dateModified":"*"');
+  const empreinte = createHash("sha256").update(sansDate(corps)).digest("hex").slice(0, 16);
+  const brute = createHash("sha256").update(corps).digest("hex").slice(0, 16);
   const ancien = etat[p.chemin || "/"];
-  const change = !ancien || ancien.empreinte !== empreinte;
+  const change = !ancien || (ancien.empreinte !== empreinte && ancien.empreinte !== brute);
   const lastmod = change ? aujourdhui : ancien.lastmod;
   if (change) bouges++;
   neuf[p.chemin || "/"] = { empreinte, lastmod };
+  /* Le JSON-LD dit la même date que le plan du site. Sept pages portaient
+     « 2026-07-19 » tapé à la main (relevé du 12/10/2026) : une date figée
+     qui contredisait le lastmod, et que Google apprend à ignorer. */
+  if (/"dateModified":\s*"\d{4}-\d{2}-\d{2}(?:T[^"]*)?"/.test(html)) {
+    const date = html.replace(/"dateModified":\s*"\d{4}-\d{2}-\d{2}(?:T[^"]*)?"/g, `"dateModified":"${lastmod}"`);
+    if (date !== html) { await writeFile(f, date); dates++; }
+  }
 
   const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
   const photos = p.imgs.map(([src, titre, legende]) =>
@@ -212,6 +227,6 @@ await writeFile(ETAT, JSON.stringify(neuf, null, 2) + "\n");
 
 const photos = PAGES.reduce((n, p) => n + p.imgs.length, 0);
 console.log(
-  `[sitemap] ${PAGES.length} URL · ${photos} images déclarées · ${bouges} page(s) modifiée(s) depuis le dernier relevé` +
+  `[sitemap] ${PAGES.length} URL · ${photos} images déclarées · ${dates} dateModified alignés · ${bouges} page(s) modifiée(s) depuis le dernier relevé` +
   `${bouges ? ` → lastmod ${aujourdhui}` : " → toutes les dates conservées"}`
 );

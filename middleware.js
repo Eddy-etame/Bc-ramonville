@@ -21,14 +21,23 @@
 export const config = {
   /* Jamais les assets, l'API, les fichiers à extension (.txt, .xml, .md…),
      ni l'admin. Uniquement les pages. */
-  matcher: ["/((?!api/|assets/|fonts/|img/|admin|md/|.*\\.[a-zA-Z0-9]+$).*)"],
+  matcher: [
+    "/((?!api/|assets/|fonts/|img/|admin|md/|.*\\.[a-zA-Z0-9]+$).*)",
+    /* 16/10/2026 : /index.html et /<page>/index.html répondaient 200 (relevé du 12/10) —
+       la seule extension rattrapée, pour la ramener à sa page. */
+    "/index.html",
+    "/:chemin*/index.html",
+  ],
 };
 
 const HOTE_CANONIQUE = "mmatoulouse.com";
 const HOTE_TECHNIQUE = "bc-ramonville.vercel.app";
 
+/** "/tarifs" → "/tarifs/", "/tarifs/index.html" → "/tarifs/", "/index.html" → "/". */
 function cheminCanonique(chemin) {
-  return chemin === "/" || chemin.endsWith("/") ? chemin : chemin + "/";
+  const sansIndex = chemin.replace(/(^|\/)index\.html$/, "$1");
+  if (sansIndex === "" || sansIndex === "/") return "/";
+  return sansIndex.endsWith("/") ? sansIndex : sansIndex + "/";
 }
 
 function redirige(url, technique = false) {
