@@ -14,7 +14,7 @@
 
 /* Le planning, pour les deux réponses qui dépendent de lui : l’âge d’un
    enfant et « ce soir / demain ». Alias propre : aucune collision possible. */
-import { SCHEDULE as PLANNING_KB } from "./data.js?v=25";
+import { SCHEDULE as PLANNING_KB } from "./data.js?v=26";
 
 export const QUICKS = [
   {
@@ -47,7 +47,7 @@ export const QUICKS = [
   {
     label: "Tarifs",
     q: "Quels sont les tarifs ?",
-    a: "La Saison — l’année complète — coûte 259 € au lieu de 400 € : 12 mois, accès aux 5 clubs, comptant ou en 4× sans frais (la boutique propose plusieurs options de paiement en 4×). Sans engagement, l’offre Rentrée coûte 29 € par personne toutes les 4 semaines au lieu de 44,99 € : la première échéance se paie par carte, puis les suivantes sur IBAN ; les coordonnées d’un proche sont requises ; le badge coûte 34,99 € en plus, facturé 72 h après le début. [boutons: saison, offre, tarifs]",
+    a: "Sans engagement, renouvelé toutes les 4 semaines : 36,99 € si tu es étudiant (carte étudiante requise), 44,99 € sinon. Les deux t’ouvrent les 5 salles du réseau, tous les cours et l’accès libre de 10 h à 21 h 30. La première période se règle par carte, la suite part de ton IBAN ; compte 34,99 € de badge d’accès en plus. Tu préfères régler d’avance ? 150 € pour trois mois, 250 € pour six, 400 € pour douze. [boutons: etudiant, adulte, tarifs]",
   },
   {
     label: "Horaires",
@@ -80,9 +80,9 @@ export const QUICKS = [
     a: "Un créneau 100 % féminin, lundi et vendredi 18h00 – 18h40, avec Sonia. Zéro prérequis : la vraie boxe, le cardio, la frappe qui défoule, entre femmes. Il tombe juste avant le pieds-poings du soir si tu veux enchaîner.",
   },
   {
-    /* 13/09 : les boutons du site mènent tous à la page « offres spéciales ». */
-    q: "Quelles sont les offres spéciales ?",
-    a: "Deux offres en ce moment. L’année complète à 259 € comptant au lieu de 400 € : 12 mois, accès aux 5 clubs. Et l’offre de rentrée à 29 € par personne toutes les 4 semaines au lieu de 44,99 €, sans engagement (badge 34,99 € en plus). Les deux sont sur la page des offres spéciales de la boutique. [boutons: promos, tarifs]",
+    /* 20/10 : les boutons du site mènent aux deux inscriptions, étudiant puis adulte. */
+    q: "Y a-t-il un tarif étudiant ?",
+    a: "Oui : 36,99 € toutes les 4 semaines, sans engagement, sur présentation de ta carte étudiante. Sans carte, c’est 44,99 € au même rythme. Dans les deux cas, les 5 salles du réseau sont à toi (badge d’accès 34,99 € en plus). [boutons: etudiant, adulte]",
   },
 ];
 
@@ -97,7 +97,7 @@ const RULES = [
      /cours/ (la liste adulte) et « combien pour ma fille » sur les tarifs
      adultes. Et « ans\b » accrochait « dans la cage » : il faut un nombre. */
   [/enfant|gamin|b[ée]b[ée]|baby|\bados?\b|fils|fille|[ée]cole|[ée]ducative/i, 8],   // l’âge seul est traité par reponseAge (≤ 16 ans) : « j’ai 25 ans » n’est pas un enfant
-  [/promo|offres? sp[ée]ciale|bon plan|r[ée]duc/i, 11],
+  [/promo|offres? sp[ée]ciale|bon plan|r[ée]duc|[ée]tudiant|\bfac\b|universit/i, 11],
   [/octogone|cage|mma|grappling|sol|soumission/i, 2],
   [/essai|d[ée]couvr|tester|premi[èe]re|essayer|10\s?€/i, 3],   // pas « débute » : cette réponse donne l’essai à 10 €, la dernière carte — un débutant n’y va pas d’entrée
   [/tarif|prix|co[ûu]te|combien|abonn|duo|saison|mensuel|annuel/i, 4],

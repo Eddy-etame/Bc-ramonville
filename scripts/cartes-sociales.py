@@ -39,11 +39,12 @@ import io
 import os
 import re
 import subprocess
+import sys
 
 from fontTools.pens.svgPathPen import SVGPathPen
 from fontTools.ttLib import TTFont
 
-RACINE = r"C:\Users\Mommy Jayce\Desktop\Boxing Center\sites\bc-ramonville"
+RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))   # le dépôt, où qu’il soit cloné
 os.chdir(RACINE)
 SORTIE = "public/assets/img/ram/og"
 os.makedirs(SORTIE, exist_ok=True)
@@ -166,8 +167,9 @@ def couper(txt, police, taille, largeur, inter=0.0):
 # ------------------------------------------------------------------ les cartes
 # (fichier, photo source, sur-titre, titre, les trois faits qui vendent)
 CARTES = [
-    # 12/10/2026 : plus de note Google sur aucune carte (décision d'Eddy du 08/10), et l'offre de
-    # rentrée se compte par 4 semaines, pas par mois.
+    # 12/10/2026 : plus de note Google sur aucune carte (décision d'Eddy du 08/10).
+    # 20/10/2026 : la carte des tarifs montre les deux abonnements sans engagement,
+    # l'étudiant d'abord, comptés par 4 semaines.
     ("accueil", "photos/plateau-ring-tatami-et-octogone-boxing-center-ramonville.webp",
      "RAMONVILLE-SAINT-AGNE · TERMINUS MÉTRO B",
      "L’octogone à ciel ouvert.",
@@ -198,8 +200,8 @@ CARTES = [
 
     ("tarifs", "photos/boxing-camp-circuit-de-renforcement-boxing-center-ramonville.webp",
      "LES TARIFS",
-     "Ta place de rentrée à 29 €.",
-     ["29 € / 4 sem.", "Sans engagement", "Essai à 10 €"]),
+     "Étudiant ou adulte, sans engagement.",
+     ["Étudiant 36,99 €", "Adulte 44,99 €", "Toutes les 4 sem."]),
 
     ("contact", "photos/octogone-7-metres-vide-boxing-center-ramonville.webp",
      "VENIR À LA SALLE",
@@ -304,7 +306,10 @@ with io.open("scripts/og-src/_composer.cjs", "w", encoding="utf-8") as f:
     f.write(NODE)
 
 print("  CARTE                 TAILLE       POIDS   COULEUR (ecart R-B > 3 = pas du gris)")
+SEULES = set(sys.argv[1:])   # « python scripts/cartes-sociales.py tarifs » : ne refait que celle-là
 for nom, photo, sur, titre, faits in CARTES:
+    if SEULES and nom not in SEULES:
+        continue
     svg = carte(photo, sur, titre, faits)
     tmp = "scripts/og-src/_%s.svg" % nom
     with io.open(tmp, "w", encoding="utf-8") as f:

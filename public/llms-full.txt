@@ -135,8 +135,10 @@ Compté sur les 22 cours de la grille de la rentrée.
 
 ## Tarifs et offres (dans l’ordre où le club les présente)
 
-- Offre Rentrée : 29 € par personne (au lieu de 44,99 €), 4 semaines de cours illimités, sans engagement. Jamais « 29 € pour deux » : chacun paie sa place. Lien : https://boutique.boxingcenter.fr/offre/29
-- Offre Saison : 259 € les 12 mois (au lieu de 400 €), payable en 4× sans frais, toutes disciplines, accès libre aux 5 clubs du réseau — https://boutique.boxingcenter.fr/offre/259
+- Abonnement étudiant (sans engagement) : 36,99 € par période de 4 semaines, carte étudiante requise. Tous les cours, la salle en libre du lundi au samedi, et les 5 salles du réseau — https://boutique.boxingcenter.fr/inscription?product=etudiants-4-semaines
+- Abonnement adulte (sans engagement) : 44,99 € par période de 4 semaines, renouvelé tant qu’on vient. Mêmes accès — https://boutique.boxingcenter.fr/inscription?product=44-99-4-semaines
+- Paiement de ces deux abonnements : la première période par carte bancaire, la suite par prélèvement IBAN ; un badge d’accès à 34,99 € s’ajoute. Tous les abonnements sans engagement : https://boutique.boxingcenter.fr/abonnements#prelevement
+- Payer en une fois (prix habituels) : 150 € pour 3 mois, 250 € pour 6 mois, 400 € pour 12 mois — https://boutique.boxingcenter.fr/abonnements#comptant
 - École enfants dès 3 ans : Baby Boxe 3/6 à 250 €/an, éducative 7/11 et ados 12/16 à 295 €/an — https://boutique.boxingcenter.fr/abonnements
 
 ## La première séance
@@ -162,7 +164,7 @@ Compté sur les 22 cours de la grille de la rentrée.
 - Y a-t-il des cours pour les enfants ? Oui, dès 3 ans : Baby Boxe 3/6 le samedi, éducative 7/11 ans et ados 12/16 ans le mercredi et le samedi après-midi, encadrés par Valentin Guth.
 - Quels sont les horaires ? Du lundi au samedi, de 10h00 à 21h30, accès libre muscu/cardio inclus. Fermé le dimanche. Un émargement GPS est demandé en salle avant chaque cours.
 
-## Le réseau Boxing Center (accès libre avec l’offre Saison)
+## Le réseau Boxing Center (les 5 salles avec l’abonnement sans engagement)
 
 - Portet-sur-Garonne — grand ring de boxe, cage MMA — https://boxing-center-portet.fr/
 - Minimes — salle historique, 3 rings, école dès 3 ans — https://boxe-toulouse.com/

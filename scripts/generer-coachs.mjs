@@ -22,7 +22,7 @@ import { ROOT, BASE, donnees, textes as textesDisciplines, lienDe } from "./disc
 import { pathToFileURL } from "node:url";
 const { roleHtml, pastilleHtml } = await import(pathToFileURL(join(ROOT, "public", "assets", "js", "role-liens.js")).href);
 
-const { DISCIPLINES, COACHES, SALLE, TARIFS } = await donnees();
+const { DISCIPLINES, COACHES, SALLE, TARIFS, boutonAbonnements } = await donnees();
 const TD = textesDisciplines();
 const TC = JSON.parse(readFileSync(join(ROOT, "src", "coachs-pages.json"), "utf8")).pages;
 const GABARIT = readFileSync(join(ROOT, "src", "pages", "activites", "index.astro"), "utf8");
@@ -113,7 +113,9 @@ function donneesStructurees(p, c, url, og, discs) {
 }
 
 async function corps(p, c, discs) {
-  const tarif = (TARIFS || []).find((t) => t.name === p.tarif) || (TARIFS || []).find((t) => /rentr/i.test(t.name));
+  const tarif = (TARIFS || []).find((t) => t.name === p.tarif) || (TARIFS || []).find((t) => /adulte/i.test(t.name));
+  /* l'école garde son tarif ; les cours adultes portent les deux abonnements, l'étudiant d'abord */
+  const bouton = /enfant/i.test(tarif?.name || "") ? boutonTarif(tarif) : boutonAbonnements();
   const s = [];
 
   s.push(`
@@ -127,7 +129,7 @@ async function corps(p, c, discs) {
           <p class="phero__lead">${e(p.lead)}</p>
           <div class="phero__meta">${(c.disciplines || []).map((x) => `<span>${pastilleHtml(x, c.name)}</span>`).join("")}</div>
           <div class="dp-actions">
-            ${boutonTarif(tarif)}
+            ${bouton}
             <a class="btn btn--ghost" href="/plannings/"><span>Voir le planning</span></a>
           </div>
         </div>
@@ -203,7 +205,7 @@ async function corps(p, c, discs) {
       <div class="wrap dp-fin" data-reveal>
         <h2 class="display" id="t-fin">Viens t’entraîner avec ${e(prenom(c.name))}. <span class="tint">Le premier cours se fait sans rien savoir.</span></h2>
         <div class="dp-actions">
-          ${boutonTarif(tarif)}
+          ${bouton}
           <a class="btn btn--ghost" href="/coachs/"><span>Toute l’équipe</span></a>
           <a class="btn btn--ghost" href="/contact/"><span>Nous écrire</span></a>
         </div>

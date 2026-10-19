@@ -307,8 +307,8 @@
   .onav:hover .onav__vue img { transform: none; }
 }
 
-/* CE QU'ON ACHÈTE POUR 29 EUROS.
-   Cette ligne — « 29 € par personne · 4 semaines · gants prêtés » — vivait
+/* CE QU'ON ACHÈTE CONTRE SON ARGENT.
+   Cette ligne — le prix, la période, ce qui est compris — vivait
    dans un style INLINE à .78rem et opacity .7, juste sous le bouton qui vend
    l'offre. Un style inline échappe au plancher mobile de base.css comme à
    celui d'ici : aucun @media ne peut le rattraper. 12,48 px mesurés à 375,

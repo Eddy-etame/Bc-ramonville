@@ -19,7 +19,7 @@ const OUVRE = 10 * 60, FERME = 21 * 60 + 30;
 
 /* Les clés que chatbot.js sait transformer en boutons (BTN). Une clé hors
    liste est ignorée côté client : autant ne jamais l’écrire. */
-export const BOUTONS_VALIDES = ["offre", "saison", "promos", "essai", "enfants", "abonnements", "boutique",
+export const BOUTONS_VALIDES = ["etudiant", "adulte", "comptant", "essai", "enfants", "abonnements", "boutique",
   "premiere", "tarifs", "planning", "disciplines", "plateau", "coachs", "galerie", "contact", "appeler", "rappel"];
 
 const minutes = (h) => { const m = /(\d{1,2})h(\d{2})?/.exec(h || ""); return m ? +m[1] * 60 + +(m[2] || 0) : null; };
@@ -127,6 +127,6 @@ export async function contexteDuMoment(now = new Date()) {
   if (enfants) L.push("", enfants);
   const qui = quiEncadre(schedule);
   if (qui) L.push("", qui);
-  L.push("", `BOUTONS — tu écris [boutons: clé, clé] avec UNIQUEMENT ces clés : ${BOUTONS_VALIDES.join(", ")}. « promos » ouvre la page des offres spéciales de la boutique (l’année complète à 259 € et l’offre de rentrée à 29 €). Toute autre clé est ignorée.`);
+  L.push("", `BOUTONS — tu écris [boutons: clé, clé] avec UNIQUEMENT ces clés : ${BOUTONS_VALIDES.join(", ")}. « etudiant » ouvre l’inscription étudiante (36,99 € toutes les 4 semaines, carte étudiante requise), « adulte » l’inscription adulte (44,99 € toutes les 4 semaines), « comptant » les formules 3, 6 et 12 mois. Toute autre clé est ignorée.`);
   return L.join("\n");
 }

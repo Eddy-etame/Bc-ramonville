@@ -21,7 +21,7 @@ import sharp from "sharp";
 import { ROOT, BASE, donnees, textes, creneaux, joursEnMots, remplir, lienDe, JOUR, JOUR_SCHEMA } from "./disciplines-lib.mjs";
 import { pathToFileURL } from "node:url";
 
-const { DISCIPLINES, SCHEDULE, COACHES, SALLE, LINKS, TARIFS } = await donnees();
+const { DISCIPLINES, SCHEDULE, COACHES, SALLE, LINKS, TARIFS, boutonAbonnements } = await donnees();
 const T = textes();
 const TC = JSON.parse(readFileSync(join(ROOT, "src", "coachs-pages.json"), "utf8")).pages;
 const GABARIT = readFileSync(join(ROOT, "src", "pages", "activites", "index.astro"), "utf8");
@@ -85,13 +85,18 @@ const versTarif = (t) => `/tarifs/#${ancreTarif(t.name)}`;
 const tarifsDe = (cle) => (TARIFS || [])
   .filter((t) => !/essai/i.test(t.name))
   .filter((t) => (cle === "ecole") === /enfant/i.test(t.name));
-/* Le bouton dit ce qu'il ouvre : « Voir l’Offre Rentrée », « Voir le tarif École enfants ». */
+/* Le bouton dit ce qu'il ouvre : « Voir l’abonnement étudiant », « Voir le tarif École enfants ». */
 const voirTarif = (t) => (/^offre\b/i.test(t.name) ? `Voir l’${t.name}`
   : /^abonnement\b/i.test(t.name) ? `Voir l’${t.name.charAt(0).toLowerCase()}${t.name.slice(1)}`
+  : /^formules?\b/i.test(t.name) ? `Voir les ${t.name.charAt(0).toLowerCase()}${t.name.slice(1)}`
   : `Voir le tarif ${t.name}`);
 const boutonTarif = (t) => (t
   ? `<a class="btn btn--primary" href="${versTarif(t)}"><span>${e(voirTarif(t))}</span></a>`
   : `<a class="btn btn--primary" href="/tarifs/"><span>Les tarifs</span></a>`);
+/* Le bouton principal d'une discipline adulte porte les deux abonnements, en
+   alternance (offres.js) : l'étudiant, puis l'adulte, chacun vers son
+   inscription. L'école garde son tarif. */
+const boutonDe = (cle) => (cle === "ecole" ? boutonTarif(tarifsDe(cle)[0]) : boutonAbonnements());
 
 function donneesStructurees(p, d, url, og, liste) {
   const heures = liste.map((s) => ({
@@ -117,7 +122,7 @@ function donneesStructurees(p, d, url, og, liste) {
   };
   if (heures.length) service.hoursAvailable = heures;
   const formules = tarifsDe(d.key);
-  if (formules.length) service.offers = formules.map((t) => ({ "@type": "Offer", name: t.name, price: String(t.price).replace(/\D/g, ""), priceCurrency: "EUR", url: t.href, description: `${t.price} ${t.period || ""}`.trim() }));
+  if (formules.length) service.offers = formules.map((t) => ({ "@type": "Offer", name: t.name, price: String(t.price).replace(/[^\d,]/g, "").replace(",", "."), priceCurrency: "EUR", url: t.href, description: `${t.price} ${t.period || ""}`.trim() }));
   return {
     "@context": "https://schema.org",
     "@graph": [
@@ -150,7 +155,7 @@ async function corps(p, d, liste) {
           <p class="phero__lead">${e(p.leadFinal)}</p>
           <div class="phero__meta"><span>${e(d.niveau)}</span><span>${e(d.coach)}</span><span>Métro B · terminus Ramonville</span></div>
           <div class="dp-actions">
-            ${boutonTarif(tarifsDe(d.key)[0])}
+            ${boutonDe(d.key)}
             <a class="btn btn--ghost" href="/plannings/"><span>Voir le planning</span></a>
           </div>
         </div>
@@ -237,7 +242,7 @@ async function corps(p, d, liste) {
           <div><dt>Bus</dt><dd>Arrêt Ramonville Sud, au pied de la salle.</dd></div>
           <div><dt>Voiture</dt><dd>Rocade, sortie Ramonville.</dd></div>
           <div><dt>Ouverture</dt><dd>${e(SALLE.hours)}</dd></div>
-          ${offre ? `<div><dt>Pour commencer</dt><dd>${e(offre.name)} : ${e(offre.price)} ${e(offre.period || "")}. <a href="${versTarif(offre)}">La formule en détail →</a></dd></div>` : ""}
+          ${offre ? `<div><dt>Pour commencer</dt><dd>${formules.slice(0, 2).map((t) => `${e(t.name)} : ${e(t.price)} ${e(t.period || "")}`).join(" ; ")}. <a href="${versTarif(offre)}">${formules.length > 1 ? "Les formules en détail" : "La formule en détail"} →</a></dd></div>` : ""}
           <div><dt>Téléphone</dt><dd><a href="tel:${e(SALLE.phoneHref)}">${e(SALLE.phone)}</a></dd></div>
         </dl>
       </div>
@@ -269,7 +274,7 @@ async function corps(p, d, liste) {
       <div class="wrap dp-fin" data-reveal>
         <h2 class="display" id="t-fin">Tu dis « c’est ma première fois ». <span class="tint">On s’occupe du reste.</span></h2>
         <div class="dp-actions">
-          ${boutonTarif(tarifsDe(d.key)[0])}
+          ${boutonDe(d.key)}
           <a class="btn btn--ghost" href="/activites/"><span>Toutes les activités</span></a>
           <a class="btn btn--ghost" href="/contact/"><span>Nous écrire</span></a>
         </div>

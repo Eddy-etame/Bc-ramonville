@@ -863,9 +863,9 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
      · 12,8 px — les micro-labels décoratifs : numéros de section, tics de
        carnet, tags en capitales tracées. Ils comptent, ils ne vendent pas.
      · 14 px — tout ce qui porte un ARGUMENT : l'unité du prix
-       (« / personne · 4 semaines », c'est elle qui dit ce qu'on achète pour
-       29 €), l'ancien prix barré, la signature d'un avis, le libellé d'un
-       chiffre. Un argument qu'on ne lit pas ne vend pas. */
+       (« / 4 semaines », c'est elle qui dit ce qu'on achète contre son
+       argent), la mention « carte étudiante requise », la signature d'un
+       avis, le libellé d'un chiffre. Un argument qu'on ne lit pas ne vend pas. */
 @media (max-width: 600px) {
   .coach__role { font-size: .8rem !important; }
   .coach__tag { font-size: .8rem !important; }
@@ -881,7 +881,6 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
   .practical .fk { font-size: .8rem !important; }
   .promo__badge { font-size: .8rem !important; }
   .promo__price i { font-size: .8rem !important; }
-  .promo__price s { font-size: .8rem !important; }
   .rail__label { font-size: .8rem !important; }
   .regle__n { font-size: .8rem !important; }
   .slotline .d { font-size: .8rem !important; }
@@ -937,10 +936,11 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
   .octa__hint { white-space: normal; text-align: center; width: min(100%, 18rem); letter-spacing: .08em; line-height: 1.35; }
 }
 
-/* Le vrai ancien prix, barré à côté du nouveau : sans lui, « 29 € » n'est
-   qu'un prix — avec lui, c'est une affaire. L'ancre de prix est la mécanique
-   la plus rentable d'une page de tarifs. */
-.tarif__was, .promo__price s { opacity: .55; font-weight: 600; font-size: .62em; text-decoration-thickness: 2px; margin-right: .15em; }
+/* LE PRIX DANS UN BOUTON : « 36 » et « 44 » se lisent d'abord, « €99 »
+   suit collé, en petit et en haut — exact sans alourdir le bouton. Le
+   montant entier est dans l'aria-label du lien. */
+.px { white-space: nowrap; }
+.px i { font-style: normal; font-size: .7em; vertical-align: .32em; margin-left: .03em; }
 
 /* ================================================================
    LE COMPTEUR DE PLACES — discret par construction : c'est un fait,
@@ -967,9 +967,6 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
   70%  { box-shadow: 0 0 0 9px rgba(255,255,255,0); }
   100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); }
 }
-/* Le prix barre DANS UNE PHRASE (les cartes de tarif ont leur propre regle).
-   Partout ou 29 EUR est ecrit, le prix qu'il remplace est ecrit a cote. */
-.was { opacity: .55; text-decoration: line-through; text-decoration-thickness: 2px; font-weight: 600; }
 @media (prefers-reduced-motion: reduce) { .places::before { animation: none; } }
 
 
@@ -992,6 +989,11 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
 .amorce-ram::after { content: ""; display: block; width: 2.2em; height: 2px;
   margin: .55em auto 0; background: currentColor; opacity: .5; }
 .piege .plaque { width: min(100%, 330px); }
+/* DEUX PLAQUES CÔTE À CÔTE : l'étudiant, puis l'adulte. Chacune est sa
+   propre porte d'inscription ; sur téléphone elles s'empilent, l'étudiant
+   en haut. */
+.plaques { display: flex; flex-wrap: wrap; justify-content: center; gap: clamp(.9rem, 2.6vw, 1.5rem); width: 100%; }
+.plaques .plaque, .piege .plaques .plaque { flex: 1 1 230px; width: auto; max-width: 320px; }
 /* ===================== LA PLAQUE (le piège) =====================
    Portet a son BILLET — bord déchiré, talon perforé, or en trois couches.
    Il est juste là-bas : ce site raconte un combat en six rounds. Ici on
@@ -1058,8 +1060,8 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
 .plaque__prix b { font-family: var(--f-display); font-weight: 700; font-size: clamp(3.4rem, 12vw, 5.2rem); letter-spacing: -.035em; }
 .plaque__prix i { font-style: normal; font-family: var(--f-display); font-weight: 700; font-size: clamp(1.2rem, 4vw, 1.9rem); margin-top: .32em; }
 .plaque__unit { font: 600 .68rem/1.3 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; opacity: .72; }
-.plaque__barre { font: 600 .66rem/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; opacity: .55;
-  text-decoration: line-through; text-decoration-thickness: 1.5px; margin-top: .3rem; }
+/* la condition qui va avec le prix — « carte étudiante requise » — lue, jamais barrée */
+.plaque__note { font: 700 .66rem/1.2 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; opacity: .8; margin-top: .3rem; }
 .plaque__go { margin-top: .9rem; font-weight: 700; font-size: .9rem; display: inline-flex; align-items: center; gap: .5ch; }
 .plaque__go i { font-style: normal; transition: transform .25s cubic-bezier(.2,.7,.3,1); }
 .plaque:hover .plaque__go i { transform: translateX(4px); }
@@ -1070,18 +1072,18 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
   .plaque:active { transform: translateY(1px); filter: brightness(1.06); }
 }
 @media (prefers-reduced-motion: reduce) { .plaque, .plaque__go i { transition: none; } }
-/* SUR TÉLÉPHONE, LA PLAQUE MÈNE. La grille passe à une colonne sous 820 px et
-   la plaque tombait SOUS un bouton qui dit déjà « Je profite de l'offre — 29€ » :
-   deux fois la même offre, l’objet qui devait arrêter l’œil arrivant après
-   qu’on a déjà décidé. Elle passe devant — le prix accroche, le texte
-   explique, le bouton conclut. Au-dessus de 820 px la grille a deux colonnes :
-   elle est à côté, pas dessous, et l’ordre naturel est le bon. */
+/* SUR TÉLÉPHONE, LES PLAQUES MÈNENT. La grille passe à une colonne sous 820 px
+   et les plaques tombaient SOUS le bouton qui porte déjà les deux prix : deux
+   fois la même chose, l’objet qui devait arrêter l’œil arrivant après qu’on a
+   déjà décidé. Elles passent devant — le prix accroche, le texte explique, le
+   bouton conclut. Au-dessus de 820 px la grille a deux colonnes : elles sont
+   à côté, pas dessous, et l’ordre naturel est le bon. */
 @media (max-width: 819px) {
-  .essai__grid .plaque { order: -1; justify-self: stretch; }
+  .essai__grid .plaque, .essai__grid .plaques { order: -1; justify-self: stretch; }
 }
 
-/* ===================== LES DEUX OFFRES, EN ALTERNANCE =====================
-   Eddy, 13/09 : 259 € d'abord, puis 29 €, et ainsi de suite (offres.js).
+/* ================== LES DEUX ABONNEMENTS, EN ALTERNANCE ==================
+   L'étudiant d'abord, puis l'adulte, et ainsi de suite (offres.js).
    Les deux faces occupent la même case : la plus large donne la taille,
    rien ne saute. LE PASSAGE SECRET : la face sortante se referme sur une
    fente de lumière au milieu, la face entrante s'ouvre de la fente vers
@@ -1107,7 +1109,7 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
 
 /* ===================== LA CARTE QUI RESTE (Eddy, 13/09) =====================
    Toujours à l'écran, en bas à gauche, sur toutes les pages : la plaque en
-   format de poche, 259 € d'abord puis 29 €, vers les offres spéciales.
+   format de poche, l'étudiant puis l'adulte, chacun vers son inscription.
    Elle s'efface quand une grande plaque est déjà à l'écran (offres.js) et
    quand le menu est ouvert. */
 .flotte { position: fixed; left: clamp(.7rem, 2vw, 1.4rem); bottom: clamp(.7rem, 2vw, 1.4rem); z-index: 7980;
@@ -1135,6 +1137,7 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
   .flotte .plaque__prix b { font-size: 1.6rem; }
   .flotte .plaque__prix i { font-size: .8rem; }
   .flotte .plaque__unit { display: none; }
+  .flotte .plaque__note { margin: 0; max-width: 11ch; font-size: .6rem; line-height: 1.15; text-align: left; }
   .flotte .plaque__go { margin: 0; font-size: 0; }
   .flotte .plaque__go i { font-size: 1.05rem; }
 }
@@ -1144,22 +1147,12 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
   transition: opacity .35s, transform .35s cubic-bezier(.2,.7,.3,1), visibility 0s linear .35s; }
 @media (prefers-reduced-motion: reduce) { .flotte { transition: none; } }
 
-/* L’ANCIEN PRIX, BARRÉ (Eddy, 13/09) : 400 € → 259 €, 44 € → 29 €, sur
-   chaque bouton, la barre, le menu, le pied de page, le détail du hero et
-   la plaque de poche. Barré net, un ton en dessous du nouveau prix. */
-s.ancien { text-decoration: line-through; text-decoration-thickness: .12em; opacity: .6; font-size: .86em; font-weight: 500; }
-.flotte .plaque__barre { margin-top: .15rem; font-size: .62rem; }
+/* La condition, dans la plaque de poche : un ton en dessous du prix. */
+.flotte .plaque__note { margin-top: .15rem; font-size: .54rem; letter-spacing: .08em; }
 @media (max-width: 600px) {
-  /* sur téléphone, l’ancien prix se lit d’un coup d’œil à côté du nouveau */
-  s.ancien { font-size: .96em; opacity: .78; text-decoration-thickness: .14em; }
-  /* le bouton de la barre garde ses deux prix mais laisse tomber le mot :
-     avec l’ancien prix, « L’année · » poussait le menu hors de l’écran */
-  .nav__mot { display: none; }
-  /* …et la face 259 € reprend son unité, comme la face 29 € (« / 4 sem. ») :
-     sans elle, la plus courte des deux flottait dans un bouton à moitié vide */
-  .nav__an-prix::after { content: "\00a0/ an"; }
-  .plaque__barre { font-size: .8rem; opacity: .74; text-decoration-thickness: 2px; }
-  .flotte .plaque__barre { margin: 0; font-size: .76rem; opacity: .78; }
+  /* sur téléphone, « carte étudiante requise » se lit sans plisser les yeux */
+  .plaque__note { font-size: .8rem; opacity: .86; }
+  .flotte .plaque__note { font-size: .6rem; }
 }
 
 /* FAQ accordion — venue de page.css le 17/09 : coachs, activites et la-salle

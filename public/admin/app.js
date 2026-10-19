@@ -92,7 +92,7 @@ async function entrer() {
 /* ------------------------- CHARGEMENT DES DONNÉES ----------------- */
 async function chargerBase() {
   try {
-    app.base = await import("/assets/js/data.js?v=25");
+    app.base = await import("/assets/js/data.js?v=26");
   } catch {
     app.base = null;
   }
@@ -435,7 +435,7 @@ function vueSalle() {
 function vueTarifs() {
   const t = valeur("tarifs") || [];
   $("#pane").innerHTML = `
-    <p class="intro">Une carte par offre de la page Tarifs. <b>L'Offre Rentrée se dit « 29 € par personne »</b>, jamais « pour deux » : c'est la formule officielle, et elle évite un malentendu à l'accueil.</p>
+    <p class="intro">Une carte par offre de la page Tarifs. <b>L'abonnement étudiant s'écrit toujours avec « carte étudiante requise »</b> à côté du prix : sans la carte, c'est le tarif adulte, et on évite un malentendu à l'accueil.</p>
     ${t.map((o, i) => `
       <div class="carte" data-i="${i}">
         <div class="carte__tete"><h3>${echappe(o.name)}</h3></div>

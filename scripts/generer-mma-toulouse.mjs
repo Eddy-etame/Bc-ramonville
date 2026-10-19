@@ -207,7 +207,7 @@ const html = `${tete}  <script is:inline type="application/ld+json">${JSON.strin
           <p>Celle de Ramonville est au sud-est. ${cageAilleurs.map((n) => n.id === "etats-unis"
             ? `La cage de <a href="${e(n.url)}" rel="noopener">Boxing Center ${e(n.name)}</a> est dans Toulouse même, au nord (${e(n.adresse)})`
             : `celle de <a href="${e(n.url)}activites/mma/" rel="noopener">Boxing Center ${e(n.name)}</a> au sud (${e(n.adresse)})`).join(", et ")}.</p>
-          <p>Le plus simple est de choisir la cage la plus proche de son trajet du soir : depuis Labège, Castanet-Tolosan, Saint-Orens ou le sud-est toulousain, c’est Ramonville ; depuis le nord de la ville, les États-Unis. L’abonnement Saison est valable dans les cinq salles du réseau. <a href="/nos-clubs/">Les cinq clubs et leurs adresses</a>.</p>
+          <p>Le plus simple est de choisir la cage la plus proche de son trajet du soir : depuis Labège, Castanet-Tolosan, Saint-Orens ou le sud-est toulousain, c’est Ramonville ; depuis le nord de la ville, les États-Unis. L’abonnement sans engagement, étudiant ou adulte, te suit dans les cinq salles du réseau. <a href="/nos-clubs/">Les cinq clubs et leurs adresses</a>.</p>
         </div>
       </div>
     </section>

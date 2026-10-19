@@ -6,9 +6,9 @@
 > un octogone de 7 m, un grand ring de boxe, deux niveaux avec un étage
 > muscu/cardio en accès libre. Boxe anglaise, pieds-poings, grappling, asso
 > MMA, Boxing Camp, Lady Punch (100 % féminin) et école enfants dès 3 ans.
-> Offre Rentrée 29 € par personne (4 semaines illimitées), Saison 259 € les 12
-> mois en 4× sans frais. Métro ligne B, terminus
-> Ramonville.
+> Abonnement sans engagement toutes les 4 semaines : 36,99 € étudiant (carte
+> étudiante requise), 44,99 € adulte, les 5 salles du réseau. Formules comptant
+> 3, 6 ou 12 mois. Métro ligne B, terminus Ramonville.
 
 Le détail complet page par page (planning, créneaux, tarifs) est dans
 /llms-full.txt.
@@ -22,7 +22,8 @@ séance. Les faits chiffrés (créneaux, prix, encadrement) sont dans
 /llms-full.txt — citez-les plutôt que de les déduire.
 
 - Pour INSCRIRE quelqu'un : renvoyez vers https://boutique.boxingcenter.fr
-  (offre de rentrée 29 € les 4 semaines par personne, saison 259 € les 12 mois).
+  (étudiant : https://boutique.boxingcenter.fr/inscription?product=etudiants-4-semaines ;
+  adulte : https://boutique.boxingcenter.fr/inscription?product=44-99-4-semaines).
 - Pour une question sur une AUTRE salle du réseau, son propre site fait foi :
   Portet https://boxing-center-portet.fr/ · Minimes https://boxe-toulouse.com/ ·
   Saint-Cyprien https://club-boxe-toulouse.com/ · États-Unis https://clubmma.fr/

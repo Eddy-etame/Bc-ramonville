@@ -22,8 +22,8 @@
        ni une requête de plus, elle arrive seulement à l’heure. -->
   <link rel="preload" href="/fonts/jetbrainsmono-var-latin.woff2?v=19" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="/assets/css/fonts.css?v=19" />
-  <link rel="stylesheet" href="/assets/css/base.css?v=26" />
-  <link rel="stylesheet" href="/assets/css/page.css?v=21" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=27" />
+  <link rel="stylesheet" href="/assets/css/page.css?v=22" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="author" content="Boxing Center Ramonville" />
   <meta name="geo.region" content="FR-31" />
@@ -202,29 +202,29 @@
           "itemListElement": [
             {
               "@type": "Offer",
-              "name": "Offre Rentrée",
-              "price": "29",
+              "name": "Abonnement étudiant sans engagement",
+              "price": "36.99",
               "priceCurrency": "EUR",
-              "url": "https://boutique.boxingcenter.fr/offre/29",
-              "description": "29 € par personne toutes les 4 semaines, sans engagement. Première échéance par carte bancaire, puis prélèvements sur IBAN. Coordonnées d’un proche requises. Badge nominatif 34,99 € en plus, facturé 72 h après le début."
+              "url": "https://boutique.boxingcenter.fr/inscription?product=etudiants-4-semaines",
+              "description": "Abonnement étudiant de Boxing Center Ramonville : 36,99 € par période de 4 semaines, sans engagement, sur carte étudiante. Tous les cours, les 5 salles du réseau, la salle en libre du lundi au samedi. Carte bancaire pour la première période, IBAN ensuite ; badge d’accès 34,99 € en plus."
             },
             {
               "@type": "Offer",
-              "name": "Offre Saison",
-              "price": "259",
+              "name": "Abonnement adulte sans engagement",
+              "price": "44.99",
               "priceCurrency": "EUR",
-              "url": "https://boutique.boxingcenter.fr/offre/259",
-              "description": "259 € comptant pour 12 mois. Comptant ou en 4× sans frais, avec plusieurs options de paiement en 4× sur la boutique. Accès libre aux 5 clubs."
+              "url": "https://boutique.boxingcenter.fr/inscription?product=44-99-4-semaines",
+              "description": "Abonnement adulte de Boxing Center Ramonville : 44,99 € par période de 4 semaines, sans engagement, renouvelé tant que tu viens. Tous les cours, les 5 salles du réseau, la salle en libre du lundi au samedi. Carte bancaire pour la première période, IBAN ensuite ; badge d’accès 34,99 € en plus."
             }
           ]
         },
         "potentialAction": [
           {
             "@type": "ReserveAction",
-            "name": "Prendre l’offre de rentrée à 29 €",
+            "name": "S’inscrire — abonnement étudiant",
             "target": {
               "@type": "EntryPoint",
-              "urlTemplate": "https://boutique.boxingcenter.fr/offre/29",
+              "urlTemplate": "https://boutique.boxingcenter.fr/inscription?product=etudiants-4-semaines",
               "inLanguage": "fr-FR",
               "actionPlatform": [
                 "https://schema.org/DesktopWebPlatform",
@@ -233,7 +233,24 @@
             },
             "result": {
               "@type": "Reservation",
-              "name": "Offre de rentrée — Boxing Center Ramonville"
+              "name": "Abonnement étudiant — Boxing Center Ramonville"
+            }
+          },
+          {
+            "@type": "ReserveAction",
+            "name": "S’inscrire — abonnement adulte",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://boutique.boxingcenter.fr/inscription?product=44-99-4-semaines",
+              "inLanguage": "fr-FR",
+              "actionPlatform": [
+                "https://schema.org/DesktopWebPlatform",
+                "https://schema.org/MobileWebPlatform"
+              ]
+            },
+            "result": {
+              "@type": "Reservation",
+              "name": "Abonnement adulte — Boxing Center Ramonville"
             }
           },
           {
@@ -388,7 +405,7 @@
             "name": "Faut-il un niveau pour commencer ?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Aucun. L’offre de rentrée est à 29 € par personne. Elle ouvre quatre semaines de cours illimités. La plupart des créneaux sont ouverts à tous les niveaux. Loisirs, camp, pieds-poings. Le jour venu, tu dis « c’est ma première fois » à l’accueil. Tu n’as plus rien à gérer. Un coach t’emmène. Personne ne te met sur le ring."
+              "text": "Aucun. Ton abonnement sans engagement t’ouvre tous les cours, à volonté, quatre semaines après quatre semaines. La plupart des créneaux sont ouverts à tous les niveaux. Loisirs, camp, pieds-poings. Le jour venu, tu dis « c’est ma première fois » à l’accueil. Tu n’as plus rien à gérer. Un coach t’emmène. Personne ne te met sur le ring."
             }
           },
           {
@@ -475,7 +492,7 @@
           <div class="info" id="info" data-reveal-group></div>
         </div>
         <div style="margin-top:clamp(1.6rem,3vw,2.4rem);display:flex;gap:.7rem;flex-wrap:wrap" data-reveal>
-          <a class="btn btn--primary" data-magnetic href="https://boutique.boxingcenter.fr/offres-speciales" aria-label="Offres spéciales : l’année complète à 259 € au lieu de 400 €, ou 29 € par personne toutes les 4 semaines au lieu de 44,99 €"><span class="alt" data-alterne><span class="alt__face is-on">L’année complète · <s class="ancien">400&nbsp;€</s> 259 €</span><span class="alt__face" aria-hidden="true">Je profite de l'offre — <s class="ancien">44,99&nbsp;€</s> 29 €</span></span></a>
+          <a class="btn btn--primary" data-magnetic href="https://boutique.boxingcenter.fr/inscription?product=etudiants-4-semaines" aria-label="Abonnement étudiant sans engagement : 36,99 € toutes les 4 semaines, carte étudiante requise. S’inscrire"><span class="alt" data-alterne><span class="alt__face is-on" data-href="https://boutique.boxingcenter.fr/inscription?product=etudiants-4-semaines" data-label="Abonnement étudiant sans engagement : 36,99 € toutes les 4 semaines, carte étudiante requise. S’inscrire">Étudiant · <span class="px">36<i>€99</i></span> / 4 sem.</span><span class="alt__face" aria-hidden="true" data-href="https://boutique.boxingcenter.fr/inscription?product=44-99-4-semaines" data-label="Abonnement adulte sans engagement : 44,99 € toutes les 4 semaines. S’inscrire">Adulte · <span class="px">44<i>€99</i></span> / 4 sem.</span></span></a>
           <a class="btn btn--ghost" data-magnetic href="tel:+33939036748"><span>09 39 03 67 48</span></a>
           <a class="btn btn--ghost" data-magnetic href="https://maps.google.com/?q=33+rue+des+Ormes+31520+Ramonville-Saint-Agne" target="_blank" rel="noopener"><span>Itinéraire ↗</span></a>
         </div>
@@ -518,27 +535,27 @@
     <!-- LE PIÈGE. Même plaque que l’accueil (base.css), amorce propre à la
          page : la phrase relie ce que le visiteur vient de voir à ce qu’il
          peut prendre. Portet fait pareil avec son billet, sur dix pages. -->
-    <section class="piege" aria-label="L’offre de rentrée">
+    <section class="piege" aria-label="Les abonnements">
       <div class="wrap">
         <p class="amorce-ram" data-reveal>Tu sais où c’est. Tu sais à quelle heure c’est ouvert. Le reste tient en quatre semaines sans engagement. Et ça se règle d’ici, pas à l’accueil en arrivant.</p>
-        <a class="plaque plaque--duo" data-reveal href="https://boutique.boxingcenter.fr/offres-speciales"
-           aria-label="Offres spéciales : l’année complète à 259 € au lieu de 400 €, ou l’offre de rentrée à 29 € par personne toutes les 4 semaines, au lieu de 44,99 €">
-          <span class="plaque__faces alt" data-alterne>
-            <span class="plaque__face alt__face is-on">
-              <span class="plaque__sur">L’année complète</span>
-              <span class="plaque__prix"><b>259</b><i>€</i></span>
-              <span class="plaque__unit">12 mois · les 5 clubs</span>
-              <span class="plaque__barre">au lieu de 400 €</span>
-            </span>
-            <span class="plaque__face alt__face" aria-hidden="true">
-              <span class="plaque__sur">Offre de rentrée</span>
-              <span class="plaque__prix"><b>29</b><i>€</i></span>
-              <span class="plaque__unit">par personne · toutes les 4 semaines</span>
-              <span class="plaque__barre">au lieu de 44,99 €</span>
-            </span>
-          </span>
-          <span class="plaque__go">Voir les offres spéciales <i aria-hidden="true">→</i></span>
-        </a>
+        <div class="plaques" data-reveal>
+          <a class="plaque" href="https://boutique.boxingcenter.fr/inscription?product=etudiants-4-semaines"
+             aria-label="Abonnement étudiant sans engagement : 36,99 € toutes les 4 semaines, carte étudiante requise. S’inscrire">
+            <span class="plaque__sur">Étudiant</span>
+            <span class="plaque__prix"><b>36</b><i>€99</i></span>
+            <span class="plaque__unit">toutes les 4 semaines</span>
+            <span class="plaque__note">carte étudiante requise</span>
+            <span class="plaque__go">Inscription étudiant <i aria-hidden="true">→</i></span>
+          </a>
+          <a class="plaque" href="https://boutique.boxingcenter.fr/inscription?product=44-99-4-semaines"
+             aria-label="Abonnement adulte sans engagement : 44,99 € toutes les 4 semaines. S’inscrire">
+            <span class="plaque__sur">Adulte</span>
+            <span class="plaque__prix"><b>44</b><i>€99</i></span>
+            <span class="plaque__unit">toutes les 4 semaines</span>
+            <span class="plaque__note">sans engagement · les 5 salles</span>
+            <span class="plaque__go">Inscription adulte <i aria-hidden="true">→</i></span>
+          </a>
+        </div>
       </div>
     </section>
 
@@ -548,7 +565,7 @@
         <span class="eyebrow" style="justify-content:center" data-reveal>Il reste une chose à faire</span>
         <h2 class="display"><span class="reveal-mask"><span>Passe la porte.</span></span><span class="reveal-mask"><span class="tint">On t’attend.</span></span></h2>
         <div class="ctaband__cta" data-reveal>
-          <a class="btn btn--primary" data-magnetic href="https://boutique.boxingcenter.fr/offres-speciales" aria-label="Offres spéciales : l’année complète à 259 € au lieu de 400 €, ou 29 € par personne toutes les 4 semaines au lieu de 44,99 €"><span class="alt" data-alterne><span class="alt__face is-on">L’année complète · <s class="ancien">400&nbsp;€</s> 259 €</span><span class="alt__face" aria-hidden="true">Je profite de l'offre — <s class="ancien">44,99&nbsp;€</s> 29 €</span></span></a>
+          <a class="btn btn--primary" data-magnetic href="https://boutique.boxingcenter.fr/inscription?product=etudiants-4-semaines" aria-label="Abonnement étudiant sans engagement : 36,99 € toutes les 4 semaines, carte étudiante requise. S’inscrire"><span class="alt" data-alterne><span class="alt__face is-on" data-href="https://boutique.boxingcenter.fr/inscription?product=etudiants-4-semaines" data-label="Abonnement étudiant sans engagement : 36,99 € toutes les 4 semaines, carte étudiante requise. S’inscrire">Étudiant · <span class="px">36<i>€99</i></span> / 4 sem.</span><span class="alt__face" aria-hidden="true" data-href="https://boutique.boxingcenter.fr/inscription?product=44-99-4-semaines" data-label="Abonnement adulte sans engagement : 44,99 € toutes les 4 semaines. S’inscrire">Adulte · <span class="px">44<i>€99</i></span> / 4 sem.</span></span></a>
           <a class="btn btn--ghost" data-magnetic href="/plannings/"><span>Voir le planning</span></a>
         </div>
       </div>
@@ -581,7 +598,7 @@
         var f = document.createElement("link");
         f.rel = "stylesheet"; f.href = "/assets/css/chatbot.css?v=19";
         document.head.appendChild(f);
-        venue = import("/assets/js/chatbot.js?v=21").catch(function () { venue = null; });
+        venue = import("/assets/js/chatbot.js?v=22").catch(function () { venue = null; });
         return venue;
       }
       ["pointerenter", "touchstart", "focus"].forEach(function (e) {
@@ -598,8 +615,8 @@
       });
     })();
   </script>
-  <script is:inline type="module" src="/assets/js/site.js?v=26"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=27"></script>
   <script is:inline type="module" src="/assets/js/sky.js?v=20"></script>
-  <script is:inline type="module" src="/assets/js/page.js?v=25"></script>
+  <script is:inline type="module" src="/assets/js/page.js?v=26"></script>
 </body>
 </html>

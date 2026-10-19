@@ -18,8 +18,8 @@
    d’ouverture est purement décorative (prefers-reduced-motion respecté
    côté CSS — rien ici ne dépend d’une transition pour être lisible).
    ===================================================================== */
-import { QUICKS, fallbackAnswer } from "./chatbot-kb.js?v=20";
-import { SALLE, NETWORK } from "./data.js?v=25";
+import { QUICKS, fallbackAnswer } from "./chatbot-kb.js?v=21";
+import { SALLE, NETWORK } from "./data.js?v=26";
 
 /* --------------------------- LES MOTIFS ---------------------------- */
 const EMAIL_RE = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/i;
@@ -107,9 +107,10 @@ function boutique(url) {
 
 /* La pensée Portet émulée : clés fermées → vrais boutons sous les messages. */
 const ACTIONS = {
-  offre:       { label: "Voir l’offre · 29 €/4 sem.", href: boutique("https://boutique.boxingcenter.fr/offre/29") },
-  saison:      { label: "Voir la Saison · 259 € comptant", href: boutique("https://boutique.boxingcenter.fr/offre/259") },
-  promos:      { label: "Les offres spéciales", href: boutique("https://boutique.boxingcenter.fr/offres-speciales") },
+  /* l’étudiant d’abord, puis l’adulte — l’ordre du site */
+  etudiant:    { label: "Inscription étudiant · 36,99 € / 4 sem.", href: boutique("https://boutique.boxingcenter.fr/inscription?product=etudiants-4-semaines") },
+  adulte:      { label: "Inscription adulte · 44,99 € / 4 sem.", href: boutique("https://boutique.boxingcenter.fr/inscription?product=44-99-4-semaines") },
+  comptant:    { label: "Formules comptant · 3, 6 ou 12 mois", href: boutique("https://boutique.boxingcenter.fr/abonnements#comptant") },
   essai:       { label: "Je viens essayer · 10€", href: boutique("https://boutique.boxingcenter.fr/seance-essai") },
   enfants:     { label: "J’inscris mon enfant", href: boutique("https://boutique.boxingcenter.fr/abonnements#enfants") },
   abonnements: { label: "Voir les abonnements", href: boutique("https://boutique.boxingcenter.fr/abonnements") },
@@ -128,11 +129,15 @@ const ACTIONS = {
 /* L’adresse NUE d’une action, signature retirée : c’est elle qui sert à
    reconnaître une URL écrite en clair par le modèle (qui, lui, n’écrit
    jamais d’utm_) et à éviter deux boutons pour la même destination.
-   L’ANCRE EST GARDÉE : sans elle, « abonnements » et « abonnements#promo »
-   se confondraient et l’un des deux boutons disparaîtrait. */
+   L’ANCRE EST GARDÉE : sans elle, « abonnements » et « abonnements#comptant »
+   se confondraient et l’un des deux boutons disparaîtrait. LE PRODUIT AUSSI
+   (« ?product=… ») : les inscriptions étudiant et adulte partagent la même
+   adresse, seul le produit les distingue. */
 function nue(href) {
   const [base, ancre] = String(href || "").split("#");
-  return base.split("?")[0].replace(/\/$/, "") + (ancre ? "#" + ancre : "");
+  const [chemin, requete = ""] = base.split("?");
+  const produit = new URLSearchParams(requete).get("product");
+  return chemin.replace(/\/$/, "") + (produit ? "?product=" + produit : "") + (ancre ? "#" + ancre : "");
 }
 function resolveActions(keys) {
   const out = [];
@@ -454,8 +459,8 @@ export function initChatbot() {
          Ramonville » est une fonction, pas quelqu'un. Il se présente une
          fois, au premier message, et plus jamais ensuite.
 
-       · /tarifs/ ouvrait sur la GRILLE — « Six formules. La rentrée à 29 €
-         est la plus prise. » C'est le catalogue lâché avant de savoir ce que
+       · /tarifs/ ouvrait sur la GRILLE — six formules et « la plus prise »
+         d’entrée de jeu. C'est le catalogue lâché avant de savoir ce que
          la personne cherche, et six options font chuter la décision. Une
          question de situation d'abord ; les prix viennent après, et deux au
          maximum.
@@ -497,7 +502,7 @@ export function initChatbot() {
           ? `Re-salut ${profil.prenom} ! Je suis toujours là — créneaux, octogone, tarifs, école enfants : demande.`
           : _accueilRamonville(),
         700,
-        resolveActions(["saison", "offre"])   /* 259 € d’abord, comme partout (Eddy, 13/09) */
+        resolveActions(["etudiant", "adulte"])   /* l’étudiant d’abord, puis l’adulte, comme partout sur le site */
       );
       /* on ne redemande JAMAIS un prénom déjà donné — c’est la première
          chose qui trahit un robot */

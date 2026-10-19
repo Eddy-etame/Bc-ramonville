@@ -21,7 +21,7 @@ const e = (s) => String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").re
   .replace(/\{/g, "&#123;").replace(/\}/g, "&#125;");
 
 const TITRE = "Nos clubs : les 5 salles Boxing Center | Ramonville";
-const DESC = "Les 5 clubs Boxing Center autour de Toulouse : Ramonville, Portet-sur-Garonne, Minimes, Saint-Cyprien et États-Unis. L’offre Saison ouvre les cinq.";
+const DESC = "Les 5 clubs Boxing Center autour de Toulouse : Ramonville, Portet-sur-Garonne, Minimes, Saint-Cyprien et États-Unis. Un abonnement sans engagement ouvre les cinq.";
 const URL = `${BASE}/nos-clubs/`;
 const OG = `${BASE}/assets/img/ram/og/nos-clubs.jpg?v=1`;
 const ALT = "Les cinq clubs Boxing Center autour de Toulouse";
@@ -92,12 +92,12 @@ const html = `${tete}  <script is:inline type="application/ld+json">${JSON.strin
     <section class="section" aria-labelledby="t-reseau">
       <div class="wrap">
         <div class="shead" data-reveal><span class="eyebrow">Le réseau Boxing Center</span><h2 class="display" id="t-reseau">Cinq clubs, un seul abonnement.</h2></div>
-        <p class="reseau__lead" data-reveal>L’offre Saison donne l’accès libre aux cinq clubs du réseau : tu t’entraînes à Ramonville, et tu peux pousser la porte des quatre autres.</p>
+        <p class="reseau__lead" data-reveal>Étudiant ou adulte, l’abonnement sans engagement t’ouvre les cinq clubs du réseau : tu t’entraînes à Ramonville, et tu peux pousser la porte des quatre autres.</p>
         <div class="network network--cinq" data-reveal-group>
           ${[ici, ...autres].map(carte).join("\n          ")}
         </div>
         <div class="reseau__cta" data-reveal>
-          <a class="btn btn--primary" href="/tarifs/#tarif-offre-saison"><span>Voir l’Offre Saison</span></a>
+          <a class="btn btn--primary" href="/tarifs/#tarif-abonnement-etudiant"><span>Voir les abonnements</span></a>
           <a class="btn btn--ghost" href="https://boxingcenter.fr/" target="_blank" rel="noopener"><span>Le site du groupe ↗</span></a>
           <a class="btn btn--ghost" href="https://boutique.boxingcenter.fr/" target="_blank" rel="noopener"><span>La boutique ↗</span></a>
         </div>

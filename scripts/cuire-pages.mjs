@@ -102,9 +102,7 @@ const discs = DISCIPLINES.map(
 const ancreTarif = (nom) => "tarif-" + String(nom || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
 const tarifs = TARIFS.map(
   (t) =>
-    `<article id="${ancreTarif(t.name)}"><h3>${e(t.name)}</h3><p><b>${e(t.price)}</b>${t.period ? ` ${e(t.period)}` : ""}${
-      t.was ? ` (au lieu de ${e(t.was)})` : ""
-    }</p>${t.feature ? `<p>${e(t.feature)}</p>` : ""}${ul(t.items)}</article>`
+    `<article id="${ancreTarif(t.name)}"><h3>${e(t.name)}</h3><p><b>${e(t.price)}</b>${t.period ? ` ${e(t.period)}` : ""}</p>${t.feature ? `<p>${e(t.feature)}</p>` : ""}${ul(t.items)}</article>`
 ).join("");
 
 const reviews = (REVIEWS.quotes || [])

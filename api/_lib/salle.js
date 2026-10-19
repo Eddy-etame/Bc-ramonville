@@ -28,7 +28,7 @@ const REPLI = `- Boxing Center Ramonville : un club ouvert à tous, même si tu 
 - Avant chaque cours : valider sa présence à l’accueil (émargement GPS).
 - Cours : boxe anglaise, boxe pieds-poings, grappling (combat au sol), MMA tous niveaux (dans la cage), Boxing Camp, Lady Punch (100 % féminin), école enfants dès 3 ans, accès libre muscu/cardio. Tous ouverts aux débutants.
 - Coachs : Sonia (pieds-poings, Lady Punch, Camp), Jérôme (grappling, MMA), Farouk (boxe anglaise du soir), Valentin Guth (école enfants), Hicham (boxe anglaise des midis).
-- Tarifs, dans l’ordre : Offre Saison 259 € les 12 mois au lieu de 400 € (tarif annuel normal), payés comptant ; ou en 4× sans frais (plusieurs options de paiement en 4×) ; accès libre aux 5 clubs du réseau. Puis, sans engagement, Offre Rentrée 29 € PAR PERSONNE TOUTES LES 4 SEMAINES au lieu de 44,99 € ; première échéance par carte bancaire puis prélèvements sur IBAN ; coordonnées d’un proche requises ; badge nominatif 34,99 € en plus, facturé 72 h après le début. École enfants dès 3 ans (295 €/an, baby 250 €). EN DERNIER : séance d’essai 10 €, conditions à confirmer avec la salle.
+- Tarifs, dans l’ordre : abonnement sans engagement, toutes les 4 semaines, accès aux 5 salles du réseau — d’abord ÉTUDIANT 36,99 € (carte étudiante requise, tarif sur justificatif), puis ADULTE 44,99 € ; première échéance par carte bancaire puis prélèvements sur IBAN ; badge d’accès 34,99 €, prélevé quelques jours après l’inscription. Formules comptant au prix normal : 3 mois 150 €, 6 mois 250 €, 12 mois 400 €. École enfants dès 3 ans (295 €/an, baby 250 €). EN DERNIER : séance d’essai 10 €, conditions à confirmer avec la salle.
 - CGV : le badge nominatif à 34,99 € s’ajoute à tous les abonnements sans engagement de 4 semaines, sauf exception indiquée dans l’offre ou les CGV.
 - Première séance : on dit à l’accueil que c’est sa première fois et un coach oriente la personne. Aucun combat imposé, aucun test de niveau. À apporter : t-shirt, short ou legging, baskets propres, bouteille d’eau. Vérifier le matériel requis avec la salle.
 - Avis Google : des avis réels d’adhérents sont cités sur la page Tarifs. Ne donne jamais de note ni de nombre d’avis.`;
@@ -95,7 +95,7 @@ export async function infosSalle() {
           `${t.name} ${t.price} ${t.period} — ${t.feature}` +
           (Array.isArray(t.items) && t.items.length ? ` — ${t.items.join(" ; ")}` : "")
         ).join(" ; ") +
-        ". La Saison coûte 259 € comptant au lieu de 400 € (le tarif annuel normal) et s’annonce EN PREMIER ; elle se paie comptant ou en 4× sans frais (la boutique propose plusieurs options de paiement en 4×). L’Offre Rentrée, l’alternative sans engagement, est de 29 € PAR PERSONNE TOUTES LES 4 SEMAINES au lieu de 44,99 €. La première échéance est payée par carte bancaire, puis les suivantes sont prélevées sur IBAN. Les coordonnées d’un proche sont requises. Le badge nominatif de 34,99 € est facturé en plus 72 h après le début. La séance d’essai se propose EN DERNIER."
+        ". Ordre de présentation : l’abonnement ÉTUDIANT (carte étudiante requise) puis l’abonnement ADULTE, tous deux sans engagement et ouverts aux 5 salles ; les formules comptant ensuite, à leur prix normal, jamais présentées comme une réduction. La première échéance est payée par carte bancaire, puis les suivantes sont prélevées sur IBAN. Le badge d’accès de 34,99 € est prélevé quelques jours après l’inscription. La séance d’essai se propose EN DERNIER."
     );
   if (D.CONDITIONS_COMMERCIALES?.badge) L.push(`CGV : ${D.CONDITIONS_COMMERCIALES.badge}`);
 
@@ -125,7 +125,7 @@ export async function infosSalle() {
   if (D.REVIEWS?.quotes?.length) L.push(`Avis Google cités sur le site (sans note) : ${D.REVIEWS.quotes.map((q) => `« ${q.text} » — ${q.author}`).join(" ; ")}`);
   if (Array.isArray(D.NETWORK))
     L.push(
-      "Réseau Boxing Center (l’abonnement Saison donne accès libre aux 5 clubs) : " +
+      "Réseau Boxing Center (l’abonnement sans engagement, étudiant ou adulte, ouvre les 5 clubs) : " +
         D.NETWORK.map((n) => `${n.name} (${n.tag})`).join(", ") +
         ". Site du groupe : boxingcenter.fr."
     );

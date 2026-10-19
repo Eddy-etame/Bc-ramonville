@@ -27,21 +27,23 @@
     {
       "id": "C2",
       "famille": "controle",
-      "titre": "Le prix pour commencer : la Saison a 259 € d'abord, puis le 29 €",
+      "titre": "Le prix pour commencer : l'etudiant a 36,99 € d'abord, puis l'adulte a 44,99 €",
       "tours": [
         "C'est combien pour commencer ?",
         "Pour moi, et je debute completement"
       ],
       "doit_contenir": [
-        "\\b259 ?€",
-        "\\b29 ?€"
+        "36,99 ?€",
+        "44,99 ?€",
+        "36,99[\\s\\S]*44,99"
       ],
       "doit_pas_contenir": [
         "gratuit|offerte|\\b0 ?€",
-        "^(?:(?!259)[\\s\\S])*\\b29 ?€"
+        "(?<![\\d,])(29|259) ?€",
+        "au lieu de|promo|offre limit|r[ée]duction|prix barr"
       ],
       "boutons_valides": true,
-      "_pourquoi": "Le cadre lui interdit de sortir un prix a quelqu'un dont il ne sait rien : au premier tour il DOIT qualifier. Le prix est attendu au second. Eddy, 13/09 : la Saison a 259 € s'annonce EN PREMIER (comme les boutons du site), le 29 € juste apres. « 0 € » est cherche comme un mot entier : sinon « 400 € » le declenche."
+      "_pourquoi": "Le cadre lui interdit de sortir un prix a quelqu'un dont il ne sait rien : au premier tour il DOIT qualifier. Le prix est attendu au second, dans l'ordre du site : 36,99 € etudiant (carte requise), puis 44,99 € adulte, sans ancien prix ni remise annoncee. « 0 € » est cherche comme un mot entier : sinon « 400 € » le declenche."
     },
     {
       "id": "C3",
@@ -63,7 +65,7 @@
         "Bonjour"
       ],
       "doit_pas_contenir": [
-        "29 ?€.*259|259 ?€.*29"
+        "36,99 ?€[\\s\\S]*44,99|44,99 ?€[\\s\\S]*36,99"
       ],
       "boutons_valides": true,
       "_pourquoi": "Sur un simple bonjour, il ne deballe pas la grille tarifaire."
@@ -79,11 +81,11 @@
         "sparring|coup|pas.*frapp|adapte|niveau|rythme|personne ne"
       ],
       "doit_pas_contenir": [
-        "^.{0,120}29 ?€",
-        "^.{0,120}259 ?€"
+        "^.{0,120}36,99 ?€",
+        "^.{0,120}44,99 ?€"
       ],
       "boutons_valides": true,
-      "_pourquoi": "L'objection numero un d'une salle de boxe est la peur, pas le prix. Repondre 29 € a « j'ai peur » est repondre a cote."
+      "_pourquoi": "L'objection numero un d'une salle de boxe est la peur, pas le prix. Repondre par un tarif a « j'ai peur » est repondre a cote."
     },
     {
       "id": "B3",
@@ -103,15 +105,16 @@
     {
       "id": "B4",
       "famille": "bord",
-      "titre": "L'arithmetique de la saison, si elle est citee",
+      "titre": "Le comptant, sans economie inventee",
       "tours": [
-        "Pourquoi je prendrais la saison plutot que le mois ?"
+        "Pourquoi je prendrais 12 mois au comptant plutot que l'abonnement sans engagement ?"
       ],
       "doit_pas_contenir": [
-        "572 ?€?.*(?<!313)(?<!22).{0,4}$"
+        "[ée]conomi|au lieu de|promo|r[ée]duction|par mois",
+        "(?<![\\d,])(29|259) ?€"
       ],
       "boutons_valides": true,
-      "_pourquoi": "Eddy, 13/09 : le prix barre 400 € est desormais affiche partout sur Ramonville (boutons, plaques) et ecrit dans les FAITS du bot, qui peut donc le citer. Aucun AUTRE chiffre invente (572 €, economie calculee)."
+      "_pourquoi": "Les formules comptant (150, 250, 400 €) sont des prix normaux : il les cite tels quels, sans calculer d'economie ni d'equivalent mensuel, et sans ressortir un ancien prix."
     },
     {
       "id": "L1",

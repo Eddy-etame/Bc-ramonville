@@ -11,7 +11,7 @@ import { TARIFS, PROMOS } from "../../../public/assets/js/data.js";
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tarifs boxe et MMA à Ramonville | Boxing Center</title>
-  <meta name="description" content="Tarifs boxe et MMA à Ramonville : 29 € par personne toutes les 4 semaines, Saison 259 € comptant, badge et modalités de paiement détaillés." />
+  <meta name="description" content="Tarifs boxe et MMA à Ramonville : sans engagement, 36,99 € étudiant ou 44,99 € adulte toutes les 4 semaines ; comptant 3, 6 ou 12 mois ; badge et paiement détaillés." />
 
   <!-- Préconnexions — avant toute feuille de style -->
   <link rel="preconnect" href="https://api.open-meteo.com" crossorigin />
@@ -29,8 +29,8 @@ import { TARIFS, PROMOS } from "../../../public/assets/js/data.js";
        ni une requête de plus, elle arrive seulement à l’heure. -->
   <link rel="preload" href="/fonts/jetbrainsmono-var-latin.woff2?v=19" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="/assets/css/fonts.css?v=19" />
-  <link rel="stylesheet" href="/assets/css/base.css?v=26" />
-  <link rel="stylesheet" href="/assets/css/page.css?v=21" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=27" />
+  <link rel="stylesheet" href="/assets/css/page.css?v=22" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="author" content="Boxing Center Ramonville" />
   <meta name="geo.region" content="FR-31" />
@@ -51,17 +51,17 @@ import { TARIFS, PROMOS } from "../../../public/assets/js/data.js";
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:site_name" content="Boxing Center Ramonville" />
   <meta property="og:title" content="Tarifs | Boxing Center Ramonville" />
-  <meta property="og:description" content="Rentrée 29 € par personne toutes les 4 semaines, badge 34,99 € en sus. Saison 259 € comptant ou en 4× sans frais." />
+  <meta property="og:description" content="Étudiant 36,99 €, adulte 44,99 € : toutes les 4 semaines, sans engagement, les 5 salles. Comptant 150, 250 ou 400 €." />
   <meta property="og:url" content="https://mmatoulouse.com/tarifs/" />
-  <meta property="og:image" content="https://mmatoulouse.com/assets/img/ram/og/tarifs.jpg?v=1" />
+  <meta property="og:image" content="https://mmatoulouse.com/assets/img/ram/og/tarifs.jpg?v=2" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:type" content="image/jpeg" />
   <meta property="og:image:alt" content="Circuit de renforcement du Boxing Camp au Boxing Center Ramonville." />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Tarifs | Boxing Center Ramonville" />
-  <meta name="twitter:description" content="Rentrée 29 €/personne toutes les 4 semaines. Saison 259 € comptant ou en 4× sans frais." />
-  <meta name="twitter:image" content="https://mmatoulouse.com/assets/img/ram/og/tarifs.jpg?v=1" />
+  <meta name="twitter:description" content="Sans engagement à Ramonville : 36,99 € étudiant, 44,99 € adulte, toutes les 4 semaines." />
+  <meta name="twitter:image" content="https://mmatoulouse.com/assets/img/ram/og/tarifs.jpg?v=2" />
   <meta name="twitter:image:alt" content="Circuit de renforcement du Boxing Camp au Boxing Center Ramonville." />
 
 
@@ -212,19 +212,19 @@ import { TARIFS, PROMOS } from "../../../public/assets/js/data.js";
           "itemListElement": [
             {
               "@type": "Offer",
-              "name": "Offre Rentrée",
-              "price": "29",
+              "name": "Abonnement étudiant sans engagement",
+              "price": "36.99",
               "priceCurrency": "EUR",
-              "url": "https://boutique.boxingcenter.fr/offre/29",
-              "description": "29 € par personne toutes les 4 semaines, sans engagement. Première échéance par carte bancaire, puis prélèvements sur IBAN. Coordonnées d’un proche requises. Badge nominatif 34,99 € en plus, facturé 72 h après le début."
+              "url": "https://boutique.boxingcenter.fr/inscription?product=etudiants-4-semaines",
+              "description": "Abonnement étudiant de Boxing Center Ramonville : 36,99 € par période de 4 semaines, sans engagement, sur carte étudiante. Tous les cours, les 5 salles du réseau, la salle en libre du lundi au samedi. Carte bancaire pour la première période, IBAN ensuite ; badge d’accès 34,99 € en plus."
             },
             {
               "@type": "Offer",
-              "name": "Offre Saison",
-              "price": "259",
+              "name": "Abonnement adulte sans engagement",
+              "price": "44.99",
               "priceCurrency": "EUR",
-              "url": "https://boutique.boxingcenter.fr/offre/259",
-              "description": "259 € comptant pour 12 mois. Comptant ou en 4× sans frais, avec plusieurs options de paiement en 4× sur la boutique. Accès libre aux 5 clubs."
+              "url": "https://boutique.boxingcenter.fr/inscription?product=44-99-4-semaines",
+              "description": "Abonnement adulte de Boxing Center Ramonville : 44,99 € par période de 4 semaines, sans engagement, renouvelé tant que tu viens. Tous les cours, les 5 salles du réseau, la salle en libre du lundi au samedi. Carte bancaire pour la première période, IBAN ensuite ; badge d’accès 34,99 € en plus."
             },
             {
               "@type": "Offer",
@@ -348,8 +348,8 @@ import { TARIFS, PROMOS } from "../../../public/assets/js/data.js";
         "@type": "WebPage",
         "@id": "https://mmatoulouse.com/tarifs/#webpage",
         "url": "https://mmatoulouse.com/tarifs/",
-        "name": "Tarifs — Boxing Center Ramonville · Rentrée 29 € toutes les 4 semaines, Saison 259 € comptant",
-        "description": "Offre Rentrée à 29 € par personne toutes les 4 semaines : première échéance par carte, puis IBAN ; proche requis ; badge 34,99 € en sus. Saison à 259 € comptant ou en 4× sans frais.",
+        "name": "Tarifs — Boxing Center Ramonville · étudiant 36,99 €, adulte 44,99 € toutes les 4 semaines",
+        "description": "Abonnements sans engagement : 36,99 € étudiant (carte requise) ou 44,99 € adulte toutes les 4 semaines, première échéance par carte puis IBAN, badge 34,99 € en sus. Formules comptant : 3 mois 150 €, 6 mois 250 €, 12 mois 400 €.",
         "inLanguage": "fr-FR",
         "isPartOf": {
           "@id": "https://mmatoulouse.com/#website"
@@ -408,18 +408,18 @@ import { TARIFS, PROMOS } from "../../../public/assets/js/data.js";
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "Comment paie-t-on la Saison à 259 € ?",
+            "name": "Comment se paie l’abonnement sans engagement ?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Comptant, ou en 4× sans frais : la boutique propose plusieurs options de paiement en quatre fois, tu choisis la tienne au moment de payer."
+              "text": "La première période de quatre semaines passe par carte bancaire. Ensuite, le prélèvement part de l’IBAN que tu donnes à l’inscription. Aucune durée ne te lie : tu arrêtes quand tu veux."
             }
           },
           {
             "@type": "Question",
-            "name": "Comment fonctionne l’offre Rentrée à 29 € ?",
+            "name": "Et si je veux tout régler d’un coup ?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Le prix est de 29 € par personne toutes les quatre semaines. La première échéance se règle par carte bancaire. Les suivantes sont prélevées sur l’IBAN fourni. Les coordonnées d’un proche sont requises."
+              "text": "Prends une formule comptant, à son prix normal : 150 € pour trois mois, 250 € pour six, 400 € pour l’année. Un paiement, et plus rien à suivre."
             }
           },
           {
@@ -427,7 +427,7 @@ import { TARIFS, PROMOS } from "../../../public/assets/js/data.js";
             "name": "Le badge est-il compris ?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Non. Pour l’offre Rentrée, le badge nominatif coûte 34,99 € en plus. Il est facturé 72 heures après le début. Les CGV prévoient ce badge sur les abonnements sans engagement de quatre semaines, sauf exception indiquée."
+              "text": "Non. Le badge d’accès coûte 34,99 € de plus ; il est débité peu après ton inscription. Les CGV prévoient ce badge sur les abonnements sans engagement de quatre semaines, sauf exception indiquée."
             }
           },
           {
@@ -435,7 +435,7 @@ import { TARIFS, PROMOS } from "../../../public/assets/js/data.js";
             "name": "Le tarif étudiant, il faut quoi ?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Un justificatif pour bénéficier des 36,99 € par période de quatre semaines. Le badge de 34,99 € s’ajoute aux abonnements sans engagement de quatre semaines, sauf exception indiquée dans l’offre ou les CGV."
+              "text": "Ta carte étudiante : c’est elle qui ouvre les 36,99 € par période de quatre semaines. Le badge de 34,99 € s’ajoute aux abonnements sans engagement de quatre semaines, sauf exception indiquée dans l’offre ou les CGV."
             }
           },
           {
@@ -451,7 +451,7 @@ import { TARIFS, PROMOS } from "../../../public/assets/js/data.js";
             "name": "Je peux m’entraîner dans les autres salles ?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Avec la saison, oui. Elle ouvre les cinq clubs du réseau. Portet, Minimes, États-Unis, Saint-Cyprien et ici. Un seul abonnement, cinq portes. Et une seule des cinq où l’entraînement se fait dehors."
+              "text": "Oui, étudiant comme adulte : l’abonnement sans engagement ouvre les cinq clubs du réseau. Portet, Minimes, États-Unis, Saint-Cyprien et ici. Un seul abonnement, cinq portes. Et une seule des cinq où l’entraînement se fait dehors."
             }
           }
         ]
@@ -490,7 +490,7 @@ import { TARIFS, PROMOS } from "../../../public/assets/js/data.js";
       </div>
     </header>
 
-    <!-- essai 10 € + Rentrée + Saison + abonnement 4 semaines + école -->
+    <!-- étudiant + adulte + comptant + école + essai 10 € -->
     <section class="section" aria-label="Les formules">
       <div class="wrap">
         <div class="shead" data-reveal>
@@ -501,12 +501,12 @@ import { TARIFS, PROMOS } from "../../../public/assets/js/data.js";
       </div>
     </section>
 
-    <!-- le bloc promos daté -->
-    <section class="section" style="background:var(--void);border-block:1px solid var(--line)" aria-label="Les offres de rentrée">
+    <!-- les deux abonnements sans engagement, l’étudiant d’abord -->
+    <section class="section" style="background:var(--void);border-block:1px solid var(--line)" aria-label="Les abonnements sans engagement">
       <div class="wrap">
         <div class="shead" data-reveal>
-          <span class="eyebrow">Les offres</span>
-          <h2 class="display"><span class="reveal-mask"><span>29 € par personne,</span></span><span class="reveal-mask"><span class="tint">toutes les 4 semaines.</span></span></h2>
+          <span class="eyebrow">Sans engagement</span>
+          <h2 class="display"><span class="reveal-mask"><span>Deux tarifs,</span></span><span class="reveal-mask"><span class="tint">les cinq mêmes portes.</span></span></h2>
         </div>
         <div class="promos" id="promos" data-reveal></div>
         <div class="promo__bonus" id="promo-bonus" data-reveal></div>
@@ -543,20 +543,20 @@ import { TARIFS, PROMOS } from "../../../public/assets/js/data.js";
         </div>
         <div class="faq" data-reveal>
           <details open>
-            <summary>Comment paie-t-on la Saison à 259 €&nbsp;?</summary>
-            <p>Comptant, ou en 4× sans frais : la boutique propose plusieurs options de paiement en quatre fois, tu choisis la tienne au moment de payer.</p>
+            <summary>Comment se paie l’abonnement sans engagement&nbsp;?</summary>
+            <p>La première période de quatre semaines passe par carte bancaire. Ensuite, le prélèvement part de l’IBAN que tu donnes à l’inscription. Aucune durée ne te lie : tu arrêtes quand tu veux.</p>
           </details>
           <details>
-            <summary>Comment fonctionne l’offre Rentrée à 29 €&nbsp;?</summary>
-            <p>Le prix est de 29 € par personne toutes les quatre semaines. La première échéance se règle par carte bancaire. Les suivantes sont prélevées sur l’IBAN fourni. Les coordonnées d’un proche sont requises.</p>
+            <summary>Et si je veux tout régler d’un coup&nbsp;?</summary>
+            <p>Prends une formule comptant, à son prix normal : 150 € pour trois mois, 250 € pour six, 400 € pour l’année. Un paiement, et plus rien à suivre.</p>
           </details>
           <details>
             <summary>Le badge est-il compris&nbsp;?</summary>
-            <p>Non. Pour l’offre Rentrée, le badge nominatif coûte 34,99 € en plus. Il est facturé 72 heures après le début. Les CGV prévoient ce badge sur les abonnements sans engagement de quatre semaines, sauf exception indiquée.</p>
+            <p>Non. Le badge d’accès coûte 34,99 € de plus ; il est débité peu après ton inscription. Les CGV prévoient ce badge sur les abonnements sans engagement de quatre semaines, sauf exception indiquée.</p>
           </details>
           <details>
             <summary>Le tarif étudiant, il faut quoi&nbsp;?</summary>
-            <p>Un justificatif pour bénéficier des 36,99 € par période de quatre semaines. Le badge de 34,99 € s’ajoute aux abonnements sans engagement de quatre semaines, sauf exception indiquée dans l’offre ou les CGV.</p>
+            <p>Ta carte étudiante : c’est elle qui ouvre les 36,99 € par période de quatre semaines. Le badge de 34,99 € s’ajoute aux abonnements sans engagement de quatre semaines, sauf exception indiquée dans l’offre ou les CGV.</p>
           </details>
           <details>
             <summary>L’étage muscu/cardio se paie en plus&nbsp;?</summary>
@@ -564,7 +564,7 @@ import { TARIFS, PROMOS } from "../../../public/assets/js/data.js";
           </details>
           <details>
             <summary>Je peux m’entraîner dans les autres salles&nbsp;?</summary>
-            <p>Avec la saison, oui. Elle ouvre les cinq clubs du réseau. Portet, Minimes, États-Unis, Saint-Cyprien et ici. Un seul abonnement, cinq portes. Et une seule des cinq où l’entraînement se fait dehors.</p>
+            <p>Oui, étudiant comme adulte : l’abonnement sans engagement ouvre les cinq clubs du réseau. Portet, Minimes, États-Unis, Saint-Cyprien et ici. Un seul abonnement, cinq portes. Et une seule des cinq où l’entraînement se fait dehors.</p>
           </details>
         </div>
       </div>
@@ -574,24 +574,34 @@ import { TARIFS, PROMOS } from "../../../public/assets/js/data.js";
     <section class="section localseo" aria-labelledby="seo-title">
       <div class="wrap" style="max-width:76ch">
         <h2 id="seo-title" class="display" style="font-size:clamp(1.6rem,3.4vw,2.5rem);margin-bottom:1rem;text-transform:none">Combien coûte la boxe à Ramonville-Saint-Agne ?</h2>
-        <p class="lead" style="font-size:var(--step-0)">La <strong>séance d’essai est à 10 €</strong>. Pour continuer, l'<strong>offre Rentrée</strong> coûte <strong>29 € par personne toutes les quatre semaines</strong>, sans engagement. La première échéance passe par carte bancaire. Les suivantes passent par prélèvement sur IBAN. Les coordonnées d’un proche sont requises. Un <strong>badge nominatif à 34,99 €</strong> s’ajoute et sera facturé 72 heures après le début. L'<strong>offre Saison</strong> coûte <strong>259 € comptant</strong>. Elle se paie comptant ou en 4× sans frais (la boutique propose plusieurs options de paiement en 4×).</p>
+        <p class="lead" style="font-size:var(--step-0)">La <strong>séance d’essai est à 10 €</strong>. Pour continuer sans t’engager, l’<strong>abonnement étudiant</strong> coûte <strong>36,99 € toutes les quatre semaines</strong>, carte étudiante requise, et l’<strong>abonnement adulte</strong> <strong>44,99 €</strong> au même rythme. Les deux ouvrent les cinq salles du réseau, tous les cours et l’accès libre. La première échéance passe par carte bancaire, la suite par prélèvement sur IBAN. Un <strong>badge d’accès à 34,99 €</strong> s’ajoute, débité peu après ton inscription. Tu préfères payer d’un coup&nbsp;? Les <strong>formules comptant</strong> coûtent <strong>150 € pour 3 mois</strong>, 250 € pour 6 mois et 400 € pour 12 mois.</p>
         <p class="lead" style="font-size:var(--step-0);margin-top:1rem">Lis le récapitulatif et les CGV avant de payer. Le badge de 34,99 € s’applique aux abonnements sans engagement de quatre semaines, sauf exception indiquée. La salle est ouverte du lundi au samedi, de 10h00 à 21h30. La muscu et le cardio sont compris.</p>
       </div>
     </section>
     <!-- LE PIÈGE. Même plaque que l’accueil (base.css), amorce propre à la
          page : la phrase relie ce que le visiteur vient de voir à ce qu’il
          peut prendre. Portet fait pareil avec son billet, sur dix pages. -->
-    <section class="piege" aria-label="L’offre de rentrée">
+    <section class="piege" aria-label="Les abonnements">
       <div class="wrap">
-        <p class="amorce-ram" data-reveal>29 € par personne. Le prélèvement revient toutes les quatre semaines.</p>
-        <a class="plaque" data-reveal href="https://boutique.boxingcenter.fr/offre/29"
-           aria-label="Offre Rentrée : 29 € par personne toutes les 4 semaines, badge 34,99 € en plus">
-          <span class="plaque__sur">Offre de rentrée</span>
-          <span class="plaque__prix"><b>29</b><i>€</i></span>
-          <span class="plaque__unit">par personne · toutes les 4 semaines</span>
-          <span class="plaque__barre">Badge 34,99 € en sus</span>
-          <span class="plaque__go">Voir les conditions <i aria-hidden="true">→</i></span>
-        </a>
+        <p class="amorce-ram" data-reveal>Tu as lu les conditions. Il reste à choisir ta porte.</p>
+        <div class="plaques" data-reveal>
+          <a class="plaque" href="https://boutique.boxingcenter.fr/inscription?product=etudiants-4-semaines"
+             aria-label="Abonnement étudiant sans engagement : 36,99 € toutes les 4 semaines, carte étudiante requise. S’inscrire">
+            <span class="plaque__sur">Étudiant</span>
+            <span class="plaque__prix"><b>36</b><i>€99</i></span>
+            <span class="plaque__unit">toutes les 4 semaines</span>
+            <span class="plaque__note">carte étudiante requise</span>
+            <span class="plaque__go">Inscription étudiant <i aria-hidden="true">→</i></span>
+          </a>
+          <a class="plaque" href="https://boutique.boxingcenter.fr/inscription?product=44-99-4-semaines"
+             aria-label="Abonnement adulte sans engagement : 44,99 € toutes les 4 semaines. S’inscrire">
+            <span class="plaque__sur">Adulte</span>
+            <span class="plaque__prix"><b>44</b><i>€99</i></span>
+            <span class="plaque__unit">toutes les 4 semaines</span>
+            <span class="plaque__note">sans engagement · les 5 salles</span>
+            <span class="plaque__go">Inscription adulte <i aria-hidden="true">→</i></span>
+          </a>
+        </div>
       </div>
     </section>
 
@@ -601,7 +611,7 @@ import { TARIFS, PROMOS } from "../../../public/assets/js/data.js";
         <span class="eyebrow" style="justify-content:center" data-reveal>Le premier pas est à 10€</span>
         <h2 class="display"><span class="reveal-mask"><span>Commence</span></span><span class="reveal-mask"><span class="tint">par l’essai.</span></span></h2>
         <div class="ctaband__cta" data-reveal>
-          <a class="btn btn--primary" data-magnetic href="https://boutique.boxingcenter.fr/offre/29"><span>Voir l’offre · <s class="ancien">44,99&nbsp;€</s> 29 € / 4 sem.</span></a><a class="btn btn--ghost" data-magnetic href="https://boutique.boxingcenter.fr/seance-essai"><span>Essayer d’abord · 10 €</span></a>
+          <a class="btn btn--primary" data-magnetic href="https://boutique.boxingcenter.fr/inscription?product=etudiants-4-semaines" aria-label="Abonnement étudiant sans engagement : 36,99 € toutes les 4 semaines, carte étudiante requise. S’inscrire"><span class="alt" data-alterne><span class="alt__face is-on" data-href="https://boutique.boxingcenter.fr/inscription?product=etudiants-4-semaines" data-label="Abonnement étudiant sans engagement : 36,99 € toutes les 4 semaines, carte étudiante requise. S’inscrire">Étudiant · <span class="px">36<i>€99</i></span> / 4 sem.</span><span class="alt__face" aria-hidden="true" data-href="https://boutique.boxingcenter.fr/inscription?product=44-99-4-semaines" data-label="Abonnement adulte sans engagement : 44,99 € toutes les 4 semaines. S’inscrire">Adulte · <span class="px">44<i>€99</i></span> / 4 sem.</span></span></a><a class="btn btn--ghost" data-magnetic href="https://boutique.boxingcenter.fr/seance-essai"><span>Essayer d’abord · 10 €</span></a>
           <a class="btn btn--ghost" data-magnetic href="https://boutique.boxingcenter.fr/abonnements"><span>Voir les autres formules</span></a>
         </div>
       </div>
@@ -634,7 +644,7 @@ import { TARIFS, PROMOS } from "../../../public/assets/js/data.js";
         var f = document.createElement("link");
         f.rel = "stylesheet"; f.href = "/assets/css/chatbot.css?v=19";
         document.head.appendChild(f);
-        venue = import("/assets/js/chatbot.js?v=21").catch(function () { venue = null; });
+        venue = import("/assets/js/chatbot.js?v=22").catch(function () { venue = null; });
         return venue;
       }
       ["pointerenter", "touchstart", "focus"].forEach(function (e) {
@@ -651,8 +661,8 @@ import { TARIFS, PROMOS } from "../../../public/assets/js/data.js";
       });
     })();
   </script>
-  <script is:inline type="module" src="/assets/js/site.js?v=26"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=27"></script>
   <script is:inline type="module" src="/assets/js/sky.js?v=20"></script>
-  <script is:inline type="module" src="/assets/js/page.js?v=25"></script>
+  <script is:inline type="module" src="/assets/js/page.js?v=26"></script>
 </body>
 </html>

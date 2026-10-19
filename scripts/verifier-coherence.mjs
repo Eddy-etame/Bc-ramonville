@@ -118,21 +118,33 @@ for (const g of GALLERY || []) verifieAlt(g.img, g.alt, `GALLERY/${g.zone} · ${
 /* ------------------------------------------------------------------
    4. UN PRIX EST ÉCRIT AU MÊME ENDROIT PARTOUT.
    La chip du hero visait TARIFS[0] en dur : le jour où l'ordre des cartes
-   a changé, elle a annoncé « 29 € l'essai » alors que l'essai est à 10 €.
-   Un tarif se cherche par son NOM, jamais par son rang.
+   a changé, elle a prêté à l'essai le prix d'un abonnement, quand l'essai
+   est à 10 €. Un tarif se cherche par son NOM, jamais par son rang.
+   Depuis le 20/10/2026 : deux abonnements sans engagement, l'étudiant
+   PUIS l'adulte, et le grand chiffre des plaques (36 / €99) doit refaire
+   le montant exact (36,99 €).
    ------------------------------------------------------------------ */
 const parNom = (motif) => (TARIFS || []).find((t) => motif.test(t.name || ""));
 const essai = parNom(/essai/i);
-const rentree = parNom(/rentr[ée]e/i);
-const saison = parNom(/saison/i);
+const etudiant = parNom(/[ée]tudiant/i);
+const adulte = parNom(/adulte/i);
 if (!essai) faute("tarif introuvable", "aucune carte « essai » dans TARIFS");
-if (!rentree) faute("tarif introuvable", "aucune carte « rentrée » dans TARIFS");
-if (essai && rentree && essai.price === rentree.price)
-  faute("prix confondus", `l'essai et la rentrée affichent le même prix (${essai.price})`);
-if (rentree && PROMOS?.rentree?.price && rentree.price !== PROMOS.rentree.price)
-  faute("prix divergent", `TARIFS dit ${rentree.price} pour la rentrée, PROMOS.rentree dit ${PROMOS.rentree.price}`);
-if (saison && PROMOS?.saisonOffre?.price && saison.price !== PROMOS.saisonOffre.price)
-  faute("prix divergent", `TARIFS dit ${saison.price} pour la saison, PROMOS.saisonOffre dit ${PROMOS.saisonOffre.price}`);
+if (!etudiant) faute("tarif introuvable", "aucune carte « étudiant » dans TARIFS");
+if (!adulte) faute("tarif introuvable", "aucune carte « adulte » dans TARIFS");
+if (essai && etudiant && essai.price === etudiant.price)
+  faute("prix confondus", `l'essai et l'abonnement étudiant affichent le même prix (${essai.price})`);
+if (etudiant && adulte && TARIFS.indexOf(etudiant) > TARIFS.indexOf(adulte))
+  faute("ordre des abonnements", "la carte étudiant passe AVANT la carte adulte");
+for (const [cle, carte] of [["etudiant", etudiant], ["adulte", adulte]]) {
+  const p = PROMOS?.[cle];
+  if (!p) { faute("abonnement introuvable", `PROMOS.${cle} manque`); continue; }
+  if (carte && carte.price !== p.price)
+    faute("prix divergent", `TARIFS dit ${carte.price} pour « ${carte.name} », PROMOS.${cle} dit ${p.price}`);
+  if (`${p.entier},${p.cents} €` !== p.price)
+    faute("prix divergent", `PROMOS.${cle} montre ${p.entier}€${p.cents} en grand mais vaut ${p.price}`);
+  if (carte && carte.href !== p.href)
+    faute("lien divergent", `« ${carte.name} » et PROMOS.${cle} ne mènent pas à la même inscription`);
+}
 
 /* Et le rang ne doit servir nulle part : TARIFS[n] dans le code, c'est la
    bombe à retardement qui a explosé le 25/08. */
@@ -173,6 +185,29 @@ for (const s of SCHEDULE || []) {
       `le planning cite « ${nom} » (${s.day} ${s.start}) — absent de COACHES`);
   }
 }
+
+/* ------------------------------------------------------------------
+   7. LES OFFRES RETIRÉES NE REVIENNENT PAS (20/10/2026).
+   L'offre de rentrée et l'année à prix réduit sont retirées : leurs pages
+   de la boutique non plus. Une source qui les relie casse le build — la
+   sortie du build est relue par scripts/garde-offres.mjs.
+   ------------------------------------------------------------------ */
+const { readdirSync, readFileSync, statSync } = await import("fs");
+const RETIREES = /boutique\.boxingcenter\.fr\/(offre\/(29|259)\b|offres-speciale[s])/;
+const TEXTE = /\.(astro|m?js|cjs|json|txt|css|html|py|xml|webmanifest)$/i;
+const IGNORES = new Set(["node_modules", "dist", ".astro", ".git", ".vercel"]);
+const SOI = new Set(["verifier-coherence.mjs", "garde-offres.mjs"]);
+const parcourir = (dir) => {
+  for (const nom of readdirSync(dir)) {
+    if (IGNORES.has(nom)) continue;
+    const p = join(dir, nom);
+    if (statSync(p).isDirectory()) { parcourir(p); continue; }
+    if (!TEXTE.test(nom) || SOI.has(nom)) continue;
+    const m = readFileSync(p, "utf8").match(RETIREES);
+    if (m) faute("offre retirée", `${p.slice(ROOT.length + 1)} relie encore ${m[0]}`);
+  }
+};
+for (const d of ["src", "public", "api", "scripts", "evals"]) parcourir(join(ROOT, d));
 
 /* ------------------------------------------------------------------ */
 if (fautes.length) {

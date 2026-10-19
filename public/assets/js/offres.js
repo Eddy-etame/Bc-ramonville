@@ -1,9 +1,11 @@
 /* =====================================================================
-   RAMONVILLE · offres.js — les deux offres, en alternance
+   RAMONVILLE · offres.js — les deux abonnements, en alternance
 
-   Eddy, 13/09 : partout où l’offre à 29 € apparaît, l’année complète à
-   259 € passe D’ABORD, puis les deux alternent. Toutes mènent à la page
-   « offres spéciales » de la boutique, qui présente les deux.
+   L’étudiant passe D’ABORD (36,99 €, carte étudiante requise), puis
+   l’adulte (44,99 €), et les deux alternent. Chaque face porte sa propre
+   porte d’inscription (data-href) : le lien qui la contient la suit, avec
+   son libellé lu (data-label). On clique toujours ce qu’on voit — et la
+   face se fige sous le doigt, le curseur ou le focus.
 
    · Une seule horloge pour toute la page : à un instant donné, chaque
      plaque, chaque bouton montre la MÊME offre.
@@ -18,18 +20,25 @@
      l’écran — jamais la même offre deux fois sous les yeux — et quand le
      menu est ouvert (CSS).
    ===================================================================== */
-const PROMOS = "https://boutique.boxingcenter.fr/offres-speciales";
+const ETUDIANT = "https://boutique.boxingcenter.fr/inscription?product=etudiants-4-semaines";
+const ADULTE = "https://boutique.boxingcenter.fr/inscription?product=44-99-4-semaines";
 const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const TEMPS = 5200;   // durée d’affichage d’une offre
 const DUREE = 900;    // durée du passage (= animations CSS)
 const armes = new Set();
-let phase = 0;        // 0 = 259 €, 1 = 29 €
+let phase = 0;        // 0 = étudiant, 1 = adulte
 
 function poser(el, n, anime) {
   const faces = [...el.children].filter((c) => c.classList.contains("alt__face"));
   if (faces.length < 2) return;
   const cur = faces.findIndex((f) => f.classList.contains("is-on"));
   if (cur === n) return;
+  /* le lien suit la face qui entre — dès le début du passage */
+  const hote = el.closest("a");
+  if (hote && faces[n].dataset.href) {
+    hote.href = faces[n].dataset.href;
+    if (faces[n].dataset.label) hote.setAttribute("aria-label", faces[n].dataset.label);
+  }
   const fin = () => {
     faces.forEach((f, k) => {
       f.classList.toggle("is-on", k === n);
@@ -78,27 +87,29 @@ function tic() {
   });
 }
 
+const LU_ETUDIANT = "Abonnement étudiant sans engagement : 36,99 € toutes les 4 semaines, carte étudiante requise. S’inscrire";
+const LU_ADULTE = "Abonnement adulte sans engagement : 44,99 € toutes les 4 semaines. S’inscrire";
 const FACES = `
-      <span class="plaque__face alt__face is-on">
-        <span class="plaque__sur">L’année complète</span>
-        <span class="plaque__prix"><b>259</b><i>€</i></span>
-        <span class="plaque__barre">400 €</span>
-        <span class="plaque__unit">12 mois · les 5 clubs</span>
+      <span class="plaque__face alt__face is-on" data-href="${ETUDIANT}" data-label="${LU_ETUDIANT}">
+        <span class="plaque__sur">Étudiant</span>
+        <span class="plaque__prix"><b>36</b><i>€99</i></span>
+        <span class="plaque__note">carte étudiante requise</span>
+        <span class="plaque__unit">toutes les 4 sem.</span>
       </span>
-      <span class="plaque__face alt__face" aria-hidden="true">
-        <span class="plaque__sur">Offre de rentrée</span>
-        <span class="plaque__prix"><b>29</b><i>€</i></span>
-        <span class="plaque__barre">44,99 €</span>
-        <span class="plaque__unit">par personne · 4 sem.</span>
+      <span class="plaque__face alt__face" aria-hidden="true" data-href="${ADULTE}" data-label="${LU_ADULTE}">
+        <span class="plaque__sur">Adulte</span>
+        <span class="plaque__prix"><b>44</b><i>€99</i></span>
+        <span class="plaque__note">sans engagement</span>
+        <span class="plaque__unit">toutes les 4 sem.</span>
       </span>`;
 
 function monterFlotte() {
   if (document.querySelector(".flotte")) return;
   const a = document.createElement("a");
   a.className = "plaque flotte";
-  a.href = PROMOS;
-  a.setAttribute("aria-label", "Offres spéciales : l’année complète à 259 € au lieu de 400 €, ou l’offre de rentrée à 29 € par personne toutes les 4 semaines au lieu de 44,99 €");
-  a.innerHTML = `<span class="plaque__faces alt" data-alterne>${FACES}</span><span class="plaque__go">Offres spéciales <i aria-hidden="true">→</i></span>`;
+  a.href = ETUDIANT;
+  a.setAttribute("aria-label", LU_ETUDIANT);
+  a.innerHTML = `<span class="plaque__faces alt" data-alterne>${FACES}</span><span class="plaque__go">Je m’inscris <i aria-hidden="true">→</i></span>`;
 
   /* SUR ORDINATEUR, PAS DANS LE HERO (Eddy, 13/09). À l’accueil, la plaque
      arrive quand on ENTRE dans les disciplines (#onav, juste après « 300 m²
@@ -155,8 +166,8 @@ export function demarrerOffres() {
   demarre = true;
   monterFlotte();
   armerAlternances();
-  /* page.js peint ses cartes APRÈS ce module (bouton « Quatre semaines ·
-     29 € » des disciplines) : tout [data-alterne] qui arrive est armé. */
+  /* page.js peint ses cartes APRÈS ce module (le bouton étudiant / adulte
+     des disciplines) : tout [data-alterne] qui arrive est armé. */
   new MutationObserver((ms) => ms.forEach((m) => m.addedNodes.forEach((n) => {
     if (n.nodeType !== 1) return;
     if (n.matches("[data-alterne]")) armer(n);

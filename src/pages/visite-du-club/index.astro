@@ -45,9 +45,9 @@ const LD = JSON.stringify({
   <link rel="preload" href="/fonts/manrope-var-latin.woff2?v=19" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="/fonts/jetbrainsmono-var-latin.woff2?v=19" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="/assets/css/fonts.css?v=19" />
-  <link rel="stylesheet" href="/assets/css/base.css?v=26" />
-  <link rel="stylesheet" href="/assets/css/page.css?v=21" />
-  <link rel="stylesheet" href="/assets/css/home.css?v=23" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=27" />
+  <link rel="stylesheet" href="/assets/css/page.css?v=22" />
+  <link rel="stylesheet" href="/assets/css/home.css?v=24" />
   <meta name="theme-color" content="#070a12" />
   <link rel="icon" href="/favicon-16.png?i=3" type="image/png" sizes="16x16" />
   <link rel="icon" href="/favicon.png?i=3" type="image/png" sizes="32x32" />
@@ -113,12 +113,12 @@ const LD = JSON.stringify({
         </div>
       </section>
       <div class="essai__cta" style="margin-bottom:clamp(3rem,8vw,5rem)">
-        <a class="btn btn--primary" href="https://boutique.boxingcenter.fr/offres-speciales"><span>Voir les offres spéciales</span></a>
+        <a class="btn btn--primary" data-magnetic href="https://boutique.boxingcenter.fr/inscription?product=etudiants-4-semaines" aria-label="Abonnement étudiant sans engagement : 36,99 € toutes les 4 semaines, carte étudiante requise. S’inscrire"><span class="alt" data-alterne><span class="alt__face is-on" data-href="https://boutique.boxingcenter.fr/inscription?product=etudiants-4-semaines" data-label="Abonnement étudiant sans engagement : 36,99 € toutes les 4 semaines, carte étudiante requise. S’inscrire">Étudiant · <span class="px">36<i>€99</i></span> / 4 sem.</span><span class="alt__face" aria-hidden="true" data-href="https://boutique.boxingcenter.fr/inscription?product=44-99-4-semaines" data-label="Abonnement adulte sans engagement : 44,99 € toutes les 4 semaines. S’inscrire">Adulte · <span class="px">44<i>€99</i></span> / 4 sem.</span></span></a>
         <a class="btn btn--ghost" href={`tel:${SALLE.phoneHref}`}><span>{SALLE.phone}</span></a>
       </div>
     </div>
   </main>
   <div id="footer"></div>
-  <script is:inline type="module" src="/assets/js/site.js?v=26"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=27"></script>
 </body>
 </html>

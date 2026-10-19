@@ -10,7 +10,7 @@
       "h1Tint": "coach MMA et grappling.",
       "eyebrow": "Coach principal · MMA · Grappling",
       "lead": "Ancien combattant de MMA, Jérôme a combattu aux États-Unis et au Canada. Au Boxing Center Ramonville, il tient le MMA et le grappling, et il les ouvre à tous : tu arrives sans rien savoir, il t’explique le geste, debout comme au sol.",
-      "tarif": "Offre Rentrée",
+      "tarif": "Abonnement adulte",
       "diplomes": [],
       "faits": [
         ["USA · Canada", "les pays où il a combattu"],
@@ -52,7 +52,7 @@
       "h1Tint": "coach pieds-poings.",
       "eyebrow": "Boxe thaï · Kickboxing · Lady Punch",
       "lead": "Diplômée du BPJEPS Sports de contact, Sonia pratique la boxe thaï depuis de nombreuses années et entraîne en pieds-poings depuis près de dix ans. À Ramonville, elle tient le pieds-poings, le Boxing Camp et le Lady Punch, le cours entre femmes.",
-      "tarif": "Offre Rentrée",
+      "tarif": "Abonnement adulte",
       "diplomes": ["BPJEPS mention Sports de contact"],
       "faits": [
         ["Près de 10 ans", "d’enseignement en pieds-poings"],
@@ -100,7 +100,7 @@
       "h1Tint": "la boxe anglaise du midi.",
       "eyebrow": "Boxe anglaise · Boxing Camp · les midis",
       "lead": "Hicham tient la boxe anglaise et le Boxing Camp en journée, sur les trois midis de la semaine. C’est le créneau de ceux qui n’ont pas leurs soirs : tu arrives sur ta pause, tu apprends le geste, tu bouges, tu repars.",
-      "tarif": "Offre Rentrée",
+      "tarif": "Abonnement adulte",
       "diplomes": ["BPJEPS AF (Activités de la forme)"],
       "faits": [
         ["BPJEPS AF", "son diplôme d’État"],
@@ -140,7 +140,7 @@
       "h1Tint": "la boxe anglaise du soir.",
       "eyebrow": "Boxe anglaise · loisirs et confirmés · les soirs",
       "lead": "Du premier cours au niveau confirmé, c’est lui qui encadre les soirées de boxe anglaise au Boxing Center Ramonville.",
-      "tarif": "Offre Rentrée",
+      "tarif": "Abonnement adulte",
       "diplomes": ["Licence STAPS"],
       "faits": [
         ["Licence STAPS", "sa formation"],

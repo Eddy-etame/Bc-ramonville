@@ -100,7 +100,7 @@ const FAQ = [
   ["Faut-il déjà savoir boxer pour s’inscrire ?",
    "Non. Sept cours sur huit n’ont aucun prérequis. Le premier soir, on dit « c’est ma première fois » à l’accueil et un coach oriente."],
   ["Combien coûte l’inscription au club ?",
-   "L’année complète est à 259 € au lieu de 400 €, payée comptant, pour les cinq clubs. Sans engagement, l’offre de rentrée est à 29 € par personne toutes les 4 semaines, au lieu de 44,99 €. Le détail est sur la page des tarifs."],
+   "Sans engagement, 44,99 € toutes les 4 semaines pour un adulte et 36,99 € pour un étudiant, carte à l’appui ; l’un comme l’autre ouvre les cinq clubs. Pour payer en une fois, 150 € les 3 mois, 250 € les 6 mois ou 400 € l’année. Le détail est sur la page des tarifs."],
 ];
 
 /* ── les données structurées ─────────────────────────────────────────── */
@@ -179,27 +179,27 @@ const html = `${tete}  <script is:inline type="application/ld+json">${JSON.strin
       </div>
     </section>
 
-    <section class="piege" aria-label="Les offres">
+    <section class="piege" aria-label="Les abonnements">
       <div class="wrap">
         <p class="amorce-ram" data-reveal>Un abonnement, les cinq clubs.</p>
-        <a class="plaque plaque--duo" data-reveal href="https://boutique.boxingcenter.fr/offres-speciales"
-           aria-label="Offres spéciales : l’année complète à 259 € au lieu de 400 €, ou l’offre de rentrée à 29 € par personne toutes les 4 semaines, au lieu de 44,99 €">
-          <span class="plaque__faces alt" data-alterne>
-            <span class="plaque__face alt__face is-on">
-              <span class="plaque__sur">L’année complète</span>
-              <span class="plaque__prix"><b>259</b><i>€</i></span>
-              <span class="plaque__unit">12 mois · les 5 clubs</span>
-              <span class="plaque__barre">au lieu de 400 €</span>
-            </span>
-            <span class="plaque__face alt__face" aria-hidden="true">
-              <span class="plaque__sur">Offre de rentrée</span>
-              <span class="plaque__prix"><b>29</b><i>€</i></span>
-              <span class="plaque__unit">par personne · toutes les 4 semaines</span>
-              <span class="plaque__barre">au lieu de 44,99 €</span>
-            </span>
-          </span>
-          <span class="plaque__go">Voir les offres spéciales <i aria-hidden="true">→</i></span>
-        </a>
+        <div class="plaques" data-reveal>
+          <a class="plaque" href="https://boutique.boxingcenter.fr/inscription?product=etudiants-4-semaines"
+             aria-label="Abonnement étudiant sans engagement : 36,99 € toutes les 4 semaines, carte étudiante requise. S’inscrire">
+            <span class="plaque__sur">Étudiant</span>
+            <span class="plaque__prix"><b>36</b><i>€99</i></span>
+            <span class="plaque__unit">toutes les 4 semaines</span>
+            <span class="plaque__note">carte étudiante requise</span>
+            <span class="plaque__go">Inscription étudiant <i aria-hidden="true">→</i></span>
+          </a>
+          <a class="plaque" href="https://boutique.boxingcenter.fr/inscription?product=44-99-4-semaines"
+             aria-label="Abonnement adulte sans engagement : 44,99 € toutes les 4 semaines. S’inscrire">
+            <span class="plaque__sur">Adulte</span>
+            <span class="plaque__prix"><b>44</b><i>€99</i></span>
+            <span class="plaque__unit">toutes les 4 semaines</span>
+            <span class="plaque__note">sans engagement · les 5 salles</span>
+            <span class="plaque__go">Inscription adulte <i aria-hidden="true">→</i></span>
+          </a>
+        </div>
         <p class="dp-suite" data-reveal><a href="/tarifs/">Toutes les formules et leurs conditions</a></p>
       </div>
     </section>
@@ -208,7 +208,7 @@ const html = `${tete}  <script is:inline type="application/ld+json">${JSON.strin
       <div class="wrap">
         <div class="shead" data-reveal><span class="eyebrow">Le réseau</span><h2 class="display" id="t-reseau">Un club parmi cinq.</h2></div>
         <div class="dp-prose" data-reveal>
-          <p>Boxing Center ${e(ici.name)} est l’une des cinq salles du réseau, avec ${autres.map((n) => `<a href="${e(n.url)}" rel="noopener">${e(n.name)}</a>`).join(", ")}. L’abonnement Saison ouvre les cinq. <a href="/nos-clubs/">Les cinq clubs, leurs adresses et leurs sites</a> · <a href="/about/">à propos de Boxing Center Ramonville</a>.</p>
+          <p>Boxing Center ${e(ici.name)} est l’une des cinq salles du réseau, avec ${autres.map((n) => `<a href="${e(n.url)}" rel="noopener">${e(n.name)}</a>`).join(", ")}. L’abonnement sans engagement, étudiant ou adulte, ouvre les cinq. <a href="/nos-clubs/">Les cinq clubs, leurs adresses et leurs sites</a> · <a href="/about/">à propos de Boxing Center Ramonville</a>.</p>
         </div>
       </div>
     </section>

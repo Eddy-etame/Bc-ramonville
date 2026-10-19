@@ -85,18 +85,21 @@ const _SALLE = {
 
 /* Conversion — TOUT pointe vers box-plus (liens vérifiés 2026-07-12). */
 export const LINKS = {
-  /* Le bouton permanent de l'en-tête vend l'OFFRE, pas l'essai (ordre
+  /* Le bouton permanent de l'en-tête vend l'ABONNEMENT, pas l'essai (ordre
      d'Eddy, 21/08) : le clic toujours visible doit porter le produit qui
-     fait entrer, pas le moins cher. La destination est celle qu'il a
-     donnée telle quelle — /offre/29, sans UTM, comme les autres liens
-     d'offre déjà en place sur le site. */
-  rentree: "https://boutique.boxingcenter.fr/offre/29",
+     fait entrer, pas le moins cher. Deux portes, dans cet ordre : l'étudiant
+     (carte étudiante requise), puis l'adulte. Sans UTM, comme les autres
+     liens de la boutique posés dans les pages. */
+  etudiant: "https://boutique.boxingcenter.fr/inscription?product=etudiants-4-semaines",
+  adulte: "https://boutique.boxingcenter.fr/inscription?product=44-99-4-semaines",
+  /* la liste des abonnements sans engagement, puis les formules comptant */
+  sansEngagement: "https://boutique.boxingcenter.fr/abonnements#prelevement",
+  comptant: "https://boutique.boxingcenter.fr/abonnements#comptant",
   /* Ne sert PLUS que la ligne « Séance d’essai » de la grille tarifs.
      Ailleurs le 10 € a quitté le site : ordre d’Eddy du 24/08/2026, le
      prix ne vit que dans la section tarifs et dans le bot. */
   essai: "https://boutique.boxingcenter.fr/seance-essai",
   abos: "https://boutique.boxingcenter.fr/abonnements",
-  promos: "https://boutique.boxingcenter.fr/offres-speciales",
   enfants: "https://boutique.boxingcenter.fr/abonnements#enfants",
   coachings: "https://boutique.boxingcenter.fr/coachings",
   boutique: "https://boutique.boxingcenter.fr/",   // la BOUTIQUE, pas un rayon (parité Minimes/St-Cyprien)
@@ -105,6 +108,24 @@ export const LINKS = {
   instagram: "https://www.instagram.com/boxingcentertoulouse/",
   google: "https://maps.google.com/?q=Boxing+Center+Ramonville+Saint+Agne",
 };
+
+/* LE BOUTON DES DEUX ABONNEMENTS — barre, menu, pied de page, disciplines.
+   Une seule case, deux faces qui alternent (offres.js) : l'étudiant d'abord,
+   puis l'adulte. Chaque face porte sa porte d'inscription et sa phrase lue ;
+   le lien suit la face à l'écran. Le prix se voit « 36 » / « 44 », €99 collé
+   en petit ; le lecteur d'écran, lui, entend le montant exact. */
+export const LU_ABOS = {
+  etudiant: "Abonnement étudiant sans engagement : 36,99 € toutes les 4 semaines, carte étudiante requise. S’inscrire",
+  adulte: "Abonnement adulte sans engagement : 44,99 € toutes les 4 semaines. S’inscrire",
+};
+export function boutonAbonnements({ classe = "", etudiant = "Étudiant · ", adulte = "Adulte · ", suite = " / 4 sem." } = {}) {
+  const px = (n) => `<span class="px">${n}<i>€99</i></span>`;
+  return `<a class="btn btn--primary${classe ? " " + classe : ""}" data-magnetic href="${LINKS.etudiant}" aria-label="${LU_ABOS.etudiant}">`
+    + `<span class="alt" data-alterne>`
+    + `<span class="alt__face is-on" data-href="${LINKS.etudiant}" data-label="${LU_ABOS.etudiant}">${etudiant}${px(36)}${suite}</span>`
+    + `<span class="alt__face" aria-hidden="true" data-href="${LINKS.adulte}" data-label="${LU_ABOS.adulte}">${adulte}${px(44)}${suite}</span>`
+    + `</span></a>`;
+}
 
 /* `short` : le libellé que porte la BARRE, quand il doit être plus court que
    celui du menu. Une seule liste, deux longueurs — pas deux listes à tenir
@@ -681,94 +702,107 @@ export const POSTERS = [
 ];
 
 /* ------------------------------------------------------------------ *
- *  LES OFFRES — conditions relues sur la boutique et dans les CGV.
- *  Une période de quatre semaines n'est pas un mois. Le 4× de la Saison
- *  se règle comptant ou en 4× sans frais, avec plusieurs options de paiement
- *  en quatre fois sur la boutique (Eddy, 08/10/2026).
+ *  LES ABONNEMENTS — relevés sur la boutique le 19/10/2026 (/api/products).
+ *  Une période de quatre semaines n'est pas un mois. Deux abonnements sans
+ *  engagement, l'étudiant puis l'adulte, et trois formules comptant à leur
+ *  prix normal. Le prix se montre « 36 » et « 44 » en grand, « €99 » collé
+ *  en petit (plaques, grands chiffres) ; partout où il se LIT — lecteur
+ *  d'écran, prose, FAQ, JSON-LD — il s'écrit en entier : 36,99 €, 44,99 €.
  * ------------------------------------------------------------------ */
 export const CONDITIONS_COMMERCIALES = {
-  rentree: {
-    recurrence: "29 € par personne toutes les 4 semaines",
+  sansEngagement: {
     paiement: "Première échéance par carte bancaire, puis prélèvements sur IBAN",
-    proche: "Coordonnées d’un proche requises à l’inscription",
-    badge: "Badge nominatif : 34,99 € en plus, facturé 72 h après le début",
+    acces: "Les 5 salles du réseau, tous les cours, et la salle ouverte en libre du lundi au samedi (10 h – 21 h 30)",
+    badge: "Badge d’accès : 34,99 € en plus, débité dans les jours qui suivent l’inscription",
   },
-  saison: {
-    paiement: "259 € au lieu de 400 €, payés comptant ou en 4× sans frais",
-    paypal: "Plusieurs options de paiement en 4× au choix sur la boutique",
+  etudiant: {
+    justificatif: "Carte étudiante requise : le tarif se prend sur justificatif",
+  },
+  comptant: {
+    grille: "3 mois 150 € · 6 mois 250 € · 12 mois 400 €",
   },
   badge:
     "Le badge nominatif à 34,99 € s’ajoute aux abonnements sans engagement de 4 semaines, sauf exception indiquée dans l’offre ou les CGV.",
 };
 
+/* Les deux abonnements sans engagement, dans l'ordre où le site les montre
+   partout : l'étudiant, puis l'adulte. `entier` / `cents` : le prix tel que
+   l'œil le lit sur une plaque (36 en grand, €99 collé en petit). */
 const _PROMOS = {
   saison: SEASON,
-  rentree: {
-    name: "Offre Rentrée",
-    price: "29 €",
-    unit: "par personne · toutes les 4 semaines",
-    feature: "Sans engagement · renouvelée toutes les 4 semaines",
+  etudiant: {
+    name: "Abonnement étudiant",
+    price: "36,99 €",
+    entier: "36", cents: "99",
+    unit: "toutes les 4 semaines · carte étudiante requise",
+    feature: "Sans engagement · carte étudiante requise",
     items: [
-      CONDITIONS_COMMERCIALES.rentree.paiement,
-      CONDITIONS_COMMERCIALES.rentree.proche,
-      CONDITIONS_COMMERCIALES.rentree.badge,
+      CONDITIONS_COMMERCIALES.etudiant.justificatif,
+      CONDITIONS_COMMERCIALES.sansEngagement.acces,
+      CONDITIONS_COMMERCIALES.sansEngagement.paiement,
+      CONDITIONS_COMMERCIALES.sansEngagement.badge,
     ],
-    cta: "Voir l’offre · 29 € / 4 sem.",
-    href: "https://boutique.boxingcenter.fr/offre/29",
-    priority: true,
+    cta: "Inscription étudiant · 36,99 € / 4 sem.",
+    href: "https://boutique.boxingcenter.fr/inscription?product=etudiants-4-semaines",
   },
-  saisonOffre: {
-    name: "Offre Saison",
-    price: "259 €",
-    unit: "les 12 mois",
-    feature: "259 € comptant ou 4× sans frais",
+  adulte: {
+    name: "Abonnement adulte",
+    price: "44,99 €",
+    entier: "44", cents: "99",
+    unit: "toutes les 4 semaines · renouvelable",
+    feature: "Sans engagement · renouvelable toutes les 4 semaines",
     items: [
-      CONDITIONS_COMMERCIALES.saison.paiement,
-      CONDITIONS_COMMERCIALES.saison.paypal,
-      "Accès libre aux 5 clubs du réseau",
+      CONDITIONS_COMMERCIALES.sansEngagement.acces,
+      CONDITIONS_COMMERCIALES.sansEngagement.paiement,
+      CONDITIONS_COMMERCIALES.sansEngagement.badge,
     ],
-    cta: "Je prends ma saison",
-    href: "https://boutique.boxingcenter.fr/offre/259",
-    priority: false,
+    cta: "Inscription adulte · 44,99 € / 4 sem.",
+    href: "https://boutique.boxingcenter.fr/inscription?product=44-99-4-semaines",
   },
 };
 
 /* Les tarifs affichés (page /tarifs/). C’est le SEUL endroit du site où
    le 10 € a le droit d’apparaître — ordre d’Eddy du 24/08/2026. */
 const _TARIFS = [
-  {
-    name: "Offre Rentrée",
-    price: "29 €",
-    period: "/ personne · toutes les 4 semaines",
-    feature: "Sans engagement · renouvelée par périodes de 4 semaines",
-    items: [
-      CONDITIONS_COMMERCIALES.rentree.paiement,
-      CONDITIONS_COMMERCIALES.rentree.proche,
-      CONDITIONS_COMMERCIALES.rentree.badge,
-    ],
-    cta: "Voir l’offre · 29 € / 4 sem.",
-    href: "https://boutique.boxingcenter.fr/offre/29",
-    highlight: true,
-  },
-  {
-    name: "Offre Saison",
-    price: "259 €",
-    period: "/ 12 mois · comptant",
-    feature: "Comptant ou 4× sans frais — plusieurs options de paiement",
-    items: [CONDITIONS_COMMERCIALES.saison.paiement, CONDITIONS_COMMERCIALES.saison.paypal, "Accès libre aux 5 clubs"],
-    cta: "Je prends ma saison",
-    href: "https://boutique.boxingcenter.fr/offre/259",
-    highlight: false,
-  },
   /* Une période contractuelle de 4 semaines n'est jamais appelée « mois ». */
   {
-    name: "Abonnement 4 semaines",
+    name: "Abonnement étudiant",
+    price: "36,99 €",
+    period: "/ 4 semaines · carte étudiante requise",
+    feature: "Sans engagement · le tarif se prend sur justificatif",
+    items: [
+      CONDITIONS_COMMERCIALES.sansEngagement.acces,
+      CONDITIONS_COMMERCIALES.sansEngagement.paiement,
+      CONDITIONS_COMMERCIALES.sansEngagement.badge,
+    ],
+    cta: "Inscription étudiant · 36,99 € / 4 sem.",
+    href: "https://boutique.boxingcenter.fr/inscription?product=etudiants-4-semaines",
+    highlight: true,
+    badge: "Carte étudiante",
+  },
+  {
+    name: "Abonnement adulte",
     price: "44,99 €",
-    period: "/ 4 semaines · adulte",
-    feature: "Étudiant 36,99 € sur justificatif · sans engagement",
-    items: ["Adulte 44,99 € / 4 semaines", "Étudiant 36,99 € / 4 semaines", CONDITIONS_COMMERCIALES.badge],
-    cta: "Voir les formules 4 semaines",
-    href: "https://boutique.boxingcenter.fr/abonnements#prelevement",
+    period: "/ 4 semaines · renouvelable",
+    feature: "Sans engagement · tu arrêtes quand tu veux",
+    items: [
+      CONDITIONS_COMMERCIALES.sansEngagement.acces,
+      CONDITIONS_COMMERCIALES.sansEngagement.paiement,
+      CONDITIONS_COMMERCIALES.sansEngagement.badge,
+    ],
+    cta: "Inscription adulte · 44,99 € / 4 sem.",
+    href: "https://boutique.boxingcenter.fr/inscription?product=44-99-4-semaines",
+    highlight: true,
+    badge: "Les 5 salles",
+  },
+  {
+    name: "Formules comptant",
+    price: "150 €",
+    period: "/ 3 mois · payés en une fois",
+    feature: "6 mois 250 € · 12 mois 400 €",
+    items: ["3 mois : 150 €", "6 mois : 250 €", "12 mois : 400 €"],
+    cta: "Voir les formules comptant",
+    href: "https://boutique.boxingcenter.fr/abonnements#comptant",
     highlight: false,
   },
   {
@@ -940,8 +974,8 @@ export const FAQ = [
   { q: "Quels cours peut-on faire ?", a: "Boxe anglaise (poings), boxe pieds-poings, grappling (combat au sol), MMA dans la cage. Boxing Camp (un peu de tout) et Lady Punch, 100 % féminin. Et l’école enfants, dès 3 ans. Un étage muscu et cardio est en accès libre. Aucun cours ne demande d’expérience. Tu ne sais pas par où commencer ? Le Boxing Camp est le plus simple. Samedi 11h, avec Valentin Guth." },
   { q: "Y a-t-il des cours pour les enfants ?", a: "Oui, dès 3 ans. Baby Boxe 3/6 le samedi à 14h15. Cours 7/11 ans à 15h, ados 12/16 ans à 16h. Mercredi et samedi après-midi. Valentin Guth tient toute l’école. Chez les enfants, on touche, on ne frappe pas. Et tu peux rester dans la salle pendant le cours." },
   { q: "Faut-il un niveau pour commencer ?", a: "Non. Pas besoin d’être sportif. La plupart des cours sont ouverts à tous. Tu dis « c’est ma première fois » à l’accueil. Un coach t’oriente. Personne ne te met sur le ring." },
-  { q: "Comment fonctionne l’offre Rentrée à 29 € ?", a: "Le prix est de 29 € par personne toutes les 4 semaines. La première échéance se règle par carte bancaire. Les suivantes sont prélevées sur l’IBAN fourni. Les coordonnées d’un proche sont requises. Le badge nominatif coûte 34,99 € en plus et il est facturé 72 heures après le début." },
-  { q: "Comment payer l’offre Saison à 259 € ?", a: "Comptant, ou en 4× sans frais : la boutique propose plusieurs options de paiement en quatre fois, tu choisis la tienne au moment de payer." },
+  { q: "Combien coûte l’abonnement ?", a: "Sans engagement, 44,99 € toutes les 4 semaines pour un adulte, 36,99 € pour un étudiant qui montre sa carte. Tu payes la première période par carte bancaire, la suite part en prélèvement sur ton IBAN. Le badge d’accès, 34,99 €, est débité dans les jours qui suivent." },
+  { q: "Et si je préfère payer d’un coup ?", a: "Trois formules comptant, à leur prix habituel : 150 € les 3 mois, 250 € les 6 mois, 400 € les 12 mois. Tu les trouves sur la boutique, à côté des abonnements sans engagement." },
   { q: "Quels sont les horaires ?", a: "Du lundi au samedi, de 10h00 à 21h30. La muscu et le cardio sont compris. Fermé le dimanche. Avant chaque cours, tu valides ta présence à l’accueil (émargement GPS). Ça vaut pour tout le monde. Toi le premier soir, comme ceux qui viennent depuis des années." },
 ];
 
@@ -1008,7 +1042,7 @@ const _lady = _creneaux("lady-punch");
    réponse. Visibles sur l’accueil ET balisées en FAQPage, depuis ce tableau. */
 export const HOME_FAQ = [
   { q: "Peut-on s’entraîner dans les autres Boxing Center avec un abonnement de Ramonville ?",
-    a: "Oui, avec la Saison : 259 € les 12 mois au lieu de 400 €, comptant ou en 4× sans frais, et l’accès libre aux 5 clubs du réseau — Ramonville, les Minimes, États-Unis, Saint-Cyprien et Portet-sur-Garonne." },
+    a: "Oui. L’abonnement sans engagement — 44,99 € adulte ou 36,99 € étudiant, toutes les 4 semaines — t’ouvre les 5 salles du réseau : Ramonville, les Minimes, États-Unis, Saint-Cyprien et Portet-sur-Garonne. Ici, tu gardes en plus le dehors couvert." },
   { q: "Peut-on venir s’entraîner en dehors des cours ?",
     a: `Oui. Le club est ouvert ${SALLE.hours.replace("Lun – Sam · ", "du lundi au samedi, de ").replace(" – ", " à ")}, et l’étage muscu et cardio est en accès libre sur toute cette plage. Fermé le dimanche.` },
   { q: "Quel cours choisir pour se remettre en forme ?",
@@ -1049,7 +1083,7 @@ export const PAGES_DU_SITE = [
   { href: "/activites/acces-libre/", t: "Accès libre", d: "La salle et l’étage muscu, hors cours." },
   { href: "/plannings/", t: "Le planning", d: "Tous les créneaux de la semaine." },
   { href: "/coachs/", t: "Les coachs", d: "Qui encadre quoi." },
-  { href: "/tarifs/", t: "Les tarifs", d: "La Saison, l’offre Rentrée, l’école." },
+  { href: "/tarifs/", t: "Les tarifs", d: "Étudiant, adulte, comptant, l’école." },
   { href: "/galerie/", t: "La galerie", d: "Le club en photos, cours après cours." },
   { href: "/la-salle/", t: "La salle", d: "Le plateau, mesuré et expliqué." },
   { href: "/club-de-boxe-ramonville/", t: "Le club", d: "Son histoire, ce qui le distingue." },

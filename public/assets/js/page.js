@@ -9,8 +9,8 @@ import {
   DISCIPLINES, PLATEAU, VALUES, NETWORK, SALLE, SEASON, SEASON_LABEL,
   DAYS, SCHEDULE, FAMILLES, POSTERS, TARIFS, PROMOS, REVIEWS,
   GALLERY, PHOTO_CREDIT, FAQ, LINKS, DEHORS, GRID_LEGEND, COACHES, ARPENT,
-  ENTREE, CARNET,
-} from "./data.js?v=25";
+  ENTREE, CARNET, boutonAbonnements,
+} from "./data.js?v=26";
 import { lienDiscipline } from "./disciplines-liens.js?v=1";
 
 const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -106,12 +106,12 @@ function pheroMeta() {
 
   if (page === "tarifs") {
     /* PAR SON NOM, PAS PAR SON RANG. TARIFS[0] a designe la Seance d’essai
-       jusqu’au jour ou l’Offre Rentree est passee en tete : la chip a alors
-       annonce « 29 € l’essai » quand l’essai est a 10 €. Un rang se deplace,
-       un nom non. */
+       jusqu’au jour ou une autre carte est passee en tete : la chip a alors
+       prete a l’essai le prix d’un abonnement, quand l’essai est a 10 €. Un
+       rang se deplace, un nom non. */
     const essai = TARIFS.find((t) => /essai/i.test(t.name || ""));
-    box.innerHTML = chip(`<b>${PROMOS.rentree.price}</b> ${PROMOS.rentree.unit}`)
-      + chip(`<b>${PROMOS.saisonOffre.price}</b> ${PROMOS.saisonOffre.unit} · les 5 clubs`)
+    box.innerHTML = chip(`<b>${PROMOS.etudiant.price}</b> étudiant · carte requise`)
+      + chip(`<b>${PROMOS.adulte.price}</b> adulte · les 5 clubs`)
       + (essai ? chip(`<b>${essai.price}</b> la séance d’essai`) : "");
     return;
   }
@@ -388,7 +388,7 @@ function renderDiscs() {
           <div class="disc__fact"><b>Niveau</b><span>${d.niveau}</span></div>
         </div>
         <div class="disc__cta">
-          <a class="btn btn--primary" data-magnetic href="${LINKS.promos}" aria-label="Offres spéciales : l’année complète à 259 € au lieu de 400 €, ou 29 € par personne toutes les 4 semaines au lieu de 44,99 €"><span class="alt" data-alterne><span class="alt__face is-on">L’année complète · <s class="ancien">400&nbsp;€</s> 259 €</span><span class="alt__face" aria-hidden="true">Quatre semaines · <s class="ancien">44,99&nbsp;€</s> 29 €</span></span></a>
+          ${boutonAbonnements()}
           <a class="btn btn--ghost" data-magnetic href="/plannings/"><span>Voir le planning</span></a>
           ${lienDiscipline(d.key) ? `<a class="btn btn--ghost" data-magnetic href="${lienDiscipline(d.key)}"><span>La page ${d.name}</span></a>` : ""}
         </div>
@@ -844,9 +844,9 @@ function viserFormule() {
 function renderTarifs() {
   const box = $("#tarifs"); if (box) box.innerHTML = TARIFS.map((t) => `
     <article class="tarif ${t.highlight ? "tarif--hot" : ""}" id="${ancreTarif(t.name)}">
-      ${t.highlight ? '<span class="tarif__badge">Le + malin</span>' : ""}
+      ${t.highlight ? `<span class="tarif__badge">${t.badge || "Le + malin"}</span>` : ""}
       <h3 class="tarif__name">${t.name}</h3>
-      <div class="tarif__price">${t.was ? `<s class="tarif__was">${t.was}</s> ` : ""}${t.price}<small> ${t.period}</small></div>
+      <div class="tarif__price">${t.price}<small> ${t.period}</small></div>
       <p class="tarif__feature">${t.feature}</p>
       <ul class="tarif__items">${t.items.map((i) => `<li>${i}</li>`).join("")}</ul>
       <a class="btn ${t.highlight ? "" : "btn--primary"}" data-magnetic href="${t.href}"><span>${t.cta}</span></a>
@@ -855,28 +855,24 @@ function renderTarifs() {
 
   const pbox = $("#promos");
   if (pbox) {
-    const D = PROMOS.rentree, S = PROMOS.saisonOffre;
-    pbox.innerHTML = `
-      <article class="promo promo--rentree">
-        <span class="promo__badge">Prioritaire</span>
-        <h3>${D.name}</h3>
-        <div class="promo__price"><b>${D.price}</b><i>${D.unit}</i>${D.was ? `<s>${D.was}</s>` : ""}</div>
-        <p class="promo__feat">${D.feature}</p>
-        <ul class="promo__items">${D.items.map((i) => `<li>${i}</li>`).join("")}</ul>
-        <a class="btn btn--primary" data-magnetic href="${D.href}"><span>${D.cta}</span></a>
-      </article>
-      <article class="promo promo--saison">
-        <span class="promo__badge">La saison</span>
-        <h3>${S.name}</h3>
-        <div class="promo__price"><b>${S.price}</b><i>${S.unit}</i>${S.was ? `<s>${S.was}</s>` : ""}</div>
-        <p class="promo__feat">${S.feature}</p>
-        <ul class="promo__items">${S.items.map((i) => `<li>${i}</li>`).join("")}</ul>
-        <a class="btn btn--ghost" data-magnetic href="${S.href}"><span>${S.cta}</span></a>
+    /* L’étudiant d’abord, puis l’adulte. Le grand chiffre se lit « 36 » /
+       « 44 », €99 collé en petit ; le lecteur d’écran entend le montant exact. */
+    const prix = (o) => `<b><span aria-hidden="true">${o.entier}<span class="px-c">€${o.cents}</span></span><span class="sr-only">${o.price}</span></b>`;
+    const carte = (o, cls, badge) => `
+      <article class="promo ${cls}">
+        <span class="promo__badge">${badge}</span>
+        <h3>${o.name}</h3>
+        <div class="promo__price">${prix(o)}<i>${o.unit}</i></div>
+        <p class="promo__feat">${o.feature}</p>
+        <ul class="promo__items">${o.items.map((i) => `<li>${i}</li>`).join("")}</ul>
+        <a class="btn btn--primary" data-magnetic href="${o.href}"><span>${o.cta}</span></a>
       </article>`;
+    pbox.innerHTML = carte(PROMOS.etudiant, "promo--etudiant", "Carte étudiante")
+      + carte(PROMOS.adulte, "promo--adulte", "Sans engagement");
   }
   const bonus = $("#promo-bonus");
   if (bonus) {
-    if (PROMOS.bonus) bonus.innerHTML = `<b>Bonus rentrée —</b> ${PROMOS.bonus}`;
+    if (PROMOS.bonus) bonus.innerHTML = `<b>En plus —</b> ${PROMOS.bonus}`;
     else bonus.remove();
   }
 

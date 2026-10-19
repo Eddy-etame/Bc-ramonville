@@ -22,7 +22,7 @@
        ni une requête de plus, elle arrive seulement à l’heure. -->
   <link rel="preload" href="/fonts/jetbrainsmono-var-latin.woff2?v=19" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="/assets/css/fonts.css?v=19" />
-  <link rel="stylesheet" href="/assets/css/base.css?v=26" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=27" />
   <link rel="stylesheet" href="/assets/css/discipline.css?v=3" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="author" content="Boxing Center Ramonville" />
@@ -94,7 +94,7 @@
           <p class="phero__lead">Ancien combattant de MMA, Jérôme a combattu aux États-Unis et au Canada. Au Boxing Center Ramonville, il tient le MMA et le grappling, et il les ouvre à tous : tu arrives sans rien savoir, il t’explique le geste, debout comme au sol.</p>
           <div class="phero__meta"><span><a class="role-lien" href="/activites/mma/">MMA</a></span><span><a class="role-lien" href="/activites/grappling/">Grappling</a></span><span><a class="role-lien" href="/activites/boxing-camp/">Forme physique</a></span></div>
           <div class="dp-actions">
-            <a class="btn btn--primary" href="/tarifs/#tarif-offre-rentree"><span>Voir l’Offre Rentrée</span></a>
+            <a class="btn btn--primary" data-magnetic href="https://boutique.boxingcenter.fr/inscription?product=etudiants-4-semaines" aria-label="Abonnement étudiant sans engagement : 36,99 € toutes les 4 semaines, carte étudiante requise. S’inscrire"><span class="alt" data-alterne><span class="alt__face is-on" data-href="https://boutique.boxingcenter.fr/inscription?product=etudiants-4-semaines" data-label="Abonnement étudiant sans engagement : 36,99 € toutes les 4 semaines, carte étudiante requise. S’inscrire">Étudiant · <span class="px">36<i>€99</i></span> / 4 sem.</span><span class="alt__face" aria-hidden="true" data-href="https://boutique.boxingcenter.fr/inscription?product=44-99-4-semaines" data-label="Abonnement adulte sans engagement : 44,99 € toutes les 4 semaines. S’inscrire">Adulte · <span class="px">44<i>€99</i></span> / 4 sem.</span></span></a>
             <a class="btn btn--ghost" href="/plannings/"><span>Voir le planning</span></a>
           </div>
         </div>
@@ -178,7 +178,7 @@
       <div class="wrap dp-fin" data-reveal>
         <h2 class="display" id="t-fin">Viens t’entraîner avec Jérôme. <span class="tint">Le premier cours se fait sans rien savoir.</span></h2>
         <div class="dp-actions">
-          <a class="btn btn--primary" href="/tarifs/#tarif-offre-rentree"><span>Voir l’Offre Rentrée</span></a>
+          <a class="btn btn--primary" data-magnetic href="https://boutique.boxingcenter.fr/inscription?product=etudiants-4-semaines" aria-label="Abonnement étudiant sans engagement : 36,99 € toutes les 4 semaines, carte étudiante requise. S’inscrire"><span class="alt" data-alterne><span class="alt__face is-on" data-href="https://boutique.boxingcenter.fr/inscription?product=etudiants-4-semaines" data-label="Abonnement étudiant sans engagement : 36,99 € toutes les 4 semaines, carte étudiante requise. S’inscrire">Étudiant · <span class="px">36<i>€99</i></span> / 4 sem.</span><span class="alt__face" aria-hidden="true" data-href="https://boutique.boxingcenter.fr/inscription?product=44-99-4-semaines" data-label="Abonnement adulte sans engagement : 44,99 € toutes les 4 semaines. S’inscrire">Adulte · <span class="px">44<i>€99</i></span> / 4 sem.</span></span></a>
           <a class="btn btn--ghost" href="/coachs/"><span>Toute l’équipe</span></a>
           <a class="btn btn--ghost" href="/contact/"><span>Nous écrire</span></a>
         </div>
@@ -212,7 +212,7 @@
         var f = document.createElement("link");
         f.rel = "stylesheet"; f.href = "/assets/css/chatbot.css?v=19";
         document.head.appendChild(f);
-        venue = import("/assets/js/chatbot.js?v=21").catch(function () { venue = null; });
+        venue = import("/assets/js/chatbot.js?v=22").catch(function () { venue = null; });
         return venue;
       }
       ["pointerenter", "touchstart", "focus"].forEach(function (e) {
@@ -229,8 +229,8 @@
       });
     })();
   </script>
-  <script is:inline type="module" src="/assets/js/site.js?v=26"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=27"></script>
   <script is:inline type="module" src="/assets/js/sky.js?v=20"></script>
-  <script is:inline type="module" src="/assets/js/page.js?v=25"></script>
+  <script is:inline type="module" src="/assets/js/page.js?v=26"></script>
 </body>
 </html>

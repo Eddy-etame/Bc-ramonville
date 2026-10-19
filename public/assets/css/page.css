@@ -187,20 +187,21 @@
 .tarif__items li { display: flex; gap: .8ch; align-items: flex-start; font-size: var(--step--1); color: var(--muted); }
 .tarif__items li::before { content: ""; flex: 0 0 6px; height: 6px; transform: rotate(45deg); margin-top: .5em; background: var(--accent); }
 
-/* le bloc promos — Rentrée prioritaire, Saison secondaire */
+/* les deux abonnements sans engagement — l’étudiant, puis l’adulte, à parts égales */
 .promos { display: grid; gap: 1rem; grid-template-columns: 1fr; }
-@media (min-width: 820px){ .promos { grid-template-columns: 1.15fr .85fr; align-items: stretch; } }
+@media (min-width: 820px){ .promos { grid-template-columns: 1fr 1fr; align-items: stretch; } }
 .promo { position: relative; border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(1.6rem,3.4vw,2.6rem); background: var(--paper-2); overflow: hidden; display: flex; flex-direction: column; }
-.promo--rentree { border-color: var(--accent); box-shadow: var(--glow-soft); }
-.promo--rentree::before { content: ""; position: absolute; inset: 0; z-index: 0; background: radial-gradient(70% 100% at 100% 0%, var(--sky-glow), transparent 62%); }
+.promo--etudiant, .promo--adulte { border-color: var(--accent); box-shadow: var(--glow-soft); }
+.promo--etudiant::before, .promo--adulte::before { content: ""; position: absolute; inset: 0; z-index: 0; background: radial-gradient(70% 100% at 100% 0%, var(--sky-glow), transparent 62%); }
 .promo > * { position: relative; z-index: 1; }
 .promo__badge { align-self: flex-start; font: 600 .6rem/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--void); background: var(--accent); padding: .5em .85em; border-radius: var(--radius); margin-bottom: 1rem; }
-.promo--saison .promo__badge { background: transparent; color: var(--accent); border: 1px solid var(--accent-line); }
+.promo--adulte .promo__badge { background: transparent; color: var(--accent); border: 1px solid var(--accent-line); }
 .promo h3 { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: clamp(1.5rem,1rem + 2vw,2.4rem); color: var(--ink); }
 .promo__price { display: flex; align-items: baseline; gap: .6ch; margin: .8rem 0; }
 .promo__price b { font-family: var(--f-display); font-weight: 700; font-size: clamp(2.4rem,6vw,3.6rem); color: var(--accent); letter-spacing: -.02em; }
 .promo__price i { font-style: normal; font: 600 .72rem/1 var(--f-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--ink); }
-.promo__price s { color: var(--muted); font: 600 .72rem/1 var(--f-mono); }
+/* « 36 » en grand, « €99 » collé en petit, en haut — l’œil lit 36 */
+.promo__price .px-c { font-size: .42em; vertical-align: .95em; margin-left: .04em; letter-spacing: 0; }
 .promo__feat { color: var(--ink-soft); font-size: var(--step--1); }
 .promo__items { display: grid; gap: .5rem; margin: 1rem 0 1.4rem; }
 .promo__items li { display: flex; gap: .8ch; align-items: flex-start; font-size: var(--step--1); color: var(--muted); }
