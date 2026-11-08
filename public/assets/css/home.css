@@ -413,6 +413,14 @@
     scrollbar-width: thin; }
   .lieu__item, .lieu__item--grand { grid-column: auto; grid-row: auto; scroll-snap-align: start; }
 }
+/* Le rail déborde de son conteneur de var(--gut) de chaque côté pour toucher
+   les bords de l'écran. Mais sous 480 px, --gut garde son plancher de 1,2 rem
+   quand .wrap ne laisse que 4 vw : le rail dépassait l'écran de 3,6 px à
+   l'accueil et de 7,2 px sur la visite, et le téléphone dézoomait la page
+   (mesuré le 8/11/2026 : document de 394 px pour un écran de 390). Le bloc
+   qui porte le rail coupe en x ; `clip` ne crée pas de conteneur de
+   défilement et ne change rien à l'écran. */
+.lieu, .fiche-page { overflow-x: clip; }
 
 .semaine__jours { list-style: none; margin: 0; padding: 0; display: grid; gap: .7rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 168px), 1fr)); }
 .semaine__jour { border: 1px solid var(--line); background: var(--paper-2); padding: 1rem 1rem 1.1rem; transition: border-color .3s, box-shadow .3s; }
